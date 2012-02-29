@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/193/head/src/graphlab/library/algorithms/goperators/product
+END
+GCartesianProduct.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/180/head/src/graphlab/library/algorithms/goperators/product/GCartesianProduct.java
+END
+GProduct.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/193/head/src/graphlab/library/algorithms/goperators/product/GProduct.java
+END
+GPopularProduct.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/150/head/src/graphlab/library/algorithms/goperators/product/GPopularProduct.java
+END

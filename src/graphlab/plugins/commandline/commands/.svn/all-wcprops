@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/193/head/src/graphlab/plugins/commandline/commands
+END
+VertexCommands.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/193/head/src/graphlab/plugins/commandline/commands/VertexCommands.java
+END
+ShellServerCommands.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/193/head/src/graphlab/plugins/commandline/commands/ShellServerCommands.java
+END
+Copier.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/151/head/src/graphlab/plugins/commandline/commands/Copier.java
+END
+GraphCommands.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/193/head/src/graphlab/plugins/commandline/commands/GraphCommands.java
+END
+ShellCommandException.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/150/head/src/graphlab/plugins/commandline/commands/ShellCommandException.java
+END
+EdgeCommands.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/180/head/src/graphlab/plugins/commandline/commands/EdgeCommands.java
+END
+Converter.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/151/head/src/graphlab/plugins/commandline/commands/Converter.java
+END
+NativeCommands.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/180/head/src/graphlab/plugins/commandline/commands/NativeCommands.java
+END

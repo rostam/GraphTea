@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/235/head/src/graphlab/extensions/reports
+END
+Partitioner.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/150/head/src/graphlab/extensions/reports/Partitioner.java
+END
+ChromaticNumber.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/235/head/src/graphlab/extensions/reports/ChromaticNumber.java
+END
+ColoringListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/150/head/src/graphlab/extensions/reports/ColoringListener.java
+END
+ColoringReport.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/227/head/src/graphlab/extensions/reports/ColoringReport.java
+END
+MaxIndependentSetReport.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/235/head/src/graphlab/extensions/reports/MaxIndependentSetReport.java
+END
+SubSetListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/150/head/src/graphlab/extensions/reports/SubSetListener.java
+END

@@ -1,0 +1,3 @@
+[autorun] 
+icon=images\Icon.ico
+ShellExecute="GraphLabSetup.exe"

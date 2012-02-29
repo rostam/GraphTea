@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/193/head/src/graphlab/plugins/main/rightclick
+END
+Init.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/193/head/src/graphlab/plugins/main/rightclick/Init.java
+END
+config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/rightclick/config.xml
+END
+PopupMenuHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/174/head/src/graphlab/plugins/main/rightclick/PopupMenuHandler.java
+END
+RightClickPluginMethods.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/151/head/src/graphlab/plugins/main/rightclick/RightClickPluginMethods.java
+END
+SampleUI.dtd
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/rightclick/SampleUI.dtd
+END

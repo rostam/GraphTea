@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/193/head/src/graphlab/plugins/automaticupdator/net/interdirected/autoupdate
+END
+SoftwareUpdateable.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/150/head/src/graphlab/plugins/automaticupdator/net/interdirected/autoupdate/SoftwareUpdateable.java
+END
+UpdateEventHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/150/head/src/graphlab/plugins/automaticupdator/net/interdirected/autoupdate/UpdateEventHandler.java
+END
+AntLauncher.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/150/head/src/graphlab/plugins/automaticupdator/net/interdirected/autoupdate/AntLauncher.java
+END
+DefaultUpdateCheck.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/150/head/src/graphlab/plugins/automaticupdator/net/interdirected/autoupdate/DefaultUpdateCheck.java
+END
+AutomatedUpdate.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/193/head/src/graphlab/plugins/automaticupdator/net/interdirected/autoupdate/AutomatedUpdate.java
+END
+GuiStatusScreen.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/!svn/ver/150/head/src/graphlab/plugins/automaticupdator/net/interdirected/autoupdate/GuiStatusScreen.java
+END

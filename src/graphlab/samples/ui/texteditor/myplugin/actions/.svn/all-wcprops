@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/193/head/src/graphlab/samples/ui/texteditor/myplugin/actions
+END
+OpenAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/156/head/src/graphlab/samples/ui/texteditor/myplugin/actions/OpenAction.java
+END
+Utils.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/156/head/src/graphlab/samples/ui/texteditor/myplugin/actions/Utils.java
+END
+ExitAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/156/head/src/graphlab/samples/ui/texteditor/myplugin/actions/ExitAction.java
+END
+NewAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/156/head/src/graphlab/samples/ui/texteditor/myplugin/actions/NewAction.java
+END
+AboutAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/156/head/src/graphlab/samples/ui/texteditor/myplugin/actions/AboutAction.java
+END
+ReadWriteTextFile.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/156/head/src/graphlab/samples/ui/texteditor/myplugin/actions/ReadWriteTextFile.java
+END
+SaveAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/193/head/src/graphlab/samples/ui/texteditor/myplugin/actions/SaveAction.java
+END

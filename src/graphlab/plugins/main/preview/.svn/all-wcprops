@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/193/head/src/graphlab/plugins/main/preview
+END
+ShowPreview.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/193/head/src/graphlab/plugins/main/preview/ShowPreview.java
+END
+Init.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/193/head/src/graphlab/plugins/main/preview/Init.java
+END
+PreviewPluginMethods.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/151/head/src/graphlab/plugins/main/preview/PreviewPluginMethods.java
+END
+config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/preview/config.xml
+END
+SampleUI.dtd
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/preview/SampleUI.dtd
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/193/head/src/graphlab/library/algorithms/goperators
+END
+EdgeInduced.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/180/head/src/graphlab/library/algorithms/goperators/EdgeInduced.java
+END
+GraphComplement.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/180/head/src/graphlab/library/algorithms/goperators/GraphComplement.java
+END
+VertexInduced.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/180/head/src/graphlab/library/algorithms/goperators/VertexInduced.java
+END
+GraphUnion.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/180/head/src/graphlab/library/algorithms/goperators/GraphUnion.java
+END

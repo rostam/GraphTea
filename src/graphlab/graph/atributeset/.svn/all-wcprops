@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/237/head/src/graphlab/graph/atributeset
+END
+VertexNotifiableAttrSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/150/head/src/graphlab/graph/atributeset/VertexNotifiableAttrSet.java
+END
+VertexAttrSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/150/head/src/graphlab/graph/atributeset/VertexAttrSet.java
+END
+GraphNotifiableAttrSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/150/head/src/graphlab/graph/atributeset/GraphNotifiableAttrSet.java
+END
+EdgeNotifiableAttrSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/150/head/src/graphlab/graph/atributeset/EdgeNotifiableAttrSet.java
+END
+GraphAttrSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/237/head/src/graphlab/graph/atributeset/GraphAttrSet.java
+END
+EdgeAttrSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/150/head/src/graphlab/graph/atributeset/EdgeAttrSet.java
+END

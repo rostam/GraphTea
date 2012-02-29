@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/193/head/src/graphlab/plugins/main/saveload/core
+END
+GraphWriterInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/151/head/src/graphlab/plugins/main/saveload/core/GraphWriterInterface.java
+END
+GraphReaderInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/151/head/src/graphlab/plugins/main/saveload/core/GraphReaderInterface.java
+END
+GraphIOException.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/151/head/src/graphlab/plugins/main/saveload/core/GraphIOException.java
+END

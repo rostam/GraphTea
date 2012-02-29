@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/193/head/src/graphlab/plugins/main/core/actions/vertex
+END
+VertexSelectEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/core/actions/vertex/VertexSelectEvent.java
+END
+DeleteVertex.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/core/actions/vertex/DeleteVertex.java
+END
+VertexHighlightAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/core/actions/vertex/VertexHighlightAction.java
+END
+MoveVertex.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/core/actions/vertex/MoveVertex.java
+END
+AddVertex.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/193/head/src/graphlab/plugins/main/core/actions/vertex/AddVertex.java
+END
+VertexMoveEvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/151/head/src/graphlab/plugins/main/core/actions/vertex/VertexMoveEvent.java
+END
+VertexSelectData.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/core/actions/vertex/VertexSelectData.java
+END
+VertexMoveData.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/155/head/src/graphlab/plugins/main/core/actions/vertex/VertexMoveData.java
+END

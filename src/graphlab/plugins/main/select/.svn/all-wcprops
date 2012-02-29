@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/193/head/src/graphlab/plugins/main/select
+END
+Init.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/193/head/src/graphlab/plugins/main/select/Init.java
+END
+SelectUpdater.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/select/SelectUpdater.java
+END
+RectangularSelect.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/174/head/src/graphlab/plugins/main/select/RectangularSelect.java
+END
+SelectAll.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/151/head/src/graphlab/plugins/main/select/SelectAll.java
+END
+SampleUI.dtd
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/select/SampleUI.dtd
+END
+DeleteSelected.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/select/DeleteSelected.java
+END
+InvertSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/select/InvertSelection.java
+END
+MoveSelected.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/193/head/src/graphlab/plugins/main/select/MoveSelected.java
+END
+Select.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/select/Select.java
+END
+SelectPluginMethods.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/174/head/src/graphlab/plugins/main/select/SelectPluginMethods.java
+END
+MakeSelectionEmptyGraph.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/select/MakeSelectionEmptyGraph.java
+END
+ScaleInSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/select/ScaleInSelection.java
+END
+ScaleOutSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/select/ScaleOutSelection.java
+END
+DeSelect.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/select/DeSelect.java
+END
+MakeSelectionComplementGraph.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/193/head/src/graphlab/plugins/main/select/MakeSelectionComplementGraph.java
+END
+ClearSelection.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/174/head/src/graphlab/plugins/main/select/ClearSelection.java
+END
+SelectUI.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/select/SelectUI.xml
+END
+MakeSelectionCompleteGraph.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/150/head/src/graphlab/plugins/main/select/MakeSelectionCompleteGraph.java
+END

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/239/head/src/graphlab/plugins/reports/spectralreports/maxflowmincut
+END
+MinCut.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/239/head/src/graphlab/plugins/reports/spectralreports/maxflowmincut/MinCut.java
+END
+one.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/239/head/src/graphlab/plugins/reports/spectralreports/maxflowmincut/one.java
+END
+MaximumFlow.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/239/head/src/graphlab/plugins/reports/spectralreports/maxflowmincut/MaximumFlow.java
+END
+PushRelabel.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/239/head/src/graphlab/plugins/reports/spectralreports/maxflowmincut/PushRelabel.java
+END
+MinimumCut.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/239/head/src/graphlab/plugins/reports/spectralreports/maxflowmincut/MinimumCut.java
+END
+GomoryHuTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/239/head/src/graphlab/plugins/reports/spectralreports/maxflowmincut/GomoryHuTree.java
+END
+GusfieldGomoryHuTree.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/239/head/src/graphlab/plugins/reports/spectralreports/maxflowmincut/GusfieldGomoryHuTree.java
+END
+MaxFlow.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/239/head/src/graphlab/plugins/reports/spectralreports/maxflowmincut/MaxFlow.java
+END

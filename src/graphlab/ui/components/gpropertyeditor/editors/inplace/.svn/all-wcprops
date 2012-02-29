@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/150/head/src/graphlab/ui/components/gpropertyeditor/editors/inplace
+END
+GDimensionEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/150/head/src/graphlab/ui/components/gpropertyeditor/editors/inplace/GDimensionEditor.java
+END
+BoundedIntegerEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/150/head/src/graphlab/ui/components/gpropertyeditor/editors/inplace/BoundedIntegerEditor.java
+END
+GSimpleComboEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/150/head/src/graphlab/ui/components/gpropertyeditor/editors/inplace/GSimpleComboEditor.java
+END
+ValueSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/150/head/src/graphlab/ui/components/gpropertyeditor/editors/inplace/ValueSet.java
+END
+ArrayXEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/150/head/src/graphlab/ui/components/gpropertyeditor/editors/inplace/ArrayXEditor.java
+END
+GBooleanEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/150/head/src/graphlab/ui/components/gpropertyeditor/editors/inplace/GBooleanEditor.java
+END
+GComboEditor.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/150/head/src/graphlab/ui/components/gpropertyeditor/editors/inplace/GComboEditor.java
+END

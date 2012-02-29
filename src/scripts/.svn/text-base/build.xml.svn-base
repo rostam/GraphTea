@@ -1,0 +1,366 @@
+<?xml version="1.0"?>
+<!-- ======================================================================
+     Mar 26, 2005 10:29:39 AM
+
+     GraphLab
+     The ant build file of GraphLab Project.
+
+     Logs:
+     - Version 0.0.1 2005/03/26 10:29 Reza Mohammadi.
+       First Creation.
+     - Version 0.0.2 2005/03/27 17:27 Reza Mohammadi.
+       Core Plugin Removed!
+       sh File Removed!
+       graphlab-core.jar is executable now!
+     - Version 0.0.3 2005/03/28 12:41 Reza Mohammadi.
+       Clean Target Added.
+     - Version 0.0.4 2005/03/30 00:49 Reza Mohammadi.
+       UI Plugin Removed!
+     - Version 0.0.5 2005/03/31 15:24 Reza Mohammadi.
+       Core Plugin Added!
+     - Version 0.0.6 2005/04/09 13:21 Reza Mohammadi.
+       ZoomSideBar Plugin Added!
+     - Version 0.0.7 2005/05/15 07:50 Reza Mohammadi.
+       Library is now involved + some other plugins!
+     - Version 0.9.1 2005/12/05 10:50 Reza Mohammadi.
+       List of plugins:
+       		main
+       		manageplugins
+       		visualization
+       		graphgenerator
+       		metrics
+       		algorithmanimator
+       		developplugin
+     ====================================================================== -->
+
+<project name="GraphLab" default="make binary" basedir="..">
+    <description>
+        The ant build file of GraphLab Project.
+    </description>
+
+    <!-- - - - - - - - - - - - - - - - - -
+          target: depends
+         - - - - - - - - - - - - - - - - - -->
+    <target name="depends">
+        <path id="zdir">
+            <pathelement location="${basedir}"/>
+        </path>
+        <pathconvert property="xdir" refid="zdir" targetos="unix"></pathconvert>
+        <property name="scripts.dir" value="${xdir}/scripts"/>
+        <property name="build.dir" value="${xdir}/../../build"/>
+        <property name="dist.dir" value="${xdir}/../binary"/>
+        <path id="project.lib">
+            <fileset dir="${scripts.dir}/lib" includes="**/*.*"/>
+        </path>
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="${dist.dir}/lib"/>
+        <mkdir dir="${dist.dir}/plugins"/>
+        <mkdir dir="${dist.dir}/extensions"/>
+    </target>
+
+    <!-- =================================
+          target: compile
+         ================================= -->
+    <target name="compile" depends="depends" description="--> The ant build file of GraphLab Project.">
+        <javac srcdir="${xdir}" destdir="${build.dir}">
+            <classpath>
+                <path refid="project.lib"/>
+            </classpath>
+            <include name="graphlab/**/*.java"/>
+            <!--<exclude name="graphlab/gui/plugins/developplugin/content/**"/>-->
+        </javac>
+        <copy todir="${build.dir}">
+            <fileset dir="${xdir}">
+                <include name="graphlab/**/*.*"/>
+                <exclude name="**/*.java"/>
+                <exclude name="**/*.~*"/>
+                <exclude name="**/.*"/>
+                <!--<exclude name="graphlab/platform/GraphLabDebugger.class"/>-->
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- =================================
+          target: dist
+         ================================= -->
+    <target name="make binary" depends="compile" description="Make jar files">
+        <!--copies extensions -->
+        <copy todir="${dist.dir}/extensions">
+            <fileset dir="${build.dir}">
+                <include name="graphlab/extensions/**/*.*"/>
+            </fileset>
+        </copy>
+        <jar destfile="${dist.dir}/graphlab-main.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Main-Class" value="graphlab.platform.Application"/>
+                <attribute name="version" value="20060104"/>
+                <attribute name="SplashScreen-Image" value="icon.PNG"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphlab/platform/**/*.*"/>
+            </fileset>
+        </jar>
+        <jar destfile="${dist.dir}/plugins/main.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="plugin-name" value="main"/>
+                <attribute name="plugin-version" value="20060104"/>
+                <attribute name="plugin-depends" value=""/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <!--<include name="graphlab/platform/core/**/*.*"/>-->
+                <include name="graphlab/plugins/main/**/*.*"/>
+            </fileset>
+        </jar>
+        <jar destfile="${dist.dir}/plugins/visualization.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="plugin-name" value="visualization"/>
+                <attribute name="plugin-version" value="20060104"/>
+                <attribute name="plugin-depends" value="main 20060104"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphlab/plugins/visualization/**/*.*"/>
+            </fileset>
+        </jar>
+        <jar destfile="${dist.dir}/plugins/graphgenerator.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="plugin-name" value="graphgenerator"/>
+                <attribute name="plugin-version" value="20060104"/>
+                <attribute name="plugin-depends" value="main 20060104"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphlab/plugins/graphgenerator/**/*.*"/>
+            </fileset>
+        </jar>
+        <!--
+                <jar destfile="${dist.dir}/plugins/metrics.jar">
+                    <manifest>
+                        <attribute name="Built-By" value="${user.name}"/>
+                        <attribute name="plugin-name" value="metrics"/>
+                        <attribute name="plugin-version" value="20051205"/>
+                        <attribute name="plugin-depends" value="main 20060104"/>
+                    </manifest>
+                    <fileset dir="${build.dir}">
+                        <include name="graphlab/plugins/metrics/**/*.*"/>
+                    </fileset>
+                </jar>
+        -->
+        <jar destfile="${dist.dir}/plugins/algorithmanimator.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="plugin-name" value="algorithmanimator"/>
+                <attribute name="plugin-version" value="20060104"/>
+                <attribute name="plugin-depends" value="main 20060104"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphlab/plugins/algorithmanimator/**/*.*"/>
+            </fileset>
+        </jar>
+        <jar destfile="${dist.dir}/plugins/commandline.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="plugin-name" value="commandline"/>
+                <attribute name="plugin-version" value="20060104"/>
+                <attribute name="plugin-depends" value="main 20060104"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphlab/plugins/commandline/**/*.*"/>
+            </fileset>
+        </jar>
+        <!--<jar destfile="${dist.dir}/plugins/developplugin.jar">-->
+        <!--<manifest>-->
+        <!--<attribute name="Built-By" value="${user.name}"/>-->
+        <!--<attribute name="plugin-name" value="developplugin"/>-->
+        <!--<attribute name="plugin-version" value="20060104"/>-->
+        <!--<attribute name="plugin-depends" value="main 20060104"/>-->
+        <!--<attribute name="plugin-configxml" value="/graphlab/gui/plugins/developplugin/config.xml"/>-->
+        <!--</manifest>-->
+        <!--<fileset dir="${build.dir}">-->
+        <!--<include name="graphlab/plugins/developplugin/**/*.*"/>-->
+        <!--</fileset>-->
+        <!--</jar>-->
+        <jar destfile="${dist.dir}/plugins/commonplugin.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="plugin-name" value="commonplugin"/>
+                <attribute name="plugin-version" value="20060104"/>
+                <attribute name="plugin-depends" value="main 20060104"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphlab/plugins/commonplugin/**/*.*"/>
+            </fileset>
+        </jar>
+        <jar destfile="${dist.dir}/plugins/reports.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="plugin-name" value="reports"/>
+                <attribute name="plugin-version" value="20060104"/>
+                <attribute name="plugin-depends" value="main 20060104"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphlab/plugins/reports/**/*.*"/>
+            </fileset>
+        </jar>
+        
+        <jar destfile="${dist.dir}/plugins/connector.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="plugin-name" value="connector"/>
+                <attribute name="plugin-version" value="20060104"/>
+                <attribute name="plugin-depends" value="main 20060104"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphlab/plugins/connector/**/*.*"/>
+            </fileset>
+        </jar>
+        <jar destfile="${dist.dir}/plugins/automaticupdator.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="plugin-name" value="automaticupdator"/>
+                <attribute name="plugin-version" value="20060104"/>
+                <attribute name="plugin-depends" value="main 20060104"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphlab/plugins/automaticupdator/**/*.*"/>
+            </fileset>
+        </jar>
+        <jar destfile="${dist.dir}/lib/graphlab-ui-library.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Description" value="User interface of GraphLab"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphlab/ui/**/*.*"/>
+            </fileset>
+        </jar>
+
+        <jar destfile="${dist.dir}/lib/graphlab-library.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Description" value="Library of GraphLab"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphlab/library/**/*.*"/>
+            </fileset>
+        </jar>
+
+        <jar destfile="${dist.dir}/lib/graph.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Description" value="Graph Drawing Library"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphlab/graph/**/*.*"/>
+            </fileset>
+        </jar>
+
+
+        <copy todir="${dist.dir}/">
+            <fileset dir="${scripts.dir}/maindirectoryfiles">
+                <include name="**/*.*"/>
+            </fileset>
+        </copy>
+        <!--<copy todir="${dist.dir}/prefs">-->
+        <!--<fileset dir="${scripts.dir}/prefs">-->
+        <!--<include name="**/*.*"/>-->
+        <!--</fileset>-->
+        <!--</copy>-->
+        <copy todir="${dist.dir}/lib">
+            <fileset dir="${scripts.dir}/lib">
+                <include name="**/*.*"/>
+            </fileset>
+        </copy>
+        <!--<tar destfile="${basedir}/../developer_resources/binary.tar" basedir="${dist.dir}" defaultexcludes="no"/>-->
+        <!--<gzip destfile="${basedir}/../developer_resources/binary.tar.gz" src="${basedir}/../developer_resources/binary.tar"/>-->
+    </target>
+
+    <!-- =================================
+          target: clean
+         ================================= -->
+    <target name="clean" description="Clean">
+        <path id="zdir">
+            <pathelement location="${basedir}"/>
+        </path>
+        <pathconvert property="xdir" refid="zdir" targetos="unix"></pathconvert>
+        <property name="scripts.dir" value="${xdir}/scripts"/>
+        <property name="build.dir" value="${xdir}/../../build"/>
+        <property name="dist.dir" value="${xdir}/../binary"/>
+        <delete>
+            <!--<fileset dir="${build.dir}" includes="**/*.*"/>-->
+            <fileset dir="${dist.dir}" includes="**/*.*"/>
+        </delete>
+        <available file="${dist.dir}" property="dist.dir.present"></available>
+    </target>
+
+    <!-- =================================-->
+    <!--target: run-->
+    <!--================================= -->
+    <!--<target name="run" depends="make binary" description="Run the Program">-->
+    <!--<java jar="${dist.dir}/graphlab-main.jar"-->
+    <!--fork="true" dir="${dist.dir}">-->
+    <!--</java>-->
+    <!--</target>-->
+
+    <!-- =================================
+          target: javaDoc
+         ================================= -->
+    <target name="javadoc">
+        <javadoc  packagenames="graphlab.*"
+                sourcepath="${basedir}"
+                defaultexcludes="yes"
+                useexternalfile ="true"
+                destdir="${basedir}/../developer_resources/javadoc"
+                author="true"
+                version="true"
+                use="true"
+                linksource="true"
+            doctitle="GraphLab Project"
+            windowtitle="GraphLab Project">
+                 <header><![CDATA[<a href='http://graphlab.sharif.edu'>GraphLab Project</a>]]></header>
+
+        </javadoc>
+        <zip destfile="${basedir}/../developer_resources/javadoc.zip">
+            <fileset dir="${basedir}/../developer_resources/javadoc">
+                <include name="**/*.*"/>
+            </fileset>
+        </zip>
+
+    </target>
+        <!--<zip destfile="${basedir}/../docs/javadoc.zip">-->
+            <!--<fileset dir="${basedir}/../docs/javadoc">-->
+                <!--<include name="**/*.*"/>-->
+            <!--</fileset>-->
+        <!--</zip>-->
+        <!--<copyfile src="${basedir}/../docs/javadoc.zip" dest="${basedir}/../binary/javadoc.zip"/>-->
+        <deltree dir="${basedir}/../developer_resources/javadoc"/>
+
+    <!--</target>-->
+
+    <!-- =================================
+          target: graphlabAPI
+         ================================= -->
+    <target name="api" depends="compile" description="Create GraphlabAPI.jar">
+        <jar destfile="${basedir}/../developer_resources/GraphlabAPI.jar">
+            <fileset dir="${build.dir}">
+                <include name="graphlab/**/*.*"/>
+            </fileset>
+        </jar>
+        <deltree dir="${build.dir}"/>
+    </target>
+
+    <!-- =================================
+          target: src
+         ================================= -->
+    <target depends="depends" name="src" description="Create src.zip">
+        <zip destfile="${basedir}/../developer_resources/src.zip">
+            <fileset dir="${basedir}">
+                <include name="**/*.*"/>
+            </fileset>
+        </zip>
+    </target>
+</project>
+

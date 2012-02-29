@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/193/head/src/graphlab/plugins/algorithmanimator/core
+END
+AlgorithmAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/193/head/src/graphlab/plugins/algorithmanimator/core/AlgorithmAnimator.java
+END
+AtomAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/150/head/src/graphlab/plugins/algorithmanimator/core/AtomAnimator.java
+END
+SimpleAlgorithmAnimator.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/162/head/src/graphlab/plugins/algorithmanimator/core/SimpleAlgorithmAnimator.java
+END

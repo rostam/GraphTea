@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/217/head/src/graphlab/plugins/graphgenerator
+END
+GeneratorUI.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/177/head/src/graphlab/plugins/graphgenerator/GeneratorUI.xml
+END
+Init.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/193/head/src/graphlab/plugins/graphgenerator/Init.java
+END
+GraphGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/151/head/src/graphlab/plugins/graphgenerator/GraphGenerator.java
+END
+SampleUI.dtd
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/150/head/src/graphlab/plugins/graphgenerator/SampleUI.dtd
+END

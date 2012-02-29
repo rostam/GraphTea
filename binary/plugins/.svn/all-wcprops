@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/213/head/binary/plugins
+END
+main.jar
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/213/head/binary/plugins/main.jar
+END
+automaticupdator.jar
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/213/head/binary/plugins/automaticupdator.jar
+END
+commandline.jar
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/213/head/binary/plugins/commandline.jar
+END
+commonplugin.jar
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/213/head/binary/plugins/commonplugin.jar
+END
+graphgenerator.jar
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/213/head/binary/plugins/graphgenerator.jar
+END
+connector.jar
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/213/head/binary/plugins/connector.jar
+END
+reports.jar
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/213/head/binary/plugins/reports.jar
+END
+algorithmanimator.jar
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/213/head/binary/plugins/algorithmanimator.jar
+END
+visualization.jar
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/213/head/binary/plugins/visualization.jar
+END

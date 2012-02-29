@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/193/head/src/graphlab/plugins/graphgenerator/core
+END
+SimpleGeneratorInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/151/head/src/graphlab/plugins/graphgenerator/core/SimpleGeneratorInterface.java
+END
+GraphGeneratorInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/150/head/src/graphlab/plugins/graphgenerator/core/GraphGeneratorInterface.java
+END
+PositionGenerators.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/150/head/src/graphlab/plugins/graphgenerator/core/PositionGenerators.java
+END
