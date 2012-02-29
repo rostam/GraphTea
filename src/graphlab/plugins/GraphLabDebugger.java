@@ -62,15 +62,6 @@ public class GraphLabDebugger extends Application {
             new graphlab.plugins.graphgenerator.Init().init(b);
             new graphlab.plugins.commonplugin.Init().init(b);
             new graphlab.plugins.connector.Init().init(b);
-            new graphlab.plugins.automaticupdator.Init().init(b);
-
-//            new graphlab.plugins.metrics.Init().init(b);
-//            new graphlab.plugins.manageplugins.Init().init(b);
-//            new graphlab.plugins.developeplugin.Init().init(b);
-//            new graphlab.plugins.search.Init().init(b);
-
-//            new graphlab.plugins.main.hibernate.Init().init(b);
-//            new graphlab.plugins.zinoo.Init().init(b);
             loadExtensions(b);
 
             // loading Extensions 

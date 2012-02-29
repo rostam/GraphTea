@@ -18,7 +18,6 @@ import java.awt.event.MouseWheelListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.util.Iterator;
-import org.tmatesoft.svn.core.internal.wc.EclipseSVNAuthenticationManager;
 
 /**
  * @author Azin Azadi, roozbeh ebrahimi, Ali Ershadi
