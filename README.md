@@ -36,10 +36,10 @@ have fun!
 ###credits
 GraphLab is developed in Sharif university of technology. it is under GPL license.
 
-Project Supervisor:
+project supervisor:
 Dr. Amir Daneshgar
 
-Members:
+contributors:
 Azin Azadi,
 Ruzbeh Ebrahimi,
 Omid Aladini,
