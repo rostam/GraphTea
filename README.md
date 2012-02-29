@@ -1,7 +1,7 @@
 #GraphLab
 GraphLab is a software framework to work on graphs and social networks. it consists of a graph library and a graph GUI. The library part is a framework designed for developing graph theory algorithms and testing graph conjectures. and the GUI part aimed to draw and visualize graphs and running algorithms on them. The program is based on plug-ins and extensions and provides a user friendly application platform to create scientific applications.
 
-it runs under any platform (based on java) and under GPL license.
+it runs under any platform (based on java).
 
 ##run
 to run the application, goto the binary folder and execute "run.bat" (windows), or "run.sh" (linux/mac).
@@ -28,3 +28,25 @@ more docs will come soon. if you have any questions just post it in the issues a
 
 
 have fun!
+
+
+
+
+---
+###credits
+GraphLab is developed in Sharif university of technology. it is under GPL license.
+
+Project Supervisor:
+Dr. Amir Daneshgar
+
+Members:
+Azin Azadi,
+Ruzbeh Ebrahimi,
+Omid Aladini,
+Reza Mohammadi,
+Mohammad Ali Rostami,
+Mina Naghshnejad,
+Ali Ershadi,
+Soroosh Sabet
+
+With Thanks to: Soheil Siadatnejad
