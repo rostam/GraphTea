@@ -4,12 +4,12 @@ GraphLab is a software framework to work on graphs and social networks. it consi
 it runs under any platform (based on java).
 
 ##run
-to run the application, goto the binary folder and execute "run.bat" (windows), or "run.sh" (linux/mac).
+to run the application, goto the binary folder and execute `run.bat` (windows), or `run.sh` (linux/mac).
 you can run it directly by 
 > java -jar graphlab-main.jar
 
 ##compile
-for working on the source, first make your changes and then goto "src/scripts" directory, and in terminal type "ant". this will build the application for you in the binary folder. so for seeing your changes do the steps described for "run"
+for working on the source, first make your changes and then `cd src/scripts` directory, and in terminal type `ant`. this will build the application for you in the binary folder. so for seeing your changes do the steps described for "run"
 
 note that you should have [appache ant](http://ant.apache.org/) installed.
 
@@ -26,8 +26,16 @@ note that you should have [appache ant](http://ant.apache.org/) installed.
 ##need help?
 more docs will come soon. if you have any questions just post it in the issues and i will write you back as soon as possible.
 
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
 have fun!
+
 
 
 
