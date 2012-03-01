@@ -5,7 +5,8 @@ it runs under any platform (based on java).
 
 ##run
 to run the application, goto the binary folder and execute `run.bat` (windows), or `run.sh` (linux/mac).
-you can run it directly by 
+you can run it directly by
+
 > java -jar graphlab-main.jar
 
 ##compile
