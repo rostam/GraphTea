@@ -1,3 +1,5 @@
+![Preview](https://github.com/azinazadi/GraphLab/raw/master/presentation/peterson.png)
+a short presentation: http://www.youtube.com/watch?v=0gblxDCNsmY
 #GraphLab
 GraphLab is a software framework to work on graphs and social networks. which consists of a graph library and a graph GUI. The library part is a framework designed for developing graph theory algorithms and testing graph conjectures. and the GUI part aimed to draw and visualize graphs and running algorithms on them. The program is based on plug-ins and extensions and provides a user friendly application platform to create scientific applications.
 
@@ -8,6 +10,9 @@ to run the application, goto the binary folder and execute `run.bat` (windows), 
 you can run it directly by
 
 > java -jar graphlab-main.jar
+
+##how to use it
+see this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
 
 ##compile
 for working on the source, first make your changes and then `cd src/scripts` directory, and in terminal type `ant`. this will build the application for you in the binary folder. so for seeing your changes do the steps described for "run"
