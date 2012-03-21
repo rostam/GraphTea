@@ -157,7 +157,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
 	 * @see graphlab.plugins.algorithmanimator.extension.AlgorithmExtensionAction
 	 */
 	protected boolean isInsertExtraButtonToMenuItem() {
-		return target instanceof Parametrizable;
+		return false; //target instanceof Parametrizable; we dont want this button for now. just go with the simple interface
 	}
 
 	/**
@@ -272,7 +272,8 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
 	public abstract String getParentMenuName();
 
 	public final void performAction(String eventKey, Object value) {
-		performExtension();
+        if (testAndSetParameters(target))
+            performExtension();
 	}
 
 	/**
@@ -282,42 +283,6 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
 	 */
 	public void actionPerformed(ActionEvent e) {
 		parentMenu.setSelected(false);
-		//        final ExtensionExternalData tt = target.getClass().getAnnotation(ExtensionExternalData.class);
-		//        ecf = new ExtensionConfigFrame(this.target, tt);
-		//        ecf.setAlwaysOnTop(true);
-		//        if (tt != null) {
-		//            if (tt.helpURL() != null) {
-		//                JButton helpBtn = new JButton(new ImageIcon(getClass().getResource("/graphlab/plugins/main/resources/help16.gif")));
-		//                helpBtn.setBorder(new EmptyBorder(0, 0, 0, 0));
-		//                helpBtn.addMouseListener(new MouseAdapter() {
-		//                    public void mouseClicked(MouseEvent e) {
-		//                        try {
-		//                            Browser.browse(new URL(tt.helpURL()));
-		//                        } catch (MalformedURLException e1) {
-		//                            e1.printStackTrace();
-		//                        }
-		//                    }
-		//                });
-		//                menuItem.add(helpBtn, BorderLayout.EAST);
-		//            }
-		//            if (tt.sourceCodeURL() != null) {
-		//                JButton srcBtn = new JButton(new ImageIcon(getClass().getResource("/graphlab/plugins/main/resources/open16.gif")));
-		//                srcBtn.setBorder(new EmptyBorder(0, 0, 0, 0));
-		//                srcBtn.addMouseListener(new MouseAdapter() {
-		//                    public void mouseClicked(MouseEvent e) {
-		//                        try {
-		//                            Browser.browse(new URL(tt.sourceCodeURL()));
-		//                        } catch (MalformedURLException e1) {
-		//                            e1.printStackTrace();
-		//                        }
-		//                    }
-		//                });
-		//                menuItem.add(srcBtn, BorderLayout.EAST);
-		//            }
-		//        }
-		//
-		//
-		//        ecf.setVisible(true);
 		if (testAndSetParameters(target))
 			performExtension();
 	}

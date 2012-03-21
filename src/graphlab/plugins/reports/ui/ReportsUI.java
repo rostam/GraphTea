@@ -24,25 +24,25 @@ import java.util.HashMap;
 
 /**
  * @author azin azadi
-
  */
-public class ReportsUI implements ActionListener {
-    JButton recalculateBtn = new JButton("Recalculate");
-    GPropertyEditor propEd = new GPropertyEditor();
+public class ReportsUI {
+    JLabel info = new JLabel("Click on a report to calculate it");
+    public GPropertyEditor propEd = new GPropertyEditor();
     GraphData graphData;
-    ArrayList<GraphReportExtension> reports = new ArrayList<GraphReportExtension>();
-    HashMap<String, GraphReportExtension> reportByName = new HashMap<String, GraphReportExtension>();
+    public ArrayList<GraphReportExtension> reports = new ArrayList<GraphReportExtension>();
+    public HashMap<String, GraphReportExtension> reportByName = new HashMap<String, GraphReportExtension>();
 
-    PortableNotifiableAttributeSetImpl reportResults = new PortableNotifiableAttributeSetImpl();
+    public PortableNotifiableAttributeSetImpl reportResults = new PortableNotifiableAttributeSetImpl();
 
-    //    private blackboard blackboard;
     JFrame frm = new JFrame("Reports");
+    public static ReportsUI self = null;
 
     public ReportsUI(BlackBoard b, boolean init) {
         super();
         if (init)
             initComponents();
         propEd.connect(reportResults);
+        self = this;
         BlackBoard blackboard = b;
         graphData = new GraphData(blackboard);
     }
@@ -54,30 +54,43 @@ public class ReportsUI implements ActionListener {
         frm.pack();
     }
 
-    JPanel initWrapper() {
-        JPanel wrapper = new JPanel(new BorderLayout(0, 0));
-        wrapper.setPreferredSize(new Dimension(150, 100));
-        wrapper.add(propEd, BorderLayout.CENTER);
-        wrapper.add(recalculateBtn, BorderLayout.SOUTH);
-        recalculateBtn.addActionListener(this);
-//        recalculateBtn.setSize(100, 20);
-//        propEd.getTable().addColumn(new TableColumn(2,150));
+    public void initTable() {
+        for (GraphReportExtension gre : reports) {
+            String name = gre.getName();
+            reportResults.put(name, "Click to Calculate");
+            reportByName.put(name, gre);
+            AttributeSetView view = reportResults.getView();
+            view.setEditable(name, false);
+            view.setDescription(name, gre.getDescription());
+        }
+        propEd.connect(reportResults);
         propEd.getTable().addNotify();
         propEd.getTable().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    int row = propEd.getTable().rowAtPoint(e.getPoint());
-                    GPropertyTableModel gtm = (GPropertyTableModel) propEd.getTable().getModel();
-                    ParameterShower ps = new ParameterShower();
-                    String name = (String) gtm.getValueAt(row, 0);
-                    GraphReportExtension o = reportByName.get(name);
-                    if (o instanceof Parametrizable)
-                        if (ps.xshow(o)) {
-                            reCalculateReport(name);
-                        }
+                int row = propEd.getTable().rowAtPoint(e.getPoint());
+                GPropertyTableModel gtm = (GPropertyTableModel) propEd.getTable().getModel();
+                ParameterShower ps = new ParameterShower();
+                String name = (String) gtm.getValueAt(row, 0);
+                GraphReportExtension o = reportByName.get(name);
+                if (o instanceof Parametrizable){
+                    if (ps.xshow(o)) {
+                        reCalculateReport(name);
+                    }
                 }
+                else{
+                    reCalculateReport(name);
+                }
+
             }
         });
+
+    }
+
+    JPanel initWrapper() {
+        JPanel wrapper = new JPanel(new BorderLayout(0, 0));
+        wrapper.setPreferredSize(new Dimension(150, 100));
+        wrapper.add(new JScrollPane(propEd), BorderLayout.CENTER);
+        wrapper.add(info, BorderLayout.NORTH);
         return wrapper;
     }
 //    public Component getComponent(blackboard b) {
@@ -91,20 +104,10 @@ public class ReportsUI implements ActionListener {
 
     public void show() {
         frm.setVisible(true);
-        reCalculateReports();
     }
 
     public void hide() {
         frm.setVisible(false);
-    }
-
-    //recalc button pressed
-    public void actionPerformed(ActionEvent e) {
-        new Thread() {
-            public void run() {
-                reCalculateReports();
-            }
-        }.start();
     }
 
     public void reCalculateReports() {
