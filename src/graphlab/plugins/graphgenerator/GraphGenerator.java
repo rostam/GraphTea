@@ -75,19 +75,24 @@ public class GraphGenerator implements PluginMethods {
             public void run() {
                 ren.ignoreRepaints(new Runnable() {
                     public void run() {
-                        GTabbedGraphPane.showNotificationMessage("Generating Graph...", blackboard, true);
-                        GraphModel gg = CorePluginMethods.getGraph(blackboard);
-                        GraphModel g = gen.generateGraph();
-                        Rectangle2D.Double bounds1 = g.getAbsBounds();
-                        gg.addSubGraph(g, rect);
-
-                        GTabbedGraphPane.showTimeNotificationMessage("The Graph generated Completely: Vertices:" + g.getVerticesCount() + ", Edges:" + g.getEdgesCount(), blackboard, 4000, true);
+                        generateGraphInRect(blackboard, gen, rect);
                         blackboard.setData(AddVertex.DISABLE, false);
                     }
                 });
 
             }
         }.start();
+    }
+
+    public static GraphModel generateGraphInRect(BlackBoard blackboard, GraphGeneratorInterface gen, Rectangle rect) {
+        GTabbedGraphPane.showNotificationMessage("Generating Graph...", blackboard, true);
+        GraphModel gg = CorePluginMethods.getGraph(blackboard);
+        GraphModel g = gen.generateGraph();
+        gg.addSubGraph(g, rect);
+
+        GTabbedGraphPane.showTimeNotificationMessage("The Graph generated Completely: Vertices:" + g.getVerticesCount() + ", Edges:" + g.getEdgesCount(), blackboard, 4000, true);
+        return g;
+
     }
 
     /**

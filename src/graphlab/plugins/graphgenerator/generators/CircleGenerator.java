@@ -50,7 +50,7 @@ public class CircleGenerator extends PathGenerator {
     }
 
     public Point[] getVertexPositions() {
-        return PositionGenerators.line(5, 5, 100, 100, n);
+        return PositionGenerators.circle(5, 5, 100, 100, n);
     }
 
     /**

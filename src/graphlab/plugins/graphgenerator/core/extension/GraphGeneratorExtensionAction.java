@@ -9,6 +9,8 @@ import graphlab.platform.core.BlackBoard;
 import graphlab.plugins.graphgenerator.GraphGenerator;
 import graphlab.ui.AbstractExtensionAction;
 
+import java.awt.*;
+
 /**
  * @author azin azadi
 
@@ -24,7 +26,7 @@ public class GraphGeneratorExtensionAction extends AbstractExtensionAction<Graph
 
     @Override
     public GraphModel performExtensionInCommandLine() {
-        return target.generateGraph();
+        return GraphGenerator.generateGraphInRect(blackboard,getTarget(), new Rectangle(100, 100, 600,600));
     }
 
     public void performExtension() {
