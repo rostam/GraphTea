@@ -18,6 +18,7 @@ import graphlab.plugins.main.select.ClearSelection;
 import graphlab.plugins.main.select.Select;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 
 /**
@@ -67,7 +68,7 @@ public class AddVertex extends AbstractAction implements Undoable {
         boolean b = (Boolean) aBoolean;
         if (b && (sd == null || (sd.vertices.size() == 0 && sd.edges.size() == 0))) {
             GraphEvent gpd = blackboard.getData(GraphEvent.EVENT_KEY);
-            if (gpd.eventType != GraphEvent.CLICKED) {
+            if (gpd.eventType != GraphEvent.CLICKED || gpd.mouseBtn != MouseEvent.BUTTON1) {
                 return;
             }
             GraphModel graph = gpd.graph;
@@ -93,7 +94,7 @@ public class AddVertex extends AbstractAction implements Undoable {
         Point p = v.getCenter();
         v.setLocation(new GraphPoint(x - p.x, y - p.y));
         g.insertVertex(v);
-        v.setLabel(v.getId()+"");
+        v.setLabel(v.getId() + "");
 
         return v;
     }
@@ -107,7 +108,7 @@ public class AddVertex extends AbstractAction implements Undoable {
         VertexModel v = new VertexModel();
         v.setLocation(position);
         g.insertVertex(v);
-        v.setLabel(v.getId()+"");
+        v.setLabel(v.getId() + "");
         return v;
     }
 

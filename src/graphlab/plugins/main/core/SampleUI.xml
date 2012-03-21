@@ -36,6 +36,7 @@
         <action class="graphlab.plugins.main.core.actions.vertex.VertexSelectEvent"/>
         <action class="graphlab.plugins.main.core.actions.edge.EdgeSelectEvent"/>
         <action class="graphlab.plugins.main.core.actions.vertex.MoveVertex"/>
+        <action class="graphlab.plugins.main.core.actions.RightClickAction"/>
         <action class="graphlab.plugins.main.core.actions.MiddleClickAction"/>
 
         <action class="graphlab.plugins.main.ccp.Paste" id="Paste"/>

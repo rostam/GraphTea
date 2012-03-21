@@ -2,24 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1726eca-65f2-46b7-8bcc-339ae8628bce" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/graphlab-main.jar" afterPath="$PROJECT_DIR$/binary/graphlab-main.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/lib/graph.jar" afterPath="$PROJECT_DIR$/binary/lib/graph.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/lib/graphlab-library.jar" afterPath="$PROJECT_DIR$/binary/lib/graphlab-library.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/lib/graphlab-ui-library.jar" afterPath="$PROJECT_DIR$/binary/lib/graphlab-ui-library.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/algorithmanimator.jar" afterPath="$PROJECT_DIR$/binary/plugins/algorithmanimator.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/automaticupdator.jar" afterPath="$PROJECT_DIR$/binary/plugins/automaticupdator.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/commandline.jar" afterPath="$PROJECT_DIR$/binary/plugins/commandline.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/commonplugin.jar" afterPath="$PROJECT_DIR$/binary/plugins/commonplugin.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/connector.jar" afterPath="$PROJECT_DIR$/binary/plugins/connector.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/graphgenerator.jar" afterPath="$PROJECT_DIR$/binary/plugins/graphgenerator.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/main.jar" afterPath="$PROJECT_DIR$/binary/plugins/main.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/reports.jar" afterPath="$PROJECT_DIR$/binary/plugins/reports.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/visualization.jar" afterPath="$PROJECT_DIR$/binary/plugins/visualization.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/RightClickAction.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/rightclick/Init.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/rightclick/RightClickPluginMethods.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/rightclick/SampleUI.dtd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/rightclick/config.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/Init.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/reports/Init.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsUI.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/visualization/VisualizationUI.xml" afterPath="$PROJECT_DIR$/src/graphlab/plugins/visualization/VisualizationUI.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/ui/AbstractExtensionAction.java" afterPath="$PROJECT_DIR$/src/graphlab/ui/AbstractExtensionAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/prefs/graph.xml" afterPath="$PROJECT_DIR$/binary/prefs/graph.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prefs/graph.xml" afterPath="$PROJECT_DIR$/prefs/graph.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/graph/event/EdgeEvent.java" afterPath="$PROJECT_DIR$/src/graphlab/graph/event/EdgeEvent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/graph/event/VertexEvent.java" afterPath="$PROJECT_DIR$/src/graphlab/graph/event/VertexEvent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/AddVertex.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/AddVertex.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/select/DeleteSelected.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/select/DeleteSelected.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/select/SelectPluginMethods.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/select/SelectPluginMethods.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/select/SelectUI.xml" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/select/SelectUI.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/maindirectoryfiles/prefs/graph.xml" afterPath="$PROJECT_DIR$/src/scripts/maindirectoryfiles/prefs/graph.xml" />
     </list>
     <ignored path="graphlab.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,66 +75,78 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GraphGeneratorExtensionAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionAction.java">
+      <file leaf-file-name="RightClickAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/RightClickAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="34" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GraphGenerator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/GraphGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="23" selection-start="1193" selection-end="1193" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VisualizationUI.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/visualization/VisualizationUI.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="693" selection-end="693" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportsSideBar.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsSideBar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="13" selection-start="475" selection-end="475" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportsUI.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="43" selection-start="3437" selection-end="3437" vertical-scroll-proportion="0.5945946">
+            <state line="37" column="32" selection-start="1407" selection-end="1407" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#1243#1265#0" expanded="true" />
+                <element signature="e#0#4022#0" expanded="true" />
+                <element signature="e#1210#1240#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Init.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/Init.java">
+      <file leaf-file-name="MakeSelectionComplementGraph.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionComplementGraph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="24" selection-start="1613" selection-end="1613" vertical-scroll-proportion="0.0">
+            <state line="54" column="33" selection-start="1867" selection-end="1867" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Object.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/../Classes/classes.jar!/java/lang/Object.class">
+      <file leaf-file-name="Undoable.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/Undoable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="29" selection-start="724" selection-end="724" vertical-scroll-proportion="0.0">
+            <state line="12" column="21" selection-start="457" selection-end="457" vertical-scroll-proportion="0.32822758">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UndoAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/undo/UndoAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="13" selection-start="509" selection-end="509" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeleteSelected.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/select/DeleteSelected.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="26" selection-start="1262" selection-end="1275" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SelectUI.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/select/SelectUI.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="46" selection-start="2856" selection-end="2856" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PopupMenuHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/rightclick/PopupMenuHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="72" column="0" selection-start="2833" selection-end="2833" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#4818#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SelectPluginMethods.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/select/SelectPluginMethods.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="48" column="71" selection-start="1729" selection-end="1729" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -164,6 +174,15 @@
         <option value="$PROJECT_DIR$/src/graphlab/plugins/visualization/VisualizationUI.xml" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/reports/Init.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsUI.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml" />
+        <option value="$PROJECT_DIR$/src/graphlab/graph/event/VertexEvent.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/graph/event/EdgeEvent.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/plugins/main/select/SelectPluginMethods.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/AddVertex.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/plugins/main/select/SelectUI.xml" />
+        <option value="$PROJECT_DIR$/src/graphlab/plugins/main/select/DeleteSelected.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/RightClickAction.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionComplementGraph.java" />
       </list>
     </option>
   </component>
@@ -179,7 +198,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -326,6 +345,254 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="select" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="actions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commonplugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commonplugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="undo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commonplugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="undo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="undo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UndoLogManager.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commonplugin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="undo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="undo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
@@ -345,6 +612,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="941" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="939" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="145" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="141" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
@@ -508,6 +776,24 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="DETECT_NESTED_COPIES" value="true" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <configuration useDefault="false">$USER_HOME$/.subversion_IDEA</configuration>
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <created>1332349282101</created>
@@ -517,23 +803,23 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964131" sideWeight="0.6701987" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980132" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964131" sideWeight="0.6701987" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35364237" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980132" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21589404" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27761838" sideWeight="0.26490065" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964131" sideWeight="0.6701987" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27761838" sideWeight="0.3960265" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24768212" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -605,119 +891,120 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/GeneralizedPetersonGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="13" selection-start="1071" selection-end="1071" vertical-scroll-proportion="0.0">
+        <state line="32" column="30" selection-start="1298" selection-end="1298" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/CircleGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/extension/GraphActionInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="34" selection-start="628" selection-end="628" vertical-scroll-proportion="0.25751072">
+        <state line="12" column="17" selection-start="370" selection-end="370" vertical-scroll-proportion="0.35971224">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/ui/components/gmenu/GMenuItem.java">
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/ccp/Cut.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="34" selection-start="2468" selection-end="2468" vertical-scroll-proportion="0.5615866">
+        <state line="27" column="13" selection-start="963" selection-end="963" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/ui/extension/UIActionExtension.java">
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/extension/GraphActionExtension.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="17" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0">
+        <state line="11" column="64" selection-start="422" selection-end="422" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionAction.java">
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/select/SelectPluginMethods.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="34" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0">
+        <state line="48" column="71" selection-start="1729" selection-end="1729" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/GraphGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/select/SelectUI.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="23" selection-start="1193" selection-end="1193" vertical-scroll-proportion="0.0">
+        <state line="41" column="46" selection-start="2856" selection-end="2856" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/visualization/VisualizationUI.xml">
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/rightclick/PopupMenuHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="693" selection-end="693" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsSideBar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="475" selection-end="475" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/GraphLabDebugger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="52" selection-start="2850" selection-end="2868" vertical-scroll-proportion="0.5698198">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/commandline/Init.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="1599" selection-end="1813" vertical-scroll-proportion="0.4310722">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/platform/plugin/PluginInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="543" selection-end="549" vertical-scroll-proportion="0.34354487">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/ui/AbstractExtensionAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="289" column="0" selection-start="9592" selection-end="9592" vertical-scroll-proportion="0.75273526">
+        <state line="72" column="0" selection-start="2833" selection-end="2833" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#1970#1985#0" expanded="true" />
+            <element signature="e#0#4818#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/../Classes/classes.jar!/java/lang/Object.class">
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionEmptyGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="29" selection-start="724" selection-end="724" vertical-scroll-proportion="0.0">
+        <state line="18" column="13" selection-start="603" selection-end="626" vertical-scroll-proportion="-0.13793103">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/Init.java">
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/select/DeleteSelected.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="24" selection-start="1613" selection-end="1613" vertical-scroll-proportion="0.0">
+        <state line="35" column="26" selection-start="1262" selection-end="1275" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/ui/ParameterShower.java">
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionComplementGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="19" selection-start="2933" selection-end="2938" vertical-scroll-proportion="0.33248082">
+        <state line="54" column="33" selection-start="1867" selection-end="1867" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsUI.java">
+    <entry file="file://$PROJECT_DIR$/src/graphlab/library/ListGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="43" selection-start="3437" selection-end="3437" vertical-scroll-proportion="0.5945946">
+        <state line="408" column="41" selection-start="16136" selection-end="16136" vertical-scroll-proportion="0.28709057">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/GraphModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="206" column="25" selection-start="6655" selection-end="6655" vertical-scroll-proportion="0.4249012">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/../Classes/classes.jar!/java/awt/EventDispatchThread.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="0" selection-start="3096" selection-end="3096" vertical-scroll-proportion="0.8265896">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/RightClickAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="32" selection-start="1407" selection-end="1407" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#1243#1265#0" expanded="true" />
+            <element signature="e#0#4022#0" expanded="true" />
+            <element signature="e#1210#1240#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/undo/UndoAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="509" selection-end="509" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/Undoable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="21" selection-start="457" selection-end="457" vertical-scroll-proportion="0.32822758">
+          <folding />
         </state>
       </provider>
     </entry>

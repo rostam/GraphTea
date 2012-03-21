@@ -11,6 +11,7 @@ import graphlab.graph.graph.VertexModel;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.plugin.PluginMethods;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Vector;
@@ -40,6 +41,13 @@ public class SelectPluginMethods implements PluginMethods {
         SubGraph sd = new SubGraph();
         sd.vertices = new HashSet<VertexModel>(selectedVertices);
         sd.edges = new HashSet<EdgeModel>(selectedEdges);
+        b.setData(Select.EVENT_KEY, sd);
+    }
+
+    public void setSelected(VertexModel[] selectedVertices, EdgeModel[] selectedEdges) {
+        SubGraph sd = new SubGraph();
+        sd.vertices = new HashSet<VertexModel>(Arrays.asList(selectedVertices));
+        sd.edges = new HashSet<EdgeModel>(Arrays.asList(selectedEdges));
         b.setData(Select.EVENT_KEY, sd);
     }
 

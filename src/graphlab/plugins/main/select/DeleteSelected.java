@@ -6,12 +6,12 @@ package graphlab.plugins.main.select;
 import graphlab.graph.atributeset.GraphAttrSet;
 import graphlab.graph.graph.*;
 import graphlab.library.exceptions.InvalidVertexException;
-import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
 import graphlab.plugins.commonplugin.undo.Undoable;
 import graphlab.plugins.commonplugin.undo.UndoableActionOccuredData;
+import graphlab.plugins.main.GraphData;
 import graphlab.plugins.main.core.actions.vertex.DeleteVertex;
-import graphlab.ui.UIUtils;
+import graphlab.plugins.main.extension.GraphActionExtension;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -22,9 +22,9 @@ import java.util.Vector;
 /**
  * User: root
  */
-public class DeleteSelected extends AbstractAction implements Undoable {
-    public static final String event = UIUtils.getUIEventKey("delete selected");
+public class DeleteSelected implements GraphActionExtension, Undoable {
     public static final String SELECTION_DELETED = "selection deleted";
+    public BlackBoard blackboard;
 
     /**
      * constructor
@@ -32,15 +32,14 @@ public class DeleteSelected extends AbstractAction implements Undoable {
      * @param bb the blackboard of the action
      */
     public DeleteSelected(BlackBoard bb) {
-        super(bb);
-        listen4Event(event);
+        this.blackboard = bb;
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventPostProcessor(new KeyEventPostProcessor() {
             public boolean postProcessKeyEvent(KeyEvent e) {
                 AbstractGraphRenderer gv = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
                 Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
                 if (gv == focusOwner) {
                     if (e.getKeyCode() == KeyEvent.VK_DELETE) {
-                        performAction(":d", null);
+                        action(new GraphData(blackboard));
                         return true;
                     }
                 }
@@ -50,7 +49,49 @@ public class DeleteSelected extends AbstractAction implements Undoable {
 
     }
 
-    public void performAction(String eventName, Object value) {
+    public void undo(UndoableActionOccuredData uaod) {
+        GraphModel g = (GraphModel) uaod.properties.get("Graph");
+        for (VertexModel v : (HashSet<VertexModel>) uaod.properties.get("DeletedVertices")) {
+            g.insertVertex(v);
+            Vector<EdgeModel> ed = (Vector<EdgeModel>) uaod.properties.get("RelatedEdges");
+            for (EdgeModel e : ed) {
+                g.insertEdge(e);
+            }
+        }
+        for (EdgeModel e : (HashSet<EdgeModel>) uaod.properties.get("DeletedEdges")) {
+            g.insertEdge(e);
+        }
+
+    }
+
+    public void redo(UndoableActionOccuredData uaod) {
+        GraphModel g = (GraphModel) uaod.properties.get("Graph");
+
+        for (VertexModel v : (HashSet<VertexModel>) uaod.properties.get("DeletedVertices")) {
+            g.removeVertex(v);
+        }
+        for (EdgeModel e : (HashSet<EdgeModel>) uaod.properties.get("DeletedEdges")) {
+            try {
+                g.removeEdge(e);
+            } catch (InvalidVertexException ee) {
+
+            }
+        }
+
+    }
+
+    @Override
+    public String getName() {
+        return "Delete Selection";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Deletes the selected vertices and edges";
+    }
+
+    @Override
+    public void action(GraphData graphData) {
         SubGraph selection = Select.getSelection(blackboard);
         GraphModel g = blackboard.getData(GraphAttrSet.name);
         if (selection.edges.isEmpty() && selection.vertices.isEmpty())
@@ -86,39 +127,6 @@ public class DeleteSelected extends AbstractAction implements Undoable {
         blackboard.setData(UndoableActionOccuredData.EVENT_KEY, uaod);
 
         ClearSelection.clearSelected(blackboard);
-
-    }
-
-
-    public void undo(UndoableActionOccuredData uaod) {
-        GraphModel g = (GraphModel) uaod.properties.get("Graph");
-
-        for (VertexModel v : (HashSet<VertexModel>) uaod.properties.get("DeletedVertices")) {
-            g.insertVertex(v);
-            Vector<EdgeModel> ed = (Vector<EdgeModel>) uaod.properties.get("RelatedEdges");
-            for (EdgeModel e : ed) {
-                g.insertEdge(e);
-            }
-        }
-        for (EdgeModel e : (HashSet<EdgeModel>) uaod.properties.get("DeletedEdges")) {
-            g.insertEdge(e);
-        }
-
-    }
-
-    public void redo(UndoableActionOccuredData uaod) {
-        GraphModel g = (GraphModel) uaod.properties.get("Graph");
-
-        for (VertexModel v : (HashSet<VertexModel>) uaod.properties.get("DeletedVertices")) {
-            g.removeVertex(v);
-        }
-        for (EdgeModel e : (HashSet<EdgeModel>) uaod.properties.get("DeletedEdges")) {
-            try {
-                g.removeEdge(e);
-            } catch (InvalidVertexException ee) {
-
-            }
-        }
 
     }
 }

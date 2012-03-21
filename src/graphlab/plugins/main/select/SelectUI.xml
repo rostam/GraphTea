@@ -39,7 +39,7 @@
                 <menu label="_Make Selection Complement" action="complement selection" place="200"/>
                 <menu label="_Make Selection Complete" action="complete selection" place="210"/>
                 <menu label="_Make Selection Empty" action="empty selection" place="220"/>
-                <menu label="_Delete Selected" action="delete selected" place="230"/>
+                <menu label="_Delete Selection" action="delete selected" place="230"/>
 
                 <!--<menu label="_Move Selected" action="move selected"/>-->
                 <!--<menu label="_Delete Selected" action="delete selected" accelerator="DELETE"/>-->

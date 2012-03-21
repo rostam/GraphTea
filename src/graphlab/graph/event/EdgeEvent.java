@@ -65,4 +65,11 @@ public class EdgeEvent {
     public static EdgeEvent dragging(EdgeModel e, GraphPoint mousePos, int mouseBtn) {
         return new EdgeEvent(DRAGGING, e, mousePos, mouseBtn, false, false);
     }
+
+    public GraphPoint posOnGraph() {
+        GraphPoint ret = new GraphPoint(mousePos);
+        ret.add(e.source.getLocation());
+        return ret;
+    }
+
 }

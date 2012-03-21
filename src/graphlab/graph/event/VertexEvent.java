@@ -75,6 +75,12 @@ public class VertexEvent {
         this.modifiers = modifiersEx;
     }
 
+    public GraphPoint posOnGraph() {
+        GraphPoint ret = new GraphPoint(mousePos);
+        ret.add(v.getLocation());
+        return ret;
+    }
+
     //position of mouse according to top left point of vertex
     public GraphPoint mousePos;
     public int mouseBtn;
