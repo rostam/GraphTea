@@ -1,5 +1,5 @@
 #GraphLab
-GraphLab is a software framework to work on graphs and social networks. it consists of a graph library and a graph GUI. The library part is a framework designed for developing graph theory algorithms and testing graph conjectures. and the GUI part aimed to draw and visualize graphs and running algorithms on them. The program is based on plug-ins and extensions and provides a user friendly application platform to create scientific applications.
+GraphLab is a software framework to work on graphs and social networks. which consists of a graph library and a graph GUI. The library part is a framework designed for developing graph theory algorithms and testing graph conjectures. and the GUI part aimed to draw and visualize graphs and running algorithms on them. The program is based on plug-ins and extensions and provides a user friendly application platform to create scientific applications.
 
 it runs under any platform (based on java).
 
