@@ -13,8 +13,6 @@ import graphlab.graph.old.GStroke;
 import graphlab.library.util.Pair;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
-import graphlab.plugins.commonplugin.undo.Undoable;
-import graphlab.plugins.commonplugin.undo.UndoableActionOccuredData;
 import graphlab.plugins.main.select.Select;
 import graphlab.plugins.main.select.SelectPluginMethods;
 
@@ -25,7 +23,7 @@ import java.awt.event.MouseEvent;
  * @author azin azadi
  */
 
-public class AddEdge extends AbstractAction implements PaintHandler, Undoable {
+public class AddEdge extends AbstractAction implements PaintHandler {
     //    private double lasty;
     //    private double lastx;
     private GraphPoint lastPos;
@@ -102,11 +100,9 @@ public class AddEdge extends AbstractAction implements PaintHandler, Undoable {
                     if (v2 != null && isDrag)   //!it was released on empty space
                         if (!v1.equals(v2)) {
                             EdgeModel e = doJob(g, v1, v2);
-                            addUndoData(e, g);
                         } else if (exitedFromV1) {
                             //User has revisited v1 > add loop
                             EdgeModel e = doJob(g, v1, v2);
-                            addUndoData(e, g);
                         }
 //            unListenEvent(VertexMouseDraggingData.event);
                 }
@@ -149,13 +145,6 @@ public class AddEdge extends AbstractAction implements PaintHandler, Undoable {
     protected void stopPainting() {
         gv.removePaintHandler(this);
 //        g.view.repaint();
-    }
-
-    protected void addUndoData(EdgeModel e, GraphModel g) {
-        UndoableActionOccuredData uaod = new UndoableActionOccuredData(this);
-        uaod.properties.put("AddedEdge", e);
-        uaod.properties.put("Graph", g);
-        blackboard.setData(UndoableActionOccuredData.EVENT_KEY, uaod);
     }
 
     protected void startPainting() {
@@ -215,18 +204,5 @@ public class AddEdge extends AbstractAction implements PaintHandler, Undoable {
             }
         }
         gg.setStroke(stroke);
-    }
-
-    public void undo(UndoableActionOccuredData uaod) {
-        EdgeModel e = (EdgeModel) uaod.properties.get("AddedEdge");
-        GraphModel g = (GraphModel) uaod.properties.get("Graph");
-        g.removeEdge(e);
-
-    }
-
-    public void redo(UndoableActionOccuredData uaod) {
-        EdgeModel e = (EdgeModel) uaod.properties.get("AddedEdge");
-        GraphModel g = (GraphModel) uaod.properties.get("Graph");
-        g.insertEdge(e);
     }
 }

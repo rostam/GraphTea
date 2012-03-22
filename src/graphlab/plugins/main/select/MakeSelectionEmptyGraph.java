@@ -7,7 +7,6 @@ package graphlab.plugins.main.select;
 import graphlab.graph.graph.EdgeModel;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.VertexModel;
-import graphlab.plugins.commonplugin.undo.UndoableActionOccuredData;
 import graphlab.plugins.main.GraphData;
 
 import java.util.HashSet;
@@ -30,10 +29,6 @@ public class MakeSelectionEmptyGraph extends MakeSelectionComplementGraph {
             return;
         HashSet<VertexModel> V = gd.select.getSelectedVertices();
         //add undo data
-        UndoableActionOccuredData uaod = new UndoableActionOccuredData(this);
-
-        fillUndoEdges(uaod.properties, gd, "old edges");
-
         GraphModel G = gd.getGraph();
 
         for (VertexModel v1 : V) {
@@ -46,9 +41,6 @@ public class MakeSelectionEmptyGraph extends MakeSelectionComplementGraph {
 //                }
             }
         }
-
-        Vector<EdgeModel> ed = fillUndoEdges(uaod.properties, gd, "new edges");
-        gd.select.setSelectedEdges(ed);
-        gd.core.addUndoData(uaod);
+        gd.select.clearSelection();
     }
 }

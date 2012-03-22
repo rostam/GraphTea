@@ -12,8 +12,6 @@ import graphlab.graph.graph.VertexModel;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.core.Listener;
-import graphlab.plugins.commonplugin.undo.Undoable;
-import graphlab.plugins.commonplugin.undo.UndoableActionOccuredData;
 import graphlab.plugins.main.select.ClearSelection;
 import graphlab.plugins.main.select.Select;
 
@@ -27,7 +25,7 @@ import java.awt.geom.Rectangle2D;
  * @author azin azadi
  */
 
-public class AddVertex extends AbstractAction implements Undoable {
+public class AddVertex extends AbstractAction {
     public final static String DISABLE = "AddVertex.Disable";
 
     public AddVertex(BlackBoard bb) {
@@ -74,11 +72,6 @@ public class AddVertex extends AbstractAction implements Undoable {
             GraphModel graph = gpd.graph;
 
             VertexModel v = doJob(graph, gpd.mousePos);
-
-            UndoableActionOccuredData uaod = new UndoableActionOccuredData(this);
-            uaod.properties.put("AddedVertex", v);
-            uaod.properties.put("Graph", g);
-            blackboard.setData(UndoableActionOccuredData.EVENT_KEY, uaod);
         }
         blackboard.setData(ClearSelection.lastTimeGraphWasClear, true);
 
@@ -119,19 +112,5 @@ public class AddVertex extends AbstractAction implements Undoable {
     public static VertexModel addVertexToRandomPosition(GraphModel g) {
         Rectangle2D.Double b = g.getZoomedBounds();
         return doJob(g, (int) (b.getWidth() * Math.random()), (int) (b.getHeight() * Math.random()));
-    }
-
-    public void undo(UndoableActionOccuredData uaod) {
-        VertexModel v = (VertexModel) uaod.properties.get("AddedVertex");
-        GraphModel g = (GraphModel) uaod.properties.get("Graph");
-        g.removeVertex(v);
-
-    }
-
-    public void redo(UndoableActionOccuredData uaod) {
-        VertexModel v = (VertexModel) uaod.properties.get("AddedVertex");
-        GraphModel g = (GraphModel) uaod.properties.get("Graph");
-        g.insertVertex(v);
-
     }
 }

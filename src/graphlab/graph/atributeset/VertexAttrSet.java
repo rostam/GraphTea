@@ -37,13 +37,13 @@ public class VertexAttrSet implements AttributeSet {
         Map<String, Object> ret = new HashMap<String, Object>(15);
         ret.put(LABEL, v.getLabel());
         ret.put(COLOR, v.getColor());
-        ret.put(SHAPE, v.getShape());
-        ret.put(BORDER, v.getShapeStroke());
+//        ret.put(SHAPE, v.getShape());
+//        ret.put(BORDER, v.getShapeStroke());
         ret.put(LOCATION, v.getLocation());
-        ret.put(SIZE, v.getSize());
-        ret.put(MARK, v.getMark());
+//        ret.put(SIZE, v.getSize());
+//        ret.put(MARK, v.getMark());
         ret.put(SELECTED, v.isSelected());
-        ret.put(LABEL_LOCATION, v.getLabelLocation());
+//        ret.put(LABEL_LOCATION, v.getLabelLocation());
         if (v.getUserDefinedAttributes() != null)
             ret.putAll(v.getUserDefinedAttributes());
         return ret;

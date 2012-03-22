@@ -47,15 +47,7 @@ public class Copy extends AbstractAction {
         copyGraph(subGraph, g);
 //        gg.view.repaint();
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-        String data = (""
-                + "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-                + "<!DOCTYPE graphml SYSTEM \"graphml.dtd\">\n"
-                + "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\"\n"
-                + "    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
-                + "    xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns\n"
-                + "     http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n"
-                + GraphML.graph2GraphML(g)
-                + "</graphml>");
+        String data = GraphML.graph2GraphML_with_headers(g);
 
 
         StringSelection string = new StringSelection(data);

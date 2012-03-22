@@ -7,8 +7,6 @@ package graphlab.plugins.main.select;
 import graphlab.graph.graph.EdgeModel;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.VertexModel;
-import graphlab.plugins.commonplugin.undo.Undoable;
-import graphlab.plugins.commonplugin.undo.UndoableActionOccuredData;
 import graphlab.plugins.main.GraphData;
 import graphlab.plugins.main.extension.GraphActionExtension;
 
@@ -19,7 +17,7 @@ import java.util.Vector;
 /**
  * @author Azin Azadi
  */
-public class MakeSelectionComplementGraph implements GraphActionExtension, Undoable {
+public class MakeSelectionComplementGraph implements GraphActionExtension {
     public String getName() {
         return "Complement Selection";
     }
@@ -33,14 +31,10 @@ public class MakeSelectionComplementGraph implements GraphActionExtension, Undoa
             return;
         HashSet<VertexModel> V = gd.select.getSelectedVertices();
         //add undo data
-        UndoableActionOccuredData uaod = new UndoableActionOccuredData(this);
-        fillUndoEdges(uaod.properties, gd, "old edges");
 
         GraphModel G = gd.getGraph();
         doEdgeOperation(G, V);
 
-        fillUndoEdges(uaod.properties, gd, "new edges");
-        gd.core.addUndoData(uaod);
     }
 
     protected void doEdgeOperation(GraphModel g, HashSet<VertexModel> v) {
@@ -60,17 +54,6 @@ public class MakeSelectionComplementGraph implements GraphActionExtension, Undoa
         }
     }
 
-    //--------------------- U N D O
-    public void undo(UndoableActionOccuredData uaod) {
-        doUndoremove(uaod.properties, "new edges");
-        doUndoadd(uaod.properties, "old edges");
-    }
-
-    public void redo(UndoableActionOccuredData uaod) {
-        doUndoremove(uaod.properties, "old edges");
-        doUndoadd(uaod.properties, "new edges");
-    }
-
     public static Vector<EdgeModel> fillUndoEdges(HashMap<String, Object> properties, GraphData gd, String lbl) {
         Vector<EdgeModel> edges = new Vector<EdgeModel>();
         HashSet<VertexModel> V = gd.select.getSelectedVertices();
@@ -85,16 +68,4 @@ public class MakeSelectionComplementGraph implements GraphActionExtension, Undoa
         return edges;
     }
 
-    public static void doUndoadd(HashMap<String, Object> uaod, String lbl) {
-        Vector<EdgeModel> edges = (Vector<EdgeModel>) uaod.get(lbl);
-        GraphModel g = (GraphModel) uaod.get("graph");
-        g.insertEdges(edges);
-    }
-
-    public static void doUndoremove(HashMap<String, Object> uaod, String lbl) {
-        Vector<EdgeModel> edges = (Vector<EdgeModel>) uaod.get(lbl);
-        GraphModel g = (GraphModel) uaod.get("graph");
-        for (EdgeModel e : edges)
-            g.removeEdge(e);
-    }
 }

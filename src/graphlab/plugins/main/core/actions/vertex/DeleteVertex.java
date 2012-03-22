@@ -9,15 +9,13 @@ import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.VertexModel;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
-import graphlab.plugins.commonplugin.undo.Undoable;
-import graphlab.plugins.commonplugin.undo.UndoableActionOccuredData;
 
 import java.util.Iterator;
 
 /**
  * Author: Ruzbeh Ebrahimi
  */
-public class DeleteVertex extends AbstractAction implements Undoable {
+public class DeleteVertex extends AbstractAction {
     public DeleteVertex(BlackBoard bb) {
         super(bb);
         this.listen4Event(VertexSelectData.EVENT_KEY);
@@ -27,35 +25,11 @@ public class DeleteVertex extends AbstractAction implements Undoable {
         VertexSelectData vsd = blackboard.getData(VertexSelectData.EVENT_KEY);
         GraphModel g = blackboard.getData(GraphAttrSet.name);
         VertexModel v = vsd.v;
-        UndoableActionOccuredData uaod = new UndoableActionOccuredData(this);
-        uaod.properties.put("DeletedVertex", v);
-        uaod.properties.put("RelatedEdges", g.edgeIterator(v));
-        uaod.properties.put("Graph", g);
-        blackboard.setData(UndoableActionOccuredData.EVENT_KEY, uaod);
         doJob(g, v);
     }
 
     public static void doJob(GraphModel g, VertexModel v) {
 
         g.removeVertex(v);
-    }
-
-    public void undo(UndoableActionOccuredData uaod) {
-        VertexModel v = (VertexModel) uaod.properties.get("DeletedVertex");
-        GraphModel g = (GraphModel) uaod.properties.get("Graph");
-        g.insertVertex(v);
-        Iterator<EdgeModel> iter = (Iterator<EdgeModel>) uaod.properties.get("RelatedEdges");
-        for (Iterator iter2 = iter; iter2.hasNext();) {
-            g.insertEdge(((EdgeModel) iter2.next()));
-        }
-//        v.view.repaint();
-
-    }
-
-    public void redo(UndoableActionOccuredData uaod) {
-        VertexModel v = (VertexModel) uaod.properties.get("DeletedVertex");
-        GraphModel g = (GraphModel) uaod.properties.get("Graph");
-        DeleteVertex.doJob(g, v);
-
     }
 }

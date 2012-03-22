@@ -9,7 +9,13 @@ import graphlab.graph.atributeset.VertexAttrSet;
 import graphlab.graph.graph.EdgeModel;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.VertexModel;
+import graphlab.plugins.main.saveload.xmlparser.GraphmlHandlerImpl;
+import graphlab.plugins.main.saveload.xmlparser.GraphmlParser;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -58,6 +64,18 @@ public class GraphML {
         return s2;
     }
 
+    public static GraphModel GraphML2Graph(String gml) {
+        GraphmlHandlerImpl ghi = new GraphmlHandlerImpl();
+        try {
+            GraphmlParser.parse(new InputSource(gml), ghi);
+            return ghi.getGraph();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
     public static String graph2GraphML(GraphModel g) {
         initializeGMLKeys(g);
         GraphAttrSet _ = new GraphAttrSet(g);
@@ -76,7 +94,7 @@ public class GraphML {
         for (VertexModel v : g) {
             graphML += GraphML.vertex2GraphML(v);
         }
-        for (Iterator<EdgeModel> it = g.edgeIterator(); it.hasNext();) {
+        for (Iterator<EdgeModel> it = g.edgeIterator(); it.hasNext(); ) {
             EdgeModel e = it.next();
             graphML += GraphML.edge2GraphML(e);
         }
@@ -150,5 +168,17 @@ public class GraphML {
             if (atr.get(name) != null)
                 graphMLGraphKeys.put(name, atr.get(name).getClass().getName());
         }
+    }
+
+    public static String graph2GraphML_with_headers(GraphModel g) {
+        return (""
+                + "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                + "<!DOCTYPE graphml SYSTEM \"graphml.dtd\">\n"
+                + "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\"\n"
+                + "    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
+                + "    xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns\n"
+                + "     http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n"
+                + graph2GraphML(g)
+                + "</graphml>");
     }
 }

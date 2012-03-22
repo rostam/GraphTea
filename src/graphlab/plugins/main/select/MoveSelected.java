@@ -9,14 +9,12 @@ import graphlab.graph.graph.*;
 import graphlab.library.exceptions.InvalidVertexException;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
-import graphlab.plugins.commonplugin.undo.Undoable;
-import graphlab.plugins.commonplugin.undo.UndoableActionOccuredData;
 import graphlab.plugins.main.GraphData;
 
 /**
  * @author azin azadi
  */
-public class MoveSelected extends AbstractAction implements Undoable {
+public class MoveSelected extends AbstractAction {
     public static final String SELECTION_MOVED = "Selection Moved";
     public static final String SELECTION_MOVING = "Selection Moving";
 
@@ -56,9 +54,6 @@ public class MoveSelected extends AbstractAction implements Undoable {
                     startx = vdd.v.getLocation().x;
                     starty = vdd.v.getLocation().y;
                     drag();
-//            listen4Event(GraphMouseMoveData.event);
-//todo                        listen4Event(GraphDropData.event);
-//                        listen4Event(VertexDropData.event);
                 }
                 if (vdd.eventType == VertexEvent.RELEASED || vdd.eventType == VertexEvent.DROPPED) {
                     drop();
@@ -68,16 +63,8 @@ public class MoveSelected extends AbstractAction implements Undoable {
                         newPos[_.getId()] = _.getLocation();
                     }
 
-                    UndoableActionOccuredData uaod = new UndoableActionOccuredData(this);
-                    uaod.properties.put("oldPositions", verticesPositionsBackUp);
-                    uaod.properties.put("newPositions", newPos);
-                    blackboard.setData(UndoableActionOccuredData.EVENT_KEY, uaod);
                     blackboard.setData(SELECTION_MOVED, new GraphPoint(vdd.v.getLocation().x - startx, vdd.v.getLocation().y - starty));
 
-//                v.view.removeMouseMotionListener(mlistener);
-//todo                    unListenEvent(VertexMouseDraggingData.event);
-//                    unListenEvent(GraphDropData.event);
-//                    unListenEvent(VertexDropData.event);
                 }
                 if (vdd.eventType == VertexEvent.DRAGGING) {
 //                    VertexMouseDraggingData d = blackboard.get(VertexMouseDraggingData.name);
@@ -88,16 +75,6 @@ public class MoveSelected extends AbstractAction implements Undoable {
 
             }
         }
-//        if (eventName ==GraphEvent.name)) {
-//            drop();
-//            unListenEvent(GraphMouseMoveData.event);
-//                v.view.removeMouseMotionListener(mlistener);
-//todo                unListenEvent(VertexMouseDraggingData.event);
-//                unListenEvent(GraphDropData.event);
-//                unListenEvent(VertexDropData.event);
-//        }
-
-//        }
     }
 
     private void mouseMove() {
@@ -187,35 +164,6 @@ public class MoveSelected extends AbstractAction implements Undoable {
     double xx;
     double yy;
 
-    public void undo(UndoableActionOccuredData uaod) {
-        GraphPoint verticesPositionsBackUp[] = (GraphPoint[]) uaod.properties.get("oldPositions");
-        GraphModel g = gd.getGraph();
-        if (g.getVerticesCount() != this.verticesPositionsBackUp.length) {
-            System.err.println("Graph has changed, Undo can not be done");
-            return;
-        }
-
-        int i = 0;
-        for (VertexModel v : g) {
-            v.setLocation(verticesPositionsBackUp[i++]);
-        }
-
-    }
-
-    public void redo(UndoableActionOccuredData uaod) {
-        GraphPoint newPos[] = (GraphPoint[]) uaod.properties.get("newPositions");
-        GraphModel g = gd.getGraph();
-        if (g.getVerticesCount() != this.verticesPositionsBackUp.length) {
-            System.err.println("Graph has changed, Undo can not be done");
-            return;
-        }
-
-        int i = 0;
-        for (VertexModel v : g) {
-            v.setLocation(newPos[i++]);
-        }
-
-    }
 }
 //
 //class SelectedVerticesCursorUpdator extends GraphAction {

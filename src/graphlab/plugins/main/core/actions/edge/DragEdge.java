@@ -13,8 +13,6 @@ import graphlab.graph.graph.GraphPoint;
 import graphlab.graph.graph.PaintHandler;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
-import graphlab.plugins.commonplugin.undo.Undoable;
-import graphlab.plugins.commonplugin.undo.UndoableActionOccuredData;
 
 import java.awt.*;
 
@@ -22,7 +20,7 @@ import java.awt.*;
  * @author Rouzbeh Ebrahimi, Azin Azadi
  *         Email: ruzbehus@gmail.com
  */
-public class DragEdge extends AbstractAction implements PaintHandler, Undoable {
+public class DragEdge extends AbstractAction implements PaintHandler {
     /**
      * constructor
      *
@@ -92,7 +90,6 @@ public class DragEdge extends AbstractAction implements PaintHandler, Undoable {
                         ctrlPnt.y + lastPos.y - ee.mousePos.y);
                 edge.setCurveControlPoint(
                         newpos);
-                addUndoData(edge, cpfirstPos, newpos);
             }
 
         }
@@ -169,23 +166,4 @@ public class DragEdge extends AbstractAction implements PaintHandler, Undoable {
 //
     }
 
-    protected void addUndoData(EdgeModel e, GraphPoint oldPos, GraphPoint newPos) {
-        UndoableActionOccuredData uaod = new UndoableActionOccuredData(this);
-        uaod.properties.put("Moved Control Point old pos", oldPos);
-        uaod.properties.put("Moved Control Point new pos", newPos);
-        uaod.properties.put("Edge", e);
-        blackboard.setData(UndoableActionOccuredData.EVENT_KEY, uaod);
-    }
-
-    public void undo(UndoableActionOccuredData uaod) {
-        EdgeModel e = (EdgeModel) uaod.properties.get("Edge");
-        GraphPoint op = (GraphPoint) uaod.properties.get("Moved Control Point old pos");
-        e.setCurveControlPoint(op);
-    }
-
-    public void redo(UndoableActionOccuredData uaod) {
-        EdgeModel e = (EdgeModel) uaod.properties.get("Edge");
-        GraphPoint np = (GraphPoint) uaod.properties.get("Moved Control Point new pos");
-        e.setCurveControlPoint(np);
-    }
 }

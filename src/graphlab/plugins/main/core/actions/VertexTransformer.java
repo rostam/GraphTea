@@ -9,8 +9,6 @@ import graphlab.graph.graph.*;
 import graphlab.graph.ui.GraphRectRegionSelect;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
-import graphlab.plugins.commonplugin.undo.Undoable;
-import graphlab.plugins.commonplugin.undo.UndoableActionOccuredData;
 import graphlab.plugins.main.GraphData;
 import graphlab.plugins.main.core.AlgorithmUtils;
 
@@ -26,7 +24,7 @@ import java.util.HashSet;
  *
  * @author Azin Azadi
  */
-public class VertexTransformer extends AbstractAction implements PaintHandler<AbstractGraphRenderer>, Undoable {
+public class VertexTransformer extends AbstractAction implements PaintHandler<AbstractGraphRenderer> {
     GraphData gd;
 
     //the moving recangles
@@ -178,11 +176,6 @@ public class VertexTransformer extends AbstractAction implements PaintHandler<Ab
                 newPos[_.getId()] = _.getLocation();
             }
 
-            UndoableActionOccuredData uaod = new UndoableActionOccuredData(this);
-            uaod.properties.put("oldPositions", verticesPositionsBackUp);
-            uaod.properties.put("newPositions", newPos);
-            blackboard.setData(UndoableActionOccuredData.EVENT_KEY, uaod);
-
             blackboard.setData(IS_TRANSFORMING, false);
         }
 
@@ -272,33 +265,4 @@ public class VertexTransformer extends AbstractAction implements PaintHandler<Ab
 
     }
 
-    public void undo(UndoableActionOccuredData uaod) {
-        GraphPoint verticesPositionsBackUp[] = (GraphPoint[]) uaod.properties.get("oldPositions");
-        GraphModel g = gd.getGraph();
-        if (g.getVerticesCount() != verticesPositionsBackUp.length) {
-            System.err.println("Graph has changed, Undo can not be done");
-            return;
-        }
-
-        int i = 0;
-        for (VertexModel v : g) {
-            v.setLocation(verticesPositionsBackUp[i++]);
-        }
-
-    }
-
-    public void redo(UndoableActionOccuredData uaod) {
-        GraphPoint newPos[] = (GraphPoint[]) uaod.properties.get("newPositions");
-        GraphModel g = gd.getGraph();
-        if (g.getVerticesCount() != this.verticesPositionsBackUp.length) {
-            System.err.println("Graph has changed, Undo can not be done");
-            return;
-        }
-
-        int i = 0;
-        for (VertexModel v : g) {
-            v.setLocation(newPos[i++]);
-        }
-
-    }
 }

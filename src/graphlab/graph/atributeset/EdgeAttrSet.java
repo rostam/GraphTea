@@ -100,15 +100,15 @@ public class EdgeAttrSet implements AttributeSet {
 
     public Map<String, Object> getAttrs() {
         Map<String, Object> ret = new HashMap<String, Object>();
-        ret.put(WEIGHT, e.getWeight());
-        ret.put(LABEL, e.getLabel());
-        ret.put(SHOW_WEIGHT, e.isShowWeight());
-        ret.put(COLOR, e.getColor());
-        ret.put(MARK, e.getMark());
-        ret.put(STROKE, e.getStroke());
-        ret.put(LABEL_LOCATION, e.getLabelLocation());
-        ret.put(ARROW, e.getArrow());
-        ret.put(CURVE_CONTROL_POINT, e.getCurveControlPoint());
+//        ret.put(WEIGHT, e.getWeight());
+//        ret.put(LABEL, e.getLabel());
+//        ret.put(SHOW_WEIGHT, e.isShowWeight());
+//        ret.put(COLOR, e.getColor());
+//        ret.put(MARK, e.getMark());
+//        ret.put(STROKE, e.getStroke());
+//        ret.put(LABEL_LOCATION, e.getLabelLocation());
+//        ret.put(ARROW, e.getArrow());
+//        ret.put(CURVE_CONTROL_POINT, e.getCurveControlPoint());
         if (e.getUserDefinedAttributes() != null)
             ret.putAll(e.getUserDefinedAttributes());
         return ret;

@@ -62,12 +62,12 @@ public class GraphAttrSet implements AttributeSet {
         Map<String, Object> ret = new HashMap<String, Object>();
         ret.put(DIRECTED, g.isDirected() ? EDGEDEFAULT_DIRECTED : EDGEDEFAULT_UNDIRECTED);
         ret.put(LABEL, g.getLabel());
-        ret.put(ZOOM, g.getZoom());
-        ret.put(FONT, g.getFont());
-        ret.put(DRAW_VERTEX_LABELS, g.isDrawVertexLabels());
-        ret.put(DRAW_EDGE_LABELS, g.isDrawEdgeLabels());
-        ret.put(IS_EDGES_CURVED, g.isEdgesCurved());
-        ret.put(BACKGROUND_IMAGE, g.getBackgroundImageFile());
+//        ret.put(ZOOM, g.getZoom());
+//        ret.put(FONT, g.getFont());
+//        ret.put(DRAW_VERTEX_LABELS, g.isDrawVertexLabels());
+//        ret.put(DRAW_EDGE_LABELS, g.isDrawEdgeLabels());
+//        ret.put(IS_EDGES_CURVED, g.isEdgesCurved());
+//        ret.put(BACKGROUND_IMAGE, g.getBackgroundImageFile());
         if (g.getUserDefinedAttributes() != null)
             ret.putAll(g.getUserDefinedAttributes());
         return ret;

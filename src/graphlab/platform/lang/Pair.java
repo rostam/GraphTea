@@ -12,6 +12,9 @@ public class Pair<First, Second> {
     public First first;
     public Second second;
 
+    public Pair(){
+
+    }
     public Pair(First f, Second s) {
         first = f;
         second = s;

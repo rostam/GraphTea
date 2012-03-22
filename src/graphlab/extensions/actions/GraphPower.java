@@ -11,8 +11,6 @@ import graphlab.platform.Application;
 import graphlab.platform.StaticUtils;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
-import graphlab.plugins.commonplugin.undo.Undoable;
-import graphlab.plugins.commonplugin.undo.UndoableActionOccuredData;
 import graphlab.plugins.main.GraphData;
 import graphlab.plugins.main.core.AlgorithmUtils;
 import graphlab.plugins.main.extension.GraphActionExtension;
@@ -24,7 +22,7 @@ import java.util.Vector;
  */
 
 
-public class GraphPower implements GraphActionExtension, Parametrizable, Undoable {
+public class GraphPower implements GraphActionExtension, Parametrizable {
     @Parameter
     public int k = 2;
 
@@ -40,7 +38,7 @@ public class GraphPower implements GraphActionExtension, Parametrizable, Undoabl
     }
 
     public void action(GraphData graphData) {
-		toInsert.clear();
+        toInsert.clear();
         GraphModel g = graphData.getGraph();
 
         AlgorithmUtils.clearVertexMarks(g);
@@ -52,12 +50,6 @@ public class GraphPower implements GraphActionExtension, Parametrizable, Undoabl
         }
         g.insertEdges(toInsert);
 
-        //undo log operation
-		//todo: make a copy of toInsert
-        final UndoableActionOccuredData uaod = new UndoableActionOccuredData(this);
-        uaod.properties.put("edges", toInsert);
-        uaod.properties.put("graph", g);
-        graphData.core.addUndoData(uaod);
     }
 
     void aStar(VertexModel root, VertexModel v, int k, GraphModel g) {
@@ -78,25 +70,6 @@ public class GraphPower implements GraphActionExtension, Parametrizable, Undoabl
         toInsert = new Vector<EdgeModel>();
         subtree = new Vector<VertexModel>();
         return (k < 2 ? "K must be larger than 1" : null);
-    }
-
-    public static void main(String[] args) {
-        Application.main(args);
-
-        StaticUtils.loadSingleExtension(GraphPower.class);
-    }
-
-    public void undo(UndoableActionOccuredData uaod) {
-        final Vector<EdgeModel> tI = (Vector<EdgeModel>) uaod.properties.get("edges");
-        final GraphModel g = (GraphModel) uaod.properties.get("graph");
-        for (EdgeModel em:tI)
-            g.removeEdge(em);
-    }
-
-    public void redo(UndoableActionOccuredData uaod) {
-        final Vector<EdgeModel> tI = (Vector<EdgeModel>) uaod.properties.get("edges");
-        final GraphModel g = (GraphModel) uaod.properties.get("graph");
-        g.insertEdges(tI);
     }
 }
 

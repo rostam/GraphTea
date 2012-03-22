@@ -11,14 +11,12 @@ import graphlab.graph.graph.SubGraph;
 import graphlab.graph.graph.VertexModel;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
-import graphlab.plugins.commonplugin.undo.Undoable;
-import graphlab.plugins.commonplugin.undo.UndoableActionOccuredData;
 import graphlab.plugins.main.select.Select;
 
 /**
  * @author Ruzbeh
  */
-public class VertexMoveEvent extends AbstractAction implements Undoable {
+public class VertexMoveEvent extends AbstractAction {
     public VertexMoveEvent(BlackBoard bb) {
         super(bb);
 //        listen4Event(VertexDropData.event);
@@ -71,7 +69,6 @@ public class VertexMoveEvent extends AbstractAction implements Undoable {
         _.y += vdrod.mousePos.y + loc.y - y1;
         vmd.newPosition = _;
         blackboard.setData(VertexMoveData.EVENT_KEY, vmd);
-        addUndoData(g, vmd.v, oldPos, vmd);
         //it negatives the status of the vertex so , it will be negatived cause a vertex click will be fired after and the selection status will be negatived again, it's just a hack!
         //todo: the hack may cause problems for some one working with selections
         SubGraph SubGraph = Select.getSelection(blackboard);
@@ -93,26 +90,6 @@ public class VertexMoveEvent extends AbstractAction implements Undoable {
         x1 = vdd.mousePos.x;
         y1 = vdd.mousePos.y;
         isVertexSelected = ((SubGraph) Select.getSelection(blackboard)).vertices.contains(vdd.v);
-    }
-
-    private void addUndoData(GraphModel g, VertexModel v1, GraphPoint oldPos, VertexMoveData vmd) {
-        UndoableActionOccuredData uaod = new UndoableActionOccuredData(this);
-        uaod.properties.put("MovedVertex", v1);
-        uaod.properties.put("OldLocation", oldPos);
-//        uaod.properties.put("OldX", oldPos.x);
-//        uaod.properties.put("OldY", oldPos.y);
-        uaod.properties.put("NewPosition", vmd.newPosition);
-//        uaod.properties.put("NewY", vmd.newY);
-        uaod.properties.put("Graph", g);
-        blackboard.setData(UndoableActionOccuredData.EVENT_KEY, uaod);
-    }
-
-    public void undo(UndoableActionOccuredData uaod) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    public void redo(UndoableActionOccuredData uaod) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 }
 

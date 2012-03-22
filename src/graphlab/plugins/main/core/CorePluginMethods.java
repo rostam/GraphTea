@@ -12,9 +12,8 @@ import graphlab.graph.ui.GHTMLPageComponent;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.core.exception.ExceptionHandler;
 import graphlab.platform.plugin.PluginMethods;
-import graphlab.plugins.commonplugin.undo.UndoableActionOccuredData;
-import graphlab.plugins.commonplugin.undo.undo.RedoAction;
-import graphlab.plugins.commonplugin.undo.undo.UndoAction;
+import graphlab.plugins.commonplugin.undo.RedoAction;
+import graphlab.plugins.commonplugin.undo.UndoAction;
 import graphlab.plugins.main.ccp.Copy;
 import graphlab.plugins.main.ccp.Cut;
 import graphlab.plugins.main.core.actions.AddTab;
@@ -127,25 +126,19 @@ public class CorePluginMethods implements PluginMethods {
 //*********************      U N D O / R E D O        *************************
 
     /**
-     * @see graphlab.plugins.commonplugin.undo.undo.UndoAction#undo(graphlab.platform.core.BlackBoard)
+     * @see graphlab.plugins.commonplugin.undo.UndoAction#undo(graphlab.platform.core.BlackBoard)
      */
     public void undo() {
         UndoAction.undo(blackboard);
     }
 
     /**
-     * @see graphlab.plugins.commonplugin.undo.undo.RedoAction#redo(graphlab.platform.core.BlackBoard)
+     * @see graphlab.plugins.commonplugin.undo.RedoAction#redo(graphlab.platform.core.BlackBoard)
      */
     public void redo() {
         RedoAction.redo(blackboard);
     }
 
-    /**
-     * puts data in the stack of undo/redo actions, so it will be regarded as an undoable action and will be undone by the rules of undo/redo.
-     */
-    public void addUndoData(UndoableActionOccuredData data) {
-        blackboard.setData(UndoableActionOccuredData.EVENT_KEY, data);
-    }
 //*********************   TABBED EDITING      *******************************
 
     /**

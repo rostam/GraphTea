@@ -37,6 +37,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
         this.graph = g;
         g.addGraphListener(this);
         new GraphNotifiableAttrSet(g).addAttributeListener(this);
+        this.repaintGraph();
     }
 
     public GraphModel getGraph() {
