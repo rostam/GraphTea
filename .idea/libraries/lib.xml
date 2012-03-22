@@ -11,6 +11,7 @@
       <root url="jar://$PROJECT_DIR$/src/scripts/lib/jedis-2.0.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/scripts/lib/rjc_redis.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/scripts/lib/bsh-2.0b4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/scripts/lib/gson-2.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

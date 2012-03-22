@@ -4,13 +4,11 @@
 
 package graphlab.plugins.main.core.actions;
 
+import graphlab.graph.GraphUtils;
 import graphlab.graph.event.EdgeEvent;
 import graphlab.graph.event.GraphEvent;
 import graphlab.graph.event.VertexEvent;
-import graphlab.graph.graph.AbstractGraphRenderer;
-import graphlab.graph.graph.EdgeModel;
-import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.*;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.core.Listener;
 import graphlab.platform.extension.BasicExtension;
@@ -23,6 +21,7 @@ import graphlab.plugins.main.select.MakeSelectionCompleteGraph;
 import graphlab.plugins.main.select.MakeSelectionEmptyGraph;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
@@ -75,7 +74,6 @@ public class RightClickAction implements BasicExtension, Listener {
 //        });
     }
 
-    int[] a = new int[]{2, 3};
 
     public void keyChanged(String key, Object value) {
         if (key == VertexEvent.EVENT_KEY) {
@@ -84,7 +82,7 @@ public class RightClickAction implements BasicExtension, Listener {
                 if (!gd.select.getSelectedVertices().contains(ve.v)) {
                     gd.select.setSelected(new VertexModel[]{ve.v}, new EdgeModel[]{});
                 }
-                showPopup((int) ve.posOnGraph().x, (int) ve.posOnGraph().y);
+                showPopup(ve.posOnGraph());
             }
         }
         if (key == EdgeEvent.EVENT_KEY) {
@@ -93,21 +91,22 @@ public class RightClickAction implements BasicExtension, Listener {
                 if (!gd.select.getSelectedEdges().contains(ee.e)) {
                     gd.select.setSelected(new VertexModel[]{}, new EdgeModel[]{ee.e});
                 }
-                showPopup((int) ee.posOnGraph().x, (int) ee.posOnGraph().y);
+                showPopup(ee.posOnGraph());
             }
         }
         if (key == GraphEvent.EVENT_KEY) {
             GraphEvent ge = (GraphEvent) value;
             GraphModel g = ge.graph;
             if (ge.eventType == GraphEvent.CLICKED && ge.mouseBtn == MouseEvent.BUTTON3) {
-                showPopup((int) ge.mousePos.x, (int) ge.mousePos.y);
+                showPopup(ge.mousePos);
             }
         }
     }
 
-    public void showPopup(int x, int y) {
+    public void showPopup(GraphPoint p) {
         AbstractGraphRenderer gv = b.getData(AbstractGraphRenderer.EVENT_KEY);
-        popup.show(gv, x, y);
+        Point vp = GraphUtils.createViewPoint(gd.getGraph(), p);
+        popup.show(gv, vp.x, vp.y);
 
     }
 }
