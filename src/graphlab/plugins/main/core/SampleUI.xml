@@ -31,7 +31,7 @@
         <action class="graphlab.plugins.commonplugin.undo.undo.RedoAction" id="Redo Action"/>
         <action class="graphlab.ui.actions.ExitAction" id="Exit"/>
         <action class="graphlab.plugins.main.core.actions.graph.NewGraph" id="New"/>
-        <action class="graphlab.plugins.main.core.actions.graph.ClearGraph" id="Clear"/>
+        <!--<action class="graphlab.plugins.main.core.actions.graph.ClearGraph" id="Clear"/>-->
         <!--<action class="graphlab.plugins.main.graph.actions.graph.GraphSelectPointEvent"/>-->
         <action class="graphlab.plugins.main.core.actions.vertex.VertexSelectEvent"/>
         <action class="graphlab.plugins.main.core.actions.edge.EdgeSelectEvent"/>
@@ -110,10 +110,9 @@
                 <menu label="_Copy" action="Copy" accelerator="control+C" place="510"/>
                 <menu label="_Paste" action="Paste" accelerator="control+V" place="520"/>
             </submenu>
-            <submenu label="Graph">
-                <menu label="Re_set Graph" action="reset" accelerator="control+R" place="10000"/>
-                <menu label="C_lear Graph" action="Clear" place="9000"/>
-            </submenu>
+            <!--<submenu label="Graph">-->
+                <!--<menu label="C_lear Graph" action="Clear" place="9000"/>-->
+            <!--</submenu>-->
 
             <!--<submenu label="_View" place="40">-->
             <!--<menu label="Zoom _In" action="Zoom In" accelerator="+" place="10"/>-->
@@ -133,6 +132,8 @@
         <toolbars>
             <toolbar place="10">
                 <tool label="New Graph" action="add tab"/>
+                <tool label="Reset Graph" action="reset"/>
+
             </toolbar>
 
             <toolbar place="20">

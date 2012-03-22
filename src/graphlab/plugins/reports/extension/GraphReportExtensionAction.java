@@ -34,7 +34,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 	}
 
 	public String getParentMenuName() {
-		return "Graph.Reports";
+		return "Reports";
 	}
 
 	public Object performExtensionInCommandLine() {

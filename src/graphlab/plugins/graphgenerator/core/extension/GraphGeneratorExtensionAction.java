@@ -21,7 +21,7 @@ public class GraphGeneratorExtensionAction extends AbstractExtensionAction<Graph
     }
 
     public String getParentMenuName() {
-        return "Graph.Generate";
+        return "Generate Graph";
     }
 
     @Override

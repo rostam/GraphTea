@@ -2,6 +2,9 @@ Welcome to GraphLab!
 
 What's new
 -------------------------------------
+March 22 2012
+we are working on making the user interface more simple
+
 March 7 2011
 Graphs can now have loops!
 - Add a loop by double clicking a vertex.

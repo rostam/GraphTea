@@ -8,22 +8,22 @@
 
 <root>
 	<actions>
-		<action class="graphlab.plugins.reports.basicreports.NumOfVerticesWithDegK" />
-		<action class="graphlab.plugins.reports.basicreports.NumOfVertices" />
-		<action class="graphlab.plugins.reports.basicreports.NumOfEdges" />
+		<action class="graphlab.extensions.reports.basicreports.NumOfVerticesWithDegK" />
+		<action class="graphlab.extensions.reports.basicreports.NumOfVertices" />
+		<action class="graphlab.extensions.reports.basicreports.NumOfEdges" />
 		<action
-			class="graphlab.plugins.reports.basicreports.NumOfConnectedComponents" />
-		<action class="graphlab.plugins.reports.basicreports.GirthSize" />
-		<action class="graphlab.plugins.reports.basicreports.VerticesDegreesList" />
+			class="graphlab.extensions.reports.basicreports.NumOfConnectedComponents" />
+		<action class="graphlab.extensions.reports.basicreports.GirthSize" />
+		<action class="graphlab.extensions.reports.basicreports.VerticesDegreesList" />
 		<!--
 			<action
-			class="graphlab.plugins.reports.basicreports.MaximumIndependenceNumber"/>
+			class="graphlab.extensions.reports.basicreports.MaximumIndependenceNumber"/>
 		-->
-		<action class="graphlab.plugins.reports.basicreports.IsEulerian" />
-		<action class="graphlab.plugins.reports.basicreports.NumOfTriangles" />
-		<action class="graphlab.plugins.reports.basicreports.MaxAndMinDegree" />
-		<action class="graphlab.plugins.reports.basicreports.AdjacencyMatrix" />
-		<action class="graphlab.plugins.reports.basicreports.NumOfQuadrangle" />
+		<action class="graphlab.extensions.reports.basicreports.IsEulerian" />
+		<action class="graphlab.extensions.reports.basicreports.NumOfTriangles" />
+		<action class="graphlab.extensions.reports.basicreports.MaxAndMinDegree" />
+		<action class="graphlab.extensions.reports.basicreports.AdjacencyMatrix" />
+		<action class="graphlab.extensions.reports.basicreports.NumOfQuadrangle" />
 		<action
 			class="graphlab.plugins.reports.spectralreports.maxflowmincut.GomoryHuTree" />
 		<action
@@ -34,12 +34,11 @@
 		<action
 			class="graphlab.plugins.reports.spectralreports.PerfectMatchingReport" />
 		<action class="graphlab.plugins.reports.spectralreports.LaplacianOfGraph" />
-		<action class="graphlab.plugins.reports.ShowReports" id="reports show" />
+		<!--<action class="graphlab.plugins.reports.ShowReports" id="reports show" />-->
 	</actions>
 	<ui>
 		<menues>
-			<submenu label="Graph.Reports" place="300">
-				<menu label="Show Reports Window" action="reports show" />
+			<submenu label="Reports" place="300">
 			</submenu>
 			<!--<submenu label="_Reports">-->
 			<!--<menu label="_Vertices" action="vertex report"/>-->

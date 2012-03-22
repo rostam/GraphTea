@@ -1,51 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  GraphLab Project: http://graphlab.sharif.edu
-  Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
-  Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
-  -->
 
 <!DOCTYPE root SYSTEM "SampleUI.dtd">
 <root>
     <ui>
         <menues>
-            <submenu label="Graph" place="100"/>
-            <submenu label="Graph.Generate" place="1">
-                <!--<menu label="_Path" action="Path"/>-->
-                <!--<menu label="_Circle" action="generate circle"/>-->
-                <!--<menu label="_Star" action="generate star"/>-->
-                <!--<menu label="_Tree" action="generate BTree"/>-->
-                <!--<menu label="_RanTree" action="generate RanTree"/>-->
-                <!--<menu label="_Kmn" action="generate Kmn"/>-->
-                <!--<menu label="_Cmn" action="generate Cmn"/>-->
-                <!--<menu label="_Pmn" action="generate Pmn"/>-->
-                <!--<menu label="_Kn_d" action="generate Kn_d"/>-->
-                <!--<menu label="_Random" action="random graph generator"/>-->
-                <!--<menu label="_Complete" action="generate complete graph"/>-->
+            <submenu label="Generate Graph" place="100">
             </submenu>
         </menues>
-        <!--toolbars>
-            <toolbar></toolbar>
-        </toolbars-->
 
     </ui>
     <actions>
-        <action class="graphlab.plugins.graphgenerator.generators.PathGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.CircleGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.StarGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.KmnGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.PmnGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.CmnGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.KenserGraphGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.CompleteGraphGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.RandomGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.TreeGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.RandomTreeGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.GeneralizedPetersonGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.WheelGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.BananaTreeGenerator" group=""/>
-        <action class="graphlab.plugins.graphgenerator.generators.HelmGraph" />
-        <action class="graphlab.plugins.graphgenerator.generators.PrismGraph"/>
-        <action class="graphlab.plugins.graphgenerator.generators.KmnoGenerator" />
     </actions>
 </root>

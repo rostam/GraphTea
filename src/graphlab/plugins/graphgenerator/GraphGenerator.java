@@ -11,12 +11,11 @@ import graphlab.platform.core.BlackBoard;
 import graphlab.platform.plugin.PluginMethods;
 import graphlab.plugins.graphgenerator.core.GraphGeneratorInterface;
 import graphlab.plugins.graphgenerator.core.SimpleGeneratorInterface;
-import graphlab.plugins.graphgenerator.generators.*;
+import graphlab.extensions.generators.*;
 import graphlab.plugins.main.core.CorePluginMethods;
 import graphlab.plugins.main.core.actions.vertex.AddVertex;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
 /**
  * @author azin azadi
@@ -115,35 +114,35 @@ public class GraphGenerator implements PluginMethods {
 
     //________________    Graph Generators    _______________
     /**
-     * @see graphlab.plugins.graphgenerator.generators.CircleGenerator#generateCircle(int)
+     * @see graphlab.extensions.generators.CircleGenerator#generateCircle(int)
      */
     public static GraphModel generateCircle(int n) {
         return CircleGenerator.generateCircle(n);
     }
 
     /**
-     * @see graphlab.plugins.graphgenerator.generators.CmnGenerator#generateCmn(int,int)
+     * @see graphlab.extensions.generators.CmnGenerator#generateCmn(int,int)
      */
     public static GraphModel generateCmn(int m, int n) {
         return CmnGenerator.generateCmn(m, n);
     }
 
     /**
-     * @see graphlab.plugins.graphgenerator.generators.GeneralizedPetersonGenerator#generateGeneralizedPeterson(int,int)
+     * @see graphlab.extensions.generators.GeneralizedPetersonGenerator#generateGeneralizedPeterson(int,int)
      */
     public static GraphModel generateGeneralizedPeterson(int n, int k) {
         return GeneralizedPetersonGenerator.generateGeneralizedPeterson(n, k);
     }
 
     /**
-     * @see graphlab.plugins.graphgenerator.generators.CompleteGraphGenerator#generateCompleteGraph(int)
+     * @see graphlab.extensions.generators.CompleteGraphGenerator#generateCompleteGraph(int)
      */
     public static GraphModel generateCompleteGraph(int n) {
         return CompleteGraphGenerator.generateCompleteGraph(n);
     }
 
     /**
-     * @see graphlab.plugins.graphgenerator.generators.KenserGraphGenerator#generateKenserGraph(int,int)
+     * @see graphlab.extensions.generators.KenserGraphGenerator#generateKenserGraph(int,int)
      */
     public static GraphModel generateKenserGraph(int n, int d) {
         return KenserGraphGenerator.generateKenserGraph(n, d);
@@ -151,49 +150,49 @@ public class GraphGenerator implements PluginMethods {
 
 
     /**
-     * @see graphlab.plugins.graphgenerator.generators.KmnGenerator#generateKmn(int,int)
+     * @see graphlab.extensions.generators.KmnGenerator#generateKmn(int,int)
      */
     public static GraphModel generateKmn(int m, int n) {
         return KmnGenerator.generateKmn(m, n);
     }
 
     /**
-     * @see graphlab.plugins.graphgenerator.generators.PathGenerator#generatePath(int)
+     * @see graphlab.extensions.generators.PathGenerator#generatePath(int)
      */
     public static GraphModel generatePath(int n) {
         return PathGenerator.generatePath(n);
     }
 
     /**
-     * @see graphlab.plugins.graphgenerator.generators.PmnGenerator#generatePmn(int,int)
+     * @see graphlab.extensions.generators.PmnGenerator#generatePmn(int,int)
      */
     public static GraphModel generatePmn(int m, int n) {
         return PmnGenerator.generatePmn(m, n);
     }
 
     /**
-     * @see graphlab.plugins.graphgenerator.generators.RandomGenerator#generateRandomGraph(int)
+     * @see graphlab.extensions.generators.RandomGenerator#generateRandomGraph(int)
      */
     public static GraphModel generateRandomGraph(int n, int e) {
         return RandomGenerator.generateRandomGraph(n, e);
     }
 
     /**
-     * @see graphlab.plugins.graphgenerator.generators.StarGenerator#generateStar(int)
+     * @see graphlab.extensions.generators.StarGenerator#generateStar(int)
      */
     public static GraphModel generateStar(int n) {
         return StarGenerator.generateStar(n);
     }
 
     /**
-     * @see graphlab.plugins.graphgenerator.generators.TreeGenerator#generateTree(int,int)
+     * @see graphlab.extensions.generators.TreeGenerator#generateTree(int,int)
      */
     public static GraphModel generateTree(int depth, int degree) {
         return TreeGenerator.generateTree(depth, degree);
     }
 
     /**
-     * @see graphlab.plugins.graphgenerator.generators.WheelGenerator#generateWheel(int)
+     * @see graphlab.extensions.generators.WheelGenerator#generateWheel(int)
      */
     public static GraphModel generateWheel(int n) {
         return WheelGenerator.generateWheel(n);
