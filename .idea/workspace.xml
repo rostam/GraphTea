@@ -1,50 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e1726eca-65f2-46b7-8bcc-339ae8628bce" name="Default" comment="fix locationing in rightclick">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/Undoable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/UndoableActionOccuredData.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/undo/RedoAction.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/RedoAction.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/undo/UndoAction.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/UndoAction.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/undo/UndoLogManager.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/UndoManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/extensions/graphlab/extensions/actions/GraphPower.class" afterPath="$PROJECT_DIR$/binary/extensions/graphlab/extensions/actions/GraphPower.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/graphlab-main.jar" afterPath="$PROJECT_DIR$/binary/graphlab-main.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/lib/graph.jar" afterPath="$PROJECT_DIR$/binary/lib/graph.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/lib/graphlab-ui-library.jar" afterPath="$PROJECT_DIR$/binary/lib/graphlab-ui-library.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/commandline.jar" afterPath="$PROJECT_DIR$/binary/plugins/commandline.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/commonplugin.jar" afterPath="$PROJECT_DIR$/binary/plugins/commonplugin.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/graphgenerator.jar" afterPath="$PROJECT_DIR$/binary/plugins/graphgenerator.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/main.jar" afterPath="$PROJECT_DIR$/binary/plugins/main.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/reports.jar" afterPath="$PROJECT_DIR$/binary/plugins/reports.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/prefs/graph.xml" afterPath="$PROJECT_DIR$/binary/prefs/graph.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/extensions/actions/GraphPower.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/actions/GraphPower.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/graph/atributeset/EdgeAttrSet.java" afterPath="$PROJECT_DIR$/src/graphlab/graph/atributeset/EdgeAttrSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java" afterPath="$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/graph/atributeset/VertexAttrSet.java" afterPath="$PROJECT_DIR$/src/graphlab/graph/atributeset/VertexAttrSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/graph/graph/AbstractGraphRenderer.java" afterPath="$PROJECT_DIR$/src/graphlab/graph/graph/AbstractGraphRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/graph/io/GraphJSON.java" afterPath="$PROJECT_DIR$/src/graphlab/graph/io/GraphJSON.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/graph/io/GraphML.java" afterPath="$PROJECT_DIR$/src/graphlab/graph/io/GraphML.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/platform/lang/Pair.java" afterPath="$PROJECT_DIR$/src/graphlab/platform/lang/Pair.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/commonplugin/Init.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/commonplugin/Init.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/ccp/Copy.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/ccp/Copy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/CorePluginMethods.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/CorePluginMethods.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/VertexTransformer.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/VertexTransformer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/edge/AddEdge.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/edge/AddEdge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/edge/DeleteEdge.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/edge/DeleteEdge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/edge/DragEdge.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/edge/DragEdge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/AddVertex.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/AddVertex.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/DeleteVertex.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/DeleteVertex.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/MoveVertex.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/MoveVertex.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/VertexMoveEvent.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/VertexMoveEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/select/DeleteSelected.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/select/DeleteSelected.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionComplementGraph.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionComplementGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionCompleteGraph.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionCompleteGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionEmptyGraph.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionEmptyGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/select/MoveSelected.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/select/MoveSelected.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/select/ScaleOutSelection.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/select/ScaleOutSelection.java" />
-    </list>
+    <list default="true" id="e1726eca-65f2-46b7-8bcc-339ae8628bce" name="Default" comment="" />
     <ignored path="graphlab.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -116,10 +73,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UndoAction.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="UndoAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/UndoAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="23" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.6896552">
+            <state line="41" column="23" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -164,7 +121,16 @@
       <file leaf-file-name="VertexAttrSet.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/VertexAttrSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="39" selection-start="1746" selection-end="1746" vertical-scroll-proportion="0.0">
+            <state line="46" column="39" selection-start="1736" selection-end="1736" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphAttrSet.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="74" column="25" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.24881516">
               <folding />
             </state>
           </provider>
@@ -182,16 +148,7 @@
       <file leaf-file-name="EdgeAttrSet.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/EdgeAttrSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="108" column="32" selection-start="4006" selection-end="4006" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pair.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/platform/lang/Pair.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="50" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0">
+            <state line="103" column="39" selection-start="3799" selection-end="3799" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -220,14 +177,14 @@
         <option value="$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionEmptyGraph.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionCompleteGraph.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/UndoManager.java" />
-        <option value="$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java" />
-        <option value="$PROJECT_DIR$/src/graphlab/graph/atributeset/VertexAttrSet.java" />
         <option value="$PROJECT_DIR$/src/graphlab/platform/lang/Pair.java" />
-        <option value="$PROJECT_DIR$/src/graphlab/graph/atributeset/EdgeAttrSet.java" />
         <option value="$PROJECT_DIR$/src/graphlab/graph/io/GraphJSON.java" />
         <option value="$PROJECT_DIR$/src/graphlab/graph/graph/AbstractGraphRenderer.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/UndoAction.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/graph/atributeset/EdgeAttrSet.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/graph/atributeset/VertexAttrSet.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java" />
       </list>
     </option>
   </component>
@@ -354,22 +311,22 @@
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Libraries" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="134" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="79" />
     <property name="OverrideImplement.combined" value="true" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="143" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="83" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="139" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="81" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="146" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="941" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="939" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="145" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="84" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="451" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="450" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="84" />
     <property name="GoToClass.includeJavaFiles" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="141" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="82" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
@@ -573,17 +530,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980132" sideWeight="0.49426112" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.49426112" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964131" sideWeight="0.6701987" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.82066" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2754663" sideWeight="0.21854305" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980132" sideWeight="0.50071734" order="2" side_tool="true" content_ui="tabs" x="20" y="82" width="388" height="797" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980132" sideWeight="0.52223814" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980132" sideWeight="0.47274032" order="2" side_tool="true" content_ui="tabs" x="20" y="82" width="388" height="797" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2754663" sideWeight="0.36953643" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -630,7 +587,7 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix locationing in rightclick" />
+    <option name="LAST_COMMIT_MESSAGE" value="rollback" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -644,6 +601,7 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="fix locationing in rightclick" />
+    <MESSAGE value="rollback" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -697,30 +655,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="25" selection-start="3197" selection-end="3197" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/VertexAttrSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="39" selection-start="1746" selection-end="1746" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/platform/lang/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="50" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/EdgeAttrSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="32" selection-start="4006" selection-end="4006" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -789,7 +726,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/UndoAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="23" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.6896552">
+        <state line="41" column="23" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/EdgeAttrSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="103" column="39" selection-start="3799" selection-end="3799" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/VertexAttrSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="39" selection-start="1736" selection-end="1736" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="25" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.24881516">
           <folding />
         </state>
       </provider>
