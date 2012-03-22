@@ -2,931 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1726eca-65f2-46b7-8bcc-339ae8628bce" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/binary/prefs/autoupdate.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/binary/prefs/graph.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/com/intellij/uiDesigner/core/AbstractLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/com/intellij/uiDesigner/core/DimensionInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/com/intellij/uiDesigner/core/GridConstraints.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/com/intellij/uiDesigner/core/GridLayoutManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/com/intellij/uiDesigner/core/HorizontalInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/com/intellij/uiDesigner/core/LayoutState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/com/intellij/uiDesigner/core/Spacer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/com/intellij/uiDesigner/core/SupportCode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/com/intellij/uiDesigner/core/Util.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/com/intellij/uiDesigner/core/VerticalInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/actions/GraphPower.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/actions/LineGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/connectivity/Redis$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/connectivity/Redis$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/connectivity/Redis.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/io/LatexCAD.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/io/LatexWriter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/io/LoadNetGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/io/LoadSimpleGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/io/SaveSimpleGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/reports/ChromaticNumber.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/reports/ColoringListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/reports/ColoringReport.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/reports/MaxIndSetSubSetListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/reports/MaxIndSetSubSetSizeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/reports/MaxIndependentSetReport.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/reports/Partitioner$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/reports/Partitioner$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/reports/Partitioner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/extensions/reports/SubSetListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/GraphUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/JGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/atributeset/EdgeAttrSet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/atributeset/EdgeNotifiableAttrSet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/atributeset/GraphAttrSet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/atributeset/GraphNotifiableAttrSet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/atributeset/VertexAttrSet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/atributeset/VertexNotifiableAttrSet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/event/EdgeEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/event/EdgeModelListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/event/GraphControlListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/event/GraphEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/event/GraphModelListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/event/GraphSelectData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/event/VertexEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/event/VertexModelListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/graph/AbstractGraphRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/graph/EdgeModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/graph/FastRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/graph/GraphColoring.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/graph/GraphControl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/graph/GraphControlGrid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/graph/GraphModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/graph/GraphPoint.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/graph/PaintHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/graph/SubGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/graph/VertexModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/io/GraphML.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/old/AcceleratedRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/old/Arrow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/old/ArrowHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/old/ButtonTabComponent$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/old/ButtonTabComponent$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/old/ButtonTabComponent$TabButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/old/ButtonTabComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/old/GShape.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/old/GStroke.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/old/LayeredRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/old/PolygonArrow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/old/SuperAcceleratedRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/ButtonTabComponent$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/ButtonTabComponent$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/ButtonTabComponent$TabButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/ButtonTabComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/DialogLinkHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/ExternalLinkHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/GHTMLPageComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/GSplitedPane.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/GTabbedGraphPane$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/GTabbedGraphPane$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/GTabbedGraphPane$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/GTabbedGraphPane.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/GTabbedPane$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/GTabbedPane.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/GTextFileRendererComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/GraphRectRegionSelect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/graph/ui/HyperlinkHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/BaseEdge.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/BaseEdgeProperties.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/BaseGraph$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/BaseGraph$2$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/BaseGraph$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/BaseGraph$3$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/BaseGraph$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/BaseGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/BaseVertex.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/BaseVertexProperties.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/Cycle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/ListGraph$EdgeIterator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/ListGraph$LightEdgeIterator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/ListGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/MatrixGraph$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/MatrixGraph$EdgeIterator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/MatrixGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/Path.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/Algorithm.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/AlgorithmInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/AutomatedAlgorithm.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/DAG.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/coloring/SampleColoring.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/goperators/EdgeInduced.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/goperators/GraphComplement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/goperators/GraphUnion.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/goperators/VertexInduced.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/goperators/product/GCartesianProduct.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/goperators/product/GPopularProduct.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/goperators/product/GProduct.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/graphdecomposition/BiconnectedComponents$VE.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/graphdecomposition/BiconnectedComponents.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/homomorphism/Homomorphism.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/shortestpath/AcyclicSP.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/shortestpath/BellmanFord.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/shortestpath/Dijkstra$1VertexComparator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/shortestpath/Dijkstra.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/shortestpath/FloydWarshall.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/shortestpath/Johnson.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/shortestpath/ShortestPaths.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/sorting/TopologicalSort.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/spanningtree/Kruskal$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/spanningtree/Kruskal.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/spanningtree/Prim$DefaultEdgeComparator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/spanningtree/Prim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/subgraphs/InducedSubgraphs$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/subgraphs/InducedSubgraphs.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/subgraphs/TestInducedSubgraphs.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/traversal/BreadthFirstSearch.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/traversal/DepthFirstSearch.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/util/AcyclicChecker$AcyclicCheckerHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/util/AcyclicChecker.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/util/BipartiteChecker.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/util/ColorableVertex.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/util/ConnectivityChecker.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/util/EventUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/util/LibraryUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/algorithms/vertexcover/AppVertexCover.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/AlgorithmStep.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/DelayEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/EdgeEvent$EventType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/EdgeEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/EdgeRequest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/Event.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/EventDispatcher.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/GraphEvent$EventType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/GraphEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/GraphRequest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/MessageEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/PostWorkEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/PreWorkEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/VertexEdgeLabelEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/VertexEvent$EventType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/VertexEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/VertexRequest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/handlers/PostWorkHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/handlers/PreWorkHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/handlers/PreWorkPostWorkHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/typedef/BaseEdgeEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/typedef/BaseEdgeRequest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/typedef/BaseGraphEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/typedef/BaseGraphRequest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/typedef/BaseVertexEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/event/typedef/BaseVertexRequest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/exceptions/CopyUnsupportedException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/exceptions/InvalidEdgeException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/exceptions/InvalidGraphException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/exceptions/InvalidVertexException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/genericcloners/BaseEdgeVertexCopier.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/genericcloners/EdgeConverter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/genericcloners/EdgeVertexConverter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/genericcloners/EdgeVertexCopier.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/genericcloners/GraphConverter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/genericcloners/VertexConverter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/test/TestListGraph$BaseEdgeWeightComparator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/test/TestListGraph$SampleTraversalHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/test/TestListGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/test/TestMatrixGraph$BaseEdgeWeightComparator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/test/TestMatrixGraph$SampleTraversalHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/test/TestMatrixGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/test/TestNewEdge.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/library/util/Pair.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/Application.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/GSplash$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/GSplash.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/StaticUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/attribute/AtomAttribute.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/attribute/AttributeListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/attribute/AttributeSet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/attribute/AttributeSetImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/attribute/NotifiableAttributeSet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/attribute/NotifiableAttributeSetImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/attribute/TimeLimitedNotifiableAttrSet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/core/AbstractAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/core/Action.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/core/BlackBoard$Couple.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/core/BlackBoard.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/core/Listener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/core/exception/ExceptionHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/core/exception/ExceptionOccuredData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/extension/BasicExtension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/extension/Extension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/extension/ExtensionClassLoader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/extension/ExtensionExternalData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/extension/ExtensionHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/extension/ExtensionLoader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/extension/UnknownExtensionLoader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/icon.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/lang/ArrayX.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/lang/BoundedInteger.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/lang/CommandAttitude.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/lang/FromStringProvider.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/lang/Pair.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/lang/SetValidator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/lang/Validator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/parameter/Parameter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/parameter/Parametrizable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/plugin/Plugger.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/plugin/PluginHandlerInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/plugin/PluginInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/plugin/PluginMethods.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/preferences/AbstractPreference.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/preferences/GraphPreferences.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/preferences/Preferences.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/preferences/UserDefinedEligiblity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/preferences/lastsettings/LastSettings.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/preferences/lastsettings/Settings.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/preferences/lastsettings/StorableOnExit.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/preferences/lastsettings/UserModifiableProperty.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/platform/splash.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/FileOpener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/GraphLabDebugger.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/AcyclicCheckerAnim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/AnimatorGUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/AppVertexCoverAnim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/BFSAnim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/BellmanFordAnim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/BiconnectedComponentsAnim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/DFSAnim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/DijkstraAnim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/KruskalAnim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/More.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/PrimAnim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/SampleColoringExtension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/SampleUI.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/TopologicalSortAnim.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/AlgorithmAnimator$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/AlgorithmAnimator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/AtomAnimator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/SimpleAlgorithmAnimator$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/SimpleAlgorithmAnimator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/DelayEventHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/EdgeMarkAnimator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/GraphSelect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/NewGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/PrePostWork.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/ShowMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/VertexEdgeLabelAnimator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/VertexSelect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/aa.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/extension/AtomAnimatorExtension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/extension/AtomAnimatorExtensionAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/extension/AtomAnimatorExtensionHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/core/atoms/vs.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/extension/AlgorithmExtension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/extension/AlgorithmExtensionAction$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/extension/AlgorithmExtensionAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/extension/AlgorithmExtensionHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/algorithmanimator/tests/TestInducedSubgraphs.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/Init$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/MyReader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/SBicon.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/Shell$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/Shell$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/Shell$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/Shell.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellCodeCompletion.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellConsole$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellConsole$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellConsole$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellConsole$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellConsole$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellConsole$BlockingPipedInputStream.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellConsole.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellHyperlinkHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellPluginMethods.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellServer$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellServer$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellServer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/ShellSideBar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/commands/Converter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/commands/Copier.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/commands/EdgeCommands.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/commands/GraphCommands.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/commands/NativeCommands.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/commands/ShellCommandException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/commands/ShellServerCommands$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/commands/ShellServerCommands$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/commands/ShellServerCommands.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/commands/VertexCommands.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/extensionloader/BSHExtensionLoader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/parsers/BSHFile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/parsers/DefaultParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/parsers/ExtParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/parsers/InwardCommandParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/parsers/OperatorParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/util/Utils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commandline/util/codecompletionutils/CodeCompletionUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/actiongrouping/ActionGrouper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/help/HelpPluginMethods.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/help/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/help/SampleUI.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/help/Utils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/help/actions/Help$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/help/actions/Help.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/help/actions/HelpWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/help/actions/HelpWindow$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/help/actions/HelpWindow$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/help/actions/HelpWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/help/actions/VisitGraphLabHomePage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/help/config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/Browser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/HyperActive.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/ReporterPluginMethods.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/SampleUI.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/actions/ExceptionReport$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/actions/ExceptionReport$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/actions/ExceptionReport.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/actions/Exceptioner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/actions/Report.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/actions/TextBox$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/actions/TextBox.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/reporter/config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/undo/Undoable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/undo/UndoableActionOccuredData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/undo/undo/Node.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/undo/undo/RedoAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/undo/undo/UndoAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/commonplugin/undo/undo/UndoLogManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/connector/Connector.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/connector/ConnectorDS.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/connector/ConnectorReportExtension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/connector/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/connector/matlab/MatlabExtensionLoader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/connector/matlab/MatlabRunner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/GeneratorUI.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/GraphGenerator$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/GraphGenerator$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/GraphGenerator$2$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/GraphGenerator$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/GraphGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/SampleUI.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/core/GraphGeneratorInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/core/PositionGenerators.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/core/SimpleGeneratorInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/BananaTreeGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/CircleGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/CmnGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/CompleteGraphGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/GeneralizedPetersonGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/HelmGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/KenserGraphGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/KmnGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/KmnoGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/PathGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/PmnGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/PrismGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/RandomGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/RandomTreeGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/StarGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/TreeGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/graphgenerator/generators/WheelGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/GraphAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/GraphData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/HandlerInit.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ccp/Copy.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ccp/Cut.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ccp/Paste$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ccp/Paste.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/AlgorithmUtils$BFSListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/AlgorithmUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/CorePluginMethods.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/Init$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/Init$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/SampleUI.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/AddTab.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/BlackBoardDebug.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/BlackBoardWatcher$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/BlackBoardWatcher.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/CloseTab.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/GMergedColorEditor$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/GMergedColorEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/GMergedColorRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/GraphPropertyEditor$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/GraphPropertyEditor$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/GraphPropertyEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/LastSelectedStatusAction$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/LastSelectedStatusAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/MiddleClickAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/ResetGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/ShowAboutDialog$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/ShowAboutDialog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/StatusBarMessage$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/StatusBarMessage$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/StatusBarMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/VertexTransformer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/c4.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/edge/AddEdge.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/edge/DeleteEdge.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/edge/DragEdge.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/edge/EdgeHighlightAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/edge/EdgeSelectData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/edge/EdgeSelectEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/graph/ClearGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/graph/NewGraph$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/graph/NewGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/logo.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/logo2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/old-about.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/preferences/PreferencesAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/vertex/AddVertex$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/vertex/AddVertex.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/vertex/DeleteVertex.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/vertex/MoveVertex.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/vertex/VertexHighlightAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/vertex/VertexMoveData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/vertex/VertexMoveEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/vertex/VertexSelectData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/actions/vertex/VertexSelectEvent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/core/images/properties-sidebar.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/extension/GraphActionExtension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/extension/GraphActionExtensionAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/extension/GraphActionExtensionHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/extension/GraphActionInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/help/QuestionAskUI$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/help/QuestionAskUI$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/help/QuestionAskUI$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/help/QuestionAskUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/help/ShowDocumentations.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/help/ShowHelp.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/help/ShowWelcomePage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/preview/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/preview/PreviewPluginMethods.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/preview/SampleUI.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/preview/ShowPreview.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/preview/config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/Forward2.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/Stop2.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/_copy16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/_copy24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/_cut16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/_cut24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/_delete16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/about16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/about24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/add.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/add16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/add24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/box.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/copy16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/copy24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/cut16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/cut24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/delete.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/delete16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/delete24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/delete24_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/edit16_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/edit24_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/find16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/find24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/help16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/help24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/home16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/last.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/move.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/new16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/new16_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/new24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/new24_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/next.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/open16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/open16_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/open24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/open24_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/paste16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/paste16_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/paste24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/paste24_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/pause.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/pause2.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/play-fast-forward3.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/play-fast-reverse3.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/play-pause3.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/play-start3.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/play-step3.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/play-stop3.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/play.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/play2.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/prev.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/properties16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/properties24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/redo16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/redo16_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/redo24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/redo24_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/remove16_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/remove24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/rewind2.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/save16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/save24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/select.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/stop16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/stop24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/tilehorizontal16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/tilehorizontal24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/tilevertical16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/tilevertical24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/underline16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/underline24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/undo16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/undo16_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/undo24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/undo24_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/up.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/up16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/zip16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/zoom16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/zoom24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/zoomIn16_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/zoomIn24_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/zoomin16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/zoomin24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/zoomout16.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/zoomout16_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/zoomout24.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/resources/zoomout24_.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/rightclick/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/rightclick/PopupMenuHandler$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/rightclick/PopupMenuHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/rightclick/RightClickPluginMethods.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/rightclick/SampleUI.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/rightclick/config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/ExampleFileFilter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/Load.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/SampleUI.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/Save.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/SaveLoadPluginMethods.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/core/GraphIOException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/core/GraphReaderInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/core/GraphWriterInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/core/extension/GraphIOExtensionHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/core/extension/GraphReaderExtension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/core/extension/GraphReaderExtensionAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/core/extension/GraphWriterExtension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/core/extension/GraphWriterExtensionAction$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/core/extension/GraphWriterExtensionAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/image/CopyAsImage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/image/Image.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/image/SaveImage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/matrix/CopyAsMatrix.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/matrix/LoadMatrix.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/matrix/Matrix.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/matrix/SaveMatrix.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/matrix/SaveWeightedMatrix.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/matrix/WeightedMatrix.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/xmlparser/GraphmlHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/xmlparser/GraphmlHandlerImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/xmlparser/GraphmlParser$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/xmlparser/GraphmlParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/xmlparser/GraphmlSAXBindings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/saveload/xmlparser/graphml.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/ClearSelection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/DeSelect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/DeleteSelected$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/DeleteSelected.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/InvertSelection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/MakeSelectionComplementGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/MakeSelectionCompleteGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/MakeSelectionEmptyGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/MoveSelected$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/MoveSelected$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/MoveSelected.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/RectangularSelect$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/RectangularSelect$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/RectangularSelect.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/SampleUI.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/ScaleInSelection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/ScaleOutSelection.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/Select$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/Select.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/SelectAll.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/SelectPluginMethods.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/SelectUI.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/select/SelectUpdater.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/ArrowEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/ArrowRenderer$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/ArrowRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/GShapeEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/GShapeRenderer$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/GShapeRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/GStrokeEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/GStrokeRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/GTabbedGraphPane.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/GraphColoringRenderer$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/GraphColoringRenderer$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/GraphColoringRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/SubGraphRenderer$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/SubGraphRenderer$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/SubGraphRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/logo.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/ui/welcome_page.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/main/welcome_1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/GraphReportInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/Init$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/Reports.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/SampleUI.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/ShowReports.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/basicreports/AdjacencyMatrix.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/basicreports/GirthSize.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/basicreports/IsBipartite.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/basicreports/IsEulerian.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/basicreports/MaxAndMinDegree.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/basicreports/NumOfConnectedComponents.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/basicreports/NumOfEdges.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/basicreports/NumOfQuadrangle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/basicreports/NumOfTriangles.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/basicreports/NumOfVertices.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/basicreports/NumOfVerticesWithDegK.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/basicreports/VerticesDegreesList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/extension/GraphReportExtension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/extension/GraphReportExtensionAction$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/extension/GraphReportExtensionAction$1$2$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/extension/GraphReportExtensionAction$1$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/extension/GraphReportExtensionAction$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/extension/GraphReportExtensionAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/extension/GraphReportExtensionHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/spectralreports/LaplacianOfGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/spectralreports/matlab/FindPerfectMatching.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/spectralreports/matlab/FindPerfectMatchingRemote.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/spectralreports/matlab/MatlabMCRFactory.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/spectralreports/maxflowmincut/GomoryHuTree.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/spectralreports/maxflowmincut/GusfieldGomoryHuTree.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/spectralreports/maxflowmincut/MaxFlow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/spectralreports/maxflowmincut/MaximumFlow.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/spectralreports/maxflowmincut/MinCut.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/spectralreports/maxflowmincut/MinimumCut.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/spectralreports/maxflowmincut/PushRelabel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/spectralreports/maxflowmincut/one.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/ui/ReportsSideBar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/ui/ReportsUI$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/ui/ReportsUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/reports/ui/sbicon.GIF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/SampleUI.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/VisualizationUI.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/circular/CircularDispatchVisualization.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/corebasics/VisualizationInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/corebasics/animator/GeneralAnimator$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/corebasics/animator/GeneralAnimator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/corebasics/basics/Cycle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/corebasics/basics/Path.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/corebasics/basics/PathProperties.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/corebasics/basics/VertexCycleLengthComparator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/corebasics/extension/VisualizationExtension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/corebasics/extension/VisualizationExtensionAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/corebasics/extension/VisualizationExtensionHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/corebasics/util/BFS.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/hierarchical/BendedTrees.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/localsfvis/LSFUI$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/localsfvis/LSFUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/localsfvis/LocalSF$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/localsfvis/LocalSF.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/localsfvis/Random.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/localsfvis/animatorLSF$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/localsfvis/animatorLSF.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/localsfvis/circular.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/localsfvis/pair.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/treevisualizations/BackwardTrees.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/treevisualizations/CircularTreeVisualization.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/treevisualizations/HierarchicalTreeVisualization.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/treevisualizations/SparseTreeVisualization.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/plugins/visualization/treevisualizations/TreeVertex.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/Debugger.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/extensions/BinaryTreeGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/extensions/CompleteSelectionAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/extensions/HelloWorldReport.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/extensions/NumOfVerticesReport.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/extensions/OrderKReport.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/extensions/OrderOneReport.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/Init$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/Init.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/UISample$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/UISample.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/actions/AboutAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/actions/ExitAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/actions/NewAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/actions/OpenAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/actions/ReadWriteTextFile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/actions/SaveAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/actions/Utils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/components/LabelComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/components/TextEditorComponent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/images/load.GIF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/images/save.GIF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/images/sb.GIF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/samples/ui/texteditor/myplugin/myui.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/AbstractExtensionAction$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/AbstractExtensionAction$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/AbstractExtensionAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/AttributeSetView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/ExtensionShellCommandProvider.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/NotifiableAttributeSetView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/ParameterShower.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/PortableNotifiableAttributeSetImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/UI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/UIUtils.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/actions/ExitAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/actions/MemoryUsageStatusAction$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/actions/MemoryUsageStatusAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/actions/TestAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/actions/UIEventData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/actions/UIEventHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/ExtensionConfigFrame$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/ExtensionConfigFrame$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/ExtensionConfigFrame.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/GButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/GComponentInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/GFrame.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/GStatusBar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/GToolbar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/GraphComponentInitializer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gbody/GBody.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gbody/GBodyPane.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gmenu/GMenuBar$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gmenu/GMenuBar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gmenu/GMenuItem.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gmenu/KeyBoardShortCut.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gmenu/KeyBoardShortCutProvider.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/EditingFinishedListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/GBasicCellEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/GBasicCellRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/GCellEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/GCellRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/GPropertyEditor$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/GPropertyEditor$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/GPropertyEditor$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/GPropertyEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/GPropertyTableModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/OAtrRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/ObjectEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/ProEditor2NotifiableAttributeSetConnector.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/attrx/tester$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/attrx/tester.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/GColorEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/GDialogEditor$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/GDialogEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/GFileEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/GFontEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/GHashMapEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/GStringEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/inplace/ArrayXEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/inplace/BoundedIntegerEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/inplace/GBooleanEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/inplace/GComboEditor$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/inplace/GComboEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/inplace/GDimensionEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/inplace/GSimpleComboEditor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/editors/inplace/ValueSet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/renderers/BoundedIntegerRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/renderers/GBooleanRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/renderers/GColorRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/renderers/GDimensionRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/renderers/GFontRenderer$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/renderers/GFontRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/renderers/GStringRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/renderers/IterableRenderer$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/renderers/IterableRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/utils/JFontChooser$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/utils/JFontChooser$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/utils/JFontChooser$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/utils/JFontChooser$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/utils/JFontChooser$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/utils/JFontChooser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gpropertyeditor/utils/ObjectViewer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gsidebar/GSideBarPanel$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gsidebar/GSideBarPanel$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gsidebar/GSideBarPanel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gsidebar/GSidebar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gsidebar/GSidebarButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/gsidebar/GVerticalButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/pair.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/prefeditor/GPrefPane$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/prefeditor/GPrefPane$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/prefeditor/GPrefPane$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/prefeditor/GPrefPane$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/prefeditor/GPrefPane.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/prefeditor/GTabbedAttributeFrame$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/prefeditor/GTabbedAttributeFrame$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/prefeditor/GTabbedAttributeFrame$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/prefeditor/GTabbedAttributeFrame$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/prefeditor/GTabbedAttributeFrame.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/prefeditor/GTabbedAttributePane.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/utils/GAttrFrame$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/utils/GAttrFrame$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/utils/GAttrFrame$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/utils/GAttrFrame$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/utils/GAttrFrame.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/utils/GFrameLocationProvider.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/utils/LabledSlider.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/components/utils/PropertyEditorSidebar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/extension/UIActionExtension.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/extension/UIActionExtensionAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/extension/UIActionExtensionHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/xml/UI.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/xml/UIHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/xml/UIHandlerImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/xml/UIParser$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/graphlab/ui/xml/UIParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/build.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/Icon.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/Matlab_Extension_HowTo.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/about.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/c4.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/matlab howto images/num_of_vertices.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/matlab howto images/parameter window.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/matlab howto images/shell.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/menu_reference.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/menu_reference_browsable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/algs_1.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/properties_edge.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/properties_graph.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/properties_selected.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/properties_vertex.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/reports_1.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/reports_2.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/reports_3.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/reports_4.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/running_algorithms.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/shell_1.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/what_is_properties.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/what_is_reports.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome/what_is_shell.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome_1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/doc/welcome_page.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/graphml.dtd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/images/Icon.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/images/Icon0.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/images/icon.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/images/icon1.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/images/logo.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/images/logo1.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/prefs/autoupdate.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/GraphLab/scripts/maindirectoryfiles/prefs/graph.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/GraphLab/com/intellij/uiDesigner/core/AbstractLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/GraphLab/com/intellij/uiDesigner/core/DimensionInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/GraphLab/com/intellij/uiDesigner/core/GridConstraints.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/GraphLab/com/intellij/uiDesigner/core/GridLayoutManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/GraphLab/com/intellij/uiDesigner/core/HorizontalInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/GraphLab/com/intellij/uiDesigner/core/LayoutState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/GraphLab/com/intellij/uiDesigner/core/Spacer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/GraphLab/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/GraphLab/com/intellij/uiDesigner/core/SupportCode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/GraphLab/com/intellij/uiDesigner/core/Util.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/GraphLab/com/intellij/uiDesigner/core/VerticalInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/prefs/graph.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/scripts/maindirectoryfiles/prefs/autoupdate.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/scripts/maindirectoryfiles/prefs/graph.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/BananaTreeGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/BananaTreeGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/CircleGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/CircleGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/CmnGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/CmnGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/CompleteGraphGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/CompleteGraphGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/GeneralizedPetersonGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/GeneralizedPetersonGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/HelmGraph.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/HelmGraph.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/KenserGraphGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/KenserGraphGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/KmnGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/KmnGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/KmnoGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/KmnoGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/PathGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/PathGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/PmnGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/PmnGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/PrismGraph.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/PrismGraph.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/RandomGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/RandomGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/RandomTreeGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/RandomTreeGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/StarGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/StarGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/TreeGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/TreeGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/generators/WheelGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/generators/WheelGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/basicreports/AdjacencyMatrix.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/AdjacencyMatrix.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/basicreports/GirthSize.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/GirthSize.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/basicreports/IsBipartite.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/IsBipartite.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/basicreports/IsEulerian.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/IsEulerian.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/basicreports/MaxAndMinDegree.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/MaxAndMinDegree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/basicreports/NumOfConnectedComponents.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/NumOfConnectedComponents.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/basicreports/NumOfEdges.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/NumOfEdges.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/basicreports/NumOfQuadrangle.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/NumOfQuadrangle.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/basicreports/NumOfTriangles.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/NumOfTriangles.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/basicreports/NumOfVertices.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/NumOfVertices.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/basicreports/NumOfVerticesWithDegK.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/NumOfVerticesWithDegK.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/basicreports/VerticesDegreesList.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/VerticesDegreesList.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/graphlab-main.jar" afterPath="$PROJECT_DIR$/binary/graphlab-main.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/lib/graph.jar" afterPath="$PROJECT_DIR$/binary/lib/graph.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/lib/graphlab-library.jar" afterPath="$PROJECT_DIR$/binary/lib/graphlab-library.jar" />
@@ -940,16 +15,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/main.jar" afterPath="$PROJECT_DIR$/binary/plugins/main.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/reports.jar" afterPath="$PROJECT_DIR$/binary/plugins/reports.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/visualization.jar" afterPath="$PROJECT_DIR$/binary/plugins/visualization.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/readme.txt" afterPath="$PROJECT_DIR$/binary/readme.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/GeneratorUI.xml" afterPath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/GeneratorUI.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/GraphGenerator.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/GraphGenerator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionAction.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/Reports.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/reports/Reports.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/config.xml" afterPath="$PROJECT_DIR$/src/graphlab/plugins/reports/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/extension/GraphReportExtensionAction.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/reports/extension/GraphReportExtensionAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scripts/maindirectoryfiles/readme.txt" afterPath="$PROJECT_DIR$/src/scripts/maindirectoryfiles/readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/ui/AbstractExtensionAction.java" afterPath="$PROJECT_DIR$/src/graphlab/ui/AbstractExtensionAction.java" />
     </list>
     <ignored path="graphlab.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1007,91 +74,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GeneratorUI.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/GeneratorUI.xml">
+      <file leaf-file-name="GraphGeneratorExtensionAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0">
+            <state line="22" column="0" selection-start="747" selection-end="747" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Redis.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/connectivity/Redis.java">
+      <file leaf-file-name="AbstractExtensionAction.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/ui/AbstractExtensionAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="13" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.0">
+            <state line="93" column="0" selection-start="3865" selection-end="3865" vertical-scroll-proportion="2.116981">
+              <folding>
+                <element signature="e#0#11096#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2012#2027#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphReportExtensionAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/extension/GraphReportExtensionAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="13" selection-start="933" selection-end="933" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GraphGenerator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/GraphGenerator.java">
+      <file leaf-file-name="GraphGeneratorExtensionHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="13" selection-start="889" selection-end="889" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Init.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/Init.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="31" selection-start="978" selection-end="978" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GraphLab.iml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GraphLab.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="80" selection-start="459" selection-end="459" vertical-scroll-proportion="0.24861878">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClearGraph.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/graph/ClearGraph.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="23" selection-start="536" selection-end="546" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SampleUI.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="134" column="31" selection-start="7100" selection-end="7100" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="57" selection-start="357" selection-end="357" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CmnGenerator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/generators/CmnGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="13" selection-start="972" selection-end="972" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WheelGenerator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/generators/WheelGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="13" selection-start="1042" selection-end="1042" vertical-scroll-proportion="0.0">
+            <state line="32" column="40" selection-start="1192" selection-end="1192" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1112,7 +129,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsUI.java" />
         <option value="$PROJECT_DIR$/src/graphlab/graph/event/VertexEvent.java" />
         <option value="$PROJECT_DIR$/src/graphlab/graph/event/EdgeEvent.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/main/select/SelectPluginMethods.java" />
@@ -1121,13 +137,14 @@
         <option value="$PROJECT_DIR$/src/graphlab/plugins/main/select/DeleteSelected.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/RightClickAction.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/main/select/MakeSelectionComplementGraph.java" />
-        <option value="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionAction.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/reports/extension/GraphReportExtensionAction.java" />
         <option value="$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/GirthSize.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/reports/config.xml" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/GeneratorUI.xml" />
         <option value="$PROJECT_DIR$/GraphLab.iml" />
+        <option value="$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionAction.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/ui/AbstractExtensionAction.java" />
       </list>
     </option>
   </component>
@@ -1178,6 +195,134 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reports" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GraphLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphlab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reports" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="extension" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1397,17 +542,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964131" sideWeight="0.78410596" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964131" sideWeight="0.78410596" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35364237" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21589404" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21589404" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27729884" sideWeight="0.5986755" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1485,34 +630,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/spectralreports/maxflowmincut/MinimumCut.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/spectralreports/maxflowmincut/one.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="183" selection-end="183" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/spectralreports/maxflowmincut/PushRelabel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="13" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/reports/basicreports/GirthSize.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="698" selection-end="698" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/reports/ColoringReport.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="13" selection-start="640" selection-end="640" vertical-scroll-proportion="0.0">
@@ -1529,71 +646,103 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/graph/ClearGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="23" selection-start="536" selection-end="546" vertical-scroll-proportion="0.0">
+        <state line="14" column="23" selection-start="536" selection-end="546" vertical-scroll-proportion="0.15929204">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="134" column="31" selection-start="7100" selection-end="7100" vertical-scroll-proportion="0.0">
+        <state line="134" column="31" selection-start="7100" selection-end="7100" vertical-scroll-proportion="0.6666667">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="57" selection-start="357" selection-end="357" vertical-scroll-proportion="0.0">
+        <state line="10" column="57" selection-start="357" selection-end="357" vertical-scroll-proportion="0.26548672">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/generators/CmnGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="13" selection-start="972" selection-end="972" vertical-scroll-proportion="0.0">
+        <state line="22" column="13" selection-start="972" selection-end="972" vertical-scroll-proportion="-1.3893806">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/generators/WheelGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="13" selection-start="1042" selection-end="1042" vertical-scroll-proportion="0.0">
+        <state line="25" column="13" selection-start="1042" selection-end="1042" vertical-scroll-proportion="0.29911503">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/GeneratorUI.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/connectivity/Redis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="13" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/GraphGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="13" selection-start="889" selection-end="889" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/Init.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="31" selection-start="978" selection-end="978" vertical-scroll-proportion="0.0">
+        <state line="1" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.026548672">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GraphLab.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="80" selection-start="459" selection-end="459" vertical-scroll-proportion="0.24861878">
+        <state line="13" column="40" selection-start="0" selection-end="486" vertical-scroll-proportion="0.35911602">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/Init.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="31" selection-start="978" selection-end="978" vertical-scroll-proportion="0.44198895">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/GraphGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="13" selection-start="889" selection-end="889" vertical-scroll-proportion="-4.264151">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/connectivity/Redis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="13" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.2762431">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="40" selection-start="1192" selection-end="1192" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/extension/GraphReportExtensionAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="13" selection-start="933" selection-end="933" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/graphgenerator/core/extension/GraphGeneratorExtensionAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="747" selection-end="747" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/ui/AbstractExtensionAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="0" selection-start="3865" selection-end="3865" vertical-scroll-proportion="2.116981">
+          <folding>
+            <element signature="e#0#11096#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2012#2027#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

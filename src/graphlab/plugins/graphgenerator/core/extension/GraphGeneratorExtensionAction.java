@@ -29,6 +29,7 @@ public class GraphGeneratorExtensionAction extends AbstractExtensionAction<Graph
         return GraphGenerator.generateGraphInRect(blackboard,getTarget(), new Rectangle(100, 100, 600,600));
     }
 
+
     public void performExtension() {
 //        GraphModel g = blackboard.get(GraphAttrSet.name);
         GraphGenerator.generateInRectangularBounds(getTarget(), blackboard);
