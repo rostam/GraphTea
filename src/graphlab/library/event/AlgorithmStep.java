@@ -16,8 +16,14 @@ package graphlab.library.event;
 public class AlgorithmStep implements Event {
 
     public AlgorithmStep() {
-
+        this.id = "Step";
     }
+
+    public AlgorithmStep(String message, String id) {
+        this.message = message;
+        this.id = id;
+    }
+
 
     public String getDescription() {
         return "Asks the handler to make a step. For animation purposes.";
@@ -32,13 +38,11 @@ public class AlgorithmStep implements Event {
     }
 
     String message;
+    String id;
 
-    public boolean isStep() {
-        return true;
-    }
 
     public String getID() {
-        return "Step Event";
+        return id;
 
     }
 }

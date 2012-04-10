@@ -21,4 +21,8 @@ public class EventUtils {
         a.dispatchEvent(step);
     }
 
+    public static void algorithmStep(Algorithm algorithm, String msg, String id) {
+        AlgorithmStep step = new AlgorithmStep(msg, id);
+        algorithm.dispatchEvent(step);
+    }
 }

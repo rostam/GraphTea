@@ -4,6 +4,7 @@
 
 package graphlab.library.algorithms;
 
+import graphlab.library.algorithms.util.EventUtils;
 import graphlab.library.event.Event;
 import graphlab.library.event.EventDispatcher;
 
@@ -39,5 +40,18 @@ public abstract class Algorithm implements AlgorithmInterface {
     protected EventDispatcher getDispatcher() {
         return dispatcher;
 
+    }
+
+    /**
+     * defines a step on algorithm, for example visiting a vertex, or every thing which then user can 
+     * pause on it.
+     * @param msg
+     */
+    protected void step(String msg, String id){
+        EventUtils.algorithmStep(this, msg,id);
+    }
+
+    protected void step(String msg){
+        EventUtils.algorithmStep(this, msg);
     }
 }
