@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e1726eca-65f2-46b7-8bcc-339ae8628bce" name="Default" comment="" />
+    <list default="true" id="e1726eca-65f2-46b7-8bcc-339ae8628bce" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/prefs/graph.xml" afterPath="$PROJECT_DIR$/binary/prefs/graph.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsUI.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/ui/components/gpropertyeditor/GPropertyEditor.java" afterPath="$PROJECT_DIR$/src/graphlab/ui/components/gpropertyeditor/GPropertyEditor.java" />
+    </list>
     <ignored path="graphlab.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,48 +63,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GraphJSON.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/graph/io/GraphJSON.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="15" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#609#617#0" expanded="true" />
-                <element signature="e#674#691#0" expanded="true" />
-                <element signature="e#752#773#0" expanded="true" />
-                <element signature="e#1737#1759#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UndoAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/UndoAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="23" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SampleUI.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="149" column="26" selection-start="8020" selection-end="8020" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GraphModel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/GraphModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="417" column="61" selection-start="11842" selection-end="11842" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AbstractGraphRenderer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/AbstractGraphRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -127,10 +90,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GraphAttrSet.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="GraphAttrSet.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="25" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.24881516">
+            <state line="74" column="25" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReportsUI.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="18" selection-start="1111" selection-end="1111" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GPropertyEditor.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/ui/components/gpropertyeditor/GPropertyEditor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="131" column="46" selection-start="5178" selection-end="5178" vertical-scroll-proportion="2.230878">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JScrollPane.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/../Classes/classes.jar!/javax/swing/JScrollPane.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="85" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScrollPaneConstants.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/../Classes/classes.jar!/javax/swing/ScrollPaneConstants.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="33" selection-start="1232" selection-end="1257" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -169,8 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/edge/AddEdge.java" />
-        <option value="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/MoveVertex.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/VertexMoveEvent.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/DeleteVertex.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/AddVertex.java" />
@@ -185,6 +182,8 @@
         <option value="$PROJECT_DIR$/src/graphlab/graph/atributeset/EdgeAttrSet.java" />
         <option value="$PROJECT_DIR$/src/graphlab/graph/atributeset/VertexAttrSet.java" />
         <option value="$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsUI.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/ui/components/gpropertyeditor/GPropertyEditor.java" />
       </list>
     </option>
   </component>
@@ -235,8 +234,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -307,6 +304,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -534,21 +533,21 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.49426112" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964131" sideWeight="0.6701987" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964131" sideWeight="0.6701987" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.82066" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2754663" sideWeight="0.21854305" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980132" sideWeight="0.52223814" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980132" sideWeight="0.47274032" order="2" side_tool="true" content_ui="tabs" x="20" y="82" width="388" height="797" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.52223814" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2754663" sideWeight="0.36953643" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27761838" sideWeight="0.6701987" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24768212" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27618363" sideWeight="0.7523179" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24768212" sideWeight="0.49713057" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.5344333" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24768212" sideWeight="0.4978479" order="2" side_tool="true" content_ui="tabs" x="20" y="82" width="388" height="797" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
     </layout>
@@ -632,122 +631,84 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/../Classes/alt-rt.jar!/java/util/HashMap.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="11" selection-start="911" selection-end="918" vertical-scroll-proportion="0.6756757">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/library/BaseGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="466" column="30" selection-start="16794" selection-end="16794" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/UndoManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="50" selection-start="1086" selection-end="1086" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#2411#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/platform/lang/Pair.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="50" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/../Classes/classes.jar!/java/util/Arrays.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="262" column="40" selection-start="12353" selection-end="12359" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
+        <state line="262" column="40" selection-start="12353" selection-end="12359" vertical-scroll-proportion="0.33333334" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/VertexModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="218" column="22" selection-start="7053" selection-end="7053" vertical-scroll-proportion="-1.6261262">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/VertexMoveEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="0" selection-start="2573" selection-end="2573" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/GraphControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="14" selection-start="1763" selection-end="1764" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/AbstractGraphRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="28" selection-start="1482" selection-end="1482" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/GraphModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="417" column="61" selection-start="11842" selection-end="11842" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="218" column="22" selection-start="7053" selection-end="7053" vertical-scroll-proportion="-1.6261262" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/graph/io/GraphJSON.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="15" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#609#617#0" expanded="true" />
-            <element signature="e#674#691#0" expanded="true" />
-            <element signature="e#752#773#0" expanded="true" />
-            <element signature="e#1737#1759#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="149" column="26" selection-start="8020" selection-end="8020" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="19" column="15" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/commonplugin/undo/UndoAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="23" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="41" column="23" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/EdgeAttrSet.java">
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/SampleUI.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="39" selection-start="3799" selection-end="3799" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="149" column="26" selection-start="8020" selection-end="8020" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/GraphModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="417" column="61" selection-start="11842" selection-end="11842" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/AbstractGraphRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="28" selection-start="1482" selection-end="1482" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/GraphControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="14" selection-start="1763" selection-end="1764" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/VertexAttrSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="39" selection-start="1736" selection-end="1736" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="46" column="39" selection-start="1736" selection-end="1736" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="25" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.24881516">
+        <state line="74" column="25" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="18" selection-start="1111" selection-end="1111" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/../Classes/classes.jar!/javax/swing/JScrollPane.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="85" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/../Classes/classes.jar!/javax/swing/ScrollPaneConstants.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="33" selection-start="1232" selection-end="1257" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/actions/vertex/VertexMoveEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="0" selection-start="2573" selection-end="2573" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/EdgeAttrSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="103" column="39" selection-start="3799" selection-end="3799" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/ui/components/gpropertyeditor/GPropertyEditor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="131" column="46" selection-start="5178" selection-end="5178" vertical-scroll-proportion="2.230878">
           <folding />
         </state>
       </provider>

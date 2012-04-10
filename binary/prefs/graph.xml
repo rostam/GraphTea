@@ -465,8 +465,8 @@
       <node name="graphlab.graph.graph.GraphModel">
         <map>
           <entry key="showEdgeWeights" value="false"/>
-          <entry key="object" value="graphlab.graph.graph.GraphModel"/>
           <entry key="vertexLabelsEnabled" value="true"/>
+          <entry key="object" value="graphlab.graph.graph.GraphModel"/>
         </map>
       </node>
       <node name="graphlab.graph.graph.VertexModel">
