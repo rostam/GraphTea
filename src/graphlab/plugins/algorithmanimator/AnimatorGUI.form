@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="graphlab.plugins.algorithmanimator.AnimatorGUI">
   <grid id="27dc6" binding="animatorFrame" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="23" width="285" height="326"/>
+      <xy x="20" y="23" width="312" height="326"/>
     </constraints>
     <properties>
       <opaque value="true"/>
@@ -96,16 +96,15 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="a0e12" class="javax.swing.JTextArea" binding="algorithmOutputTextArea" default-binding="true">
+          <scrollpane id="8b916" class="graphlab.graph.ui.GHTMLPageComponent" binding="algorithmOutputTextArea" custom-create="true" default-binding="true">
             <constraints/>
             <properties>
               <autoscrolls value="true"/>
-              <lineWrap value="true"/>
-              <text value="Algorithm Output:"/>
               <toolTipText value="Messages sent by algorithm"/>
-              <wrapStyleWord value="true"/>
             </properties>
-          </component>
+            <border type="none"/>
+            <children/>
+          </scrollpane>
         </children>
       </scrollpane>
       <hspacer id="aae17">

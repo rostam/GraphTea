@@ -4,6 +4,9 @@
 
 package graphlab.plugins.algorithmanimator;
 
+import graphlab.graph.ui.GHTMLPageComponent;
+import graphlab.platform.core.BlackBoard;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -17,9 +20,11 @@ public class AnimatorGUI {
     public JButton playButton;
     public JButton playOneStepButton;
     public JSlider speedSlider;
-    public JTextArea algorithmOutputTextArea;
+    public GHTMLPageComponent algorithmOutputTextArea;
+    private BlackBoard blackboard;
 
-    public AnimatorGUI(ActionListener listener) {
+    public AnimatorGUI(ActionListener listener, BlackBoard blackboard) {
+        this.blackboard = blackboard;
         pauseButton.addActionListener(listener);
         playButton.addActionListener(listener);
         playOneStepButton.addActionListener(listener);
@@ -123,12 +128,12 @@ public class AnimatorGUI {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         animatorFrame.add(scrollPane1, gbc);
-        algorithmOutputTextArea = new JTextArea();
+        algorithmOutputTextArea = new GHTMLPageComponent(blackboard);
         algorithmOutputTextArea.setAutoscrolls(true);
-        algorithmOutputTextArea.setLineWrap(true);
-        algorithmOutputTextArea.setText("Algorithm Output:");
+//        algorithmOutputTextArea.getEditorPane().setLineWrap(true);
+        algorithmOutputTextArea.getEditorPane().setText("<h1>Algorithm Output:</h1>");
         algorithmOutputTextArea.setToolTipText("Messages sent by algorithm");
-        algorithmOutputTextArea.setWrapStyleWord(true);
+//        algorithmOutputTextArea.getEditorPane().setWrapStyleWord(true);
         scrollPane1.setViewportView(algorithmOutputTextArea);
         final JPanel spacer4 = new JPanel();
         gbc = new GridBagConstraints();
@@ -155,5 +160,25 @@ public class AnimatorGUI {
      */
     public JComponent $$$getRootComponent$$$() {
         return animatorFrame;
+    }
+
+    private void createUIComponents() {
+        String html = "<html>" +
+                "<head>" +
+                "<style type='text/css'>" +
+                "body{ font-family: monospace; }" +
+                "</style>" +
+                "</head>" +
+                "<body>" +
+                "<h2>Algorithm Output:</h2>" +
+                "</body>" +
+                "</html>";
+
+        algorithmOutputTextArea = new GHTMLPageComponent(blackboard);
+        algorithmOutputTextArea.setAutoscrolls(true);
+//        algorithmOutputTextArea.getEditorPane().setLineWrap(true);
+        algorithmOutputTextArea.getEditorPane().setText(html);
+        algorithmOutputTextArea.setToolTipText("Messages sent by algorithm");
+        algorithmOutputTextArea.makeEditable();
     }
 }

@@ -9,7 +9,11 @@ import graphlab.platform.core.BlackBoard;
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultCaret;
+import javax.swing.text.Document;
 import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.HTMLFrameHyperlinkEvent;
 import java.awt.*;
 import java.io.IOException;
@@ -70,6 +74,40 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
     public void setHTML(String html) {
 
         jta.setText(html);
+    }
+
+    public JEditorPane getEditorPane() {
+        return jta;
+    }
+    public void makeEditable(){
+        jta.setEditable(true);
+        DefaultCaret caret = (DefaultCaret) jta.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+    }
+
+    public void appendHTML(String html) {
+
+
+        StringBuffer sb9 = new StringBuffer();
+        String pointtext = jta.getText();
+
+        sb9.append("<html><body>");
+        sb9.append(html);
+        sb9.append("</body></html>");
+
+
+        try {
+            Document doc = (Document) jta.getDocument();
+
+            ((HTMLEditorKit) jta.getEditorKit()).read(
+                    new java.io.StringReader(sb9.toString())
+                    , jta.getDocument()
+                    , jta.getDocument().getLength());
+        } catch (Throwable bl) {
+            System.out.println("-- " + bl.getMessage());
+        }
+        jta.validate();
+
     }
 
     /**

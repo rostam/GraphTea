@@ -123,6 +123,11 @@
           <entry key="selectedVertex" value=""/>
         </map>
       </node>
+      <node name="graphlab.extensions.algorithms.CholeskyFactorizationExtension">
+        <map>
+          <entry key="object" value="graphlab.extensions.algorithms.CholeskyFactorizationExtension"/>
+        </map>
+      </node>
       <node name="graphlab.extensions.connectivity.Redis">
         <map>
           <entry key="DEFAULT_SERVER" value="graphlab.sharif.ir"/>

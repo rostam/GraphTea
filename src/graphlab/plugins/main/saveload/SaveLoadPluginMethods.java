@@ -51,10 +51,13 @@ public class SaveLoadPluginMethods implements PluginMethods {
         SaveMatrix.saveMatrix(g, file);
     }
 
-    public String matrix2String(GraphModel g) {
+    public String Graph2MatrixString(GraphModel g) {
         return (Matrix.Matrix2String(Matrix.graph2Matrix(g)));
     }
 
+    public String Graph2MatrixHTML(GraphModel g){
+        return (Matrix.Matrix2HTML(Matrix.graph2Matrix(g)));
+    }
 
     /**
      * saves the current graph as a (format) image. format e.g. jpeg, png, ...

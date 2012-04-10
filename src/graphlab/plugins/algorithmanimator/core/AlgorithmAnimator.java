@@ -5,6 +5,7 @@ package graphlab.plugins.algorithmanimator.core;
 
 import graphlab.graph.atributeset.GraphAttrSet;
 import graphlab.graph.graph.GraphModel;
+import graphlab.graph.ui.GHTMLPageComponent;
 import graphlab.library.algorithms.AutomatedAlgorithm;
 import graphlab.library.event.AlgorithmStep;
 import graphlab.library.event.Event;
@@ -103,19 +104,20 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
         }
         Event event1 = animateEvent(event);
 
-        JTextArea txt = alggui.algorithmOutputTextArea;
-        int cursorDot = txt.getCaret().getDot();
-        int cursorMark = txt.getCaret().getMark();
-        boolean isCursorInEnd = cursorDot == txt.getText().length();
+        GHTMLPageComponent html = alggui.algorithmOutputTextArea;
+//        JTextArea txt = alggui.algorithmOutputTextArea;
+//        int cursorDot = txt.getCaret().getDot();
+//        int cursorMark = txt.getCaret().getMark();
+//        boolean isCursorInEnd = cursorDot == txt.getText().length();
         if (event1 != null && event1.getMessage() != null && event1.getMessage() != "") {
-            alggui.algorithmOutputTextArea.setText(alggui.algorithmOutputTextArea.getText() + "\n" + event1.getMessage());
-            if (isCursorInEnd)
-                txt.getCaret().setDot(txt.getText().length());
-            else {
-                txt.getCaret().setDot(cursorMark);
-                txt.getCaret().moveDot(cursorDot);
-            }
-            txt.getCaret().setVisible(true);
+            html.appendHTML(event1.getMessage());
+//            if (isCursorInEnd)
+//                txt.getCaret().setDot(txt.getText().length());
+//            else {
+//                txt.getCaret().setDot(cursorMark);
+//                txt.getCaret().moveDot(cursorDot);
+//            }
+//            txt.getCaret().setVisible(true);
 
         }
 
@@ -168,35 +170,13 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
         f = new JFrame();
         f.setTitle("Algorithm Runner: " + algorithmName);
         f.setAlwaysOnTop(true);
-        alggui = new AnimatorGUI(this);
+        alggui = new AnimatorGUI(this, blackboard);
         //moves the carret to the end of text, see dispatch event
-        alggui.algorithmOutputTextArea.getCaret().setDot(alggui.algorithmOutputTextArea.getText().length());
+//        alggui.algorithmOutputTextArea.getCaret().setDot(alggui.algorithmOutputTextArea.getText().length());
 
         f.add(alggui.animatorFrame);
         f.pack();
         f.setVisible(true);
-//        f = new JFrame("Controls");
-//        f.setLayout(new GridBagLayout());
-//        addBtn("Pause", new Dimension(75, 25));
-//        addBtn("Play", new Dimension(75, 25));
-//        addBtn("Play One Step", new Dimension(95, 25));
-//        f.setSize(245,70);
-//        f.setAlwaysOnTop(true);
-//        f.setLocation(300,300);
-//        f.setVisible(true);
-////        System.out.println("frame created");
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            System.out.println("Error");
-//        }
     }
-
-//    private void addBtn(String lbl, Dimension d) {
-//        JButton play = new JButton(lbl);
-//        play.setSize(d);
-//        play.addActionListener(this);
-//        f.add(play);
-//    }
 
 }

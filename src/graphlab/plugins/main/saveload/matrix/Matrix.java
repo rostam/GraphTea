@@ -98,6 +98,28 @@ public class Matrix {
         }
     }
 
+    public static String Matrix2HTML(Object[][] mat){
+        int a = mat.length;
+        if (a == 0)
+            return "";
+        int b = mat[0].length;
+        String ret = "<table>";
+        for (int i = 0; i < a; i++) {
+            ret += "<tr>";
+            for (int j = 0; j < b; j++) {
+                if(mat[i][j]!=null)
+                    ret += "<td>" + ((Number)(mat[i][j])).intValue() + "</td>";
+                else
+                    ret += "<td>0</td>";
+//                ret += (mat[i][j] ? "1" : "0");
+//                ret += " ";
+            }
+            ret += "</tr>\n";
+
+        }
+        return ret;
+
+    }
     public static String Matrix2String(Object[][] mat) {
         int a = mat.length;
         if (a == 0)
