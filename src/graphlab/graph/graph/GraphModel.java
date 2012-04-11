@@ -5,22 +5,22 @@ package graphlab.graph.graph;
 
 import graphlab.graph.event.GraphModelListener;
 import graphlab.library.ListGraph;
-import graphlab.library.BaseVertex;
-import graphlab.library.BaseGraph;
 import graphlab.library.exceptions.InvalidEdgeException;
 import graphlab.library.exceptions.InvalidVertexException;
+import graphlab.platform.core.exception.ExceptionHandler;
 import graphlab.platform.lang.ArrayX;
 import graphlab.platform.preferences.lastsettings.StorableOnExit;
 import graphlab.platform.preferences.lastsettings.UserModifiableProperty;
-import graphlab.platform.core.exception.ExceptionHandler;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.*;
-
-import javax.imageio.ImageIO;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 
 
 /**
@@ -48,8 +48,11 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 	 * a number which is constructed from zoom, (150% -> 1.5)
 	 */
 	private double zoomFactor = 1;
+    @UserModifiableProperty(displayName = "Allow Loops")
+    public static boolean allowLoopsProperty = false;
+    private boolean allowLoops = allowLoopsProperty;
 
-	public GraphModel createEmptyGraph() {
+    public GraphModel createEmptyGraph() {
 		return new GraphModel(isDirected());
 	}
 
@@ -242,19 +245,19 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 			return (EdgeModel) t[0];
 	}
 
-	/**return true if the new edge didn't exist in the graph and the operation was succesfully*/
 	/**
 	 * adds new edge only if it doesn't exist in graph
 	 *
 	 * @param newedge
 	 */
 	public void insertEdge(EdgeModel newedge) {
+        if (!isAllowLoops() && newedge.source == newedge.target)
+            return;
 		try {
 			if (!isEdge(newedge.source, newedge.target)) {
 				super.insertEdge(newedge);
-				//                return true;
+                fireGraphChange(EDGE_ADDED_GRAPH_CHANGE, null, newedge);
 			}
-			fireGraphChange(EDGE_ADDED_GRAPH_CHANGE, null, newedge);
 		}
 		catch (Exception e) {
 			ExceptionHandler.catchException(e);
@@ -533,6 +536,7 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 	public File getBackgroundImageFile() {
 		return backgroundImageFile;
 	}
+
 	public void setBackgroundImageFile(File imageFile) {
 		backgroundImageFile = imageFile;
 		try
@@ -545,10 +549,18 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 		}
 		fireGraphChange(REPAINT_GRAPH_GRAPH_CHANGE, null, null);
 	}
-	public BufferedImage getBackgroundImage()
-	{
-		return backgroundImage;
-	}
+
+    public BufferedImage getBackgroundImage()
+    {
+        return backgroundImage;
+    }
+
+    public boolean isAllowLoops(){
+        return allowLoops;
+    }
+    public void setAllowLoops(boolean allowLoops) {
+        allowLoops = allowLoops;
+    }
 
 
 }

@@ -48,10 +48,11 @@ public class GraphAttrSet implements AttributeSet {
     public static final String LABEL = "label";
     public static final String ZOOM = "Zoom";
     public static final String FONT = "Font";
-    public static final String DRAW_VERTEX_LABELS = "Show Vertex Labels";
-    public static final String DRAW_EDGE_LABELS = "Show Edge Labels";
-    public static final String IS_EDGES_CURVED = "Is Edges Curved";
-    public static final String BACKGROUND_IMAGE = "Background Image";
+    public static final String DRAW_VERTEX_LABELS = "Vertex Labels";
+    public static final String DRAW_EDGE_LABELS = "Edge Labels";
+    public static final String IS_EDGES_CURVED = "Curved Edges";
+    public static final String BACKGROUND_IMAGE = "Background";
+    public static final String Allow_Loops = "Allow Loops";
 
     //****//
     //    public static final String CENTERX = "centerx";
@@ -60,13 +61,14 @@ public class GraphAttrSet implements AttributeSet {
 
     public Map<String, Object> getAttrs() {
         Map<String, Object> ret = new HashMap<String, Object>();
+        ret.put(DRAW_VERTEX_LABELS, g.isDrawVertexLabels());
+        ret.put(DRAW_EDGE_LABELS, g.isDrawEdgeLabels());
+        ret.put(IS_EDGES_CURVED, g.isEdgesCurved());
+        ret.put(Allow_Loops, g.getBackgroundImageFile());
         ret.put(DIRECTED, g.isDirected() ? EDGEDEFAULT_DIRECTED : EDGEDEFAULT_UNDIRECTED);
         ret.put(LABEL, g.getLabel());
         ret.put(ZOOM, g.getZoom());
         ret.put(FONT, g.getFont());
-        ret.put(DRAW_VERTEX_LABELS, g.isDrawVertexLabels());
-        ret.put(DRAW_EDGE_LABELS, g.isDrawEdgeLabels());
-        ret.put(IS_EDGES_CURVED, g.isEdgesCurved());
         ret.put(BACKGROUND_IMAGE, g.getBackgroundImageFile());
         if (g.getUserDefinedAttributes() != null)
             ret.putAll(g.getUserDefinedAttributes());
@@ -86,6 +88,8 @@ public class GraphAttrSet implements AttributeSet {
             g.setIsEdgesCurved((Boolean) val);
         } else if (atrName.equals(BACKGROUND_IMAGE)) {
             g.setBackgroundImageFile((File) val);
+        } else if (atrName.equals(Allow_Loops)) {
+            g.setAllowLoops((Boolean) val);
         } else if (atrName.equals(DRAW_EDGE_LABELS)) {
             g.setDrawEdgeLabels((Boolean) val);
         } else {
@@ -112,6 +116,8 @@ public class GraphAttrSet implements AttributeSet {
             ret = g.getBackgroundImageFile();
         } else if (atrName.equals(DRAW_EDGE_LABELS)) {
             ret = g.isDrawEdgeLabels();
+        } else if (atrName.equals(Allow_Loops)) {
+            ret = g.isAllowLoops();
         } else {
             ret = g.getUserDefinedAttribute(atrName);
         }

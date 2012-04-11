@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e1726eca-65f2-46b7-8bcc-339ae8628bce" name="Default" comment="">
+    <list default="true" id="e1726eca-65f2-46b7-8bcc-339ae8628bce" name="Default" comment="introducing the GraphAlgorithm helper class&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/lib/graph.jar" afterPath="$PROJECT_DIR$/binary/lib/graph.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/lib/graphlab-library.jar" afterPath="$PROJECT_DIR$/binary/lib/graphlab-library.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/algorithmanimator.jar" afterPath="$PROJECT_DIR$/binary/plugins/algorithmanimator.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/plugins/main.jar" afterPath="$PROJECT_DIR$/binary/plugins/main.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/prefs/graph.xml" afterPath="$PROJECT_DIR$/binary/prefs/graph.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/extensions/algorithms/CholeskyFactorizationExtension.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/algorithms/CholeskyFactorizationExtension.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/graph/ui/GHTMLPageComponent.java" afterPath="$PROJECT_DIR$/src/graphlab/graph/ui/GHTMLPageComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/AnimatorGUI.form" afterPath="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/AnimatorGUI.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/AnimatorGUI.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/AnimatorGUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/AlgorithmAnimator.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/AlgorithmAnimator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/GraphAlgorithm.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/GraphAlgorithm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/saveload/SaveLoadPluginMethods.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/saveload/SaveLoadPluginMethods.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/main/saveload/matrix/Matrix.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/main/saveload/matrix/Matrix.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java" afterPath="$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/graph/graph/GraphModel.java" afterPath="$PROJECT_DIR$/src/graphlab/graph/graph/GraphModel.java" />
     </list>
     <ignored path="graphlab.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,33 +66,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CholeskyFactorizationExtension.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/algorithms/CholeskyFactorizationExtension.java">
+      <file leaf-file-name="AlgorithmAnimator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/AlgorithmAnimator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="4" selection-start="1088" selection-end="1088" vertical-scroll-proportion="0.5404814">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Matrix.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/saveload/matrix/Matrix.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="38" selection-start="3773" selection-end="3773" vertical-scroll-proportion="0.0">
+            <state line="38" column="126" selection-start="1432" selection-end="1432" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AlgorithmAnimator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/AlgorithmAnimator.java">
+      <file leaf-file-name="GraphAttrSet.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="123" column="0" selection-start="4083" selection-end="4083" vertical-scroll-proportion="0.0">
+            <state line="31" column="35" selection-start="1530" selection-end="1530" vertical-scroll-proportion="0.48866856">
               <folding>
-                <element signature="e#0#5847#0" expanded="true" />
+                <element signature="e#0#5412#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraphModel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/GraphModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="253" column="13" selection-start="7877" selection-end="7877" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -144,9 +135,7 @@
         <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/GraphAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="29" column="22" selection-start="872" selection-end="872" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -184,8 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/graphlab/graph/atributeset/VertexAttrSet.java" />
-        <option value="$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/reports/ui/ReportsUI.java" />
         <option value="$PROJECT_DIR$/src/graphlab/ui/components/gpropertyeditor/GPropertyEditor.java" />
         <option value="$PROJECT_DIR$/src/graphlab/library/event/AlgorithmStep.java" />
@@ -200,6 +187,8 @@
         <option value="$PROJECT_DIR$/src/graphlab/plugins/main/saveload/SaveLoadPluginMethods.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/GraphAlgorithm.java" />
         <option value="$PROJECT_DIR$/src/graphlab/extensions/algorithms/CholeskyFactorizationExtension.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/graph/graph/GraphModel.java" />
+        <option value="$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java" />
       </list>
     </option>
   </component>
@@ -674,24 +663,24 @@
     <frame x="0" y="22" width="1440" height="874" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.6701987" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.6701987" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980132" sideWeight="0.5286944" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964131" sideWeight="0.6701987" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.82066" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2754663" sideWeight="0.21854305" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.52223814" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.46628407" order="2" side_tool="true" content_ui="tabs" x="20" y="82" width="388" height="797" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2754663" sideWeight="0.36953643" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27618363" sideWeight="0.7523179" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24768212" sideWeight="0.49713057" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.6701987" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32980132" sideWeight="0.5286944" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980132" sideWeight="0.46628407" order="2" side_tool="true" content_ui="tabs" x="20" y="82" width="388" height="797" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
     </layout>
@@ -777,32 +766,14 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/BFSAnim.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="25" selection-start="666" selection-end="666" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/library/algorithms/Algorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="10" selection-start="582" selection-end="582" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/library/algorithms/traversal/BreadthFirstSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="0" selection-start="2783" selection-end="3154" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="91" column="0" selection-start="2783" selection-end="3154" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/library/event/GraphRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="43" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="28" column="43" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/AnimatorGUI.form">
@@ -812,83 +783,73 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/graph/ui/GHTMLPageComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="0" selection-start="2982" selection-end="2982" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/AnimatorGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="170" column="54" selection-start="6210" selection-end="6210" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/AlgorithmUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="39" selection-start="2485" selection-end="2485" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/saveload/matrix/CopyAsMatrix.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="50" selection-start="1519" selection-end="1531" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/saveload/matrix/SaveMatrix.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="104" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/AlgorithmAnimator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="0" selection-start="4083" selection-end="4083" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#5847#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/saveload/matrix/Matrix.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="38" selection-start="3773" selection-end="3773" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/saveload/SaveLoadPluginMethods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="34" selection-start="2075" selection-end="2075" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/GraphData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="26" selection-start="1592" selection-end="1592" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/GraphAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="22" selection-start="872" selection-end="872" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="86" column="0" selection-start="2982" selection-end="2982" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/algorithms/CholeskyFactorizationExtension.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="4" selection-start="1088" selection-end="1088" vertical-scroll-proportion="0.5404814">
+        <state line="21" column="99" selection-start="741" selection-end="741" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/saveload/matrix/Matrix.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="112" column="38" selection-start="3773" selection-end="3773" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/AnimatorGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="170" column="54" selection-start="6210" selection-end="6210" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/core/AlgorithmUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="39" selection-start="2485" selection-end="2485" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/saveload/matrix/CopyAsMatrix.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="50" selection-start="1519" selection-end="1531" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/saveload/matrix/SaveMatrix.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="104" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/GraphAlgorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="22" selection-start="872" selection-end="872" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/GraphData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="26" selection-start="1592" selection-end="1592" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/main/saveload/SaveLoadPluginMethods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="34" selection-start="2075" selection-end="2075" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/AlgorithmAnimator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="126" selection-start="1432" selection-end="1432" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/GraphModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="253" column="13" selection-start="7877" selection-end="7877" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graphlab/graph/atributeset/GraphAttrSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="35" selection-start="1530" selection-end="1530" vertical-scroll-proportion="0.48866856">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#5412#0" expanded="true" />
           </folding>
         </state>
       </provider>
