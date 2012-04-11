@@ -15,7 +15,13 @@ you can run it directly by
 see this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
 
 ##compile
-for working on the source, first make your changes and then `cd src/scripts` directory, and in terminal type `ant`. this will build the application for you in the binary folder. so for seeing your changes do the steps described for "run"
+for working on the source, 
+
+1. make your changes
+2. open terminal
+3. `cd src/scripts` 
+4. `ant`. this will build the application for you in the binary folder.
+5. for seeing your changes do the steps described for "run"
 
 note that you should have [appache ant](http://ant.apache.org/) installed.
 
