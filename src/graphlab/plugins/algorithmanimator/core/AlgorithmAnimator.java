@@ -102,24 +102,13 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
         } catch (InterruptedException e) {
             System.err.println("Thread sleep has error.");
         }
-        Event event1 = animateEvent(event);
-
         GHTMLPageComponent html = alggui.algorithmOutputTextArea;
-//        JTextArea txt = alggui.algorithmOutputTextArea;
-//        int cursorDot = txt.getCaret().getDot();
-//        int cursorMark = txt.getCaret().getMark();
-//        boolean isCursorInEnd = cursorDot == txt.getText().length();
-        if (event1 != null && event1.getMessage() != null && event1.getMessage() != "") {
-            html.appendHTML(event1.getMessage());
-//            if (isCursorInEnd)
-//                txt.getCaret().setDot(txt.getText().length());
-//            else {
-//                txt.getCaret().setDot(cursorMark);
-//                txt.getCaret().moveDot(cursorDot);
-//            }
-//            txt.getCaret().setVisible(true);
 
-        }
+        showMessageFor(html, event);
+
+        Event output = animateEvent(event);
+        if (event.getMessage() != output.getMessage())
+            showMessageFor(html, output);
 
         if (oneStep && event instanceof AlgorithmStep) {
             alggui.playOneStepButton.setEnabled(true);
@@ -132,7 +121,13 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
                 ExceptionHandler.catchException(e);
             }
 
-        return event1;
+        return output;
+    }
+
+    private void showMessageFor(GHTMLPageComponent html, Event event1) {
+        if (event1 != null && event1.getMessage() != null && event1.getMessage() != "") {
+            html.appendHTML(event1.getMessage());
+        }
     }
 
     /**
@@ -142,7 +137,7 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
      */
     public void actionPerformed(ActionEvent e) {
         oneStep = false;
-        alggui.pauseButton.setEnabled(true);
+        alggui.pauseButton.setEnabled(false);
         alggui.playButton.setEnabled(true);
         alggui.playOneStepButton.setEnabled(true);
 
@@ -151,9 +146,11 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
             paused = true;
         } else if (e.getActionCommand().equals("Play")) {
             alggui.playButton.setEnabled(false);
+            alggui.pauseButton.setEnabled(true);
             paused = false;
         } else if (e.getActionCommand().contains("One Step")) {
             alggui.playOneStepButton.setEnabled(false);
+            alggui.pauseButton.setEnabled(true);
             oneStep = true;
             paused = false;
         } else System.out.println("Sooti !");

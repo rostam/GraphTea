@@ -45,6 +45,7 @@ public class AnimatorGUI {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
+        createUIComponents();
         animatorFrame = new JPanel();
         animatorFrame.setLayout(new GridBagLayout());
         animatorFrame.setOpaque(true);
@@ -127,14 +128,8 @@ public class AnimatorGUI {
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
-        animatorFrame.add(scrollPane1, gbc);
-        algorithmOutputTextArea = new GHTMLPageComponent(blackboard);
-        algorithmOutputTextArea.setAutoscrolls(true);
-//        algorithmOutputTextArea.getEditorPane().setLineWrap(true);
-        algorithmOutputTextArea.getEditorPane().setText("<h1>Algorithm Output:</h1>");
-        algorithmOutputTextArea.setToolTipText("Messages sent by algorithm");
-//        algorithmOutputTextArea.getEditorPane().setWrapStyleWord(true);
-        scrollPane1.setViewportView(algorithmOutputTextArea);
+        animatorFrame.add(algorithmOutputTextArea, gbc);
+//        scrollPane1.setViewportView(algorithmOutputTextArea);
         final JPanel spacer4 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 4;

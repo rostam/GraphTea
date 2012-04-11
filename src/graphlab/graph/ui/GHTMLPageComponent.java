@@ -9,7 +9,6 @@ import graphlab.platform.core.BlackBoard;
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
-import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultCaret;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLDocument;
@@ -79,10 +78,14 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
     public JEditorPane getEditorPane() {
         return jta;
     }
+
     public void makeEditable(){
         jta.setEditable(true);
         DefaultCaret caret = (DefaultCaret) jta.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        jta.getCaret().setVisible(true);
+        jta.getCaret().setSelectionVisible(true);
+        caret.setDot(jta.getText().length());
     }
 
     public void appendHTML(String html) {

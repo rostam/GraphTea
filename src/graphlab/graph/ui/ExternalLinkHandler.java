@@ -18,9 +18,9 @@ import java.net.URL;
 class ExternalLinkHandler implements HyperlinkHandler {
 
     public void handle(String url, BlackBoard b, URL currentURL) {
-        String path = currentURL.getProtocol() + "://" + currentURL.getPath();
-        if (!url.toLowerCase().startsWith("http:"))
-            url = path.substring(0, path.lastIndexOf("/")) + "/" + url;
+//        String path = currentURL.getProtocol() + "://" + currentURL.getPath();
+//        if (!url.toLowerCase().startsWith("http:"))
+//            url = path.substring(0, path.lastIndexOf("/")) + "/" + url;
         try {
             Desktop.getDesktop().browse(new URI(url));
         } catch (IOException e) {

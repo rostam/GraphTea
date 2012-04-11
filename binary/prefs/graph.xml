@@ -123,9 +123,9 @@
           <entry key="searchInSubgraph" value="false"/>
         </map>
       </node>
-      <node name="graphlab.extensions.algorithms.CholeskyFactorizationExtension">
+      <node name="graphlab.extensions.algorithms.SampleAlgorithm">
         <map>
-          <entry key="object" value="graphlab.extensions.algorithms.CholeskyFactorizationExtension"/>
+          <entry key="object" value="graphlab.extensions.algorithms.SampleAlgorithm"/>
         </map>
       </node>
       <node name="graphlab.extensions.connectivity.Redis">

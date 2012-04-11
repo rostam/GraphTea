@@ -25,7 +25,7 @@ import graphlab.library.exceptions.InvalidVertexException;
 import java.util.LinkedList;
 
 /**
- * Description here.
+ * Description here.!
  *
  * @author Omid Aladini
  */

@@ -16,7 +16,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Pause"/>
+          <text value="&amp;Pause"/>
           <verticalAlignment value="1"/>
         </properties>
       </component>
