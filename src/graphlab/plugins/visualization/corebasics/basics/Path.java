@@ -3,7 +3,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.visualization.corebasics.basics;
 
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 
 import java.util.ArrayList;
 
@@ -11,13 +11,13 @@ import java.util.ArrayList;
  * @author Rouzbeh Ebrahimi
  */
 public class Path {
-    ArrayList<VertexModel> pathVertices;
+    ArrayList<Vertex> pathVertices;
 
     public Path() {
-        pathVertices = new ArrayList<VertexModel>();
+        pathVertices = new ArrayList<Vertex>();
     }
 
-    public boolean add(VertexModel v) {
+    public boolean add(Vertex v) {
         if (!pathVertices.contains(v)) {
             pathVertices.add(v);
             return true;

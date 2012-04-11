@@ -1,8 +1,8 @@
 package graphlab.plugins.reports.spectralreports.maxflowmincut;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 
 public abstract class MaxFlow {
 	
@@ -11,11 +11,11 @@ public abstract class MaxFlow {
 	
 	protected GraphModel g;
 	protected int n;
-	protected VertexModel source,sink;
+	protected Vertex source,sink;
 	int s, t;
 	protected boolean showResult;
 	
-	public  MaxFlow(GraphModel g, VertexModel source, VertexModel sink, boolean showResult) {
+	public  MaxFlow(GraphModel g, Vertex source, Vertex sink, boolean showResult) {
 		this.g = g;
 		this.source = source;
 		this.sink = sink;
@@ -42,7 +42,7 @@ public abstract class MaxFlow {
 	
 	protected void makeLabels()
 	{
-		for(EdgeModel e : g.getEdges())
+		for(Edge e : g.getEdges())
 		{
 			e.setLabel(F[e.source.getId()][e.target.getId()] + "/" + C[e.source.getId()][e.target.getId()] );
 			e.setShowWeight(false);

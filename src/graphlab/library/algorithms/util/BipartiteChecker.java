@@ -3,7 +3,6 @@ package graphlab.library.algorithms.util;
 import java.lang.reflect.Array;
 import java.util.LinkedList;
 
-import graphlab.graph.graph.VertexModel;
 import graphlab.library.BaseEdge;
 import graphlab.library.BaseGraph;
 import graphlab.library.BaseVertex;

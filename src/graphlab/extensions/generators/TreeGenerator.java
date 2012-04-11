@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.extensions.generators;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.ArrayX;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
@@ -62,22 +62,22 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
         return "Generates a complete tree";
     }
 
-    VertexModel[] v;
+    Vertex[] v;
 
-    public VertexModel[] getVertices() {
+    public Vertex[] getVertices() {
         n = (int) ((Math.pow(degree, depth + 1) - 1) / (degree - 1));
-        VertexModel[] ret = new VertexModel[n];
+        Vertex[] ret = new Vertex[n];
         for (int i = 0; i < n; i++)
-            ret[i] = new VertexModel();
+            ret[i] = new Vertex();
         v = ret;
         return ret;
     }
 
-    public EdgeModel[] getEdges() {
+    public Edge[] getEdges() {
         n = (int) ((Math.pow(degree, depth + 1) - 1) / (degree - 1));
-        EdgeModel[] ret = new EdgeModel[n - 1];
+        Edge[] ret = new Edge[n - 1];
         for (int i = 0; i < n - 1; i++) {
-            ret[i] = new EdgeModel(v[i + 1], v[i / degree]);
+            ret[i] = new Edge(v[i + 1], v[i / degree]);
         }
         return ret;
     }

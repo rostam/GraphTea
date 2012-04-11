@@ -4,7 +4,7 @@
 
 package graphlab.graph.atributeset;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphPoint;
 import graphlab.graph.old.Arrow;
 import graphlab.graph.old.GStroke;
@@ -20,10 +20,10 @@ import java.util.Map;
  */
 public class EdgeAttrSet implements AttributeSet {
 
-    EdgeModel e;
+    Edge e;
     NotifiableAttributeSetImpl atrs = new NotifiableAttributeSetImpl();
 
-    public EdgeAttrSet(EdgeModel e) {
+    public EdgeAttrSet(Edge e) {
         this.e = e;
     }
 

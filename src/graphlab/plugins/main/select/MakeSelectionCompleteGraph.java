@@ -4,13 +4,12 @@
 
 package graphlab.plugins.main.select;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.plugins.main.GraphData;
 
 import java.util.HashSet;
-import java.util.Vector;
 
 /**
  * @author Azin Azadi
@@ -27,16 +26,16 @@ public class MakeSelectionCompleteGraph extends MakeSelectionComplementGraph {
     public void action(GraphData gd) {
         if (gd.select.isSelectionEmpty())
             return;
-        HashSet<VertexModel> V = gd.select.getSelectedVertices();
+        HashSet<Vertex> V = gd.select.getSelectedVertices();
         //add undo data
 
         GraphModel G = gd.getGraph();
 
-        for (VertexModel v1 : V) {
-            for (VertexModel v2 : V) {
+        for (Vertex v1 : V) {
+            for (Vertex v2 : V) {
 //                if (v1.getId() < v2.getId()) {
 //                    System.out.println(v1+","+v2);
-                G.insertEdge(new EdgeModel(v1, v2));
+                G.insertEdge(new Edge(v1, v2));
 //                }
             }
         }

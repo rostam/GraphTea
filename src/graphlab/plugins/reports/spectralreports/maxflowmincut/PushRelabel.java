@@ -1,8 +1,9 @@
 package graphlab.plugins.reports.spectralreports.maxflowmincut;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -31,7 +32,7 @@ public class PushRelabel extends MaxFlow{
 
 
 
-	public PushRelabel(GraphModel g, VertexModel source, VertexModel sink, boolean showResult)
+	public PushRelabel(GraphModel g, Vertex source, Vertex sink, boolean showResult)
 	{
 		super(g,source,sink,showResult);
 		isDirecte = g.isDirected();
@@ -48,13 +49,13 @@ public class PushRelabel extends MaxFlow{
 		iterMap = new HashMap<Integer, Iterator<Integer>>();
 
 		//initializing neighbor list
-		for(VertexModel v: g)
+		for(Vertex v: g)
 		{
 			LinkedHashSet<Integer> simpleNeihbors = new LinkedHashSet<Integer>();
-			for (VertexModel n: g.getNeighbors(v))
+			for (Vertex n: g.getNeighbors(v))
 				simpleNeihbors.add(n.getId());	
 
-			for (VertexModel n: g.getBackNeighbours(v))
+			for (Vertex n: g.getBackNeighbours(v))
 				simpleNeihbors.add(n.getId());
 
 			LinkedList<Integer> neighbors = new LinkedList<Integer>(simpleNeihbors);
@@ -191,7 +192,7 @@ public class PushRelabel extends MaxFlow{
 	protected void makeLabels()
 	{
 		int s,t;
-		for(EdgeModel e : g.getEdges())
+		for(Edge e : g.getEdges())
 		{
 			s = e.source.getId();
 			t = e.target.getId();
@@ -207,7 +208,7 @@ public class PushRelabel extends MaxFlow{
 		
 			e.setShowWeight(false);
 		}
-		for(VertexModel v : g)
+		for(Vertex v : g)
 			//v.setLabel(""+height[v.getId()]);
 		g.setDrawEdgeLabels(true);
 	}

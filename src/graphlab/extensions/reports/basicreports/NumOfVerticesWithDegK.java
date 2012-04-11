@@ -5,7 +5,7 @@
 package graphlab.extensions.reports.basicreports;
 
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
 import graphlab.plugins.main.GraphData;
@@ -32,7 +32,7 @@ public class NumOfVerticesWithDegK implements GraphReportExtension, Parametrizab
 
         GraphModel g = gd.getGraph();
         int t = (g.isDirected() ? 1 : 2);
-        for (VertexModel v : g) {
+        for (Vertex v : g) {
             if ((g.getInDegree(v) + g.getOutDegree(v)) / t == k)
                 ret++;
         }

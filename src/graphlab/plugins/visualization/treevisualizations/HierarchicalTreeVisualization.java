@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.visualization.treevisualizations;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.preferences.lastsettings.UserModifiableProperty;
 import graphlab.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphlab.ui.UIUtils;
@@ -20,12 +20,12 @@ import java.util.Vector;
  */
 public class HierarchicalTreeVisualization implements VisualizationExtension {
     public static final String event = UIUtils.getUIEventKey("HierarchicalTreeVisualization");
-    public Vector<VertexModel> visitedVertices = new Vector<VertexModel>();
-    public HashMap<VertexModel, Point2D> vertexPlaces = new HashMap<VertexModel, Point2D>();
-    public Vector<VertexModel> children = new Vector<VertexModel>();
+    public Vector<Vertex> visitedVertices = new Vector<Vertex>();
+    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<Vertex, Point2D>();
+    public Vector<Vertex> children = new Vector<Vertex>();
 
     private void unMarkVertices() {
-        for (VertexModel v : g) {
+        for (Vertex v : g) {
             v.setMark(false);
         }
     }
@@ -38,11 +38,11 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
      * @param value
      */
     public void performJob(String eventName, Object value) {
-        visitedVertices = new Vector<VertexModel>();
-        vertexPlaces = new HashMap<VertexModel, Point2D>();
-        children = new Vector<VertexModel>();
+        visitedVertices = new Vector<Vertex>();
+        vertexPlaces = new HashMap<Vertex, Point2D>();
+        children = new Vector<Vertex>();
         try {
-            VertexModel root = findAppropriateRoot(g);
+            Vertex root = findAppropriateRoot(g);
             visitedVertices.add(root);
             unMarkVertices();
             locateAll(visitedVertices, 600, 50);
@@ -53,9 +53,9 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
 
     }
 
-    private VertexModel findHigherVertex(VertexModel v1, VertexModel v2) {
-        Vector<VertexModel> t1 = new Vector<VertexModel>();
-        Vector<VertexModel> t2 = new Vector<VertexModel>();
+    private Vertex findHigherVertex(Vertex v1, Vertex v2) {
+        Vector<Vertex> t1 = new Vector<Vertex>();
+        Vector<Vertex> t2 = new Vector<Vertex>();
         t1.add(v1);
         t2.add(v2);
         if (BFS(t1, 0) > BFS(t2, 0)) {
@@ -65,24 +65,24 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
         }
     }
 
-    private VertexModel findAppropriateRoot(GraphModel g) {
-        VertexModel root = g.getAVertex();
-        Iterator<VertexModel> ei = g.iterator();
+    private Vertex findAppropriateRoot(GraphModel g) {
+        Vertex root = g.getAVertex();
+        Iterator<Vertex> ei = g.iterator();
         for (; ei.hasNext();) {
-            VertexModel e = ei.next();
+            Vertex e = ei.next();
             root = findHigherVertex(e, root);
         }
         return root;
     }
 
-    private int BFS(Vector<VertexModel> currentLevel, int maxLevel) {
-        Vector<VertexModel> nextLevel = new Vector<VertexModel>();
-        for (VertexModel v : currentLevel) {
+    private int BFS(Vector<Vertex> currentLevel, int maxLevel) {
+        Vector<Vertex> nextLevel = new Vector<Vertex>();
+        for (Vertex v : currentLevel) {
             v.setMark(true);
-            Iterator<EdgeModel> em = g.edgeIterator(v);
+            Iterator<Edge> em = g.edgeIterator(v);
             for (; em.hasNext();) {
-                EdgeModel e = em.next();
-                VertexModel v2 = e.source;
+                Edge e = em.next();
+                Vertex v2 = e.source;
                 if (!v2.getMark()) {
                     nextLevel.add(v2);
                     v2.setMark(true);
@@ -97,14 +97,14 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
         }
     }
 
-    public Vector<VertexModel> findNextLevelChildren(Vector<VertexModel> currentLevelVertices) {
-        Vector<VertexModel> newChildren = new Vector<VertexModel>();
+    public Vector<Vertex> findNextLevelChildren(Vector<Vertex> currentLevelVertices) {
+        Vector<Vertex> newChildren = new Vector<Vertex>();
         if (currentLevelVertices.size() != 0) {
-            for (VertexModel v : currentLevelVertices) {
-                Iterator<EdgeModel> e = g.edgeIterator(v);
+            for (Vertex v : currentLevelVertices) {
+                Iterator<Edge> e = g.edgeIterator(v);
                 for (; e.hasNext();) {
-                    EdgeModel ed = e.next();
-                    VertexModel dest = ed.source;
+                    Edge ed = e.next();
+                    Vertex dest = ed.source;
                     if (!visitedVertices.contains(dest)) {
                         newChildren.add(dest);
                     }
@@ -115,13 +115,13 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
         return newChildren;
     }
 
-    public void locateAll(Vector<VertexModel> currentLevelVertices, int width, int currentLevelHeight) {
+    public void locateAll(Vector<Vertex> currentLevelVertices, int width, int currentLevelHeight) {
         int currentLevelCount = currentLevelVertices.size();
         int horizontalDist = width / currentLevelCount;
         int i = 0;
-        Vector<VertexModel> nextLevel = findNextLevelChildren(currentLevelVertices);
+        Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
 
-        for (VertexModel v : currentLevelVertices) {
+        for (Vertex v : currentLevelVertices) {
             Point2D.Double newPoint = new Point2D.Double(horizontalDist * i + width / (currentLevelCount + 1), currentLevelHeight);
             vertexPlaces.put(v, newPoint);
             i++;
@@ -156,12 +156,12 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
             , category = "Visualization Options")
     public static Integer eachLevelHeigh = 50;
 
-    public HashMap<VertexModel, Point2D> getNewVertexPlaces() {
-        visitedVertices = new Vector<VertexModel>();
-        vertexPlaces = new HashMap<VertexModel, Point2D>();
-        children = new Vector<VertexModel>();
+    public HashMap<Vertex, Point2D> getNewVertexPlaces() {
+        visitedVertices = new Vector<Vertex>();
+        vertexPlaces = new HashMap<Vertex, Point2D>();
+        children = new Vector<Vertex>();
         try {
-            VertexModel root = findAppropriateRoot(g);
+            Vertex root = findAppropriateRoot(g);
             visitedVertices.add(root);
             unMarkVertices();
             locateAll(visitedVertices, width, eachLevelHeigh);
@@ -172,7 +172,7 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
         return vertexPlaces;
     }
 
-    public HashMap<EdgeModel, Point2D> getNewEdgeCurveControlPoints() {
+    public HashMap<Edge, Point2D> getNewEdgeCurveControlPoints() {
         return null;
     }
 }

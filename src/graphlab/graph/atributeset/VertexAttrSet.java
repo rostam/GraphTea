@@ -5,7 +5,7 @@
 package graphlab.graph.atributeset;
 
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.graph.old.GShape;
 import graphlab.graph.old.GStroke;
 import graphlab.platform.attribute.AttributeSet;
@@ -18,7 +18,7 @@ import java.util.Map;
  * @see graphlab.graph.atributeset.GraphAttrSet
  */
 public class VertexAttrSet implements AttributeSet {
-    private VertexModel v;
+    private Vertex v;
     public static final String LABEL = "Label";
     public static final String COLOR = "Color";
     public static final String SHAPE = "Shape";
@@ -29,7 +29,7 @@ public class VertexAttrSet implements AttributeSet {
     public static final String SELECTED = "Selected";
     public static final String LABEL_LOCATION = "Label Location";
 
-    public VertexAttrSet(VertexModel v) {
+    public VertexAttrSet(Vertex v) {
         this.v = v;
     }
 

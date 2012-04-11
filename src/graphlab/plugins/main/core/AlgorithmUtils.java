@@ -5,7 +5,7 @@
 package graphlab.plugins.main.core;
 
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.BaseEdge;
 import graphlab.library.BaseGraph;
 import graphlab.library.BaseVertex;
@@ -366,7 +366,7 @@ public class AlgorithmUtils {
     /**
      * returns the angle between 3 vertices in graphical world!
      */
-    public static double getAngle(VertexModel root, VertexModel v1, VertexModel v2) {
+    public static double getAngle(Vertex root, Vertex v1, Vertex v2) {
 
         GraphPoint rootp = root.getLocation();
         GraphPoint v1p = v1.getLocation();
@@ -410,7 +410,7 @@ public class AlgorithmUtils {
     /**
      * moves the vertex relative to its current position
      */
-    public static void move(VertexModel v, double dx, double dy) {
+    public static void move(Vertex v, double dx, double dy) {
         GraphPoint loc = v.getLocation();
         v.setLocation(new GraphPoint(loc.x + dx, loc.y + dy));
     }
@@ -418,7 +418,7 @@ public class AlgorithmUtils {
     /**
      * returns the distance between two vertices in pixels, (in graphics not the path length between them)
      */
-    public static double getDistance(VertexModel v1, VertexModel v2) {
+    public static double getDistance(Vertex v1, Vertex v2) {
         return GraphPoint.distance(v1.getLocation().x, v1.getLocation().y, v2.getLocation().x, v2.getLocation().y);
 
     }
@@ -448,17 +448,17 @@ public class AlgorithmUtils {
     /**
      * locations v in a r-teta cordination
      */
-    public static void setLocation(VertexModel v, GraphPoint center, double radius, double ang) {
+    public static void setLocation(Vertex v, GraphPoint center, double radius, double ang) {
         v.setLocation(new GraphPoint(center.x + radius * Math.cos(ang), center.y + radius * Math.sin(ang)));
     }
 
     /**
      * @return the bounding rectangle arround vertices
      */
-    public static Rectangle2D.Double getBoundingRegion(Collection<VertexModel> vertices) {
+    public static Rectangle2D.Double getBoundingRegion(Collection<Vertex> vertices) {
         Rectangle2D.Double ret = new Rectangle2D.Double();
         boolean first = true;
-        for (VertexModel v : vertices) {
+        for (Vertex v : vertices) {
             GraphPoint p = v.getLocation();
             if (first) {
                 ret = new Rectangle2D.Double(p.x, p.y, 0, 0);
@@ -469,9 +469,9 @@ public class AlgorithmUtils {
         return ret;
     }
 
-    public static GraphPoint getCenter(Collection<VertexModel> V) {
+    public static GraphPoint getCenter(Collection<Vertex> V) {
         GraphPoint center = new GraphPoint(0, 0);
-        for (VertexModel v : V) {
+        for (Vertex v : V) {
             GraphPoint loc = v.getLocation();
             center.x += loc.x;
             center.y += loc.y;

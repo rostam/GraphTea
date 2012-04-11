@@ -4,9 +4,9 @@
 
 package graphlab.extensions.generators;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
@@ -31,7 +31,7 @@ public class GeneralizedPetersonGenerator implements GraphGeneratorExtension, Pa
 
     @Parameter(name = "k")
     public static Integer k = 2;
-    private VertexModel[] v;
+    private Vertex[] v;
 
     public String getName() {
         return "Generalized Peterson";
@@ -45,26 +45,26 @@ public class GeneralizedPetersonGenerator implements GraphGeneratorExtension, Pa
         this.g = g;
     }
 
-    public VertexModel[] getVertices() {
-        VertexModel[] ret = new VertexModel[2 * n];
+    public Vertex[] getVertices() {
+        Vertex[] ret = new Vertex[2 * n];
         for (int i = 0; i < 2 * n; i++)
-            ret[i] = new VertexModel();
+            ret[i] = new Vertex();
         this.v = ret;
         return ret;
     }
 
-    public EdgeModel[] getEdges() {
-        EdgeModel[] ret = new EdgeModel[3 * n];
+    public Edge[] getEdges() {
+        Edge[] ret = new Edge[3 * n];
         int counter = 0;
         for (int i = 0; i < n; i++) {
-            ret[counter] = new EdgeModel(v[(i % n)], v[((i + 1) % n)]);
+            ret[counter] = new Edge(v[(i % n)], v[((i + 1) % n)]);
             counter++;
-            ret[counter] = new EdgeModel(v[(i % n)], v[((i + n) % (2 * n))]);
+            ret[counter] = new Edge(v[(i % n)], v[((i + n) % (2 * n))]);
             counter++;
             if (i + n + k > 2 * n - 1)
-                ret[counter] = new EdgeModel(v[((i + n) % (2 * n))], v[((i + n + k) % (2 * n)) + n]);
+                ret[counter] = new Edge(v[((i + n) % (2 * n))], v[((i + n + k) % (2 * n)) + n]);
             else
-                ret[counter] = new EdgeModel(v[((i + n) % (2 * n))], v[((i + n + k) % (2 * n))]);
+                ret[counter] = new Edge(v[((i + n) % (2 * n))], v[((i + n + k) % (2 * n))]);
             counter++;
         }
         return ret;

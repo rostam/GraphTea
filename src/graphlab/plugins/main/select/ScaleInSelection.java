@@ -5,7 +5,7 @@
 package graphlab.plugins.main.select;
 
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 
 /**
  * @author Azin Azadi
@@ -19,7 +19,7 @@ public class ScaleInSelection extends ScaleOutSelection {
         return "Expands the selection";
     }
 
-    protected void setNewLocation(VertexModel v, GraphPoint loc, double x, double y) {
+    protected void setNewLocation(Vertex v, GraphPoint loc, double x, double y) {
         v.setLocation(new GraphPoint(loc.x + x * 1.25, loc.y + y * 1.25));
     }
 }

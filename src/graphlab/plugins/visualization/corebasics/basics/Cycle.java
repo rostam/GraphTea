@@ -3,7 +3,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.visualization.corebasics.basics;
 
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 
 import java.util.ArrayList;
 
@@ -11,10 +11,10 @@ import java.util.ArrayList;
  * @author Rouzbeh Ebrahimi
  */
 public class Cycle {
-    ArrayList<VertexModel> cycleVertices;
+    ArrayList<Vertex> cycleVertices;
     boolean isCycleEnded;
 
-    public Cycle(ArrayList<VertexModel> cycleVertices) {
+    public Cycle(ArrayList<Vertex> cycleVertices) {
         int cycleSize = cycleVertices.size();
         if (cycleVertices.get(0).equals(cycleVertices.get(cycleSize))) {
             this.cycleVertices = cycleVertices;
@@ -23,15 +23,15 @@ public class Cycle {
     }
 
     public Cycle() {
-        cycleVertices = new ArrayList<VertexModel>();
+        cycleVertices = new ArrayList<Vertex>();
         isCycleEnded = false;
     }
 
-    public void add(VertexModel v) {
+    public void add(Vertex v) {
         this.cycleVertices.add(v);
     }
 
-    public boolean endCycle(VertexModel v) {
+    public boolean endCycle(Vertex v) {
         if (this.cycleVertices.get(0).equals(v)) {
             this.cycleVertices.add(v);
             isCycleEnded = true;
@@ -41,7 +41,7 @@ public class Cycle {
         }
     }
 
-    public ArrayList<VertexModel> getCycle() {
+    public ArrayList<Vertex> getCycle() {
         if (isCycleEnded) return this.cycleVertices;
         else return null;
     }

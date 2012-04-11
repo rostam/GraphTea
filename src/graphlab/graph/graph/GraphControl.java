@@ -15,7 +15,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelListener;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.util.Iterator;
 
@@ -28,8 +27,8 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
     private JPanel gv;
     BlackBoard blackboard;
     private GraphControlListener listener;
-    private VertexModel lastVertexPressed = null;
-    private EdgeModel lastEdgePressed = null;
+    private Vertex lastVertexPressed = null;
+    private Edge lastEdgePressed = null;
     GraphPoint p = new GraphPoint();
 //    boolean edgesCurved;
 
@@ -60,8 +59,8 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
 //todo: single click != double click
 
     public void mouseClicked(MouseEvent mouseEvent) {
-        Pair<VertexModel, Double> p = mindistv(g, mousePos(mouseEvent));
-        VertexModel v = (VertexModel) p.first;
+        Pair<Vertex, Double> p = mindistv(g, mousePos(mouseEvent));
+        Vertex v = (Vertex) p.first;
         if (v != null && isPointOnVertex(g, v, mousePos(mouseEvent))) {
             if (mouseEvent.getClickCount() > 1)
                 sendEventToBlackBoard(VertexEvent.doubleClicked(v, mousePos(mouseEvent, v), mouseEvent.getButton(), mouseEvent.getModifiersEx()));
@@ -69,9 +68,9 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
                 sendEventToBlackBoard(VertexEvent.clicked(v, mousePos(mouseEvent, v), mouseEvent.getButton(), mouseEvent.getModifiersEx()));
             return;
         }
-        Pair<EdgeModel, Double> pp;
+        Pair<Edge, Double> pp;
         pp = mindiste(g, mousePos(mouseEvent));
-        EdgeModel e = (EdgeModel) pp.first;
+        Edge e = (Edge) pp.first;
         double dist = (Double) pp.second;
         if (g.isEdgesCurved()) {
             if (pp.second <= (EDGE_CURVE_CPNTROL_BOX_DIAMETER)) {
@@ -107,11 +106,11 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
      * @param e
      * @return
      */
-    private GraphPoint mousePos(MouseEvent mouseEvent, EdgeModel e) {
+    private GraphPoint mousePos(MouseEvent mouseEvent, Edge e) {
         return new GraphPoint(mousePos(mouseEvent).x - e.source.getLocation().x, mousePos(mouseEvent).y - e.source.getLocation().y);
     }
 
-    private GraphPoint mousePos(MouseEvent mouseEvent, VertexModel v) {
+    private GraphPoint mousePos(MouseEvent mouseEvent, Vertex v) {
         return new GraphPoint(mousePos(mouseEvent).x - v.getLocation().x, mousePos(mouseEvent).y - v.getLocation().y);
     }
 
@@ -147,7 +146,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
         gv.requestFocusInWindow();
         GraphPoint mousePos = mousePos(mouseEvent);
         Pair p = mindistv(g, mousePos);
-        VertexModel v = (VertexModel) p.first;
+        Vertex v = (Vertex) p.first;
         int mbuton = mouseEvent.getModifiersEx();
         if (v != null && isPointOnVertex(g, v, mousePos)) {
             sendEventToBlackBoard(VertexEvent.draggingStarted(v, mousePos(mouseEvent, v), mouseEvent.getButton(), mbuton));
@@ -157,7 +156,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
         }
         lastVertexPressed = null;
         if (g.isEdgesCurved()) {
-            Pair<EdgeModel, Double> pair = mindiste(g, mousePos);
+            Pair<Edge, Double> pair = mindiste(g, mousePos);
             if (pair.first != null) {
                 if (pair.second <= EDGE_CURVE_CPNTROL_BOX_DIAMETER) {
                     lastEdgePressed = pair.first;
@@ -173,7 +172,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
 
     public void mouseReleased(MouseEvent mouseEvent) {
         Pair p = mindistv(g, mousePos(mouseEvent));
-        VertexModel v = (VertexModel) p.first;
+        Vertex v = (Vertex) p.first;
         int mouseButton = mouseEvent.getModifiersEx();
         if (v != null && isPointOnVertex(g, v, mousePos(mouseEvent)) && lastVertexPressed != null) {
             sendEventToBlackBoard(VertexEvent.dropped(v, mousePos(mouseEvent, v), mouseEvent.getButton(), mouseButton));
@@ -226,14 +225,14 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
      * @return the minimum distanse edge and its distance to the given GraphPoint,
      *         If edges are curved the distance will be calculated to Curve Control Points
      */
-    public static Pair<EdgeModel, Double> mindiste(GraphModel g, GraphPoint p) {
+    public static Pair<Edge, Double> mindiste(GraphModel g, GraphPoint p) {
         double min = 100000;
         boolean loopDetected = false;
-        EdgeModel mine = null;
-        Iterator<EdgeModel> ei = g.lightEdgeIterator();
+        Edge mine = null;
+        Iterator<Edge> ei = g.lightEdgeIterator();
         if (g.isEdgesCurved()) {
             for (; ei.hasNext();) {
-                EdgeModel e = ei.next();
+                Edge e = ei.next();
                 GraphPoint cnp = e.getCurveControlPoint();
                 GraphPoint s = e.source.getLocation();
                 GraphPoint t = e.target.getLocation();
@@ -251,7 +250,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
             }
         } else {
             for (; ei.hasNext();) {
-                EdgeModel e = ei.next();
+                Edge e = ei.next();
                 if (!isInBounds(e, p) && !e.isLoop())
                     continue;
                 GraphPoint sloc = e.source.getLocation();
@@ -292,7 +291,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
                             e.getLoopCenter().x,
                             e.getLoopCenter().y);
                     //if cdist is near to radius of the loop then it is on the loop
-                    if (Math.abs(cdist - e.getLoopWidth()/2) < EdgeModel.MIN_LOOP_WIDTH/3f){
+                    if (Math.abs(cdist - e.getLoopWidth()/2) < Edge.MIN_LOOP_WIDTH/3f){
                         mine = e;
                         loopDetected = true;
                     }
@@ -308,7 +307,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
         return new Pair(mine, min);
     }
 
-    private static boolean isInBounds(EdgeModel e, GraphPoint p) {
+    private static boolean isInBounds(Edge e, GraphPoint p) {
         GraphPoint l1 = e.source.getLocation();
         GraphPoint l2 = e.target.getLocation();
         return Math.min(l1.x, l2.x) <= p.x + 5 && Math.max(l1.x, l2.x) >= p.x - 5 && Math.min(l1.y, l2.y) <= p.y + 5 && Math.max(l1.y, l2.y) >= p.y - 5;
@@ -317,10 +316,10 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
     /**
      * @return the minimum distance vertex to the given location, and its distanse square(^2).
      */
-    public static Pair<VertexModel, Double> mindistv(GraphModel g, GraphPoint p) {
+    public static Pair<Vertex, Double> mindistv(GraphModel g, GraphPoint p) {
         double min = 100000;
-        VertexModel minv = null;
-        for (VertexModel v : g) {
+        Vertex minv = null;
+        for (Vertex v : g) {
             double dist = Math.pow(v.getLocation().x - p.x, 2) + Math.pow(v.getLocation().y - p.y, 2);
             if (min > dist) {
                 min = dist;
@@ -333,7 +332,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
     /**
      * @return True if the given point in on the given vertex
      */
-    public static boolean isPointOnVertex(GraphModel g, VertexModel v, GraphPoint p) {
+    public static boolean isPointOnVertex(GraphModel g, Vertex v, GraphPoint p) {
         double zf = g.getZoomFactor();
         GraphPoint l = v.getLocation();
         GraphPoint s = v.getSize();

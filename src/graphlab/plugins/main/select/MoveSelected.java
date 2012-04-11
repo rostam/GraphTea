@@ -48,7 +48,7 @@ public class MoveSelected extends AbstractAction {
             {
                 if (vdd.eventType == VertexEvent.DRAGGING_STARTED) {
                     verticesPositionsBackUp = new GraphPoint[gd.getGraph().getVerticesCount()];
-                    for (VertexModel _ : gd.getGraph()) {
+                    for (Vertex _ : gd.getGraph()) {
                         verticesPositionsBackUp[_.getId()] = _.getLocation();
                     }
                     startx = vdd.v.getLocation().x;
@@ -59,7 +59,7 @@ public class MoveSelected extends AbstractAction {
                     drop();
                     //add undo data
                     GraphPoint[] newPos = new GraphPoint[gd.getGraph().getVerticesCount()];
-                    for (VertexModel _ : gd.getGraph()) {
+                    for (Vertex _ : gd.getGraph()) {
                         newPos[_.getId()] = _.getLocation();
                     }
 
@@ -95,7 +95,7 @@ public class MoveSelected extends AbstractAction {
         AbstractGraphRenderer ren = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
         ren.ignoreRepaints(new Runnable() {
             public void run() {
-                for (VertexModel v : selection.vertices) {
+                for (Vertex v : selection.vertices) {
                     GraphPoint loc = v.getLocation();
                     v.setLocation(new GraphPoint(loc.x + dx, loc.y + dy));
                 }
@@ -110,7 +110,7 @@ public class MoveSelected extends AbstractAction {
     double y;
     double starty;
     AbstractGraphRenderer gv;
-    VertexModel v;
+    Vertex v;
 //    MouseMotionAdapter mlistener = new MouseMotionAdapter() {
 //        public synchronized void mouseDragging(MouseEvent e) {
 //            xx = e.getX();
@@ -145,7 +145,7 @@ public class MoveSelected extends AbstractAction {
                 x = x + dx;
                 y = y + dy;
                 SubGraph selection = Select.getSelection(blackboard);
-                for (VertexModel v : selection.vertices) {
+                for (Vertex v : selection.vertices) {
                     try {
                         v.setLocation(new GraphPoint(v.getLocation().x + dx, v.getLocation().y + dy));
                     } catch (InvalidVertexException e) {

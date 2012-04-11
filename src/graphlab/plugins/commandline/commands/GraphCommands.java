@@ -4,10 +4,10 @@
 package graphlab.plugins.commandline.commands;
 
 import Jama.Matrix;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.graph.ui.GTabbedGraphPane;
 import graphlab.library.algorithms.goperators.EdgeInduced;
 import graphlab.library.algorithms.goperators.GraphUnion;
@@ -68,9 +68,9 @@ public class GraphCommands {
     public String weightMatrix() {
         GraphModel g = datas.getGraph();
         String ret = "";
-        for (VertexModel v : g) {
-            for (VertexModel w : g) {
-                EdgeModel e = g.getEdge(v, w);
+        for (Vertex v : g) {
+            for (Vertex w : g) {
+                Edge e = g.getEdge(v, w);
                 ret += " " + (e == null ? "0" : e.getWeight()) + " ,";
             }
             ret = ret.substring(0, ret.length() - 1);
@@ -86,9 +86,9 @@ public class GraphCommands {
     public String matlabMatrix() {
         GraphModel g = datas.getGraph();
         String ret = "";
-        for (VertexModel v : g) {
-            for (VertexModel w : g) {
-                EdgeModel e = g.getEdge(v, w);
+        for (Vertex v : g) {
+            for (Vertex w : g) {
+                Edge e = g.getEdge(v, w);
                 ret += " " + (e == null ? "0" : "1") + " ,";
             }
             ret = ret.substring(0, ret.length() - 1);
@@ -205,8 +205,8 @@ public class GraphCommands {
         return gm;
     }
 
-    public VertexModel getVertexById(int id, GraphModel g) {
-        for (VertexModel v : g)
+    public Vertex getVertexById(int id, GraphModel g) {
+        for (Vertex v : g)
             if (v.getId() == id)
                 return v;
         return null;
@@ -278,7 +278,7 @@ public class GraphCommands {
         int n = graphModel.getVerticesCount();
         Point ps[] = PositionGenerators.circle(250, 300, 300, n);
         int count = 0;
-        for (VertexModel v : graphModel) {
+        for (Vertex v : graphModel) {
             v.setLocation(new GraphPoint(ps[count].x, ps[count].y));
             count++;
         }
@@ -295,7 +295,7 @@ public class GraphCommands {
         int n = graphModel.getVerticesCount();
         Point ps[] = PositionGenerators.circle(200, 300, 300, n);
         int count = 0;
-        for (VertexModel v : graphModel) {
+        for (Vertex v : graphModel) {
             v.setLocation(new GraphPoint(ps[count].x, ps[count].y));
             count++;
         }
@@ -329,17 +329,17 @@ public class GraphCommands {
         }
     }
 
-    VertexModel getVertexByID(String id) {
+    Vertex getVertexByID(String id) {
         int ID = Integer.parseInt(id);
-        for (VertexModel v : datas.getGraph()) {
+        for (Vertex v : datas.getGraph()) {
             if (v.getId() == ID)
                 return v;
         }
         return null;
     }
 
-    VertexModel getVertexByLabel(String label) {
-        for (VertexModel v : datas.getGraph()) {
+    Vertex getVertexByLabel(String label) {
+        for (Vertex v : datas.getGraph()) {
             if (v.getLabel().equals(label))
                 return v;
         }

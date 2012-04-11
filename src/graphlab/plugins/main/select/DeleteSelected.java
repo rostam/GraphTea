@@ -5,7 +5,6 @@ package graphlab.plugins.main.select;
 
 import graphlab.graph.atributeset.GraphAttrSet;
 import graphlab.graph.graph.*;
-import graphlab.library.exceptions.InvalidVertexException;
 import graphlab.platform.core.BlackBoard;
 import graphlab.plugins.main.GraphData;
 import graphlab.plugins.main.core.actions.vertex.DeleteVertex;
@@ -64,20 +63,20 @@ public class DeleteSelected implements GraphActionExtension {
         if (selection.edges.isEmpty() && selection.vertices.isEmpty())
             return;
 
-        HashSet<EdgeModel> edges = new HashSet<EdgeModel>();
-        for (EdgeModel e : selection.edges) {
+        HashSet<Edge> edges = new HashSet<Edge>();
+        for (Edge e : selection.edges) {
             edges.add(e);
         }
-        HashSet<VertexModel> vertices = new HashSet<VertexModel>();
-        for (VertexModel v : selection.vertices) {
+        HashSet<Vertex> vertices = new HashSet<Vertex>();
+        for (Vertex v : selection.vertices) {
             vertices.add(v);
         }
 
-        for (EdgeModel e : selection.edges)
+        for (Edge e : selection.edges)
             g.removeEdge(e);
-        Vector<EdgeModel> ed = new Vector<EdgeModel>();
-        for (VertexModel v : selection.vertices) {
-            Iterator<EdgeModel> ie = g.edgeIterator(v);
+        Vector<Edge> ed = new Vector<Edge>();
+        for (Vertex v : selection.vertices) {
+            Iterator<Edge> ie = g.edgeIterator(v);
             while (ie.hasNext()) {
                 ed.add(ie.next());
             }

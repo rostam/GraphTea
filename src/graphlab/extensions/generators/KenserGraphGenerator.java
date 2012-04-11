@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.extensions.generators;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
@@ -33,24 +33,24 @@ public class KenserGraphGenerator implements GraphGeneratorExtension, Parametriz
         this.g = g;
     }
 
-    VertexModel[] v;
+    Vertex[] v;
 
-    public VertexModel[] getVertices() {
-        VertexModel[] ret = new VertexModel[n];
+    public Vertex[] getVertices() {
+        Vertex[] ret = new Vertex[n];
         for (int i = 0; i < n; i++)
-            ret[i] = new VertexModel();
+            ret[i] = new Vertex();
         v = ret;
         return ret;
     }
 
-    public EdgeModel[] getEdges() {
-        Vector<EdgeModel> ret = new Vector<EdgeModel>();
+    public Edge[] getEdges() {
+        Vector<Edge> ret = new Vector<Edge>();
         for (int i = 0; i < n; i++) {
             for (int j = i; j < (Math.min(n, i + d)); j++) {
-                ret.add(new EdgeModel(v[i], v[j]));
+                ret.add(new Edge(v[i], v[j]));
             }
         }
-        EdgeModel[] ret1 = new EdgeModel[ret.size()];
+        Edge[] ret1 = new Edge[ret.size()];
 
         for (int i = 0; i < ret.size(); i++) {
             ret1[i] = ret.get(i);

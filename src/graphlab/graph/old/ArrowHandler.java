@@ -3,10 +3,10 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.graph.old;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.ArrayX;
 import graphlab.platform.lang.FromStringProvider;
 import graphlab.platform.preferences.GraphPreferences;
@@ -31,7 +31,7 @@ public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, From
      *
      * @param zoomFactor the zoom factor of Graph Model
      */
-    public static void paint(Graphics _g, GraphModel gr, EdgeModel e, double zoomFactor) {
+    public static void paint(Graphics _g, GraphModel gr, Edge e, double zoomFactor) {
 //        new ArrowHandler();
         Arrow arrow = e.getArrow();
         Graphics2D g = (Graphics2D) _g;
@@ -57,7 +57,7 @@ public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, From
                 angle += 2 * Math.PI;
             }
         }
-        VertexModel v2 = e.target;
+        Vertex v2 = e.target;
         GraphPoint v2ShapeSize = v2.getSize();
         int w = (int) v2ShapeSize.getX();
         int h = (int) v2ShapeSize.getY();

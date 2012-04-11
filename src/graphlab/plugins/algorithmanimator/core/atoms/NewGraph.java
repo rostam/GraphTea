@@ -6,10 +6,10 @@ package graphlab.plugins.algorithmanimator.core.atoms;
 //import static graphlab.library.event.GraphEvent.nameType.NEW_GRAPH;
 
 import graphlab.graph.atributeset.GraphAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.BaseEdge;
 import graphlab.library.BaseVertex;
 import graphlab.library.event.Event;
@@ -44,20 +44,20 @@ public class NewGraph implements AtomAnimator<BaseGraphEvent> {
         GraphModel g = ((GraphModel) o);
         //hich vaght 2 chap nemishe, iani too khate bala moshkeli hast
 //        System.out.println("2");
-        HashMap<BaseVertex, VertexModel> map = new HashMap<BaseVertex, VertexModel>();
+        HashMap<BaseVertex, Vertex> map = new HashMap<BaseVertex, Vertex>();
         for (BaseVertex v : event.graph) {
-            VertexModel vv = new VertexModel();
+            Vertex vv = new Vertex();
             map.put(v, vv);
-            //vv.setModel((VertexModel) v);
+            //vv.setModel((Vertex) v);
             g.insertVertex(vv);
             vv.setLocation(new GraphPoint(Math.random() * 200, Math.random() * 200));
         }
         Iterator<BaseEdge<BaseVertex>> ie = event.graph.edgeIterator();
         while (ie.hasNext()) {
             BaseEdge e = ie.next();
-            VertexModel src = map.get(e.source);
-            VertexModel dest = map.get(e.target);
-            EdgeModel ee = new EdgeModel(src, dest);
+            Vertex src = map.get(e.source);
+            Vertex dest = map.get(e.target);
+            Edge ee = new Edge(src, dest);
             g.insertEdge(ee);
         }
         return event;

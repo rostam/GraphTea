@@ -6,10 +6,9 @@ package graphlab.extensions.reports;
 
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.BaseVertex;
 import graphlab.platform.lang.CommandAttitude;
-import graphlab.platform.parameter.Parameter;
 import graphlab.plugins.main.GraphData;
 import graphlab.plugins.reports.extension.GraphReportExtension;
 
@@ -46,9 +45,9 @@ public class MaxIndependentSetReport implements GraphReportExtension {
         Vector<SubGraph> ret = new Vector<SubGraph>();
         for (ArrayDeque<BaseVertex> maxset : maxsets) {
             SubGraph sd = new SubGraph(graph);
-            sd.vertices = new HashSet<VertexModel>();
+            sd.vertices = new HashSet<Vertex>();
             for (BaseVertex v : maxset) {
-                sd.vertices.add((VertexModel) v);
+                sd.vertices.add((Vertex) v);
             }
             ret.add(sd);
         }

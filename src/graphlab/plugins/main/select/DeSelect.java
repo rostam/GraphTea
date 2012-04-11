@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.main.select;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
 import graphlab.plugins.main.core.actions.edge.EdgeSelectData;
@@ -42,7 +42,7 @@ public class DeSelect extends AbstractAction {
     private void selectEdge() {
         EdgeSelectData esd = blackboard.getData(EdgeSelectData.EVENT_KEY);
         SubGraph sd = getSelection();
-        EdgeModel e = esd.edge;
+        Edge e = esd.edge;
         //e.view.isSelected=!e.view.isSelected;
 
 //        if (!e.view.isSelected)
@@ -55,7 +55,7 @@ public class DeSelect extends AbstractAction {
     private void selectVertex() {
         VertexSelectData vsd = blackboard.getData(VertexSelectData.EVENT_KEY);
         SubGraph sd = getSelection();
-        VertexModel v = vsd.v;
+        Vertex v = vsd.v;
         //v.view.isSelected=!v.view.isSelected;
 //        if (!v.view.isSelected)
         sd.vertices.add(v);

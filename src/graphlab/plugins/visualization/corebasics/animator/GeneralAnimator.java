@@ -17,8 +17,8 @@ import java.util.Vector;
  */
 public class GeneralAnimator implements Runnable {
 
-    public HashMap<VertexModel, Point2D> vertexDestinations = new HashMap<VertexModel, Point2D>();
-    public HashMap<EdgeModel, Vector<Point2D>> edgeBendPoints = new HashMap<EdgeModel, Vector<Point2D>>();
+    public HashMap<Vertex, Point2D> vertexDestinations = new HashMap<Vertex, Point2D>();
+    public HashMap<Edge, Vector<Point2D>> edgeBendPoints = new HashMap<Edge, Vector<Point2D>>();
     public boolean supportBendedEdge;
 
     GraphModel g;
@@ -26,13 +26,13 @@ public class GeneralAnimator implements Runnable {
     public Thread animate;
     private BlackBoard blackboard;
 
-    public GeneralAnimator(HashMap<VertexModel, Point2D> vertexDestinations, GraphModel g, BlackBoard blackboard) {
+    public GeneralAnimator(HashMap<Vertex, Point2D> vertexDestinations, GraphModel g, BlackBoard blackboard) {
         this.vertexDestinations = vertexDestinations;
         this.g = g;
         this.blackboard = blackboard;
     }
 
-    public GeneralAnimator(HashMap<VertexModel, Point2D> vertexDestinations, HashMap<EdgeModel, Vector<Point2D>> edgeBendPoints, GraphModel g, BlackBoard blackboard) {
+    public GeneralAnimator(HashMap<Vertex, Point2D> vertexDestinations, HashMap<Edge, Vector<Point2D>> edgeBendPoints, GraphModel g, BlackBoard blackboard) {
         this.vertexDestinations = vertexDestinations;
         this.edgeBendPoints = edgeBendPoints;
         this.g = g;
@@ -53,11 +53,11 @@ public class GeneralAnimator implements Runnable {
 
     public void run() {
         final Thread current = Thread.currentThread();
-        Iterator<VertexModel> v = vertexDestinations.keySet().iterator();
+        Iterator<Vertex> v = vertexDestinations.keySet().iterator();
         final Vector<Point2D> movements = new Vector<Point2D>();
         final Vector<Point2D> initials = new Vector<Point2D>();
         for (; v.hasNext();) {
-            VertexModel vertex = v.next();
+            Vertex vertex = v.next();
             double initalX = vertex.getLocation().getX();
             Point2D point2D = vertexDestinations.get(vertex);
             double totalXMovement = (point2D.getX() - initalX);
@@ -85,7 +85,7 @@ public class GeneralAnimator implements Runnable {
     }
 
     private void doAnimateStep(Vector<Point2D> movements, Vector<Point2D> initials, int j, int k, Thread current) {
-        Iterator<VertexModel> v;
+        Iterator<Vertex> v;
         Iterator<Point2D> m;
         Iterator<Point2D> i;
         v = vertexDestinations.keySet().iterator();
@@ -93,7 +93,7 @@ public class GeneralAnimator implements Runnable {
         m = movements.iterator();
         i = initials.iterator();
         for (; v.hasNext();) {
-            VertexModel vertex = v.next();
+            Vertex vertex = v.next();
             Point2D movement = m.next();
             Point2D initial = i.next();
             //                vertex.setLabel(initial.getY()+"");
@@ -112,9 +112,9 @@ public class GeneralAnimator implements Runnable {
     }
 
     public void paintEdges() {
-        Iterator<EdgeModel> ei = g.edgeIterator();
+        Iterator<Edge> ei = g.edgeIterator();
         for (; ei.hasNext();) {
-            EdgeModel e = ei.next();
+            Edge e = ei.next();
 //            e.view.ssetBendedEdge(true);
 //            e.view.setBendPoints(edgeBendPoints.get(e));
         }

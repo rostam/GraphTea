@@ -7,7 +7,7 @@ import graphlab.graph.atributeset.GraphAttrSet;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.parameter.Parametrizable;
@@ -22,7 +22,7 @@ public class circular extends AbstractAction implements Parametrizable {
     GraphModel g;
     String event = UIUtils.getUIEventKey("circular");
     private int n;
-    VertexModel[] v;
+    Vertex[] v;
 
     /**
      * constructor
@@ -60,9 +60,9 @@ public class circular extends AbstractAction implements Parametrizable {
 
     public static void circularVisualize(int w, int h, GraphModel g) {
         int n = g.getVerticesCount();
-        VertexModel[] v = new VertexModel[n];
+        Vertex[] v = new Vertex[n];
         int i = 0;
-        for (VertexModel vm : g)
+        for (Vertex vm : g)
             v[i++] = vm;
         Point[] p = PositionGenerators.circle(25, 25, w + 25, h + 25, n);
         for (i = 0; i < n; i++) {
@@ -72,9 +72,9 @@ public class circular extends AbstractAction implements Parametrizable {
 
     public static void circularVisualize(int r, int x, int y, SubGraph g) {
         int n = g.vertices.size();
-        VertexModel[] v = new VertexModel[n];
+        Vertex[] v = new Vertex[n];
         int i = 0;
-        for (VertexModel vm : g.vertices)
+        for (Vertex vm : g.vertices)
             v[i++] = vm;
         Point[] p = PositionGenerators.circle(r, x, y, n);
         for (i = 0; i < n; i++) {

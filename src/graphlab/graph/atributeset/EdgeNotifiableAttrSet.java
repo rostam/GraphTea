@@ -4,11 +4,11 @@
 
 package graphlab.graph.atributeset;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.platform.attribute.TimeLimitedNotifiableAttrSet;
 
 /**
- * changes on EdgeModel will take effect on next 100 milisecond,
+ * changes on Edge will take effect on next 100 milisecond,
  * using this class should be done with care, this class uses a thread
  * and checks the edge on each 100ms for any changes, so creating a lot of
  * instances of this class (for example for all edges of graph)
@@ -20,11 +20,11 @@ import graphlab.platform.attribute.TimeLimitedNotifiableAttrSet;
  *
  * @author azin azadi
  * @see EdgeAttrSet
- * @see graphlab.graph.graph.EdgeModel
+ * @see graphlab.graph.graph.Edge
  * @see EdgeAttrSet
  */
 public class EdgeNotifiableAttrSet extends TimeLimitedNotifiableAttrSet<EdgeAttrSet> {
-    public EdgeNotifiableAttrSet(EdgeModel input) {
+    public EdgeNotifiableAttrSet(Edge input) {
         super(new EdgeAttrSet(input));
     }
 }

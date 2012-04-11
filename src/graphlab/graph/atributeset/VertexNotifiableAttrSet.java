@@ -4,12 +4,12 @@
 
 package graphlab.graph.atributeset;
 
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.attribute.TimeLimitedNotifiableAttrSet;
 
 
 public class VertexNotifiableAttrSet extends TimeLimitedNotifiableAttrSet<VertexAttrSet> {
-    public VertexNotifiableAttrSet(VertexModel input) {
+    public VertexNotifiableAttrSet(Vertex input) {
         super(new VertexAttrSet(input));
     }
 }

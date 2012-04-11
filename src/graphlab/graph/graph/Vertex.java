@@ -4,7 +4,7 @@
 package graphlab.graph.graph;
 
 import graphlab.graph.atributeset.VertexAttrSet;
-import graphlab.graph.event.VertexModelListener;
+import graphlab.graph.event.VertexListener;
 import graphlab.graph.old.GShape;
 import graphlab.graph.old.GStroke;
 import graphlab.library.BaseVertex;
@@ -22,11 +22,11 @@ import java.util.Map;
  */
 
 
-public class VertexModel extends BaseVertex {
+public class Vertex extends BaseVertex {
 
-    public VertexModelListener view;// = emptyListener;
+    public VertexListener view;// = emptyListener;
 
-    //todo(bug): VertexModel is dependent on Fast Renderer!
+    //todo(bug): Vertex is dependent on Fast Renderer!
     public GShape shape = FastRenderer.defaultVertexShape;
 
     GStroke shapeStroke = FastRenderer.defaultBorderStroke;
@@ -64,7 +64,7 @@ public class VertexModel extends BaseVertex {
      * in the standard attributes. your attributes will be editable in property editor part of GUI.
      * Use this method carefully. user defined attributes are stored in HashMap and bad use of them will cause memory leak in large graphs
      *
-     * @see graphlab.graph.graph.VertexModel#addGlobalUserDefinedAttribute(String,Object)
+     * @see Vertex#addGlobalUserDefinedAttribute(String,Object)
      */
     public void setUserDefinedAttribute(String name, Object value) {
         if (userDefinedAttributes == null) {
@@ -118,7 +118,7 @@ public class VertexModel extends BaseVertex {
     }
 
     /**
-     * @see VertexModel#addGlobalUserDefinedAttribute
+     * @see Vertex#addGlobalUserDefinedAttribute
      */
     public static void removeGlobalUserDefinedAttribute(String name) {
         globalUserDefinedAttributes.remove(name);
@@ -140,7 +140,7 @@ public class VertexModel extends BaseVertex {
      *
      * @param v
      */
-    public VertexModel(VertexModel v) {
+    public Vertex(Vertex v) {
         super();
         this.label = v.label;
         this.location = v.location;
@@ -157,12 +157,12 @@ public class VertexModel extends BaseVertex {
         }
     }
 
-    public VertexModel() {
+    public Vertex() {
         super();
     }
 
-    public VertexModel getCopy() {
-        return new VertexModel(this);
+    public Vertex getCopy() {
+        return new Vertex(this);
     }
 
     public String toString() {
@@ -177,7 +177,7 @@ public class VertexModel extends BaseVertex {
         fireModelListenerChanged();
     }
 
-    public void setVertexListener(VertexModelListener listener) {
+    public void setVertexListener(VertexListener listener) {
         view = listener;
 //        if (listener == null)
 //            view = emptyListener;

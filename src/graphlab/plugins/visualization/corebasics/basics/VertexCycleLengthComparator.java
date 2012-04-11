@@ -3,7 +3,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.visualization.corebasics.basics;
 
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 
 import java.util.Comparator;
 
@@ -16,8 +16,8 @@ public class VertexCycleLengthComparator implements Comparator {
     }
 
     public int compare(Object o1, Object o2) {
-        VertexModel v1 = (VertexModel) o1;
-        VertexModel v2 = (VertexModel) o2;
+        Vertex v1 = (Vertex) o1;
+        Vertex v2 = (Vertex) o2;
         int v1i1 = ((PathProperties) v1.getProp().obj).getFirstColor();
         int v1i2 = ((PathProperties) v1.getProp().obj).getSecondColor();
         Integer v1i = new Integer(v1i1 + v1i2);

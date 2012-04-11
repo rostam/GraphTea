@@ -6,9 +6,9 @@ package graphlab.plugins.main.saveload.xmlparser;
 import graphlab.graph.atributeset.EdgeAttrSet;
 import graphlab.graph.atributeset.GraphAttrSet;
 import graphlab.graph.atributeset.VertexAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.StaticUtils;
 import org.xml.sax.Attributes;
@@ -19,12 +19,12 @@ import java.util.HashMap;
 public class GraphmlHandlerImpl implements GraphmlHandler {
 
     public static final boolean DEBUG = false;
-    public HashMap<String, VertexModel> vByID = new HashMap<String, VertexModel>();
+    public HashMap<String, Vertex> vByID = new HashMap<String, Vertex>();
 
 
     public GraphModel g;
-    private VertexModel curv = null;
-    private EdgeModel cure = null;
+    private Vertex curv = null;
+    private Edge cure = null;
     public BlackBoard bb;
     private VertexAttrSet curvAS;
     private EdgeAttrSet cureAS;
@@ -75,14 +75,14 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
     }
 
     public void start_edge(final Attributes meta) throws SAXException {
-        VertexModel v1 = vByID.get(meta.getValue("source"));
-        VertexModel v2 = vByID.get(meta.getValue("target"));
+        Vertex v1 = vByID.get(meta.getValue("source"));
+        Vertex v2 = vByID.get(meta.getValue("target"));
 
         if (DEBUG)
             System.out.println("Edge between : (" + meta.getValue(EdgeAttrSet.SOURCE) + ")" + v1 + ",(" + meta.getValue(EdgeAttrSet.TARGET) + ")" + v2);
-        EdgeModel e = new EdgeModel(v1, v2);
+        Edge e = new Edge(v1, v2);
         //todo: the id can not be setted (it's a fix value)
-//        e.setID(meta.getValue(EdgeModel.ID));
+//        e.setID(meta.getValue(Edge.ID));
         g.insertEdge(e);
         cure = e;
         cureAS = new EdgeAttrSet(e);
@@ -119,8 +119,8 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
     public void start_node(final Attributes meta) throws SAXException {
         String id = meta.getValue("id");
         Integer iid = Integer.parseInt(id);
-        VertexModel v = new VertexModel();
-//        v.putAtr(VertexModel.ID, iid);
+        Vertex v = new Vertex();
+//        v.putAtr(Vertex.ID, iid);
 
 
         vByID.put("" + id, v);

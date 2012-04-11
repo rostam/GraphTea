@@ -4,9 +4,9 @@
 
 package graphlab.graph.old;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.BlackBoard;
 
 import java.awt.*;
@@ -59,14 +59,14 @@ public class SuperAcceleratedRenderer extends AcceleratedRenderer {
         }
     }
 
-    public void vertexAdded(VertexModel v) {
+    public void vertexAdded(Vertex v) {
         v.setLabel(v.getId() + "");
         v.setVertexListener(this);
     }
 
-    public void edgeAdded(EdgeModel e) {
+    public void edgeAdded(Edge e) {
         e.setLabel(e.getId());
-        e.setEdgeModelListener(this);
+        e.setEdgeListener(this);
 //        e.updateBounds();
     }
 }

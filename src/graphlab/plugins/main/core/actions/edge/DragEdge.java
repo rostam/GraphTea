@@ -7,7 +7,7 @@ package graphlab.plugins.main.core.actions.edge;
 import graphlab.graph.atributeset.GraphAttrSet;
 import graphlab.graph.event.EdgeEvent;
 import graphlab.graph.event.GraphEvent;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
 import graphlab.graph.graph.PaintHandler;
@@ -33,7 +33,7 @@ public class DragEdge extends AbstractAction implements PaintHandler {
 
     }
 
-    protected EdgeModel edge;
+    protected Edge edge;
     protected GraphModel g;
     //    protected AbstractGraphRenderer gv;
     //    protected boolean isClick = false;
@@ -106,7 +106,7 @@ public class DragEdge extends AbstractAction implements PaintHandler {
 //        gv.removePaintHandler(this);
     }
 
-    protected void startPainting(EdgeModel e) {
+    protected void startPainting(Edge e) {
 //
 //        GraphPoint location = new GraphPoint(e.curve.getCtrlX(), e.curve.getCtrlY());
 //        Point viewPoint = GraphPoint.createViewPoint(g, location);

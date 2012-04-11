@@ -1,15 +1,11 @@
 package graphlab.graph.io;
 
 import com.google.gson.Gson;
-import graphlab.graph.atributeset.EdgeAttrSet;
-import graphlab.graph.atributeset.GraphAttrSet;
-import graphlab.graph.atributeset.VertexAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Vector;
@@ -25,11 +21,11 @@ public class GraphJSON {
     public boolean directed;
 
     public void init(GraphModel gm) {
-        for (VertexModel v : gm) {
+        for (Vertex v : gm) {
             vertices.add(v.getLabel());
             pos.put(v.getId(), v.getLocation());
         }
-        for (EdgeModel e : gm.getEdges()) {
+        for (Edge e : gm.getEdges()) {
             edges.add(new Vector<Integer>(Arrays.asList(e.source.getId(), e.target.getId())));
         }
         name = gm.getLabel();
@@ -49,10 +45,10 @@ public class GraphJSON {
         Gson gson = new Gson();
         GraphJSON gs = gson.fromJson(json, GraphJSON.class);
         GraphModel ret = new GraphModel(gs.directed);
-        HashMap<Integer, VertexModel> vbyid = new HashMap<Integer, VertexModel>();
+        HashMap<Integer, Vertex> vbyid = new HashMap<Integer, Vertex>();
         int id = 0;
         for (String s : gs.vertices) {
-            VertexModel v = new VertexModel();
+            Vertex v = new Vertex();
             ret.addVertex(v);
             v.setLabel(s);
             v.setLocation(gs.pos.get(id));
@@ -60,9 +56,9 @@ public class GraphJSON {
             id++;
         }
         for (Vector<Integer> e : gs.edges) {
-            VertexModel v1 = vbyid.get(e.get(0));
-            VertexModel v2 = vbyid.get(e.get(1));
-            ret.addEdge(new EdgeModel(v1, v2));
+            Vertex v1 = vbyid.get(e.get(0));
+            Vertex v2 = vbyid.get(e.get(1));
+            ret.addEdge(new Edge(v1, v2));
         }
         return ret;
     }

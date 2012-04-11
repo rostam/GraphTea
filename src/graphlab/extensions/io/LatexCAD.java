@@ -4,9 +4,9 @@
 
 package graphlab.extensions.io;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
 import graphlab.platform.core.exception.ExceptionHandler;
@@ -58,8 +58,8 @@ public class LatexCAD implements GraphWriterExtension, Parametrizable {
             Y /= 100;
 
             //set frame
-            Iterator<VertexModel> iv = graph.iterator();
-            VertexModel v = iv.next();
+            Iterator<Vertex> iv = graph.iterator();
+            Vertex v = iv.next();
             double minX = v.getLocation().getX();
             double minY = v.getLocation().getY();
             double maxX = v.getLocation().getX();
@@ -111,9 +111,9 @@ public class LatexCAD implements GraphWriterExtension, Parametrizable {
             }
 
             //draw edges
-            Iterator<EdgeModel> ie = graph.edgeIterator();
+            Iterator<Edge> ie = graph.edgeIterator();
             while (ie.hasNext()) {
-                EdgeModel e = ie.next();
+                Edge e = ie.next();
                 output.write("\\drawedge");
                 String attr = "";
                 String disc = "";
@@ -135,8 +135,8 @@ public class LatexCAD implements GraphWriterExtension, Parametrizable {
                         "{" + disc + "}\n");
             }
 
-            // EdgeModel.IsCurvedEdge()
-            //EdgeModel.CubicCurve.PathIterator
+            // Edge.IsCurvedEdge()
+            //Edge.CubicCurve.PathIterator
 
 
             output.write("\\end{picture}");

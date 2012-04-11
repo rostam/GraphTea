@@ -43,7 +43,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
 //        listen4Event(VertexSelectData.name);
     }
 
-    protected VertexModel v1, vc1;
+    protected Vertex v1, vc1;
     protected GraphModel g;
     protected AbstractGraphRenderer gv;
     protected boolean isClick = false;
@@ -96,13 +96,13 @@ public class AddEdge extends AbstractAction implements PaintHandler {
             }
             if (ve.eventType == VertexEvent.DROPPED) {
                 if (v1 != null) {
-                    VertexModel v2 = ve.v;
+                    Vertex v2 = ve.v;
                     if (v2 != null && isDrag)   //!it was released on empty space
                         if (!v1.equals(v2)) {
-                            EdgeModel e = doJob(g, v1, v2);
+                            Edge e = doJob(g, v1, v2);
                         } else if (exitedFromV1) {
                             //User has revisited v1 > add loop
-                            EdgeModel e = doJob(g, v1, v2);
+                            Edge e = doJob(g, v1, v2);
                         }
 //            unListenEvent(VertexMouseDraggingData.event);
                 }
@@ -115,7 +115,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
                 GraphPoint absPosOnGraph = GraphUtils.createGraphPoint(g, x1, y1);
                 absPosOnGraph.add(lastPos);
                 if (g.getVerticesCount() < 300) {
-                    Pair<VertexModel, Double> p = GraphControl.mindistv(g, absPosOnGraph);
+                    Pair<Vertex, Double> p = GraphControl.mindistv(g, absPosOnGraph);
                     if (p.first != null)
                         curVertexUnderMouse = GraphControl.isPointOnVertex(g, p.first, absPosOnGraph) ? p.first : null;
                 }
@@ -158,8 +158,8 @@ public class AddEdge extends AbstractAction implements PaintHandler {
         gv.addPostPaintHandler(this);
     }
 
-    public static EdgeModel doJob(GraphModel g, VertexModel v1, VertexModel v2) {
-        EdgeModel e = new EdgeModel(v1, v2);
+    public static Edge doJob(GraphModel g, Vertex v1, Vertex v2) {
+        Edge e = new Edge(v1, v2);
         g.insertEdge(e);
         return e;
     }
@@ -169,7 +169,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
     protected int cx;
     protected int cy;
 
-    protected VertexModel curVertexUnderMouse = null;
+    protected Vertex curVertexUnderMouse = null;
 
     /**
     * paints incomplete edges for the user while he/she is adding the edge. (A preview)
@@ -187,7 +187,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
             if (curVertexUnderMouse == null)
                 gg.drawLine(x1, y1, x1 + viewPoint.x, y1 + viewPoint.y);
             else if (v1.equals(curVertexUnderMouse) && exitedFromV1) {
-                EdgeModel e = new EdgeModel(v1, v1);
+                Edge e = new Edge(v1, v1);
                 double zf = this.g.getZoomFactor();
 //                gg.setStroke(GStroke.strong.stroke);
                 gg.drawOval(

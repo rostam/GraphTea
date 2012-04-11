@@ -4,9 +4,9 @@
 
 package graphlab.extensions.generators;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
@@ -43,25 +43,25 @@ public class HelmGraph implements GraphGeneratorExtension, Parametrizable, Simpl
 		return "Generate Helm Graph";
 	}
 
-	VertexModel[] v;
+	Vertex[] v;
 
-	public VertexModel[] getVertices()
+	public Vertex[] getVertices()
 	{
-		VertexModel[] result = new VertexModel[2*n+1];
+		Vertex[] result = new Vertex[2*n+1];
 		for (int i = 0; i < 2*n+1; i++)
-			result[i] = new VertexModel();
+			result[i] = new Vertex();
 		v = result;
 		return result;
 	}
 
-	public EdgeModel[] getEdges()
+	public Edge[] getEdges()
 	{
-		EdgeModel[] result = new EdgeModel[3*n];
+		Edge[] result = new Edge[3*n];
 		for (int i = 0; i < n; i++)
 		{
-			result[i] = new EdgeModel(v[i], v[n+i]);
-			result[n+i] = new EdgeModel(v[n+i], v[2*n]);
-			result[2*n+i] = new EdgeModel(v[n+i],v[n+((i+1)%n)]);
+			result[i] = new Edge(v[i], v[n+i]);
+			result[n+i] = new Edge(v[n+i], v[2*n]);
+			result[2*n+i] = new Edge(v[n+i],v[n+((i+1)%n)]);
 		}
 		return result;
 	}

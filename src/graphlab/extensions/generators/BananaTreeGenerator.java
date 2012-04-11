@@ -2,10 +2,10 @@
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 package graphlab.extensions.generators;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
 import graphlab.platform.StaticUtils;
@@ -48,40 +48,40 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
         //num of tree vertices
         int t = (n * k) + 1;
         GraphModel g = new GraphModel(false);
-        VertexModel root = new VertexModel();
+        Vertex root = new Vertex();
         g.insertVertex(root);
         root.setLocation(new GraphPoint(0, 0));
-        VertexModel curv = null;
+        Vertex curv = null;
         //generating edges and setting positions
         Point[] fR = PositionGenerators.circle(3000, 0, 0, n);
-        VertexModel[] firstDepth = new VertexModel[n];
+        Vertex[] firstDepth = new Vertex[n];
 
         //generating first level vertices
         for (int i = 0; i < n; i++) {
             Point center = fR[i];
-            curv = new VertexModel();
+            curv = new Vertex();
             setloc(curv, center);
             firstDepth[i] = curv;
             g.insertVertex(curv);
-            g.insertEdge(new EdgeModel(root, curv));
+            g.insertEdge(new Edge(root, curv));
         }
 
         //generating second level vertices
         for (int i = 0; i < n; i++) {
             Point center = fR[i];
-            VertexModel centerv = firstDepth[i];
+            Vertex centerv = firstDepth[i];
             Point[] sR = PositionGenerators.circle(1000, center.x, center.y, k - 1);
             for (int j = 0; j < k - 1; j++) {
-                curv = new VertexModel();
+                curv = new Vertex();
                 g.insertVertex(curv);
                 setloc(curv, sR[j]);
-                g.insertEdge(new EdgeModel(centerv, curv));
+                g.insertEdge(new Edge(centerv, curv));
             }
         }
         return g;
     }
 
-    private static void setloc(VertexModel vv, Point gp) {
+    private static void setloc(Vertex vv, Point gp) {
         vv.setLocation(new GraphPoint(gp.x, gp.y));
     }
 

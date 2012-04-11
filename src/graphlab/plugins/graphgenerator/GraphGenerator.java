@@ -100,14 +100,14 @@ public class GraphGenerator implements PluginMethods {
     public static GraphModel getGraph(boolean isDirected, SimpleGeneratorInterface gi) {
         GraphModel ret = new GraphModel(isDirected);
         gi.setWorkingGraph(ret);
-        VertexModel[] vertices = gi.getVertices();
+        Vertex[] vertices = gi.getVertices();
         Point[] pos = gi.getVertexPositions();
-        EdgeModel[] edges = gi.getEdges();
-        for (VertexModel v : vertices)
+        Edge[] edges = gi.getEdges();
+        for (Vertex v : vertices)
             ret.insertVertex(v);
         for (int i = 0; i < vertices.length; i++)
             vertices[i].setLocation(new GraphPoint(pos[i].x, pos[i].y));
-        for (EdgeModel e : edges)
+        for (Edge e : edges)
             ret.insertEdge(e);
         return ret;
     }

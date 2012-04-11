@@ -6,16 +6,13 @@ package graphlab.graph.io;
 import graphlab.graph.atributeset.EdgeAttrSet;
 import graphlab.graph.atributeset.GraphAttrSet;
 import graphlab.graph.atributeset.VertexAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.plugins.main.saveload.xmlparser.GraphmlHandlerImpl;
 import graphlab.plugins.main.saveload.xmlparser.GraphmlParser;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -28,7 +25,7 @@ public class GraphML {
     public static HashMap<String, String> graphMLVertexKeys = new HashMap<String, String>();
     public static HashMap<String, String> graphMLEdgeKeys = new HashMap<String, String>();
 
-    public static String vertex2GraphML(VertexModel v) {
+    public static String vertex2GraphML(Vertex v) {
         int id = v.getId();
         String s = "    <node id=\"" + id + "\">\n";
         for (String key : graphMLVertexKeys.keySet()) {
@@ -42,14 +39,14 @@ public class GraphML {
         return s;
     }
 
-    public static String edge2GraphML(EdgeModel e) {
+    public static String edge2GraphML(Edge e) {
         String s = "";
         String s2 = "";
         if (e.getId() != null)
             s = " id=\"" + e.getId() + "\"";
         EdgeAttrSet _ = new EdgeAttrSet(e);
 // edge direction now is setted only in graph
-//        if ((_.get(EdgeAttrSet.DIRECTED) != null) && (e.model.getAttributes().get(EdgeModel.DIRECTED).toString().equalsIgnoreCase("true")))
+//        if ((_.get(EdgeAttrSet.DIRECTED) != null) && (e.model.getAttributes().get(Edge.DIRECTED).toString().equalsIgnoreCase("true")))
 //            s += " directed=\"true\"";
         s2 = "    <edge source=\"" + e.source.getId()
                 + "\" target=\"" + e.target.getId()
@@ -91,11 +88,11 @@ public class GraphML {
                             + _.get(ss)
                             + "</data>\n";
         }
-        for (VertexModel v : g) {
+        for (Vertex v : g) {
             graphML += GraphML.vertex2GraphML(v);
         }
-        for (Iterator<EdgeModel> it = g.edgeIterator(); it.hasNext(); ) {
-            EdgeModel e = it.next();
+        for (Iterator<Edge> it = g.edgeIterator(); it.hasNext(); ) {
+            Edge e = it.next();
             graphML += GraphML.edge2GraphML(e);
         }
         graphML += "  </graph>\n";
@@ -146,7 +143,7 @@ public class GraphML {
         graphMLEdgeKeys.clear();
         graphMLGraphKeys.clear();
         graphMLVertexKeys.clear();
-        for (VertexModel v : g) {
+        for (Vertex v : g) {
             VertexAttrSet _ = new VertexAttrSet(v);
             Map<String, Object> atr = _.getAttrs();
             for (String name : atr.keySet()) {
@@ -154,9 +151,9 @@ public class GraphML {
                     graphMLVertexKeys.put(name, atr.get(name).getClass().getName());
             }
         }
-        Iterator<EdgeModel> ie = g.edgeIterator();
+        Iterator<Edge> ie = g.edgeIterator();
         while (ie.hasNext()) {
-            EdgeModel edge = ie.next();
+            Edge edge = ie.next();
             Map<String, Object> atr = new EdgeAttrSet(edge).getAttrs();
             for (String name : atr.keySet()) {
                 if (atr.get(name) != null)

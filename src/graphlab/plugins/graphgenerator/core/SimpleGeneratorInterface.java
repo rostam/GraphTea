@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.graphgenerator.core;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 
 import java.awt.*;
 
@@ -18,9 +18,9 @@ import java.awt.*;
 public interface SimpleGeneratorInterface {
     public void setWorkingGraph(GraphModel g);
 
-    public VertexModel[] getVertices();
+    public Vertex[] getVertices();
 
-    public EdgeModel[] getEdges();
+    public Edge[] getEdges();
 
     //todo: make it return GraphPoint
     public Point[] getVertexPositions();

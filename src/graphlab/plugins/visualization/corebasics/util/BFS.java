@@ -11,7 +11,7 @@ public class BFS {
 //        Vector<Vertex> nextLevel = new Vector<Vertex>();
 //        for (Vertex v : currentLevel) {
 //            v.setMark(true);
-//            Iterator<EdgeModel> em = this.;
+//            Iterator<Edge> em = this.;
 //            for (; em.hasNext();) {
 //                Edge e = em.next().getEdgeReference();
 //                Vertex v2 = e.v2;

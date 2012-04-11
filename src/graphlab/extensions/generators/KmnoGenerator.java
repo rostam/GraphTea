@@ -4,9 +4,9 @@
 
 package graphlab.extensions.generators;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
@@ -51,26 +51,26 @@ public class KmnoGenerator implements GraphGeneratorExtension, Parametrizable, S
 		return "Generate Km,n,o";
 	}
 
-	VertexModel[] v;
+	Vertex[] v;
 
-	public VertexModel[] getVertices()
+	public Vertex[] getVertices()
 	{
-		VertexModel[] ret = new VertexModel[m + n + o];
+		Vertex[] ret = new Vertex[m + n + o];
 		for (int i = 0; i < m + n + o; i++)
-			ret[i] = new VertexModel();
+			ret[i] = new Vertex();
 		v = ret;
 		return ret;
 	}
 
-	public EdgeModel[] getEdges()
+	public Edge[] getEdges()
 	{
-		EdgeModel[] ret = new EdgeModel[m * n + m * o + n * o];
+		Edge[] ret = new Edge[m * n + m * o + n * o];
 		for (int i = 0; i < m; i++)
 			for (int j = 0; j < n + o; j++)
-				ret[i * ( n + o ) + j] = new EdgeModel(v[i], v[m + j]);
+				ret[i * ( n + o ) + j] = new Edge(v[i], v[m + j]);
 		for (int i = 0; i < n; i++)
 			for (int j = 0; j < o; j++)
-				ret[m * ( n + o ) + o * i + j] = new EdgeModel(v[m + i], v[m + n + j]);
+				ret[m * ( n + o ) + o * i + j] = new Edge(v[m + i], v[m + n + j]);
 		return ret;
 	}
 

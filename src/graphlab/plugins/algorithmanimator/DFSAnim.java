@@ -4,13 +4,13 @@
 
 package graphlab.plugins.algorithmanimator;
 
-import graphlab.graph.graph.EdgeModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Edge;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.algorithms.traversal.DepthFirstSearch;
 import graphlab.plugins.algorithmanimator.extension.AlgorithmExtension;
 
 public class DFSAnim
-        extends DepthFirstSearch<VertexModel, EdgeModel>
+        extends DepthFirstSearch<Vertex, Edge>
         implements AlgorithmExtension {
 
     public String getName() {

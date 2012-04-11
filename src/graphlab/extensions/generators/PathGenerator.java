@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.extensions.generators;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
@@ -24,7 +24,7 @@ import java.awt.*;
 public class PathGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "N")
     public static Integer n = 10;
-    VertexModel[] v;
+    Vertex[] v;
     GraphModel g;
 
     public void setWorkingGraph(GraphModel g) {
@@ -39,19 +39,19 @@ public class PathGenerator implements GraphGeneratorExtension, Parametrizable, S
         return "Generates a path with n vertices";
     }
 
-    public VertexModel[] getVertices() {
+    public Vertex[] getVertices() {
 
-        VertexModel[] ret = new VertexModel[n];
+        Vertex[] ret = new Vertex[n];
         for (int i = 0; i < n; i++)
-            ret[i] = new VertexModel();
+            ret[i] = new Vertex();
         v = ret;
         return ret;
     }
 
-    public EdgeModel[] getEdges() {
-        EdgeModel[] ret = new EdgeModel[n - 1];
+    public Edge[] getEdges() {
+        Edge[] ret = new Edge[n - 1];
         for (int i = 0; i < n - 1; i++) {
-            ret[i] = new EdgeModel(v[i], v[i + 1]);
+            ret[i] = new Edge(v[i], v[i + 1]);
         }
         return ret;
     }

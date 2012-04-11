@@ -4,9 +4,9 @@
 package graphlab.plugins.main.core.actions;
 
 import graphlab.graph.atributeset.GraphAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.graph.old.GStroke;
 import graphlab.platform.Application;
 import graphlab.platform.core.AbstractAction;
@@ -75,8 +75,8 @@ class BlackBoardDebug extends BlackBoard {
     }
 
     //    HashMap<String, Vertex> knownPlaces=new HashMap<String, Vertex>();
-    HashMap<String, VertexModel> knownLogs = new HashMap<String, VertexModel>();
-    HashMap<StackTraceElement, VertexModel> knownTraces = new HashMap<StackTraceElement, VertexModel>();
+    HashMap<String, Vertex> knownLogs = new HashMap<String, Vertex>();
+    HashMap<StackTraceElement, Vertex> knownTraces = new HashMap<StackTraceElement, Vertex>();
 //    public Log getLog(String name) {
 //        addEdge(getCallingMethod(),name);
 //        return super.getLog(name);
@@ -104,8 +104,8 @@ class BlackBoardDebug extends BlackBoard {
         return (t) super.getData(name);
     }
 
-    private VertexModel getLogVertex(String name) {
-        VertexModel _ = knownLogs.get(name);
+    private Vertex getLogVertex(String name) {
+        Vertex _ = knownLogs.get(name);
         if (_ == null || !g.containsVertex(_)) {
             _ = addVertex();
             _.setLabel(name);
@@ -115,22 +115,22 @@ class BlackBoardDebug extends BlackBoard {
         return _;
     }
 
-    private VertexModel addVertex() {
+    private Vertex addVertex() {
         return AddVertex.addVertexToRandomPosition(g);
     }
 
-    HashMap<VertexModel, VertexModel> methodOwners = new HashMap<VertexModel, VertexModel>();
-    HashMap<String, VertexModel> classes = new HashMap<String, VertexModel>();
-    HashMap<String, HashMap<String, VertexModel>> methods = new HashMap<String, HashMap<String, VertexModel>>();
+    HashMap<Vertex, Vertex> methodOwners = new HashMap<Vertex, Vertex>();
+    HashMap<String, Vertex> classes = new HashMap<String, Vertex>();
+    HashMap<String, HashMap<String, Vertex>> methods = new HashMap<String, HashMap<String, Vertex>>();
 
-    private VertexModel getClassVertex(StackTraceElement ste) {
+    private Vertex getClassVertex(StackTraceElement ste) {
         String clazz = ste.getClassName();
         String method = ste.getMethodName();
-        VertexModel _class = classes.get(clazz);
+        Vertex _class = classes.get(clazz);
         if (methods.get(clazz) == null)
-            methods.put(clazz, new HashMap<String, VertexModel>());
-        VertexModel _method = methods.get(clazz).get(method);
-        VertexModel _methodParent = methodOwners.get(_method);
+            methods.put(clazz, new HashMap<String, Vertex>());
+        Vertex _method = methods.get(clazz).get(method);
+        Vertex _methodParent = methodOwners.get(_method);
         if (_class == null || !g.containsVertex(_class)) {
             _class = addVertex();
             _class.setLabel(clazz.substring(clazz.lastIndexOf(".") + 1));
@@ -149,10 +149,10 @@ class BlackBoardDebug extends BlackBoard {
         return _method;
     }
 
-    private EdgeModel addEdge(StackTraceElement ste, String logName, boolean set, boolean listener) {
+    private Edge addEdge(StackTraceElement ste, String logName, boolean set, boolean listener) {
         g.setShowChangesOnView(true);
         
-        EdgeModel e = null;
+        Edge e = null;
         if (set)
             e= AddEdge.doJob(g, getClassVertex(ste), getLogVertex(logName));
         else

@@ -6,7 +6,7 @@ package graphlab.plugins.visualization.localsfvis;
 import graphlab.graph.graph.AbstractGraphRenderer;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.exceptions.InvalidVertexException;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.core.exception.ExceptionHandler;
@@ -34,7 +34,7 @@ class animatorLSF extends Thread {
     private BlackBoard blackboard;
     private GraphModel g;
     private AbstractGraphRenderer gv;
-    private VertexModel[] v;
+    private Vertex[] v;
     private Rectangle[] vRects;  //represents the rectangle arround each vertex
     private GraphPoint[] verPos; //fresh generated vertex positions!
     private Point[] velocity;
@@ -225,7 +225,7 @@ class animatorLSF extends Thread {
 
     private void updateKs() {
         int i = 0;
-        for (VertexModel vm : g) {
+        for (Vertex vm : g) {
             vRects[i] = vm.getBounds().getBounds();
             i++;
         }
@@ -300,12 +300,12 @@ class animatorLSF extends Thread {
                 neighbors[i] = new HashSet<Integer>();
                 if (i != 0) dists[i - 1] = new pair(0, 0);  //the len of dists should be n-1
             }
-            v = new VertexModel[n];
+            v = new Vertex[n];
             vRects = new Rectangle[n];
             stableVertex = new boolean[n];
         }
         int i = 0;
-        for (VertexModel vm : g) {
+        for (Vertex vm : g) {
             v[i] = vm;
             verPos[i] = vm.getLocation();
             velocity[i] = new Point();

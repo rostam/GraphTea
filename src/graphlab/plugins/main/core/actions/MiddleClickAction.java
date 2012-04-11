@@ -8,7 +8,7 @@ import graphlab.graph.event.EdgeEvent;
 import graphlab.graph.event.GraphEvent;
 import graphlab.graph.event.VertexEvent;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.core.Listener;
 import graphlab.platform.extension.BasicExtension;
@@ -39,7 +39,7 @@ public class MiddleClickAction implements BasicExtension, Listener {
                 ve.v.setMark(!ve.v.getMark());
                 GraphModel g = gd.getGraph();
                 int di = ve.v.getMark() ? 1 : -1;
-                for (VertexModel v : g.getNeighbors(ve.v)) {
+                for (Vertex v : g.getNeighbors(ve.v)) {
                     v.setColor(v.getColor() + di);
                 }
             }
@@ -63,7 +63,7 @@ public class MiddleClickAction implements BasicExtension, Listener {
                     if (ge.mouseWheelMoveAmount > 0)
                         gd.select.expandSelection();
                     else
-                        for (VertexModel v : gd.select.getSelectedVertices()) {
+                        for (Vertex v : gd.select.getSelectedVertices()) {
                             v.setColor((v.getColor() + 1) % 20);
                         }
                 }

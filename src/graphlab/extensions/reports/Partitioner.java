@@ -4,7 +4,7 @@
 
 package graphlab.extensions.reports;
 
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.BaseEdge;
 import graphlab.library.BaseGraph;
 import graphlab.library.BaseVertex;
@@ -70,7 +70,7 @@ public class Partitioner {
             }
         }
 
-        V = new VertexModel[v.size()];
+        V = new Vertex[v.size()];
         N = v.size();
         v.toArray(V);
 
@@ -89,7 +89,7 @@ public class Partitioner {
     boolean mark[];
 //    boolean markbck[];
 
-    VertexModel[] V;
+    Vertex[] V;
     int ID[];
     int N;
     ArrayDeque<BaseVertex> v;

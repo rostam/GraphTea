@@ -58,7 +58,7 @@ public class VertexTransformer extends AbstractAction implements PaintHandler<Ab
         if (GraphRectRegionSelect.isSelecting)
             return;
 
-        HashSet<VertexModel> selectedVertices = gd.select.getSelectedVertices();
+        HashSet<Vertex> selectedVertices = gd.select.getSelectedVertices();
         if (selectedVertices.size() <= 1)
             return;
 
@@ -71,7 +71,7 @@ public class VertexTransformer extends AbstractAction implements PaintHandler<Ab
             //Gather initial and undo information
             GraphPoint pos = ge.mousePos;
             verticesPositionsBackUp = new GraphPoint[g.getVerticesCount()];
-            for (VertexModel _ : g) {
+            for (Vertex _ : g) {
                 verticesPositionsBackUp[_.getId()] = _.getLocation();
             }
             drgStartMouseX = ge.mousePos.x;
@@ -160,7 +160,7 @@ public class VertexTransformer extends AbstractAction implements PaintHandler<Ab
             }
 
             //transform
-            for (VertexModel v : selectedVertices) {
+            for (Vertex v : selectedVertices) {
                 GraphPoint loc = verticesPositionsBackUp[v.getId()];
                 double vx = loc.x;
                 double vy = loc.y;
@@ -172,7 +172,7 @@ public class VertexTransformer extends AbstractAction implements PaintHandler<Ab
 //            System.out.println("dropped");
             //add undo data
             GraphPoint[] newPos = new GraphPoint[gd.getGraph().getVerticesCount()];
-            for (VertexModel _ : gd.getGraph()) {
+            for (Vertex _ : gd.getGraph()) {
                 newPos[_.getId()] = _.getLocation();
             }
 
@@ -187,7 +187,7 @@ public class VertexTransformer extends AbstractAction implements PaintHandler<Ab
     }
 
     public void paint(Graphics g, Object destinationComponent, Boolean drawExtras) {
-        HashSet<VertexModel> selectedVertices = gd.select.getSelectedVertices();
+        HashSet<Vertex> selectedVertices = gd.select.getSelectedVertices();
         if (selectedVertices.size() <= 1)
             return;
 
@@ -238,7 +238,7 @@ public class VertexTransformer extends AbstractAction implements PaintHandler<Ab
         }
 
         GraphData gd = new GraphData(b);
-        HashSet<VertexModel> selectedVertices = gd.select.getSelectedVertices();
+        HashSet<Vertex> selectedVertices = gd.select.getSelectedVertices();
         if (selectedVertices.size() <= 1)
             return false;
 

@@ -443,10 +443,10 @@
           <entry key="object" value="graphlab.graph.edge.EdgeView"/>
         </map>
       </node>
-      <node name="graphlab.graph.graph.EdgeModel">
+      <node name="graphlab.graph.graph.Edge">
         <map>
           <entry key="showEdgeWeights" value="true"/>
-          <entry key="object" value="graphlab.graph.graph.EdgeModel"/>
+          <entry key="object" value="graphlab.graph.graph.Edge"/>
           <entry key="defaultStroke" value="solid"/>
         </map>
       </node>
@@ -469,9 +469,9 @@
           <entry key="showEdgeWeights" value="true"/>
         </map>
       </node>
-      <node name="graphlab.graph.graph.VertexModel">
+      <node name="graphlab.graph.graph.Vertex">
         <map>
-          <entry key="object" value="graphlab.graph.graph.VertexModel"/>
+          <entry key="object" value="graphlab.graph.graph.Vertex"/>
         </map>
       </node>
       <node name="graphlab.graph.old.ArrowHandler">

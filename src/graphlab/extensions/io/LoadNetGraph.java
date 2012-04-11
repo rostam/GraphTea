@@ -4,10 +4,10 @@
 
 package graphlab.extensions.io;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.plugins.main.saveload.SaveLoadPluginMethods;
 import graphlab.plugins.main.saveload.core.GraphIOException;
 import graphlab.plugins.main.saveload.core.extension.GraphReaderExtension;
@@ -61,9 +61,9 @@ public class LoadNetGraph implements GraphReaderExtension {
             sc.nextLine();
             GraphModel g = new GraphModel(false);
             //Read Vertices
-            ArrayList<VertexModel> V = new ArrayList<VertexModel>(n);
+            ArrayList<Vertex> V = new ArrayList<Vertex>(n);
             for (int i = 0; i < n; i++) {
-                VertexModel curv = new VertexModel();
+                Vertex curv = new Vertex();
                 l = sc.nextLine();
                 int start = l.indexOf('"');
                 int end = l.indexOf('"', start + 1);
@@ -80,11 +80,11 @@ public class LoadNetGraph implements GraphReaderExtension {
             l = sc.next();
             if (!l.contains("dges"))
                 throw new GraphIOException("Incorrect Format(in the first line)");
-            ArrayList<EdgeModel> E=new ArrayList<EdgeModel>();
+            ArrayList<Edge> E=new ArrayList<Edge>();
             while (sc.hasNext()) {
-                VertexModel src = V.get(sc.nextInt()-1);
-                VertexModel trg = V.get(sc.nextInt()-1);
-                EdgeModel cure = new EdgeModel(src, trg);
+                Vertex src = V.get(sc.nextInt()-1);
+                Vertex trg = V.get(sc.nextInt()-1);
+                Edge cure = new Edge(src, trg);
                 cure.setWeight(sc.nextInt());
                 E.add(cure);
             }

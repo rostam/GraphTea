@@ -4,9 +4,9 @@
 
 package graphlab.extensions.generators;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
@@ -27,7 +27,7 @@ public class WheelGenerator implements GraphGeneratorExtension, Parametrizable, 
     private GraphModel g;
     @Parameter(name = "n")
     public static Integer n = 5;
-    private VertexModel[] v;
+    private Vertex[] v;
 
     public String getName() {
         return "Wheel Graph";
@@ -41,27 +41,27 @@ public class WheelGenerator implements GraphGeneratorExtension, Parametrizable, 
         this.g = g;
     }
 
-    public VertexModel[] getVertices() {
-        VertexModel[] ret = new VertexModel[n];
+    public Vertex[] getVertices() {
+        Vertex[] ret = new Vertex[n];
         for (int i = 0; i < n; i++)
-            ret[i] = new VertexModel();
+            ret[i] = new Vertex();
         this.v = ret;
         return ret;
     }
 
-    public EdgeModel[] getEdges() {
-        EdgeModel[] ret = new EdgeModel[2 * n - 2];
+    public Edge[] getEdges() {
+        Edge[] ret = new Edge[2 * n - 2];
         int counter = 0;
         for (int i = 1; i < n - 1; i++) {
-            ret[counter] = new EdgeModel(v[i], v[i + 1]);
+            ret[counter] = new Edge(v[i], v[i + 1]);
             counter++;
         }
 
-        ret[counter] = new EdgeModel(v[n - 1], v[1]);
+        ret[counter] = new Edge(v[n - 1], v[1]);
         counter++;
 
         for (int i = 1; i < n; i++) {
-            ret[counter] = new EdgeModel(v[0], v[i]);
+            ret[counter] = new Edge(v[0], v[i]);
             counter++;
         }
         return ret;

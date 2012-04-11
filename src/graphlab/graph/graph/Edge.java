@@ -4,7 +4,7 @@
 package graphlab.graph.graph;
 
 import graphlab.graph.atributeset.EdgeAttrSet;
-import graphlab.graph.event.EdgeModelListener;
+import graphlab.graph.event.EdgeListener;
 import graphlab.graph.old.Arrow;
 import graphlab.graph.old.ArrowHandler;
 import graphlab.graph.old.GStroke;
@@ -22,9 +22,9 @@ import java.util.Map;
  *       Mohsen Mansouryar > Added Loop Support
  *
  */
-public class EdgeModel extends BaseEdge<VertexModel> {
+public class Edge extends BaseEdge<Vertex> {
 
-    public EdgeModelListener view;
+    public EdgeListener view;
     private boolean isSelected = false;
     private boolean showWeight = true;
     private GStroke stroke;
@@ -124,7 +124,7 @@ public class EdgeModel extends BaseEdge<VertexModel> {
     }
 
     /**
-     * @see VertexModel#addGlobalUserDefinedAttribute
+     * @see Vertex#addGlobalUserDefinedAttribute
      */
     public static void removeGlobalUserDefinedAttribute(String name) {
         globalUserDefinedAttributes.remove(name);
@@ -147,8 +147,8 @@ public class EdgeModel extends BaseEdge<VertexModel> {
      * @param vm2
      * @return
      */
-    public EdgeModel getCopy(VertexModel vm1, VertexModel vm2) {
-        return new EdgeModel(this, vm1, vm2);
+    public Edge getCopy(Vertex vm1, Vertex vm2) {
+        return new Edge(this, vm1, vm2);
     }
 
     /**
@@ -159,7 +159,7 @@ public class EdgeModel extends BaseEdge<VertexModel> {
      *
      * @param edge
      */
-    public EdgeModel(EdgeModel edge, VertexModel source, VertexModel target) {
+    public Edge(Edge edge, Vertex source, Vertex target) {
         super(source, target);
         //copies all attributes from second edge to first edge
         AttributeSet a = new EdgeAttrSet(edge);
@@ -173,13 +173,13 @@ public class EdgeModel extends BaseEdge<VertexModel> {
         stroke = FastRenderer.defaultStroke;
     }
 
-    public EdgeModel(VertexModel v1, VertexModel v2) {
+    public Edge(Vertex v1, Vertex v2) {
         super(v1, v2);
         showWeight = GraphModel.showEdgeWeights;
         stroke = FastRenderer.defaultStroke;
     }
 
-    public EdgeModel(VertexModel v1, VertexModel v2, BaseEdgeProperties prop) {
+    public Edge(Vertex v1, Vertex v2, BaseEdgeProperties prop) {
         super(v1, v2, prop);
         showWeight = GraphModel.showEdgeWeights;
         stroke = FastRenderer.defaultStroke;
@@ -232,7 +232,7 @@ public class EdgeModel extends BaseEdge<VertexModel> {
         repaintView();
     }
 
-    public void setEdgeModelListener(EdgeModelListener listener) {
+    public void setEdgeListener(EdgeListener listener) {
         this.view = listener;
     }
 

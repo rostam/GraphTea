@@ -13,8 +13,8 @@ import java.util.Map;
  */
 public class GraphColoring {
     public GraphModel graph;
-    public HashMap<VertexModel, Integer> vertexColors = new HashMap<VertexModel, Integer>();
-    public HashMap<EdgeModel, Integer> edgeColors = new HashMap<EdgeModel, Integer>();
+    public HashMap<Vertex, Integer> vertexColors = new HashMap<Vertex, Integer>();
+    public HashMap<Edge, Integer> edgeColors = new HashMap<Edge, Integer>();
     public String label = "";
 
     public GraphColoring(GraphModel graph) {
@@ -36,13 +36,13 @@ public class GraphColoring {
         }
         if (vertexColors != null && vertexColors.size() > 0) {
             txt = txt + "Vertex colors: ";
-            for (Map.Entry<VertexModel, Integer> p : vertexColors.entrySet()) {
+            for (Map.Entry<Vertex, Integer> p : vertexColors.entrySet()) {
                 txt = txt + p.getKey().getLabel() + ":" + p.getValue() + " , ";
             }
         }
         if (edgeColors != null && edgeColors.size() > 0) {
             txt = txt + "\nEdge colors: ";
-            for (Map.Entry<EdgeModel, Integer> p : edgeColors.entrySet()) {
+            for (Map.Entry<Edge, Integer> p : edgeColors.entrySet()) {
                 txt = txt + p.getKey().getLabel() + ":" + p.getValue() + " , ";
             }
         }
@@ -51,12 +51,12 @@ public class GraphColoring {
 
     public void applyColoring() {
         if (vertexColors != null && vertexColors.size() > 0) {
-            for (Map.Entry<VertexModel, Integer> p : vertexColors.entrySet()) {
+            for (Map.Entry<Vertex, Integer> p : vertexColors.entrySet()) {
                 p.getKey().setColor(p.getValue());
             }
         }
         if (edgeColors != null && edgeColors.size() > 0) {
-            for (Map.Entry<EdgeModel, Integer> p : edgeColors.entrySet()) {
+            for (Map.Entry<Edge, Integer> p : edgeColors.entrySet()) {
                 p.getKey().setColor(p.getValue());
             }
         }
@@ -67,13 +67,13 @@ public class GraphColoring {
      * resets and stores all colorings of g
      */
     public void backupColoring() {
-        vertexColors = new HashMap<VertexModel, Integer>();
-        for (VertexModel v : graph) {
+        vertexColors = new HashMap<Vertex, Integer>();
+        for (Vertex v : graph) {
             vertexColors.put(v, v.getColor());
         }
-        edgeColors = new HashMap<EdgeModel, Integer>();
-        for (Iterator<EdgeModel> ite = graph.edgeIterator(); ite.hasNext();) {
-            EdgeModel e = ite.next();
+        edgeColors = new HashMap<Edge, Integer>();
+        for (Iterator<Edge> ite = graph.edgeIterator(); ite.hasNext();) {
+            Edge e = ite.next();
             edgeColors.put(e, e.getColor());
         }
     }

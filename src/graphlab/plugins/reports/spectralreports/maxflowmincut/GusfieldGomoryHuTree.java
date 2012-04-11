@@ -1,14 +1,8 @@
 package graphlab.plugins.reports.spectralreports.maxflowmincut;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 
 public class GusfieldGomoryHuTree {
 
@@ -28,11 +22,11 @@ public class GusfieldGomoryHuTree {
 	}
 	public GraphModel perform()
 	{
-		//HashMap<VertexModel, LinkedList<VertexModel>> neighbors = new HashMap<VertexModel, LinkedList<VertexModel>>();
+		//HashMap<Vertex, LinkedList<Vertex>> neighbors = new HashMap<Vertex, LinkedList<Vertex>>();
 		int size = mainGraph.numOfVertices();
 		
 		//first node creation
-		VertexModel s1 = new VertexModel();
+		Vertex s1 = new Vertex();
 		s1.setLabel(mainGraph.getVertex(0).getLabel());
 		s1.setLocation(mainGraph.getVertex(0).getLocation());
 		GHTree.addVertex(s1);
@@ -79,20 +73,20 @@ public class GusfieldGomoryHuTree {
 	{
 		GHTree.clear();
 		int size = mainGraph.numOfVertices();
-		VertexModel v, vg;
+		Vertex v, vg;
 		for(int s=0; s<size; s++)
 		{
 			// node creation
 			vg = mainGraph.getVertex(s);
-			v = new VertexModel();
+			v = new Vertex();
 			v.setLabel(vg.getLabel());
 			v.setLocation(vg.getLocation());
 			GHTree.addVertex(v);
 		}
-		EdgeModel e;
+		Edge e;
 		for(int i=0; i<size; i++)
 		{
-			e = new EdgeModel(GHTree.getVertex(i), GHTree.getVertex(neighbors[i]));
+			e = new Edge(GHTree.getVertex(i), GHTree.getVertex(neighbors[i]));
 			e.setWeight(flow[i]);
 			e.setShowWeight(true);
 			GHTree.addEdge(e);
@@ -105,9 +99,9 @@ public class GusfieldGomoryHuTree {
 
 /*
  * 
- * VertexModel s,t,i;
-		EdgeModel st, it, res;
-		Iterator<EdgeModel> itIter;
+ * Vertex s,t,i;
+		Edge st, it, res;
+		Iterator<Edge> itIter;
 		Collection<Integer> Cut;
 		boolean isSource;
 		String label;
@@ -152,7 +146,7 @@ public class GusfieldGomoryHuTree {
 							label = GHTree.getEdge(t, i).getLabel();
 							GHTree.removeEdge(GHTree.getEdge(t, i));
 						}
-						res = new EdgeModel(i, s);
+						res = new Edge(i, s);
 						res.setLabel(label);
 						GHTree.addEdge(res);
 					}

@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.visualization.circular;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.BaseVertexProperties;
 import graphlab.plugins.visualization.corebasics.basics.Cycle;
 import graphlab.plugins.visualization.corebasics.basics.PathProperties;
@@ -24,27 +24,27 @@ import java.util.Vector;
  */
 public class CircularDispatchVisualization implements VisualizationExtension {
     String event = UIUtils.getUIEventKey("CircularTreeVisualization");
-    public Vector<VertexModel> visitedVertices = new Vector<VertexModel>();
-    public HashMap<VertexModel, Point2D> vertexPlaces = new HashMap<VertexModel, Point2D>();
-    VertexModel root;
-    public Vector<VertexModel> children = new Vector<VertexModel>();
-    public HashMap<VertexModel, Integer> vertexHeights = new HashMap<VertexModel, Integer>();
+    public Vector<Vertex> visitedVertices = new Vector<Vertex>();
+    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<Vertex, Point2D>();
+    Vertex root;
+    public Vector<Vertex> children = new Vector<Vertex>();
+    public HashMap<Vertex, Integer> vertexHeights = new HashMap<Vertex, Integer>();
 
-    public HashMap<VertexModel, Integer> vertexCycleLength = new HashMap<VertexModel, Integer>();
+    public HashMap<Vertex, Integer> vertexCycleLength = new HashMap<Vertex, Integer>();
 
 
     private Cycle FindMainCycle(GraphModel g) {
-        VertexModel root = g.getAVertex();
-        Iterator<VertexModel> ei = g.iterator();
+        Vertex root = g.getAVertex();
+        Iterator<Vertex> ei = g.iterator();
         for (; ei.hasNext();) {
-            VertexModel e = ei.next();
+            Vertex e = ei.next();
             root = findHigherVertex(e, root);
         }
 
-        Vector<VertexModel> t1 = new Vector<VertexModel>();
+        Vector<Vertex> t1 = new Vector<Vertex>();
         t1.add(root);
         findCycle(t1, (int) vertexHeights.get(root), 0);
-        for (VertexModel v : g) {
+        for (Vertex v : g) {
             int firstColor = ((PathProperties) v.getProp().obj).getFirstColor();
             int secColor = ((PathProperties) v.getProp().obj).getSecondColor();
             if (secColor != -1) {
@@ -54,13 +54,13 @@ public class CircularDispatchVisualization implements VisualizationExtension {
         }
         Object[] verticeArray = vertexCycleLength.keySet().toArray();
         Arrays.sort(verticeArray, new VertexCycleLengthComparator());
-        VertexModel maxLengthCycle = (VertexModel) verticeArray[0];
+        Vertex maxLengthCycle = (Vertex) verticeArray[0];
         return new Cycle();
     }
 
-    private VertexModel findHigherVertex(VertexModel v1, VertexModel v2) {
-        Vector<VertexModel> t1 = new Vector<VertexModel>();
-        Vector<VertexModel> t2 = new Vector<VertexModel>();
+    private Vertex findHigherVertex(Vertex v1, Vertex v2) {
+        Vector<Vertex> t1 = new Vector<Vertex>();
+        Vector<Vertex> t2 = new Vector<Vertex>();
         t1.add(v1);
         t2.add(v2);
         int i = maxHeight(t1, 0);
@@ -74,15 +74,15 @@ public class CircularDispatchVisualization implements VisualizationExtension {
         }
     }
 
-    private void findCycle(Vector<VertexModel> currentLevel, int minLength, int color) {
-        Vector<VertexModel> nextLevel = new Vector<VertexModel>();
-        for (VertexModel v : currentLevel) {
+    private void findCycle(Vector<Vertex> currentLevel, int minLength, int color) {
+        Vector<Vertex> nextLevel = new Vector<Vertex>();
+        for (Vertex v : currentLevel) {
             v.setMark(true);
-            Iterator<EdgeModel> em = g.edgeIterator(v);
+            Iterator<Edge> em = g.edgeIterator(v);
 
             for (; em.hasNext();) {
-                EdgeModel e = em.next();
-                VertexModel v2 = e.source;
+                Edge e = em.next();
+                Vertex v2 = e.source;
                 String vPathName = ((PathProperties) v.getProp().obj).getName();
                 Object obj = v2.getProp().obj;
                 boolean check = true;
@@ -120,14 +120,14 @@ public class CircularDispatchVisualization implements VisualizationExtension {
         }
     }
 
-    private int maxHeight(Vector<VertexModel> currentLevel, int maxLevel) {
-        Vector<VertexModel> nextLevel = new Vector<VertexModel>();
-        for (VertexModel v : currentLevel) {
+    private int maxHeight(Vector<Vertex> currentLevel, int maxLevel) {
+        Vector<Vertex> nextLevel = new Vector<Vertex>();
+        for (Vertex v : currentLevel) {
             v.setMark(true);
-            Iterator<EdgeModel> em = g.edgeIterator(v);
+            Iterator<Edge> em = g.edgeIterator(v);
             for (; em.hasNext();) {
-                EdgeModel e = em.next();
-                VertexModel v2 = e.source;
+                Edge e = em.next();
+                Vertex v2 = e.source;
                 if (!v2.getMark()) {
                     nextLevel.add(v2);
                     v2.setMark(true);
@@ -145,9 +145,9 @@ public class CircularDispatchVisualization implements VisualizationExtension {
     static GraphModel g;
     /* public void performJob(Event eventName, Object value) {
         System.out.println("hello");
-        visitedVertices=new Vector<VertexModel>();
-        vertexPlaces=new HashMap<VertexModel, Point2D>();
-        children=new Vector<VertexModel>();
+        visitedVertices=new Vector<Vertex>();
+        vertexPlaces=new HashMap<Vertex, Point2D>();
+        children=new Vector<Vertex>();
         g = ((GraphModel) (blackboard.getData(GraphAttrSet.name)));
         try {
             Cycle c = FindMainCycle(g);
@@ -163,13 +163,13 @@ public class CircularDispatchVisualization implements VisualizationExtension {
     }*/
 
 
-    public Vector<VertexModel> findNextLevelChildren(Vector<VertexModel> currentLevelVertices) {
-        Vector<VertexModel> newChildren = new Vector<VertexModel>();
-        for (VertexModel v : currentLevelVertices) {
-            Iterator<EdgeModel> e = g.edgeIterator(v);
+    public Vector<Vertex> findNextLevelChildren(Vector<Vertex> currentLevelVertices) {
+        Vector<Vertex> newChildren = new Vector<Vertex>();
+        for (Vertex v : currentLevelVertices) {
+            Iterator<Edge> e = g.edgeIterator(v);
             for (; e.hasNext();) {
-                EdgeModel ed = e.next();
-                VertexModel dest = ed.source;
+                Edge ed = e.next();
+                Vertex dest = ed.source;
                 if (!visitedVertices.contains(dest)) {
                     newChildren.add(dest);
                 }
@@ -178,9 +178,9 @@ public class CircularDispatchVisualization implements VisualizationExtension {
         return newChildren;
     }
 
-    public void locateAll(Vector<VertexModel> currentLevelVertices, int width, int radius) {
+    public void locateAll(Vector<Vertex> currentLevelVertices, int width, int radius) {
         int currentLevelCount = currentLevelVertices.size();
-        Vector<VertexModel> nextLevel = findNextLevelChildren(currentLevelVertices);
+        Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
         int nextLevelCount = nextLevel.size();
         double degree = 360 / currentLevelCount;
         int j = 0;
@@ -189,7 +189,7 @@ public class CircularDispatchVisualization implements VisualizationExtension {
             vertexPlaces.put(root, newPoint);
 
         } else {
-            for (VertexModel v : currentLevelVertices) {
+            for (Vertex v : currentLevelVertices) {
                 double x = 350 + radius * Math.cos((Math.PI / 180) * (j * degree));
                 double y = 350 + radius * Math.sin((Math.PI / 180) * (j * degree));
                 Point2D.Double newPoint = new Point2D.Double(x, y);
@@ -221,10 +221,10 @@ public class CircularDispatchVisualization implements VisualizationExtension {
         this.g = g;
     }
 
-    public HashMap<VertexModel, Point2D> getNewVertexPlaces() {
-        visitedVertices = new Vector<VertexModel>();
-        vertexPlaces = new HashMap<VertexModel, Point2D>();
-        children = new Vector<VertexModel>();
+    public HashMap<Vertex, Point2D> getNewVertexPlaces() {
+        visitedVertices = new Vector<Vertex>();
+        vertexPlaces = new HashMap<Vertex, Point2D>();
+        children = new Vector<Vertex>();
 //        g = ((GraphModel) (blackboard.getData(GraphAttrSet.name)));
         try {
             Cycle c = FindMainCycle(g);
@@ -239,7 +239,7 @@ public class CircularDispatchVisualization implements VisualizationExtension {
         return vertexPlaces;
     }
 
-    public HashMap<EdgeModel, Point2D> getNewEdgeCurveControlPoints() {
-        return new HashMap<EdgeModel, Point2D>();
+    public HashMap<Edge, Point2D> getNewEdgeCurveControlPoints() {
+        return new HashMap<Edge, Point2D>();
     }
 }

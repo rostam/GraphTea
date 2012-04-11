@@ -3,7 +3,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.algorithmanimator.core.atoms;
 
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.graph.ui.GTabbedGraphPane;
 import graphlab.library.event.Event;
 import graphlab.library.event.VertexRequest;
@@ -39,7 +39,7 @@ class vs extends aa {
         listen4Event(VertexSelectData.EVENT_KEY);
     }
 
-    VertexModel a;
+    Vertex a;
 
     public void performAction(String key, Object value) {
         VertexSelectData vsd = blackboard.getData(VertexSelectData.EVENT_KEY);
@@ -47,7 +47,7 @@ class vs extends aa {
         super.performAction(key, value);
     }
 
-    public VertexModel getResult() {
+    public Vertex getResult() {
         return a;
     }
 }

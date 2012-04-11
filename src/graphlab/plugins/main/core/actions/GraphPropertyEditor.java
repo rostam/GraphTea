@@ -7,9 +7,9 @@ import graphlab.graph.atributeset.*;
 import graphlab.graph.event.EdgeEvent;
 import graphlab.graph.event.GraphSelectData;
 import graphlab.graph.event.VertexEvent;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.graph.old.GStroke;
 import static graphlab.graph.old.GStroke.*;
 import graphlab.platform.attribute.*;
@@ -41,9 +41,9 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
 
     public AttributeSetView viewer;
 
-    VertexModel lastVertex;
+    Vertex lastVertex;
 
-    EdgeModel lastEdge;
+    Edge lastEdge;
 
     private TimeLimitedNotifiableAttrSet target;
 
@@ -95,9 +95,9 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
 //        graphView.setIndex(EdgeAttrSet.SHOW_EDGE_LABELS, 3);
 
 //Storing Id in vertex is deprecated
-//        vertexView.setVisible(VertexModel.ID, false);
-//        vertexView.setVisible(VertexModel.XPOS, false);
-//        vertexView.setVisible(VertexModel.YPOS, false);
+//        vertexView.setVisible(Vertex.ID, false);
+//        vertexView.setVisible(Vertex.XPOS, false);
+//        vertexView.setVisible(Vertex.YPOS, false);
         vertexView.setIndex(VertexAttrSet.LABEL, 0);
         vertexView.setIndex(VertexAttrSet.COLOR, 2);
         vertexView.setIndex(VertexAttrSet.SHAPE, 4);
@@ -135,12 +135,12 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
     }
 
 
-    private VertexModel lastVertex() {
+    private Vertex lastVertex() {
         VertexEvent x = blackboard.getData(VertexEvent.EVENT_KEY);
         return (x == null ? null : x.v);
     }
 
-    private EdgeModel lastEdge() {
+    private Edge lastEdge() {
         EdgeEvent x = blackboard.getData(EdgeEvent.EVENT_KEY);
         return (x == null ? null : x.e);
     }
@@ -202,13 +202,13 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
         if (!iChangedTheAttribute) {
             String key = name.substring(1);     //the original name of attribute
             if (name.startsWith("v")) { //it was a vertex attribute
-                for (VertexModel v : spm.getSelectedVertices()) {
+                for (Vertex v : spm.getSelectedVertices()) {
                     VertexAttrSet _v = new VertexAttrSet(v);
                     _v.put(key, newVal);
                 }
             }
             if (name.startsWith("e")) { //it was an edge attribute
-                for (EdgeModel e : spm.getSelectedEdges()) {
+                for (Edge e : spm.getSelectedEdges()) {
                     EdgeAttrSet _e = new EdgeAttrSet(e);
                     _e.put(key, newVal);
 
@@ -220,8 +220,8 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
     boolean iChangedTheAttribute = false;
 
     private void updatePropertyEditor_selected() {
-        HashSet<VertexModel> selectedVertices = spm.getSelectedVertices();
-        HashSet<EdgeModel> selectedEdges = spm.getSelectedEdges();
+        HashSet<Vertex> selectedVertices = spm.getSelectedVertices();
+        HashSet<Edge> selectedEdges = spm.getSelectedEdges();
 
         int numOfSelectedVertices = selectedVertices.size();
         int numOfSelectedEdges = selectedEdges.size();
@@ -247,7 +247,7 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
             retAtrs.put("Vertices", numOfSelectedVertices);
             selectView.setEditable("Vertices", false);
             selectView.setIndex("Vertices", i++);
-            for (VertexModel v : selectedVertices) {
+            for (Vertex v : selectedVertices) {
                 if (i < 500) {
                     AttributeSet vAtrs = new VertexAttrSet(v);
                     vertexView.setAttribute(vAtrs);
@@ -266,7 +266,7 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
             selectView.setIndex("   ", i++);
             selectView.setIndex("Edges", i++);
             selectView.setEditable("Edges", false);
-            for (EdgeModel e : selectedEdges) {
+            for (Edge e : selectedEdges) {
                 if (i < 1000) {
                     AttributeSet eAtrs = new EdgeAttrSet(e);
                     for (String atrName : eAtrs.getAttrs().keySet()) {

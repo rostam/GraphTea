@@ -5,7 +5,7 @@
 package graphlab.extensions.reports.basicreports;
 
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.plugins.main.GraphData;
 import graphlab.plugins.main.core.AlgorithmUtils;
@@ -35,10 +35,10 @@ public class NumOfQuadrangle implements GraphReportExtension {
      */
     public static int getNumOfQuadrangles(GraphModel graph) {
         int quadrangles = 0;
-        for (VertexModel i : graph)
-            for (VertexModel j : AlgorithmUtils.getNeighbors(graph, i))
-                for (VertexModel k : AlgorithmUtils.getNeighbors(graph, j))
-                    for (VertexModel l : AlgorithmUtils.getNeighbors(graph, k))
+        for (Vertex i : graph)
+            for (Vertex j : AlgorithmUtils.getNeighbors(graph, i))
+                for (Vertex k : AlgorithmUtils.getNeighbors(graph, j))
+                    for (Vertex l : AlgorithmUtils.getNeighbors(graph, k))
                         if (l != j &&
                                 l != i &&
                                 k != i &&

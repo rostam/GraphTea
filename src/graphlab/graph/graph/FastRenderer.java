@@ -24,7 +24,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
 
-public class FastRenderer extends AbstractGraphRenderer implements VertexModelListener, EdgeModelListener, GraphControlListener, StorableOnExit {
+public class FastRenderer extends AbstractGraphRenderer implements VertexListener, EdgeListener, GraphControlListener, StorableOnExit {
     {
         SETTINGS.registerSetting(this, "Graph Drawings");
     }
@@ -65,12 +65,12 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexModelLi
 
     public void setGraph(GraphModel g) {
         super.setGraph(g);
-        for (VertexModel v : g) {
+        for (Vertex v : g) {
             v.setVertexListener(this);
         }
-        for (Iterator<EdgeModel> ie = g.edgeIterator(); ie.hasNext();) {
-            EdgeModel e = ie.next();
-            e.setEdgeModelListener(this);
+        for (Iterator<Edge> ie = g.edgeIterator(); ie.hasNext();) {
+            Edge e = ie.next();
+            e.setEdgeListener(this);
         }
     }
 
@@ -188,10 +188,10 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexModelLi
 
     public void nicepaintGraph(Graphics gg, Boolean drawExtras) {
         lastpaintTime = System.currentTimeMillis();
-        Iterator<EdgeModel> ie = getGraph().edgeIterator();
+        Iterator<Edge> ie = getGraph().edgeIterator();
         try {
             while (ie.hasNext()) {
-                EdgeModel e = ie.next();
+                Edge e = ie.next();
                 paint((Graphics2D) gg, e, getGraph(), drawExtras);
             }
         } catch (Exception ex) {
@@ -201,7 +201,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexModelLi
                 Thread.sleep(100);
                 ie = getGraph().lightEdgeIterator();
                 while (ie.hasNext()) {
-                    EdgeModel e = ie.next();
+                    Edge e = ie.next();
                     paint((Graphics2D) gg, e, getGraph(), drawExtras);
                 }
             } catch (Exception e1) {
@@ -213,7 +213,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexModelLi
         gg.setColor(Color.darkGray);
 
         try {
-            for (VertexModel v : getGraph()) {
+            for (Vertex v : getGraph()) {
                 GraphPoint l = v.getLocation();
                 gg.setColor(GraphModel.getColor(v.getColor()));
                 String s = v.getLabel();
@@ -230,10 +230,10 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexModelLi
     public void fastpaintGraph(Graphics g, Boolean drawExtras) {
         Graphics2D gg = (Graphics2D) g;
         lastpaintTime = System.currentTimeMillis();
-        Iterator<EdgeModel> ie = getGraph().lightEdgeIterator();
+        Iterator<Edge> ie = getGraph().lightEdgeIterator();
         try {
             while (ie.hasNext()) {
-                EdgeModel e = ie.next();
+                Edge e = ie.next();
                 GraphPoint l, r;
                 l = e.source.getLocation();
                 r = e.target.getLocation();
@@ -293,7 +293,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexModelLi
         gg.setColor(Color.darkGray);
 
         try {
-            for (VertexModel v : getGraph()) {
+            for (Vertex v : getGraph()) {
                 GraphPoint l = v.getLocation();
                 int ci = v.getColor();
                 Color c;
@@ -327,7 +327,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexModelLi
     }
 
 
-    public void paint(Graphics2D g, EdgeModel model, GraphModel graph, Boolean drawExtras) {
+    public void paint(Graphics2D g, Edge model, GraphModel graph, Boolean drawExtras) {
 
             Color color;
             if (model.getColor() == 0)
@@ -427,7 +427,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexModelLi
         }
 
 
-    public void paint(Graphics2D g, VertexModel model, int x, int y, int labelx, int labely, Boolean drawExtras) {
+    public void paint(Graphics2D g, Vertex model, int x, int y, int labelx, int labely, Boolean drawExtras) {
         GraphPoint size = model.getSize();
         int w = (int) size.x;
         int h = (int) size.y;
@@ -468,7 +468,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexModelLi
         }
     }
 
-    public void vertexAdded(VertexModel v) {
+    public void vertexAdded(Vertex v) {
         if (v.getLabel() == null)
             v.setLabel(v.getId() + "");
         v.setVertexListener(this);
@@ -476,19 +476,19 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexModelLi
         repaint();
     }
 
-    public void vertexRemoved(VertexModel v) {
+    public void vertexRemoved(Vertex v) {
         isGraphChanged = true;
         repaint();
     }
 
-    public void edgeAdded(EdgeModel e) {
+    public void edgeAdded(Edge e) {
         e.setLabel(e.getId());
-        e.setEdgeModelListener(this);
+        e.setEdgeListener(this);
         isGraphChanged = true;
         repaint();
     }
 
-    public void edgeRemoved(EdgeModel e) {
+    public void edgeRemoved(Edge e) {
         isGraphChanged = true;
         repaint();
     }
@@ -505,30 +505,30 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexModelLi
     }
 
 
-    public void repaint(VertexModel src) {
+    public void repaint(Vertex src) {
         isGraphChanged = true;
         updateGraphBounds();
         repaint();
     }
 
-    public void updateSize(VertexModel src, GraphPoint newSize) {
+    public void updateSize(Vertex src, GraphPoint newSize) {
         updateGraphBounds();
         isGraphChanged = true;
         repaint();
     }
 
-    public void updateLocation(VertexModel src, GraphPoint newLocation) {
+    public void updateLocation(Vertex src, GraphPoint newLocation) {
         updateGraphBounds();
         isGraphChanged = true;
         repaint();
     }
 
-    public void repaint(EdgeModel src) {
+    public void repaint(Edge src) {
         isGraphChanged = true;
         repaint();
     }
 
-    public void updateBounds(Rectangle r, EdgeModel src) {
+    public void updateBounds(Rectangle r, Edge src) {
         isGraphChanged = true;
 //        repaint();
     }

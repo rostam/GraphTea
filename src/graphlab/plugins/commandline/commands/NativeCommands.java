@@ -9,9 +9,9 @@ package graphlab.plugins.commandline.commands;
  * @email ma.rostami@yahoo.com
  */
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.platform.parameter.Parameter;
@@ -46,21 +46,21 @@ public class NativeCommands {
         String graph2 = "";
         graph1 += g1.getVerticesCount() + "\n";
         graph2 += g2.getVerticesCount() + "\n";
-        Iterator<EdgeModel> it1 = g1.edgeIterator();
-        Iterator<EdgeModel> it2 = g2.edgeIterator();
+        Iterator<Edge> it1 = g1.edgeIterator();
+        Iterator<Edge> it2 = g2.edgeIterator();
 
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
         HashMap<Integer, Integer> nmap = new HashMap<Integer, Integer>();
-        Iterator<VertexModel> vm = g1.iterator();
+        Iterator<Vertex> vm = g1.iterator();
         int counter = 0;
         while (vm.hasNext()) {
-            VertexModel vv = vm.next();
+            Vertex vv = vm.next();
             map.put(vv.getId(), counter);
             nmap.put(counter++, vv.getId());
         }
 
         while (it1.hasNext()) {
-            EdgeModel e = it1.next();
+            Edge e = it1.next();
             graph1 += map.get(e.source.getId()) + " " + map.get(e.target.getId()) + "\n";
         }
 
@@ -72,7 +72,7 @@ public class NativeCommands {
             map.put(vm.next().getId(), counter++);
 
         while (it2.hasNext()) {
-            EdgeModel e = it2.next();
+            Edge e = it2.next();
             graph2 += map.get(e.source.getId()) + " " + map.get(e.target.getId()) + "\n";
         }
 

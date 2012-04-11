@@ -3,8 +3,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.algorithmanimator;
 
-import graphlab.graph.graph.EdgeModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Edge;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.algorithms.traversal.BreadthFirstSearch;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.plugins.algorithmanimator.extension.AlgorithmExtension;
@@ -12,7 +12,7 @@ import graphlab.plugins.algorithmanimator.extension.AlgorithmExtension;
 
 @CommandAttitude(name = "breadth_first_search", abbreviation = "_bfs")
 public class BFSAnim
-        extends BreadthFirstSearch<VertexModel, EdgeModel>
+        extends BreadthFirstSearch<Vertex, Edge>
         implements AlgorithmExtension {
     public String getName() {
         return "BFS";

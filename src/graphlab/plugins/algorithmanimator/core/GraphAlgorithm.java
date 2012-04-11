@@ -1,9 +1,8 @@
 package graphlab.plugins.algorithmanimator.core;
 
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.algorithms.Algorithm;
-import graphlab.library.event.GraphRequest;
 import graphlab.library.event.VertexRequest;
 import graphlab.platform.core.BlackBoard;
 import graphlab.plugins.main.GraphData;
@@ -21,10 +20,10 @@ public class GraphAlgorithm extends Algorithm {
         this.graphData = new GraphData(blackBoard);
     }
     
-    public VertexModel requestVertex(GraphModel g,String msg){
+    public Vertex requestVertex(GraphModel g,String msg){
         VertexRequest vr = new VertexRequest(g, msg);
         dispatchEvent(vr);
-        return (VertexModel) vr.getVertex();
+        return (Vertex) vr.getVertex();
     }
     
     public String getMatrixHTML(GraphModel g){

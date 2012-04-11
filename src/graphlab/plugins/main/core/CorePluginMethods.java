@@ -4,10 +4,10 @@
 package graphlab.plugins.main.core;
 
 import graphlab.graph.atributeset.GraphAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.graph.ui.GHTMLPageComponent;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.core.exception.ExceptionHandler;
@@ -44,29 +44,29 @@ public class CorePluginMethods implements PluginMethods {
     /**
      * adds e to g
      */
-    public void addEdge(GraphModel g, EdgeModel e) {
+    public void addEdge(GraphModel g, Edge e) {
         AddEdge.doJob(g, e.source, e.target);
     }
 
     /**
      * adds e to current editing graph
      */
-    public void addEdge(EdgeModel e) {
+    public void addEdge(Edge e) {
         AddEdge.doJob(getGraph(), e.source, e.target);
     }
 
     /**
      * create and adds a new edge from v1, v2 to g
      */
-    public void addEdge(GraphModel g, VertexModel v1, VertexModel v2) {
+    public void addEdge(GraphModel g, Vertex v1, Vertex v2) {
         AddEdge.doJob(g, v1, v2);
     }
 
-    public void addEdge(VertexModel v1, VertexModel v2) {
+    public void addEdge(Vertex v1, Vertex v2) {
         AddEdge.doJob(getGraph(), v1, v2);
     }
 
-    public void deleteEdge(GraphModel g, EdgeModel e) {
+    public void deleteEdge(GraphModel g, Edge e) {
         g.removeEdge(e);
     }
 
@@ -91,35 +91,35 @@ public class CorePluginMethods implements PluginMethods {
     /**
      * adds a new vertex to a random point of the graph and returns it
      */
-    public VertexModel addVertex(GraphModel g) {
+    public Vertex addVertex(GraphModel g) {
         return AddVertex.addVertexToRandomPosition(g);
     }
 
     /**
      * add a new vertex to a random position of the current graph and returns it
      */
-    public VertexModel addVertex() {
+    public Vertex addVertex() {
         return AddVertex.addVertexToRandomPosition(getGraph());
     }
 
     /**
      * adds a vertex to the given point of graph
      */
-    public VertexModel addVertex(GraphModel g, int x, int y) {
+    public Vertex addVertex(GraphModel g, int x, int y) {
         return AddVertex.doJob(g, x, y);
     }
 
     /**
      * adds a vertex to the given point of current graph
      */
-    public VertexModel addVertex(int x, int y) {
+    public Vertex addVertex(int x, int y) {
         return AddVertex.doJob(getGraph(), x, y);
     }
 
     /**
      * deletes a vertex from it's coressponding graph
      */
-    public void deleteVertex(GraphModel g, VertexModel v) {
+    public void deleteVertex(GraphModel g, Vertex v) {
         DeleteVertex.doJob(g, v);
     }
 

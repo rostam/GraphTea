@@ -2,10 +2,10 @@ package graphlab.samples.extensions;// GraphLab Project: http://graphlab.sharif.
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.BoundedInteger;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
@@ -57,14 +57,14 @@ public class BinaryTreeGenerator implements GraphGeneratorExtension, Parametriza
 
     public GraphModel generateGraph() {
         GraphModel g = new GraphModel(false);
-        VertexModel[] v = new VertexModel[n];
-        EdgeModel[] e = new EdgeModel[n - 1];
+        Vertex[] v = new Vertex[n];
+        Edge[] e = new Edge[n - 1];
         //generating vertices
         for (int i = 0; i < n; i++)
-            v[i] = new VertexModel();
+            v[i] = new Vertex();
         //generating edges
         for (int i = 0; i < n - 1; i++)
-            e[i] = new EdgeModel(v[i + 1], v[i / 2]);
+            e[i] = new Edge(v[i + 1], v[i / 2]);
 
         g.insertVertices(v);
         g.insertEdges(e);

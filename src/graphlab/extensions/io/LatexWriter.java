@@ -4,10 +4,10 @@
 
 package graphlab.extensions.io;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.plugins.main.saveload.core.GraphIOException;
 import graphlab.plugins.main.saveload.core.extension.GraphWriterExtension;
 
@@ -89,7 +89,7 @@ public class LatexWriter implements GraphWriterExtension{
                             "%Vertices\n");
 
             String vertices = " ";
-            for (VertexModel vm : graph)
+            for (Vertex vm : graph)
                 vertices += "\\put("
                         + (vm.getLocation().getX() / r.getMaxX()) * 100
                         + ","
@@ -98,9 +98,9 @@ public class LatexWriter implements GraphWriterExtension{
             output.write(vertices);
 
             String edges = "";
-            Iterator<EdgeModel> em = graph.edgeIterator();
+            Iterator<Edge> em = graph.edgeIterator();
             while (em.hasNext()) {
-                EdgeModel e = em.next();
+                Edge e = em.next();
                 final GraphPoint sx = e.source.getLocation();
                 if (!graph.isEdgesCurved()) {
                     edges += "%Edge Label:" + e.getLabel() + "\n";

@@ -4,10 +4,10 @@
 package graphlab.plugins.main.ccp;
 
 import graphlab.graph.atributeset.GraphAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.graph.io.GraphML;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
@@ -58,16 +58,16 @@ public class Copy extends AbstractAction {
      * copies the sd to g
      */
     public static void copyGraph(SubGraph sd, GraphModel g) {
-        HashMap<VertexModel, VertexModel> map = new HashMap<VertexModel, VertexModel>();
-        for (VertexModel v1 : sd.vertices) {
-            VertexModel v = new VertexModel(v1);
+        HashMap<Vertex, Vertex> map = new HashMap<Vertex, Vertex>();
+        for (Vertex v1 : sd.vertices) {
+            Vertex v = new Vertex(v1);
             map.put(v1, v);
             g.insertVertex(v);
 
         }
 
-        for (EdgeModel e1 : sd.edges) {
-            EdgeModel e = new EdgeModel(e1, map.get(e1.source), map.get(e1.target));
+        for (Edge e1 : sd.edges) {
+            Edge e = new Edge(e1, map.get(e1.source), map.get(e1.target));
 
             g.insertEdge(e);
         }

@@ -4,7 +4,7 @@
 package graphlab.plugins.main.core.actions.edge;
 
 import graphlab.graph.atributeset.GraphAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
@@ -22,7 +22,7 @@ public class DeleteEdge extends AbstractAction {
         EdgeSelectData esd = blackboard.getData(EdgeSelectData.EVENT_KEY);
         GraphModel g = blackboard.getData(GraphAttrSet.name);
 
-        EdgeModel e = esd.edge;
+        Edge e = esd.edge;
         g.removeEdge(e);
     }
 

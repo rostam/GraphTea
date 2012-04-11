@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.extensions.generators;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
@@ -32,18 +32,18 @@ public class RandomTreeGenerator implements GraphGeneratorExtension, Parametriza
         this.g = g;
     }
 
-    VertexModel[] v;
+    Vertex[] v;
 
-    public VertexModel[] getVertices() {
-        VertexModel[] ret = new VertexModel[n];
+    public Vertex[] getVertices() {
+        Vertex[] ret = new Vertex[n];
         for (int i = 0; i < n; i++)
-            ret[i] = new VertexModel();
+            ret[i] = new Vertex();
         v = ret;
         return ret;
     }
 
-    public EdgeModel[] getEdges() {
-        EdgeModel[] ret = new EdgeModel[n - 1];
+    public Edge[] getEdges() {
+        Edge[] ret = new Edge[n - 1];
         int[][] ver = new int[2][n]; //o->deg 1->height
 
         ver[1][0] = 0;
@@ -53,7 +53,7 @@ public class RandomTreeGenerator implements GraphGeneratorExtension, Parametriza
             while (!(ver[0][ran] < d && ver[1][ran] < h)) {
                 ran = (ran + 1) % (i + 1);
             }
-            ret[i] = new EdgeModel(v[i + 1], v[ran]);
+            ret[i] = new Edge(v[i + 1], v[ran]);
             ver[0][i + 1]++;
             ver[0][ran]++;
             ver[1][i + 1] = ver[1][ran] + 1;

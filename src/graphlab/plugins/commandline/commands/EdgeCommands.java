@@ -5,9 +5,9 @@
 package graphlab.plugins.commandline.commands;
 
 import graphlab.graph.atributeset.GraphAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.platform.parameter.Parameter;
@@ -48,7 +48,7 @@ public class EdgeCommands {
 
     @CommandAttitude(name = "get_edge", abbreviation = "_ge"
             , description = "return the specific edge")
-    private EdgeModel getEdge(String label1, String label2) {
+    private Edge getEdge(String label1, String label2) {
         return datas.getGraph().getEdge(getVertexByLabel(label1), getVertexByLabel(label2));
     }
 
@@ -100,9 +100,9 @@ public class EdgeCommands {
         }
     }
 
-    VertexModel getVertexByID(String id) {
+    Vertex getVertexByID(String id) {
         int ID = Integer.parseInt(id);
-        for (VertexModel v : datas.getGraph()) {
+        for (Vertex v : datas.getGraph()) {
             //Init.run.ext_console.printlnResult(v.getId());
             if (v.getId() == ID)
                 return v;
@@ -110,8 +110,8 @@ public class EdgeCommands {
         return null;
     }
 
-    VertexModel getVertexByLabel(String label) {
-        for (VertexModel v : datas.getGraph()) {
+    Vertex getVertexByLabel(String label) {
+        for (Vertex v : datas.getGraph()) {
             if (v.getLabel().equals(label))
                 return v;
         }

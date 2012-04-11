@@ -3,8 +3,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.graph.event;
 
-import graphlab.graph.graph.EdgeModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Edge;
+import graphlab.graph.graph.Vertex;
 
 /**
  * the base interface which should be used to implement any GraphRenderer
@@ -12,13 +12,13 @@ import graphlab.graph.graph.VertexModel;
  * @author Azin Azadi
  */
 public interface GraphModelListener {
-    public void vertexAdded(VertexModel v);
+    public void vertexAdded(Vertex v);
 
-    public void vertexRemoved(VertexModel v);
+    public void vertexRemoved(Vertex v);
 
-    public void edgeAdded(EdgeModel e);
+    public void edgeAdded(Edge e);
 
-    public void edgeRemoved(EdgeModel e);
+    public void edgeRemoved(Edge e);
 
     public void graphCleared();
 

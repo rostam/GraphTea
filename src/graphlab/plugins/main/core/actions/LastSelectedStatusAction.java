@@ -3,8 +3,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.main.core.actions;
 
-import graphlab.graph.graph.EdgeModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Edge;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.BlackBoard;
 import graphlab.plugins.main.core.actions.edge.EdgeSelectData;
 import graphlab.plugins.main.core.actions.vertex.VertexSelectData;
@@ -61,12 +61,12 @@ public class LastSelectedStatusAction extends graphlab.platform.core.AbstractAct
         handleMouseListener();
         if (eventName == VertexSelectData.EVENT_KEY) {
             VertexSelectData last = blackboard.getData(VertexSelectData.EVENT_KEY);
-            VertexModel v = last.v;
+            Vertex v = last.v;
             l.setText("Vertex :: " + (v.getLabel()));
             this.last = v;
         }
         if (eventName == EdgeSelectData.EVENT_KEY) {
-            EdgeModel e = ((EdgeSelectData) blackboard.getData(EdgeSelectData.EVENT_KEY)).edge;
+            Edge e = ((EdgeSelectData) blackboard.getData(EdgeSelectData.EVENT_KEY)).edge;
             l.setText("Edge :: " + (e.source.getLabel()) + "-->"
                     + (e.target.getLabel()));
             last = e;

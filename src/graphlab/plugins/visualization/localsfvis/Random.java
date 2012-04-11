@@ -6,7 +6,7 @@ package graphlab.plugins.visualization.localsfvis;
 import graphlab.graph.atributeset.GraphAttrSet;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
 import graphlab.ui.UIUtils;
@@ -40,7 +40,7 @@ public class Random extends AbstractAction {
     public void performAction(String eventName, Object value) {
         g = blackboard.getData(GraphAttrSet.name);
         n = g.getVerticesCount();
-        VertexModel[] v = getVertices();
+        Vertex[] v = getVertices();
         Rectangle2D.Double b = g.getZoomedBounds();
         int w = (int) b.width;
         int h = (int) b.height;
@@ -55,10 +55,10 @@ public class Random extends AbstractAction {
         }
     }
 
-    private VertexModel[] getVertices() {
-        VertexModel[] ret = new VertexModel[n];
+    private Vertex[] getVertices() {
+        Vertex[] ret = new Vertex[n];
         int i = 0;
-        for (VertexModel vm : g) {
+        for (Vertex vm : g) {
             ret[i++] = vm;
         }
         return ret;

@@ -4,10 +4,10 @@
 
 package graphlab.extensions.io;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.plugins.main.saveload.core.GraphIOException;
 import graphlab.plugins.main.saveload.core.extension.GraphWriterExtension;
 import graphlab.platform.StaticUtils;
@@ -46,7 +46,7 @@ public class SaveSimpleGraph implements GraphWriterExtension {
 
             //output vertices
             o.println("begin vertices:");
-            for (VertexModel v : graph) {
+            for (Vertex v : graph) {
                 o.println("vertex " + v.getId() + ":");
                 o.println("label " + v.getLabel());
                 GraphPoint p = v.getLocation();
@@ -56,8 +56,8 @@ public class SaveSimpleGraph implements GraphWriterExtension {
 
             //output edges
             o.println("begin edges");
-            for (Iterator<EdgeModel> ie = graph.edgeIterator(); ie.hasNext();) {
-                EdgeModel e = ie.next();
+            for (Iterator<Edge> ie = graph.edgeIterator(); ie.hasNext();) {
+                Edge e = ie.next();
                 o.println(e.source.getId() + " -> " + e.target.getId());
                 o.println("label " + e.getLabel());
                 o.println("color " + e.getColor());

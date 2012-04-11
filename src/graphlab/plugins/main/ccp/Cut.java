@@ -4,10 +4,10 @@
 package graphlab.plugins.main.ccp;
 
 import graphlab.graph.atributeset.GraphAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.graph.io.GraphML;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
@@ -64,25 +64,25 @@ public class Cut extends AbstractAction {
         ClearSelection.clearSelected(bb);
     }
 
-    public static void moveToGraph(GraphModel g, Collection<EdgeModel> edges, Collection<VertexModel> vertices, GraphModel previousGraph) {
-        HashSet<EdgeModel> rightEdges = new HashSet<EdgeModel>();
-        HashSet<EdgeModel> wrongEdges = new HashSet<EdgeModel>();
-        Iterator<EdgeModel> iter = previousGraph.edgeIterator();
+    public static void moveToGraph(GraphModel g, Collection<Edge> edges, Collection<Vertex> vertices, GraphModel previousGraph) {
+        HashSet<Edge> rightEdges = new HashSet<Edge>();
+        HashSet<Edge> wrongEdges = new HashSet<Edge>();
+        Iterator<Edge> iter = previousGraph.edgeIterator();
         removeInCompleteEdgesFromGraph(g, iter, vertices, wrongEdges);
         removeInCompleteEdgesFromSelection(previousGraph, edges, vertices, rightEdges);
-        for (VertexModel v : vertices)
+        for (Vertex v : vertices)
             previousGraph.removeVertex(v);
         g.insertVertices(vertices);
 
-        for (EdgeModel e : rightEdges)
+        for (Edge e : rightEdges)
             g.insertEdge(e);
 
 //        previousGraph.view.repaint();
 
     }
 
-    private static void removeInCompleteEdgesFromSelection(GraphModel g, Collection<EdgeModel> edges, Collection<VertexModel> vertices, HashSet<EdgeModel> rightEdges) {
-        for (EdgeModel e : edges) {
+    private static void removeInCompleteEdgesFromSelection(GraphModel g, Collection<Edge> edges, Collection<Vertex> vertices, HashSet<Edge> rightEdges) {
+        for (Edge e : edges) {
 
             if (vertices.contains(e.source) && vertices.contains(e.target)) {
                 rightEdges.add(e);
@@ -92,9 +92,9 @@ public class Cut extends AbstractAction {
         }
     }
 
-    private static void removeInCompleteEdgesFromGraph(GraphModel g, Iterator<EdgeModel> iter, Collection<VertexModel> vertices, HashSet<EdgeModel> wrongEdges) {
+    private static void removeInCompleteEdgesFromGraph(GraphModel g, Iterator<Edge> iter, Collection<Vertex> vertices, HashSet<Edge> wrongEdges) {
         for (; iter.hasNext();) {
-            EdgeModel em = iter.next();
+            Edge em = iter.next();
 
             if ((vertices.contains(em.source) && !vertices.contains(em.target)) || (vertices.contains(em.target) && !vertices.contains(em.source))) {
 //                wrongEdges.add(em);

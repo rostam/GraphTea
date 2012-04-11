@@ -5,7 +5,7 @@
 package graphlab.samples.extensions;
 
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.plugins.main.GraphData;
 import graphlab.plugins.reports.extension.GraphReportExtension;
 
@@ -21,7 +21,7 @@ public class OrderOneReport implements GraphReportExtension {
     public Object calculate(GraphData gd) {
         int ret = 0;
         GraphModel graph = gd.getGraph();
-        for (VertexModel v : graph) {
+        for (Vertex v : graph) {
             if (graph.getInDegree(v) + graph.getOutDegree(v) == 1) {
                 ret++;
             }

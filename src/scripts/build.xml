@@ -294,6 +294,8 @@
             <fileset dir="${dist.dir}" includes="**/*.*"/>
         </delete>
         <available file="${dist.dir}" property="dist.dir.present"></available>
+        <delete dir="${temp.dir}" />
+
     </target>
 
     <!-- =================================-->

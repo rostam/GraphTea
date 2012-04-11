@@ -4,9 +4,9 @@
 
 package graphlab.plugins.visualization.corebasics;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 
 import java.awt.geom.Point2D;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ public interface VisualizationInterface {
      */
     public void setWorkingGraph(GraphModel g);
 
-    public abstract HashMap<VertexModel, Point2D> getNewVertexPlaces();
+    public abstract HashMap<Vertex, Point2D> getNewVertexPlaces();
 
-    public abstract HashMap<EdgeModel, Point2D> getNewEdgeCurveControlPoints();
+    public abstract HashMap<Edge, Point2D> getNewEdgeCurveControlPoints();
 }

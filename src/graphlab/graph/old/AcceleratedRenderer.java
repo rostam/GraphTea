@@ -97,12 +97,12 @@ public class AcceleratedRenderer extends FastRenderer {
 ////        paint(g);
 //    }
 
-    public void repaint(VertexModel src) {
+    public void repaint(Vertex src) {
         Graphics gg = getGraphics();
         repaint(src, gg);
     }
 
-    public void repaint(VertexModel src, Graphics gg) {
+    public void repaint(Vertex src, Graphics gg) {
         GraphPoint l = src.getLocation();
         gg.setColor(GraphModel.getColor(src.getColor()));
         if (src.isSelected())
@@ -112,12 +112,12 @@ public class AcceleratedRenderer extends FastRenderer {
         gg.fillOval((int) l.x - 5, (int) l.y - 5, 10, 10);
     }
 
-    public void repaint(EdgeModel src) {
+    public void repaint(Edge src) {
         Graphics gg = getGraphics();
         repaint(src, gg);
     }
 
-    public void repaint(EdgeModel src, Graphics gg) {
+    public void repaint(Edge src, Graphics gg) {
         GraphPoint l, r;
         l = src.source.getLocation();
         r = src.target.getLocation();
@@ -129,15 +129,15 @@ public class AcceleratedRenderer extends FastRenderer {
         gg.drawLine((int) l.x, (int) l.y, (int) r.x, (int) r.y);
     }
 
-    public void vertexAdded(VertexModel v) {
+    public void vertexAdded(Vertex v) {
         v.setLabel(v.getId() + "");
         v.setVertexListener(this);
         repaint(v);
     }
 
-    public void edgeAdded(EdgeModel e) {
+    public void edgeAdded(Edge e) {
         e.setLabel(e.getId());
-        e.setEdgeModelListener(this);
+        e.setEdgeListener(this);
 //        e.updateBounds();
         repaint(e);
     }

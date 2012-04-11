@@ -4,23 +4,23 @@
 
 package graphlab.plugins.commandline.commands;
 
-import graphlab.graph.graph.EdgeModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Edge;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.genericcloners.EdgeVertexConverter;
 
 /**
  * @author Mohammad Ali Rostami
  */
 public class Converter
-        implements EdgeVertexConverter<VertexModel, VertexModel, EdgeModel, EdgeModel> {
-    public EdgeModel convert(EdgeModel e, VertexModel newSource, VertexModel newTarget) {
+        implements EdgeVertexConverter<Vertex, Vertex, Edge, Edge> {
+    public Edge convert(Edge e, Vertex newSource, Vertex newTarget) {
         if (e != null)
-            return new EdgeModel(e, newSource, newTarget);
+            return new Edge(e, newSource, newTarget);
         else
-            return new EdgeModel(newSource, newTarget);
+            return new Edge(newSource, newTarget);
     }
 
-    public VertexModel convert(VertexModel e) {
-        return new VertexModel(e);
+    public Vertex convert(Vertex e) {
+        return new Vertex(e);
     }
 }

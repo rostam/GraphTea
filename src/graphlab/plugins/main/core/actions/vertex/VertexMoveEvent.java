@@ -8,7 +8,6 @@ import graphlab.graph.event.VertexEvent;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
 import graphlab.plugins.main.select.Select;

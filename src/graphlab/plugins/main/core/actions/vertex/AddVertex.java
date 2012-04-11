@@ -8,7 +8,7 @@ import graphlab.graph.event.GraphEvent;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.core.Listener;
@@ -71,7 +71,7 @@ public class AddVertex extends AbstractAction {
             }
             GraphModel graph = gpd.graph;
 
-            VertexModel v = doJob(graph, gpd.mousePos);
+            Vertex v = doJob(graph, gpd.mousePos);
         }
         blackboard.setData(ClearSelection.lastTimeGraphWasClear, true);
 
@@ -82,8 +82,8 @@ public class AddVertex extends AbstractAction {
      *
      * @return the added vertex
      */
-    public static VertexModel doJob(GraphModel g, int x, int y) {
-        VertexModel v = new VertexModel();
+    public static Vertex doJob(GraphModel g, int x, int y) {
+        Vertex v = new Vertex();
         Point p = v.getCenter();
         v.setLocation(new GraphPoint(x - p.x, y - p.y));
         g.insertVertex(v);
@@ -95,8 +95,8 @@ public class AddVertex extends AbstractAction {
      *
      * @return the added vertex
      */
-    public static VertexModel doJob(GraphModel g, GraphPoint position) {
-        VertexModel v = new VertexModel();
+    public static Vertex doJob(GraphModel g, GraphPoint position) {
+        Vertex v = new Vertex();
         v.setLocation(position);
         g.insertVertex(v);
         return v;
@@ -106,7 +106,7 @@ public class AddVertex extends AbstractAction {
      * adds a vertex to a random position of the graph
      * return the added vertex
      */
-    public static VertexModel addVertexToRandomPosition(GraphModel g) {
+    public static Vertex addVertexToRandomPosition(GraphModel g) {
         Rectangle2D.Double b = g.getZoomedBounds();
         return doJob(g, (int) (b.getWidth() * Math.random()), (int) (b.getHeight() * Math.random()));
     }

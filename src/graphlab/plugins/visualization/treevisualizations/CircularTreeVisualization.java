@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.visualization.treevisualizations;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.BaseVertexProperties;
 import graphlab.platform.preferences.lastsettings.UserModifiableProperty;
 import graphlab.plugins.visualization.corebasics.extension.VisualizationExtension;
@@ -22,29 +22,29 @@ import java.util.Vector;
  */
 public class CircularTreeVisualization implements VisualizationExtension {
     String event = UIUtils.getUIEventKey("CircularTreeVisualization");
-    public Vector<VertexModel> visitedVertices = new Vector<VertexModel>();
-    public HashSet<VertexModel> placedVertices = new HashSet<VertexModel>();
-    public HashMap<VertexModel, Point2D> vertexPlaces = new HashMap<VertexModel, Point2D>();
-    VertexModel root;
-    public Vector<VertexModel> children = new Vector<VertexModel>();
-    public HashMap<VertexModel, Integer> vertexHeights = new HashMap<VertexModel, Integer>();
+    public Vector<Vertex> visitedVertices = new Vector<Vertex>();
+    public HashSet<Vertex> placedVertices = new HashSet<Vertex>();
+    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<Vertex, Point2D>();
+    Vertex root;
+    public Vector<Vertex> children = new Vector<Vertex>();
+    public HashMap<Vertex, Integer> vertexHeights = new HashMap<Vertex, Integer>();
     @UserModifiableProperty(displayName = "Circular Tree Visualization Radius", obeysAncestorCategory = false
             , category = "Visualization Options")
     public static Integer radius = 80;
 
-    private VertexModel findAppropriateRoot(GraphModel g) {
-        VertexModel root = g.getAVertex();
-        Iterator<VertexModel> ei = g.iterator();
+    private Vertex findAppropriateRoot(GraphModel g) {
+        Vertex root = g.getAVertex();
+        Iterator<Vertex> ei = g.iterator();
         for (; ei.hasNext();) {
-            VertexModel e = ei.next();
+            Vertex e = ei.next();
             root = findHigherVertex(e, root);
         }
         return root;
     }
 
-    private VertexModel findHigherVertex(VertexModel v1, VertexModel v2) {
-        Vector<VertexModel> t1 = new Vector<VertexModel>();
-        Vector<VertexModel> t2 = new Vector<VertexModel>();
+    private Vertex findHigherVertex(Vertex v1, Vertex v2) {
+        Vector<Vertex> t1 = new Vector<Vertex>();
+        Vector<Vertex> t2 = new Vector<Vertex>();
         t1.add(v1);
         t2.add(v2);
         int i = maxHeight(t1, 0);
@@ -58,15 +58,15 @@ public class CircularTreeVisualization implements VisualizationExtension {
         }
     }
 
-    private int maxHeight(Vector<VertexModel> currentLevel, int maxLevel) {
+    private int maxHeight(Vector<Vertex> currentLevel, int maxLevel) {
 
-        Vector<VertexModel> nextLevel = new Vector<VertexModel>();
-        for (VertexModel v : currentLevel) {
+        Vector<Vertex> nextLevel = new Vector<Vertex>();
+        for (Vertex v : currentLevel) {
             v.setMark(true);
-            Iterator<EdgeModel> em = g.edgeIterator(v);
+            Iterator<Edge> em = g.edgeIterator(v);
             for (; em.hasNext();) {
-                EdgeModel e = em.next();
-                VertexModel v2 = e.source;
+                Edge e = em.next();
+                Vertex v2 = e.source;
                 if (!v2.getMark()) {
                     nextLevel.add(v2);
                     v2.setMark(true);
@@ -84,10 +84,10 @@ public class CircularTreeVisualization implements VisualizationExtension {
     static GraphModel g;
 
     /* public void performJob(Event eventName, Object value) {
-visitedVertices = new Vector<VertexModel>();
-vertexPlaces = new HashMap<VertexModel, Point2D>();
-children = new Vector<VertexModel>();
-placedVertices = new HashSet<VertexModel>();
+visitedVertices = new Vector<Vertex>();
+vertexPlaces = new HashMap<Vertex, Point2D>();
+children = new Vector<Vertex>();
+placedVertices = new HashSet<Vertex>();
 
 try {
     root = findAppropriateRoot(g);
@@ -107,7 +107,7 @@ try {
 
     }*/
 
-    public void locateAllSubTrees(VertexModel v, double radius, double offSet) {
+    public void locateAllSubTrees(Vertex v, double radius, double offSet) {
         if (placedVertices.contains(root)) {
             double angularSpan = (Double) v.getProp().obj;
             int numberOfDivides = 1;
@@ -115,12 +115,12 @@ try {
             if (numberOfDivides == 0) {
                 return;
             }
-            Iterator<EdgeModel> iter = g.edgeIterator(v);
+            Iterator<Edge> iter = g.edgeIterator(v);
             int j = 0;
             int sum = 0;
             for (; iter.hasNext();) {
-                EdgeModel e = iter.next();
-                VertexModel v1 = e.source.equals(v) ? e.target : e.source;
+                Edge e = iter.next();
+                Vertex v1 = e.source.equals(v) ? e.target : e.source;
                 if (!placedVertices.contains(v1)) {
                     sum += g.getOutDegree(v1);
                 } else {
@@ -128,8 +128,8 @@ try {
             }
             iter = g.edgeIterator(v);
             for (; iter.hasNext();) {
-                EdgeModel e = iter.next();
-                VertexModel v1 = e.source.equals(v) ? e.target : e.source;
+                Edge e = iter.next();
+                Vertex v1 = e.source.equals(v) ? e.target : e.source;
                 if (!placedVertices.contains(v1)) {
                     double x = 350 + radius * Math.cos((angularSpan * j / (numberOfDivides + 1) + offSet));
                     double y = 350 + radius * Math.sin((angularSpan * j / (numberOfDivides + 1) + offSet));
@@ -159,19 +159,19 @@ try {
     }
 
     private void unMarkVertices() {
-        for (VertexModel v : g) {
+        for (Vertex v : g) {
             v.setMark(false);
         }
     }
 
 
-    public Vector<VertexModel> findNextLevelChildren(Vector<VertexModel> currentLevelVertices) {
-        Vector<VertexModel> newChildren = new Vector<VertexModel>();
-        for (VertexModel v : currentLevelVertices) {
-            Iterator<EdgeModel> e = g.edgeIterator(v);
+    public Vector<Vertex> findNextLevelChildren(Vector<Vertex> currentLevelVertices) {
+        Vector<Vertex> newChildren = new Vector<Vertex>();
+        for (Vertex v : currentLevelVertices) {
+            Iterator<Edge> e = g.edgeIterator(v);
             for (; e.hasNext();) {
-                EdgeModel ed = e.next();
-                VertexModel dest = ed.source;
+                Edge ed = e.next();
+                Vertex dest = ed.source;
                 if (!visitedVertices.contains(dest)) {
                     newChildren.add(dest);
                 }
@@ -181,9 +181,9 @@ try {
     }
 
 
-    public void locateAll(Vector<VertexModel> currentLevelVertices, int width, int radius) {
+    public void locateAll(Vector<Vertex> currentLevelVertices, int width, int radius) {
         int currentLevelCount = currentLevelVertices.size();
-        Vector<VertexModel> nextLevel = findNextLevelChildren(currentLevelVertices);
+        Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
         int nextLevelCount = nextLevel.size();
         double degree = 360 / currentLevelCount;
         int j = 0;
@@ -192,7 +192,7 @@ try {
             vertexPlaces.put(root, newPoint);
 
         } else {
-            for (VertexModel v : currentLevelVertices) {
+            for (Vertex v : currentLevelVertices) {
                 double x = 350 + radius * Math.cos((Math.PI / 180) * (j * degree));
                 double y = 350 + radius * Math.sin((Math.PI / 180) * (j * degree));
                 Point2D.Double newPoint = new Point2D.Double(x, y);
@@ -224,11 +224,11 @@ try {
         this.g = g;
     }
 
-    public HashMap<VertexModel, Point2D> getNewVertexPlaces() {
-        visitedVertices = new Vector<VertexModel>();
-        vertexPlaces = new HashMap<VertexModel, Point2D>();
-        children = new Vector<VertexModel>();
-        placedVertices = new HashSet<VertexModel>();
+    public HashMap<Vertex, Point2D> getNewVertexPlaces() {
+        visitedVertices = new Vector<Vertex>();
+        vertexPlaces = new HashMap<Vertex, Point2D>();
+        children = new Vector<Vertex>();
+        placedVertices = new HashSet<Vertex>();
 
         try {
             root = findAppropriateRoot(g);
@@ -247,7 +247,7 @@ try {
         return vertexPlaces;
     }
 
-    public HashMap<EdgeModel, Point2D> getNewEdgeCurveControlPoints() {
+    public HashMap<Edge, Point2D> getNewEdgeCurveControlPoints() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

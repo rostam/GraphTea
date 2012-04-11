@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.extensions.generators;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
@@ -39,27 +39,27 @@ public class PmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
         return "Generate Pm*Pn";
     }
 
-    VertexModel[] v;
+    Vertex[] v;
 
-    public VertexModel[] getVertices() {
-        VertexModel[] ret = new VertexModel[n * m];
+    public Vertex[] getVertices() {
+        Vertex[] ret = new Vertex[n * m];
         for (int i = 0; i < m * n; i++)
-            ret[i] = new VertexModel();
+            ret[i] = new Vertex();
         v = ret;
         return ret;
     }
 
-    public EdgeModel[] getEdges() {
-        EdgeModel[] ret = new EdgeModel[(n * (m - 1) + m * (n - 1))];
+    public Edge[] getEdges() {
+        Edge[] ret = new Edge[(n * (m - 1) + m * (n - 1))];
         int counter = 0;
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++) {
                 if (j < m - 1) {
-                    ret[counter] = new EdgeModel(v[i * m + j], v[i * m + j + 1]);
+                    ret[counter] = new Edge(v[i * m + j], v[i * m + j + 1]);
                     counter++;
                 }
                 if (i < n - 1) {
-                    ret[counter] = new EdgeModel(v[i * m + j], v[(i + 1) * (m) + j]);
+                    ret[counter] = new Edge(v[i * m + j], v[(i + 1) * (m) + j]);
                     counter++;
                 }
             }

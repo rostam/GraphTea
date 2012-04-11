@@ -4,9 +4,9 @@
 package graphlab.plugins.main.core.actions;
 
 import graphlab.graph.atributeset.GraphAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
 import graphlab.ui.UIUtils;
@@ -41,13 +41,13 @@ public class ResetGraph extends AbstractAction {
     public static void resetGraph(GraphModel g) {
         boolean b = g.isShowChangesOnView();
         g.setShowChangesOnView(true);
-        for (VertexModel v : g) {
+        for (Vertex v : g) {
             v.setMark(false);
             v.setColor(0);
         }
-        Iterator<EdgeModel> ie = g.edgeIterator();
+        Iterator<Edge> ie = g.edgeIterator();
         while (ie.hasNext()) {
-            EdgeModel e = ie.next();
+            Edge e = ie.next();
             e.setMark(false);
             //            e.model.setWeight(0);
             e.setColor(0);

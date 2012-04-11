@@ -3,10 +3,10 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.main.saveload.matrix;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.BaseEdge;
 import graphlab.library.BaseEdgeProperties;
 import graphlab.library.BaseGraph;
@@ -78,9 +78,9 @@ public class Matrix {
             JOptionPane.showMessageDialog(null, "not a valid matrix graph");
             return;
         }
-        VertexModel[] vertices = new VertexModel[n];
+        Vertex[] vertices = new Vertex[n];
         for (int i = 0; i < n; i++) {
-            VertexModel v = new VertexModel();
+            Vertex v = new Vertex();
             v.setLabel(i+"");
             g.insertVertex(v);
             v.setLocation(new GraphPoint(Math.random() * 500, Math.random() * 500));
@@ -90,7 +90,7 @@ public class Matrix {
             for (int j = 0; j < n; j++) {
             	if(mat[i][j]!=0)
             	{
-            		EdgeModel em = new EdgeModel(vertices[i], vertices[j],new BaseEdgeProperties(0,mat[i][j],false));
+            		Edge em = new Edge(vertices[i], vertices[j],new BaseEdgeProperties(0,mat[i][j],false));
             		em.setLabel(i+""+j);
                     g.insertEdge(em);
             	}

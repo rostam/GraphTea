@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.extensions.generators;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
@@ -38,34 +38,34 @@ public class RandomGenerator implements GraphGeneratorExtension, Parametrizable,
         return "Generates a random graph with N Vertices and E Edges";
     }
 
-    VertexModel v[];
+    Vertex v[];
 
-    public VertexModel[] getVertices() {
-        VertexModel[] ret = new VertexModel[numOfVertices];
+    public Vertex[] getVertices() {
+        Vertex[] ret = new Vertex[numOfVertices];
         for (int i = 0; i < numOfVertices; i++)
-            ret[i] = new VertexModel();
+            ret[i] = new Vertex();
         v = ret;
         return ret;
     }
 
-    public EdgeModel[] getEdges() {
-        EdgeModel[] ret = new EdgeModel[numOfEdges];
+    public Edge[] getEdges() {
+        Edge[] ret = new Edge[numOfEdges];
         for (int i = 0; i < numOfEdges; i++)
             ret[i] = randomEdge();
         return ret;
     }
 
-    private EdgeModel randomEdge() {
-        VertexModel v1 = randomVertex();
-        VertexModel v2 = randomVertex();
+    private Edge randomEdge() {
+        Vertex v1 = randomVertex();
+        Vertex v2 = randomVertex();
         //System.out.println(v1.getID()+","+v2.getID());
         if (v1 != v2)
-            return new EdgeModel(v1, v2);
+            return new Edge(v1, v2);
         else
             return randomEdge();
     }
 
-    private VertexModel randomVertex() {
+    private Vertex randomVertex() {
         return v[(int) (Math.random() * numOfVertices)];
     }
 

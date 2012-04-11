@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.visualization.treevisualizations;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.BaseVertexProperties;
 import graphlab.platform.preferences.lastsettings.UserModifiableProperty;
 import graphlab.platform.core.exception.ExceptionHandler;
@@ -24,13 +24,13 @@ import java.util.Vector;
  */
 public class BackwardTrees implements VisualizationExtension {
     String event = UIUtils.getUIEventKey("BackwardTrees");
-    public Vector<VertexModel> visitedVertices = new Vector<VertexModel>();
-    public Vector<VertexModel> upperLevelVertices = new Vector<VertexModel>();
+    public Vector<Vertex> visitedVertices = new Vector<Vertex>();
+    public Vector<Vertex> upperLevelVertices = new Vector<Vertex>();
 
-    public HashMap<VertexModel, Point2D> vertexPlaces = new HashMap<VertexModel, Point2D>();
-    public Vector<VertexModel> children = new Vector<VertexModel>();
-    public HashMap<VertexModel, Double> comingFrom = new HashMap<VertexModel, Double>();
-    VertexModel root;
+    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<Vertex, Point2D>();
+    public Vector<Vertex> children = new Vector<Vertex>();
+    public HashMap<Vertex, Double> comingFrom = new HashMap<Vertex, Double>();
+    Vertex root;
 
 
     static GraphModel g;
@@ -38,14 +38,14 @@ public class BackwardTrees implements VisualizationExtension {
      * @param eventName
      * @param value
      */
-    public HashSet<VertexModel> placedVertices = new HashSet<VertexModel>();
+    public HashSet<Vertex> placedVertices = new HashSet<Vertex>();
     @UserModifiableProperty(displayName = "BackWard Tree Visualization Radius", obeysAncestorCategory = false
             , category = "Visualization Options")
     public static Integer radius = 60;
 
-    private VertexModel findHigherVertex(VertexModel v1, VertexModel v2) {
-        Vector<VertexModel> t1 = new Vector<VertexModel>();
-        Vector<VertexModel> t2 = new Vector<VertexModel>();
+    private Vertex findHigherVertex(Vertex v1, Vertex v2) {
+        Vector<Vertex> t1 = new Vector<Vertex>();
+        Vector<Vertex> t2 = new Vector<Vertex>();
         t1.add(v1);
         t2.add(v2);
         if (BFS(t1, 0) > BFS(t2, 0)) {
@@ -55,24 +55,24 @@ public class BackwardTrees implements VisualizationExtension {
         }
     }
 
-    private VertexModel findAppropriateRoot(GraphModel g) {
-        VertexModel root = g.getAVertex();
-        Iterator<VertexModel> ei = g.iterator();
+    private Vertex findAppropriateRoot(GraphModel g) {
+        Vertex root = g.getAVertex();
+        Iterator<Vertex> ei = g.iterator();
         for (; ei.hasNext();) {
-            VertexModel e = ei.next();
+            Vertex e = ei.next();
             root = findHigherVertex(e, root);
         }
         return root;
     }
 
-    private int BFS(Vector<VertexModel> currentLevel, int maxLevel) {
-        Vector<VertexModel> nextLevel = new Vector<VertexModel>();
-        for (VertexModel v : currentLevel) {
+    private int BFS(Vector<Vertex> currentLevel, int maxLevel) {
+        Vector<Vertex> nextLevel = new Vector<Vertex>();
+        for (Vertex v : currentLevel) {
             v.setMark(true);
-            Iterator<EdgeModel> em = g.edgeIterator(v);
+            Iterator<Edge> em = g.edgeIterator(v);
             for (; em.hasNext();) {
-                EdgeModel e = em.next();
-                VertexModel v2 = e.source;
+                Edge e = em.next();
+                Vertex v2 = e.source;
                 if (!v2.getMark()) {
                     nextLevel.add(v2);
                     v2.setMark(true);
@@ -87,14 +87,14 @@ public class BackwardTrees implements VisualizationExtension {
         }
     }
 
-    public Vector<VertexModel> findNextLevelChildren(Vector<VertexModel> currentLevelVertices) {
-        Vector<VertexModel> newChildren = new Vector<VertexModel>();
+    public Vector<Vertex> findNextLevelChildren(Vector<Vertex> currentLevelVertices) {
+        Vector<Vertex> newChildren = new Vector<Vertex>();
         if (currentLevelVertices.size() != 0) {
-            for (VertexModel v : currentLevelVertices) {
-                Iterator<EdgeModel> e = g.edgeIterator(v);
+            for (Vertex v : currentLevelVertices) {
+                Iterator<Edge> e = g.edgeIterator(v);
                 for (; e.hasNext();) {
-                    EdgeModel ed = e.next();
-                    VertexModel dest = ed.source;
+                    Edge ed = e.next();
+                    Vertex dest = ed.source;
                     if (!visitedVertices.contains(dest)) {
                         newChildren.add(dest);
                     }
@@ -105,19 +105,19 @@ public class BackwardTrees implements VisualizationExtension {
         return newChildren;
     }
 
-    public void locateAll(Vector<VertexModel> currentLevelVertices, int width, int currentLevelHeight, int level, int radius) {
+    public void locateAll(Vector<Vertex> currentLevelVertices, int width, int currentLevelHeight, int level, int radius) {
 
         int currentLevelCount = currentLevelVertices.size();
         int horizontalDist = width / currentLevelCount;
         int i = 0;
-        Vector<VertexModel> nextLevel = findNextLevelChildren(currentLevelVertices);
+        Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
         if (currentLevelCount == 1 && currentLevelVertices.elementAt(0).equals(root)) {
             Point2D.Double newPoint = new Point2D.Double(200, 200);
             vertexPlaces.put(root, newPoint);
             comingFrom.put(root, 0.0);
         } else {
-            for (VertexModel v : upperLevelVertices) {
-                Iterator<EdgeModel> ei = g.edgeIterator(v);
+            for (Vertex v : upperLevelVertices) {
+                Iterator<Edge> ei = g.edgeIterator(v);
                 int degree = g.getInDegree(v);
                 double p = comingFrom.get(v);
                 int j = 0;
@@ -127,7 +127,7 @@ public class BackwardTrees implements VisualizationExtension {
                 Point2D[] circle = PositionGenerators.circle((int) v.getLocation().getX(), (int) v.getLocation().getY(), radius, radius, degree);
                 int t = 0;
                 for (; ei.hasNext();) {
-                    VertexModel ver = ei.next().source;
+                    Vertex ver = ei.next().source;
 //                    double x;
 //                    double y;
 //                    double xPhase = Math.cos(((j * phase)+p) * Math.PI / 180);
@@ -159,13 +159,13 @@ public class BackwardTrees implements VisualizationExtension {
     }
 
     private void unMarkVertices() {
-        for (VertexModel v : g) {
+        for (Vertex v : g) {
             v.setMark(false);
         }
     }
 
 
-    public void locateAllSubTrees(VertexModel v, double radius, double offSet) {
+    public void locateAllSubTrees(Vertex v, double radius, double offSet) {
         if (placedVertices.contains(root)) {
             double angularSpan = (Double) v.getProp().obj;
             int numberOfDivides = 1;
@@ -173,11 +173,11 @@ public class BackwardTrees implements VisualizationExtension {
             if (numberOfDivides == 0) {
                 return;
             }
-            Iterator<EdgeModel> iter = g.edgeIterator(v);
+            Iterator<Edge> iter = g.edgeIterator(v);
             int sum = 0;
             for (; iter.hasNext();) {
-                EdgeModel e = iter.next();
-                VertexModel v1 = e.source.equals(v) ? e.target : e.source;
+                Edge e = iter.next();
+                Vertex v1 = e.source.equals(v) ? e.target : e.source;
                 if (!placedVertices.contains(v1)) {
                     sum += g.getInDegree(v1);
                 } else {
@@ -186,8 +186,8 @@ public class BackwardTrees implements VisualizationExtension {
             iter = g.edgeIterator(v);
             int j = 1;
             for (; iter.hasNext();) {
-                EdgeModel e = iter.next();
-                VertexModel v1 = e.source.equals(v) ? e.target : e.source;
+                Edge e = iter.next();
+                Vertex v1 = e.source.equals(v) ? e.target : e.source;
                 if (!placedVertices.contains(v1)) {
                     double x = 350 + radius * Math.cos((angularSpan * j / (numberOfDivides) + offSet));
                     double y = 350 + radius * Math.sin((angularSpan * j / (numberOfDivides) + offSet));
@@ -230,11 +230,11 @@ public class BackwardTrees implements VisualizationExtension {
         this.g = g;
     }
 
-    public HashMap<VertexModel, Point2D> getNewVertexPlaces() {
-        visitedVertices = new Vector<VertexModel>();
-        vertexPlaces = new HashMap<VertexModel, Point2D>();
-        children = new Vector<VertexModel>();
-        placedVertices = new HashSet<VertexModel>();
+    public HashMap<Vertex, Point2D> getNewVertexPlaces() {
+        visitedVertices = new Vector<Vertex>();
+        vertexPlaces = new HashMap<Vertex, Point2D>();
+        children = new Vector<Vertex>();
+        placedVertices = new HashSet<Vertex>();
         try {
             root = findAppropriateRoot(g);
             visitedVertices.add(root);
@@ -254,7 +254,7 @@ public class BackwardTrees implements VisualizationExtension {
         return vertexPlaces;
     }
 
-    public HashMap<EdgeModel, Point2D> getNewEdgeCurveControlPoints() {
+    public HashMap<Edge, Point2D> getNewEdgeCurveControlPoints() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

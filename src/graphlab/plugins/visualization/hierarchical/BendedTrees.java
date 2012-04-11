@@ -4,9 +4,9 @@
 package graphlab.plugins.visualization.hierarchical;
 
 import graphlab.graph.atributeset.GraphAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
 import graphlab.plugins.visualization.corebasics.animator.GeneralAnimator;
@@ -22,10 +22,10 @@ import java.util.Vector;
  */
 public class BendedTrees extends AbstractAction {
     String event = UIUtils.getUIEventKey("BendedTrees");
-    public Vector<VertexModel> visitedVertices = new Vector<VertexModel>();
-    public HashMap<VertexModel, Point2D> vertexPlaces = new HashMap<VertexModel, Point2D>();
-    public HashMap<EdgeModel, Vector<Point2D>> edgeBendPoints = new HashMap<EdgeModel, Vector<Point2D>>();
-    public Vector<VertexModel> children = new Vector<VertexModel>();
+    public Vector<Vertex> visitedVertices = new Vector<Vertex>();
+    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<Vertex, Point2D>();
+    public HashMap<Edge, Vector<Point2D>> edgeBendPoints = new HashMap<Edge, Vector<Point2D>>();
+    public Vector<Vertex> children = new Vector<Vertex>();
     public GraphModel graph;
 
     /**
@@ -38,37 +38,37 @@ public class BendedTrees extends AbstractAction {
         listen4Event(event);
     }
 
-    private VertexModel findAppropriateRoot(GraphModel g) {
-        VertexModel root = g.getAVertex();
-        Iterator<VertexModel> ei = g.iterator();
+    private Vertex findAppropriateRoot(GraphModel g) {
+        Vertex root = g.getAVertex();
+        Iterator<Vertex> ei = g.iterator();
         for (; ei.hasNext();) {
-            VertexModel e = ei.next();
+            Vertex e = ei.next();
             root = findHigherVertex(e, root);
         }
         return root;
     }
 
-    private VertexModel findHigherVertex(VertexModel v1, VertexModel v2) {
-        Vector<VertexModel> t1 = new Vector<VertexModel>();
-        Vector<VertexModel> t2 = new Vector<VertexModel>();
+    private Vertex findHigherVertex(Vertex v1, Vertex v2) {
+        Vector<Vertex> t1 = new Vector<Vertex>();
+        Vector<Vertex> t2 = new Vector<Vertex>();
         t1.add(v1);
         t2.add(v2);
-        if (BFS(new Vector<VertexModel>(), t1, 0) > BFS(new Vector<VertexModel>(), t2, 0)) {
+        if (BFS(new Vector<Vertex>(), t1, 0) > BFS(new Vector<Vertex>(), t2, 0)) {
             return v1;
         } else {
             return v2;
         }
     }
 
-    private int BFS(Vector<VertexModel> marked, Vector<VertexModel> currentLevel, int maxLevel) {
+    private int BFS(Vector<Vertex> marked, Vector<Vertex> currentLevel, int maxLevel) {
         marked.addAll(currentLevel);
-        Vector<VertexModel> nextLevel = new Vector<VertexModel>();
-        for (VertexModel v : currentLevel) {
+        Vector<Vertex> nextLevel = new Vector<Vertex>();
+        for (Vertex v : currentLevel) {
             v.setMark(true);
-            Iterator<EdgeModel> em = g.edgeIterator(v);
+            Iterator<Edge> em = g.edgeIterator(v);
             for (; em.hasNext();) {
-                EdgeModel e = em.next();
-                VertexModel v2 = e.source;
+                Edge e = em.next();
+                Vertex v2 = e.source;
                 if (!marked.contains(v2)) {
                     nextLevel.add(v2);
                 }
@@ -85,14 +85,14 @@ public class BendedTrees extends AbstractAction {
     static GraphModel g;
 
     public void performAction(String eventName, Object value) {
-        visitedVertices = new Vector<VertexModel>();
-        vertexPlaces = new HashMap<VertexModel, Point2D>();
-        children = new Vector<VertexModel>();
-        edgeBendPoints = new HashMap<EdgeModel, Vector<Point2D>>();
+        visitedVertices = new Vector<Vertex>();
+        vertexPlaces = new HashMap<Vertex, Point2D>();
+        children = new Vector<Vertex>();
+        edgeBendPoints = new HashMap<Edge, Vector<Point2D>>();
         g = ((GraphModel) (blackboard.getData(GraphAttrSet.name)));
         try {
             this.graph = g;
-            VertexModel root = findAppropriateRoot(g);
+            Vertex root = findAppropriateRoot(g);
             visitedVertices.add(root);
             locateAllVertices(visitedVertices, 800, 50);
             reshapeAllEdges();
@@ -105,13 +105,13 @@ public class BendedTrees extends AbstractAction {
 
     }
 
-    public Vector<VertexModel> findNextLevelChildren(Vector<VertexModel> currentLevelVertices) {
-        Vector<VertexModel> newChildren = new Vector<VertexModel>();
-        for (VertexModel v : currentLevelVertices) {
-            Iterator<EdgeModel> e = g.edgeIterator(v);
+    public Vector<Vertex> findNextLevelChildren(Vector<Vertex> currentLevelVertices) {
+        Vector<Vertex> newChildren = new Vector<Vertex>();
+        for (Vertex v : currentLevelVertices) {
+            Iterator<Edge> e = g.edgeIterator(v);
             for (; e.hasNext();) {
-                EdgeModel ed = e.next();
-                VertexModel dest = ed.source;
+                Edge ed = e.next();
+                Vertex dest = ed.source;
                 if (!visitedVertices.contains(dest)) {
                     newChildren.add(dest);
                 }
@@ -121,9 +121,9 @@ public class BendedTrees extends AbstractAction {
     }
 
     public void reshapeAllEdges() {
-        Iterator<EdgeModel> ei = graph.edgeIterator();
+        Iterator<Edge> ei = graph.edgeIterator();
         for (; ei.hasNext();) {
-            EdgeModel e = ei.next();
+            Edge e = ei.next();
             Point2D d1 = vertexPlaces.get(e.target);
             Point2D d2 = vertexPlaces.get(e.source);
             Vector<Point2D> bendPoints = new Vector<Point2D>();
@@ -133,16 +133,16 @@ public class BendedTrees extends AbstractAction {
         }
     }
 
-    public void locateAllVertices(Vector<VertexModel> currentLevelVertices, int width, int currentLevelHeight) {
+    public void locateAllVertices(Vector<Vertex> currentLevelVertices, int width, int currentLevelHeight) {
         int currentLevelCount = currentLevelVertices.size();
         int i = 0;
 
-        Vector<VertexModel> nextLevel = findNextLevelChildren(currentLevelVertices);
+        Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
         int nextLevelCount = nextLevel.size();
         int horizontalDist = width / (currentLevelCount + nextLevelCount);
 
 
-        for (VertexModel v : currentLevelVertices) {
+        for (Vertex v : currentLevelVertices) {
             if (nextLevelCount != 0) {
                 Point2D.Double newPoint = new Point2D.Double(horizontalDist * (i + 1) + width / (nextLevelCount + currentLevelCount), currentLevelHeight);
                 vertexPlaces.put(v, newPoint);

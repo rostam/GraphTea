@@ -47,14 +47,14 @@ public class EdgeHighlightAction extends AbstractAction {
     }
 //
 //    public static void unHighLightEdge(Edge edge) {
-//        edge.model.lc = EdgeModel.LineColor.normal;
+//        edge.model.lc = Edge.LineColor.normal;
 //    }
 //
 //    public static void highLightEdge(Edge edge) {
-//        edge.model.lc = EdgeModel.LineColor.highlight;
+//        edge.model.lc = Edge.LineColor.highlight;
 //    }
 //
 //    public static boolean isEdgeHighlighted(Edge e) {
-//        return e.model.lc == EdgeModel.LineColor.normal;
+//        return e.model.lc == Edge.LineColor.normal;
 //    }
 }

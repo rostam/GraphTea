@@ -80,7 +80,7 @@ public class RightClickAction implements BasicExtension, Listener {
             VertexEvent ve = (VertexEvent) value;
             if (ve.eventType == VertexEvent.CLICKED && ve.mouseBtn == MouseEvent.BUTTON3) {
                 if (!gd.select.getSelectedVertices().contains(ve.v)) {
-                    gd.select.setSelected(new VertexModel[]{ve.v}, new EdgeModel[]{});
+                    gd.select.setSelected(new Vertex[]{ve.v}, new Edge[]{});
                 }
                 showPopup(ve.posOnGraph());
             }
@@ -89,7 +89,7 @@ public class RightClickAction implements BasicExtension, Listener {
             EdgeEvent ee = (EdgeEvent) value;
             if (ee.eventType == EdgeEvent.CLICKED && ee.mouseBtn == MouseEvent.BUTTON3) {
                 if (!gd.select.getSelectedEdges().contains(ee.e)) {
-                    gd.select.setSelected(new VertexModel[]{}, new EdgeModel[]{ee.e});
+                    gd.select.setSelected(new Vertex[]{}, new Edge[]{ee.e});
                 }
                 showPopup(ee.posOnGraph());
             }

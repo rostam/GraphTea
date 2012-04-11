@@ -1,18 +1,10 @@
 package graphlab.plugins.reports.spectralreports.maxflowmincut;
 
-import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
 import graphlab.graph.ui.GTabbedGraphPane;
 import graphlab.plugins.main.GraphData;
 import graphlab.plugins.reports.extension.GraphReportExtension;
-import graphlab.plugins.reports.spectralreports.matlab.FindPerfectMatching;
-
-import java.util.HashMap;
 
 import javax.swing.JOptionPane;
-
-import com.mathworks.toolbox.javabuilder.MWNumericArray;
 
 public class GomoryHuTree implements GraphReportExtension  {
 		

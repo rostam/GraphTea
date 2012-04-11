@@ -4,9 +4,9 @@
 
 package graphlab.plugins.main.select;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.plugins.main.GraphData;
 import graphlab.plugins.main.extension.GraphActionExtension;
 
@@ -29,7 +29,7 @@ public class MakeSelectionComplementGraph implements GraphActionExtension {
     public void action(GraphData gd) {
         if (gd.select.isSelectionEmpty())
             return;
-        HashSet<VertexModel> V = gd.select.getSelectedVertices();
+        HashSet<Vertex> V = gd.select.getSelectedVertices();
         //add undo data
 
         GraphModel G = gd.getGraph();
@@ -37,29 +37,29 @@ public class MakeSelectionComplementGraph implements GraphActionExtension {
 
     }
 
-    protected void doEdgeOperation(GraphModel g, HashSet<VertexModel> v) {
+    protected void doEdgeOperation(GraphModel g, HashSet<Vertex> v) {
         boolean directed = g.isDirected();
 
-        for (VertexModel v1 : v) {
-            for (VertexModel v2 : v) {
+        for (Vertex v1 : v) {
+            for (Vertex v2 : v) {
                 if (!directed)
                     if (v1.getId() < v2.getId())
                         continue;
                 if (g.isEdge(v1, v2)) {
                     g.removeAllEdges(v1, v2);
                 } else {
-                    g.insertEdge(new EdgeModel(v1, v2));
+                    g.insertEdge(new Edge(v1, v2));
                 }
             }
         }
     }
 
-    public static Vector<EdgeModel> fillUndoEdges(HashMap<String, Object> properties, GraphData gd, String lbl) {
-        Vector<EdgeModel> edges = new Vector<EdgeModel>();
-        HashSet<VertexModel> V = gd.select.getSelectedVertices();
+    public static Vector<Edge> fillUndoEdges(HashMap<String, Object> properties, GraphData gd, String lbl) {
+        Vector<Edge> edges = new Vector<Edge>();
+        HashSet<Vertex> V = gd.select.getSelectedVertices();
         GraphModel g = gd.getGraph();
-        for (VertexModel v : V) {
-            for (VertexModel vv : V) {
+        for (Vertex v : V) {
+            for (Vertex vv : V) {
                 edges.add(g.getEdge(vv, v));
             }
         }

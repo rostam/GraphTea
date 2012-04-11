@@ -4,10 +4,10 @@
 package graphlab.plugins.main.select;
 
 import graphlab.graph.atributeset.GraphAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
 import graphlab.ui.UIUtils;
@@ -30,11 +30,11 @@ public class SelectAll extends AbstractAction {
     public void performAction(String eventName, Object value) {
         GraphModel g = ((GraphModel) (blackboard.getData(GraphAttrSet.name)));
         SubGraph sd = getSelection();
-        Iterator<VertexModel> vertices = g.iterator();
-        Iterator<EdgeModel> edges = g.lightEdgeIterator();
+        Iterator<Vertex> vertices = g.iterator();
+        Iterator<Edge> edges = g.lightEdgeIterator();
         for (; vertices.hasNext();) {
 
-            VertexModel vertex = vertices.next();
+            Vertex vertex = vertices.next();
 //            if (vertex.view.isSelected) {
 //                //vertex.view.isSelected = false;
 //                sd.vertices.remove(vertex);
@@ -44,7 +44,7 @@ public class SelectAll extends AbstractAction {
         }
         for (; edges.hasNext();) {
 
-            EdgeModel edge = edges.next();
+            Edge edge = edges.next();
 //            if (edge.view.isSelected){
 //            sd.edges.remove(edge);
 //            //edge.view.isSelected=false;

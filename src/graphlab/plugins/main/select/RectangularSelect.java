@@ -74,9 +74,9 @@ public class RectangularSelect extends AbstractAction {
         SubGraph selection = RectangularSelect.calculateSelected(g, graphRectRegionSelector.getCurrentRect().getBounds());
         if (!deleteOlderSelections) {
             SubGraph sd = Select.getSelection(blackboard);
-            for (VertexModel v : sd.vertices)
+            for (Vertex v : sd.vertices)
                 selection.vertices.add(v);
-            for (EdgeModel e : sd.edges)
+            for (Edge e : sd.edges)
                 selection.edges.add(e);
         }
         blackboard.setData(Select.EVENT_KEY, selection);
@@ -98,18 +98,18 @@ public class RectangularSelect extends AbstractAction {
 
     public static SubGraph calculateSelected(GraphModel g, Rectangle bounds) {
         SubGraph sd = new SubGraph();
-        for (VertexModel vm : g) {
+        for (Vertex vm : g) {
             GraphPoint loc = vm.getLocation();
             Point cent = vm.getCenter();
             if (bounds.contains(loc.x, loc.y)) {
                 sd.vertices.add(vm);
             }
         }
-        EdgeModel em;
-        for (VertexModel v1 : sd.vertices) {
-            for (VertexModel v2 : sd.vertices) {
+        Edge em;
+        for (Vertex v1 : sd.vertices) {
+            for (Vertex v2 : sd.vertices) {
                 try {
-                    EdgeModel edge = g.getEdge(v1, v2);
+                    Edge edge = g.getEdge(v1, v2);
                     if (edge != null) {
                         sd.edges.add(edge);
                     }
@@ -126,7 +126,7 @@ public class RectangularSelect extends AbstractAction {
         return sd;
     }
 
-    public static boolean isVertexInRect(VertexModel v, GraphModel g, Rectangle viewBounds) {
+    public static boolean isVertexInRect(Vertex v, GraphModel g, Rectangle viewBounds) {
         GraphPoint shapeSize = v.getSize();
         int w = (int) shapeSize.getX();
         int h = (int) shapeSize.getY();

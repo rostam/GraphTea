@@ -6,7 +6,6 @@ package graphlab.graph.graph;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 
 /**
  * @author azin azadi
@@ -19,8 +18,8 @@ public class SubGraph {
         this.graph = graph;
     }
 
-    public HashSet<VertexModel> vertices = new HashSet<VertexModel>();
-    public HashSet<EdgeModel> edges = new HashSet<EdgeModel>();
+    public HashSet<Vertex> vertices = new HashSet<Vertex>();
+    public HashSet<Edge> edges = new HashSet<Edge>();
     public String label = "";
 
 
@@ -31,9 +30,9 @@ public class SubGraph {
         graph = null;
     }
 
-    public ArrayList<VertexModel> getNeighbors(VertexModel v) {
-        ArrayList<VertexModel> ret = new ArrayList<VertexModel>();
-        for (VertexModel nv : graph.getNeighbors(v)) {
+    public ArrayList<Vertex> getNeighbors(Vertex v) {
+        ArrayList<Vertex> ret = new ArrayList<Vertex>();
+        for (Vertex nv : graph.getNeighbors(v)) {
             if (vertices.contains(nv))
                 ret.add(nv);
         }
@@ -45,10 +44,10 @@ public class SubGraph {
      * removes sg vertices and edges from this subgraph
      */
     public void remove(SubGraph sg) {
-        for (VertexModel v : sg.vertices) {
+        for (Vertex v : sg.vertices) {
             vertices.remove(v);
         }
-        for (EdgeModel e : sg.edges) {
+        for (Edge e : sg.edges) {
             edges.remove(e);
         }
     }
@@ -71,14 +70,14 @@ public class SubGraph {
         }
         if (vertices != null && vertices.size() > 0) {
             txt = txt + "V: {";
-            for (VertexModel v : vertices) {
+            for (Vertex v : vertices) {
                 txt = txt + v.getLabel() + ", ";
             }
             txt = txt.substring(0, txt.length() - 2) + "}";
         }
         if (edges != null && edges.size() > 0) {
             txt += "\nE: {";
-            for (EdgeModel e : edges) {
+            for (Edge e : edges) {
                 txt = txt + e + ", ";
             }
             txt = txt.substring(0, txt.length() - 2) + "}";
@@ -100,8 +99,8 @@ public class SubGraph {
      * @return the edge between the given vertices in the subgraph,
      *         or null if it does not exist
      */
-    public static EdgeModel getEdge(SubGraph sg, VertexModel v, VertexModel u) {
-        EdgeModel e = sg.graph.getEdge(u, v);
+    public static Edge getEdge(SubGraph sg, Vertex v, Vertex u) {
+        Edge e = sg.graph.getEdge(u, v);
         if (e != null) {
             if (sg.edges.contains(e))
                 return e;

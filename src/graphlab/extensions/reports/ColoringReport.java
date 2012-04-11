@@ -5,7 +5,7 @@
 package graphlab.extensions.reports;
 
 import graphlab.graph.graph.GraphColoring;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
 import graphlab.plugins.main.GraphData;
@@ -46,7 +46,7 @@ public class ColoringReport implements GraphReportExtension, ColoringListener, P
         found = true;
         GraphColoring coloring = new GraphColoring();
         for (int i = 0; i < p.vertices.length; i++) {
-            coloring.vertexColors.put((VertexModel) p.vertices[i], p.color[i]);
+            coloring.vertexColors.put((Vertex) p.vertices[i], p.color[i]);
         }
         colorings.add(coloring);
         return !allColorings;

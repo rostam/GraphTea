@@ -5,7 +5,7 @@
 package graphlab.graph.event;
 
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 
 /**
  * An event which indicates that a vertex action occurred.
@@ -14,6 +14,7 @@ import graphlab.graph.graph.VertexModel;
  * @see graphlab.graph.event.GraphEvent
  */
 public class VertexEvent {
+
     public final static String EVENT_KEY = "VertexEvent";
 
 
@@ -35,38 +36,38 @@ public class VertexEvent {
     public static final int DOUBLECLICKED = 8;
 
     public int eventType;
-    public VertexModel v;
+    public Vertex v;
 
     /**
      * @see javax.swing.event.MenuEvent -> getModifiersEx
      */
     public int modifiers;
 
-    public static VertexEvent clicked(VertexModel v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static VertexEvent clicked(Vertex v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
         return new VertexEvent(CLICKED, v, mousePos, mouseBtn, false, false, modifiersEx);
     }
 
-    public static VertexEvent doubleClicked(VertexModel v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static VertexEvent doubleClicked(Vertex v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
         return new VertexEvent(DOUBLECLICKED, v, mousePos, mouseBtn, false, false, modifiersEx);
     }
 
-    public static VertexEvent released(VertexModel v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static VertexEvent released(Vertex v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
         return new VertexEvent(RELEASED, v, mousePos, mouseBtn, false, false, modifiersEx);
     }
 
-    public static VertexEvent dropped(VertexModel v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static VertexEvent dropped(Vertex v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
         return new VertexEvent(DROPPED, v, mousePos, mouseBtn, false, false, modifiersEx);
     }
 
-    public static VertexEvent draggingStarted(VertexModel v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static VertexEvent draggingStarted(Vertex v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
         return new VertexEvent(DRAGGING_STARTED, v, mousePos, mouseBtn, false, false, modifiersEx);
     }
 
-    public static VertexEvent dragging(VertexModel v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static VertexEvent dragging(Vertex v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
         return new VertexEvent(DRAGGING, v, mousePos, mouseBtn, false, false, modifiersEx);
     }
 
-    public VertexEvent(int eventType, VertexModel v, GraphPoint mousePos, int mouseBtn, boolean isNotified, boolean isMouseEntered, int modifiersEx) {
+    public VertexEvent(int eventType, Vertex v, GraphPoint mousePos, int mouseBtn, boolean isNotified, boolean isMouseEntered, int modifiersEx) {
         this.eventType = eventType;
         this.v = v;
         this.mousePos = mousePos;

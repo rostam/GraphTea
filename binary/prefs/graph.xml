@@ -123,11 +123,6 @@
           <entry key="searchInSubgraph" value="false"/>
         </map>
       </node>
-      <node name="graphlab.extensions.algorithms.SampleAlgorithm">
-        <map>
-          <entry key="object" value="graphlab.extensions.algorithms.SampleAlgorithm"/>
-        </map>
-      </node>
       <node name="graphlab.extensions.connectivity.Redis">
         <map>
           <entry key="DEFAULT_SERVER" value="graphlab.sharif.ir"/>
@@ -448,10 +443,10 @@
           <entry key="object" value="graphlab.graph.edge.EdgeView"/>
         </map>
       </node>
-      <node name="graphlab.graph.graph.EdgeModel">
+      <node name="graphlab.graph.graph.Edge">
         <map>
           <entry key="showEdgeWeights" value="true"/>
-          <entry key="object" value="graphlab.graph.graph.EdgeModel"/>
+          <entry key="object" value="graphlab.graph.graph.Edge"/>
           <entry key="defaultStroke" value="solid"/>
         </map>
       </node>
@@ -469,15 +464,14 @@
       </node>
       <node name="graphlab.graph.graph.GraphModel">
         <map>
-          <entry key="vertexLabelsEnabled" value="true"/>
           <entry key="object" value="graphlab.graph.graph.GraphModel"/>
-          <entry key="showEdgeWeights" value="false"/>
-          <entry key="allowLoopsProperty" value="false"/>
+          <entry key="vertexLabelsEnabled" value="true"/>
+          <entry key="showEdgeWeights" value="true"/>
         </map>
       </node>
-      <node name="graphlab.graph.graph.VertexModel">
+      <node name="graphlab.graph.graph.Vertex">
         <map>
-          <entry key="object" value="graphlab.graph.graph.VertexModel"/>
+          <entry key="object" value="graphlab.graph.graph.Vertex"/>
         </map>
       </node>
       <node name="graphlab.graph.old.ArrowHandler">

@@ -28,7 +28,7 @@ import java.util.Iterator;
  * @author Azin Azadi,roozbeh ebrahimi
  */
 
-public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements StorableOnExit {
+public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExit {
 	{
 		SETTINGS.registerSetting(this, "Graph Drawings");
 	}
@@ -180,7 +180,7 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 
 	/**
 	 * determines whether show changes in model to view, for example when an algorithm changes the color of a vertex
-	 * in VertexModel(BaseVertex) should a color be assigned in GUI to it or not?
+	 * in Vertex(BaseVertex) should a color be assigned in GUI to it or not?
 	 *
 	 * @param showChangesOnView
 	 */
@@ -196,7 +196,7 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 	/**
 	 * same to insertVertex
 	 */
-	public void insertVertex(VertexModel newVertex) {
+	public void insertVertex(Vertex newVertex) {
 		super.insertVertex(newVertex);
         if (newVertex.label == null){
             int nid = newVertex.getId();
@@ -207,24 +207,24 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 		fireGraphChange(VERTEX_ADDED_GRAPH_CHANGE, newVertex, null);
 	}
 
-	public void insertVertices(Collection<VertexModel> vertices) {
-		for (VertexModel v : vertices) {
+	public void insertVertices(Collection<Vertex> vertices) {
+		for (Vertex v : vertices) {
 			insertVertex(v);
 		}
 	}
 
-	public void removeAllEdges(VertexModel source, VertexModel target) throws InvalidVertexException {
+	public void removeAllEdges(Vertex source, Vertex target) throws InvalidVertexException {
 		super.removeAllEdges(source, target);
 		fireGraphChange(REPAINT_GRAPH_GRAPH_CHANGE, null, null);
 	}
 
-	public void removeEdge(EdgeModel edge) throws InvalidEdgeException {
+	public void removeEdge(Edge edge) throws InvalidEdgeException {
 		super.removeEdge(edge);
 		fireGraphChange(EDGE_REMOVED_GRAPH_CHANGE, null, edge);
 	}
 
-	public void removeVertex(VertexModel v) throws InvalidVertexException {
-		Iterator<EdgeModel> it = edgeIterator(v);
+	public void removeVertex(Vertex v) throws InvalidVertexException {
+		Iterator<Edge> it = edgeIterator(v);
 		while (it.hasNext()) {
 			removeEdge(it.next());
 
@@ -238,7 +238,7 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 		fireGraphChange(GRAPH_CLEARED_GRAPH_CHANGE, null, null);
 	}
 
-	public EdgeModel getEdge(VertexModel src, VertexModel trg) {
+	public Edge getEdge(Vertex src, Vertex trg) {
 		Object t[] = null;
 		try {
 			t = super.getEdges(src, trg).toArray();
@@ -249,7 +249,7 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 		if (t==null || t.length == 0)
 			return null;
 		else
-			return (EdgeModel) t[0];
+			return (Edge) t[0];
 	}
 
 	/**
@@ -257,7 +257,7 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 	 *
 	 * @param newedge
 	 */
-	public void insertEdge(EdgeModel newedge) {
+	public void insertEdge(Edge newedge) {
         if (!isAllowLoops() && newedge.source == newedge.target)
             return;
 		try {
@@ -275,7 +275,7 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 		return super.getEdgesCount();
 		//        //graph fact: num of edges = 1/2 * sigma(degrees)
 		//        int ret = 0;
-		//        for (VertexModel v : this) {
+		//        for (Vertex v : this) {
 		//            ret += getInDegree(v);
 		//        }
 		//        return (int) (ret / (isDirected() ? 1 : 2));
@@ -293,7 +293,7 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 		glisteners.remove(listener);
 	}
 
-	void fireGraphChange(int change, VertexModel v, EdgeModel e) {
+	void fireGraphChange(int change, Vertex v, Edge e) {
 		for (GraphModelListener l : glisteners) {
 			switch (change) {
 			case VERTEX_ADDED_GRAPH_CHANGE:
@@ -325,7 +325,7 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 	public Rectangle2D.Double getAbsBounds() {
 		Rectangle2D.Double ret = new Rectangle2D.Double();
 		boolean first = true;
-		for (VertexModel v : this) {
+		for (Vertex v : this) {
 			GraphPoint location = v.getLocation();
 			Point center = v.getCenter();
 			GraphPoint shapeSize = v.getSize();
@@ -345,7 +345,7 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 	public Rectangle2D.Double getZoomedBounds() {
 		Rectangle2D.Double ret = new Rectangle2D.Double();
 		boolean first = true;
-		for (VertexModel v : this) {
+		for (Vertex v : this) {
 			GraphPoint location = v.getLocation();
 			Point center = v.getCenter();
 			GraphPoint shapeSize = v.getSize();
@@ -414,8 +414,8 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 		return color[m % color.length];
 	}
 
-	public void insertEdges(Iterable<EdgeModel> edgeModels) {
-		for (EdgeModel _ : edgeModels)
+	public void insertEdges(Iterable<Edge> edges) {
+		for (Edge _ : edges)
 			insertEdge(_);
 	}
 
@@ -430,14 +430,14 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 		Rectangle2D.Double rect = new Rectangle2D.Double(_rect.getX(), _rect.getY(), _rect.getWidth(), _rect.getHeight());
 		double kx = rect.width / bounds1.getWidth();
 		double ky = rect.height / bounds1.getHeight();
-		for (VertexModel vm : graph) {
+		for (Vertex vm : graph) {
 			GraphPoint p = vm.getLocation();
 			insertVertex(vm);
 			vm.setLocation(new GraphPoint(((p.x - bounds1.x) * kx + rect.x), (int) ((p.y - bounds1.y) * ky + rect.y)));
 		}
-		Iterator<EdgeModel> eiter = graph.lightEdgeIterator();
+		Iterator<Edge> eiter = graph.lightEdgeIterator();
 		for (; eiter.hasNext();) {
-			EdgeModel edge = eiter.next();
+			Edge edge = eiter.next();
 			insertEdge(edge);
 		}
 	}
@@ -512,30 +512,30 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 		fireGraphChange(REPAINT_GRAPH_GRAPH_CHANGE, null, null);
 	}
 
-	public void insertVertices(VertexModel[] vertices) {
-		for (VertexModel v : vertices) {
+	public void insertVertices(Vertex[] vertices) {
+		for (Vertex v : vertices) {
 			insertVertex(v);
 		}
 	}
 
-	public void insertEdges(EdgeModel[] edges) {
-		for (EdgeModel e:edges)
+	public void insertEdges(Edge[] edges) {
+		for (Edge e:edges)
 			insertEdge(e);
 	}
 
 
 	@Override
-	public VertexModel[] getVertexArray() {
-		VertexModel[] arr = new VertexModel[getVerticesCount()];
+	public Vertex[] getVertexArray() {
+		Vertex[] arr = new Vertex[getVerticesCount()];
 
-		for (VertexModel v : this)
+		for (Vertex v : this)
 			arr[getId(v)] = v;
 
 		return arr;
 	}
 
-	public EdgeModel insertEdge(VertexModel src, VertexModel trg) {
-		EdgeModel ret = new EdgeModel(src, trg);
+	public Edge insertEdge(Vertex src, Vertex trg) {
+		Edge ret = new Edge(src, trg);
 		insertEdge(ret);
 		return ret;
 	}

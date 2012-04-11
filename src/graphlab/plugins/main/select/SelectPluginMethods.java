@@ -4,10 +4,10 @@
 package graphlab.plugins.main.select;
 
 import graphlab.graph.atributeset.GraphAttrSet;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.plugin.PluginMethods;
 
@@ -37,40 +37,40 @@ public class SelectPluginMethods implements PluginMethods {
         b.setData(Select.EVENT_KEY, sd);
     }
 
-    public void setSelected(Collection<VertexModel> selectedVertices, Collection<EdgeModel> selectedEdges) {
+    public void setSelected(Collection<Vertex> selectedVertices, Collection<Edge> selectedEdges) {
         SubGraph sd = new SubGraph();
-        sd.vertices = new HashSet<VertexModel>(selectedVertices);
-        sd.edges = new HashSet<EdgeModel>(selectedEdges);
+        sd.vertices = new HashSet<Vertex>(selectedVertices);
+        sd.edges = new HashSet<Edge>(selectedEdges);
         b.setData(Select.EVENT_KEY, sd);
     }
 
-    public void setSelected(VertexModel[] selectedVertices, EdgeModel[] selectedEdges) {
+    public void setSelected(Vertex[] selectedVertices, Edge[] selectedEdges) {
         SubGraph sd = new SubGraph();
-        sd.vertices = new HashSet<VertexModel>(Arrays.asList(selectedVertices));
-        sd.edges = new HashSet<EdgeModel>(Arrays.asList(selectedEdges));
+        sd.vertices = new HashSet<Vertex>(Arrays.asList(selectedVertices));
+        sd.edges = new HashSet<Edge>(Arrays.asList(selectedEdges));
         b.setData(Select.EVENT_KEY, sd);
     }
 
-    public HashSet<VertexModel> getSelectedVertices() {
+    public HashSet<Vertex> getSelectedVertices() {
         SubGraph selected = getSelected();
         if (selected == null)
-            return new HashSet<VertexModel>();
+            return new HashSet<Vertex>();
         return selected.vertices;
     }
 
-    public void setSelectedVertices(Collection<VertexModel> selectedVertices) {
+    public void setSelectedVertices(Collection<Vertex> selectedVertices) {
         SubGraph sd = new SubGraph();
-        sd.vertices = new HashSet<VertexModel>(selectedVertices);
+        sd.vertices = new HashSet<Vertex>(selectedVertices);
         b.setData(Select.EVENT_KEY, sd);
     }
 
-    public HashSet<EdgeModel> getSelectedEdges() {
+    public HashSet<Edge> getSelectedEdges() {
         return getSelected().edges;
     }
 
-    public void setSelectedEdges(Collection<EdgeModel> selectedEdges) {
+    public void setSelectedEdges(Collection<Edge> selectedEdges) {
         SubGraph sd = new SubGraph();
-        sd.edges = new HashSet<EdgeModel>(selectedEdges);
+        sd.edges = new HashSet<Edge>(selectedEdges);
         b.setData(Select.EVENT_KEY, sd);
     }
 
@@ -85,9 +85,9 @@ public class SelectPluginMethods implements PluginMethods {
     //selection modification methods
 //    private void shrinkSelection() {
 //        SubGraph selection = getSelected();
-//        Vector<VertexModel> toSelect = new Vector<VertexModel>();
+//        Vector<Vertex> toSelect = new Vector<Vertex>();
 //
-//        for (VertexModel v : selection.vertices) {
+//        for (Vertex v : selection.vertices) {
 //            if (selection.getNeighbors(v).size() > 1)
 //                toSelect.add(v);
 //        }
@@ -102,11 +102,11 @@ public class SelectPluginMethods implements PluginMethods {
      */
     public void expandSelection() {
         GraphModel g = b.getData(GraphAttrSet.name);
-        HashSet<VertexModel> sV = getSelectedVertices();
-        Vector<VertexModel> toSelect = new Vector<VertexModel>();
+        HashSet<Vertex> sV = getSelectedVertices();
+        Vector<Vertex> toSelect = new Vector<Vertex>();
 
-        for (VertexModel v : sV) {
-            for (VertexModel nv : g.getNeighbors(v))
+        for (Vertex v : sV) {
+            for (Vertex nv : g.getNeighbors(v))
                 toSelect.add(nv);
         }
         toSelect.addAll(sV);

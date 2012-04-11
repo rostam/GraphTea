@@ -3,10 +3,10 @@ package graphlab.extensions.generators;
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
@@ -66,19 +66,19 @@ public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
 
     public GraphModel generateGraph() {
         GraphModel g = new GraphModel(false);
-        VertexModel[] v = new VertexModel[2 * n];
-        EdgeModel[] e = new EdgeModel[3 * n];
+        Vertex[] v = new Vertex[2 * n];
+        Edge[] e = new Edge[3 * n];
 
         //generating vertices
         for (int i = 0; i < 2 * n; i++)
-            v[i] = new VertexModel();
+            v[i] = new Vertex();
 
         //generating edges
         for (int i = 0; i < n; i++) {
-            e[i] = new EdgeModel(v[i], v[(i + 1) % n]);
-            if ((i + n + 1) == 2 * n) e[i + n] = new EdgeModel(v[i + n], v[n]);
-            else e[i + n] = new EdgeModel(v[i + n], v[i + n + 1]);
-            e[i + (2 * n)] = new EdgeModel(v[i], v[(i + n)]);
+            e[i] = new Edge(v[i], v[(i + 1) % n]);
+            if ((i + n + 1) == 2 * n) e[i + n] = new Edge(v[i + n], v[n]);
+            else e[i + n] = new Edge(v[i + n], v[i + n + 1]);
+            e[i + (2 * n)] = new Edge(v[i], v[(i + n)]);
         }
 
         g.insertVertices(v);

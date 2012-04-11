@@ -7,7 +7,7 @@ package graphlab.plugins.commandline.commands;
 import graphlab.graph.atributeset.GraphAttrSet;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.BlackBoard;
 import graphlab.platform.core.exception.ExceptionHandler;
 import graphlab.platform.lang.CommandAttitude;
@@ -37,21 +37,21 @@ public class VertexCommands {
             , description = "Changes the label of a vertex")
     public void setLabel(@Parameter(name = "vertex label:")String label
             , @Parameter(name = "new vertex label:")String newlabel) {
-        VertexModel v = getVertexByLabel(label);
+        Vertex v = getVertexByLabel(label);
 
         v.setLabel(newlabel);
     }
 
     @CommandAttitude(name = "vertex_iterator", abbreviation = "_v_i"
             , description = "get a iterator on verteices of graph")
-    public Iterator<VertexModel> getVertexIterator() {
+    public Iterator<Vertex> getVertexIterator() {
         return datas.getGraph().iterator();
     }
 
     @CommandAttitude(name = "is_selected", abbreviation = "_is"
             , description = "shows the vertex is selected or not")
     public Boolean isSelected(@Parameter(name = "vertex label:")String label) {
-        VertexModel v = getVertexByLabel(label);
+        Vertex v = getVertexByLabel(label);
 //        //Init.run.ext_console.println(v.isSelected(), Init.run.ext_console.getResultColor());
         return v.isSelected();
     }
@@ -62,7 +62,7 @@ public class VertexCommands {
     public void replace(@Parameter(name = "vertex label:")String label
             , @Parameter(name = "new X position:")int x,
               @Parameter(name = "new Y position:")int y) {
-        VertexModel v = getVertexByLabel(label);
+        Vertex v = getVertexByLabel(label);
         if (x == 0) {
             x = (int) v.getLocation().x;
         }
@@ -85,8 +85,8 @@ public class VertexCommands {
 
     @CommandAttitude(name = "select_vertex", abbreviation = "_sv")
     public void selectVertex(@Parameter(name = "vertex label :")String label) throws ShellCommandException {
-        VertexModel v = getVertexByLabel(label);
-        Vector<VertexModel> vertices = new Vector<VertexModel>();
+        Vertex v = getVertexByLabel(label);
+        Vector<Vertex> vertices = new Vector<Vertex>();
         vertices.add(v);
 
         if (v != null) datas.select.setSelectedVertices(vertices);
@@ -99,9 +99,9 @@ public class VertexCommands {
         datas.getGraph().removeVertex(getVertexByLabel(label));
     }
 
-    VertexModel getVertexByID(String id) {
+    Vertex getVertexByID(String id) {
         int ID = Integer.parseInt(id);
-        for (VertexModel v : datas.getGraph()) {
+        for (Vertex v : datas.getGraph()) {
             //Init.run.ext_console.printlnResult(v.getId());
             if (v.getId() == ID)
                 return v;
@@ -109,8 +109,8 @@ public class VertexCommands {
         return null;
     }
 
-    VertexModel getVertexByLabel(String label) {
-        for (VertexModel v : datas.getGraph()) {
+    Vertex getVertexByLabel(String label) {
+        for (Vertex v : datas.getGraph()) {
             if (v.getLabel().equals(label))
                 return v;
         }

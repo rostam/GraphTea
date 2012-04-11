@@ -4,10 +4,10 @@
 
 package graphlab.extensions.io;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.StaticUtils;
 import graphlab.plugins.main.saveload.SaveLoadPluginMethods;
 import graphlab.plugins.main.saveload.core.GraphIOException;
@@ -83,15 +83,15 @@ public class LoadSimpleGraph implements GraphReaderExtension {
             sc.nextLine();
 
             l = sc.next();
-            ArrayList<VertexModel> V = new ArrayList<VertexModel>();
-            VertexModel curv = new VertexModel();
+            ArrayList<Vertex> V = new ArrayList<Vertex>();
+            Vertex curv = new Vertex();
             while (!l.equals("begin")) {    //begin edges
                 if (l.equals("vertex")) {
                     String s1 = sc.next();
                     int i = parseInt(s1.substring(0, s1.length() - 1));
                     final GraphPoint zeropoint = new GraphPoint(0, 0);
                     curv.setLocation(new GraphPoint(400 * Math.random(), 400 * Math.random()));
-                    V.add(curv = new VertexModel());
+                    V.add(curv = new Vertex());
                 } else if (l.equals("label")) {
                     curv.setLabel(sc.nextLine());
                 } else if (l.equals("location")) {
@@ -105,11 +105,11 @@ public class LoadSimpleGraph implements GraphReaderExtension {
             g.insertVertices(V);
             //Read Edges
             sc.nextLine();
-            VertexModel v1 = V.get(parseInt(sc.next()));
+            Vertex v1 = V.get(parseInt(sc.next()));
             sc.next();
-            VertexModel v2 = V.get(parseInt(sc.next()));
-            ArrayList<EdgeModel> E = new ArrayList<EdgeModel>();
-            EdgeModel cure = new EdgeModel(v1, v2);
+            Vertex v2 = V.get(parseInt(sc.next()));
+            ArrayList<Edge> E = new ArrayList<Edge>();
+            Edge cure = new Edge(v1, v2);
             E.add(cure);
             while (sc.hasNext()) {
                 l = sc.next();
@@ -121,7 +121,7 @@ public class LoadSimpleGraph implements GraphReaderExtension {
                     cure.setWeight(parseInt(sc.next()));
                 } else {
                     sc.next();
-                    cure = new EdgeModel(V.get(parseInt(l)), V.get(parseInt(sc.next())));
+                    cure = new Edge(V.get(parseInt(l)), V.get(parseInt(sc.next())));
                     E.add(cure);
                 }
             }

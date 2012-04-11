@@ -5,7 +5,7 @@
 package graphlab.extensions.reports.basicreports;
 
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.lang.CommandAttitude;
 import graphlab.plugins.main.GraphData;
 import graphlab.plugins.main.core.AlgorithmUtils;
@@ -27,9 +27,9 @@ public class NumOfTriangles implements GraphReportExtension {
      */
     public static int getNumOfTriangles(GraphModel graph) {
         int cc = 0;
-        for (VertexModel i : graph) {
-            for (VertexModel j : AlgorithmUtils.getNeighbors(graph, i))
-                for (VertexModel k : AlgorithmUtils.getNeighbors(graph, j)) {
+        for (Vertex i : graph) {
+            for (Vertex j : AlgorithmUtils.getNeighbors(graph, i))
+                for (Vertex k : AlgorithmUtils.getNeighbors(graph, j)) {
                     if (k.getId() != i.getId() && graph.isEdge(k, i))
                         cc++;
                 }

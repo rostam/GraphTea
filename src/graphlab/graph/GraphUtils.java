@@ -55,23 +55,23 @@ public class GraphUtils {
 
     //______________________     GraphControl     ______________________
     /**
-     * @see graphlab.graph.graph.GraphControl#isPointOnVertex(graphlab.graph.graph.GraphModel,graphlab.graph.graph.VertexModel,graphlab.graph.graph.GraphPoint)
+     * @see graphlab.graph.graph.GraphControl#isPointOnVertex(graphlab.graph.graph.GraphModel, graphlab.graph.graph.Vertex,graphlab.graph.graph.GraphPoint)
      */
-    public static boolean isPointOnVertex(GraphModel g, VertexModel v, GraphPoint p) {
+    public static boolean isPointOnVertex(GraphModel g, Vertex v, GraphPoint p) {
         return GraphControl.isPointOnVertex(g, v, p);
     }
 
     /**
      * @see graphlab.graph.graph.GraphControl#mindistv(graphlab.graph.graph.GraphModel,graphlab.graph.graph.GraphPoint)
      */
-    public static Pair<VertexModel, Double> mindistv(GraphModel g, GraphPoint p) {
+    public static Pair<Vertex, Double> mindistv(GraphModel g, GraphPoint p) {
         return GraphControl.mindistv(g, p);
     }
 
     /**
      * @see graphlab.graph.graph.GraphControl#mindiste(graphlab.graph.graph.GraphModel,graphlab.graph.graph.GraphPoint)
      */
-    public static Pair<EdgeModel, Double> mindiste(GraphModel g, GraphPoint p) {
+    public static Pair<Edge, Double> mindiste(GraphModel g, GraphPoint p) {
         return GraphControl.mindiste(g, p);
     }
 
@@ -85,7 +85,7 @@ public class GraphUtils {
 
     /**
      * @see graphlab.graph.graph.GraphModel#addGlobalUserDefinedAttribute(String,Object)
-     * @see graphlab.graph.graph.VertexModel#setUserDefinedAttribute(String,Object)
+     * @see graphlab.graph.graph.Vertex#setUserDefinedAttribute(String,Object)
      */
     public static void addGraphGlobalUserdefinedAttribute(String name, Object defaultvalue) {
         GraphModel.addGlobalUserDefinedAttribute(name, defaultvalue);
@@ -98,36 +98,36 @@ public class GraphUtils {
         GraphModel.removeGlobalUserDefinedAttribute(name);
     }
 
-    //______________________     VertexModel     ______________________
+    //______________________     Vertex     ______________________
     /**
-     * @see graphlab.graph.graph.VertexModel#addGlobalUserDefinedAttribute(String,Object)
-     * @see graphlab.graph.graph.VertexModel#setUserDefinedAttribute(String,Object)
+     * @see graphlab.graph.graph.Vertex#addGlobalUserDefinedAttribute(String,Object)
+     * @see graphlab.graph.graph.Vertex#setUserDefinedAttribute(String,Object)
      */
     public static void addVertexGlobalUserdefinedAttribute(String name, Object defaultvalue) {
-        VertexModel.addGlobalUserDefinedAttribute(name, defaultvalue);
+        Vertex.addGlobalUserDefinedAttribute(name, defaultvalue);
     }
 
     /**
-     * @see graphlab.graph.graph.VertexModel#removeGlobalUserDefinedAttribute(String)
+     * @see graphlab.graph.graph.Vertex#removeGlobalUserDefinedAttribute(String)
      */
     public static void removeVertexGlobalUserdefinedAttribute(String name) {
-        VertexModel.removeGlobalUserDefinedAttribute(name);
+        Vertex.removeGlobalUserDefinedAttribute(name);
     }
 
-    //______________________     EdgeModel     ______________________
+    //______________________     Edge     ______________________
     /**
-     * @see graphlab.graph.graph.EdgeModel#addGlobalUserDefinedAttribute(String,Object)
-     * @see graphlab.graph.graph.VertexModel#setUserDefinedAttribute(String,Object)
+     * @see graphlab.graph.graph.Edge#addGlobalUserDefinedAttribute(String,Object)
+     * @see graphlab.graph.graph.Vertex#setUserDefinedAttribute(String,Object)
      */
     public static void addEdgeGlobalUserdefinedAttribute(String name, Object defaultvalue) {
-        EdgeModel.addGlobalUserDefinedAttribute(name, defaultvalue);
+        Edge.addGlobalUserDefinedAttribute(name, defaultvalue);
     }
 
     /**
-     * @see graphlab.graph.graph.EdgeModel#removeGlobalUserDefinedAttribute(String)
+     * @see graphlab.graph.graph.Edge#removeGlobalUserDefinedAttribute(String)
      */
     public static void removeEdgeGlobalUserdefinedAttribute(String name) {
-        EdgeModel.removeGlobalUserDefinedAttribute(name);
+        Edge.removeGlobalUserDefinedAttribute(name);
     }
 
     //______________________     GraphPoint     ______________________

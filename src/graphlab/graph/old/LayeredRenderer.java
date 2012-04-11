@@ -4,10 +4,10 @@
 
 package graphlab.graph.old;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.BlackBoard;
 
 import java.awt.*;
@@ -50,7 +50,7 @@ public class LayeredRenderer extends AcceleratedRenderer {
     public void repaintVLayer() {
         vLayer = createTransparentBuffer();
         Graphics2D graphics = vLayer.createGraphics();
-        for (VertexModel v : getGraph()) {
+        for (Vertex v : getGraph()) {
             repaint(v, graphics);
         }
         graphics.dispose();
@@ -59,29 +59,29 @@ public class LayeredRenderer extends AcceleratedRenderer {
     public void repaintELayer() {
         eLayer = createTransparentBuffer();
         Graphics2D graphics = eLayer.createGraphics();
-        Iterator<EdgeModel> ie = getGraph().edgeIterator();
+        Iterator<Edge> ie = getGraph().edgeIterator();
         while (ie.hasNext()) {
             repaint(ie.next(), graphics);
         }
         graphics.dispose();
     }
 
-    public void repaint(VertexModel src) {
+    public void repaint(Vertex src) {
         super.repaint(src, vLayer.createGraphics());
 //        repaint();
     }
 
-    public void repaint(EdgeModel src) {
+    public void repaint(Edge src) {
         super.repaint(src, eLayer.createGraphics());
 //        repaint();
     }
 
-    public void vertexRemoved(VertexModel v) {
+    public void vertexRemoved(Vertex v) {
         repaintVLayer();
         repaint();
     }
 
-    public void edgeRemoved(EdgeModel e) {
+    public void edgeRemoved(Edge e) {
         repaintELayer();
         repaint();
     }
@@ -92,17 +92,17 @@ public class LayeredRenderer extends AcceleratedRenderer {
         repaint();
     }
 
-    public void updateSize(VertexModel src, GraphPoint newSize) {
+    public void updateSize(Vertex src, GraphPoint newSize) {
         repaintVLayer();
         repaint();
     }
 
-    public void updateLocation(VertexModel src, GraphPoint newLocation) {
+    public void updateLocation(Vertex src, GraphPoint newLocation) {
         repaintVLayer();
         repaint();
     }
 
-    public void updateBounds(Rectangle r, EdgeModel src) {
+    public void updateBounds(Rectangle r, Edge src) {
         repaintELayer();
 //        repaint();
     }

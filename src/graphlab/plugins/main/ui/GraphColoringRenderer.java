@@ -4,9 +4,9 @@
 
 package graphlab.plugins.main.ui;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphColoring;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.Application;
 import graphlab.plugins.main.GraphData;
 import graphlab.ui.components.gpropertyeditor.GBasicCellRenderer;
@@ -25,8 +25,8 @@ import java.util.Map;
 public class GraphColoringRenderer implements GBasicCellRenderer<GraphColoring> {
     public Component getRendererComponent(GraphColoring coloring) {
         final GraphColoring myColoring = new GraphColoring(coloring.graph);
-        myColoring.vertexColors = new HashMap<VertexModel, Integer>(coloring.vertexColors);
-        myColoring.edgeColors = new HashMap<EdgeModel, Integer>(coloring.edgeColors);
+        myColoring.vertexColors = new HashMap<Vertex, Integer>(coloring.vertexColors);
+        myColoring.edgeColors = new HashMap<Edge, Integer>(coloring.edgeColors);
         myColoring.label = coloring.label;
         String txt = "";
         txt = "<HTML><BODY>";
@@ -35,13 +35,13 @@ public class GraphColoringRenderer implements GBasicCellRenderer<GraphColoring> 
         }
         if (myColoring.vertexColors != null && myColoring.vertexColors.size() > 0) {
             txt = txt + "<B>Vertex colors: </B> ";
-            for (Map.Entry<VertexModel, Integer> p : myColoring.vertexColors.entrySet()) {
+            for (Map.Entry<Vertex, Integer> p : myColoring.vertexColors.entrySet()) {
                 txt = txt + p.getKey().getLabel() + ":" + p.getValue() + " , ";
             }
         }
         if (myColoring.edgeColors != null && myColoring.edgeColors.size() > 0) {
             txt = txt + "<br/><B>Edge colors: </B> ";
-            for (Map.Entry<EdgeModel, Integer> p : myColoring.edgeColors.entrySet()) {
+            for (Map.Entry<Edge, Integer> p : myColoring.edgeColors.entrySet()) {
                 txt = txt + p.getKey().getLabel() + ":" + p.getValue() + " , ";
             }
         }

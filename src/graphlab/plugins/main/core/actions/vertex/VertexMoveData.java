@@ -4,14 +4,14 @@
 package graphlab.plugins.main.core.actions.vertex;
 
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 
 /**
  * @author  Ruzbeh
  */
 public class VertexMoveData {
     public final static String EVENT_KEY = "Vertex.DND";
-    public VertexModel v;
+    public Vertex v;
     //    public double newX;
     //    public double newY;
     public GraphPoint newPosition;

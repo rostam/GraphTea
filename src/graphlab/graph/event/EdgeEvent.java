@@ -3,7 +3,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.graph.event;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphPoint;
 
 /**
@@ -24,7 +24,7 @@ public class EdgeEvent {
 //    public static final int DROPPED = 4;
 
     public int eventType;
-    public EdgeModel e;
+    public Edge e;
 
     //position of mouse according to top left point of edge
     public GraphPoint mousePos;
@@ -38,7 +38,7 @@ public class EdgeEvent {
     public boolean isMouseEntered;
 
 
-    public EdgeEvent(int eventType, EdgeModel e, GraphPoint mousePos, int mouseBtn, boolean isNotified, boolean isMouseEntered) {
+    public EdgeEvent(int eventType, Edge e, GraphPoint mousePos, int mouseBtn, boolean isNotified, boolean isMouseEntered) {
         this.eventType = eventType;
         this.e = e;
         this.mousePos = mousePos;
@@ -46,23 +46,23 @@ public class EdgeEvent {
         this.isMouseEntered = isMouseEntered;
     }
 
-    public static EdgeEvent clicked(EdgeModel e, GraphPoint mousePos, int mouseBtn) {
+    public static EdgeEvent clicked(Edge e, GraphPoint mousePos, int mouseBtn) {
         return new EdgeEvent(CLICKED, e, mousePos, mouseBtn, false, false);
     }
 
-    public static EdgeEvent released(EdgeModel e, GraphPoint mousePos, int mouseBtn) {
+    public static EdgeEvent released(Edge e, GraphPoint mousePos, int mouseBtn) {
         return new EdgeEvent(RELEASED, e, mousePos, mouseBtn, false, false);
     }
 
-    public static EdgeEvent draggingStarted(EdgeModel e, GraphPoint mousePos, int mouseBtn) {
+    public static EdgeEvent draggingStarted(Edge e, GraphPoint mousePos, int mouseBtn) {
         return new EdgeEvent(DRAGGING_STARTED, e, mousePos, mouseBtn, false, false);
     }
 
-//    public static EdgeEvent dropped(EdgeModel e, GraphPoint mousePos, int mouseBtn) {
+//    public static EdgeEvent dropped(Edge e, GraphPoint mousePos, int mouseBtn) {
 //        return new EdgeEvent(DROPPED, e, mousePos, mouseBtn, false, false);
 //    }
 
-    public static EdgeEvent dragging(EdgeModel e, GraphPoint mousePos, int mouseBtn) {
+    public static EdgeEvent dragging(Edge e, GraphPoint mousePos, int mouseBtn) {
         return new EdgeEvent(DRAGGING, e, mousePos, mouseBtn, false, false);
     }
 

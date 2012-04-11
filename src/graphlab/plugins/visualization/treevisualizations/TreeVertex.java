@@ -3,7 +3,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.visualization.treevisualizations;
 
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 
 import java.util.HashSet;
 
@@ -11,22 +11,22 @@ import java.util.HashSet;
  * @author Rouzbeh Ebrahimi
  */
 public class TreeVertex {
-    private VertexModel parent;
-    private HashSet<VertexModel> children;
+    private Vertex parent;
+    private HashSet<Vertex> children;
 
-    public VertexModel getParent() {
+    public Vertex getParent() {
         return parent;
     }
 
-    public void setParent(VertexModel parent) {
+    public void setParent(Vertex parent) {
         this.parent = parent;
     }
 
-    public HashSet<VertexModel> getChildren() {
+    public HashSet<Vertex> getChildren() {
         return children;
     }
 
-    public void setChildren(HashSet<VertexModel> children) {
+    public void setChildren(HashSet<Vertex> children) {
         this.children = children;
     }
 }

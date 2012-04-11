@@ -4,14 +4,13 @@ package graphlab.plugins.reports.spectralreports.maxflowmincut;
 
 import javax.swing.JOptionPane;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.BaseEdge;
 import graphlab.library.BaseGraph;
 import graphlab.library.BaseVertex;
 import graphlab.library.algorithms.Algorithm;
-import graphlab.library.event.Event;
 import graphlab.library.event.GraphRequest;
 import graphlab.library.event.VertexRequest;
 import graphlab.platform.core.BlackBoard;
@@ -60,7 +59,7 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 		}
 		catch(Exception e){};
 
-		VertexModel source, sink;
+		Vertex source, sink;
 
 		BaseGraph<BaseVertex, BaseEdge<BaseVertex>> graph  = gr.getGraph();
 
@@ -89,13 +88,13 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 
 	private void resetGraphLabels()
 	{
-		for(VertexModel v: g)
+		for(Vertex v: g)
 		{
 			v.setColor(0);
 			v.setMark(false);
 
 		}
-		for(EdgeModel e: g.getEdges())
+		for(Edge e: g.getEdges())
 		{
 			e.setLabel(e.source.getId() + "" + e.target.getId());
 		}

@@ -5,10 +5,10 @@ package graphlab.plugins.main.ccp;
 
 import graphlab.graph.atributeset.GraphAttrSet;
 import graphlab.graph.event.GraphEvent;
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.graph.ui.GTabbedGraphPane;
 import graphlab.graph.ui.GraphRectRegionSelect;
 import graphlab.platform.core.AbstractAction;
@@ -138,13 +138,13 @@ public class Paste extends AbstractAction {
 //        else{
 //            p=new Point(200,200);
 //        }
-        HashSet<VertexModel> toBeSelectedVertices = new HashSet<VertexModel>();
-        HashSet<EdgeModel> toBeSelectedEdges = new HashSet<EdgeModel>();
+        HashSet<Vertex> toBeSelectedVertices = new HashSet<Vertex>();
+        HashSet<Edge> toBeSelectedEdges = new HashSet<Edge>();
 
-        for (VertexModel vm : gg) {
+        for (Vertex vm : gg) {
             toBeSelectedVertices.add(vm);
         }
-        for (Iterator<EdgeModel> em = gg.edgeIterator(); em.hasNext();) {
+        for (Iterator<Edge> em = gg.edgeIterator(); em.hasNext();) {
             toBeSelectedEdges.add(em.next());
         }
         g.addSubGraph(gg, graphRectRegionSelector.getCurrentRect().getBounds());
@@ -152,10 +152,10 @@ public class Paste extends AbstractAction {
         //        ClearSelection.clearSelected(g.blackboard);
         //selects the inserted edges & vertices
         SubGraph sd = new SubGraph();
-        for (VertexModel v : toBeSelectedVertices) {
+        for (Vertex v : toBeSelectedVertices) {
             sd.vertices.add(v);
         }
-        for (EdgeModel e : toBeSelectedEdges) {
+        for (Edge e : toBeSelectedEdges) {
             sd.edges.add(e);
         }
         Select.setSelection(blackboard, sd);

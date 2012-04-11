@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.visualization.treevisualizations;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.preferences.lastsettings.UserModifiableProperty;
 import graphlab.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphlab.ui.UIUtils;
@@ -20,30 +20,30 @@ import java.util.Vector;
  */
 public class SparseTreeVisualization implements VisualizationExtension {
     String event = UIUtils.getUIEventKey("SparseTreeVisualization");
-    public Vector<VertexModel> visitedVertices = new Vector<VertexModel>();
-    public HashMap<VertexModel, Point2D> vertexPlaces;
-    public Vector<VertexModel> children;
+    public Vector<Vertex> visitedVertices = new Vector<Vertex>();
+    public HashMap<Vertex, Point2D> vertexPlaces;
+    public Vector<Vertex> children;
 
     private void unMarkVertices() {
-        for (VertexModel v : graph) {
+        for (Vertex v : graph) {
             v.setMark(false);
         }
     }
 
 
-    private VertexModel findAppropriateRoot(GraphModel g) {
-        VertexModel root = g.getAVertex();
-        Iterator<VertexModel> ei = g.iterator();
+    private Vertex findAppropriateRoot(GraphModel g) {
+        Vertex root = g.getAVertex();
+        Iterator<Vertex> ei = g.iterator();
         for (; ei.hasNext();) {
-            VertexModel e = ei.next();
+            Vertex e = ei.next();
             root = findHigherVertex(e, root);
         }
         return root;
     }
 
-    private VertexModel findHigherVertex(VertexModel v1, VertexModel v2) {
-        Vector<VertexModel> t1 = new Vector<VertexModel>();
-        Vector<VertexModel> t2 = new Vector<VertexModel>();
+    private Vertex findHigherVertex(Vertex v1, Vertex v2) {
+        Vector<Vertex> t1 = new Vector<Vertex>();
+        Vector<Vertex> t2 = new Vector<Vertex>();
         t1.add(v1);
         t2.add(v2);
         if (BFS(t1, 0) > BFS(t2, 0)) {
@@ -53,14 +53,14 @@ public class SparseTreeVisualization implements VisualizationExtension {
         }
     }
 
-    private int BFS(Vector<VertexModel> currentLevel, int maxLevel) {
-        Vector<VertexModel> nextLevel = new Vector<VertexModel>();
-        for (VertexModel v : currentLevel) {
+    private int BFS(Vector<Vertex> currentLevel, int maxLevel) {
+        Vector<Vertex> nextLevel = new Vector<Vertex>();
+        for (Vertex v : currentLevel) {
             v.setMark(true);
-            Iterator<EdgeModel> em = graph.edgeIterator(v);
+            Iterator<Edge> em = graph.edgeIterator(v);
             for (; em.hasNext();) {
-                EdgeModel e = em.next();
-                VertexModel v2 = e.source;
+                Edge e = em.next();
+                Vertex v2 = e.source;
                 if (!v2.getMark()) {
                     nextLevel.add(v2);
                     v2.setMark(true);
@@ -78,11 +78,11 @@ public class SparseTreeVisualization implements VisualizationExtension {
     static GraphModel graph;
 
     public void performJob(String eventName, Object value) {
-        visitedVertices = new Vector<VertexModel>();
-        vertexPlaces = new HashMap<VertexModel, Point2D>();
-        children = new Vector<VertexModel>();
+        visitedVertices = new Vector<Vertex>();
+        vertexPlaces = new HashMap<Vertex, Point2D>();
+        children = new Vector<Vertex>();
         try {
-            VertexModel root = findAppropriateRoot(graph);
+            Vertex root = findAppropriateRoot(graph);
             visitedVertices.add(root);
             unMarkVertices();
             locateAll(visitedVertices, width, eachLevelHeigh);
@@ -94,13 +94,13 @@ public class SparseTreeVisualization implements VisualizationExtension {
     }
 
 
-    public Vector<VertexModel> findNextLevelChildren(Vector<VertexModel> currentLevelVertices) {
-        Vector<VertexModel> newChildren = new Vector<VertexModel>();
-        for (VertexModel v : currentLevelVertices) {
-            Iterator<EdgeModel> e = graph.edgeIterator(v);
+    public Vector<Vertex> findNextLevelChildren(Vector<Vertex> currentLevelVertices) {
+        Vector<Vertex> newChildren = new Vector<Vertex>();
+        for (Vertex v : currentLevelVertices) {
+            Iterator<Edge> e = graph.edgeIterator(v);
             for (; e.hasNext();) {
-                EdgeModel ed = e.next();
-                VertexModel dest = ed.source;
+                Edge ed = e.next();
+                Vertex dest = ed.source;
                 if (!visitedVertices.contains(dest)) {
                     newChildren.add(dest);
                 }
@@ -109,18 +109,18 @@ public class SparseTreeVisualization implements VisualizationExtension {
         return newChildren;
     }
 
-    public void locateAll(Vector<VertexModel> currentLevelVertices, int width, int LevelHeight) {
+    public void locateAll(Vector<Vertex> currentLevelVertices, int width, int LevelHeight) {
         int currentLevelCount = currentLevelVertices.size();
         int i = 0;
 
-        Vector<VertexModel> nextLevel = findNextLevelChildren(currentLevelVertices);
+        Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
         int nextLevelCount = nextLevel.size();
         int horizontalDist = width / (currentLevelCount + nextLevelCount);
 
-        for (VertexModel x : currentLevelVertices) {
+        for (Vertex x : currentLevelVertices) {
 
         }
-        for (VertexModel v : currentLevelVertices) {
+        for (Vertex v : currentLevelVertices) {
             if (nextLevelCount != 0) {
                 Point2D.Double newPoint = new Point2D.Double(horizontalDist * (i + 1) + width / (nextLevelCount + currentLevelCount), LevelHeight);
                 vertexPlaces.put(v, newPoint);
@@ -161,12 +161,12 @@ public class SparseTreeVisualization implements VisualizationExtension {
             , category = "Visualization Options")
     public static Integer eachLevelHeigh = 50;
 
-    public HashMap<VertexModel, Point2D> getNewVertexPlaces() {
-        visitedVertices = new Vector<VertexModel>();
-        vertexPlaces = new HashMap<VertexModel, Point2D>();
-        children = new Vector<VertexModel>();
+    public HashMap<Vertex, Point2D> getNewVertexPlaces() {
+        visitedVertices = new Vector<Vertex>();
+        vertexPlaces = new HashMap<Vertex, Point2D>();
+        children = new Vector<Vertex>();
         try {
-            VertexModel root = findAppropriateRoot(graph);
+            Vertex root = findAppropriateRoot(graph);
             visitedVertices.add(root);
             unMarkVertices();
             locateAll(visitedVertices, width, eachLevelHeigh);
@@ -177,7 +177,7 @@ public class SparseTreeVisualization implements VisualizationExtension {
         return vertexPlaces;
     }
 
-    public HashMap<EdgeModel, Point2D> getNewEdgeCurveControlPoints() {
+    public HashMap<Edge, Point2D> getNewEdgeCurveControlPoints() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

@@ -4,9 +4,9 @@
 
 package graphlab.plugins.main.ui;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.Application;
 import graphlab.plugins.main.GraphData;
 import graphlab.ui.components.gpropertyeditor.GBasicCellRenderer;
@@ -24,8 +24,8 @@ import java.util.HashSet;
 public class SubGraphRenderer implements GBasicCellRenderer<SubGraph> {
     public Component getRendererComponent(SubGraph sd) {
         final SubGraph mysd = new SubGraph(sd.graph);
-        mysd.vertices = new HashSet<VertexModel>(sd.vertices);
-        mysd.edges = new HashSet<EdgeModel>(sd.edges);
+        mysd.vertices = new HashSet<Vertex>(sd.vertices);
+        mysd.edges = new HashSet<Edge>(sd.edges);
         mysd.label = sd.label;
         String txt = "";
         txt = "<HTML><BODY>";
@@ -35,14 +35,14 @@ public class SubGraphRenderer implements GBasicCellRenderer<SubGraph> {
 
         if (mysd.vertices != null && mysd.vertices.size() > 0) {
             txt = txt + "<B>V: </B> {";
-            for (VertexModel v : mysd.vertices) {
+            for (Vertex v : mysd.vertices) {
                 txt = txt + v.getLabel() + ", ";
             }
             txt = txt.substring(0, txt.length() - 2) + "}";
         }
         if (mysd.edges != null && mysd.edges.size() > 0) {
             txt += "<BR><B>E: </B> {";
-            for (EdgeModel e : mysd.edges) {
+            for (Edge e : mysd.edges) {
                 txt = txt + e.getLabel() + ", ";
             }
             txt = txt.substring(0, txt.length() - 2) + "}";

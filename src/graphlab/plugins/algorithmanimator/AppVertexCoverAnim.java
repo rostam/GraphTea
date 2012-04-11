@@ -3,13 +3,13 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.algorithmanimator;
 
-import graphlab.graph.graph.EdgeModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Edge;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.algorithms.vertexcover.AppVertexCover;
 import graphlab.plugins.algorithmanimator.extension.AlgorithmExtension;
 
 public class AppVertexCoverAnim
-        extends AppVertexCover<VertexModel, EdgeModel>
+        extends AppVertexCover<Vertex, Edge>
         implements AlgorithmExtension {
 
     public AppVertexCoverAnim() {

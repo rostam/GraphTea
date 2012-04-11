@@ -5,7 +5,7 @@
 package graphlab.samples.extensions;
 
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.parameter.Parameter;
 import graphlab.platform.parameter.Parametrizable;
 import graphlab.plugins.main.GraphData;
@@ -34,7 +34,7 @@ public class OrderKReport implements GraphReportExtension, Parametrizable {
     public Object calculate(GraphData gd) {
         int ret = 0;
         GraphModel graph = gd.getGraph();
-        for (VertexModel v : graph) {
+        for (Vertex v : graph) {
             if (graph.getInDegree(v) + graph.getOutDegree(v) == k) {
                 ret++;
             }

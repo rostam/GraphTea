@@ -1,14 +1,14 @@
 package graphlab.plugins.reports.spectralreports.maxflowmincut;
 
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import java.util.LinkedList;
 
 public class MinCut{
 
 	public double C[][]; 
 	public double F[][];
-	public VertexModel source,sink;
+	public Vertex source,sink;
 	public LinkedList<Integer> cut = new LinkedList<Integer>();
 	public boolean showResult;
 	
@@ -19,7 +19,7 @@ public class MinCut{
 	protected PushRelabel PR;
 		
 	
-	public  MinCut(GraphModel g, VertexModel source, VertexModel sink, boolean showResult) {
+	public  MinCut(GraphModel g, Vertex source, Vertex sink, boolean showResult) {
 		this.g = g;
 		this.source = source;
 		this.sink = sink;

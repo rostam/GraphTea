@@ -3,8 +3,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.algorithmanimator.core.atoms;
 
-import graphlab.graph.graph.EdgeModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Edge;
+import graphlab.graph.graph.Vertex;
 import graphlab.library.BaseGraph;
 import graphlab.library.BaseVertex;
 import graphlab.library.event.Event;
@@ -46,8 +46,8 @@ public class PrePostWork implements AtomAnimator<Event> {
         if (from == v)
             return;
 //        tt.setMessage("visit:" + v.getId());
-        VertexModel v2 = ((VertexModel) v);
-        VertexModel v1 = ((VertexModel) from);
+        Vertex v2 = ((Vertex) v);
+        Vertex v1 = ((Vertex) from);
         if (graph == null) {
             System.out.println("graph = null");
             return;
@@ -55,7 +55,7 @@ public class PrePostWork implements AtomAnimator<Event> {
         Collection edges = graph.getEdges(v1, v2);
         if (edges == null)
             return;
-        EdgeModel ee = ((EdgeModel) edges.iterator().next());
+        Edge ee = ((Edge) edges.iterator().next());
         if (ee != null)
             ee.setColor(2);
         v2.setColor(3);
@@ -70,7 +70,7 @@ public class PrePostWork implements AtomAnimator<Event> {
     private void leave(BaseVertex v) {
 //        t.setMessage("leave:" + v.getId());
 
-        VertexModel vv = ((VertexModel) v);
+        Vertex vv = ((Vertex) v);
         vv.setColor(4);
         // vv.view.repaint();
 

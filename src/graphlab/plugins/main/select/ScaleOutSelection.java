@@ -5,14 +5,12 @@
 package graphlab.plugins.main.select;
 
 import graphlab.graph.graph.GraphPoint;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.plugins.main.GraphData;
 import graphlab.plugins.main.core.AlgorithmUtils;
 import graphlab.plugins.main.extension.GraphActionExtension;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 /**
  * @author Azin Azadi
@@ -29,10 +27,10 @@ public class ScaleOutSelection implements GraphActionExtension {
     public void action(GraphData gd) {
         if (gd.select.isSelectionEmpty())
             return;
-        HashSet<VertexModel> V = gd.select.getSelectedVertices();
+        HashSet<Vertex> V = gd.select.getSelectedVertices();
 
         GraphPoint center = AlgorithmUtils.getCenter(V);
-        for (VertexModel v : V) {
+        for (Vertex v : V) {
             GraphPoint loc = v.getLocation();
             double x = loc.x - center.x;
             double y = loc.y - center.y;
@@ -40,7 +38,7 @@ public class ScaleOutSelection implements GraphActionExtension {
         }
     }
 
-    protected void setNewLocation(VertexModel v, GraphPoint loc, double x, double y) {
+    protected void setNewLocation(Vertex v, GraphPoint loc, double x, double y) {
         v.setLocation(new GraphPoint(loc.x - x / 1.25, loc.y - y / 1.25));
     }
 

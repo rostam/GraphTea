@@ -4,9 +4,9 @@
 
 package graphlab.samples.extensions;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.GraphModel;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.plugins.main.GraphData;
 import graphlab.plugins.main.extension.GraphActionExtension;
 
@@ -15,11 +15,11 @@ import java.util.HashSet;
 public class CompleteSelectionAction implements GraphActionExtension {
 
     public void action(GraphData graphData) {
-        HashSet<VertexModel> sel = graphData.select.getSelectedVertices();
+        HashSet<Vertex> sel = graphData.select.getSelectedVertices();
         GraphModel g = graphData.getGraph();
-        for (VertexModel v1 : sel) {
-            for (VertexModel v2 : sel) {
-                EdgeModel e = new EdgeModel(v1, v2);
+        for (Vertex v1 : sel) {
+            for (Vertex v2 : sel) {
+                Edge e = new Edge(v1, v2);
                 g.insertEdge(e);
             }
         }

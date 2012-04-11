@@ -34,13 +34,13 @@ public class GraphControlGrid implements GraphModelListener {
 
     private GraphModel g;
 
-    private VertexModel fakeVertex;
-    private EdgeModel fakeEdge;
+    private Vertex fakeVertex;
+    private Edge fakeEdge;
 
-    VertexModel[] verticesGrid[][];
+    Vertex[] verticesGrid[][];
 
 
-    EdgeModel[] edgesGrid[][];
+    Edge[] edgesGrid[][];
 
     int planeDivisions = 10;
 
@@ -51,11 +51,11 @@ public class GraphControlGrid implements GraphModelListener {
         g.addGraphListener(this);
         this.g = g;
         refresh = true;
-        fakeVertex = new VertexModel();
-        VertexModel _fakeVertex = new VertexModel();
+        fakeVertex = new Vertex();
+        Vertex _fakeVertex = new Vertex();
         fakeVertex.setLocation(new GraphPoint(Double.MAX_VALUE, Double.MAX_VALUE));
         _fakeVertex.setLocation(new GraphPoint(Double.MAX_VALUE, Double.MAX_VALUE));
-        fakeEdge = new EdgeModel(fakeVertex, _fakeVertex);
+        fakeEdge = new Edge(fakeVertex, _fakeVertex);
     }
 
     public Pair mindiste(GraphModel g, GraphPoint p) {
@@ -64,7 +64,7 @@ public class GraphControlGrid implements GraphModelListener {
             refresh = false;
         }
         if (p.x < gbounds.x || p.y < gbounds.y || p.x > gbounds.x + gbounds.width || p.y > gbounds.y + gbounds.height)
-            return new Pair<EdgeModel, Double>(null, 100000d);
+            return new Pair<Edge, Double>(null, 100000d);
         int ix = (int) ((p.x - gbounds.x) / gbounds.width * planeDivisions);
         int iy = (int) ((p.y - gbounds.y) / gbounds.height * planeDivisions);
 
@@ -78,9 +78,9 @@ public class GraphControlGrid implements GraphModelListener {
             iy = planeDivisions - 1;
 
         double min = 100000;
-        EdgeModel mine = null;
-        EdgeModel[] ei = edgesGrid[ix][iy];
-        for (EdgeModel e : ei) {
+        Edge mine = null;
+        Edge[] ei = edgesGrid[ix][iy];
+        for (Edge e : ei) {
             Line2D.Double l = new Line2D.Double(e.source.getLocation().x, e.source.getLocation().y, e.target.getLocation().x, e.target.getLocation().y);
             double dist = l.ptLineDistSq(p);
             if (min > dist) {
@@ -91,7 +91,7 @@ public class GraphControlGrid implements GraphModelListener {
         return new Pair(mine, min);
     }
 
-    public Pair<VertexModel, Double> mindistv(GraphPoint p) {
+    public Pair<Vertex, Double> mindistv(GraphPoint p) {
         if (refresh) {
             refresh();
             refresh = false;
@@ -110,9 +110,9 @@ public class GraphControlGrid implements GraphModelListener {
             iy = planeDivisions - 1;
 
         double min = 100000;
-        VertexModel minv = null;
-        VertexModel[] vv = verticesGrid[ix][iy];
-        for (VertexModel v : vv) {
+        Vertex minv = null;
+        Vertex[] vv = verticesGrid[ix][iy];
+        for (Vertex v : vv) {
             double dist = Math.pow(v.getLocation().x - p.x, 2) + Math.pow(v.getLocation().y - p.y, 2);
             if (min > dist) {
                 min = dist;
@@ -123,42 +123,42 @@ public class GraphControlGrid implements GraphModelListener {
             System.out.println("minv: null");
         else
             System.out.println("minv: " + minv.toString());
-        return new Pair<VertexModel, Double>(minv, min);
+        return new Pair<Vertex, Double>(minv, min);
     }
 
     private void refresh() {
-        verticesGrid = new VertexModel[planeDivisions][planeDivisions][0];
+        verticesGrid = new Vertex[planeDivisions][planeDivisions][0];
         gbounds = g.getZoomedBounds();
         if (gbounds.width == 0)
             gbounds.width = 1;
         if (gbounds.height == 0)
             gbounds.height = 1;
-        for (VertexModel v : g) {
+        for (Vertex v : g) {
             addVertexToGrid(v);
         }
 
-        edgesGrid = new EdgeModel[planeDivisions][planeDivisions][0];
-        Iterator<EdgeModel> ie = g.edgeIterator();
+        edgesGrid = new Edge[planeDivisions][planeDivisions][0];
+        Iterator<Edge> ie = g.edgeIterator();
         while (ie.hasNext()) {
-            EdgeModel e = ie.next();
+            Edge e = ie.next();
             addEdgeToGrid(e);
         }
 
     }
 
 
-    private void addVertexToGrid(VertexModel v) {
+    private void addVertexToGrid(Vertex v) {
         GraphPoint loc = v.getLocation();
         int ix = (int) ((loc.x - gbounds.x) / gbounds.width * planeDivisions);
         int iy = (int) ((loc.y - gbounds.y) / gbounds.height * planeDivisions);
         addVertexToGrid(ix, iy, v);
     }
 
-    private void removeVertexFromGrid(VertexModel v) {
+    private void removeVertexFromGrid(Vertex v) {
         GraphPoint loc = v.getLocation();
         int ix = (int) ((loc.x - gbounds.x) / gbounds.width * planeDivisions);
         int iy = (int) ((loc.y - gbounds.y) / gbounds.height * planeDivisions);
-        VertexModel[] s = verticesGrid[ix][iy];
+        Vertex[] s = verticesGrid[ix][iy];
         for (int i = 0; i < s.length; i++) {
             if (s[i] == v) {
                 s[i] = fakeVertex;
@@ -167,7 +167,7 @@ public class GraphControlGrid implements GraphModelListener {
         }
     }
 
-    private void addEdgeToGrid(EdgeModel e) {
+    private void addEdgeToGrid(Edge e) {
         GraphPoint loc1 = e.source.getLocation();
         GraphPoint loc2 = e.source.getLocation();
         int ix1 = (int) ((loc1.x - gbounds.x) / gbounds.width * planeDivisions);
@@ -192,10 +192,10 @@ public class GraphControlGrid implements GraphModelListener {
         }
     }
 
-    private void addEdgeToGrid(int ix, int iy, EdgeModel e) {
-        EdgeModel[] s = edgesGrid[ix][iy];
+    private void addEdgeToGrid(int ix, int iy, Edge e) {
+        Edge[] s = edgesGrid[ix][iy];
         if (s == null)
-            s = new EdgeModel[0];
+            s = new Edge[0];
         boolean found = false;
         for (int i = 0; i < s.length; i++) {
             if (s[i] == fakeEdge) {
@@ -205,7 +205,7 @@ public class GraphControlGrid implements GraphModelListener {
             }
         }
         if (!found) {      //there were no fake edges so make the array larger
-            EdgeModel _[] = new EdgeModel[s.length + 2];
+            Edge _[] = new Edge[s.length + 2];
             System.arraycopy(s, 0, _, 0, s.length);
             _[s.length] = e;
             _[s.length + 1] = fakeEdge;         //make it a little more larger for better performance, similar to Vectors
@@ -213,10 +213,10 @@ public class GraphControlGrid implements GraphModelListener {
         }
     }
 
-    private void addVertexToGrid(int ix, int iy, VertexModel v) {
-        VertexModel[] s = verticesGrid[ix][iy];
+    private void addVertexToGrid(int ix, int iy, Vertex v) {
+        Vertex[] s = verticesGrid[ix][iy];
         if (s == null)
-            s = new VertexModel[0];
+            s = new Vertex[0];
         boolean found = false;
         for (int i = 0; i < s.length; i++) {
             if (s[i] == fakeVertex) {
@@ -226,7 +226,7 @@ public class GraphControlGrid implements GraphModelListener {
             }
         }
         if (!found) {      //there were no fake edges so make the array larger
-            VertexModel[] _ = new VertexModel[s.length + 2];
+            Vertex[] _ = new Vertex[s.length + 2];
             System.arraycopy(s, 0, _, 0, s.length);
             _[s.length] = v;
             _[s.length + 1] = fakeVertex;         //make it a little more larger for better performance, similar to Vectors
@@ -234,7 +234,7 @@ public class GraphControlGrid implements GraphModelListener {
         }
     }
 
-    private void removeEdgeFromGrid(EdgeModel e) {
+    private void removeEdgeFromGrid(Edge e) {
         GraphPoint loc1 = e.source.getLocation();
         GraphPoint loc2 = e.source.getLocation();
         int ix1 = (int) ((loc1.x - gbounds.x) / gbounds.width * planeDivisions);
@@ -252,7 +252,7 @@ public class GraphControlGrid implements GraphModelListener {
             int x = (int) (alpha * ix2 + (1 - alpha) * ix1);
             int y = (int) (alpha * iy2 + (1 - alpha) * iy1);
             if (x != prvx || y != prvy) {
-                EdgeModel[] s = edgesGrid[x][y];
+                Edge[] s = edgesGrid[x][y];
                 removeEdge(s, e);
                 prvx = x;
                 prvy = y;
@@ -260,7 +260,7 @@ public class GraphControlGrid implements GraphModelListener {
         }
     }
 
-    private void removeEdge(EdgeModel[] s, EdgeModel e) {
+    private void removeEdge(Edge[] s, Edge e) {
         for (int ii = 0; ii < s.length; ii++) {
             if (s[ii] == e) {
                 s[ii] = fakeEdge;
@@ -270,7 +270,7 @@ public class GraphControlGrid implements GraphModelListener {
     }
 
 
-    public void vertexAdded(VertexModel v) {
+    public void vertexAdded(Vertex v) {
         Rectangle2D.Double tbounds = g.getZoomedBounds();
         if (tbounds.x < gbounds.x || tbounds.y < gbounds.y || tbounds.width > gbounds.width || tbounds.height > gbounds.height)
             refresh = true;
@@ -280,11 +280,11 @@ public class GraphControlGrid implements GraphModelListener {
 
     }
 
-    public void vertexRemoved(VertexModel v) {
+    public void vertexRemoved(Vertex v) {
         removeVertexFromGrid(v);
     }
 
-    public void edgeAdded(EdgeModel e) {
+    public void edgeAdded(Edge e) {
         Rectangle2D.Double tbounds = g.getZoomedBounds();
         if (tbounds.x < gbounds.x || tbounds.y < gbounds.y || tbounds.width > gbounds.width || tbounds.height > gbounds.height)
             refresh = true;
@@ -293,7 +293,7 @@ public class GraphControlGrid implements GraphModelListener {
         }
     }
 
-    public void edgeRemoved(EdgeModel e) {
+    public void edgeRemoved(Edge e) {
         removeEdgeFromGrid(e);
     }
 

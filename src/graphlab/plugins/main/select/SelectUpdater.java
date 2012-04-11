@@ -3,9 +3,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphlab.plugins.main.select;
 
-import graphlab.graph.graph.EdgeModel;
+import graphlab.graph.graph.Edge;
 import graphlab.graph.graph.SubGraph;
-import graphlab.graph.graph.VertexModel;
+import graphlab.graph.graph.Vertex;
 import graphlab.platform.core.AbstractAction;
 import graphlab.platform.core.BlackBoard;
 
@@ -38,26 +38,26 @@ public class SelectUpdater extends AbstractAction {
 //        System.out.println("");
         if (sd == null)
             sd = new SubGraph();
-        for (VertexModel v : sd.vertices)
+        for (Vertex v : sd.vertices)
             if (!last.vertices.contains(v)) {
                 select(v);
                 last.vertices.add(v);
             }
-        Vector<VertexModel> rm = new Vector<VertexModel>();
-        for (VertexModel v : last.vertices)
+        Vector<Vertex> rm = new Vector<Vertex>();
+        for (Vertex v : last.vertices)
             if (!sd.vertices.contains(v)) {
                 deselect(v);
                 rm.add(v);
 //                last.vertices.remove(v);
             }
         last.vertices.removeAll(rm);
-        for (EdgeModel e : sd.edges)
+        for (Edge e : sd.edges)
             if (!last.edges.contains(e)) {
                 select(e);
                 last.edges.add(e);
             }
-        Vector<EdgeModel> rme = new Vector<EdgeModel>();
-        for (EdgeModel e : last.edges)
+        Vector<Edge> rme = new Vector<Edge>();
+        for (Edge e : last.edges)
             if (!sd.edges.contains(e)) {
                 deselect(e);
                 rme.add(e);
@@ -68,19 +68,19 @@ public class SelectUpdater extends AbstractAction {
         //last.edges=(HashSet<Edge>) sd.edges.clone();
     }
 
-    private void deselect(EdgeModel e) {
+    private void deselect(Edge e) {
         e.setSelected(false);
     }
 
-    private void select(EdgeModel e) {
+    private void select(Edge e) {
         e.setSelected(true);
     }
 
-    private void deselect(VertexModel v) {
+    private void deselect(Vertex v) {
         v.setSelected(false);
     }
 
-    private void select(VertexModel v) {
+    private void select(Vertex v) {
         v.setSelected(true);
     }
 }
