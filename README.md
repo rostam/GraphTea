@@ -25,6 +25,9 @@ for working on the source,
 
 note that you should have [appache ant](http://ant.apache.org/) installed.
 
+##write a graph algorithm
+go change this file:
+
 ##what can you do with graphlab
 
 * draw your graph with mouse or using predefined graphs (under graph > generate), like trees, complete graphs, stars, generalized peterson and ...
