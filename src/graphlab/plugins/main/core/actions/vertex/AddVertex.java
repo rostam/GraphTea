@@ -87,8 +87,6 @@ public class AddVertex extends AbstractAction {
         Point p = v.getCenter();
         v.setLocation(new GraphPoint(x - p.x, y - p.y));
         g.insertVertex(v);
-        v.setLabel(v.getId() + "");
-
         return v;
     }
 
@@ -101,7 +99,6 @@ public class AddVertex extends AbstractAction {
         VertexModel v = new VertexModel();
         v.setLocation(position);
         g.insertVertex(v);
-        v.setLabel(v.getId() + "");
         return v;
     }
 

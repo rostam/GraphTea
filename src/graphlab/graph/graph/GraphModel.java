@@ -67,6 +67,7 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 	private String label;
 	public static final Color[] color = {Color.orange, Color.blue, Color.yellow, Color.green, Color.magenta, Color.red, Color.cyan, Color.pink, Color.lightGray, Color.darkGray};
 
+    private int lastUsedID = 0;
 	/**
 	 * It is true if the edges of this graph are curves (not line),
 	 * This will be applied to all edges of graph
@@ -197,6 +198,12 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
 	 */
 	public void insertVertex(VertexModel newVertex) {
 		super.insertVertex(newVertex);
+        if (newVertex.label == null){
+            int nid = newVertex.getId();
+            lastUsedID = Math.max(lastUsedID,nid);
+            newVertex.label = String.valueOf(lastUsedID++);
+        }
+
 		fireGraphChange(VERTEX_ADDED_GRAPH_CHANGE, newVertex, null);
 	}
 
@@ -559,8 +566,7 @@ public class GraphModel extends ListGraph<VertexModel, EdgeModel> implements Sto
         return allowLoops;
     }
     public void setAllowLoops(boolean allowLoops) {
-        allowLoops = allowLoops;
+        this.allowLoops = allowLoops;
     }
-
 
 }

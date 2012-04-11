@@ -421,6 +421,19 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
     }
 
     /**
+     * to make loop over edges connected to a vertex,
+     * for (EdgeType e: edges(v))
+     * yeah
+     */
+    public Iterable<EdgeType> edges(final VertexType v){
+        return new Iterable<EdgeType>(){
+            @Override
+            public Iterator<EdgeType> iterator() {
+                return lightEdgeIterator(v);
+            }
+        };
+    }
+    /**
      * Returns degree of vertex, the number of edges which their target or source is the specified vertex.
      *
      * @param vertex
@@ -507,4 +520,36 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
             }
         };
     }
+    
+    //same as methods, yes we cool
+    /**
+     * same as #removeVertex
+     */
+    public void deleteVertex(VertexType v){
+        removeVertex(v);
+    }
+
+    /**
+     * same as #removeEdge
+     */
+    public void deleteEdge(EdgeType e){
+        removeEdge(e);
+    }
+
+    /**
+     * same as #getNeighbors
+     */
+    public Iterable<VertexType> neighbors(final VertexType vertex) {
+        return getNeighbors(vertex);
+    }
+
+    /**
+     * same as #getBackNeighbors
+     */
+    public Iterable<VertexType> backNeighbours(final VertexType vertex) {
+        return getBackNeighbours(vertex);
+    }
+    
+    
+
 }

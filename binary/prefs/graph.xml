@@ -12,9 +12,9 @@
       </node>
       <node name="GeneralizedPetersonIndepSetListerAction">
         <map>
-          <entry key="startK" value="3"/>
-          <entry key="object" value="GeneralizedPetersonIndepSetListerAction"/>
           <entry key="startN" value="17"/>
+          <entry key="object" value="GeneralizedPetersonIndepSetListerAction"/>
+          <entry key="startK" value="3"/>
         </map>
       </node>
       <node name="HararyGraphGenerator">
@@ -116,11 +116,11 @@
       </node>
       <node name="graphlab.extensions.actions.SearchInGraph">
         <map>
-          <entry key="searchInSubgraph" value="false"/>
+          <entry key="selectedVertex" value=""/>
           <entry key="label" value="8"/>
           <entry key="object" value="graphlab.extensions.actions.SearchInGraph"/>
           <entry key="searchIn" value="java.lang.String #$%# edges #$%# java.lang.String #$%# weights #$%# java.lang.String #$%# vertices #$%# java.lang.String #$%# neighbers #$%# java.lang.String #$%# neighbers"/>
-          <entry key="selectedVertex" value=""/>
+          <entry key="searchInSubgraph" value="false"/>
         </map>
       </node>
       <node name="graphlab.extensions.algorithms.CholeskyFactorizationExtension">
@@ -306,9 +306,9 @@
       </node>
       <node name="graphlab.extensions.graphactions.GeneralizedPetersonIndepSetListerAction">
         <map>
-          <entry key="startK" value="1"/>
-          <entry key="object" value="graphlab.extensions.graphactions.GeneralizedPetersonIndepSetListerAction"/>
           <entry key="startN" value="5"/>
+          <entry key="object" value="graphlab.extensions.graphactions.GeneralizedPetersonIndepSetListerAction"/>
+          <entry key="startK" value="1"/>
         </map>
       </node>
       <node name="graphlab.extensions.io.LatexCAD">
@@ -450,9 +450,9 @@
       </node>
       <node name="graphlab.graph.graph.EdgeModel">
         <map>
-          <entry key="defaultStroke" value="solid"/>
-          <entry key="object" value="graphlab.graph.graph.EdgeModel"/>
           <entry key="showEdgeWeights" value="true"/>
+          <entry key="object" value="graphlab.graph.graph.EdgeModel"/>
+          <entry key="defaultStroke" value="solid"/>
         </map>
       </node>
       <node name="graphlab.graph.graph.FastRenderer">
@@ -469,9 +469,10 @@
       </node>
       <node name="graphlab.graph.graph.GraphModel">
         <map>
-          <entry key="showEdgeWeights" value="false"/>
-          <entry key="object" value="graphlab.graph.graph.GraphModel"/>
           <entry key="vertexLabelsEnabled" value="true"/>
+          <entry key="object" value="graphlab.graph.graph.GraphModel"/>
+          <entry key="showEdgeWeights" value="false"/>
+          <entry key="allowLoopsProperty" value="false"/>
         </map>
       </node>
       <node name="graphlab.graph.graph.VertexModel">
@@ -595,9 +596,9 @@
       </node>
       <node name="graphlab.gui.plugins.main.Init$3">
         <map>
-          <entry key="defaultColor" value="java.awt.Color[r=249,g=117,b=46]"/>
-          <entry key="object" value="graphlab.gui.plugins.main.Init$3"/>
           <entry key="defaultStroke" value="solid"/>
+          <entry key="object" value="graphlab.gui.plugins.main.Init$3"/>
+          <entry key="defaultColor" value="java.awt.Color[r=249,g=117,b=46]"/>
         </map>
       </node>
       <node name="graphlab.gui.plugins.main.Init$4">

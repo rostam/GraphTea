@@ -32,7 +32,7 @@ public class VertexModel extends BaseVertex {
     GStroke shapeStroke = FastRenderer.defaultBorderStroke;
 
     public boolean isSelected = false;
-    String label = "";
+    String label = null;
     Point center = new Point();
     //    private static GraphPoint dp=new GraphPoint(100,100);
     //represents the location of the vertex on the graph, this location will not changed by zooming and similar operations, the location only change by moving the vertex
@@ -148,7 +148,6 @@ public class VertexModel extends BaseVertex {
         this.shapeSize = v.shapeSize;
         this.shapeStroke = v.shapeStroke;
         this.labelLocation = v.labelLocation;
-//        this.labelHandler = new GLabelModel("", null);
         //copies all attributes from second edge to first edge
         AttributeSet a = new VertexAttrSet(v);
         AttributeSet b = new VertexAttrSet(this);
@@ -227,9 +226,6 @@ public class VertexModel extends BaseVertex {
     public void setLabel(String label) {
         this.label = label;
         fireModelListenerChanged();
-//        todo
-//        if (labelHandler != null)
-//            labelHandler.setText(label);
     }
 
     public void setShape(GShape shape) {
