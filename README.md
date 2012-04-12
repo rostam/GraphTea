@@ -9,19 +9,20 @@ GraphLab is a software framework to work on graphs and social networks. which co
 it runs under any platform (based on java).
 
 #RUN
-to run the application, goto the binary folder and execute `run.bat` (windows), or `run.sh` (linux/mac).
-you can run it directly by
+execute `run.bat` (windows), or `run.sh` (linux/mac).
 
+manually:
 > java -jar graphlab-main.jar
 
 #DEVELOP
 for working on the source, 
 
 1. make your changes
-2. run make.sh (type in terminal `./make.sh`)
+2. run make.sh (or type in terminal `./make.sh`)
 3. it will compile your changes and run the application.
 
-the long way:
+
+manually:
 
 1. open terminal
 2. `cd src/scripts`
