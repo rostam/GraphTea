@@ -48,10 +48,8 @@ public class SampleAlgorithm extends GraphAlgorithm implements AlgorithmExtensio
         g.insertEdges(toInsert);
         
         
-        step("find a path between v1 and v2");
-        Path<Vertex> path = AlgorithmUtils.getPath(g, v1, v2);
-        
         step("mark the path connecting v1 and v2, using helper methods in AlgorithmUtils");
+        Path<Vertex> path = AlgorithmUtils.getPath(g, v1, v2);
         Vertex last = v2;
         for (Vertex v: path){
             Edge e = g.getEdge(v, last);
@@ -60,7 +58,6 @@ public class SampleAlgorithm extends GraphAlgorithm implements AlgorithmExtensio
         }
 
         step("the graph matrix<br>" + getMatrixHTML(g));
-        g.addEdge(new Edge(v1, v2));
 
         step("That's it!");
         step("Start making your algorithm by modifing this file, and running make.sh");
