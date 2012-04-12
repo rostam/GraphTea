@@ -60,13 +60,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SampleAlgorithm.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SampleAlgorithm.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/algorithms/SampleAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="22" selection-start="715" selection-end="715" vertical-scroll-proportion="-1.0608108">
+            <state line="24" column="22" selection-start="715" selection-end="715" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#1672#1678#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="58" column="34" selection-start="3468" selection-end="3468" vertical-scroll-proportion="0.22297297">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -141,18 +150,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GraphModel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphlab/graph/graph/GraphModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="417" column="26" selection-start="11906" selection-end="11906" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#15590#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SuperAcceleratedRenderer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphlab/graph/old/SuperAcceleratedRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -185,7 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/AlgorithmAnimator.java" />
         <option value="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/AnimatorGUI.java" />
         <option value="$PROJECT_DIR$/src/graphlab/graph/graph/VertexModel.java" />
         <option value="$PROJECT_DIR$/src/graphlab/graph/graph/Vertex.java" />
@@ -201,6 +197,7 @@
         <option value="$PROJECT_DIR$/src/graphlab/graph/event/VertexEvent.java" />
         <option value="$PROJECT_DIR$/src/graphlab/graph/ui/GHTMLPageComponent.java" />
         <option value="$PROJECT_DIR$/src/graphlab/extensions/algorithms/SampleAlgorithm.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -810,7 +807,7 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="links in alg anim work" />
+    <option name="LAST_COMMIT_MESSAGE" value="better readme" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -832,6 +829,7 @@
     <MESSAGE value="1- a sample algorithm extension, right inside the app&#10;2- better algorithm  animator" />
     <MESSAGE value="big rename finally happens" />
     <MESSAGE value="links in alg anim work" />
+    <MESSAGE value="better readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -862,13 +860,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/atoms/VertexSelect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="1" selection-start="1523" selection-end="1669" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/core/AtomAnimator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="0" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
@@ -988,10 +979,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphlab/extensions/algorithms/SampleAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="22" selection-start="715" selection-end="715" vertical-scroll-proportion="-1.0608108">
+        <state line="24" column="22" selection-start="715" selection-end="715" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#1672#1678#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="34" selection-start="3468" selection-end="3468" vertical-scroll-proportion="0.22297297">
+          <folding />
         </state>
       </provider>
     </entry>
