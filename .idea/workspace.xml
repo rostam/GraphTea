@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e1726eca-65f2-46b7-8bcc-339ae8628bce" name="Default" comment="big rename finally happens">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/binary/lib/graph.jar" afterPath="$PROJECT_DIR$/binary/lib/graph.jar" />
+    <list default="true" id="e1726eca-65f2-46b7-8bcc-339ae8628bce" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/extensions/algorithms/SampleAlgorithm.java" afterPath="$PROJECT_DIR$/src/graphlab/extensions/algorithms/SampleAlgorithm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/graph/ui/GHTMLPageComponent.java" afterPath="$PROJECT_DIR$/src/graphlab/graph/ui/GHTMLPageComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/AnimatorGUI.java" afterPath="$PROJECT_DIR$/src/graphlab/plugins/algorithmanimator/AnimatorGUI.java" />
     </list>
     <ignored path="graphlab.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -814,7 +810,7 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="big rename finally happens" />
+    <option name="LAST_COMMIT_MESSAGE" value="links in alg anim work" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -835,6 +831,7 @@
     <MESSAGE value="1- automatically assign labels to vertices on inserting to graph. still place for improvement&#10;2- some helper methods in graph" />
     <MESSAGE value="1- a sample algorithm extension, right inside the app&#10;2- better algorithm  animator" />
     <MESSAGE value="big rename finally happens" />
+    <MESSAGE value="links in alg anim work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
