@@ -22,7 +22,7 @@ public class SampleAlgorithm extends GraphAlgorithm implements AlgorithmExtensio
 
     @Override
     public void doAlgorithm() {
-        step("<h3>Source at: <a href='http://github.com/azinazadi/GraphLab/blob/master/src/graphlab/extensions/algorithms/SampleAlgorithm.java&handler=external'>SampleAlgorithm.java</a></h3>");
+        step("<h3>Source at:<a href='http://github.com/azinazadi/GraphLab/blob/master/src/graphlab/extensions/algorithms/SampleAlgorithm.java&handler=external'>SampleAlgorithm.java</a></h3>");
         step("<h3>Some helper methods at:<a href='http://github.com/azinazadi/GraphLab/blob/master/src/graphlab/plugins/main/core/AlgorithmUtils.java&handler=external'>AlgorithmUtils.java</a></h3>");
 
         GraphModel g = graphData.getGraph();

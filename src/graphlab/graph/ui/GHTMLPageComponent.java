@@ -79,8 +79,7 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
         return jta;
     }
 
-    public void makeEditable(){
-        jta.setEditable(true);
+    public void autoScroll(){
         DefaultCaret caret = (DefaultCaret) jta.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         jta.getCaret().setVisible(true);

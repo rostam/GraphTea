@@ -174,6 +174,6 @@ public class AnimatorGUI {
 //        algorithmOutputTextArea.getEditorPane().setLineWrap(true);
         algorithmOutputTextArea.getEditorPane().setText(html);
         algorithmOutputTextArea.setToolTipText("Messages sent by algorithm");
-        algorithmOutputTextArea.makeEditable();
+        algorithmOutputTextArea.autoScroll();
     }
 }
