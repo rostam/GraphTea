@@ -1,34 +1,39 @@
 ![Preview](https://github.com/azinazadi/GraphLab/raw/master/presentation/peterson.png)
-a short presentation: http://www.youtube.com/watch?v=0gblxDCNsmY
+
+#youtube demo
+see this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
+
 #GraphLab
-GraphLab is a software framework to work on graphs and social networks. which consists of a graph library and a graph GUI. The library part is a framework designed for developing graph theory algorithms and testing graph conjectures. and the GUI part aimed to draw and visualize graphs and running algorithms on them. The program is based on plug-ins and extensions and provides a user friendly application platform to create scientific applications.
+GraphLab is a software framework to work on graphs and social networks. which consists of a graph library and a graph GUI. The library part is a framework designed for developing graph theory algorithms and testing graph conjectures. the GUI part aimed to draw and visualize graphs and running algorithms on them. The program is based on plug-ins and extensions and provides a user friendly application platform to create scientific applications.
 
 it runs under any platform (based on java).
 
-##run
+#run
 to run the application, goto the binary folder and execute `run.bat` (windows), or `run.sh` (linux/mac).
 you can run it directly by
 
 > java -jar graphlab-main.jar
 
-##how to use it
-see this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
-
-##compile
+#develope
 for working on the source, 
 
 1. make your changes
-2. open terminal
-3. `cd src/scripts` 
-4. `ant`. this will build the application for you in the binary folder.
-5. for seeing your changes do the steps described for "run"
+2. run make.sh (type in terminal `./make.sh`)
+3. it will compile your changes and run the application.
+
+the long way:
+1. open terminal
+2. `cd src/scripts`
+3. `ant`. this will build the application for you in the binary folder.
+4. for seeing your changes do the steps described for "run"
 
 note that you should have [appache ant](http://ant.apache.org/) installed.
 
-##write a graph algorithm
-go change this file:
+#write a graph algorithm
+go change this file: [SampleAlgorithm.java](https://github.com/azinazadi/GraphLab/blob/master/src/graphlab/extensions/algorithms/SampleAlgorithm.java).
+you can make also reports, generators, file formats and actions.
 
-##what can you do with graphlab
+#what can you do with graphlab
 
 * draw your graph with mouse or using predefined graphs (under graph > generate), like trees, complete graphs, stars, generalized peterson and ...
 * get information about your graphs (under graph > reports menu), like num of connected components, chromatic number, independence number, girth size, num of triangles and ...
@@ -38,10 +43,10 @@ go change this file:
 
 * you can make new graph generators, graph reports, file types, actions, algorithms by writing extensions. extensions provide a gateway to add new functionalities as simple as putting a file to extensions directory. you can write them using Java and Matlab. moreover you can write new extensions using any programming language that supports [redis](http://redis.io/clients) which includes almost any wellknown programming language. for more samples take a look at extensions directory
 
-##need help?
+#need help?
 more docs will come soon. if you have any questions just post it in the issues and i will write you back as soon as possible.
 
-## Contributing
+# Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
