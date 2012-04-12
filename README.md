@@ -8,13 +8,13 @@ GraphLab is a software framework to work on graphs and social networks. which co
 
 it runs under any platform (based on java).
 
-#run
+#RUN
 to run the application, goto the binary folder and execute `run.bat` (windows), or `run.sh` (linux/mac).
 you can run it directly by
 
 > java -jar graphlab-main.jar
 
-#develop
+#DEVELOP
 for working on the source, 
 
 1. make your changes
@@ -47,7 +47,7 @@ you can make also reports, generators, file formats and actions.
 #need help?
 more docs will come soon. if you have any questions just post it in the issues and i will write you back as soon as possible.
 
-# Contributing
+# CONTRIBUTE
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
