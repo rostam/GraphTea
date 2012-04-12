@@ -14,7 +14,7 @@ you can run it directly by
 
 > java -jar graphlab-main.jar
 
-#develope
+#develop
 for working on the source, 
 
 1. make your changes
@@ -22,6 +22,7 @@ for working on the source,
 3. it will compile your changes and run the application.
 
 the long way:
+
 1. open terminal
 2. `cd src/scripts`
 3. `ant`. this will build the application for you in the binary folder.
