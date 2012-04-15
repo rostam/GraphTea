@@ -1,0 +1,97 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>properties sidebar</title>
+<link rel="stylesheet" type="text/css" href="common.css">
+</head>
+<body>
+<p class="doctitle">Shell Sidebar</p>
+<p>The shell sidebar  will help you to use some programming skills to work with Graph<sup>Lab</sup>.
+It is something like when you work with Matemathica, Maple or Matlab. You write 
+some codes and see the results. Shell will help you to do some complex things&nbsp; not available via the 
+graphical user interface. Working with shell doesn't require to know about Object Oriented Programming, or another programming techniques.
+But knowing them will help you to create more powerful scripts! 
+<br>
+Working with shell is easy. Just type the commands and shell will execute them. 
+For example, you may want to create a complete graph with 10 vertices:</p>
+<p class='image'><img border="0" src="shell_1.PNG" width="941" height="700"><br>a simple shell command</p>
+<p>Pressing the <span class="keyword">TAB</span> key, Shell will try to show you 
+the available options with blue color, (It is called auto complete). Although if 
+you want to use a method and don&#39;t know its input parameters 
+just press the <span class="keyword">TAB</span> key after its opening 
+parenthesis (like the above image), and Shell will help you.&nbsp; </p>
+
+<p>You can find <a href="http://graphlab.sharif.edu/trac/wiki/shell.htm?handler=external">here</a> a start guide to Graph<sup>Lab</sup> shell.</p>
+<p>And <a href="http://graphlab.sharif.edu/trac/wiki/shell_advanced.htm?handler=external">here</a> is a more 
+advanced topic:</p>
+<p>Inside shell type <span class="keyword">help();</span> to get a list of 
+available commands. This list contains almost any available commands. to get 
+help of a single command use: <span class="keyword">help(&quot;your_command&quot;);</span> 
+(for example: <span class="keyword">help(&quot;add_edge&quot;);</span>).
+<span class="keyword">Print(x);</span> will print the value of x as output.</p>
+<p>
+Here is a list of some useful commands of shell</span>:
+<pre><span class="keyword">add_edge(_ae)</span>:
+<span class="keyword">add_tab(_at)</span>: Adds a new Tab to GUI
+<span class="keyword">add_vertex(_av)</span>: adds a vertex
+<span class="keyword">cartesian_product(_cproduct)</span>: Computes and shows the Cartesian product of given graphs
+<span class="keyword">clear_graph(_cg)</span>: Clears the graph
+<span class="keyword">close_tab(_ct)</span>: closes the selected tab from GUI
+<span class="keyword">copy_selected(_c)</span>: Copies the selected data to clipboard
+<span class="keyword">current_graph</span>: The current editing graph
+<span class="keyword">cut(_c)</span>: Cuts the selected data to clipboard
+<span class="keyword">edge_induced(_e_induce)</span>: Edge Induced subgraph of selected edges
+<span class="keyword">eig_values(_evs)</span>: adjacency matrix eigen values
+<span class="keyword">generate_cmn(_g_cmn)</span>: generates Cm * Cn
+<span class="keyword">generate_cn(_g_cn)</span>: generated a Circle with n vertices
+<span class="keyword">generate_generalized_peterson(_g_p)</span>: generalized peterson
+<span class="keyword">generate_kmn(_g_kmn)</span>: generates a 2partite complete graph
+<span class="keyword">generate_kn(_g_kn)</span>: Generates a complete graph with n vertices
+<span class="keyword">generate_knd(_g_knd)</span>: Generate K(n/d)
+<span class="keyword">generate_pmn(_g_pmn)</span>: generates Pm*Pn
+<span class="keyword">generate_pn(_g_pn)</span>: Generates a path with n vertices
+<span class="keyword">generate_random(_g_rand)</span>: Generates a random graph with N Vertices and E Edges
+<span class="keyword">generate_random_tree(_g_rand_t)</span>: Generates a random tree
+<span class="keyword">generate_sn(_g_sn)</span>: Generates a star
+<span class="keyword">generate_wheel(_g_w)</span>: generate a n vertices wheel graph
+<span class="keyword">get_edge_label(_gel)</span>: 
+<span class="keyword">get_edge_weight(_gew)</span>: 
+<span class="keyword">girth_size(_gs)</span>: Graph Girth Size
+<span class="keyword">gjoin(_jn)</span>: Joins two graphs
+<span class="keyword">gunion(_un)</span>: Creates the union of two given graphs
+<span class="keyword">induced(_induce)</span>: Vertex Induced subgraph of given vertices
+<span class="keyword">is_eulerian(_ie)</span>: Is Eulerian
+<span class="keyword">is_selected(_is)</span>: shows the vertex is selected or not
+<span class="keyword">load_graphml(_lg)</span>: loads a graph from a GrapmML file
+<span class="keyword">MakeSelectionComplementGraph()</span>: Make the selected subgraph complement
+<span class="keyword">MakeSelectionCompleteGraph()</span>: Make the selected subgraph a complete graph
+<span class="keyword">MakeSelectionEmptyGraph()</span>: Make the selected subgraph an empty graph
+<span class="keyword">matrix(_mat)</span>: shows the matrix related to the graph
+<span class="keyword">max_and_min_degree(_mmd)</span>: max and min degree of graph
+<span class="keyword">num_of_connected_components(_nocc)</span>: number of connected components
+<span class="keyword">num_of_edges(_esize)</span>: Number of edges in the Graph
+<span class="keyword">num_of_quadrangle(_noqa)</span>: number of quadrangle
+<span class="keyword">num_of_triangles(_notri)</span>: Number Of Triangles
+<span class="keyword">num_of_vertices(_vsize)</span>: Number of vertices in the Graph
+<span class="keyword">paste(_p)</span>: Pastes from the clipboard
+<span class="keyword">product(_product)</span>: Computes and shows Popular product of given graphs
+<span class="keyword">redo(_r)</span>: Redos the last action
+<span class="keyword">remove_edge(_re)</span>: Removes an Edge
+<span class="keyword">remove_vertex(_rv)</span>: Removes a Vertex
+<span class="keyword">replace(_r)</span>: Replaces the given vertex by a new position
+<span class="keyword">reset_graph(_rg)</span>: Resets the Graph
+<span class="keyword">ScaleInSelection()</span>: Shrinks the selected items
+<span class="keyword">ScaleOutSelection()</span>: Expands the selected items
+<span class="keyword">select_vertex(_sv)</span>: 
+<span class="keyword">set_edge_label(_sel)</span>: 
+<span class="keyword">set_edge_weight(_sew)</span>: 
+<span class="keyword">set_label(_sl)</span>: Changes the label of a vertex
+<span class="keyword">undo(_u)</span>: Undos the last performed action
+<span class="keyword">vertex_iterator(_v_i)</span>: gets an iterator on vertices of graph
+<span class="keyword">vertices_degree_list(_vdl)</span>: vertices degrees list
+
+</pre>
+</p>
+</body>
+</html>

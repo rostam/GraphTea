@@ -1,0 +1,42 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>properties sidebar</title>
+<link rel="stylesheet" type="text/css" href="common.css">
+</head>
+<body>
+<p class="doctitle">Reports Sidebar</p>
+<p>The Reports Sidebar will help you to get some information about your graphs. This information mainly are mathematical parameters of graphs. For example number of connected components, 
+degree list and ...
+<br>
+The sidebar is empty when the program is started. you should press the Recalculate button, so that Graph<sup>Lab</sup> computes the reports and show the result on a table.
+
+<p class="image"><img border="0" src="reports_1.PNG" width="577" height="458"><br>Recalculate Button</p>
+<br>
+<p class="image"><img border="0" src="reports_2.PNG" width="632" height="456" ><br>Calculated reports</p>
+<br>
+
+The reports also has a menu located on <span class="keyword">Graph > Reports</span>, 
+using this menus you can directly compute a single report, without wasting your time to compute another reports which you don't need them.
+<br>
+Some reports may have some parameters. For example the "<span class="keyword">Number of Vertices With Degree K</span>" report has a 
+<span class="keyword">K</span> parameter which the report result
+is based on. A button appears beside their menu which enables you to modify this parameters. Also by double clicking the report name in the report side bar the same dialog
+to modify the parameters will be opened.
+<p class="image"><img border="0" src="reports_3.PNG" width="643" height="458"><br>The 
+<span class="keyword">Reports menu</span> and the <span class="keyword">Parameter Editor
+</span>button</p>
+<br>
+<p class="image"><img border="0" src="reports_4.PNG" width="626" height="546"><br>The 
+<span class="keyword">Parameter Editor</span> Dialog</p>
+<br>
+This button will do the similar job when appears in front of any menu of Graph<sup>Lab</sup>.
+
+All reports in Graph<sup>Lab</sup> have a corresponding command in 
+<span class="keyword">shell</span>. This commands return the value of report. for example: 
+<span class="keyword">print(NumOfVerticesWithDegK(2));</span>
+
+
+</body>
+</html>
