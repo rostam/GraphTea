@@ -1,5 +1,5 @@
 if [ "$JAVA_HOME" != "" ]; then
-	$JAVA_HOME/bin/java -jar graphlab-main.jar;
+	$JAVA_HOME/bin/java -jar graphtea-main.jar;
 else
-	java -jar graphlab-main.jar;
+	java -jar graphtea-main.jar;
 fi

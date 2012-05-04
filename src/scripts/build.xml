@@ -2,8 +2,8 @@
 <!-- ======================================================================
      Mar 26, 2005 10:29:39 AM
 
-     GraphLab
-     The ant build file of GraphLab Project.
+     Graphtea
+     The ant build file of Graphtea Project.
 
      Logs:
      - Version 0.0.1 2005/03/26 10:29 Reza Mohammadi.
@@ -11,7 +11,7 @@
      - Version 0.0.2 2005/03/27 17:27 Reza Mohammadi.
        Core Plugin Removed!
        sh File Removed!
-       graphlab-core.jar is executable now!
+       graphtea-core.jar is executable now!
      - Version 0.0.3 2005/03/28 12:41 Reza Mohammadi.
        Clean Target Added.
      - Version 0.0.4 2005/03/30 00:49 Reza Mohammadi.
@@ -33,9 +33,9 @@
        		developplugin
      ====================================================================== -->
 
-<project name="GraphLab" default="make binary" basedir="..">
+<project name="Graphtea" default="make binary" basedir="..">
     <description>
-        The ant build file of GraphLab Project.
+        The ant build file of Graphtea Project.
     </description>
 
     <!-- - - - - - - - - - - - - - - - - -
@@ -62,21 +62,21 @@
     <!-- =================================
           target: compile
          ================================= -->
-    <target name="compile" depends="depends" description="--> The ant build file of GraphLab Project.">
+    <target name="compile" depends="depends" description="--> The ant build file of Graphtea Project.">
         <javac srcdir="${xdir}" destdir="${build.dir}">
             <classpath>
                 <path refid="project.lib"/>
             </classpath>
-            <include name="graphlab/**/*.java"/>
-            <!--<exclude name="graphlab/gui/plugins/developplugin/content/**"/>-->
+            <include name="graphtea/**/*.java"/>
+            <!--<exclude name="graphtea/gui/plugins/developplugin/content/**"/>-->
         </javac>
         <copy todir="${build.dir}">
             <fileset dir="${xdir}">
-                <include name="graphlab/**/*.*"/>
+                <include name="graphtea/**/*.*"/>
                 <exclude name="**/*.java"/>
                 <exclude name="**/*.~*"/>
                 <exclude name="**/.*"/>
-                <!--<exclude name="graphlab/platform/GraphLabDebugger.class"/>-->
+                <!--<exclude name="graphtea/platform/GraphteaDebugger.class"/>-->
             </fileset>
         </copy>
     </target>
@@ -88,18 +88,18 @@
         <!--copies extensions -->
         <copy todir="${dist.dir}/extensions">
             <fileset dir="${build.dir}">
-                <include name="graphlab/extensions/**/*.*"/>
+                <include name="graphtea/extensions/**/*.*"/>
             </fileset>
         </copy>
-        <jar destfile="${dist.dir}/graphlab-main.jar">
+        <jar destfile="${dist.dir}/graphtea-main.jar">
             <manifest>
                 <attribute name="Built-By" value="${user.name}"/>
-                <attribute name="Main-Class" value="graphlab.platform.Application"/>
+                <attribute name="Main-Class" value="graphtea.platform.Application"/>
                 <attribute name="version" value="20060104"/>
                 <attribute name="SplashScreen-Image" value="icon.PNG"/>
             </manifest>
             <fileset dir="${build.dir}">
-                <include name="graphlab/platform/**/*.*"/>
+                <include name="graphtea/platform/**/*.*"/>
             </fileset>
         </jar>
         <jar destfile="${dist.dir}/plugins/main.jar">
@@ -110,8 +110,8 @@
                 <attribute name="plugin-depends" value=""/>
             </manifest>
             <fileset dir="${build.dir}">
-                <!--<include name="graphlab/platform/core/**/*.*"/>-->
-                <include name="graphlab/plugins/main/**/*.*"/>
+                <!--<include name="graphtea/platform/core/**/*.*"/>-->
+                <include name="graphtea/plugins/main/**/*.*"/>
             </fileset>
         </jar>
         <jar destfile="${dist.dir}/plugins/visualization.jar">
@@ -122,7 +122,7 @@
                 <attribute name="plugin-depends" value="main 20060104"/>
             </manifest>
             <fileset dir="${build.dir}">
-                <include name="graphlab/plugins/visualization/**/*.*"/>
+                <include name="graphtea/plugins/visualization/**/*.*"/>
             </fileset>
         </jar>
         <jar destfile="${dist.dir}/plugins/graphgenerator.jar">
@@ -133,7 +133,7 @@
                 <attribute name="plugin-depends" value="main 20060104"/>
             </manifest>
             <fileset dir="${build.dir}">
-                <include name="graphlab/plugins/graphgenerator/**/*.*"/>
+                <include name="graphtea/plugins/graphgenerator/**/*.*"/>
             </fileset>
         </jar>
         <!--
@@ -145,7 +145,7 @@
                         <attribute name="plugin-depends" value="main 20060104"/>
                     </manifest>
                     <fileset dir="${build.dir}">
-                        <include name="graphlab/plugins/metrics/**/*.*"/>
+                        <include name="graphtea/plugins/metrics/**/*.*"/>
                     </fileset>
                 </jar>
         -->
@@ -157,7 +157,7 @@
                 <attribute name="plugin-depends" value="main 20060104"/>
             </manifest>
             <fileset dir="${build.dir}">
-                <include name="graphlab/plugins/algorithmanimator/**/*.*"/>
+                <include name="graphtea/plugins/algorithmanimator/**/*.*"/>
             </fileset>
         </jar>
         <jar destfile="${dist.dir}/plugins/commandline.jar">
@@ -168,7 +168,7 @@
                 <attribute name="plugin-depends" value="main 20060104"/>
             </manifest>
             <fileset dir="${build.dir}">
-                <include name="graphlab/plugins/commandline/**/*.*"/>
+                <include name="graphtea/plugins/commandline/**/*.*"/>
             </fileset>
         </jar>
         <!--<jar destfile="${dist.dir}/plugins/developplugin.jar">-->
@@ -177,10 +177,10 @@
         <!--<attribute name="plugin-name" value="developplugin"/>-->
         <!--<attribute name="plugin-version" value="20060104"/>-->
         <!--<attribute name="plugin-depends" value="main 20060104"/>-->
-        <!--<attribute name="plugin-configxml" value="/graphlab/gui/plugins/developplugin/config.xml"/>-->
+        <!--<attribute name="plugin-configxml" value="/graphtea/gui/plugins/developplugin/config.xml"/>-->
         <!--</manifest>-->
         <!--<fileset dir="${build.dir}">-->
-        <!--<include name="graphlab/plugins/developplugin/**/*.*"/>-->
+        <!--<include name="graphtea/plugins/developplugin/**/*.*"/>-->
         <!--</fileset>-->
         <!--</jar>-->
         <jar destfile="${dist.dir}/plugins/commonplugin.jar">
@@ -191,7 +191,7 @@
                 <attribute name="plugin-depends" value="main 20060104"/>
             </manifest>
             <fileset dir="${build.dir}">
-                <include name="graphlab/plugins/commonplugin/**/*.*"/>
+                <include name="graphtea/plugins/commonplugin/**/*.*"/>
             </fileset>
         </jar>
         <jar destfile="${dist.dir}/plugins/reports.jar">
@@ -202,7 +202,7 @@
                 <attribute name="plugin-depends" value="main 20060104"/>
             </manifest>
             <fileset dir="${build.dir}">
-                <include name="graphlab/plugins/reports/**/*.*"/>
+                <include name="graphtea/plugins/reports/**/*.*"/>
             </fileset>
         </jar>
         
@@ -214,7 +214,7 @@
                 <attribute name="plugin-depends" value="main 20060104"/>
             </manifest>
             <fileset dir="${build.dir}">
-                <include name="graphlab/plugins/connector/**/*.*"/>
+                <include name="graphtea/plugins/connector/**/*.*"/>
             </fileset>
         </jar>
         <jar destfile="${dist.dir}/plugins/automaticupdator.jar">
@@ -225,26 +225,26 @@
                 <attribute name="plugin-depends" value="main 20060104"/>
             </manifest>
             <fileset dir="${build.dir}">
-                <include name="graphlab/plugins/automaticupdator/**/*.*"/>
+                <include name="graphtea/plugins/automaticupdator/**/*.*"/>
             </fileset>
         </jar>
-        <jar destfile="${dist.dir}/lib/graphlab-ui-library.jar">
+        <jar destfile="${dist.dir}/lib/graphtea-ui-library.jar">
             <manifest>
                 <attribute name="Built-By" value="${user.name}"/>
-                <attribute name="Description" value="User interface of GraphLab"/>
+                <attribute name="Description" value="User interface of Graphtea"/>
             </manifest>
             <fileset dir="${build.dir}">
-                <include name="graphlab/ui/**/*.*"/>
+                <include name="graphtea/ui/**/*.*"/>
             </fileset>
         </jar>
 
-        <jar destfile="${dist.dir}/lib/graphlab-library.jar">
+        <jar destfile="${dist.dir}/lib/graphtea-library.jar">
             <manifest>
                 <attribute name="Built-By" value="${user.name}"/>
-                <attribute name="Description" value="Library of GraphLab"/>
+                <attribute name="Description" value="Library of Graphtea"/>
             </manifest>
             <fileset dir="${build.dir}">
-                <include name="graphlab/library/**/*.*"/>
+                <include name="graphtea/library/**/*.*"/>
             </fileset>
         </jar>
 
@@ -254,7 +254,7 @@
                 <attribute name="Description" value="Graph Drawing Library"/>
             </manifest>
             <fileset dir="${build.dir}">
-                <include name="graphlab/graph/**/*.*"/>
+                <include name="graphtea/graph/**/*.*"/>
             </fileset>
         </jar>
 
@@ -302,7 +302,7 @@
     <!--target: run-->
     <!--================================= -->
     <!--<target name="run" depends="make binary" description="Run the Program">-->
-    <!--<java jar="${dist.dir}/graphlab-main.jar"-->
+    <!--<java jar="${dist.dir}/graphtea-main.jar"-->
     <!--fork="true" dir="${dist.dir}">-->
     <!--</java>-->
     <!--</target>-->
@@ -311,7 +311,7 @@
           target: javaDoc
          ================================= -->
     <target name="javadoc">
-        <javadoc  packagenames="graphlab.*"
+        <javadoc  packagenames="graphtea.*"
                 sourcepath="${basedir}"
                 defaultexcludes="yes"
                 useexternalfile ="true"
@@ -320,9 +320,9 @@
                 version="true"
                 use="true"
                 linksource="true"
-            doctitle="GraphLab Project"
-            windowtitle="GraphLab Project">
-                 <header><![CDATA[<a href='http://graphlab.sharif.edu'>GraphLab Project</a>]]></header>
+            doctitle="Graphtea Project"
+            windowtitle="Graphtea Project">
+                 <header><![CDATA[<a href='http://graphtea.sharif.edu'>Graphtea Project</a>]]></header>
 
         </javadoc>
         <zip destfile="${basedir}/../developer_resources/javadoc.zip">
@@ -343,12 +343,12 @@
     <!--</target>-->
 
     <!-- =================================
-          target: graphlabAPI
+          target: graphteaAPI
          ================================= -->
-    <target name="api" depends="compile" description="Create GraphlabAPI.jar">
-        <jar destfile="${basedir}/../developer_resources/GraphlabAPI.jar">
+    <target name="api" depends="compile" description="Create GraphteaAPI.jar">
+        <jar destfile="${basedir}/../developer_resources/GraphteaAPI.jar">
             <fileset dir="${build.dir}">
-                <include name="graphlab/**/*.*"/>
+                <include name="graphtea/**/*.*"/>
             </fileset>
         </jar>
         <deltree dir="${build.dir}"/>

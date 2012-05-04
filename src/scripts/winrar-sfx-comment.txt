@@ -1,14 +1,14 @@
 ;The comment below contains SFX script commands
 
-Path=GraphLab
+Path=Graphtea
 SavePath
-Setup=GraphLab.lnk
-Title=GraphLab Setup
+Setup=Graphtea.lnk
+Title=Graphtea Setup
 Text
 {
-Installing GraphLab.
+Installing Graphtea.
 }
-License=GraphLab End user license agreement
+License=Graphtea End user license agreement
 {
 		    GNU GENERAL PUBLIC LICENSE
 		       Version 2, June 1991
@@ -352,12 +352,12 @@ library.  If this is what you want to do, use the GNU Library General
 Public License instead of this License.
 
 }
-Shortcut=D, "GraphLab.lnk", "", "Run GraphLab", "GraphLab"
-Shortcut=P, "GraphLab.lnk", "GraphLab", "Run GraphLab", "GraphLab"
-Shortcut=P, "doc/graphlab/wiki/graphlabdocumentations.htm", "GraphLab", "GraphLab documentation", "Documentations"
-Shortcut=P, "doc/menu_reference_browsable.html", "GraphLab", "GraphLab Menu Reference", "GraphLab Menu Reference"
-Shortcut=P, "./", "GraphLab/Developer Resources", "Browse GraphLab Directory", "Browse GraphLab"
-Shortcut=P, "src.zip", "GraphLab/Developer Resources", "GraphLab Source Codes", "GraphLab Source Codes"
-Shortcut=P, "GraphLabAPI.jar", "GraphLab/Developer Resources", "GraphLabAPI.jar", "GraphLabAPI.jar"
-Shortcut=P, "extensions", "GraphLab/Developer Resources", "extensions", "extensions"
+Shortcut=D, "Graphtea.lnk", "", "Run Graphtea", "Graphtea"
+Shortcut=P, "Graphtea.lnk", "Graphtea", "Run Graphtea", "Graphtea"
+Shortcut=P, "doc/graphtea/wiki/graphteadocumentations.htm", "Graphtea", "Graphtea documentation", "Documentations"
+Shortcut=P, "doc/menu_reference_browsable.html", "Graphtea", "Graphtea Menu Reference", "Graphtea Menu Reference"
+Shortcut=P, "./", "Graphtea/Developer Resources", "Browse Graphtea Directory", "Browse Graphtea"
+Shortcut=P, "src.zip", "Graphtea/Developer Resources", "Graphtea Source Codes", "Graphtea Source Codes"
+Shortcut=P, "GraphteaAPI.jar", "Graphtea/Developer Resources", "GraphteaAPI.jar", "GraphteaAPI.jar"
+Shortcut=P, "extensions", "Graphtea/Developer Resources", "extensions", "extensions"
 

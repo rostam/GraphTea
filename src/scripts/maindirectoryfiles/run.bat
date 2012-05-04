@@ -1,7 +1,7 @@
 @echo off
-@echo starting GraphLab
+@echo starting Graphtea
 
 ::----------------------------------------------------------------------
-:: GraphLab Startup Script
+:: Graphtea Startup Script
 ::----------------------------------------------------------------------
-java -jar graphlab-main.jar
+java -jar graphtea-main.jar

@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/scripts/lib/ganymed.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/scripts/lib/matlab.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/scripts/lib/Jama-1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/scripts/lib/jmatlink.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/scripts/lib/latexcad.zip!/" />
+      <root url="jar://$PROJECT_DIR$/src/scripts/lib/commons-pool-1.5.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/scripts/lib/gson-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/scripts/lib/javabuilder.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/scripts/lib/jedis-2.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/scripts/lib/rjc_redis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/scripts/lib/bsh-2.0b4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,3 +1,3 @@
 cd binary
-java -jar graphlab-main.jar
+java -jar graphtea-main.jar
 cd ..
