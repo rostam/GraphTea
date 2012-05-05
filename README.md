@@ -39,7 +39,7 @@ manually:
 note that you should have [appache ant](http://ant.apache.org/) installed.
 
 #write a graph algorithm
-go change this file: [SampleAlgorithm.java](http://github.com/graphtheorysoftware/GraphTea/raw/master/src/graphtea/extensions/algorithms/SampleAlgorithm.java).
+go change this file: [SampleAlgorithm.java](https://github.com/graphtheorysoftware/GraphTea/blob/master/src/graphtea/extensions/algorithms/SampleAlgorithm.java).
 you can make also reports, generators, file formats and actions.
 
 #what can you do with graphtea
