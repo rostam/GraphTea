@@ -1,12 +1,17 @@
-![Preview](https://github.com/azinazadi/Graphtea/raw/master/presentation/peterson.png)
+![Preview](http://github.com/graphtheorysoftware/GraphTea/raw/master/presentation/peterson.png)
 
 #youtube demo
 see this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
 
 #GraphTea
-GraphTea is a software framework to work on graphs and social networks. which consists of a graph library and a graph GUI. The library part is a framework designed for developing graph theory algorithms and testing graph conjectures. the GUI part aimed to draw and visualize graphs and running algorithms on them. The program is based on plug-ins and extensions and provides a user friendly application platform to create scientific applications.
+GraphTea is a software framework to work on graphs and social networks. 
+It helps you to:
+- draw a graph
+- get reports about it
+- run algorithms on it
+- visualize it
 
-it runs under any platform (based on java).
+it runs under window/linux/mac osx (based on java).
 
 #RUN
 execute `run.bat` (windows), or `run.sh` (linux/mac).
@@ -32,7 +37,7 @@ manually:
 note that you should have [appache ant](http://ant.apache.org/) installed.
 
 #write a graph algorithm
-go change this file: [SampleAlgorithm.java](https://github.com/azinazadi/Graphtea/blob/master/src/graphtea/extensions/algorithms/SampleAlgorithm.java).
+go change this file: [SampleAlgorithm.java](http://github.com/graphtheorysoftware/GraphTea/raw/master/src/graphtea/extensions/algorithms/SampleAlgorithm.java).
 you can make also reports, generators, file formats and actions.
 
 #what can you do with graphtea
@@ -49,6 +54,7 @@ you can make also reports, generators, file formats and actions.
 more docs will come soon. if you have any questions just post it in the issues and i will write you back as soon as possible.
 
 # CONTRIBUTE
+(http://help.github.com/send-pull-requests/)
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
