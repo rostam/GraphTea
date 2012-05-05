@@ -1,0 +1,27 @@
+# eclipse conf file
+.settings
+.classpath
+.project
+.manager
+.scala_dependencies
+.cache
+
+# idea conf files
+.idea
+*.iml
+*.ipr
+*.iws
+
+# building
+target
+build
+null
+tmp
+temp
+dist
+test-output
+build.log
+
+# misc
+.DS_Store
+
