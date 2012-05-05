@@ -10,7 +10,9 @@ It helps you to:
 - get reports about it
 - run algorithms on it
 - visualize it
-[DOWNLOAD](https://github.com/graphtheorysoftware/GraphTea/zipball/master)
+
+[DOWNLOAD GraphTea](https://github.com/graphtheorysoftware/GraphTea/zipball/master)
+
 it runs under window/linux/mac osx (based on java).
 
 #RUN
