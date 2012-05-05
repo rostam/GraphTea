@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  GraphTea Project: https://github.com/graphtheorysoftware/GraphTea
+  Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
+  Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
+  -->
+
+<root>
+    <actions>
+        <!--<action class="graphtea.gui.plugins.commandline.Shell"-->
+        <!--group="" id="RunShell"/>-->
+        <!--<action class="graphtea.plugins.commandline.ShellServer"-->
+        <!--group="" id="ShellServer"/>-->
+    </actions>
+    <ui>
+        <menues>
+            <!--<submenu label="_CommandLine">-->
+            <!--<menu label="_Run" place="1" action="RunShell"/>-->
+            <!--<menu label="_Run shell server" place="2" action="ShellServer"/>-->
+            <!--</submenu>-->
+        </menues>
+        <sidebars>
+            <sidebar class="graphtea.plugins.commandline.ShellSideBar" id="ShellSideBar"
+                     image="/graphtea/plugins/commandline/SBicon.gif" label="shell" />
+        </sidebars>
+        <!--toolbars>
+            <toolbar>
+                <tool label="Help" action="Help" image=""/>
+			</toolbar>
+		</toolbars-->
+    </ui>
+</root>

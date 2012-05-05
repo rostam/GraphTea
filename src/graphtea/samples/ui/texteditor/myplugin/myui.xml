@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  GraphTea Project: https://github.com/graphtheorysoftware/GraphTea
+  Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
+  Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
+  -->
+
+<root>
+    <actions>
+        <action class="graphtea.samples.ui.texteditor.myplugin.actions.NewAction" id="New"/>
+        <action class="graphtea.samples.ui.texteditor.myplugin.actions.SaveAction" id="Save"/>
+        <action class="graphtea.samples.ui.texteditor.myplugin.actions.OpenAction" id="Load"/>
+        <action class="graphtea.samples.ui.texteditor.myplugin.actions.ExitAction" id="Exit"/>
+        <action class="graphtea.samples.ui.texteditor.myplugin.actions.AboutAction" id="About"/>
+    </actions>
+    <ui>
+        <body class="graphtea.samples.ui.texteditor.myplugin.components.TextEditorComponent" id="body editor"/>
+        <menues>
+            <submenu label="_File" place="0">
+                <menu label="_New" place="0" accelerator="control+N" action="New"/>
+                <menu label="_Open" place="2" accelerator="control+L" action="Load"/>
+                <menu label="_Save" place="3" accelerator="control+S" action="Save"/>
+                <menu label="_Exit" place="10" action="Exit"/>
+            </submenu>
+            <submenu label="Help" place="1">
+                <menu label="About" action="About"/>
+            </submenu>
+        </menues>
+        <toolbars>
+            <toolbar>
+                <tool label="Save" image="images/save.GIF" action="Save"/>
+                <tool label="Load" image="images/load.GIF" action="Load"/>
+            </toolbar>
+        </toolbars>
+        <sidebars>
+            <sidebar id="draft editor" label="Draft" class="graphtea.samples.ui.texteditor.myplugin.components.TextEditorComponent" image="images/sb.GIF"/>
+        </sidebars>
+        <statusbars>
+            <bar class="graphtea.samples.ui.texteditor.myplugin.components.LabelComponent" id="statusbar"/>
+        </statusbars>
+    </ui>
+</root>

@@ -1,7 +1,7 @@
 @echo off
-@echo starting Graphtea
+@echo starting GraphTea
 
 ::----------------------------------------------------------------------
-:: Graphtea Startup Script
+:: GraphTea Startup Script
 ::----------------------------------------------------------------------
 java -jar graphtea-main.jar

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="graphtea.plugins.algorithmanimator.AnimatorGUI">
+  <grid id="27dc6" binding="animatorFrame" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="23" width="312" height="326"/>
+    </constraints>
+    <properties>
+      <opaque value="true"/>
+      <preferredSize width="275" height="500"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="51883" class="javax.swing.JButton" binding="pauseButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="&amp;Pause"/>
+          <verticalAlignment value="1"/>
+        </properties>
+      </component>
+      <hspacer id="41828">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
+      <vspacer id="b5e96">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <component id="f7632" class="javax.swing.JButton" binding="playButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Play"/>
+        </properties>
+      </component>
+      <component id="4a74c" class="javax.swing.JButton" binding="playOneStepButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Play One Step"/>
+          <toolTipText value="Play just one step of algorithm"/>
+        </properties>
+      </component>
+      <component id="6043b" class="javax.swing.JSlider" binding="speedSlider">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <majorTickSpacing value="25"/>
+          <maximum value="100"/>
+          <minimum value="0"/>
+          <minorTickSpacing value="5"/>
+          <paintLabels value="true"/>
+          <paintTicks value="false"/>
+          <paintTrack value="true"/>
+          <snapToTicks value="true"/>
+          <toolTipText value="The delay between steps of algorithm" noi18n="true"/>
+          <value value="50"/>
+          <valueIsAdjusting value="false"/>
+        </properties>
+        <clientProperties>
+          <Slider.paintThumbArrowShape class="java.lang.Boolean" value="true"/>
+        </clientProperties>
+      </component>
+      <component id="3271d" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Speed:"/>
+        </properties>
+      </component>
+      <vspacer id="d94b1">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="1.0"/>
+        </constraints>
+      </vspacer>
+      <scrollpane id="db7a5">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="1.0" weighty="1.0"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <scrollpane id="8b916" class="graphtea.graph.ui.GHTMLPageComponent" binding="algorithmOutputTextArea" custom-create="true" default-binding="true">
+            <constraints/>
+            <properties>
+              <autoscrolls value="true"/>
+              <toolTipText value="Messages sent by algorithm"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </scrollpane>
+        </children>
+      </scrollpane>
+      <hspacer id="aae17">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
+      <vspacer id="8fbb">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <vspacer id="44932">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+    </children>
+  </grid>
+</form>

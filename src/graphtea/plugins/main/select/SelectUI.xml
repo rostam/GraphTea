@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  GraphTea Project: https://github.com/graphtheorysoftware/GraphTea
+  Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
+  Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
+  -->
+
+<!DOCTYPE root SYSTEM "SampleUI.dtd">
+<root>
+    <actions>
+        <action class="graphtea.plugins.main.select.Select" id="select"/>
+        <action class="graphtea.plugins.main.select.ClearSelection" id="clear selection"/>
+        <action class="graphtea.plugins.main.select.InvertSelection" id="InvertSelection"/>
+        <action class="graphtea.plugins.main.select.SelectAll" id="SelectAll"/>
+        <action class="graphtea.plugins.main.select.MoveSelected" id="move selected"/>
+        <action class="graphtea.plugins.main.select.DeleteSelected" id="delete selected"/>
+        <action class="graphtea.plugins.main.select.SelectUpdater"/>
+        <action class="graphtea.plugins.main.select.RectangularSelect" id="rectangular select"/>
+        <action class="graphtea.plugins.main.select.ScaleInSelection" id="scale in selection"/>
+        <action class="graphtea.plugins.main.select.ScaleOutSelection" id="scale out selection"/>
+        <action class="graphtea.plugins.main.select.MakeSelectionComplementGraph" id="complement selection"/>
+        <action class="graphtea.plugins.main.select.MakeSelectionCompleteGraph" id="complete selection"/>
+        <action class="graphtea.plugins.main.select.MakeSelectionEmptyGraph" id="empty selection"/>
+        <!--action class="graphtea.plugins.main.select.SelectVertex"/-->
+        <!--<action class="graphtea.plugins.main.select.ResizeSelectedVertices"/>-->
+    </actions>
+    <ui>
+        <menues>
+            <submenu label="_Select" place="30">
+                <!--<menu label="Select" action="select"/>-->
+                <!--<menu label="_Clear Selection" action="clear selection" accelerator="ESCAPE"/>-->
+                <!--<menu label="_Rectangular Select" action="rectangular select"/>-->
+                <menu label="Select_All" action="SelectAll" accelerator="control+A" place="10"/>
+                <menu label="_Invert Selection" action="InvertSelection" place="20"/>
+                <menu label="seperator_menu" place="50"/>
+                <menu label="_Scale In Selection" action="scale in selection" place="100"/>
+                <menu label="_Scale Out Selection" action="scale out selection" place="110"/>
+                <menu label="seperator_menu" place="150"/>
+                <menu label="_Make Selection Complement" action="complement selection" place="200"/>
+                <menu label="_Make Selection Complete" action="complete selection" place="210"/>
+                <menu label="_Make Selection Empty" action="empty selection" place="220"/>
+                <menu label="_Delete Selection" action="delete selected" place="230"/>
+
+                <!--<menu label="_Move Selected" action="move selected"/>-->
+                <!--<menu label="_Delete Selected" action="delete selected" accelerator="DELETE"/>-->
+            </submenu>
+        </menues>
+        <!--<toolbars>-->
+        <!--<toolbar>-->
+        <!--<tool label="Select" action="select" image="/graphtea/plugins/main/resources/select.gif"/>-->
+        <!--<tool label="Rect. Select" action="rectangular select" image="/graphtea/plugins/main/resources/box.gif"/>-->
+        <!--<tool label="Move Selected" action="move selected" image=""/>-->
+        <!--<tool label="Delete Selected" action="delete selected" image="/graphtea/plugins/main/resources/remove24.gif"/>-->
+        <!--</toolbar>-->
+        <!--</toolbars>-->
+    </ui>
+
+
+</root>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  GraphTea Project: https://github.com/graphtheorysoftware/GraphTea
+  Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
+  Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
+  -->
+
+<!DOCTYPE root SYSTEM "SampleUI.dtd">
+<root>
+    <ui>
+        <!--<toolbars>-->
+        <!--<toolbar>-->
+        <!--<tool label="play/pause"></tool>-->
+        <!--</toolbar>-->
+        <!--</toolbars>-->
+
+        <menues>
+            <submenu label="Algorithms">
+                <!--<menu label="D*FS" action="do dfs"></menu>-->
+                <!--<menu label="BFS" action="do bfs"></menu>-->
+                <!--<menu label="Prim" action="do prim"></menu>-->
+                <!--<menu label="Dijkstra" action="do dijkstra"></menu>-->
+                <!--<menu label="Bellman-Ford" action="do bellmanford"></menu>-->
+                <!--<menu label="Kruskal" action="do kruskal"></menu>-->
+                <!--<menu label="Approximation Vertex Cover"-->
+                <!--action="do app vertex cover"/>-->
+                <!--<menu label="Biconnected Components"-->
+                <!--action="do biconnected components"/>-->
+                <!--<menu label="Topological Sort" action="do toposort"></menu>-->
+                <!--<menu label="Check Acyclic" action="do acycliccheck"></menu>-->
+                <!--<menu label="Sample Coloring" action="sample coloring"></menu>-->
+                <!--<menu label="More..." action="more"></menu>-->
+
+            </submenu>
+            <!--<submenu label="Algorithms.Tests">-->
+            <!--<menu label="Test Induced Subgraphs" action="do testinduced"></menu>-->
+            <!--</submenu>            -->
+        </menues>
+    </ui>
+    <actions>
+        <action class="graphtea.plugins.algorithmanimator.DFSAnim"
+                id="do dfs"/>
+        <action class="graphtea.plugins.algorithmanimator.BFSAnim"
+                id="do bfs"/>
+        <action class="graphtea.plugins.algorithmanimator.PrimAnim"
+                id="do prim"/>
+        <action
+                class="graphtea.plugins.algorithmanimator.KruskalAnim"
+                id="do kruskal"/>
+        <action
+                class="graphtea.plugins.algorithmanimator.AppVertexCoverAnim"
+                id="do app vertex cover"/>
+        <action
+                class="graphtea.plugins.algorithmanimator.DijkstraAnim"
+                id="do dijkstra"/>
+        <!--<action-->
+        <!--class="graphtea.plugins.algorithmanimator.BellmanFordAnim"-->
+        <!--id="do bellmanford"/>-->
+        <action
+                class="graphtea.plugins.algorithmanimator.BiconnectedComponentsAnim"
+                id="do biconnected components"/>
+        <action
+                class="graphtea.plugins.algorithmanimator.TopologicalSortAnim"
+                id="do toposort"/>
+        <action
+                class="graphtea.plugins.algorithmanimator.AcyclicCheckerAnim"
+                id="do acycliccheck"/>
+
+        <!--<action-->
+        <!--class="graphtea.plugins.algorithmanimator.SampleColoringExtension"-->
+        <!--id="sample coloring"/>-->
+        <!---->
+        <!--<action-->
+        <!--class="graphtea.plugins.algorithmanimator.tests.TestInducedSubgraphs"-->
+        <!--id="do testinduced"/>-->
+        <!---->
+        <!--<action-->
+        <!--class="graphtea.plugins.algorithmanimator.More"-->
+        <!--id="more"/>-->
+
+    </actions>
+</root>

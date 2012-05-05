@@ -1,0 +1,60 @@
+/****************************************************************
+ * GraphTea Project                                             *
+ * Copyright (C) 2005 Math Science Department                   *
+ *                     of Sharif University of Technology       *
+ *                                                              *
+ * See license.txt for more details about license of GraphTea.  *
+ * @author  Azin Azadi                                          *
+ ****************************************************************/
+
+One of the main parts of GraphTea is the graph editing part, this is a
+very complicated part, and one of the most things in this part is mapping
+actions with event, so the user interacting with this part directly and
+it should be as user-friendly as possible,
+
+there are several different ways to do this, and i decide this way after
+working with several diagram editing programs:
+
+implementing such a dirty event map to action, maked the code a bit dirty,...
+
+
+SelectVertex:
+    Click on vertex,
+    pressing Control key means continious selection , (dont clear older selection)
+
+Select Edge:
+    like select vertex.
+
+Rectangular Selection:
+    this means selecting allthings in a rectangular region of graph.
+    dragging mouse on graph and dropping it,
+    Control key for continious selection
+
+Add Edge:
+    drag mouse from one vertex to another,
+    the first vertex should not be selected (see move vertex)
+
+Add Vertex:
+    Click on the graph (in GraphTea it is GraphSelectPoint)
+    the selection should be empty (see clear selection)
+
+Clear Selection:
+    Click on the graph.
+
+Delete Selected:
+    pressing Delete key deletes selected things.
+
+Resize Vertex:
+    every selected vertex can be resized.
+    resizing a vertex, causes to resize other selected verteices by the same values
+
+Move Vertex:
+    see move selected.
+
+Move Selected:
+    dragging mouse on a vertex.
+    the vertex should be selected (see add edge)
+
+Select All:
+    pressing Control+A key on keyboard.
+

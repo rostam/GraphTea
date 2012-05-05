@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE root SYSTEM "SampleUI.dtd">
+<root>
+    <ui>
+        <menues>
+            <submenu label="Generate Graph" place="100">
+            </submenu>
+        </menues>
+
+    </ui>
+    <actions>
+    </actions>
+</root>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  GraphTea Project: https://github.com/graphtheorysoftware/GraphTea
+  Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
+  Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
+  -->
+
+<!DOCTYPE root SYSTEM "SampleUI.dtd">
+<root>
+    <actions>
+        <action class="graphtea.plugins.main.saveload.Save" id="save"/>
+        <action class="graphtea.plugins.main.saveload.Load" id="load"/>
+        <action class="graphtea.plugins.main.saveload.matrix.SaveMatrix" id="save matrix"/>
+        <action class="graphtea.plugins.main.saveload.matrix.LoadMatrix" id="load matrix"/>
+        <action class="graphtea.plugins.main.saveload.matrix.SaveWeightedMatrix" id="save weighted matrix"/>
+        <action class="graphtea.plugins.main.saveload.matrix.LoadWeightedMatrix" id="load weighted matrix"/>
+        <action class="graphtea.plugins.main.saveload.image.SaveImage" id="save image"/>
+        <!--<action class="graphtea.plugins.main.saveload.image.CopyAsImage"  id="copy as image"/>-->
+        <!--<action class="graphtea.plugins.main.saveload.matrix.CopyAsMatrix" id="copy as matrix"/>-->
+    </actions>
+    <ui>
+        <menues>
+            <submenu label="_File.Load Graph From" place="100">
+                <menu label="_GraphML" place="10" action="load" accelerator="control+O"/>
+                <menu label="_Matrix" place="13" action="load matrix" accelerator="control+L"/>
+            </submenu>
+            <submenu label="_File.Save Graph To" place="200">
+                <menu label="_Matrix" place="12" action="save matrix" accelerator="control+M"/>
+                <menu label="_GraphML" place="11" action="save" accelerator="control+S"/>
+                <menu label="_Image" place="14" action="save image" accelerator="control+I"/>
+            </submenu>
+            <!--<submenu label="_Edit">-->
+            <!--<menu label="Copy as _Image" action="copy as image"/>-->
+            <!--<menu label="Copy Selection as _Matrix" action="copy as matrix"/>-->
+            <!--</submenu>-->
+        </menues>
+        <toolbars>
+            <!--<toolbar place="10">-->
+            <!--<tool label="Load" action="load" image="/graphtea/plugins/main/resources/open24.gif"/>-->
+            <!--<tool label="Save" action="save" image="/graphtea/plugins/main/resources/save24.gif"/>-->
+            <!--<tool label="Copy as Image" action="copy as image" />-->
+            <!--<tool label="Copy as Matrix" action="copy as matrix" />-->
+            <!--</toolbar>-->
+        </toolbars>
+    </ui>
+</root>

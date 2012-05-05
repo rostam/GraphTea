@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  GraphTea Project: https://github.com/graphtheorysoftware/GraphTea
+  Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
+  Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
+  -->
+
+<!DOCTYPE SAX-bindings PUBLIC "-//XML Module//DTD SAX Bindings 1.0//EN" "">
+<SAX-bindings version='1'>
+    <bind element='key' method='key' type='DATA'></bind>
+    <bind element='edge' method='edge' type='CONTAINER'></bind>
+    <bind element='locator' method='locator' type='EMPTY'></bind>
+    <bind element='data' method='data' type='DATA'></bind>
+    <bind element='node' method='node' type='CONTAINER'></bind>
+    <bind element='graph' method='graph' type='CONTAINER'></bind>
+    <bind element='endpoint' method='endpoint' type='CONTAINER'></bind>
+    <bind element='graphml' method='graphml' type='CONTAINER'></bind>
+    <bind element='hyperedge' method='hyperedge' type='CONTAINER'></bind>
+    <bind element='port' method='port' type='CONTAINER'></bind>
+    <bind element='desc' method='desc' type='DATA'></bind>
+</SAX-bindings>

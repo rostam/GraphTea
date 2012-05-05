@@ -125,7 +125,7 @@
       </node>
       <node name="graphtea.extensions.connectivity.Redis">
         <map>
-          <entry key="DEFAULT_SERVER" value="graphtea.sharif.ir"/>
+          <entry key="DEFAULT_SERVER" value=""/>
           <entry key="object" value="graphtea.extensions.connectivity.Redis"/>
         </map>
       </node>
@@ -712,9 +712,9 @@
           <entry key="object" value="graphtea.plugins.generalplugin.ReloadExtensionsExtension"/>
         </map>
       </node>
-      <node name="graphtea.plugins.generalplugin.help.actions.VisitGraphteaHomePage">
+      <node name="graphtea.plugins.generalplugin.help.actions.VisitGraphTeaHomePage">
         <map>
-          <entry key="object" value="graphtea.plugins.generalplugin.help.actions.VisitGraphteaHomePage"/>
+          <entry key="object" value="graphtea.plugins.generalplugin.help.actions.VisitGraphTeaHomePage"/>
         </map>
       </node>
       <node name="graphtea.plugins.generalplugin.help.actions.VisitInternetHelp">

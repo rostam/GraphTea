@@ -2,8 +2,8 @@
 <!-- ======================================================================
      Mar 26, 2005 10:29:39 AM
 
-     Graphtea
-     The ant build file of Graphtea Project.
+     GraphTea
+     The ant build file of GraphTea Project.
 
      Logs:
      - Version 0.0.1 2005/03/26 10:29 Reza Mohammadi.
@@ -33,9 +33,9 @@
        		developplugin
      ====================================================================== -->
 
-<project name="Graphtea" default="make binary" basedir="..">
+<project name="GraphTea" default="make binary" basedir="..">
     <description>
-        The ant build file of Graphtea Project.
+        The ant build file of GraphTea Project.
     </description>
 
     <!-- - - - - - - - - - - - - - - - - -
@@ -62,7 +62,7 @@
     <!-- =================================
           target: compile
          ================================= -->
-    <target name="compile" depends="depends" description="--> The ant build file of Graphtea Project.">
+    <target name="compile" depends="depends" description="--> The ant build file of GraphTea Project.">
         <javac srcdir="${xdir}" destdir="${build.dir}">
             <classpath>
                 <path refid="project.lib"/>
@@ -76,7 +76,7 @@
                 <exclude name="**/*.java"/>
                 <exclude name="**/*.~*"/>
                 <exclude name="**/.*"/>
-                <!--<exclude name="graphtea/platform/GraphteaDebugger.class"/>-->
+                <!--<exclude name="graphtea/platform/GraphTeaDebugger.class"/>-->
             </fileset>
         </copy>
     </target>
@@ -231,7 +231,7 @@
         <jar destfile="${dist.dir}/lib/graphtea-ui-library.jar">
             <manifest>
                 <attribute name="Built-By" value="${user.name}"/>
-                <attribute name="Description" value="User interface of Graphtea"/>
+                <attribute name="Description" value="User interface of GraphTea"/>
             </manifest>
             <fileset dir="${build.dir}">
                 <include name="graphtea/ui/**/*.*"/>
@@ -241,7 +241,7 @@
         <jar destfile="${dist.dir}/lib/graphtea-library.jar">
             <manifest>
                 <attribute name="Built-By" value="${user.name}"/>
-                <attribute name="Description" value="Library of Graphtea"/>
+                <attribute name="Description" value="Library of GraphTea"/>
             </manifest>
             <fileset dir="${build.dir}">
                 <include name="graphtea/library/**/*.*"/>
@@ -320,9 +320,9 @@
                 version="true"
                 use="true"
                 linksource="true"
-            doctitle="Graphtea Project"
-            windowtitle="Graphtea Project">
-                 <header><![CDATA[<a href='http://graphtea.sharif.edu'>Graphtea Project</a>]]></header>
+            doctitle="GraphTea Project"
+            windowtitle="GraphTea Project">
+                 <header><![CDATA[<a href='https://github.com/graphtheorysoftware/GraphTea'>GraphTea Project</a>]]></header>
 
         </javadoc>
         <zip destfile="${basedir}/../developer_resources/javadoc.zip">
@@ -345,8 +345,8 @@
     <!-- =================================
           target: graphteaAPI
          ================================= -->
-    <target name="api" depends="compile" description="Create GraphteaAPI.jar">
-        <jar destfile="${basedir}/../developer_resources/GraphteaAPI.jar">
+    <target name="api" depends="compile" description="Create GraphTeaAPI.jar">
+        <jar destfile="${basedir}/../developer_resources/GraphTeaAPI.jar">
             <fileset dir="${build.dir}">
                 <include name="graphtea/**/*.*"/>
             </fileset>

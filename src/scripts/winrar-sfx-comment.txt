@@ -1,14 +1,14 @@
 ;The comment below contains SFX script commands
 
-Path=Graphtea
+Path=GraphTea
 SavePath
-Setup=Graphtea.lnk
-Title=Graphtea Setup
+Setup=GraphTea.lnk
+Title=GraphTea Setup
 Text
 {
-Installing Graphtea.
+Installing GraphTea.
 }
-License=Graphtea End user license agreement
+License=GraphTea End user license agreement
 {
 		    GNU GENERAL PUBLIC LICENSE
 		       Version 2, June 1991
@@ -352,12 +352,12 @@ library.  If this is what you want to do, use the GNU Library General
 Public License instead of this License.
 
 }
-Shortcut=D, "Graphtea.lnk", "", "Run Graphtea", "Graphtea"
-Shortcut=P, "Graphtea.lnk", "Graphtea", "Run Graphtea", "Graphtea"
-Shortcut=P, "doc/graphtea/wiki/graphteadocumentations.htm", "Graphtea", "Graphtea documentation", "Documentations"
-Shortcut=P, "doc/menu_reference_browsable.html", "Graphtea", "Graphtea Menu Reference", "Graphtea Menu Reference"
-Shortcut=P, "./", "Graphtea/Developer Resources", "Browse Graphtea Directory", "Browse Graphtea"
-Shortcut=P, "src.zip", "Graphtea/Developer Resources", "Graphtea Source Codes", "Graphtea Source Codes"
-Shortcut=P, "GraphteaAPI.jar", "Graphtea/Developer Resources", "GraphteaAPI.jar", "GraphteaAPI.jar"
-Shortcut=P, "extensions", "Graphtea/Developer Resources", "extensions", "extensions"
+Shortcut=D, "GraphTea.lnk", "", "Run GraphTea", "GraphTea"
+Shortcut=P, "GraphTea.lnk", "GraphTea", "Run GraphTea", "GraphTea"
+Shortcut=P, "doc/graphtea/wiki/graphteadocumentations.htm", "GraphTea", "GraphTea documentation", "Documentations"
+Shortcut=P, "doc/menu_reference_browsable.html", "GraphTea", "GraphTea Menu Reference", "GraphTea Menu Reference"
+Shortcut=P, "./", "GraphTea/Developer Resources", "Browse GraphTea Directory", "Browse GraphTea"
+Shortcut=P, "src.zip", "GraphTea/Developer Resources", "GraphTea Source Codes", "GraphTea Source Codes"
+Shortcut=P, "GraphTeaAPI.jar", "GraphTea/Developer Resources", "GraphTeaAPI.jar", "GraphTeaAPI.jar"
+Shortcut=P, "extensions", "GraphTea/Developer Resources", "extensions", "extensions"
 

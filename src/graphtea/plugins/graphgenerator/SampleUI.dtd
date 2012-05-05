@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+  GraphTea Project: https://github.com/graphtheorysoftware/GraphTea
+  Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
+  Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
+  -->
+
+<!--
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/SampleUI.dtd
+
+--><!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE root SYSTEM "SampleUI.dtd">
+
+    <root>
+    ...
+    </root>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT tool EMPTY>
+<!ATTLIST tool
+    image CDATA #IMPLIED
+    action CDATA #IMPLIED
+    label CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT toolbar (tool)*>
+<!ATTLIST toolbar
+    place CDATA #IMPLIED
+>
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT toolbars (toolbar)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT menu EMPTY>
+<!ATTLIST menu
+    action CDATA #IMPLIED
+    label CDATA #IMPLIED
+    accelerator CDATA #IMPLIED
+    place CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT submenu (menu)*>
+<!ATTLIST submenu
+    label CDATA #IMPLIED
+    place CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT menues (submenu)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT body EMPTY>
+<!ATTLIST body
+    class CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT bar EMPTY>
+<!ATTLIST bar
+    class CDATA #IMPLIED
+    id CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT statusbars (bar)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT sidebar EMPTY>
+<!ATTLIST sidebar
+    class CDATA #IMPLIED
+    image CDATA #IMPLIED
+    id CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT sidebars (sidebar)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT ui (toolbars|menues|body|statusbars|sidebars)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT action EMPTY>
+<!ATTLIST action
+    id CDATA #IMPLIED
+    group CDATA #IMPLIED
+    class CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT actions (action)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT root (ui|actions)*>

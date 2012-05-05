@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		GraphTea Project: https://github.com/graphtheorysoftware/GraphTea Copyright (C) 2008
+		Mathematical Science Department of Sharif University of Technology
+		Distributed under the terms of the GNU General Public License (GPL):
+		http://www.gnu.org/licenses/
+	-->
+
+<root>
+	<actions>
+		<action class="graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK" />
+		<action class="graphtea.extensions.reports.basicreports.NumOfVertices" />
+		<action class="graphtea.extensions.reports.basicreports.NumOfEdges" />
+		<action
+			class="graphtea.extensions.reports.basicreports.NumOfConnectedComponents" />
+		<action class="graphtea.extensions.reports.basicreports.GirthSize" />
+		<action class="graphtea.extensions.reports.basicreports.VerticesDegreesList" />
+		<!--
+			<action
+			class="graphtea.extensions.reports.basicreports.MaximumIndependenceNumber"/>
+		-->
+		<action class="graphtea.extensions.reports.basicreports.IsEulerian" />
+		<action class="graphtea.extensions.reports.basicreports.NumOfTriangles" />
+		<action class="graphtea.extensions.reports.basicreports.MaxAndMinDegree" />
+		<action class="graphtea.extensions.reports.basicreports.AdjacencyMatrix" />
+		<action class="graphtea.extensions.reports.basicreports.NumOfQuadrangle" />
+		<action
+			class="graphtea.plugins.reports.spectralreports.maxflowmincut.GomoryHuTree" />
+		<action
+			class="graphtea.plugins.reports.spectralreports.maxflowmincut.MaximumFlow" />
+		<action
+			class="graphtea.plugins.reports.spectralreports.maxflowmincut.MinimumCut" />
+		<action class="graphtea.plugins.reports.spectralreports.IsBipartite" />
+		<action
+			class="graphtea.plugins.reports.spectralreports.PerfectMatchingReport" />
+		<action class="graphtea.plugins.reports.spectralreports.LaplacianOfGraph" />
+		<!--<action class="graphtea.plugins.reports.ShowReports" id="reports show" />-->
+	</actions>
+	<ui>
+		<menues>
+			<submenu label="Reports" place="300">
+			</submenu>
+			<!--<submenu label="_Reports">-->
+			<!--<menu label="_Vertices" action="vertex report"/>-->
+			<!--</submenu>-->
+		</menues>
+		<sidebars>
+			<sidebar class="graphtea.plugins.reports.ui.ReportsSideBar"
+				id="ReportsSideBar" image="/graphtea/plugins/reports/ui/sbicon.GIF"
+				label="Graph Reports" place="1000" />
+		</sidebars>
+	</ui>
+</root>

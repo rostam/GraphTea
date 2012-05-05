@@ -1,4 +1,4 @@
-Welcome to Graphtea!
+Welcome to GraphTea!
 
 What's new
 -------------------------------------
@@ -32,19 +32,19 @@ Please help us by reporting bugs!
 Requirement
 ---------------------------------------
 
-In case you have just downloaded and unzipped your Graphtea distribution,
+In case you have just downloaded and unzipped your GraphTea distribution,
 here's how to proceed:
 
 First, you need Java2 (version 1.5 or higher) installed, get it from 
   http://java.sun.com 
 for your platform.
 
-In linux, you can run Graphtea with running the run.sh script.
+In linux, you can run GraphTea with running the run.sh script.
 It should be executable. So if it is not, make it executable by
 running the command:
     chmod +x run.sh
 You should have setted $JAVA_HOME if your java is not in path.
-In windows, you can run Graphtea with just double clicking on
+In windows, you can run GraphTea with just double clicking on
 graphtea-main.jar file.
 
 License
