@@ -1,0 +1,55 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>properties sidebar</title>
+<link rel="stylesheet" type="text/css" href="common.css">
+</head>
+
+<body>
+
+<p class="doctitle">Properties Sidebar</p>
+
+<p>The<span class="keyword"> Properties sidebar</span> will help you to change 
+the properties of your currently selected graph, vertices and edges. Some of 
+them are editable, and some of them not. For example directed (in graph 
+properties) can not be changed, the graph direction is determined at&nbsp; creation time and can not be 
+changed after that.</p>
+<p>In the normal mode when nothing is selected, the properties sidebar will show 
+graph properties:</p>
+
+<p  class="image"><img border="0" src="properties_graph.PNG" width="512" height="304"><br>
+Graph Properties</p>
+
+<p ><span class="keyword">Show Vertex Labels</span> and <span class="keyword">Show Edge Labels</span> 
+will only change the graph view, hiding labels will help you to see the whole 
+structure of graph. If you are editing a large graph, hiding labels will help 
+Graph<sup>Tea</sup> to draw the graph faster.</p>
+<p ><span class="keyword">Is Edges Curved</span> attribute determines whether the graph edges are curved or not. By setting this to yes you can draw curved edges in you graph.</p>
+<p >When a single vertex or a single edge is selected their 
+properties will be shown:</p>
+
+<p class="image"><img border="0" src="properties_vertex.PNG" width="556" height="294"><br>Vertex Properties</p>
+
+<p class="image"><img border="0" src="properties_edge.PNG" width="530" height="256"><br>Edge Properties</p>
+
+<p >Note that the <span class="keyword">color</span> property is both an integer and a 
+color. when the algorithms set the color, they set it to a number like 3, then
+Graph<sup>Tea</sup> uses a map and shows it as a green. you can set the
+colors as any color you like, for this choose <span class="keyword">Color Editor</span> from the 
+drop down menu that appears when clicking on the Color properties.</p>
+<p ><span class="keyword">Label Location</span> attribute will help you to change the relative location of edges/vertices labels.</p>
+<p >The default edge label is its weight, by changing the <span class="keyword">Show 
+Weight</span> property of edge, The shown label will be its <span class="keyword">Label</span> 
+property.</p>
+<p >When you selected multiple edges and vertices, The property editor will show 
+all available properties for them, the values shown in front of each property 
+are not necessarily the properties of all selected vertices/edges, but by 
+changing them you can apply the new property to all of them.</p>
+<p class="image"><img  border="0" src="properties_selected.PNG" width="539" height="378"><br>Selection Properties</p>
+
+<p>The <span class="keyword">Vertices</span> and <span class="keyword">Edges</span> properties shows you the number of selected vertices/edges.</p>
+
+</body>
+
+</html>
