@@ -32,21 +32,21 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 
     long lastpaintTime;
     @UserModifiableProperty(displayName = "Default Vertex Radius", obeysAncestorCategory = false, category = "Rendering Options")
-    public static Integer defaultVertexRadius = 10;
+    public static Integer defaultVertexRadius = 20;
     public int vertexRadius = defaultVertexRadius;
     private BlackBoard blackboard;
 
     private static GStroke markedStroke = GStroke.strong;
     @UserModifiableProperty(displayName = "Default Edge Stroke")
-    public static GStroke defaultStroke = GStroke.solid;
+    public static GStroke defaultStroke = GStroke.strong;
     @UserModifiableProperty(displayName = "Default Vertex Shape")
     public static GShape defaultVertexShape = GShape.OVAL;
     @UserModifiableProperty(displayName = "Default Vertex Color")
     public static Color defaultVertexColor = new Color(116, 196, 255);
     @UserModifiableProperty(displayName = "Default Vertex Stroke")
-    public static GStroke defaultBorderStroke = GStroke.dashed;
+    public static GStroke defaultBorderStroke = GStroke.strong;
     @UserModifiableProperty(displayName = "Default Size of Vertices")
-    public static Dimension defaultShapeDimension = new Dimension(20, 20);
+    public static Dimension defaultShapeDimension = new Dimension(40, 40);
     @UserModifiableProperty(displayName = "Default Edge Color")
     public static Color defaultEdgeColor = new Color(249, 117, 46);
 
@@ -221,7 +221,19 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
                 if (s == null)
                     s = "";
                 int dl = s.length() * 4;
-                paint((Graphics2D) gg, v, zm(l.x) - v.getCenter().x, zm(l.y) - v.getCenter().y, zm(l.x) - dl, zm(l.y) + vertexRadius / 2, drawExtras);
+                int labelLength = 0;
+                for(int i=0;i < s.length();i++) {
+                    labelLength += gg.getFontMetrics().charWidth(s.charAt(i));
+                }
+
+                paint((Graphics2D) gg, v,
+                        zm(l.x) - v.getCenter().x, zm(l.y) - v.getCenter().y,
+                        zm(l.x) - labelLength/2, zm(l.y) +
+                        gg.getFontMetrics().getHeight()/2, drawExtras);
+
+                //paint((Graphics2D) gg, v,
+                //        zm(l.x) - v.getCenter().x, zm(l.y) - v.getCenter().y,
+                //        zm(l.x) - dl, zm(l.y) + vertexRadius / 2, drawExtras);
             }
         } catch (Exception e) {
             repaint();

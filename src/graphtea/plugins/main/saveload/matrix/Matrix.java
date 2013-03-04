@@ -82,7 +82,7 @@ public class Matrix {
         Vertex[] vertices = new Vertex[n];
         for (int i = 0; i < n; i++) {
             Vertex v = new Vertex();
-            v.setLabel(i+"");
+            v.setLabel((i+1)+"");
             g.insertVertex(v);
             v.setLocation(new GraphPoint(Math.random() * 500, Math.random() * 500));
             vertices[i] = v;

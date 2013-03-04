@@ -283,7 +283,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
     public void insertVertex(VertexType newVertex) {
         vertices.add(newVertex);
         int size = getVerticesCount();
-        newVertex.setId(size - 1);
+        newVertex.setId(size);
 
         if (adjacencyMatrix.size() < size) {
             adjacencyMatrix.ensureCapacity(size * 2);
