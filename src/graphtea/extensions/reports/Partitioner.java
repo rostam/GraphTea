@@ -82,7 +82,6 @@ public class Partitioner {
         mark = new boolean[vertices.length];
         found = 0;
         findMaxIndSetsRecursively(0);
-        System.out.println(found + " , iter:" + iter);
         return maxSet;
     }
 

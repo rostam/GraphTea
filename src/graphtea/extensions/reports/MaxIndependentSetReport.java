@@ -69,7 +69,6 @@ public class MaxIndependentSetReport implements GraphReportExtension {
     }
 
     public static int getMaxIndependentSetSize(GraphModel graph, boolean putFirstVertexInSet) {
-        System.out.println(graph);
         Partitioner p = new Partitioner(graph);
 //        max = -1;
 //        MaxIndSetSubSetSizeListener l = new MaxIndSetSubSetSizeListener();

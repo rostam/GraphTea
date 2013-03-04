@@ -59,7 +59,6 @@ public class RandomGenerator implements GraphGeneratorExtension, Parametrizable,
     private Edge randomEdge() {
         Vertex v1 = randomVertex();
         Vertex v2 = randomVertex();
-        //System.out.println(v1.getID()+","+v2.getID());
         if (v1 != v2)
             return new Edge(v1, v2);
         else

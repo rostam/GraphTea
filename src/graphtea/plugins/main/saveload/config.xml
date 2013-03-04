@@ -8,8 +8,6 @@
 <!DOCTYPE root SYSTEM "SampleUI.dtd">
 <root>
     <actions>
-        <action class="graphtea.plugins.main.saveload.Save" id="save"/>
-        <action class="graphtea.plugins.main.saveload.Load" id="load"/>
         <action class="graphtea.plugins.main.saveload.matrix.SaveMatrix" id="save matrix"/>
         <action class="graphtea.plugins.main.saveload.matrix.LoadMatrix" id="load matrix"/>
         <!--<action class="graphtea.plugins.main.saveload.matrix.SaveWeightedMatrix" id="save weighted matrix"/>-->

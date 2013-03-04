@@ -113,7 +113,6 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
 
 
     private Point[] getVertexPositionUpdown() {
-        System.out.println("n" + n + "deg" + degree + "hei" + depth);
         Point[] ret = new Point[n];
         double vwidth = 200;
         double vheight = 200;

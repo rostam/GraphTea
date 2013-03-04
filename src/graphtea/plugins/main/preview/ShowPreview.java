@@ -11,8 +11,8 @@ import graphtea.graph.graph.FastRenderer;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
-import graphtea.plugins.main.saveload.Load;
 import graphtea.plugins.main.core.*;
+import graphtea.plugins.main.saveload.matrix.LoadMatrix;
 import graphtea.ui.UI;
 import graphtea.ui.UIUtils;
 import org.xml.sax.SAXException;
@@ -49,13 +49,10 @@ public class ShowPreview extends AbstractAction {
         BlackBoard b = new BlackBoard();
         loadPlugins(b);
         GraphModel g = new GraphModel();
+
         try {
-            g = Load.loadGraphFromFile(new File(fileName));
+            g = LoadMatrix.loadMatrix(new File(fileName));
         } catch (IOException e) {
-            ExceptionHandler.catchException(e);
-        } catch (ParserConfigurationException e) {
-            ExceptionHandler.catchException(e);
-        } catch (SAXException e) {
             ExceptionHandler.catchException(e);
         }
         JFrame f = new JFrame("preview");

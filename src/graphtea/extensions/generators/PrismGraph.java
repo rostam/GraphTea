@@ -49,10 +49,9 @@ public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
 
     public GraphPoint[] getVertexPositions() {
         Point[] r = new Point[2 * n];
-
         Point p1[] = PositionGenerators.circle(20000, 10000, 10000,  n);
         Point p2[] = PositionGenerators.circle(30000, 10000, 10000,  n);
-        System.out.println(p2[0]);
+
         for (int i = 0; i < n; i++) {
             r[i] = p1[i];
             r[n + i] = p2[i];

@@ -77,7 +77,6 @@ public class GraphTeaDebugger extends Application {
             StaticUtils.loadSingleExtension(LatexWriter.class);
             StaticUtils.loadSingleExtension(LatexCAD.class);
             StaticUtils.loadSingleExtension(BinaryTreeGenerator.class);
-            StaticUtils.loadSingleExtension(LoadNetGraph.class);
             //StaticUtils.loadSingleExtension(Redis.class);
             //StaticUtils.loadSingleExtension(TripNet.class);
 

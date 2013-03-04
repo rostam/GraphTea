@@ -159,7 +159,6 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
             isUpdated = false;
             return;
         }
-        //System.out.println("repaint");
 
         GraphModel graph = getGraph();
         gg.setFont(graph.getFont());
