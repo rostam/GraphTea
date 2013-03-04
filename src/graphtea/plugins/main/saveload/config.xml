@@ -12,8 +12,8 @@
         <action class="graphtea.plugins.main.saveload.Load" id="load"/>
         <action class="graphtea.plugins.main.saveload.matrix.SaveMatrix" id="save matrix"/>
         <action class="graphtea.plugins.main.saveload.matrix.LoadMatrix" id="load matrix"/>
-        <action class="graphtea.plugins.main.saveload.matrix.SaveWeightedMatrix" id="save weighted matrix"/>
-        <action class="graphtea.plugins.main.saveload.matrix.LoadWeightedMatrix" id="load weighted matrix"/>
+        <!--<action class="graphtea.plugins.main.saveload.matrix.SaveWeightedMatrix" id="save weighted matrix"/>-->
+        <!--<action class="graphtea.plugins.main.saveload.matrix.LoadWeightedMatrix" id="load weighted matrix"/>-->
         <action class="graphtea.plugins.main.saveload.image.SaveImage" id="save image"/>
         <!--<action class="graphtea.plugins.main.saveload.image.CopyAsImage"  id="copy as image"/>-->
         <!--<action class="graphtea.plugins.main.saveload.matrix.CopyAsMatrix" id="copy as matrix"/>-->
@@ -21,12 +21,12 @@
     <ui>
         <menues>
             <submenu label="_File.Load Graph From" place="100">
-                <menu label="_GraphML" place="10" action="load" accelerator="control+O"/>
+                <!--<menu label="_GraphML" place="10" action="load" accelerator="control+O"/>-->
                 <menu label="_Matrix" place="13" action="load matrix" accelerator="control+L"/>
             </submenu>
             <submenu label="_File.Save Graph To" place="200">
                 <menu label="_Matrix" place="12" action="save matrix" accelerator="control+M"/>
-                <menu label="_GraphML" place="11" action="save" accelerator="control+S"/>
+                <!--<menu label="_GraphML" place="11" action="save" accelerator="control+S"/>-->
                 <menu label="_Image" place="14" action="save image" accelerator="control+I"/>
             </submenu>
             <!--<submenu label="_Edit">-->

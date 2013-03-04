@@ -190,7 +190,7 @@ public class Settings implements AttributeListener {
             java.util.prefs.Preferences.userRoot().flush();
 
             graphPrefs.exportSubtree(new FileOutputStream(new File(file, "graph.xml")));
-            graphPrefs.exportNode(new FileOutputStream(new File("/graph.xml")));
+            graphPrefs.exportNode(new FileOutputStream(new File("/sgraph.xml")));
         } catch (IOException e) {
 
             ExceptionHandler.catchException(e);

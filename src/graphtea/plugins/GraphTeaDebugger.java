@@ -6,7 +6,7 @@ package graphtea.plugins;
 
 
 //import graphtea.extensions.graphactions.GeneralizedPetersonIndepSetListerAction;
-import graphtea.extensions.connectivity.Redis;
+//import graphtea.extensions.connectivity.Redis;
 import graphtea.extensions.io.*;
 //import phylogenetic.TripNet;
 import graphtea.extensions.reports.MaxIndependentSetReport;
@@ -78,7 +78,7 @@ public class GraphTeaDebugger extends Application {
             StaticUtils.loadSingleExtension(LatexCAD.class);
             StaticUtils.loadSingleExtension(BinaryTreeGenerator.class);
             StaticUtils.loadSingleExtension(LoadNetGraph.class);
-            StaticUtils.loadSingleExtension(Redis.class);
+            //StaticUtils.loadSingleExtension(Redis.class);
             //StaticUtils.loadSingleExtension(TripNet.class);
 
 

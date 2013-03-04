@@ -85,28 +85,31 @@ public class LoadSimpleGraph implements GraphReaderExtension {
 
             l = sc.next();
             ArrayList<Vertex> V = new ArrayList<Vertex>();
-            Vertex curv = new Vertex();
+
             while (!l.equals("begin")) {    //begin edges
-                if (l.equals("vertex")) {
                     String s1 = sc.next();
+                    System.out.print("SDFSD" + s1);
                     int i = parseInt(s1.substring(0, s1.length() - 1));
-                    final GraphPoint zeropoint = new GraphPoint(0, 0);
-                    curv.setLocation(new GraphPoint(400 * Math.random(), 400 * Math.random()));
-                    V.add(curv = new Vertex());
-                } else if (l.equals("label")) {
-                    curv.setLabel(sc.nextLine());
-                } else if (l.equals("location")) {
+                    Vertex curv = new Vertex();
+                    final GraphPoint gp = new GraphPoint(0, 0);
+                    sc.next();
+                    curv.setLabel(sc.next());
+                    sc.next();
                     curv.setLocation((GraphPoint) StaticUtils.fromString(GraphPoint.class.getName(), sc.nextLine()));
-                } else if (l.equals("color")) {
+                    sc.next();
                     curv.setColor(parseInt(sc.next()));
-                }
-                l = sc.next();
+                    V.add(curv);
+                    l = sc.next();
             }
 
             g.insertVertices(V);
             //Read Edges
-            sc.nextLine();
-            Vertex v1 = V.get(parseInt(sc.next()));
+            if(sc.hasNextLine())
+                sc.nextLine();
+            Vertex v1 = null;
+            if(sc.hasNext())
+                v1 = V.get(parseInt(sc.next()));
+            else return g;
             sc.next();
             Vertex v2 = V.get(parseInt(sc.next()));
             ArrayList<Edge> E = new ArrayList<Edge>();

@@ -123,6 +123,16 @@
           <entry key="searchInSubgraph" value="false"/>
         </map>
       </node>
+      <node name="graphtea.extensions.algorithms.CholeskyFactorizationExtension">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.CholeskyFactorizationExtension"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.SampleAlgorithm">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.SampleAlgorithm"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.connectivity.Redis">
         <map>
           <entry key="DEFAULT_SERVER" value=""/>
@@ -466,7 +476,8 @@
         <map>
           <entry key="object" value="graphtea.graph.graph.GraphModel"/>
           <entry key="vertexLabelsEnabled" value="true"/>
-          <entry key="showEdgeWeights" value="true"/>
+          <entry key="showEdgeWeights" value="false"/>
+          <entry key="allowLoopsProperty" value="false"/>
         </map>
       </node>
       <node name="graphtea.graph.graph.Vertex">
@@ -1021,7 +1032,7 @@
       <node name="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler">
         <map>
           <entry key="object" value="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler"/>
-          <entry key="defaultFile" value="C:\Users\hoomanmohajeri\Documents\sdfsg.mat"/>
+          <entry key="defaultFile" value="C:\Users\Fesi\Downloads\100.simplegraph"/>
         </map>
       </node>
       <node name="graphtea.plugins.main.saveload.core.extension.GraphReaderExtensionAction">
