@@ -8,22 +8,6 @@
 
 <root>
 	<actions>
-		<action class="graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK" />
-		<action class="graphtea.extensions.reports.basicreports.NumOfVertices" />
-		<action class="graphtea.extensions.reports.basicreports.NumOfEdges" />
-		<action
-			class="graphtea.extensions.reports.basicreports.NumOfConnectedComponents" />
-		<action class="graphtea.extensions.reports.basicreports.GirthSize" />
-		<action class="graphtea.extensions.reports.basicreports.VerticesDegreesList" />
-		<!--
-			<action
-			class="graphtea.extensions.reports.basicreports.MaximumIndependenceNumber"/>
-		-->
-		<action class="graphtea.extensions.reports.basicreports.IsEulerian" />
-		<action class="graphtea.extensions.reports.basicreports.NumOfTriangles" />
-		<action class="graphtea.extensions.reports.basicreports.MaxAndMinDegree" />
-		<action class="graphtea.extensions.reports.basicreports.AdjacencyMatrix" />
-		<action class="graphtea.extensions.reports.basicreports.NumOfQuadrangle" />
 		<action
 			class="graphtea.plugins.reports.spectralreports.maxflowmincut.GomoryHuTree" />
 		<action

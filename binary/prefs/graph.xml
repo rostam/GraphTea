@@ -2280,7 +2280,7 @@
       </node>
       <node name="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler">
         <map>
-          <entry key="defaultFile" value="/home/rostam/Downloads/after_partitioning.mat"/>
+          <entry key="defaultFile" value="C:\Users\Fesi\Downloads\100.simplegraph"/>
           <entry key="object" value="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler"/>
         </map>
       </node>
