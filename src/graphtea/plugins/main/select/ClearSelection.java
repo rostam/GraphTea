@@ -8,7 +8,6 @@ import graphtea.graph.event.GraphEvent;
 import graphtea.graph.graph.SubGraph;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
-import graphtea.plugins.main.core.actions.VertexTransformer;
 
 /**
  * @author Azin Azadi
@@ -43,9 +42,6 @@ public class ClearSelection extends AbstractAction {
         if (gpd.eventType != GraphEvent.CLICKED) {
             return;
         }
-
-        if (VertexTransformer.isPositionOnResizeBoxes(gpd.mousePos, blackboard))
-            return;
 
         sd = Select.getSelection(blackboard);
         if (sd.vertices.size() != 0 || sd.edges.size() != 0) {

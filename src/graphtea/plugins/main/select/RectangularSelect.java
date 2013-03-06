@@ -11,7 +11,6 @@ import graphtea.graph.ui.GraphRectRegionSelect;
 import graphtea.library.exceptions.InvalidVertexException;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
-import graphtea.plugins.main.core.actions.VertexTransformer;
 import graphtea.ui.UIUtils;
 
 import java.awt.*;
@@ -70,8 +69,6 @@ public class RectangularSelect extends AbstractAction {
     }
 
     void _onMouseMoved(GraphEvent data) {
-        if (VertexTransformer.isPositionOnResizeBoxes(data.mousePos, blackboard))
-            return;
         SubGraph selection = RectangularSelect.calculateSelected(g, graphRectRegionSelector.getCurrentRect().getBounds());
         if (!deleteOlderSelections) {
             SubGraph sd = Select.getSelection(blackboard);
