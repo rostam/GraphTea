@@ -1,6 +1,6 @@
-![Preview](http://github.com/graphtheorysoftware/GraphTea/raw/master/presentation/peterson.png)
+![Pre:view](http://github.com/graphtheorysoftware/GraphTea/raw/master/presentation/peterson.png)
 
-#youtube demo
+#YouTube demo
 see this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
 
 #GraphTea
@@ -38,19 +38,19 @@ manually:
 
 note that you should have [appache ant](http://ant.apache.org/) installed.
 
-#write a graph algorithm
+#Write a graph algorithm,
 go change this file: [SampleAlgorithm.java](https://github.com/graphtheorysoftware/GraphTea/blob/master/src/graphtea/extensions/algorithms/SampleAlgorithm.java).
 you can make also reports, generators, file formats and actions.
 
-#what can you do with graphtea
+#What can you do with graphtea?
 
-* draw your graph with mouse or using predefined graphs (under graph > generate), like trees, complete graphs, stars, generalized peterson and ...
-* get information about your graphs (under graph > reports menu), like num of connected components, chromatic number, independence number, girth size, num of triangles and ...
-* run algorithms step by step on your graph and see how they work. this is very usefull for teaching graph algorithms. you can pause, and it shows the current state of algorithm by coloring edges and vertices.
-* visualize your graphs. you made a social network from your database and want to represent it in a meaningfull way? use the visualizations
-* present your graphs in your papers, websites or reports. GraphTea has a wide range of options to draw graphs, having different colors for edges and vertices. different borders and fonts and sizes and ... when you finish drawing your graph, you can save to a image file or even to a Latex document to put in your report. then you can use latexcad app, to further refine your graph.
+* Drawing your graph with mouse or using predefined graphs (under graph > generate), like trees, complete graphs, stars, generalized peterson and etc.
+* Getting information about your graphs (under graph > reports menu), like num of connected components, chromatic number, independence number, girth size, num of triangles and etc.
+* Run algorithms step by step on your graph and see how they work. This is very usefull for teaching graph algorithms. You can pause, and it shows the current state of algorithm by coloring edges and vertices.
+* Visualizing your graphs. You made a social network from your database and want to represent it in a meaningfull way? Use the visualizations.
+* Presenting your graphs in your papers, websites or reports. GraphTea has a wide range of options to draw graphs, having different colors for edges and vertices, different borders, fonts, and sizes and etc. When you finish drawing your graph, you can save to a image file or even to a Latex document to put in your report, then you can use latexcad app, to further refine your graph.
 
-* you can make new graph generators, graph reports, file types, actions, algorithms by writing extensions. extensions provide a gateway to add new functionalities as simple as putting a file to extensions directory. you can write them using Java and Matlab. moreover you can write new extensions using any programming language that supports [redis](http://redis.io/clients) which includes almost any wellknown programming language. for more samples take a look at extensions directory
+* making new graph generators, graph reports, file types, actions, algorithms by writing extensions. Extensions provide a gateway to add new functionalities as simple as putting a file to extensions directory. You can write them using Java and Matlab. For more samples take a look at extensions directory.
 
 #need help?
 more docs will come soon. if you have any questions just post it in the issues and i will write you back as soon as possible.
@@ -74,7 +74,7 @@ have fun!
 ###credits
 GraphTea is developed in Sharif university of technology. it is under GPL license.
 
-project supervisor:
+Project Supervisor:
 Dr. Amir Daneshgar
 
 contributors:
