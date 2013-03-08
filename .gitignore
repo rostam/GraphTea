@@ -25,3 +25,5 @@ build.log
 # misc
 .DS_Store
 prefs
+
+Thumbs.db
