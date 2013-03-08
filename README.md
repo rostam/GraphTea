@@ -52,7 +52,7 @@ you can make also reports, generators, file formats and actions.
 
 * making new graph generators, graph reports, file types, actions, algorithms by writing extensions. Extensions provide a gateway to add new functionalities as simple as putting a file to extensions directory. You can write them using Java and Matlab. For more samples take a look at extensions directory.
 
-#need help?
+# Need help?
 more docs will come soon. if you have any questions just post it in the issues and i will write you back as soon as possible.
 
 # CONTRIBUTE
