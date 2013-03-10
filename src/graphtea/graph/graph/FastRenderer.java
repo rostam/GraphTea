@@ -228,7 +228,9 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
                 paint((Graphics2D) gg, v,
                         zm(l.x) - v.getCenter().x, zm(l.y) - v.getCenter().y,
                         zm(l.x) - labelLength/2, zm(l.y) +
-                        gg.getFontMetrics().getHeight()/2, drawExtras);
+                        vertexRadius / 2,
+                        //gg.getFontMetrics().getHeight()/2,
+                        drawExtras);
 
                 //paint((Graphics2D) gg, v,
                 //        zm(l.x) - v.getCenter().x, zm(l.y) - v.getCenter().y,
