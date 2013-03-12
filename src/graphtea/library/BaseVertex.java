@@ -30,7 +30,7 @@ public class BaseVertex {
     }
 
     public BaseVertex() {
-        prop = new BaseVertexProperties(0, false);
+        prop = new BaseVertexProperties(1, false);
     }
 
     @Override

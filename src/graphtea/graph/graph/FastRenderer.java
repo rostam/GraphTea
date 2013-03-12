@@ -225,11 +225,15 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
                     labelLength += gg.getFontMetrics().charWidth(s.charAt(i));
                 }
 
+                Font f = gg.getFont();
+                int fontH = (int)Math.floor(f.createGlyphVector(
+                        gg.getFontMetrics().getFontRenderContext(),
+                        s).getVisualBounds().getHeight());
                 paint((Graphics2D) gg, v,
                         zm(l.x) - v.getCenter().x, zm(l.y) - v.getCenter().y,
                         zm(l.x) - labelLength/2, zm(l.y) +
-                        vertexRadius / 2,
-                        //gg.getFontMetrics().getHeight()/2,
+                        vertexRadius/2,
+                        //fontH/2,
                         drawExtras);
 
                 //paint((Graphics2D) gg, v,

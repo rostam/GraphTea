@@ -46,7 +46,7 @@ public class Vertex extends BaseVertex {
      * the location of the lable relative to the center of the edge
      */
 
-    private GraphPoint labelLocation = new GraphPoint(0, 0);
+    private GraphPoint labelLocation = new GraphPoint(0, 4);
 
     //________________________   Userdefined Attributes    _________________________________
     /**

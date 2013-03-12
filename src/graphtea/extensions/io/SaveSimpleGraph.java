@@ -13,6 +13,7 @@ import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;
 import graphtea.platform.StaticUtils;
 
+import java.awt.*;
 import java.io.*;
 import java.util.Iterator;
 
@@ -44,6 +45,9 @@ public class SaveSimpleGraph implements GraphWriterExtension {
             else
                 o.println("undirected");
             o.println("label " + graph.getLabel());
+            Font f = graph.getFont();
+            o.println("font "  + f.getName() + " "
+                    + f.getStyle() + " " + f.getSize());
 
             //output vertices
             o.println("begin vertices:");
@@ -54,6 +58,8 @@ public class SaveSimpleGraph implements GraphWriterExtension {
                 System.out.print(p.getX());
                 o.println("location " + p.getX() + "," + p.getY());
                 o.println("color " + v.getColor());
+                o.println("labellocation " + v.getLabelLocation().getX()
+                        +  " "  + v.getLabelLocation().getY() );
             }
 
             //output edges

@@ -34,7 +34,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 		SETTINGS.registerSetting(this, "Graph Drawings");
 	}
 
-	private Font font = Font.decode("Arial");
+	private Font font = new Font("Arial", Font.BOLD, 24);
 	@UserModifiableProperty(displayName = "Show Edge Labels")
 	public static boolean showEdgeWeights = false;
 	@UserModifiableProperty(displayName = "Show Vertex Labels")
@@ -66,7 +66,9 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 
 	boolean showChangesOnView;
 	private String label;
-	public static final Color[] color = {Color.orange, Color.blue, Color.yellow, Color.green, Color.magenta, Color.red, Color.cyan, Color.pink, Color.lightGray, Color.darkGray};
+	public static final Color[] color =
+            {Color.gray, Color.white
+                    , Color.yellow, Color.green, Color.magenta, Color.red, Color.cyan, Color.pink, Color.lightGray, Color.darkGray};
 
     private int lastUsedID = 0;
 	/**

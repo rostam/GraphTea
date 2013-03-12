@@ -14,6 +14,7 @@ import graphtea.plugins.main.saveload.SaveLoadPluginMethods;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphReaderExtension;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -78,7 +79,14 @@ public class LoadSimpleGraph implements GraphReaderExtension {
             else
                 g = new GraphModel(false);
             sc.next();
-            g.setLabel(sc.nextLine());
+            g.setLabel(sc.next());
+
+            sc.next();
+            String fontName = sc.next();
+            int style = Integer.parseInt(sc.next());
+            int size  = Integer.parseInt(sc.next());
+            Font f = new Font(sc.next(), style, size );
+            g.setFont(f);
 
             //Read Vertices
             sc.nextLine();
@@ -88,7 +96,6 @@ public class LoadSimpleGraph implements GraphReaderExtension {
 
             while (!l.equals("begin")) {    //begin edges
                     String s1 = sc.next();
-                    System.out.print("SDFSD" + s1);
                     int i = parseInt(s1.substring(0, s1.length() - 1));
                     Vertex curv = new Vertex();
                     final GraphPoint gp = new GraphPoint(0, 0);
@@ -98,6 +105,11 @@ public class LoadSimpleGraph implements GraphReaderExtension {
                     curv.setLocation((GraphPoint) StaticUtils.fromString(GraphPoint.class.getName(), sc.nextLine()));
                     sc.next();
                     curv.setColor(parseInt(sc.next()));
+                    sc.next();
+                    curv.setLabelLocation(new GraphPoint(
+                            Double.parseDouble(sc.next()),
+                            Double.parseDouble(sc.next())
+                    ));
                     V.add(curv);
                     l = sc.next();
             }

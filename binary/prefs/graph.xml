@@ -470,6 +470,7 @@
           <entry key="defaultVertexRadius" value="10"/>
           <entry key="defaultEdgeColor" value="java.awt.Color[r=213,g=210,b=210]"/>
           <entry key="defaultBorderStroke" value="simple"/>
+          <entry key="defaultFont" value="java.awt.Font[family=Arial,name=Arial,style=bold,size=24]"/>
         </map>
       </node>
       <node name="graphtea.graph.graph.GraphModel">
@@ -1032,7 +1033,7 @@
       <node name="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler">
         <map>
           <entry key="object" value="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler"/>
-          <entry key="defaultFile" value="C:\Users\Fesi\Downloads\teee.simplegraph"/>
+          <entry key="defaultFile" value="C:\Users\Fesi\Downloads\100.simplegraph"/>
         </map>
       </node>
       <node name="graphtea.plugins.main.saveload.core.extension.GraphReaderExtensionAction">
