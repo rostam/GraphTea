@@ -44,7 +44,7 @@ public class ResetGraph extends AbstractAction {
         g.setShowChangesOnView(true);
         for (Vertex v : g) {
             v.setMark(false);
-            v.setColor(0);
+            v.setColor(1);
         }
         Iterator<Edge> ie = g.edgeIterator();
         while (ie.hasNext()) {
