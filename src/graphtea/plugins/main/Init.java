@@ -16,6 +16,11 @@ import graphtea.platform.plugin.PluginInterface;
 import graphtea.platform.preferences.lastsettings.StorableOnExit;
 import graphtea.plugins.main.extension.GraphActionExtensionHandler;
 
+import com.dmurph.tracking.AnalyticsConfigData;
+import com.dmurph.tracking.JGoogleAnalyticsTracker;
+import com.dmurph.tracking.JGoogleAnalyticsTracker.GoogleAnalyticsVersion;
+import com.dmurph.tracking.system.AWTSystemPopulator;
+
 import java.io.File;
 import java.net.MalformedURLException;
 
@@ -45,6 +50,17 @@ public class Init implements PluginInterface, StorableOnExit {
 //        }
         gtgp.addGraph(new GraphModel(false));
         gtgp.jtp.setSelectedIndex(0);
+
+        //setup google analytics so that we know which features the users use more and need to get improved
+        JGoogleAnalyticsTracker.setProxy(System.getenv("http_proxy"));
+        AnalyticsConfigData config = new AnalyticsConfigData("UA-6755911-3");
+        AWTSystemPopulator.populateConfigData(config);
+        JGoogleAnalyticsTracker tracker = new JGoogleAnalyticsTracker(config, GoogleAnalyticsVersion.V_4_7_2);
+   
+        tracker.trackPageView("App_startpage", null, null);
+        tracker.trackEvent("App", "Started");
+        JGoogleAnalyticsTracker.completeBackgroundTasks(1000);
+
     }
 }
  
