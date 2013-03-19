@@ -28,10 +28,17 @@ import java.net.MalformedURLException;
  * @author azin azadi
  */
 public class Init implements PluginInterface, StorableOnExit {
+    public static JGoogleAnalyticsTracker tracker;
     static {
         ExtensionLoader.registerExtensionHandler(new GraphActionExtensionHandler());
+        JGoogleAnalyticsTracker.setProxy(System.getenv("http_proxy"));
+        AnalyticsConfigData config = new AnalyticsConfigData("UA-6755911-3");
+        AWTSystemPopulator.populateConfigData(config);
+        tracker = new JGoogleAnalyticsTracker(config, GoogleAnalyticsVersion.V_4_7_2);
     }
-
+    public static JGoogleAnalyticsTracker getTracker() {
+        return tracker;
+    }
     public void init(BlackBoard blackboard) {
         new graphtea.plugins.main.resources.Init().init(blackboard);
         new graphtea.plugins.main.core.Init().init(blackboard);
@@ -52,10 +59,6 @@ public class Init implements PluginInterface, StorableOnExit {
         gtgp.jtp.setSelectedIndex(0);
 
         //setup google analytics so that we know which features the users use more and need to get improved
-        JGoogleAnalyticsTracker.setProxy(System.getenv("http_proxy"));
-        AnalyticsConfigData config = new AnalyticsConfigData("UA-6755911-3");
-        AWTSystemPopulator.populateConfigData(config);
-        JGoogleAnalyticsTracker tracker = new JGoogleAnalyticsTracker(config, GoogleAnalyticsVersion.V_4_7_2);
    
         tracker.trackPageView("App_startpage", null, null);
         tracker.trackEvent("App", "Started");

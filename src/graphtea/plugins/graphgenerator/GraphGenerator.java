@@ -35,7 +35,7 @@ public class GraphGenerator implements PluginMethods {
         blackboard.setData(AddVertex.DISABLE, true);
 
         //select a region and then generate the graph
-        GTabbedGraphPane.showNotificationMessage("<HTML><BODY><Center><b>Please select a region to put the generated graph.</b></center></body></html>", blackboard, true);
+        GTabbedGraphPane.showNotificationMessage("<HTML><BODY><Center><h1>Please select a region to put the generated graph.</h1></center></body></html>", blackboard, true);
 //        JOptionPane.showMessageDialog(null, "Please select a region to put the generated graph");
         new GraphRectRegionSelect(blackboard) {
 
@@ -68,9 +68,9 @@ public class GraphGenerator implements PluginMethods {
 //                            blackboard blackboard = g.blackboard;
         final AbstractGraphRenderer ren = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
         if (rect.width < 5)
-            rect.width = 250;
+            rect.width = 550;
         if (rect.height < 5)
-            rect.height = 250;
+            rect.height = 550;
         new Thread() {
             public void run() {
                 ren.ignoreRepaints(new Runnable() {

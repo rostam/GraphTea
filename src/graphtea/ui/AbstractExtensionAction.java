@@ -266,6 +266,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
     public abstract String getParentMenuName();
 
     public final void performAction(String eventKey, Object value) {
+        graphtea.plugins.main.Init.getTracker().trackEvent("action", target.getName());
         if (testAndSetParameters(target))
             performExtension();
     }
