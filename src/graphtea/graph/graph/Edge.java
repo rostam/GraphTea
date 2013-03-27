@@ -62,8 +62,8 @@ public class Edge extends BaseEdge<Vertex> {
     /**
      * initial diameter of a loop
      */
-    private double loopWidth = 25;
-    public final static double MIN_LOOP_WIDTH = 15;
+    private double loopWidth = 45;
+    public final static double MIN_LOOP_WIDTH = 35;
 
     /**
      * sets and stores a user defined attribute for the vertex. here you can put any attribute you like that are not available

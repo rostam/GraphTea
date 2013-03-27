@@ -38,7 +38,7 @@ public class BaseEdge<VertexType extends BaseVertex>
     public BaseEdge(VertexType source, VertexType target) {
         this.source = source;
         this.target = target;
-        this.prop = new BaseEdgeProperties(19, 1, false);
+        this.prop = new BaseEdgeProperties(0, 1, false);
     }
 
     public BaseEdge(VertexType source, VertexType target, BaseEdgeProperties prop) {
