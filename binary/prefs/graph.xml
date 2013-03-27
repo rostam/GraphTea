@@ -1038,7 +1038,7 @@
       <node name="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler">
         <map>
           <entry key="object" value="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler"/>
-          <entry key="defaultFile" value="C:\Users\Fesi\Downloads\100.simplegraph"/>
+          <entry key="defaultFile" value="C:\Users\Fesi\Downloads\after_partitioning (2).mat"/>
         </map>
       </node>
       <node name="graphtea.plugins.main.saveload.core.extension.GraphReaderExtensionAction">
