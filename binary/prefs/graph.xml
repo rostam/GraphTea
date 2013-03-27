@@ -318,8 +318,8 @@
       </node>
       <node name="graphtea.extensions.io.LatexCAD">
         <map>
-          <entry key="X" value="0.0"/>
-          <entry key="Y" value="0.0"/>
+          <entry key="X" value="0.5"/>
+          <entry key="Y" value="0.5"/>
           <entry key="object" value="graphtea.extensions.io.LatexCAD"/>
         </map>
       </node>
@@ -717,6 +717,11 @@
       <node name="graphtea.plugins.commonplugin.reporter.actions.Report">
         <map>
           <entry key="object" value="graphtea.plugins.commonplugin.reporter.actions.Report"/>
+        </map>
+      </node>
+      <node name="graphtea.plugins.fun.extension.FunExtension">
+        <map>
+          <entry key="object" value="graphtea.plugins.fun.extension.FunExtension"/>
         </map>
       </node>
       <node name="graphtea.plugins.generalplugin.ReloadExtensionsExtension">

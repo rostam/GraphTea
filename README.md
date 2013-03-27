@@ -48,7 +48,7 @@ you can make also reports, generators, file formats and actions.
 * Getting information about your graphs (under graph > reports menu), like num of connected components, chromatic number, independence number, girth size, num of triangles and etc.
 * Run algorithms step by step on your graph and see how they work. This is very usefull for teaching graph algorithms. You can pause, and it shows the current state of algorithm by coloring edges and vertices.
 * Visualizing your graphs. You made a social network from your database and want to represent it in a meaningfull way? Use the visualizations.
-* Presenting your graphs in your papers, websites or reports. GraphTea has a wide range of options to draw graphs, having different colors for edges and vertices, different borders, fonts, and sizes and etc. When you finish drawing your graph, you can save to a image file or even to a Latex document to put in your report, then you can use latexcad app, to further refine your graph.
+* Presenting your graphs in your papers, websites or reports. GraphTea has a wide range of options to draw graphs, having different colors for edges and vertices, different borders, fonts, and sizes and etc. When you finish drawing your graph, you can save to a image file or even to a Tex document to put in your report.
 
 * making new graph generators, graph reports, file types, actions, algorithms by writing extensions. Extensions provide a gateway to add new functionalities as simple as putting a file to extensions directory. You can write them using Java and Matlab. For more samples take a look at extensions directory.
 
