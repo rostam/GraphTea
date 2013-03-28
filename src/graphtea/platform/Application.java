@@ -29,7 +29,7 @@ public class Application implements StorableOnExit {
 
     public static final int VERSION = 15;
 
-    public static final String WELCOME_URL = "http://graphtheorysoftware.com/norooz.html";
+    public static final String WELCOME_URL = "http://graphtheorysoftware.com/v/newrooz";
 
     public static final String APPLICATION_INSTANCE = "GraphTea.main";
     public Plugger plugger = null;

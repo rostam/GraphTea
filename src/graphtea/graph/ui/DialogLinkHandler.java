@@ -7,7 +7,6 @@ package graphtea.graph.ui;
 
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
-import graphtea.platform.StaticUtils;
 
 import javax.swing.*;
 import java.net.MalformedURLException;

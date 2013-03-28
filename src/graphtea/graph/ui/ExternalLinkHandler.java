@@ -23,6 +23,7 @@ class ExternalLinkHandler implements HyperlinkHandler {
 //        if (!url.toLowerCase().startsWith("http:"))
 //            url = path.substring(0, path.lastIndexOf("/")) + "/" + url;
         try {
+            System.out.println(url);
             Desktop.getDesktop().browse(new URI(url));
         } catch (IOException e) {
             e.printStackTrace();

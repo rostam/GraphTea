@@ -128,7 +128,6 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
             if (!url.contains("="))
                 normalHyperlinkUpdate(e);
             else {
-//                String prefix = url.toUpperCase().substring(0, url.indexOf(":"));
                 HyperlinkHandler han = null;
                 String postfix;
                 int pi = url.indexOf("handler");
