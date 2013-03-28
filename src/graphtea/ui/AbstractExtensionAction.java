@@ -5,12 +5,14 @@
 
 package graphtea.ui;
 
+import graphtea.platform.Application;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.extension.Extension;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
+import graphtea.plugins.main.Init;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionAction;
 import graphtea.ui.components.ExtensionConfigFrame;
@@ -266,7 +268,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
     public abstract String getParentMenuName();
 
     public final void performAction(String eventKey, Object value) {
-        graphtea.plugins.main.Init.getTracker().trackEvent("action", target.getName());
+        Init.track(getParentMenuName(), target.getName());
         if (testAndSetParameters(target))
             performExtension();
     }

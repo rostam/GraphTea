@@ -72,19 +72,19 @@ have fun!
 
 ---
 ###credits
-GraphTea is developed in Sharif university of technology. it is under GPL license.
 
-Project Supervisor:
-Dr. Amir Daneshgar
+Current Developers:
+    Mohammad Ali Rostami ali [at] c3e [dot] de
+    Azin Azadi aazadi [at] gmail [dot] com
 
-contributors:
-Azin Azadi,
-Ruzbeh Ebrahimi,
-Omid Aladini,
-Reza Mohammadi,
-Mohammad Ali Rostami,
-Mina Naghshnejad,
-Ali Ershadi,
-Soroosh Sabet
+GraphTea is base on GraphLab, a software developed in Sharif university of Technology [0].
+Supervisor: Dr. Amir Daneshgar [1]
+Contributors:
+  Azin Azadi, Ruzbeh Ebrahimi, Omid Aladini, Reza Mohammadi, Mohammad Ali Rostami [2], Mina Naghshnejad, Ali Ershadi, Soroosh Sabet
+      With Thanks to: Soheil Siadatnejad
 
-With Thanks to: Soheil Siadatnejad
+
+[0]: http://www.sharif.ir
+[1]: http://sharif.edu/~daneshgar/
+[2]: http://c3e.de/team/arostami
+

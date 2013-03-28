@@ -129,7 +129,7 @@ public class GTabbedGraphPane extends GTabbedPane {
      */
     public static void showNotificationMessage(String message, BlackBoard b, boolean formatIt) {
         if (formatIt) message = htmlFormat(message);
-        GHTMLPageComponent c = getCurrentGHTGhtmlPageComponent(b);
+        GHTMLPageComponent c = getCurrentGHTMLPageComponent(b);
         if (c == null) JOptionPane.showMessageDialog(null, message);
         else
             c.showNotificationMessage(message);
@@ -143,17 +143,17 @@ public class GTabbedGraphPane extends GTabbedPane {
      */
     public static void setMessage(String message, BlackBoard b, boolean formatIt) {
         if (formatIt) message = htmlFormat(message);
-        GHTMLPageComponent c = getCurrentGHTGhtmlPageComponent(b);
+        GHTMLPageComponent c = getCurrentGHTMLPageComponent(b);
         if (c == null) JOptionPane.showMessageDialog(null, message);
         else
-            getCurrentGHTGhtmlPageComponent(b).setMessage(message);
+            getCurrentGHTMLPageComponent(b).setMessage(message);
     }
 
     /**
      * hides the previously showing message
      */
     public static void hideNotificationMessage(BlackBoard b) {
-        GHTMLPageComponent pc = getCurrentGHTGhtmlPageComponent(b);
+        GHTMLPageComponent pc = getCurrentGHTMLPageComponent(b);
         if (pc != null)
             pc.hideNotificationMessage();
     }
@@ -177,7 +177,7 @@ public class GTabbedGraphPane extends GTabbedPane {
     }
 
     static String htmlFormat(String message) {
-        return "<HTML><BODY><CENTER><B>" + message + "</B></CENTER></BODY></HTML>";
+        return "<HTML><BODY><CENTER><h1>" + message + "</h1></CENTER></BODY></HTML>";
     }
 
     //------------------------------------------------
@@ -189,7 +189,7 @@ public class GTabbedGraphPane extends GTabbedPane {
      * @return
      * @see GTabbedPane
      */
-    public static GHTMLPageComponent getCurrentGHTGhtmlPageComponent(BlackBoard b) {
+    public static GHTMLPageComponent getCurrentGHTMLPageComponent(BlackBoard b) {
         Object o = b.getData(CURRENT_COMPONENT);
         if (o instanceof GSplitedPane) {
             GSplitedPane g = (GSplitedPane) o;

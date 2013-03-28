@@ -22,7 +22,6 @@ public class Init implements PluginInterface, StorableOnExit {
     public static HashMap<GraphModel, UndoManager> undoers = new HashMap<GraphModel, UndoManager>();
     public void init(BlackBoard blackboard) {
         new graphtea.plugins.commonplugin.reporter.Init().init(blackboard);
-        new graphtea.plugins.commonplugin.help.Init().init(blackboard);
 
 
         //make all graphs undoable

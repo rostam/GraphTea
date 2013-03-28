@@ -9,6 +9,7 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.graph.ui.GHTMLPageComponent;
 import graphtea.graph.ui.GTabbedGraphPane;
+import graphtea.platform.Application;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.ExtensionLoader;
@@ -23,32 +24,25 @@ import com.dmurph.tracking.system.AWTSystemPopulator;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * @author azin azadi
  */
 public class Init implements PluginInterface, StorableOnExit {
-    public static JGoogleAnalyticsTracker tracker;
     static {
         ExtensionLoader.registerExtensionHandler(new GraphActionExtensionHandler());
-        JGoogleAnalyticsTracker.setProxy(System.getenv("http_proxy"));
-        AnalyticsConfigData config = new AnalyticsConfigData("UA-6755911-3");
-        AWTSystemPopulator.populateConfigData(config);
-        tracker = new JGoogleAnalyticsTracker(config, GoogleAnalyticsVersion.V_4_7_2);
     }
-    public static JGoogleAnalyticsTracker getTracker() {
-        return tracker;
-    }
+
     public void init(BlackBoard blackboard) {
-        new graphtea.plugins.main.resources.Init().init(blackboard);
         new graphtea.plugins.main.core.Init().init(blackboard);
         new graphtea.plugins.main.select.Init().init(blackboard);
         new graphtea.plugins.main.saveload.Init().init(blackboard);
         //init the setting
         Edge em = new Edge(new Vertex(), new Vertex());
         SETTINGS.registerSetting(em, "Graph Drawings");
-        GTabbedGraphPane gtgp = blackboard.getData(GTabbedGraphPane.NAME);
-        GHTMLPageComponent pc = new GHTMLPageComponent(blackboard);
+        GTabbedGraphPane gtgp = GTabbedGraphPane.getCurrentGTabbedGraphPane(blackboard);
+//        GHTMLPageComponent pc = new GHTMLPageComponent(blackboard);
 //        try {
 //            pc.setPage(new File("doc/welcome_page.html").toURL());
 //            gtgp.jtp.addTab("Welcome!", pc);
@@ -57,13 +51,27 @@ public class Init implements PluginInterface, StorableOnExit {
 //        }
         gtgp.addGraph(new GraphModel(false));
         gtgp.jtp.setSelectedIndex(0);
+        try {
+            GTabbedGraphPane.getCurrentGHTMLPageComponent(blackboard).setPage(new URL(Application.WELCOME_URL));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         //setup google analytics so that we know which features the users use more and need to get improved
    
-        tracker.trackPageView("App_startpage", null, null);
-        tracker.trackEvent("App", "Started");
-        JGoogleAnalyticsTracker.completeBackgroundTasks(1000);
-
+        track("App", "Started");
     }
+
+    public static JGoogleAnalyticsTracker tracker;
+    static {
+        AnalyticsConfigData config = new AnalyticsConfigData("UA-6755911-5");
+        config.setFlashVersion("9.0 r24");
+        tracker = new JGoogleAnalyticsTracker(config, JGoogleAnalyticsTracker.GoogleAnalyticsVersion.V_4_7_2);
+    }
+    public static void track(String category, String action) {
+        System.out.println(action);
+        tracker.trackEvent(category, action, "Version", Application.VERSION);
+    }
+
 }
  

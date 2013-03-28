@@ -4,6 +4,10 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform;
 
+import com.dmurph.tracking.AnalyticsConfigData;
+import com.dmurph.tracking.JGoogleAnalyticsTracker;
+import com.dmurph.tracking.system.AWTSystemPopulator;
+
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.Extension;
@@ -23,6 +27,10 @@ import java.net.URLClassLoader;
  */
 public class Application implements StorableOnExit {
 
+    public static final int VERSION = 15;
+
+    public static final String WELCOME_URL = "http://graphtheorysoftware.com/norooz.html";
+
     public static final String APPLICATION_INSTANCE = "GraphTea.main";
     public Plugger plugger = null;
     public static final String POST_INIT_EVENT = "Post Initialization";
@@ -36,10 +44,7 @@ public class Application implements StorableOnExit {
             Preferences p = new Preferences(blackboard);
             GSplash gs = new GSplash();
             gs.showMessages();
-//            Thread.sleep(3000);
-//            Thread.sleep(1000);
             loadPlugins();
-//            Thread.sleep(2000);
             loadExtensions(blackboard);
             gs.setVisible(false);
             gs.stopShowing();

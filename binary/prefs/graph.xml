@@ -12,9 +12,9 @@
       </node>
       <node name="GeneralizedPetersonIndepSetListerAction">
         <map>
-          <entry key="startN" value="17"/>
-          <entry key="object" value="GeneralizedPetersonIndepSetListerAction"/>
           <entry key="startK" value="3"/>
+          <entry key="object" value="GeneralizedPetersonIndepSetListerAction"/>
+          <entry key="startN" value="17"/>
         </map>
       </node>
       <node name="HararyGraphGenerator">
@@ -116,11 +116,11 @@
       </node>
       <node name="graphlab.extensions.actions.SearchInGraph">
         <map>
-          <entry key="selectedVertex" value=""/>
+          <entry key="searchInSubgraph" value="false"/>
           <entry key="label" value="8"/>
           <entry key="object" value="graphlab.extensions.actions.SearchInGraph"/>
           <entry key="searchIn" value="java.lang.String #$%# edges #$%# java.lang.String #$%# weights #$%# java.lang.String #$%# vertices #$%# java.lang.String #$%# neighbers #$%# java.lang.String #$%# neighbers"/>
-          <entry key="searchInSubgraph" value="false"/>
+          <entry key="selectedVertex" value=""/>
         </map>
       </node>
       <node name="graphlab.extensions.algorithms.CholeskyFactorizationExtension">
@@ -311,9 +311,9 @@
       </node>
       <node name="graphlab.extensions.graphactions.GeneralizedPetersonIndepSetListerAction">
         <map>
-          <entry key="startN" value="5"/>
-          <entry key="object" value="graphlab.extensions.graphactions.GeneralizedPetersonIndepSetListerAction"/>
           <entry key="startK" value="1"/>
+          <entry key="object" value="graphlab.extensions.graphactions.GeneralizedPetersonIndepSetListerAction"/>
+          <entry key="startN" value="5"/>
         </map>
       </node>
       <node name="graphlab.extensions.io.LatexCAD">
@@ -455,16 +455,16 @@
       </node>
       <node name="graphlab.graph.graph.Edge">
         <map>
-          <entry key="defaultStroke" value="solid"/>
-          <entry key="object" value="graphlab.graph.graph.Edge"/>
           <entry key="showEdgeWeights" value="true"/>
+          <entry key="object" value="graphlab.graph.graph.Edge"/>
+          <entry key="defaultStroke" value="solid"/>
         </map>
       </node>
       <node name="graphlab.graph.graph.EdgeModel">
         <map>
-          <entry key="showEdgeWeights" value="true"/>
-          <entry key="object" value="graphlab.graph.graph.EdgeModel"/>
           <entry key="defaultStroke" value="solid"/>
+          <entry key="object" value="graphlab.graph.graph.EdgeModel"/>
+          <entry key="showEdgeWeights" value="true"/>
         </map>
       </node>
       <node name="graphlab.graph.graph.FastRenderer">
@@ -551,9 +551,9 @@
       </node>
       <node name="graphlab.gui.core.graph.vertex.VertexModel">
         <map>
-          <entry key="defaultShape" value="Round Rectangle"/>
-          <entry key="object" value="graphlab.gui.core.graph.vertex.VertexModel"/>
           <entry key="defaultColor" value="java.awt.Color[r=77,g=188,b=255]"/>
+          <entry key="object" value="graphlab.gui.core.graph.vertex.VertexModel"/>
+          <entry key="defaultShape" value="Round Rectangle"/>
           <entry key="defaultBorderStroke" value="dashed"/>
           <entry key="defaultShapeDimension" value="java.awt.Dimension[width=20,height=20]"/>
         </map>
@@ -598,9 +598,9 @@
       </node>
       <node name="graphlab.gui.plugins.main.Init$1">
         <map>
-          <entry key="defaultShape" value="Round Rectangle"/>
-          <entry key="object" value="graphlab.gui.plugins.main.Init$1"/>
           <entry key="defaultColor" value="java.awt.Color[r=116,g=196,b=255]"/>
+          <entry key="object" value="graphlab.gui.plugins.main.Init$1"/>
+          <entry key="defaultShape" value="Round Rectangle"/>
           <entry key="defaultBorderStroke" value="dashed"/>
         </map>
       </node>
@@ -613,9 +613,9 @@
       </node>
       <node name="graphlab.gui.plugins.main.Init$3">
         <map>
-          <entry key="defaultStroke" value="solid"/>
-          <entry key="object" value="graphlab.gui.plugins.main.Init$3"/>
           <entry key="defaultColor" value="java.awt.Color[r=249,g=117,b=46]"/>
+          <entry key="object" value="graphlab.gui.plugins.main.Init$3"/>
+          <entry key="defaultStroke" value="solid"/>
         </map>
       </node>
       <node name="graphlab.gui.plugins.main.Init$4">
@@ -1360,11 +1360,11 @@
       </node>
       <node name="graphtea.extensions.actions.SearchInGraph">
         <map>
-          <entry key="searchInSubgraph" value="false"/>
+          <entry key="selectedVertex" value=""/>
           <entry key="label" value="8"/>
           <entry key="object" value="graphtea.extensions.actions.SearchInGraph"/>
           <entry key="searchIn" value="java.lang.String #$%# edges #$%# java.lang.String #$%# weights #$%# java.lang.String #$%# vertices #$%# java.lang.String #$%# neighbers #$%# java.lang.String #$%# neighbers"/>
-          <entry key="selectedVertex" value=""/>
+          <entry key="searchInSubgraph" value="false"/>
         </map>
       </node>
       <node name="graphtea.extensions.algorithms.CholeskyFactorizationExtension">
@@ -1555,9 +1555,9 @@
       </node>
       <node name="graphtea.extensions.graphactions.GeneralizedPetersonIndepSetListerAction">
         <map>
-          <entry key="startK" value="1"/>
-          <entry key="object" value="graphtea.extensions.graphactions.GeneralizedPetersonIndepSetListerAction"/>
           <entry key="startN" value="5"/>
+          <entry key="object" value="graphtea.extensions.graphactions.GeneralizedPetersonIndepSetListerAction"/>
+          <entry key="startK" value="1"/>
         </map>
       </node>
       <node name="graphtea.extensions.io.LatexCAD">
@@ -1699,18 +1699,18 @@
       </node>
       <node name="graphtea.graph.graph.Edge">
         <map>
-          <entry key="defaultStroke" value="solid"/>
-          <entry key="object" value="graphtea.graph.graph.Edge"/>
           <entry key="showEdgeWeights" value="true"/>
+          <entry key="object" value="graphtea.graph.graph.Edge"/>
+          <entry key="defaultStroke" value="solid"/>
         </map>
       </node>
       <node name="graphtea.graph.graph.FastRenderer">
         <map>
           <entry key="object" value="graphtea.graph.graph.FastRenderer"/>
           <entry key="defaultShapeDimension" value="java.awt.Dimension[width=40,height=40]"/>
+          <entry key="defaultVertexShape" value="Oval"/>
           <entry key="defaultVertexColor" value="java.awt.Color[r=204,g=204,b=204]"/>
           <entry key="defaultFont" value="java.awt.Font[family=Arial,name=Arial,style=bold,size=24]"/>
-          <entry key="defaultVertexShape" value="Oval"/>
           <entry key="defaultStroke" value="solid"/>
           <entry key="defaultVertexRadius" value="10"/>
           <entry key="defaultEdgeColor" value="java.awt.Color[r=153,g=153,b=153]"/>
@@ -1784,9 +1784,9 @@
       </node>
       <node name="graphtea.gui.core.graph.vertex.VertexModel">
         <map>
-          <entry key="defaultShape" value="Round Rectangle"/>
-          <entry key="object" value="graphtea.gui.core.graph.vertex.VertexModel"/>
           <entry key="defaultColor" value="java.awt.Color[r=77,g=188,b=255]"/>
+          <entry key="object" value="graphtea.gui.core.graph.vertex.VertexModel"/>
+          <entry key="defaultShape" value="Round Rectangle"/>
           <entry key="defaultBorderStroke" value="dashed"/>
           <entry key="defaultShapeDimension" value="java.awt.Dimension[width=20,height=20]"/>
         </map>
@@ -1831,9 +1831,9 @@
       </node>
       <node name="graphtea.gui.plugins.main.Init$1">
         <map>
-          <entry key="defaultColor" value="java.awt.Color[r=116,g=196,b=255]"/>
-          <entry key="object" value="graphtea.gui.plugins.main.Init$1"/>
           <entry key="defaultShape" value="Round Rectangle"/>
+          <entry key="object" value="graphtea.gui.plugins.main.Init$1"/>
+          <entry key="defaultColor" value="java.awt.Color[r=116,g=196,b=255]"/>
           <entry key="defaultBorderStroke" value="dashed"/>
         </map>
       </node>
@@ -1846,9 +1846,9 @@
       </node>
       <node name="graphtea.gui.plugins.main.Init$3">
         <map>
-          <entry key="defaultColor" value="java.awt.Color[r=249,g=117,b=46]"/>
-          <entry key="object" value="graphtea.gui.plugins.main.Init$3"/>
           <entry key="defaultStroke" value="solid"/>
+          <entry key="object" value="graphtea.gui.plugins.main.Init$3"/>
+          <entry key="defaultColor" value="java.awt.Color[r=249,g=117,b=46]"/>
         </map>
       </node>
       <node name="graphtea.gui.plugins.main.Init$4">
