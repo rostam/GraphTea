@@ -1,4 +1,4 @@
-![Pre:view](http://github.com/graphtheorysoftware/GraphTea/raw/master/presentation/peterson.png)
+![Pre:view](http://github.com/graphtheorysoftware/GraphTea/raw/master/src/presentation/peterson.png)
 
 #YouTube demo
 see this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
