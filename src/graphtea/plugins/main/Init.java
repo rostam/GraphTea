@@ -70,7 +70,7 @@ public class Init implements PluginInterface, StorableOnExit {
     }
     public static void track(String category, String action) {
         System.out.println(action);
-        tracker.trackEvent(category, action, "Version", Application.VERSION);
+        tracker.trackEvent(category, action, "Version: " + Application.VERSION);
     }
 
 }

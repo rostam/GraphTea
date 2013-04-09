@@ -27,7 +27,7 @@ import java.net.URLClassLoader;
  */
 public class Application implements StorableOnExit {
 
-    public static final int VERSION = 15;
+    public static final String VERSION = "1.5.2";
 
     public static final String WELCOME_URL = "http://graphtheorysoftware.com/v/newrooz";
 
