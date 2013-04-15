@@ -27,9 +27,9 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
 
 
     public String checkParameters() {
-    	if( n<0 || k<0 )return " Both k & n must be positive!";
-    	else
-    		return null;    //the parameters are well defined.
+        if( n<0 || k<0 )return " Both k & n must be positive!";
+        else
+            return null;    //the parameters are well defined.
     }
 
     public String getName() {
@@ -70,7 +70,10 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
         for (int i = 0; i < n; i++) {
             Point center = fR[i];
             Vertex centerv = firstDepth[i];
-            Point[] sR = PositionGenerators.circle(1000, center.x, center.y, k - 1);
+
+            Point[] sR = null;
+            if(k>3) sR = PositionGenerators.circle(1000, center.x, center.y, k - 1);
+            else    sR = PositionGenerators.circle(1000, center.x, center.y, k - 1,Math.PI/2);
             for (int j = 0; j < k - 1; j++) {
                 curv = new Vertex();
                 g.insertVertex(curv);

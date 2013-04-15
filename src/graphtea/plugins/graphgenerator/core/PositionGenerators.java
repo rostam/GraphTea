@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.graphgenerator.core;
 
+
 import java.awt.*;
 
 /**
@@ -41,6 +42,36 @@ public class PositionGenerators {
         return ret;
     }
 
+    public static Point[] circle(int xOffset, int yOffset, int w, int h, int n, double degree) {
+        Point[] ret = new Point[n];
+        w = w / 2;
+        h = h / 2;
+        w -= xOffset;
+        h -= yOffset;
+        for (int i = 0; i < n; i++) {
+            double deg = 2 * Math.PI / n * i;
+            deg += degree;
+            double x = Math.sin(deg);
+            double y = Math.cos(deg);
+            x *= w;
+            y *= h;
+            x += w;
+            y += h;
+            x += xOffset;
+            y += yOffset;
+            ret[i] = new Point((int) x, (int) y);
+        }
+        return ret;
+    }
+
+    public static Point[] circle(int r, int x, int y, int n, double deg) {
+        Point[] ret = circle(0, 0, r, r, n, Math.PI/2);
+        //rotate(ret, deg);
+        shift(ret, x - r / 2, y - r / 2);
+        return ret;
+    }
+
+
     public static Point[] circle(int r, int x, int y, int n) {
         Point[] ret = circle(0, 0, r, r, n);
         shift(ret, x - r / 2, y - r / 2);
@@ -52,6 +83,17 @@ public class PositionGenerators {
             p.x += xOffset;
             p.y += yOffset;
         }
+        return input;
+    }
+
+    public static Point[] rotate(Point[] input, double degree) {
+
+        for (Point p : input) {
+            int x = (int) (p.x * Math.cos(degree) - p.y * Math.sin(degree));
+            int y = (int) (p.x * Math.sin(degree) + p.y * Math.cos(degree));
+            p.x = x;p.y = y;
+        }
+
         return input;
     }
 }
