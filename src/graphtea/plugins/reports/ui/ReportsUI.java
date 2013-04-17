@@ -52,6 +52,7 @@ public class ReportsUI {
         BorderLayout lom = new BorderLayout(0, 0);
         frm.setLayout(lom);
         frm.add(initWrapper());
+        frm.setPreferredSize(new Dimension(150,100));
         frm.pack();
     }
 
@@ -89,8 +90,10 @@ public class ReportsUI {
 
     JPanel initWrapper() {
         JPanel wrapper = new JPanel(new BorderLayout(0, 0));
+        JScrollPane jsp = new JScrollPane(propEd);
+        propEd.setPreferredSize(new Dimension(150,100));
         wrapper.setPreferredSize(new Dimension(150, 100));
-        wrapper.add(new JScrollPane(propEd), BorderLayout.CENTER);
+        wrapper.add(jsp, BorderLayout.CENTER);
         wrapper.add(info, BorderLayout.NORTH);
         return wrapper;
     }

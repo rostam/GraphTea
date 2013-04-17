@@ -1398,8 +1398,8 @@
       <node name="graphtea.extensions.generators.BananaTreeGenerator">
         <map>
           <entry key="depth" value="BInt5"/>
-          <entry key="k" value="5"/>
-          <entry key="n" value="5"/>
+          <entry key="k" value="4"/>
+          <entry key="n" value="4"/>
           <entry key="object" value="graphtea.extensions.generators.BananaTreeGenerator"/>
         </map>
       </node>
@@ -2286,7 +2286,7 @@
       </node>
       <node name="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler">
         <map>
-          <entry key="defaultFile" value="C:\Users\Fesi\Downloads\100.simplegraph"/>
+          <entry key="defaultFile" value="/home/rostam/Desktop/4_and_5.png"/>
           <entry key="object" value="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler"/>
         </map>
       </node>
