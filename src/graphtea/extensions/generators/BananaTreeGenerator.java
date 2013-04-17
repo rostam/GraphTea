@@ -72,9 +72,9 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
             Vertex centerv = firstDepth[i];
 
             Point[] sR = null;
-            if(k>3) sR = PositionGenerators.circle(1000, center.x, center.y, k - 1);
-            else    sR = PositionGenerators.circle(1000, center.x, center.y, k - 1,Math.PI/2);
-            for (int j = 0; j < k - 1; j++) {
+            sR = PositionGenerators.circle(1000, center.x, center.y, k);
+            for (int j = 0; j < k; j++) {
+                if(j == (i + k/2)%n) continue;
                 curv = new Vertex();
                 g.insertVertex(curv);
                 setloc(curv, sR[j]);
