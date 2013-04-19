@@ -17,9 +17,6 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 import java.awt.*;
 
-/**
- * User: root
- */
 @CommandAttitude(name = "generate_sn", abbreviation = "_g_sn")
 public class StarGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "S(N) Generator's N")
@@ -51,7 +48,7 @@ public class StarGenerator implements GraphGeneratorExtension, Parametrizable, S
         Point[] ret = new Point[n];
         Point[] points = PositionGenerators.circle(5, 5, 10000, 10000, n - 1);
         System.arraycopy(points, 0, ret, 1, n - 1);
-        ret[0] = new Point(100 / 2, 100 / 2);
+        ret[0] = new Point(10000 / 2, 10000 / 2);
         return ret;
     }
 

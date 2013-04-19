@@ -64,14 +64,6 @@ public class PositionGenerators {
         return ret;
     }
 
-    public static Point[] circle(int r, int x, int y, int n, double deg) {
-        Point[] ret = circle(0, 0, r, r, n, Math.PI/2);
-        //rotate(ret, deg);
-        shift(ret, x - r / 2, y - r / 2);
-        return ret;
-    }
-
-
     public static Point[] circle(int r, int x, int y, int n) {
         Point[] ret = circle(0, 0, r, r, n);
         shift(ret, x - r / 2, y - r / 2);
