@@ -44,6 +44,41 @@ public class GPropertyEditor extends JComponent {
         public void paint(Graphics g) {
             super.paint(g);
         }
+
+        @Override
+        public Dimension getMinimumSize() {
+            return new Dimension(150,1100);
+        }
+
+        @Override
+        public Dimension getPreferredSize() {
+            return getMinimumSize();
+        }
+
+        @Override
+        public Dimension getPreferredScrollableViewportSize() {
+            return getPreferredSize();
+        }
+
+        @Override
+        public int getScrollableUnitIncrement(Rectangle rectangle, int i, int i2) {
+            return 8;
+        }
+
+        @Override
+        public int getScrollableBlockIncrement(Rectangle rectangle, int i, int i2) {
+            return getVisibleRect().height;
+        }
+
+        @Override
+        public boolean getScrollableTracksViewportWidth() {
+            return true;
+        }
+
+        @Override
+        public boolean getScrollableTracksViewportHeight() {
+            return false;
+        }
     };
     public GPropertyTableModel model = new GPropertyTableModel();
     NotifiableAttributeSetView def = new PortableNotifiableAttributeSetImpl();
