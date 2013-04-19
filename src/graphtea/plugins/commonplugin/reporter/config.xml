@@ -8,9 +8,8 @@
 <!DOCTYPE root SYSTEM "SampleUI.dtd">
 <root>
     <actions>
-        <action class="graphtea.plugins.commonplugin.reporter.actions.ExceptionReport" group="" id="Exception Report"/>
-        <action class="graphtea.plugins.commonplugin.reporter.actions.Report" group="" id="Bug Buddy"/>
-        <!--<action class="graphtea.plugins.commonplugin.reporter.actions.Exceptioner" group="" id="exceptioner"/>-->
+        <action class="graphtea.plugins.commonplugin.reporter.ReportUIAction" group="" id="Bug Buddy"/>
+        <!--<action class="graphtea.plugins.commonplugin.reporter.ExceptionerActionAction" group="" id="exceptioner"/>-->
     </actions>
     <ui>
         <menues>
@@ -19,13 +18,5 @@
                 <!--<menu label="_Exceptioner" action="exceptioner"/>-->
             </submenu>
         </menues>
-        <statusbars>
-            <bar class="graphtea.plugins.commonplugin.reporter.actions.ExceptionReport" id="exception report"/>
-        </statusbars>
-        <!--toolbars>
-              <toolbar>
-                  <tool label="Load" action="load" image=""/>
-              </toolbar>
-          </toolbars-->
     </ui>
 </root>

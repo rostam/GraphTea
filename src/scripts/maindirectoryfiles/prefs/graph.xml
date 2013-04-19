@@ -1958,9 +1958,9 @@
           <entry key="object" value="graphtea.plugins.commonplugin.help.actions.VisitGraphTeaHomePage"/>
         </map>
       </node>
-      <node name="graphtea.plugins.commonplugin.reporter.actions.Report">
+      <node name="graphtea.plugins.commonplugin.reporter.ReportUIAction">
         <map>
-          <entry key="object" value="graphtea.plugins.commonplugin.reporter.actions.Report"/>
+          <entry key="object" value="graphtea.plugins.commonplugin.reporter.ReportUIAction"/>
         </map>
       </node>
       <node name="graphtea.plugins.fun.extension.FunExtension">
@@ -2262,11 +2262,6 @@
       <node name="graphtea.plugins.main.help.ShowDocumentations">
         <map>
           <entry key="object" value="graphtea.plugins.main.help.ShowDocumentations"/>
-        </map>
-      </node>
-      <node name="graphtea.plugins.main.help.ShowHelp">
-        <map>
-          <entry key="object" value="graphtea.plugins.main.help.ShowHelp"/>
         </map>
       </node>
       <node name="graphtea.plugins.main.help.ShowWelcomePage">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="graphtea.plugins.commonplugin.reporter.actions.TextBox">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="graphtea.plugins.commonplugin.reporter.TextBox">
   <grid id="27dc6" binding="contentPane" layout-manager="GridBagLayout">
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>

@@ -28,8 +28,8 @@ import java.net.URLClassLoader;
 public class Application implements StorableOnExit {
 
     public static final String VERSION = "1.5.3";
-
-    public static final String WELCOME_URL = "http://graphtheorysoftware.com/v/newrooz";
+    public static final String VERSION_NAME = "newrooz";
+    public static final String WELCOME_URL = "http://graphtheorysoftware.com/v/"+VERSION_NAME;
 
     public static final String APPLICATION_INSTANCE = "GraphTea.main";
     public Plugger plugger = null;

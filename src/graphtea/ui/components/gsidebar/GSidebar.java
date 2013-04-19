@@ -18,14 +18,12 @@ import java.net.URL;
 /**
  * this class is the sidebar part of GFrame
  * Author: Azin Azadi
- * Email:  azin_azadi at users.sourceforge.net
  */
 public class GSidebar extends JPanel {
     /**
      *
      */
     private static final long serialVersionUID = -599129598320886343L;
-    private final int sidebarWidth = 20;
     private GBody targetBody;
 
     /**
@@ -37,27 +35,8 @@ public class GSidebar extends JPanel {
     }
 
     private void initComponents() {
-//        setLayout(new FlowLayout(FlowLayout.CENTER));
-//        setPreferredSize(new Dimension(sidebarWidth, 100));
-//        FlowLayout f = new FlowLayout(FlowLayout.CENTER, 0, 2);
-//        setLayout(f);
-//        GridLayout mgr = new GridLayout(5, 1, 1, 2);
-//        mgr.
-
         BoxLayout mgr = new BoxLayout(this, BoxLayout.Y_AXIS);
         setLayout(mgr);
-
-//        setLayout(mgr);
-//Lay out the buttons in one row and as many columns
-        //as necessary, with 6 pixels of padding all around.
-//        SwingUtilities.makeCompactGrid(contentPane, 1,
-//                                        contentPane.getComponentCount(),
-//                                        6, 6, 6, 6);
-
-//        setBorder(new EmptyBorder(2, 2, 0, 1));
-//        setMaximumSize(getPreferredSize());
-//        setSize(getPreferredSize());
-//        hidePanel();
     }
 
     /**
@@ -78,8 +57,6 @@ public class GSidebar extends JPanel {
             add(b,1);
         else add(b);
         validate();
-//        setPanel(c);
-//        b.setMargin(new Insets(1, 1, 1, 1));
     }
 
     /**

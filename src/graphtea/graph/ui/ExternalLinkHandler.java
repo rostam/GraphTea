@@ -5,6 +5,7 @@
 
 package graphtea.graph.ui;
 
+import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;
 
 import java.awt.*;
@@ -19,16 +20,7 @@ import java.net.URL;
 class ExternalLinkHandler implements HyperlinkHandler {
 
     public void handle(String url, BlackBoard b, URL currentURL) {
-//        String path = currentURL.getProtocol() + "://" + currentURL.getPath();
-//        if (!url.toLowerCase().startsWith("http:"))
-//            url = path.substring(0, path.lastIndexOf("/")) + "/" + url;
-        try {
-            System.out.println(url);
-            Desktop.getDesktop().browse(new URI(url));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        System.out.println(url);
+        StaticUtils.browse(url);
     }
 }

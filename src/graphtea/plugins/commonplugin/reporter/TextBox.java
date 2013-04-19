@@ -3,13 +3,11 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
-package graphtea.plugins.commonplugin.reporter.actions;
+package graphtea.plugins.commonplugin.reporter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.*;
 
 public class TextBox extends JFrame {

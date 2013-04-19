@@ -66,7 +66,7 @@ public class Init implements graphtea.platform.plugin.PluginInterface, StorableO
 
             StaticUtils.setFromStringProvider(PolygonArrow.class.getName(), new ArrowHandler());
             graphtea.ui.components.GFrame gFrame = UIUtils.getGFrame(blackboard);
-            gFrame.setTitle("GraphTea V1.0");
+            gFrame.setTitle("GraphTea "+Application.VERSION_NAME+" "+Application.VERSION);
             gFrame.addWindowListener(new WindowAdapter() {
                 public void windowClosing(WindowEvent e) {
                     if (JOptionPane.showConfirmDialog(null, "Do you want to exit?",

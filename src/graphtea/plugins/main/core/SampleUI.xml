@@ -18,7 +18,6 @@
 <root>
     <actions>
         <!--<action class="graphtea.plugins.main.help.ShowWelcomePage" id="show welcome"/>-->
-        <action class="graphtea.plugins.main.help.ShowHelp" id="Help"/>
         <!--<action class="graphtea.plugins.main.help.ShowDocumentations" id="show doc"/>-->
         <action class="graphtea.plugins.main.core.actions.preferences.PreferencesAction" id="Prefs"/>
 
@@ -120,7 +119,6 @@
             <!--</submenu>-->
             <submenu label="_Help" place="1000000">
                 <menu label="_About GraphTea" action="show about" place="0"/>
-                <menu label="_Help..." action="Help" place="0"/>
                 <menu label="seperator_menu" place="40"/>
                 <menu label="Watch BlackBoard" action="debug blackboard" place="130"/>
                 <!--<menu label="_Welcome Screen" action="show welcome" place="1"/>-->

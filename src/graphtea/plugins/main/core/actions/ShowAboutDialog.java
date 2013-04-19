@@ -5,6 +5,7 @@
 package graphtea.plugins.main.core.actions;
 
 import com.sun.jndi.toolkit.url.UrlUtil;
+import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.ui.UIUtils;
@@ -36,10 +37,6 @@ public class ShowAboutDialog extends graphtea.platform.core.AbstractAction {
 
 
     public void performAction(String eventName, Object value) {
-        try {
-            Desktop.getDesktop().browse(new URI("http://graphtheorysoftware.com"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        StaticUtils.browse("http://graphtheorysoftware.com");
     }
 }
