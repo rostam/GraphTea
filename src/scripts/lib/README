@@ -1,0 +1,5 @@
+Debian systems don't need this directory, since they ship bsh.jar and
+jama.jar in /usr/share/java/.
+
+Instead of patching build.xml, solely keep this README to make git happy
+(git doesn't track empty directories).
