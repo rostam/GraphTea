@@ -1,4 +1,2 @@
 ant
-cd binary
-java -jar graphtea-main.jar
-cd ..
+java -jar binary/graphtea-main.jar
