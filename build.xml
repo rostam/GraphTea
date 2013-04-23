@@ -271,7 +271,7 @@
         <!--<include name="**/*.*"/>-->
         <!--</fileset>-->
         <!--</copy>-->
-        <copy todir="${dist.dir}/lib">
+        <copy todir="${dist.dir}/lib" failonerror="false">
             <fileset dir="${scripts.dir}/lib">
                 <include name="**/*.*"/>
             </fileset>
