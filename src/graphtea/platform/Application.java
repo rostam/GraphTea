@@ -87,7 +87,15 @@ public class Application implements StorableOnExit {
      */
     public void loadExtensions(BlackBoard blackboard) {
         ExtensionClassLoader.cl = getExtensionsClassLoader();
-        ExtensionClassLoader e = new ExtensionClassLoader("extensions");
+        String path = null;
+        try {
+            path = new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParent();
+            System.out.println(path);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+
+        ExtensionClassLoader e = new ExtensionClassLoader(path + File.separator + "extensions");
         for (String c : e.classesData.keySet()) {
             try {
                 Class s = getExtensionsClassLoader().loadClass(c);
