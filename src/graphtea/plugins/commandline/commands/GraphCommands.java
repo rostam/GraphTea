@@ -144,22 +144,10 @@ public class GraphCommands {
         datas.core.pasteFromClipboard();
     }
 
-    @CommandAttitude(name = "redo", abbreviation = "_r"
-            , description = "Redos the last action")
-    public void redo() {
-        datas.core.redo();
-    }
-
     @CommandAttitude(name = "reset_graph", abbreviation = "_rg"
             , description = "Resets the Graph")
     public void resetGraph() {
         datas.core.resetGraph();
-    }
-
-    @CommandAttitude(name = "undo", abbreviation = "_u"
-            , description = "Undos the last performed action")
-    public void undo() {
-        datas.core.undo();
     }
 
 //    @CommandAttitude(name = "matlab" , abbreviation = "_ml"

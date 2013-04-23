@@ -11,18 +11,10 @@ import graphtea.graph.ui.GHTMLPageComponent;
 import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.platform.Application;
 import graphtea.platform.core.BlackBoard;
-import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.plugin.PluginInterface;
 import graphtea.platform.preferences.lastsettings.StorableOnExit;
 import graphtea.plugins.main.extension.GraphActionExtensionHandler;
-
-import com.dmurph.tracking.AnalyticsConfigData;
-import com.dmurph.tracking.JGoogleAnalyticsTracker;
-import com.dmurph.tracking.JGoogleAnalyticsTracker.GoogleAnalyticsVersion;
-import com.dmurph.tracking.system.AWTSystemPopulator;
-
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -42,13 +34,6 @@ public class Init implements PluginInterface, StorableOnExit {
         Edge em = new Edge(new Vertex(), new Vertex());
         SETTINGS.registerSetting(em, "Graph Drawings");
         GTabbedGraphPane gtgp = GTabbedGraphPane.getCurrentGTabbedGraphPane(blackboard);
-//        GHTMLPageComponent pc = new GHTMLPageComponent(blackboard);
-//        try {
-//            pc.setPage(new File("doc/welcome_page.html").toURL());
-//            gtgp.jtp.addTab("Welcome!", pc);
-//        } catch (MalformedURLException e) {
-//            ExceptionHandler.catchException(e);
-//        }
         gtgp.addGraph(new GraphModel(false));
         gtgp.jtp.setSelectedIndex(0);
         try {
@@ -57,20 +42,6 @@ public class Init implements PluginInterface, StorableOnExit {
             e.printStackTrace();
         }
 
-        //setup google analytics so that we know which features the users use more and need to get improved
-   
-        track("App", "Started");
-    }
-
-    public static JGoogleAnalyticsTracker tracker;
-    static {
-        AnalyticsConfigData config = new AnalyticsConfigData("UA-6755911-5");
-        config.setFlashVersion("9.0 r24");
-        tracker = new JGoogleAnalyticsTracker(config, JGoogleAnalyticsTracker.GoogleAnalyticsVersion.V_4_7_2);
-    }
-    public static void track(String category, String action) {
-        System.out.println(action);
-        tracker.trackEvent(category, action, "Version: " + Application.VERSION);
     }
 
 }
