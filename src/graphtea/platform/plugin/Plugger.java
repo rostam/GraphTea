@@ -69,7 +69,15 @@ public class Plugger {
      * to <code>classLoader</code>
      */
     public void plug() {
-        File f = new File("plugins");
+        File directory = null;
+        try {
+            directory = new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile();
+            System.out.println(directory);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+
+        File f = new File(directory, "plugins");
         if (f.isDirectory() && f.canRead()) {
             for (File ff : f.listFiles()) {
                 if (ff.isFile() && "jar".equalsIgnoreCase(getExtension(ff))) {
@@ -81,7 +89,7 @@ public class Plugger {
             System.out.println("------------------------------------------------------------");
             if (first != null) {
                 int libCount = 0;
-                File libf = new File("lib");
+                File libf = new File(directory, "lib");
                 ArrayList<URL> libURLs = new ArrayList<URL>();
                 if (libf.isDirectory() && libf.canRead()) {
                     for (File ff : libf.listFiles()) {
@@ -111,7 +119,7 @@ public class Plugger {
                     i++;
                 }
                 try {
-                    urls[i] = new File("extensions").toURL();
+                    urls[i] = new File(directory, "extensions").toURL();
                 } catch (MalformedURLException e) {
                     ExceptionHandler.catchException(e);
                 }
@@ -122,8 +130,10 @@ public class Plugger {
             } else
                 System.out.println("Can't Load Any Plugin!");
             System.out.println("------------------------------------------------------------");
-        } else
-            System.out.println("There is no directory with name plugins.");
+        } else {
+            System.out.println("There is no directory named \"plugins\" in " +
+                    directory.getAbsolutePath());
+        }
     }
 
     /**
