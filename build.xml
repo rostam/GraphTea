@@ -33,7 +33,7 @@
        		developplugin
      ====================================================================== -->
 
-<project name="GraphTea" default="make binary" basedir="..">
+<project name="GraphTea" default="make binary">
     <description>
         The ant build file of GraphTea Project.
     </description>
@@ -46,9 +46,10 @@
             <pathelement location="${basedir}"/>
         </path>
         <pathconvert property="xdir" refid="zdir" targetos="unix"></pathconvert>
-        <property name="scripts.dir" value="${xdir}/scripts"/>
-        <property name="build.dir" value="${xdir}/../../build"/>
-        <property name="dist.dir" value="${xdir}/../binary"/>
+        <property name="scripts.dir" value="${xdir}/src/scripts"/>
+        <property name="build.dir" value="${xdir}/build"/>
+        <property name="dist.dir" value="${xdir}/binary"/>
+        <property name="src.dir" value="${xdir}/src"/>
         <path id="project.lib">
             <fileset dir="${scripts.dir}/lib" includes="**/*.*"/>
         </path>
@@ -63,7 +64,7 @@
           target: compile
          ================================= -->
     <target name="compile" depends="depends" description="--> The ant build file of GraphTea Project.">
-        <javac srcdir="${xdir}" destdir="${build.dir}">
+        <javac srcdir="${src.dir}" destdir="${build.dir}">
             <classpath>
                 <path refid="project.lib"/>
             </classpath>
@@ -71,7 +72,7 @@
             <!--<exclude name="graphtea/gui/plugins/developplugin/content/**"/>-->
         </javac>
         <copy todir="${build.dir}">
-            <fileset dir="${xdir}">
+            <fileset dir="${src.dir}">
                 <include name="graphtea/**/*.*"/>
                 <exclude name="**/*.java"/>
                 <exclude name="**/*.~*"/>
@@ -99,6 +100,7 @@
                 <attribute name="SplashScreen-Image" value="icon.PNG"/>
             </manifest>
             <fileset dir="${build.dir}">
+                <exclude name="**/*.psd"/>
                 <include name="graphtea/platform/**/*.*"/>
             </fileset>
         </jar>
@@ -269,7 +271,7 @@
         <!--<include name="**/*.*"/>-->
         <!--</fileset>-->
         <!--</copy>-->
-        <copy todir="${dist.dir}/lib">
+        <copy todir="${dist.dir}/lib" failonerror="false">
             <fileset dir="${scripts.dir}/lib">
                 <include name="**/*.*"/>
             </fileset>
@@ -286,16 +288,11 @@
             <pathelement location="${basedir}"/>
         </path>
         <pathconvert property="xdir" refid="zdir" targetos="unix"></pathconvert>
-        <property name="scripts.dir" value="${xdir}/scripts"/>
-        <property name="build.dir" value="${xdir}/../../build"/>
-        <property name="dist.dir" value="${xdir}/../binary"/>
-        <delete>
-            <!--<fileset dir="${build.dir}" includes="**/*.*"/>-->
-            <fileset dir="${dist.dir}" includes="**/*.*"/>
-        </delete>
-        <available file="${dist.dir}" property="dist.dir.present"></available>
-        <delete dir="${temp.dir}" />
-
+        <property name="scripts.dir" value="${xdir}/src/scripts"/>
+        <property name="build.dir" value="${xdir}/build"/>
+        <property name="dist.dir" value="${xdir}/binary"/>
+        <delete failonerror="false" dir="${dist.dir}" />
+        <delete failonerror="false" dir="${build.dir}" />
     </target>
 
     <!-- =================================-->
@@ -338,7 +335,6 @@
             <!--</fileset>-->
         <!--</zip>-->
         <!--<copyfile src="${basedir}/../docs/javadoc.zip" dest="${basedir}/../binary/javadoc.zip"/>-->
-        <deltree dir="${basedir}/../developer_resources/javadoc"/>
 
     <!--</target>-->
 
