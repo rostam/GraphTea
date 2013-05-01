@@ -10,8 +10,8 @@
 	<actions>
 		<action
 			class="graphtea.plugins.reports.spectralreports.maxflowmincut.GomoryHuTree" />
-		<action
-			class="graphtea.plugins.reports.spectralreports.maxflowmincut.MaximumFlow" />
+		<!--<action-->
+			<!--class="graphtea.plugins.reports.spectralreports.maxflowmincut.MaximumFlow" />-->
 		<action
 			class="graphtea.plugins.reports.spectralreports.maxflowmincut.MinimumCut" />
 		<!--<action class="graphtea.plugins.reports.spectralreports.IsBipartite" />-->
