@@ -33,10 +33,6 @@ public class SelectUpdater extends AbstractAction {
 
     public void performAction(String eventName, Object value) {
         SubGraph sd = Select.getSelection(blackboard);
-//        for (Vertex v:sd.vertices)
-//        for (Vertex v : sd.vertices)
-//            System.out.print(v.getID());
-//        System.out.println("");
         if (sd == null)
             sd = new SubGraph();
         for (Vertex v : sd.vertices)
@@ -49,7 +45,6 @@ public class SelectUpdater extends AbstractAction {
             if (!sd.vertices.contains(v)) {
                 deselect(v);
                 rm.add(v);
-//                last.vertices.remove(v);
             }
         last.vertices.removeAll(rm);
         for (Edge e : sd.edges)

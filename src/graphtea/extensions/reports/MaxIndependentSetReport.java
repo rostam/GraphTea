@@ -73,8 +73,6 @@ public class MaxIndependentSetReport implements GraphReportExtension {
 //        max = -1;
 //        MaxIndSetSubSetSizeListener l = new MaxIndSetSubSetSizeListener();
         return p.findMaxIndSet(putFirstVertexInSet);
-//        System.out.println("\n sets checked"+l.nn);
-//        return l.max;
     }
 
 	@Override

@@ -51,9 +51,7 @@ public class AcyclicSP<VertexType extends BaseVertex,
         dist[v.getId()] = 0;
 
         for (VertexType u : gcopy) {
-//                System.out.println(u.getId()+":"+g.getInDegree(u));
             if (gcopy.getInDegree(u) == 0) {
-//                System.out.println(u.getId());
                 Q.add(u);
             }
         }

@@ -55,7 +55,6 @@ public class SaveSimpleGraph implements GraphWriterExtension {
                 o.println("vertex " + v.getId() + ":");
                 o.println("label " + v.getLabel());
                 GraphPoint p = v.getLocation();
-                System.out.print(p.getX());
                 o.println("location " + p.getX() + "," + p.getY());
                 o.println("color " + v.getColor());
                 o.println("labellocation " + v.getLabelLocation().getX()
