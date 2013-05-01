@@ -2452,11 +2452,6 @@
           <entry key="object" value="graphtea.plugins.reports.spectralreports.maxflowmincut.MaximumFlow"/>
         </map>
       </node>
-      <node name="graphtea.plugins.reports.spectralreports.maxflowmincut.MinimumCut">
-        <map>
-          <entry key="object" value="graphtea.plugins.reports.spectralreports.maxflowmincut.MinimumCut"/>
-        </map>
-      </node>
       <node name="graphtea.plugins.search.SearchAction">
         <map>
           <entry key="object" value="graphtea.plugins.search.SearchAction"/>

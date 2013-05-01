@@ -5,17 +5,17 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
-import graphtea.plugins.reports.spectralreports.maxflowmincut.PushRelabel;
+import graphtea.plugins.reports.spectralreports.maxflowmincut.MinCut;
 
 /**
  * Created with IntelliJ IDEA.
  * User: rostam
  * Date: 5/1/13
- * Time: 1:01 PM
+ * Time: 1:15 PM
  * To change this template use File | Settings | File Templates.
  */
-public class MaximunFlowAlgorithm extends GraphAlgorithm implements AlgorithmExtension {
-    public MaximunFlowAlgorithm(BlackBoard blackBoard) {
+public class MinimumCutAlgorithm  extends GraphAlgorithm implements AlgorithmExtension {
+    public MinimumCutAlgorithm(BlackBoard blackBoard) {
         super(blackBoard);
     }
 
@@ -30,20 +30,18 @@ public class MaximunFlowAlgorithm extends GraphAlgorithm implements AlgorithmExt
         Vertex v2 = requestVertex(g, "select the second vertex");
         v2.setColor(3);
         v2.setMark(true);
-        PushRelabel prl = new PushRelabel(g,v1,v2,true);
-        prl.perform();
-
+        MinCut mc = new MinCut(g,v1,v2,true);
+        mc.perform();
         step("end of the algorithm");
-
     }
 
     @Override
     public String getName() {
-        return "Maximum Flow";
+        return "Minimum Cut";
     }
 
     @Override
     public String getDescription() {
-        return "Generates the maximum flow between two selected nodes.";
+        return "computes the minimum cut of the graph";
     }
 }
