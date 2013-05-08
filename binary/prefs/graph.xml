@@ -1372,6 +1372,11 @@
           <entry key="object" value="graphtea.extensions.algorithms.CholeskyFactorizationExtension"/>
         </map>
       </node>
+      <node name="graphtea.extensions.algorithms.EndomorphismAnimator">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.EndomorphismAnimator"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.algorithms.MaximunFlowAlgorithm">
         <map>
           <entry key="object" value="graphtea.extensions.algorithms.MaximunFlowAlgorithm"/>

@@ -1372,9 +1372,9 @@
           <entry key="object" value="graphtea.extensions.algorithms.CholeskyFactorizationExtension"/>
         </map>
       </node>
-      <node name="graphtea.extensions.algorithms.SampleAlgorithm">
+      <node name="graphtea.extensions.algorithms.EndomorphismAnimator">
         <map>
-          <entry key="object" value="graphtea.extensions.algorithms.SampleAlgorithm"/>
+          <entry key="object" value="graphtea.extensions.algorithms.EndomorphismAnimator"/>
         </map>
       </node>
       <node name="graphtea.extensions.connectivity.Redis">
