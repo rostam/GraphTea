@@ -38,6 +38,8 @@ public class EndomorphismAnimator extends GraphAlgorithm implements AlgorithmExt
             vs[i] =   requestVertex(g, "select the" + i + "th vertex.");
             vs[i+1] = requestVertex(g, "select the" + i + "th vertex.");
 
+            if(g.isEdge(vs[i],vs[i+1])) {step("The vertices have edge together.");return;}
+
             GraphPoint directionVector = GraphPoint.sub(vs[i].getLocation(), vs[i+1].getLocation());
             directions[i/2] = GraphPoint.div(directionVector, directionVector.norm());
         }
