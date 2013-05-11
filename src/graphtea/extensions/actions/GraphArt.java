@@ -1,14 +1,18 @@
 package graphtea.extensions.actions;
 
+import graphtea.extensions.io.LoadSimpleGraph;
+import graphtea.extensions.io.SaveSimpleGraph;
 import graphtea.graph.graph.*;
 import graphtea.library.BaseVertex;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.main.extension.GraphActionExtension;
+import graphtea.plugins.main.saveload.core.GraphIOException;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.QuadCurve2D;
+import java.io.File;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,17 +35,24 @@ public class GraphArt implements GraphActionExtension {
     @Override
     public void action(GraphData graphData) {
         GraphModel g1 = graphData.getGraph();
-        GraphModel g2 = new GraphModel(false);
-        for(Vertex v : g1) {
-
+        GraphModel g2 = null;
+        SaveSimpleGraph ssg = new SaveSimpleGraph();
+        LoadSimpleGraph lsg = new LoadSimpleGraph();
+        try {
+            ssg.write(new File("tmpg1"),g1);
+            g2 = lsg.read(new File("tmpg1"));
+        } catch (GraphIOException e) {
+            e.printStackTrace();
         }
-
+        g2.setFont(new Font(g2.getFont().getName(),g2.getFont().getStyle(), 0));
+        g2.setLabel("TreeG0");
+        for(Vertex v : g2)
+            v.setSize(new GraphPoint(15,15));
+        graphData.core.showGraph(g2);
         Painter p = new Painter(graphData);
         AbstractGraphRenderer gr = AbstractGraphRenderer.getCurrentGraphRenderer(graphData.getBlackboard());
         gr.addPostPaintHandler(new Painter(graphData));
-        graphData.core.showGraph(g1);
-
-
+        gr.repaint();
     }
 }
 
@@ -61,8 +72,6 @@ class Painter implements PaintHandler {
         if (n == 0) return;
 
         AbstractGraphRenderer.getCurrentGraphRenderer(gd.getBlackboard()).ignoreRepaints(new Runnable() {
-            public static final String CURVE_WIDTH = "CURVE_WIDTH";
-
             public void run() {
                 boolean[] marks = new boolean[n];
                 Vertex V[] = G.getVertexArray();
@@ -122,7 +131,7 @@ class Painter implements PaintHandler {
                         GeneralPath gp = new GeneralPath(c1);
                         gp.append(c2, true);
                         gp.closePath();
-                        gr.setColor(Color.black);
+                        gr.setColor(new Color(100,100,50));
 
                         //fill the curve
                         gr.fill(gp);
