@@ -3,6 +3,7 @@ package graphtea.extensions.actions;
 import graphtea.extensions.io.LoadSimpleGraph;
 import graphtea.extensions.io.SaveSimpleGraph;
 import graphtea.graph.graph.*;
+import graphtea.graph.old.GStroke;
 import graphtea.library.BaseVertex;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -22,6 +23,7 @@ import java.io.File;
  * To change this template use File | Settings | File Templates.
  */
 public class GraphArt implements GraphActionExtension {
+    static final String CURVE_WIDTH = "Curve Width";
     @Override
     public String getName() {
         return "GraphTea Art";
@@ -34,6 +36,8 @@ public class GraphArt implements GraphActionExtension {
 
     @Override
     public void action(GraphData graphData) {
+        Vertex.addGlobalUserDefinedAttribute(CURVE_WIDTH,5);
+
         GraphModel g1 = graphData.getGraph();
         GraphModel g2 = null;
         SaveSimpleGraph ssg = new SaveSimpleGraph();
@@ -46,8 +50,14 @@ public class GraphArt implements GraphActionExtension {
         }
         g2.setFont(new Font(g2.getFont().getName(),g2.getFont().getStyle(), 0));
         g2.setLabel("TreeG0");
+
         for(Vertex v : g2)
             v.setSize(new GraphPoint(15,15));
+        for(Edge e : g2.getEdges()) {
+            e.setStroke(GStroke.dashed_dotted);
+            e.setColor(8);
+        }
+
         graphData.core.showGraph(g2);
         Painter p = new Painter(graphData);
         AbstractGraphRenderer gr = AbstractGraphRenderer.getCurrentGraphRenderer(graphData.getBlackboard());
@@ -104,12 +114,12 @@ class Painter implements PaintHandler {
                         GraphPoint m2 = AlgorithmUtils.getMiddlePoint(p2, p3);
                         GraphPoint cp = p2;
 
-                        Integer w1 = curveWidth;//v.getUserDefinedAttribute(CURVE_WIDTH);
-                        Integer w2 = curveWidth;//v1.getUserDefinedAttribute(CURVE_WIDTH);
-                        Integer w3 = curveWidth;//v2.getUserDefinedAttribute(CURVE_WIDTH);
+                        Integer w1 = v.getUserDefinedAttribute(GraphArt.CURVE_WIDTH);
+                        Integer w2 = v1.getUserDefinedAttribute(GraphArt.CURVE_WIDTH);
+                        Integer w3 = v2.getUserDefinedAttribute(GraphArt.CURVE_WIDTH);
 
-                        int startWidth = w1;//(w1 + w2) / 2;
-                        int endWidth = w3;//(w3 + w2) / 2;
+                        int startWidth = (w1 + w2) / 2;
+                        int endWidth = (w3 + w2) / 2;
                         int middleWidth = w2;
 
                         double teta1 = AlgorithmUtils.getAngle(p1, p2);
@@ -131,13 +141,12 @@ class Painter implements PaintHandler {
                         GeneralPath gp = new GeneralPath(c1);
                         gp.append(c2, true);
                         gp.closePath();
-                        gr.setColor(new Color(100,100,50));
+                        gr.setColor(new Color(50,100,50));
 
                         //fill the curve
                         gr.fill(gp);
                     }
                 }
-
             }
         }, false /* dont repaint after*/);
     }
