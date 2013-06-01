@@ -18,6 +18,11 @@ public class GraphPoint extends Point2D.Double implements Serializable, FromStri
 
     private static final long serialVersionUID = -1000000001L;
 
+    public static GraphPoint add(GraphPoint p1, GraphPoint p2) {
+        return new GraphPoint(p1.getX() + p2.getX(), p2.getY() + p1.getY());
+    }
+
+
     public static GraphPoint sub(GraphPoint p1, GraphPoint p2) {
         return new GraphPoint(p1.getX() - p2.getX(), p2.getY() - p1.getY());
     }
@@ -25,6 +30,15 @@ public class GraphPoint extends Point2D.Double implements Serializable, FromStri
     public static GraphPoint div(GraphPoint gp, double scalar) {
         return new GraphPoint(gp.getX()/scalar, gp.getY()/scalar);
     }
+
+    public static GraphPoint mul(GraphPoint gp, double scalar) {
+        return new GraphPoint(gp.getX()*scalar, gp.getY()*scalar);
+    }
+
+    public static GraphPoint normalise(GraphPoint gp) {
+        return GraphPoint.div(gp, gp.norm());
+    }
+
 
     public GraphPoint() {
         super();
