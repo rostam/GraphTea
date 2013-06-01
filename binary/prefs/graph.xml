@@ -12,9 +12,9 @@
       </node>
       <node name="GeneralizedPetersonIndepSetListerAction">
         <map>
+          <entry key="startN" value="17"/>
           <entry key="object" value="GeneralizedPetersonIndepSetListerAction"/>
           <entry key="startK" value="3"/>
-          <entry key="startN" value="17"/>
         </map>
       </node>
       <node name="HararyGraphGenerator">
@@ -116,11 +116,11 @@
       </node>
       <node name="graphlab.extensions.actions.SearchInGraph">
         <map>
+          <entry key="selectedVertex" value=""/>
           <entry key="label" value="8"/>
           <entry key="object" value="graphlab.extensions.actions.SearchInGraph"/>
           <entry key="searchIn" value="java.lang.String #$%# edges #$%# java.lang.String #$%# weights #$%# java.lang.String #$%# vertices #$%# java.lang.String #$%# neighbers #$%# java.lang.String #$%# neighbers"/>
           <entry key="searchInSubgraph" value="false"/>
-          <entry key="selectedVertex" value=""/>
         </map>
       </node>
       <node name="graphlab.extensions.algorithms.CholeskyFactorizationExtension">
@@ -153,10 +153,10 @@
       </node>
       <node name="graphlab.extensions.generators.BananaTreeGenerator">
         <map>
-          <entry key="depth" value="BInt5"/>
           <entry key="k" value="3"/>
-          <entry key="n" value="3"/>
           <entry key="object" value="graphlab.extensions.generators.BananaTreeGenerator"/>
+          <entry key="n" value="3"/>
+          <entry key="depth" value="BInt5"/>
         </map>
       </node>
       <node name="graphlab.extensions.generators.CircleGenerator">
@@ -225,10 +225,10 @@
       </node>
       <node name="graphlab.extensions.generators.KmnoGenerator">
         <map>
-          <entry key="m" value="3"/>
+          <entry key="object" value="graphlab.extensions.generators.KmnoGenerator"/>
           <entry key="n" value="3"/>
           <entry key="o" value="3"/>
-          <entry key="object" value="graphlab.extensions.generators.KmnoGenerator"/>
+          <entry key="m" value="3"/>
         </map>
       </node>
       <node name="graphlab.extensions.generators.LadderGenerator">
@@ -279,9 +279,9 @@
       <node name="graphlab.extensions.generators.RandomTreeGenerator">
         <map>
           <entry key="d" value="5"/>
-          <entry key="h" value="5"/>
-          <entry key="n" value="50"/>
           <entry key="object" value="graphlab.extensions.generators.RandomTreeGenerator"/>
+          <entry key="n" value="50"/>
+          <entry key="h" value="5"/>
         </map>
       </node>
       <node name="graphlab.extensions.generators.StarGenerator">
@@ -292,10 +292,10 @@
       </node>
       <node name="graphlab.extensions.generators.TreeGenerator">
         <map>
-          <entry key="degree" value="3"/>
-          <entry key="depth" value="3"/>
-          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Circular"/>
           <entry key="object" value="graphlab.extensions.generators.TreeGenerator"/>
+          <entry key="depth" value="3"/>
+          <entry key="degree" value="3"/>
+          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Circular"/>
         </map>
       </node>
       <node name="graphlab.extensions.generators.WheelGenerator">
@@ -311,9 +311,9 @@
       </node>
       <node name="graphlab.extensions.graphactions.GeneralizedPetersonIndepSetListerAction">
         <map>
+          <entry key="startN" value="5"/>
           <entry key="object" value="graphlab.extensions.graphactions.GeneralizedPetersonIndepSetListerAction"/>
           <entry key="startK" value="1"/>
-          <entry key="startN" value="5"/>
         </map>
       </node>
       <node name="graphlab.extensions.io.LatexCAD">
@@ -352,8 +352,8 @@
       </node>
       <node name="graphlab.extensions.reports.ColoringReport">
         <map>
-          <entry key="allColorings" value="true"/>
           <entry key="lowerBound" value="1"/>
+          <entry key="allColorings" value="true"/>
           <entry key="object" value="graphlab.extensions.reports.ColoringReport"/>
         </map>
       </node>
@@ -462,29 +462,29 @@
       </node>
       <node name="graphlab.graph.graph.EdgeModel">
         <map>
-          <entry key="defaultStroke" value="solid"/>
-          <entry key="object" value="graphlab.graph.graph.EdgeModel"/>
           <entry key="showEdgeWeights" value="true"/>
+          <entry key="object" value="graphlab.graph.graph.EdgeModel"/>
+          <entry key="defaultStroke" value="solid"/>
         </map>
       </node>
       <node name="graphlab.graph.graph.FastRenderer">
         <map>
-          <entry key="defaultBorderStroke" value="simple"/>
-          <entry key="defaultEdgeColor" value="java.awt.Color[r=213,g=210,b=210]"/>
-          <entry key="defaultShapeDimension" value="java.awt.Dimension[width=20,height=20]"/>
-          <entry key="defaultStroke" value="solid"/>
-          <entry key="defaultVertexColor" value="java.awt.Color[r=242,g=159,b=15]"/>
-          <entry key="defaultVertexRadius" value="10"/>
-          <entry key="defaultVertexShape" value="Oval"/>
           <entry key="object" value="graphlab.graph.graph.FastRenderer"/>
+          <entry key="defaultShapeDimension" value="java.awt.Dimension[width=20,height=20]"/>
+          <entry key="defaultVertexColor" value="java.awt.Color[r=242,g=159,b=15]"/>
+          <entry key="defaultVertexShape" value="Oval"/>
+          <entry key="defaultStroke" value="solid"/>
+          <entry key="defaultVertexRadius" value="10"/>
+          <entry key="defaultEdgeColor" value="java.awt.Color[r=213,g=210,b=210]"/>
+          <entry key="defaultBorderStroke" value="simple"/>
         </map>
       </node>
       <node name="graphlab.graph.graph.GraphModel">
         <map>
-          <entry key="allowLoopsProperty" value="false"/>
+          <entry key="vertexLabelsEnabled" value="true"/>
           <entry key="object" value="graphlab.graph.graph.GraphModel"/>
           <entry key="showEdgeWeights" value="true"/>
-          <entry key="vertexLabelsEnabled" value="true"/>
+          <entry key="allowLoopsProperty" value="false"/>
         </map>
       </node>
       <node name="graphlab.graph.graph.Vertex">
@@ -527,19 +527,19 @@
       </node>
       <node name="graphlab.gui.core.graph.edge.EdgeModel">
         <map>
-          <entry key="DIRECTED" value="rO0ABXQACGRpcmVjdGVk"/>
-          <entry key="WEIGHT" value="rO0ABXQABndlaWdodA=="/>
           <entry key="defaultColor" value="java.awt.Color[r=255,g=0,b=153]"/>
-          <entry key="defaultShowLabe" value="false"/>
           <entry key="defaultStroke" value="solid"/>
           <entry key="object" value="graphlab.gui.core.graph.edge.EdgeModel"/>
+          <entry key="WEIGHT" value="rO0ABXQABndlaWdodA=="/>
+          <entry key="DIRECTED" value="rO0ABXQACGRpcmVjdGVk"/>
+          <entry key="defaultShowLabe" value="false"/>
         </map>
       </node>
       <node name="graphlab.gui.core.graph.edge.EdgeView">
         <map>
-          <entry key="curvedEdge" value="false"/>
           <entry key="markedColor" value="java.awt.Color[r=128,g=128,b=128]"/>
           <entry key="object" value="graphlab.gui.core.graph.edge.EdgeView"/>
+          <entry key="curvedEdge" value="false"/>
           <entry key="selectedColor" value="java.awt.Color[r=0,g=153,b=153]"/>
         </map>
       </node>
@@ -551,18 +551,18 @@
       </node>
       <node name="graphlab.gui.core.graph.vertex.VertexModel">
         <map>
-          <entry key="defaultBorderStroke" value="dashed"/>
-          <entry key="defaultColor" value="java.awt.Color[r=77,g=188,b=255]"/>
           <entry key="defaultShape" value="Round Rectangle"/>
-          <entry key="defaultShapeDimension" value="java.awt.Dimension[width=20,height=20]"/>
           <entry key="object" value="graphlab.gui.core.graph.vertex.VertexModel"/>
+          <entry key="defaultColor" value="java.awt.Color[r=77,g=188,b=255]"/>
+          <entry key="defaultBorderStroke" value="dashed"/>
+          <entry key="defaultShapeDimension" value="java.awt.Dimension[width=20,height=20]"/>
         </map>
       </node>
       <node name="graphlab.gui.core.graph.vertex.VertexView">
         <map>
+          <entry key="selectedColor" value="java.awt.Color[r=255,g=255,b=0]"/>
           <entry key="markedColor" value="java.awt.Color[r=192,g=192,b=192]"/>
           <entry key="object" value="graphlab.gui.core.graph.vertex.VertexView"/>
-          <entry key="selectedColor" value="java.awt.Color[r=255,g=255,b=0]"/>
         </map>
       </node>
       <node name="graphlab.gui.plugins.algorithmanimator.extension.AlgorithmExtensionAction">
@@ -598,31 +598,31 @@
       </node>
       <node name="graphlab.gui.plugins.main.Init$1">
         <map>
-          <entry key="defaultBorderStroke" value="dashed"/>
-          <entry key="defaultColor" value="java.awt.Color[r=116,g=196,b=255]"/>
           <entry key="defaultShape" value="Round Rectangle"/>
           <entry key="object" value="graphlab.gui.plugins.main.Init$1"/>
+          <entry key="defaultColor" value="java.awt.Color[r=116,g=196,b=255]"/>
+          <entry key="defaultBorderStroke" value="dashed"/>
         </map>
       </node>
       <node name="graphlab.gui.plugins.main.Init$2">
         <map>
+          <entry key="selectedColor" value="java.awt.Color[r=255,g=255,b=0]"/>
           <entry key="markedColor" value="java.awt.Color[r=192,g=192,b=192]"/>
           <entry key="object" value="graphlab.gui.plugins.main.Init$2"/>
-          <entry key="selectedColor" value="java.awt.Color[r=255,g=255,b=0]"/>
         </map>
       </node>
       <node name="graphlab.gui.plugins.main.Init$3">
         <map>
-          <entry key="defaultColor" value="java.awt.Color[r=249,g=117,b=46]"/>
           <entry key="defaultStroke" value="solid"/>
           <entry key="object" value="graphlab.gui.plugins.main.Init$3"/>
+          <entry key="defaultColor" value="java.awt.Color[r=249,g=117,b=46]"/>
         </map>
       </node>
       <node name="graphlab.gui.plugins.main.Init$4">
         <map>
+          <entry key="selectedColor" value="java.awt.Color[r=0,g=0,b=255]"/>
           <entry key="markedColor" value="java.awt.Color[r=128,g=128,b=128]"/>
           <entry key="object" value="graphlab.gui.plugins.main.Init$4"/>
-          <entry key="selectedColor" value="java.awt.Color[r=0,g=0,b=255]"/>
         </map>
       </node>
       <node name="graphlab.gui.plugins.main.VertexModelCaller">
@@ -748,10 +748,10 @@
       <node name="graphlab.plugins.graphgenerator.CmnGenerator">
         <map>
           <entry key="M" value="10"/>
-          <entry key="N" value="10"/>
-          <entry key="m" value="3"/>
           <entry key="n" value="5"/>
           <entry key="object" value="graphlab.plugins.graphgenerator.CmnGenerator"/>
+          <entry key="N" value="10"/>
+          <entry key="m" value="3"/>
         </map>
       </node>
       <node name="graphlab.plugins.graphgenerator.CnGenerator">
@@ -762,20 +762,20 @@
       </node>
       <node name="graphlab.plugins.graphgenerator.GeneralizedPetersonGenerator">
         <map>
-          <entry key="K" value="2"/>
-          <entry key="N" value="5"/>
           <entry key="k" value="3"/>
-          <entry key="n" value="10"/>
           <entry key="object" value="graphlab.plugins.graphgenerator.GeneralizedPetersonGenerator"/>
+          <entry key="K" value="2"/>
+          <entry key="n" value="10"/>
+          <entry key="N" value="5"/>
         </map>
       </node>
       <node name="graphlab.plugins.graphgenerator.KmnGenerator">
         <map>
           <entry key="M" value="6"/>
-          <entry key="N" value="3"/>
-          <entry key="m" value="3"/>
           <entry key="n" value="3"/>
           <entry key="object" value="graphlab.plugins.graphgenerator.KmnGenerator"/>
+          <entry key="N" value="3"/>
+          <entry key="m" value="3"/>
         </map>
       </node>
       <node name="graphlab.plugins.graphgenerator.KnGenerator">
@@ -787,11 +787,11 @@
       </node>
       <node name="graphlab.plugins.graphgenerator.Kn_dGenerator">
         <map>
-          <entry key="D" value="5"/>
-          <entry key="N" value="5"/>
           <entry key="d" value="3"/>
-          <entry key="n" value="10"/>
           <entry key="object" value="graphlab.plugins.graphgenerator.Kn_dGenerator"/>
+          <entry key="D" value="5"/>
+          <entry key="n" value="10"/>
+          <entry key="N" value="5"/>
         </map>
       </node>
       <node name="graphlab.plugins.graphgenerator.PmnGenerator">
@@ -810,9 +810,9 @@
       <node name="graphlab.plugins.graphgenerator.RanTreeGenerator">
         <map>
           <entry key="d" value="5"/>
-          <entry key="h" value="5"/>
-          <entry key="n" value="50"/>
           <entry key="object" value="graphlab.plugins.graphgenerator.RanTreeGenerator"/>
+          <entry key="n" value="50"/>
+          <entry key="h" value="5"/>
         </map>
       </node>
       <node name="graphlab.plugins.graphgenerator.RandomGenerator">
@@ -830,10 +830,10 @@
       </node>
       <node name="graphlab.plugins.graphgenerator.TreeGenerator">
         <map>
-          <entry key="degree" value="3"/>
-          <entry key="depth" value="5"/>
-          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Backward"/>
           <entry key="object" value="graphlab.plugins.graphgenerator.TreeGenerator"/>
+          <entry key="depth" value="5"/>
+          <entry key="degree" value="3"/>
+          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Backward"/>
         </map>
       </node>
       <node name="graphlab.plugins.graphgenerator.WheelGenerator">
@@ -927,10 +927,10 @@
       </node>
       <node name="graphlab.plugins.graphgenerator.generators.KmnoGenerator">
         <map>
-          <entry key="m" value="3"/>
+          <entry key="object" value="graphlab.plugins.graphgenerator.generators.KmnoGenerator"/>
           <entry key="n" value="3"/>
           <entry key="o" value="3"/>
-          <entry key="object" value="graphlab.plugins.graphgenerator.generators.KmnoGenerator"/>
+          <entry key="m" value="3"/>
         </map>
       </node>
       <node name="graphlab.plugins.graphgenerator.generators.LadderGenerator">
@@ -981,9 +981,9 @@
       <node name="graphlab.plugins.graphgenerator.generators.RandomTreeGenerator">
         <map>
           <entry key="d" value="5"/>
-          <entry key="h" value="5"/>
-          <entry key="n" value="50"/>
           <entry key="object" value="graphlab.plugins.graphgenerator.generators.RandomTreeGenerator"/>
+          <entry key="n" value="50"/>
+          <entry key="h" value="5"/>
         </map>
       </node>
       <node name="graphlab.plugins.graphgenerator.generators.StarGenerator">
@@ -994,10 +994,10 @@
       </node>
       <node name="graphlab.plugins.graphgenerator.generators.TreeGenerator">
         <map>
-          <entry key="degree" value="3"/>
-          <entry key="depth" value="3"/>
-          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Circular"/>
           <entry key="object" value="graphlab.plugins.graphgenerator.generators.TreeGenerator"/>
+          <entry key="depth" value="3"/>
+          <entry key="degree" value="3"/>
+          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Circular"/>
         </map>
       </node>
       <node name="graphlab.plugins.graphgenerator.generators.WheelGenerator">
@@ -1043,8 +1043,8 @@
       </node>
       <node name="graphlab.plugins.main.saveload.core.extension.GraphIOExtensionHandler">
         <map>
-          <entry key="defaultFile" value="C:\Users\hoomanmohajeri\Documents\sdfsg.mat"/>
           <entry key="object" value="graphlab.plugins.main.saveload.core.extension.GraphIOExtensionHandler"/>
+          <entry key="defaultFile" value="C:\Users\hoomanmohajeri\Documents\sdfsg.mat"/>
         </map>
       </node>
       <node name="graphlab.plugins.main.saveload.core.extension.GraphReaderExtensionAction">
@@ -1280,26 +1280,26 @@
       </node>
       <node name="graphlab.samples.extensions.SearchInGraph">
         <map>
-          <entry key="chooseVertex" value="0"/>
+          <entry key="srchKind" value="java.lang.String #$%# In Neighbers #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Vertices &amp; Edges #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
           <entry key="color" value=""/>
-          <entry key="kind" value="java.lang.String #$%# In Neighbers #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
-          <entry key="kindLabel" value="java.lang.String #$%# Interval #$%# java.lang.String #$%# String #$%# java.lang.String #$%# Interval"/>
-          <entry key="label" value="2"/>
-          <entry key="neighber" value="false"/>
-          <entry key="object" value="graphlab.samples.extensions.SearchInGraph"/>
-          <entry key="s" value="java.lang.String #$%# b #$%# java.lang.String #$%# c #$%# java.lang.String #$%# a #$%# java.lang.String #$%# a"/>
           <entry key="saveLastChange" value="false"/>
-          <entry key="sd" value="0"/>
-          <entry key="search" value="2"/>
-          <entry key="searchIn" value="java.lang.String #$%# edges #$%# java.lang.String #$%# weights #$%# java.lang.String #$%# vertices #$%# java.lang.String #$%# neighbers #$%# java.lang.String #$%# vertices"/>
+          <entry key="neighber" value="false"/>
+          <entry key="s" value="java.lang.String #$%# b #$%# java.lang.String #$%# c #$%# java.lang.String #$%# a #$%# java.lang.String #$%# a"/>
+          <entry key="object" value="graphlab.samples.extensions.SearchInGraph"/>
+          <entry key="chooseVertex" value="0"/>
+          <entry key="srchLabel" value="6"/>
+          <entry key="selectedVertex" value="1"/>
           <entry key="searchInSubgraph" value="false"/>
+          <entry key="srch" value=""/>
+          <entry key="kind" value="java.lang.String #$%# In Neighbers #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
+          <entry key="searchIn" value="java.lang.String #$%# edges #$%# java.lang.String #$%# weights #$%# java.lang.String #$%# vertices #$%# java.lang.String #$%# neighbers #$%# java.lang.String #$%# vertices"/>
+          <entry key="label" value="2"/>
+          <entry key="srchKindi" value="java.lang.String #$%# In Neighbers #$%# java.lang.String #$%# Vertices &amp; Edges #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
           <entry key="searchKind" value="java.lang.String #$%# In Neighber #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Vertices &amp; Edges #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# In Neighber"/>
           <entry key="searchType" value="java.lang.String #$%# Vertices and Edges #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
-          <entry key="selectedVertex" value="1"/>
-          <entry key="srch" value=""/>
-          <entry key="srchKind" value="java.lang.String #$%# In Neighbers #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Vertices &amp; Edges #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
-          <entry key="srchKindi" value="java.lang.String #$%# In Neighbers #$%# java.lang.String #$%# Vertices &amp; Edges #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
-          <entry key="srchLabel" value="6"/>
+          <entry key="kindLabel" value="java.lang.String #$%# Interval #$%# java.lang.String #$%# String #$%# java.lang.String #$%# Interval"/>
+          <entry key="search" value="2"/>
+          <entry key="sd" value="0"/>
         </map>
       </node>
       <node name="graphlab.samples.extensions.SpectralGraphTheoryReport">
@@ -1347,11 +1347,6 @@
           <entry key="object" value="graphtea.extensions.AutoUpdater"/>
         </map>
       </node>
-      <node name="graphtea.extensions.actions.GraphArt">
-        <map>
-          <entry key="object" value="graphtea.extensions.actions.GraphArt"/>
-        </map>
-      </node>
       <node name="graphtea.extensions.actions.GraphPower">
         <map>
           <entry key="k" value="2"/>
@@ -1365,10 +1360,10 @@
       </node>
       <node name="graphtea.extensions.actions.SearchInGraph">
         <map>
+          <entry key="searchInSubgraph" value="false"/>
           <entry key="label" value="8"/>
           <entry key="object" value="graphtea.extensions.actions.SearchInGraph"/>
           <entry key="searchIn" value="java.lang.String #$%# edges #$%# java.lang.String #$%# weights #$%# java.lang.String #$%# vertices #$%# java.lang.String #$%# neighbers #$%# java.lang.String #$%# neighbers"/>
-          <entry key="searchInSubgraph" value="false"/>
           <entry key="selectedVertex" value=""/>
         </map>
       </node>
@@ -1380,31 +1375,6 @@
       <node name="graphtea.extensions.algorithms.EndomorphismAnimator">
         <map>
           <entry key="object" value="graphtea.extensions.algorithms.EndomorphismAnimator"/>
-        </map>
-      </node>
-      <node name="graphtea.extensions.algorithms.HomomorphismAnimator">
-        <map>
-          <entry key="object" value="graphtea.extensions.algorithms.HomomorphismAnimator"/>
-        </map>
-      </node>
-      <node name="graphtea.extensions.algorithms.MaximunFlowAlgorithm">
-        <map>
-          <entry key="object" value="graphtea.extensions.algorithms.MaximunFlowAlgorithm"/>
-        </map>
-      </node>
-      <node name="graphtea.extensions.algorithms.MinimumCutAlgorithm">
-        <map>
-          <entry key="object" value="graphtea.extensions.algorithms.MinimumCutAlgorithm"/>
-        </map>
-      </node>
-      <node name="graphtea.extensions.algorithms.NetworkGenerateorAlgrithm">
-        <map>
-          <entry key="object" value="graphtea.extensions.algorithms.NetworkGenerateorAlgrithm"/>
-        </map>
-      </node>
-      <node name="graphtea.extensions.algorithms.SampleAlgorithm">
-        <map>
-          <entry key="object" value="graphtea.extensions.algorithms.SampleAlgorithm"/>
         </map>
       </node>
       <node name="graphtea.extensions.connectivity.Redis">
@@ -1427,10 +1397,10 @@
       </node>
       <node name="graphtea.extensions.generators.BananaTreeGenerator">
         <map>
-          <entry key="depth" value="BInt5"/>
-          <entry key="k" value="4"/>
-          <entry key="n" value="4"/>
+          <entry key="k" value="3"/>
           <entry key="object" value="graphtea.extensions.generators.BananaTreeGenerator"/>
+          <entry key="n" value="3"/>
+          <entry key="depth" value="BInt5"/>
         </map>
       </node>
       <node name="graphtea.extensions.generators.CircleGenerator">
@@ -1499,10 +1469,10 @@
       </node>
       <node name="graphtea.extensions.generators.KmnoGenerator">
         <map>
-          <entry key="m" value="3"/>
+          <entry key="object" value="graphtea.extensions.generators.KmnoGenerator"/>
           <entry key="n" value="3"/>
           <entry key="o" value="3"/>
-          <entry key="object" value="graphtea.extensions.generators.KmnoGenerator"/>
+          <entry key="m" value="3"/>
         </map>
       </node>
       <node name="graphtea.extensions.generators.LadderGenerator">
@@ -1545,17 +1515,17 @@
       </node>
       <node name="graphtea.extensions.generators.RandomGenerator">
         <map>
-          <entry key="numOfEdges" value="20"/>
-          <entry key="numOfVertices" value="10"/>
+          <entry key="numOfEdges" value="80"/>
+          <entry key="numOfVertices" value="30"/>
           <entry key="object" value="graphtea.extensions.generators.RandomGenerator"/>
         </map>
       </node>
       <node name="graphtea.extensions.generators.RandomTreeGenerator">
         <map>
           <entry key="d" value="5"/>
-          <entry key="h" value="5"/>
-          <entry key="n" value="50"/>
           <entry key="object" value="graphtea.extensions.generators.RandomTreeGenerator"/>
+          <entry key="n" value="50"/>
+          <entry key="h" value="5"/>
         </map>
       </node>
       <node name="graphtea.extensions.generators.StarGenerator">
@@ -1566,10 +1536,10 @@
       </node>
       <node name="graphtea.extensions.generators.TreeGenerator">
         <map>
-          <entry key="degree" value="3"/>
-          <entry key="depth" value="3"/>
-          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Circular"/>
           <entry key="object" value="graphtea.extensions.generators.TreeGenerator"/>
+          <entry key="depth" value="3"/>
+          <entry key="degree" value="3"/>
+          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Circular"/>
         </map>
       </node>
       <node name="graphtea.extensions.generators.WheelGenerator">
@@ -1585,8 +1555,8 @@
       </node>
       <node name="graphtea.extensions.graphactions.GeneralizedPetersonIndepSetListerAction">
         <map>
-          <entry key="object" value="graphtea.extensions.graphactions.GeneralizedPetersonIndepSetListerAction"/>
           <entry key="startK" value="1"/>
+          <entry key="object" value="graphtea.extensions.graphactions.GeneralizedPetersonIndepSetListerAction"/>
           <entry key="startN" value="5"/>
         </map>
       </node>
@@ -1602,11 +1572,6 @@
           <entry key="X" value="0.0"/>
           <entry key="Y" value="0.0"/>
           <entry key="object" value="graphtea.extensions.io.LatexWriter"/>
-        </map>
-      </node>
-      <node name="graphtea.extensions.io.LoadGraphML">
-        <map>
-          <entry key="object" value="graphtea.extensions.io.LoadGraphML"/>
         </map>
       </node>
       <node name="graphtea.extensions.io.LoadNetGraph">
@@ -1631,8 +1596,8 @@
       </node>
       <node name="graphtea.extensions.reports.ColoringReport">
         <map>
-          <entry key="allColorings" value="true"/>
           <entry key="lowerBound" value="1"/>
+          <entry key="allColorings" value="true"/>
           <entry key="object" value="graphtea.extensions.reports.ColoringReport"/>
         </map>
       </node>
@@ -1741,23 +1706,23 @@
       </node>
       <node name="graphtea.graph.graph.FastRenderer">
         <map>
-          <entry key="defaultBorderStroke" value="simple"/>
-          <entry key="defaultEdgeColor" value="java.awt.Color[r=153,g=153,b=153]"/>
-          <entry key="defaultFont" value="java.awt.Font[family=Arial,name=Arial,style=bold,size=24]"/>
-          <entry key="defaultShapeDimension" value="java.awt.Dimension[width=40,height=40]"/>
-          <entry key="defaultStroke" value="solid"/>
-          <entry key="defaultVertexColor" value="java.awt.Color[r=204,g=204,b=204]"/>
-          <entry key="defaultVertexRadius" value="10"/>
-          <entry key="defaultVertexShape" value="Oval"/>
           <entry key="object" value="graphtea.graph.graph.FastRenderer"/>
+          <entry key="defaultShapeDimension" value="java.awt.Dimension[width=40,height=40]"/>
+          <entry key="defaultVertexColor" value="java.awt.Color[r=204,g=204,b=204]"/>
+          <entry key="defaultFont" value="java.awt.Font[family=Arial,name=Arial,style=bold,size=24]"/>
+          <entry key="defaultVertexShape" value="Oval"/>
+          <entry key="defaultStroke" value="solid"/>
+          <entry key="defaultVertexRadius" value="10"/>
+          <entry key="defaultEdgeColor" value="java.awt.Color[r=153,g=153,b=153]"/>
+          <entry key="defaultBorderStroke" value="simple"/>
         </map>
       </node>
       <node name="graphtea.graph.graph.GraphModel">
         <map>
-          <entry key="allowLoopsProperty" value="false"/>
+          <entry key="vertexLabelsEnabled" value="true"/>
           <entry key="object" value="graphtea.graph.graph.GraphModel"/>
           <entry key="showEdgeWeights" value="false"/>
-          <entry key="vertexLabelsEnabled" value="true"/>
+          <entry key="allowLoopsProperty" value="false"/>
         </map>
       </node>
       <node name="graphtea.graph.graph.Vertex">
@@ -1795,19 +1760,19 @@
       </node>
       <node name="graphtea.gui.core.graph.edge.EdgeModel">
         <map>
-          <entry key="DIRECTED" value="rO0ABXQACGRpcmVjdGVk"/>
-          <entry key="WEIGHT" value="rO0ABXQABndlaWdodA=="/>
           <entry key="defaultColor" value="java.awt.Color[r=255,g=0,b=153]"/>
-          <entry key="defaultShowLabe" value="false"/>
           <entry key="defaultStroke" value="solid"/>
           <entry key="object" value="graphtea.gui.core.graph.edge.EdgeModel"/>
+          <entry key="WEIGHT" value="rO0ABXQABndlaWdodA=="/>
+          <entry key="DIRECTED" value="rO0ABXQACGRpcmVjdGVk"/>
+          <entry key="defaultShowLabe" value="false"/>
         </map>
       </node>
       <node name="graphtea.gui.core.graph.edge.EdgeView">
         <map>
-          <entry key="curvedEdge" value="false"/>
           <entry key="markedColor" value="java.awt.Color[r=128,g=128,b=128]"/>
           <entry key="object" value="graphtea.gui.core.graph.edge.EdgeView"/>
+          <entry key="curvedEdge" value="false"/>
           <entry key="selectedColor" value="java.awt.Color[r=0,g=153,b=153]"/>
         </map>
       </node>
@@ -1819,18 +1784,18 @@
       </node>
       <node name="graphtea.gui.core.graph.vertex.VertexModel">
         <map>
-          <entry key="defaultBorderStroke" value="dashed"/>
-          <entry key="defaultColor" value="java.awt.Color[r=77,g=188,b=255]"/>
           <entry key="defaultShape" value="Round Rectangle"/>
-          <entry key="defaultShapeDimension" value="java.awt.Dimension[width=20,height=20]"/>
           <entry key="object" value="graphtea.gui.core.graph.vertex.VertexModel"/>
+          <entry key="defaultColor" value="java.awt.Color[r=77,g=188,b=255]"/>
+          <entry key="defaultBorderStroke" value="dashed"/>
+          <entry key="defaultShapeDimension" value="java.awt.Dimension[width=20,height=20]"/>
         </map>
       </node>
       <node name="graphtea.gui.core.graph.vertex.VertexView">
         <map>
+          <entry key="selectedColor" value="java.awt.Color[r=255,g=255,b=0]"/>
           <entry key="markedColor" value="java.awt.Color[r=192,g=192,b=192]"/>
           <entry key="object" value="graphtea.gui.core.graph.vertex.VertexView"/>
-          <entry key="selectedColor" value="java.awt.Color[r=255,g=255,b=0]"/>
         </map>
       </node>
       <node name="graphtea.gui.plugins.algorithmanimator.extension.AlgorithmExtensionAction">
@@ -1866,31 +1831,31 @@
       </node>
       <node name="graphtea.gui.plugins.main.Init$1">
         <map>
-          <entry key="defaultBorderStroke" value="dashed"/>
           <entry key="defaultColor" value="java.awt.Color[r=116,g=196,b=255]"/>
-          <entry key="defaultShape" value="Round Rectangle"/>
           <entry key="object" value="graphtea.gui.plugins.main.Init$1"/>
+          <entry key="defaultShape" value="Round Rectangle"/>
+          <entry key="defaultBorderStroke" value="dashed"/>
         </map>
       </node>
       <node name="graphtea.gui.plugins.main.Init$2">
         <map>
+          <entry key="selectedColor" value="java.awt.Color[r=255,g=255,b=0]"/>
           <entry key="markedColor" value="java.awt.Color[r=192,g=192,b=192]"/>
           <entry key="object" value="graphtea.gui.plugins.main.Init$2"/>
-          <entry key="selectedColor" value="java.awt.Color[r=255,g=255,b=0]"/>
         </map>
       </node>
       <node name="graphtea.gui.plugins.main.Init$3">
         <map>
           <entry key="defaultColor" value="java.awt.Color[r=249,g=117,b=46]"/>
-          <entry key="defaultStroke" value="solid"/>
           <entry key="object" value="graphtea.gui.plugins.main.Init$3"/>
+          <entry key="defaultStroke" value="solid"/>
         </map>
       </node>
       <node name="graphtea.gui.plugins.main.Init$4">
         <map>
+          <entry key="selectedColor" value="java.awt.Color[r=0,g=0,b=255]"/>
           <entry key="markedColor" value="java.awt.Color[r=128,g=128,b=128]"/>
           <entry key="object" value="graphtea.gui.plugins.main.Init$4"/>
-          <entry key="selectedColor" value="java.awt.Color[r=0,g=0,b=255]"/>
         </map>
       </node>
       <node name="graphtea.gui.plugins.main.VertexModelCaller">
@@ -1998,11 +1963,6 @@
           <entry key="object" value="graphtea.plugins.commonplugin.reporter.ReportUIAction"/>
         </map>
       </node>
-      <node name="graphtea.plugins.commonplugin.reporter.actions.Report">
-        <map>
-          <entry key="object" value="graphtea.plugins.commonplugin.reporter.actions.Report"/>
-        </map>
-      </node>
       <node name="graphtea.plugins.fun.extension.FunExtension">
         <map>
           <entry key="object" value="graphtea.plugins.fun.extension.FunExtension"/>
@@ -2031,10 +1991,10 @@
       <node name="graphtea.plugins.graphgenerator.CmnGenerator">
         <map>
           <entry key="M" value="10"/>
-          <entry key="N" value="10"/>
-          <entry key="m" value="3"/>
           <entry key="n" value="5"/>
           <entry key="object" value="graphtea.plugins.graphgenerator.CmnGenerator"/>
+          <entry key="N" value="10"/>
+          <entry key="m" value="3"/>
         </map>
       </node>
       <node name="graphtea.plugins.graphgenerator.CnGenerator">
@@ -2045,20 +2005,20 @@
       </node>
       <node name="graphtea.plugins.graphgenerator.GeneralizedPetersonGenerator">
         <map>
-          <entry key="K" value="2"/>
-          <entry key="N" value="5"/>
           <entry key="k" value="3"/>
-          <entry key="n" value="10"/>
           <entry key="object" value="graphtea.plugins.graphgenerator.GeneralizedPetersonGenerator"/>
+          <entry key="K" value="2"/>
+          <entry key="n" value="10"/>
+          <entry key="N" value="5"/>
         </map>
       </node>
       <node name="graphtea.plugins.graphgenerator.KmnGenerator">
         <map>
           <entry key="M" value="6"/>
-          <entry key="N" value="3"/>
-          <entry key="m" value="3"/>
           <entry key="n" value="3"/>
           <entry key="object" value="graphtea.plugins.graphgenerator.KmnGenerator"/>
+          <entry key="N" value="3"/>
+          <entry key="m" value="3"/>
         </map>
       </node>
       <node name="graphtea.plugins.graphgenerator.KnGenerator">
@@ -2070,11 +2030,11 @@
       </node>
       <node name="graphtea.plugins.graphgenerator.Kn_dGenerator">
         <map>
-          <entry key="D" value="5"/>
-          <entry key="N" value="5"/>
           <entry key="d" value="3"/>
-          <entry key="n" value="10"/>
           <entry key="object" value="graphtea.plugins.graphgenerator.Kn_dGenerator"/>
+          <entry key="D" value="5"/>
+          <entry key="n" value="10"/>
+          <entry key="N" value="5"/>
         </map>
       </node>
       <node name="graphtea.plugins.graphgenerator.PmnGenerator">
@@ -2093,9 +2053,9 @@
       <node name="graphtea.plugins.graphgenerator.RanTreeGenerator">
         <map>
           <entry key="d" value="5"/>
-          <entry key="h" value="5"/>
-          <entry key="n" value="50"/>
           <entry key="object" value="graphtea.plugins.graphgenerator.RanTreeGenerator"/>
+          <entry key="n" value="50"/>
+          <entry key="h" value="5"/>
         </map>
       </node>
       <node name="graphtea.plugins.graphgenerator.RandomGenerator">
@@ -2113,10 +2073,10 @@
       </node>
       <node name="graphtea.plugins.graphgenerator.TreeGenerator">
         <map>
-          <entry key="degree" value="3"/>
-          <entry key="depth" value="5"/>
-          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Backward"/>
           <entry key="object" value="graphtea.plugins.graphgenerator.TreeGenerator"/>
+          <entry key="depth" value="5"/>
+          <entry key="degree" value="3"/>
+          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Backward"/>
         </map>
       </node>
       <node name="graphtea.plugins.graphgenerator.WheelGenerator">
@@ -2210,10 +2170,10 @@
       </node>
       <node name="graphtea.plugins.graphgenerator.generators.KmnoGenerator">
         <map>
-          <entry key="m" value="3"/>
+          <entry key="object" value="graphtea.plugins.graphgenerator.generators.KmnoGenerator"/>
           <entry key="n" value="3"/>
           <entry key="o" value="3"/>
-          <entry key="object" value="graphtea.plugins.graphgenerator.generators.KmnoGenerator"/>
+          <entry key="m" value="3"/>
         </map>
       </node>
       <node name="graphtea.plugins.graphgenerator.generators.LadderGenerator">
@@ -2264,9 +2224,9 @@
       <node name="graphtea.plugins.graphgenerator.generators.RandomTreeGenerator">
         <map>
           <entry key="d" value="5"/>
-          <entry key="h" value="5"/>
-          <entry key="n" value="50"/>
           <entry key="object" value="graphtea.plugins.graphgenerator.generators.RandomTreeGenerator"/>
+          <entry key="n" value="50"/>
+          <entry key="h" value="5"/>
         </map>
       </node>
       <node name="graphtea.plugins.graphgenerator.generators.StarGenerator">
@@ -2277,10 +2237,10 @@
       </node>
       <node name="graphtea.plugins.graphgenerator.generators.TreeGenerator">
         <map>
-          <entry key="degree" value="3"/>
-          <entry key="depth" value="3"/>
-          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Circular"/>
           <entry key="object" value="graphtea.plugins.graphgenerator.generators.TreeGenerator"/>
+          <entry key="depth" value="3"/>
+          <entry key="degree" value="3"/>
+          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Circular"/>
         </map>
       </node>
       <node name="graphtea.plugins.graphgenerator.generators.WheelGenerator">
@@ -2304,11 +2264,6 @@
           <entry key="object" value="graphtea.plugins.main.help.ShowDocumentations"/>
         </map>
       </node>
-      <node name="graphtea.plugins.main.help.ShowHelp">
-        <map>
-          <entry key="object" value="graphtea.plugins.main.help.ShowHelp"/>
-        </map>
-      </node>
       <node name="graphtea.plugins.main.help.ShowWelcomePage">
         <map>
           <entry key="object" value="graphtea.plugins.main.help.ShowWelcomePage"/>
@@ -2326,8 +2281,8 @@
       </node>
       <node name="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler">
         <map>
-          <entry key="defaultFile" value="C:\Users\Fesi\Downloads\100.simplegraph"/>
           <entry key="object" value="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler"/>
+          <entry key="defaultFile" value="C:\Users\Fesi\Downloads\100.simplegraph"/>
         </map>
       </node>
       <node name="graphtea.plugins.main.saveload.core.extension.GraphReaderExtensionAction">
@@ -2497,11 +2452,6 @@
           <entry key="object" value="graphtea.plugins.reports.spectralreports.maxflowmincut.MaximumFlow"/>
         </map>
       </node>
-      <node name="graphtea.plugins.reports.spectralreports.maxflowmincut.MinimumCut">
-        <map>
-          <entry key="object" value="graphtea.plugins.reports.spectralreports.maxflowmincut.MinimumCut"/>
-        </map>
-      </node>
       <node name="graphtea.plugins.search.SearchAction">
         <map>
           <entry key="object" value="graphtea.plugins.search.SearchAction"/>
@@ -2563,26 +2513,26 @@
       </node>
       <node name="graphtea.samples.extensions.SearchInGraph">
         <map>
-          <entry key="chooseVertex" value="0"/>
+          <entry key="srchKind" value="java.lang.String #$%# In Neighbers #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Vertices &amp; Edges #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
           <entry key="color" value=""/>
-          <entry key="kind" value="java.lang.String #$%# In Neighbers #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
-          <entry key="kindLabel" value="java.lang.String #$%# Interval #$%# java.lang.String #$%# String #$%# java.lang.String #$%# Interval"/>
-          <entry key="label" value="2"/>
-          <entry key="neighber" value="false"/>
-          <entry key="object" value="graphtea.samples.extensions.SearchInGraph"/>
-          <entry key="s" value="java.lang.String #$%# b #$%# java.lang.String #$%# c #$%# java.lang.String #$%# a #$%# java.lang.String #$%# a"/>
           <entry key="saveLastChange" value="false"/>
-          <entry key="sd" value="0"/>
-          <entry key="search" value="2"/>
-          <entry key="searchIn" value="java.lang.String #$%# edges #$%# java.lang.String #$%# weights #$%# java.lang.String #$%# vertices #$%# java.lang.String #$%# neighbers #$%# java.lang.String #$%# vertices"/>
+          <entry key="neighber" value="false"/>
+          <entry key="s" value="java.lang.String #$%# b #$%# java.lang.String #$%# c #$%# java.lang.String #$%# a #$%# java.lang.String #$%# a"/>
+          <entry key="object" value="graphtea.samples.extensions.SearchInGraph"/>
+          <entry key="chooseVertex" value="0"/>
+          <entry key="srchLabel" value="6"/>
+          <entry key="selectedVertex" value="1"/>
           <entry key="searchInSubgraph" value="false"/>
+          <entry key="srch" value=""/>
+          <entry key="kind" value="java.lang.String #$%# In Neighbers #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
+          <entry key="searchIn" value="java.lang.String #$%# edges #$%# java.lang.String #$%# weights #$%# java.lang.String #$%# vertices #$%# java.lang.String #$%# neighbers #$%# java.lang.String #$%# vertices"/>
+          <entry key="label" value="2"/>
+          <entry key="srchKindi" value="java.lang.String #$%# In Neighbers #$%# java.lang.String #$%# Vertices &amp; Edges #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
           <entry key="searchKind" value="java.lang.String #$%# In Neighber #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Vertices &amp; Edges #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# In Neighber"/>
           <entry key="searchType" value="java.lang.String #$%# Vertices and Edges #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
-          <entry key="selectedVertex" value="1"/>
-          <entry key="srch" value=""/>
-          <entry key="srchKind" value="java.lang.String #$%# In Neighbers #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Vertices &amp; Edges #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
-          <entry key="srchKindi" value="java.lang.String #$%# In Neighbers #$%# java.lang.String #$%# Vertices &amp; Edges #$%# java.lang.String #$%# Weights #$%# java.lang.String #$%# Edges #$%# java.lang.String #$%# Vertices #$%# java.lang.String #$%# Vertices"/>
-          <entry key="srchLabel" value="6"/>
+          <entry key="kindLabel" value="java.lang.String #$%# Interval #$%# java.lang.String #$%# String #$%# java.lang.String #$%# Interval"/>
+          <entry key="search" value="2"/>
+          <entry key="sd" value="0"/>
         </map>
       </node>
       <node name="graphtea.samples.extensions.SpectralGraphTheoryReport">
