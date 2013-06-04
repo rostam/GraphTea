@@ -17,6 +17,8 @@ public class BaseVertexProperties
         implements Cloneable {
     public int color;
     public boolean mark;
+
+    public static boolean isLabelColorImp = false;
     /**
      * You can store anything you want.
      */

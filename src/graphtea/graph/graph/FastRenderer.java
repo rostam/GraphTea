@@ -12,6 +12,7 @@ import graphtea.graph.event.*;
 import graphtea.graph.old.ArrowHandler;
 import graphtea.graph.old.GShape;
 import graphtea.graph.old.GStroke;
+import graphtea.library.BaseVertexProperties;
 import graphtea.platform.Application;
 import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;
@@ -471,7 +472,9 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
         g.setStroke(borderStroke);
         model.shape.fill(g, x, y, w, h);
 //		if (!vertex.g.view.animation){
+        if(!BaseVertexProperties.isLabelColorImp)
         g.setColor(c2);
+        else g.setColor(Color.BLACK);
 //        if (model.showBorder)
         model.shape.draw(g, x, y, w - 1, h - 1);
 //            if (labelSize.width == 0)

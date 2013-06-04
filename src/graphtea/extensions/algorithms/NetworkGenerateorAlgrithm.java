@@ -4,6 +4,8 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
+import graphtea.graph.old.GStroke;
+import graphtea.library.BaseVertexProperties;
 import graphtea.library.Path;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
@@ -29,6 +31,7 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
 
     @Override
     public void doAlgorithm(){
+        BaseVertexProperties.isLabelColorImp=true;
         step("Start of the simulation.");
         step("Select the file");
         JFileChooser fileChooser = new JFileChooser();
@@ -83,24 +86,32 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
                 }
                 forbiddenIndex.add(randInd);
                 if(forbiddenIndex.size() > (maxNumNodesInLevel * 2/3)) forbiddenIndex =  new Vector<Integer>();
-                v.setColor(scNum);
+                v.setColor(1);
                 v.setLocation(new GraphPoint(ps[randInd].x, ps[randInd].y));
-                v.setSize(new GraphPoint(0, 0));
+                v.setShapeStroke(GStroke.empty);
+                v.setSize(new GraphPoint(15,15));
+                v.setLabelLocation(new GraphPoint(0,-2));
+                //v.setSize(new GraphPoint(0, 0));
                 switch (scNum) {
                     case 1:
-                        v.setLabel("+");
+                        v.setLabel(String.valueOf((char)(0x25CB)));
                         break;
                     case 2:
-                        v.setLabel(String.valueOf((char)(0xD7)));
+                        v.setLabel(String.valueOf((char)(0x25A1)));
                         break;
                     case 3:
-                        v.setLabel(String.valueOf((char)0x25A1));
+                        //v.setLabel(String.valueOf((char)0x25A1));
+                        v.setLabel(String.valueOf((char)0x25C7));
                         break;
 
                 }
-                if(scNum == 1)
-                v.setLabel("+");
                 g.addVertex(v);
+
+                Edge e = new Edge(cent,v);
+
+                e.setColor(8);
+                g.addEdge(e);
+
             }
 
         }
