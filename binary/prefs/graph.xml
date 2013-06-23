@@ -1347,6 +1347,11 @@
           <entry key="object" value="graphtea.extensions.AutoUpdater"/>
         </map>
       </node>
+      <node name="graphtea.extensions.actions.GraphArt">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.GraphArt"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.actions.GraphPower">
         <map>
           <entry key="k" value="2"/>
@@ -1367,6 +1372,11 @@
           <entry key="selectedVertex" value=""/>
         </map>
       </node>
+      <node name="graphtea.extensions.algorithms.BallDrop">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.BallDrop"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.algorithms.CholeskyFactorizationExtension">
         <map>
           <entry key="object" value="graphtea.extensions.algorithms.CholeskyFactorizationExtension"/>
@@ -1375,6 +1385,41 @@
       <node name="graphtea.extensions.algorithms.EndomorphismAnimator">
         <map>
           <entry key="object" value="graphtea.extensions.algorithms.EndomorphismAnimator"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.ForceDirectedVisualizer">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.ForceDirectedVisualizer"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.HomomorphismAnimator">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.HomomorphismAnimator"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.MaximunFlowAlgorithm">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.MaximunFlowAlgorithm"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.MinimumCutAlgorithm">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.MinimumCutAlgorithm"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.NetworkGenerateorAlgrithm">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.NetworkGenerateorAlgrithm"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.SampleAlgorithm">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.SampleAlgorithm"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.animation.BallDrop">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.animation.BallDrop"/>
         </map>
       </node>
       <node name="graphtea.extensions.connectivity.Redis">
@@ -1397,9 +1442,9 @@
       </node>
       <node name="graphtea.extensions.generators.BananaTreeGenerator">
         <map>
-          <entry key="k" value="3"/>
+          <entry key="k" value="4"/>
           <entry key="object" value="graphtea.extensions.generators.BananaTreeGenerator"/>
-          <entry key="n" value="3"/>
+          <entry key="n" value="4"/>
           <entry key="depth" value="BInt5"/>
         </map>
       </node>
@@ -1572,6 +1617,11 @@
           <entry key="X" value="0.0"/>
           <entry key="Y" value="0.0"/>
           <entry key="object" value="graphtea.extensions.io.LatexWriter"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.io.LoadGraphML">
+        <map>
+          <entry key="object" value="graphtea.extensions.io.LoadGraphML"/>
         </map>
       </node>
       <node name="graphtea.extensions.io.LoadNetGraph">
