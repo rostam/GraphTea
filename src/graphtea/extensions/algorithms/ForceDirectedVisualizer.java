@@ -5,6 +5,8 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
+import java.awt.*;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,20 +23,36 @@ public class ForceDirectedVisualizer extends GraphAlgorithm implements Algorithm
         Vertex.addGlobalUserDefinedAttribute("velo",new GraphPoint(0,0));
         Vertex.addGlobalUserDefinedAttribute("acce",new GraphPoint(0,0));
 
-        Edge.addGlobalUserDefinedAttribute("k",1.0);
+        Vertex.addGlobalUserDefinedAttribute("net_force", new GraphPoint(0,0));
 
+        Edge.addGlobalUserDefinedAttribute("k",1.0);
+        FastRenderer.defaultVertexRadius=7;
+        FastRenderer.defaultShapeDimension=new Dimension(15,15);
     }
 
     AbstractGraphRenderer gr = AbstractGraphRenderer.getCurrentGraphRenderer(graphData.getBlackboard());
 
 
-    @Override
+    void updateAcce(Vertex v, GraphPoint force) {
+        GraphPoint acce = v.getUserDefinedAttribute("acce");
+        acce = GraphPoint.add(GraphPoint.div(force, (Double) v.getUserDefinedAttribute("mass")),acce);
+        v.setUserDefinedAttribute("acce",acce);
+    }
+
+
     public void doAlgorithm() {
         GraphModel g = graphData.getGraph();
+        Font f = new Font(gr.getName(),gr.getFont().getStyle(),2);
+        g.setFont(f);
 
-        double stiffness = 5;
+
+
+        Font ff = new Font(gr.getName(),gr.getFont().getStyle(),2);
+        gr.setFont(ff);
+
+        double stiffness = 400;
         double repulsion = 400;
-        double damping   = 0.5;
+        double damping   = 0.01;
 
         GraphPoint center = new GraphPoint(0,0);
         for(Vertex v : g) {
@@ -48,67 +66,54 @@ public class ForceDirectedVisualizer extends GraphAlgorithm implements Algorithm
 
         double energy = 0;
 
+
        do {
 
         gr.repaint();
-        //CoulombusLaw and HoolesLaw
 
+        // CoulombusLaw
         for(Vertex v1 : g)
-            for(Vertex v2 : g)
-                if(!v1.equals(v2)) {
-                    double distance = v1.getLocation().distance(v2.getLocation()) + 1;
+            for(Vertex v2 : g) {
+                if(v1.getId() != v2.getId()) {
                     GraphPoint direction = GraphPoint.sub(v1.getLocation(),v2.getLocation());
+                    double distance = direction.norm() + 0.1;
                     direction = GraphPoint.normalise(direction);
-                    GraphPoint v1Loc = GraphPoint.div(direction, distance * distance * 0.5);
+
+                    GraphPoint v1Loc = GraphPoint.div(direction, distance*distance*0.5);
                     v1Loc = GraphPoint.mul(v1Loc, repulsion);
-                    v1Loc = GraphPoint.div(v1Loc, (Double) v1.getUserDefinedAttribute("mass"));
-                    v1.setUserDefinedAttribute("acce",v1Loc);
+                    updateAcce(v1,v1Loc);
+
 
                     GraphPoint v2Loc = GraphPoint.div(direction, distance*distance*-0.5);
                     v2Loc = GraphPoint.mul(v2Loc, repulsion);
-                    v2Loc = GraphPoint.div(v2Loc, (Double) v2.getUserDefinedAttribute("mass"));
-                    v2.setUserDefinedAttribute("acce",v2Loc);
+                    updateAcce(v2,v2Loc);
                 }
+            }
 
-
+        // Hookes Law
         for(Edge e :  g.edges()) {
             Vertex v1 = e.source;
             Vertex v2 = e.target;
             double newDist =  v1.getLocation().distance(v2.getLocation());
-            double displacement = 100 - newDist;//1 = the wanted length of edge
+            double displacement = 10 - newDist;//1 = the wanted length of edge
 
             GraphPoint newDirection = GraphPoint.sub(v2.getLocation(),v1.getLocation());
             newDirection = GraphPoint.normalise(newDirection);
 
-            GraphPoint v1NewLoc = GraphPoint.mul(newDirection,stiffness*displacement*0.5);
-            v1NewLoc = GraphPoint.div(v1NewLoc, (Double) v1.getUserDefinedAttribute("mass"));
-            v1NewLoc = GraphPoint.add((GraphPoint)v1.getUserDefinedAttribute("acce"),v1NewLoc);
-            v1.setUserDefinedAttribute("acce",v1NewLoc);
+            GraphPoint v1NewLoc = GraphPoint.mul(newDirection,stiffness*displacement*-0.5);
+            updateAcce(v1,v1NewLoc);
 
-            GraphPoint v2NewLoc = GraphPoint.mul(newDirection,stiffness*displacement*-0.5);
-            v2NewLoc = GraphPoint.div(v2NewLoc, (Double) v2.getUserDefinedAttribute("mass"));
-            v2NewLoc = GraphPoint.add((GraphPoint)v2.getUserDefinedAttribute("acce"),v2NewLoc);
-            v2.setUserDefinedAttribute("acce",v2NewLoc);
+            GraphPoint v2NewLoc = GraphPoint.mul(newDirection,stiffness*displacement*0.5);
+            updateAcce(v2,v2NewLoc);
         }
 
-        step("attract to Center.");
-
-//        //attractToCentre
-//        for(Vertex v : g) {
-//            GraphPoint direction = GraphPoint.mul(v.getLocation(),-1.0);
-//            direction = GraphPoint.normalise(direction);
-//            direction = GraphPoint.mul(direction,repulsion/8.0);
-//            direction = GraphPoint.add((GraphPoint)v.getUserDefinedAttribute("acce"),direction);
-//            v.setUserDefinedAttribute("acce",direction);
-//        }
+        //attractToCentre
         for(Vertex v : g) {
-            GraphPoint direction = GraphPoint.sub(center,v.getLocation());
-            direction = GraphPoint.normalise(direction);
-            direction = GraphPoint.mul(direction,repulsion/10);
-            direction = GraphPoint.add((GraphPoint)v.getUserDefinedAttribute("acce"),direction);
-            v.setUserDefinedAttribute("acce",direction);
+            //GraphPoint direction = GraphPoint.mul(v.getLocation(),-1.0);
+            GraphPoint direction= GraphPoint.sub(center,v.getLocation());
+            direction = GraphPoint.mul(direction,repulsion/50);
+            updateAcce(v,direction);
         }
-
 
         step("update velocity.");
 
@@ -127,12 +132,13 @@ public class ForceDirectedVisualizer extends GraphAlgorithm implements Algorithm
             v.setLocation(GraphPoint.add(v.getLocation(),pos));
         }
 
+       energy = 1;
        for(Vertex v : g) {
            GraphPoint velo = v.getUserDefinedAttribute("velo");
            double speed = velo.norm();
 
            double mass = (Double)v.getUserDefinedAttribute("mass");
-           energy += 0.5*mass*speed*speed;
+           //energy += 0.5*mass*speed*speed;
        }
        step("energy" + energy);
 
