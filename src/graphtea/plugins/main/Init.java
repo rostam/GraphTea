@@ -72,7 +72,7 @@ public class Init implements PluginInterface, StorableOnExit {
         tracker = new JGoogleAnalyticsTracker(config, JGoogleAnalyticsTracker.GoogleAnalyticsVersion.V_4_7_2);
 
         // Create a reference to a Firebase location
-        firebase = new Firebase("https://graphtea.firebaseio.com/").child(Application.INSTANCE_ID);
+        firebase = new Firebase("https://graphtea.firebaseio.com/").push();
 
 // Write data to Firebase
         firebase.setValue("Do you have data? You'll love Firebase.");
