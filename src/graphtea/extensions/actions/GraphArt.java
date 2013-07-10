@@ -114,9 +114,9 @@ class Painter implements PaintHandler {
                         GraphPoint m2 = AlgorithmUtils.getMiddlePoint(p2, p3);
                         GraphPoint cp = p2;
 
-                        Integer w1 = v.getUserDefinedAttribute(GraphArt.CURVE_WIDTH);
-                        Integer w2 = v1.getUserDefinedAttribute(GraphArt.CURVE_WIDTH);
-                        Integer w3 = v2.getUserDefinedAttribute(GraphArt.CURVE_WIDTH);
+                        Integer w1 = v.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
+                        Integer w2 = v1.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
+                        Integer w3 = v2.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
 
                         int startWidth = (w1 + w2) / 2;
                         int endWidth = (w3 + w2) / 2;

@@ -132,7 +132,8 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
                     p.paint(mainG, this, drawExtras);
                 translateBack(mainG);
 
-
+                //AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
+                //((Graphics2D)mainG).setComposite(ac);
                 mainG.drawImage(bi, 0, 0, this);
 //            showTime(11);
                 doTranslate(mainG);
