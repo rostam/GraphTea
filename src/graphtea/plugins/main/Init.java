@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.main;
 
+import com.firebase.client.Firebase;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -63,14 +64,24 @@ public class Init implements PluginInterface, StorableOnExit {
     }
 
     public static JGoogleAnalyticsTracker tracker;
+    public static Firebase firebase;
     static {
+
         AnalyticsConfigData config = new AnalyticsConfigData("UA-6755911-5");
         config.setFlashVersion("9.0 r24");
         tracker = new JGoogleAnalyticsTracker(config, JGoogleAnalyticsTracker.GoogleAnalyticsVersion.V_4_7_2);
+
+        // Create a reference to a Firebase location
+        firebase = new Firebase("https://graphtea.firebaseio.com/").push();
+
+// Write data to Firebase
+        firebase.setValue("Do you have data? You'll love Firebase.");
+
     }
     public static void track(String category, String action) {
         System.out.println(action);
         tracker.trackEvent(category, action, "Version: " + Application.VERSION);
+        firebase.push().setValue(category + ":" + action);
     }
 
 }

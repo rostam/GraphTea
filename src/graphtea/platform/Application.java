@@ -31,6 +31,9 @@ public class Application implements StorableOnExit {
     public static final String VERSION_NAME = "newrooz";
     public static final String WELCOME_URL = "http://graphtheorysoftware.com/v/"+VERSION_NAME;
 
+    public static final String INSTANCE_ID = Math.round(Math.random() * 100000) + "";
+    public static double APP_ID;
+
     public static final String APPLICATION_INSTANCE = "GraphTea.main";
     public Plugger plugger = null;
     public static final String POST_INIT_EVENT = "Post Initialization";
@@ -78,6 +81,7 @@ public class Application implements StorableOnExit {
         blackboard = new BlackBoard();
         blackboard.setData(APPLICATION_INSTANCE, this);
         blackboard.setData("SETTINGS", SETTINGS);
+
         plugger = new Plugger(blackboard);
         run(blackboard);
         return blackboard;
