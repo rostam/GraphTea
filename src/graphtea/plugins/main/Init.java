@@ -23,7 +23,7 @@ import com.dmurph.tracking.JGoogleAnalyticsTracker;
 import com.dmurph.tracking.JGoogleAnalyticsTracker.GoogleAnalyticsVersion;
 import com.dmurph.tracking.system.AWTSystemPopulator;
 
-import java.io.File;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -61,6 +61,7 @@ public class Init implements PluginInterface, StorableOnExit {
         //setup google analytics so that we know which features the users use more and need to get improved
    
         track("App", "Started");
+
     }
 
     public static JGoogleAnalyticsTracker tracker;
@@ -72,10 +73,27 @@ public class Init implements PluginInterface, StorableOnExit {
         tracker = new JGoogleAnalyticsTracker(config, JGoogleAnalyticsTracker.GoogleAnalyticsVersion.V_4_7_2);
 
         // Create a reference to a Firebase location
-        firebase = new Firebase("https://graphtea.firebaseio.com/").push();
+        firebase = new Firebase("https://graphtea.firebaseio.com/");
 
 // Write data to Firebase
         firebase.setValue("Do you have data? You'll love Firebase.");
+
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("instance.txt"));
+            Application.USER_ID = in.readLine();
+            firebase = firebase.child(Application.USER_ID);
+        } catch (FileNotFoundException e) {
+            try {
+                PrintWriter out = new PrintWriter("instance.txt", "w");
+                firebase = firebase.push();
+                Application.USER_ID = firebase.getPath().getFront();
+                out.println(Application.USER_ID);
+                out.close();
+            } catch (FileNotFoundException e1) {
+            } catch (UnsupportedEncodingException e1) {
+            }
+        } catch (IOException e) {
+        }
 
     }
     public static void track(String category, String action) {
@@ -83,6 +101,5 @@ public class Init implements PluginInterface, StorableOnExit {
         tracker.trackEvent(category, action, "Version: " + Application.VERSION);
         firebase.push().setValue(category + ":" + action);
     }
-
 }
  
