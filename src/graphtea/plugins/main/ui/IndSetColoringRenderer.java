@@ -33,14 +33,27 @@ public class IndSetColoringRenderer implements GBasicCellRenderer<IndSubGraphs> 
  //   }
     public Component getRendererComponent(final IndSubGraphs res) {
         String txt = "";
+        GraphData gd = new GraphData(Application.getBlackBoard());
+        boolean hasAllVSet = true;
+
+        for(int i=0;i<gd.getGraph().getVerticesCount();i++) {
+          if(!res.contains(i)) {
+             hasAllVSet = false;
+             break;
+          }
+        }
+
         txt = "<HTML><BODY>";
             txt += "<B>V:</B>{";
+            if(hasAllVSet) txt+="<B>";
             for(int j=0;j<res.size();j++)
             {
                 int tmp = res.get(j);
                 if(tmp == -1)txt += "},{";
                 else txt += tmp + ",";
             }
+            if(hasAllVSet) txt+="</B>";
+
             txt += "}<BR>";
 
 

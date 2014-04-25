@@ -40,6 +40,16 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
     @Override
     public void doAlgorithm() {
         step("The algorithm first generates all independent sets I.");
+        /*step("<table>" +
+                "<tr>" +
+                "<td>f({a,b,c})</td>" +
+                "<td>===></td>"         +
+                "<td>+</td>"          +
+                "<td>===></td>"         +
+                "<td>+</td>"          +
+                "<td>===></td>"         +
+                "<td>zeta_f({a,b,c})</td>" +
+                "</tr>");*/
 
         GraphModel g = graphData.getGraph();
         Vector<ArrayDeque<BaseVertex>> maxsets = getAllIndependentSets(g);
@@ -62,15 +72,29 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
             ind_sets.add(indset);
         }
 
-        new IndSetsDialog(ind_sets,"All Independent Sets","");
-        step("Now, the nth power of I is computed in each step, until " +
+        new IndSetsDialog(ind_sets,"All Independent Sets I","");
+        step("<BR>Now, the nth power of I is computed in each step, until " +
                 "all vertices of G are seen.");
 
         Vector<Vector<Integer>> ind_sets2= new Vector<Vector<Integer>>(ind_sets);
         for(int i=0;i<3;i++) {
             ind_sets2=setproduct(ind_sets2,ind_sets,i+1);
-            new IndSetsDialog(ind_sets2,"","");
-            step("The " + i + "th power of I is computed");
+            IndSetsDialog isd = new IndSetsDialog(ind_sets2,"I^"+(i+2),"");
+
+            boolean hasAllVSets = true;
+            for(int k=0;k<ind_sets2.size();k++) {
+                hasAllVSets = true;
+                Vector<Integer> v = ind_sets2.get(k);
+                for(int j=0;j<g.getVerticesCount();j++) {
+                    if(!v.contains(j)) {hasAllVSets = false;break;}
+                }
+
+                if(hasAllVSets) break;
+            }
+            String out = "<BR> I^ " + (i+2) +" is computed.";
+            if(hasAllVSets)
+              out += "<BR><B>The coloring is found and the coloring number is " +(i+2) +"</B>" ;
+            step(out);
         }
 
         step("That's it!");

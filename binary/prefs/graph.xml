@@ -1397,6 +1397,11 @@
           <entry key="object" value="graphtea.extensions.algorithms.HomomorphismAnimator"/>
         </map>
       </node>
+      <node name="graphtea.extensions.algorithms.IndSetProductColoring">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.IndSetProductColoring"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.algorithms.MaximunFlowAlgorithm">
         <map>
           <entry key="object" value="graphtea.extensions.algorithms.MaximunFlowAlgorithm"/>
@@ -1637,6 +1642,11 @@
       <node name="graphtea.extensions.io.SaveSimpleGraph">
         <map>
           <entry key="object" value="graphtea.extensions.io.SaveSimpleGraph"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.reports.AllIndependentSetsReport">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.AllIndependentSetsReport"/>
         </map>
       </node>
       <node name="graphtea.extensions.reports.ChromaticNumber">
@@ -2341,7 +2351,7 @@
       </node>
       <node name="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler">
         <map>
-          <entry key="defaultFile" value="/home/rostam/projects/talk_explain_icl13/coloredg1.png"/>
+          <entry key="defaultFile" value="/home/rostam/projects/GraphTea/WineGlassWithEdge.simplegraph"/>
           <entry key="object" value="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler"/>
         </map>
       </node>
