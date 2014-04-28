@@ -86,6 +86,8 @@ class Painter implements PaintHandler {
                 boolean[] marks = new boolean[n];
                 Vertex V[] = G.getVertexArray();
                 final Vertex parent[] = new Vertex[n];
+                final int numChild[] = new int[n];
+                for(int nc = 0;nc < numChild.length;nc++) numChild[nc]=0;
 
                 //consider the hole structure as a tree
                 AlgorithmUtils.BFSrun(G, V[0], new AlgorithmUtils.BFSListener() {
@@ -94,6 +96,18 @@ class Painter implements PaintHandler {
                         parent[v.getId()] = (Vertex)p;
                     }
                 });
+
+                for(Vertex v:G) {
+                    if(G.getDegree(v) != 1) continue;
+                    Vertex par = v;
+                    do {
+                      int numN=G.getDegree(par)-1;
+                      par = parent[par.getId()];
+                      if(par == null) break;
+                      numChild[par.getId()]
+                              += numN  + G.getDegree(par);
+                    } while(par != null);
+                }
 
 
                 for (Vertex v : G) {
@@ -114,9 +128,12 @@ class Painter implements PaintHandler {
                         GraphPoint m2 = AlgorithmUtils.getMiddlePoint(p2, p3);
                         GraphPoint cp = p2;
 
-                        Integer w1 = v.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
-                        Integer w2 = v1.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
-                        Integer w3 = v2.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
+                        Integer w1 = numChild[v.getId()];
+                                //(Integer)v.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
+                        Integer w2 = numChild[v1.getId()];
+                                //(Integer)v1.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
+                        Integer w3 = numChild[v2.getId()];
+                                //(Integer)v2.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
 
                         int startWidth = (w1 + w2) / 2;
                         int endWidth = (w3 + w2) / 2;
