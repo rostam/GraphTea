@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.QuadCurve2D;
 import java.io.File;
+import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -128,11 +129,11 @@ class Painter implements PaintHandler {
                         GraphPoint m2 = AlgorithmUtils.getMiddlePoint(p2, p3);
                         GraphPoint cp = p2;
 
-                        Integer w1 = numChild[v.getId()];
+                        Integer w1 = numChild[v.getId()]/2;
                                 //(Integer)v.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
-                        Integer w2 = numChild[v1.getId()];
+                        Integer w2 = numChild[v1.getId()]/2;
                                 //(Integer)v1.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
-                        Integer w3 = numChild[v2.getId()];
+                        Integer w3 = numChild[v2.getId()]/2;
                                 //(Integer)v2.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
 
                         int startWidth = (w1 + w2) / 2;
@@ -162,6 +163,16 @@ class Painter implements PaintHandler {
 
                         //fill the curve
                         gr.fill(gp);
+
+                        double c11 =  m1.x - startWidth * Math.sin(teta1);
+                        double c22 =  m1.y + startWidth * Math.cos(teta1);
+
+                        if(G.getInDegree(v) + G.getOutDegree(v) == 2) {
+                         gr.setColor(Color.gray);
+                         gr.fillOval((int)c11-15,(int)c22-15,30,30);
+                        }
+
+
                     }
                 }
             }

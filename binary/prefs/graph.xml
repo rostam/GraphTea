@@ -1372,6 +1372,11 @@
           <entry key="selectedVertex" value=""/>
         </map>
       </node>
+      <node name="graphtea.extensions.actions.WineGraph">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.WineGraph"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.algorithms.CholeskyFactorizationExtension">
         <map>
           <entry key="object" value="graphtea.extensions.algorithms.CholeskyFactorizationExtension"/>
@@ -1392,6 +1397,11 @@
           <entry key="object" value="graphtea.extensions.algorithms.HomomorphismAnimator"/>
         </map>
       </node>
+      <node name="graphtea.extensions.algorithms.IndSetProductColoring">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.IndSetProductColoring"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.algorithms.MaximunFlowAlgorithm">
         <map>
           <entry key="object" value="graphtea.extensions.algorithms.MaximunFlowAlgorithm"/>
@@ -1410,6 +1420,11 @@
       <node name="graphtea.extensions.algorithms.SampleAlgorithm">
         <map>
           <entry key="object" value="graphtea.extensions.algorithms.SampleAlgorithm"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.WineAlgorithm">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.WineAlgorithm"/>
         </map>
       </node>
       <node name="graphtea.extensions.connectivity.Redis">
@@ -1627,6 +1642,11 @@
       <node name="graphtea.extensions.io.SaveSimpleGraph">
         <map>
           <entry key="object" value="graphtea.extensions.io.SaveSimpleGraph"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.reports.AllIndependentSetsReport">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.AllIndependentSetsReport"/>
         </map>
       </node>
       <node name="graphtea.extensions.reports.ChromaticNumber">
