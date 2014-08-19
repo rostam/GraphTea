@@ -5,13 +5,11 @@
 package graphtea.plugins.commonplugin.undo;
 
 /*
-* author: azin azadi
+* author: azin azadi, Mostafa Shaeri
 */
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.io.GraphJSON;
-import graphtea.graph.io.GraphML;
-import graphtea.plugins.main.GraphData;
+
 
 public class UndoManager {
     public static final String EVENT_KEY = "Undo Log Manager";
@@ -21,18 +19,19 @@ public class UndoManager {
         watchGraph(g);
     }
 
+    
     Node current;
     Node lastNode = new Node();
 
-    String lastgml = "";
-
+    GraphModel lastgml=null;
     void watchGraph(final GraphModel g) {
         new Thread() {
             public void run() {
                 while (true) {
                     try {
-                        String cur = GraphJSON.Graph2Json(g);
-                        if (!cur.equals(lastgml)) {
+                       
+                        GraphModel cur=g;
+                        if ( !cur.equals(lastgml)   /*!cur.equals(lastgml)*/) {
                             //st changed
                             System.out.println(cur);
                             addChange(cur);
@@ -48,20 +47,21 @@ public class UndoManager {
     }
 
 
-    public void addChange(String graphml) {
+    public void addChange(GraphModel graphml) {
         Node first = new Node();
         first.val = graphml;
         first.setNext(current);
         this.current = first;
     }
+    
 
     /**
      * returns the data for the next undo action
      */
-    public String getNextUndoData() {
+    public GraphModel getNextUndoData() {
         if (current == lastNode)
             return null;    //no action to undo
-        String val = current.val;
+        GraphModel val = current.val;
         current = current.next;
         return val;
     }
@@ -69,7 +69,7 @@ public class UndoManager {
     /**
      * returns the data for the next undo action
      */
-    public String getNextRedoData() {
+    public GraphModel getNextRedoData() {
         if (current.prev == null)
             return null;    //no action to undo
         current = current.prev;
@@ -80,7 +80,7 @@ public class UndoManager {
 
 class Node {
     Node next, prev;
-    String val;
+    GraphModel val;
 
     /**
      * sets the next node linked to this node and also updates the previous node of the next to this
