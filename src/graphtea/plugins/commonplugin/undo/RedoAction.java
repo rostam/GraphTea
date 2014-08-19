@@ -4,11 +4,10 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.commonplugin.undo;
 /*
-author :roozbeh
+author :roozbeh , Mostafa Shaeri
 */
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.io.GraphML;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.commonplugin.Init;
@@ -37,8 +36,8 @@ public class RedoAction extends AbstractAction {
     public static void redo(BlackBoard blackboard) {
         GraphData gd = new GraphData(blackboard);
         UndoManager logManager = Init.undoers.get(gd.getGraph());
-        String gml = logManager.getNextRedoData();
-        GraphModel gm = GraphML.GraphML2Graph(gml);
+        GraphModel gm = logManager.getNextRedoData();
+        
         gd.getGraphRenderer().setGraph(gm);
     }
 }
