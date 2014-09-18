@@ -15,7 +15,6 @@ import java.awt.*;
  */
 public class PropertyEditorSidebar implements GComponentInterface {
     public Component getComponent(BlackBoard b) {
-        GPropertyEditor gPropertyEditor = new GPropertyEditor();
-        return gPropertyEditor;
+        return new GPropertyEditor();
     }
 }

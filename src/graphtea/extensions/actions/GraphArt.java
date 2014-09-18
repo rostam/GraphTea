@@ -17,11 +17,7 @@ import java.io.File;
 import java.util.HashMap;
 
 /**
- * Created with IntelliJ IDEA.
- * User: rostam
- * Date: 5/10/13
- * Time: 7:30 PM
- * To change this template use File | Settings | File Templates.
+ * @author: rostam
  */
 public class GraphArt implements GraphActionExtension {
     static final String CURVE_WIDTH = "Curve Width";
@@ -79,6 +75,9 @@ class Painter implements PaintHandler {
 
     public void paint(Graphics gr1d, Object destinationComponent, Boolean b) {
         final Graphics2D gr = (Graphics2D) gr1d;
+        gr.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
         final int n = G.getVerticesCount();
         if (n == 0) return;
 
@@ -129,12 +128,12 @@ class Painter implements PaintHandler {
                         GraphPoint m2 = AlgorithmUtils.getMiddlePoint(p2, p3);
                         GraphPoint cp = p2;
 
-                        Integer w1 = numChild[v.getId()]/2;
-                                //(Integer)v.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
-                        Integer w2 = numChild[v1.getId()]/2;
-                                //(Integer)v1.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
-                        Integer w3 = numChild[v2.getId()]/2;
-                                //(Integer)v2.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
+//                        Integer w1 = numChild[v.getId()]/2;
+                        Integer w1 =(Integer)v.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
+//                        Integer w2 = numChild[v1.getId()]/2;
+                        Integer w2 = (Integer)v1.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
+//                        Integer w3 = numChild[v2.getId()]/2;
+                        Integer w3 = (Integer)v2.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
 
                         int startWidth = (w1 + w2) / 2;
                         int endWidth = (w3 + w2) / 2;
@@ -159,18 +158,18 @@ class Painter implements PaintHandler {
                         GeneralPath gp = new GeneralPath(c1);
                         gp.append(c2, true);
                         gp.closePath();
-                        gr.setColor(new Color(50,100,50));
+                        gr.setColor(new Color(0,0,0));
 
                         //fill the curve
                         gr.fill(gp);
 
-                        double c11 =  m1.x - startWidth * Math.sin(teta1);
-                        double c22 =  m1.y + startWidth * Math.cos(teta1);
+//                        double c11 =  m1.x - startWidth * Math.sin(teta1);
+//                        double c22 =  m1.y + startWidth * Math.cos(teta1);
 
-                        if(G.getInDegree(v) + G.getOutDegree(v) == 2) {
-                         gr.setColor(Color.gray);
-                         gr.fillOval((int)c11-15,(int)c22-15,30,30);
-                        }
+//                        if(G.getInDegree(v) + G.getOutDegree(v) == 2) {
+//                         gr.setColor(Color.gray);
+//                         gr.fillOval((int)c11-15,(int)c22-15,30,30);
+//                        }
 
 
                     }
