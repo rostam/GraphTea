@@ -5,6 +5,7 @@
 package graphtea.plugins.main.core;
 
 import graphtea.graph.graph.GraphColoring;
+import graphtea.graph.graph.IndSubGraphs;
 import graphtea.graph.graph.SubGraph;
 import graphtea.graph.old.ArrowHandler;
 import graphtea.graph.old.GShape;
@@ -26,6 +27,7 @@ import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URL;
+import java.util.Vector;
 
 /**
  * @author Reza Mohammadi, azin
@@ -62,6 +64,7 @@ public class Init implements graphtea.platform.plugin.PluginInterface, StorableO
             UIUtils.registerEditor(GStroke.class, new GStrokeEditor());
             UIUtils.registerEditor(GShape.class, new GSimpleComboEditor(new GShapeRenderer()));
             UIUtils.registerRenderer(SubGraph.class, new SubGraphRenderer());
+            UIUtils.registerRenderer(IndSubGraphs.class,new IndSetColoringRenderer());
             UIUtils.registerRenderer(GraphColoring.class, new GraphColoringRenderer());
 
             StaticUtils.setFromStringProvider(PolygonArrow.class.getName(), new ArrowHandler());
