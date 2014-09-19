@@ -33,9 +33,10 @@ public class GraphArt implements GraphActionExtension {
 
     @Override
     public void action(GraphData graphData) {
-        Vertex.addGlobalUserDefinedAttribute(CURVE_WIDTH,5);
+        Vertex.addGlobalUserDefinedAttribute(CURVE_WIDTH,1);
 
         GraphModel g1 = graphData.getGraph();
+
         GraphModel g2 = null;
         SaveSimpleGraph ssg = new SaveSimpleGraph();
         LoadSimpleGraph lsg = new LoadSimpleGraph();
@@ -67,7 +68,6 @@ public class GraphArt implements GraphActionExtension {
 class Painter implements PaintHandler {
     GraphData gd;
     GraphModel G;
-    Integer curveWidth = 6;
     public Painter(GraphData gd) {
         this.gd = gd;
         this.G  = gd.getGraph();
@@ -86,9 +86,6 @@ class Painter implements PaintHandler {
                 boolean[] marks = new boolean[n];
                 Vertex V[] = G.getVertexArray();
                 final Vertex parent[] = new Vertex[n];
-                final int numChild[] = new int[n];
-                for(int nc = 0;nc < numChild.length;nc++) numChild[nc]=0;
-
                 //consider the hole structure as a tree
                 AlgorithmUtils.BFSrun(G, V[0], new AlgorithmUtils.BFSListener() {
                     @Override
@@ -96,6 +93,9 @@ class Painter implements PaintHandler {
                         parent[v.getId()] = (Vertex)p;
                     }
                 });
+                final int numChild[] = new int[n];
+                for(int nc = 0;nc < numChild.length;nc++) numChild[nc]=0;
+
 
                 for(Vertex v:G) {
                     if(G.getDegree(v) != 1) continue;

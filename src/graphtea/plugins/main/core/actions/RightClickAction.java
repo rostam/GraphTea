@@ -5,6 +5,7 @@
 
 package graphtea.plugins.main.core.actions;
 
+import graphtea.extensions.actions.GraphArt;
 import graphtea.graph.GraphUtils;
 import graphtea.graph.event.EdgeEvent;
 import graphtea.graph.event.GraphEvent;
@@ -55,6 +56,7 @@ public class RightClickAction implements BasicExtension, Listener {
         addToMenus(new MakeSelectionCompleteGraph());
         addToMenus(new MakeSelectionComplementGraph());
         addToMenus(new MakeSelectionEmptyGraph());
+        addToMenus(new GraphArt());
         addToMenus(new DeleteSelected(b));
         for (final String name : menus.keySet()) {
             JMenuItem item = new JMenuItem(name);

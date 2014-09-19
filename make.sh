@@ -1,4 +1,4 @@
-rm -rf binary
+ant clean
 if ant
 then
     java -jar binary/graphtea-main.jar
