@@ -49,6 +49,7 @@ public class GraphArtActionExtendTree
                     System.out.println("paretnt : " + v + " " + parent[v.getId()]);
                     if(v.getId()==0) continue;
                     addChildren(graphData, parent[v.getId()], v, 1.7);
+                    addChildren(graphData, parent[v.getId()], v, 0);
                     addChildren(graphData, parent[v.getId()], v, -1.7);
                 }
 
