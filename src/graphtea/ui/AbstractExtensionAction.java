@@ -279,6 +279,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
      * =
      */
     public void actionPerformed(ActionEvent e) {
+        Init.track(getParentMenuName(), target.getName());
         parentMenu.setSelected(false);
         if (testAndSetParameters(target))
             performExtension();
