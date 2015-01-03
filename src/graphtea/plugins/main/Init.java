@@ -55,7 +55,7 @@ public class Init implements PluginInterface, StorableOnExit {
 
         //setup google analytics so that we know which features the users use more and need to get improved
    
-        track("App", "Started");
+        //track("App", "Started");
 
     }
 
