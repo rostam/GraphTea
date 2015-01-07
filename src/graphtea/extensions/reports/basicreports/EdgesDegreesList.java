@@ -43,6 +43,6 @@ public class EdgesDegreesList implements GraphReportExtension {
 	@Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "Property";
+		return "Chemical Graph Theory";
 	}
 }
