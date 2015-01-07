@@ -73,7 +73,7 @@ public class ZagrebIndex implements GraphReportExtension, Parametrizable {
         }
 
         out.add("First General Zagreb Index : "+ first_zagreb);
-        out.add("Second General Zagreb Index : "+ first_re_zagreb);
+        out.add("Second General Zagreb Index : "+ second_zagreb);
         out.add("First Reformulated Zagreb Index : " + first_re_zagreb);
         out.add("Second Reformulated Zagreb Index : " + second_re_zagreb);
         return out;
