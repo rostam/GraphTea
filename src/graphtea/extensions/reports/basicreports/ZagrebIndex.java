@@ -58,8 +58,12 @@ public class ZagrebIndex implements GraphReportExtension, Parametrizable {
         }
 
         double second_re_zagreb = 0;
-        for (Edge e1 : gd.getGraph().edges()) {
-            for (Edge e2 : gd.getGraph().edges()) {
+        ArrayList<Edge> eds = new ArrayList<Edge>();
+        for(Edge ee : gd.getGraph().getEdges()) {
+            eds.add(ee);
+        }
+       for (Edge e1 : eds) {
+            for (Edge e2 : eds) {
                 if (edge_adj(e1, e2)) {
                     int d1 = gd.getGraph().getDegree(e1.source) +
                             gd.getGraph().getDegree(e1.target) - 2;
@@ -72,6 +76,7 @@ public class ZagrebIndex implements GraphReportExtension, Parametrizable {
             }
         }
 
+        second_re_zagreb/=2;
         out.add("First General Zagreb Index : "+ first_zagreb);
         out.add("Second General Zagreb Index : "+ second_zagreb);
         out.add("First Reformulated Zagreb Index : " + first_re_zagreb);
@@ -80,7 +85,11 @@ public class ZagrebIndex implements GraphReportExtension, Parametrizable {
     }
 
     private boolean edge_adj(Edge e1,Edge e2) {
-        if(e1.source.getId() == e2.source.getId()) return true;
+        if(e1.source.getId()==e2.source.getId()  &&
+                e1.target.getId()==e2.target.getId()) return false;
+        else if(e1.target.getId()==e2.source.getId() &&
+                e1.source.getId()==e2.target.getId()) return false;
+        else if(e1.source.getId() == e2.source.getId()) return true;
         else if(e1.source.getId() == e2.target.getId()) return true;
         else if(e1.target.getId() == e2.source.getId()) return true;
         else if(e1.target.getId() == e2.target.getId()) return true;
