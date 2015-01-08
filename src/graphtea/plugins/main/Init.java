@@ -62,7 +62,7 @@ public class Init implements PluginInterface, StorableOnExit {
     public static void track(String category, String action) {
         System.out.println(action);
         try {
-            sendGet( ("http://graphtheorysoftware.com/tik/" + category + ":" + action).replaceAll(" ", "-") );
+            sendGet( ("http://graphtheorysoftware.com/tik/run?data=" + category + ":" + action).replaceAll(" ", "-") );
         } catch (Exception e) {
             e.printStackTrace();
         }
