@@ -12,76 +12,50 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * @author Ali Rostami
 
  */
 
-@CommandAttitude(name = "zagreb_index", abbreviation = "_zi")
-public class ZagrebIndex implements GraphReportExtension, Parametrizable {
+@CommandAttitude(name = "zagreb_coindex", abbreviation = "_zci")
+public class ZagrebCoindex implements GraphReportExtension, Parametrizable {
     public String getName() {
-        return "All Zagreb Indices";
+        return "All Zagreb Coindices";
     }
 
     @Parameter(name = "Alpha", description = "")
     public Double alpha = 1.0;
 
     public String getDescription() {
-        return "All Zagreb Indices";
+        return "All Zagreb Coindices";
     }
 
     public Object calculate(GraphData gd) {
         ArrayList<String> out = new ArrayList<String>();
 
         double first_zagreb = 0;
-        for (Vertex v : gd.getGraph().vertices()) {
-            first_zagreb += Math.pow(gd.getGraph().getDegree(v), alpha + 1);
-        }
-
         double second_zagreb = 0;
-        double first_re_zagreb = 0;
-        for (Edge e : gd.getGraph().getEdges()) {
-            second_zagreb +=
-                    Math.pow(
-                            gd.getGraph().getDegree(e.source) *
-                                    gd.getGraph().getDegree(e.target), alpha);
 
-            int d = gd.getGraph().getDegree(e.source) +
-                    gd.getGraph().getDegree(e.target) - 2;
+        for(Vertex v1 : gd.getGraph().getVertexArray()) {
+            for(Vertex v2 : gd.getGraph().getVertexArray()) {
+                if(v1.getId()!=v2.getId()) {
+                    if(!gd.getGraph().isEdge(v1,v2)) {
+                        first_zagreb += Math.pow(gd.getGraph().getDegree(v1), alpha - 1) +
+                                Math.pow(gd.getGraph().getDegree(v2), alpha - 1);
+                        second_zagreb += Math.pow(gd.getGraph().getDegree(v1)*
+                                                  gd.getGraph().getDegree(v2), alpha );
 
-            first_re_zagreb += Math.pow(d, alpha + 1);
-
-        }
-
-        double second_re_zagreb = 0;
-        ArrayList<Edge> eds = new ArrayList<Edge>();
-        for(Edge ee : gd.getGraph().getEdges()) {
-            eds.add(ee);
-        }
-       for (Edge e1 : eds) {
-            for (Edge e2 : eds) {
-                if (edge_adj(e1, e2)) {
-                    int d1 = gd.getGraph().getDegree(e1.source) +
-                            gd.getGraph().getDegree(e1.target) - 2;
-
-                    int d2 = gd.getGraph().getDegree(e2.source) +
-                            gd.getGraph().getDegree(e2.target) - 2;
-
-                    second_re_zagreb += Math.pow(d1 * d2, alpha);
+                    }
                 }
             }
         }
 
-        second_re_zagreb/=2;
-        out.add("First General Zagreb Index : "+ first_zagreb);
-        out.add("Second General Zagreb Index : "+ second_zagreb);
-        out.add("First Reformulated Zagreb Index : " + first_re_zagreb);
-        out.add("Second Reformulated Zagreb Index : " + second_re_zagreb);
-        
+        first_zagreb/=2;
+        second_zagreb/=2;
+        out.add("First Zagreb Coindex : "+ first_zagreb);
+        out.add("Second Zagreb Coindex : "+ second_zagreb);
         return out;
     }
 
