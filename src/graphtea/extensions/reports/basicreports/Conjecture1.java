@@ -49,8 +49,9 @@ public class Conjecture1 implements GraphReportExtension {
 
         double conj = first_zagreb/gd.getGraph().numOfVertices() -
                 second_zagreb/gd.getGraph().getEdgesCount();
-        conj = -conj;
-        out.add("The formula (M_1^2/n - M_2^1/m = "+ conj
+        if(conj !=0)
+            conj = -conj;
+        out.add("The formula (M_2^1/m-M_1^2/n = "+ conj
                 + ") is great than zero.");
         return out;
     }
