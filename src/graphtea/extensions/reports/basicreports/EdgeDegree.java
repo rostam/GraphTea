@@ -45,6 +45,6 @@ public class EdgeDegree implements GraphReportExtension<Integer> {
 	@Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "Chemical Graph Theory";
+		return "Property";
 	}
 }

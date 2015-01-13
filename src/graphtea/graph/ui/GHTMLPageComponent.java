@@ -5,7 +5,10 @@
 
 package graphtea.graph.ui;
 
+import com.sun.corba.se.impl.orbutil.graph.Graph;
+import graphtea.graph.JGraph;
 import graphtea.platform.core.BlackBoard;
+import graphtea.plugins.main.GraphData;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
@@ -51,6 +54,7 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
     public GHTMLPageComponent(BlackBoard b) {
         blackboard = b;
 
+        GraphData gd = new GraphData(b);
         jta = new JEditorPane();
         jta.setEditable(false);
         jta.addHyperlinkListener(this);
@@ -172,6 +176,7 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
         this.message = message;
 
     }
+
 
     public void hideNotificationMessage() {
         setHTML(message);

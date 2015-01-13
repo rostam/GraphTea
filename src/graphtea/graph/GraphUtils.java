@@ -33,6 +33,8 @@ public class GraphUtils {
         GTabbedGraphPane.showNotificationMessage(message, b, formatIt);
     }
 
+
+
     /**
      * @see graphtea.graph.ui.GTabbedGraphPane#setMessage(String,graphtea.platform.core.BlackBoard,boolean)
      */

@@ -2,7 +2,10 @@ package graphtea.extensions.algorithms;
 
 import graphtea.extensions.reports.Partitioner;
 import graphtea.extensions.reports.SubSetListener;
+import graphtea.graph.GraphUtils;
+import graphtea.graph.JGraph;
 import graphtea.graph.graph.*;
+import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.library.BaseVertex;
 import graphtea.library.Path;
 import graphtea.platform.core.BlackBoard;
@@ -13,6 +16,10 @@ import graphtea.ui.components.gpropertyeditor.GCellRenderer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.Vector;
@@ -39,17 +46,31 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
 
     @Override
     public void doAlgorithm() {
+        GraphUtils gu = new GraphUtils();
+        //File f = new File("test.png");
+        URL url = null;
+        try {
+            url = Paths.get("/home/rostam/zeta.jpg").toUri().toURL();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        gu.setMessage("<p><h1>The Zeta transformation of I is computed. <br/> The example here is for three vertices.</h1></p><p>" +
+                "<table><tr><td><h1>I</h1></td><td>" +
+                "<img src=\"" + url.toString()+ "\"></img>" +
+                "</td><td><h1>Z(I)</h1></td></tr></table></p>", graphData.getBlackboard(),true);
+
         step("The algorithm first generates all independent sets I.");
-        /*step("<table>" +
-                "<tr>" +
-                "<td>f({a,b,c})</td>" +
-                "<td>===></td>"         +
-                "<td>+</td>"          +
-                "<td>===></td>"         +
-                "<td>+</td>"          +
-                "<td>===></td>"         +
-                "<td>zeta_f({a,b,c})</td>" +
-                "</tr>");*/
+        //        "<table>" +
+        //        "<tr>" +
+        //        "<td>f({a,b,c})</td>" +
+        //        "<td>===></td>" +
+        //        "<td>+</td>" +
+        //        "<td>===></td>" +
+        //        "<td>+</td>" +
+        //        "<td>===></td>" +
+        //        "<td>zeta_f({a,b,c})</td>" +
+        //       "</tr>");
 
         GraphModel g = graphData.getGraph();
         Vector<ArrayDeque<BaseVertex>> maxsets = getAllIndependentSets(g);
@@ -71,6 +92,7 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
                 indset.add(vid.getId());
             ind_sets.add(indset);
         }
+
 
         new IndSetsDialog(ind_sets,"All Independent Sets I","");
         step("<BR>Now, the nth power of I is computed in each step, until " +
@@ -139,7 +161,7 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
 
     @Override
     public String getName() {
-        return "Inclusion-Exclusion Coloring Algorithm";
+        return "Inclusion-Exclusion Coloring";
     }
 
     @Override

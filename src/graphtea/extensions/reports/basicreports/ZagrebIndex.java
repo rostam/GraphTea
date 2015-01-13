@@ -103,6 +103,6 @@ public class ZagrebIndex implements GraphReportExtension, Parametrizable {
     @Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "Chemical Graph Theory";
+		return "Topological Indices";
 	}
 }

@@ -59,7 +59,7 @@ public class LineGraph implements GraphActionExtension {
     }
 
     public String getName() {
-        return "LineGraph";
+        return "Line Graph";
     }
 
     public String getDescription() {
