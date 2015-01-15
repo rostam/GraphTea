@@ -22,13 +22,13 @@ import java.util.ArrayList;
 @CommandAttitude(name = "conj", abbreviation = "_conj")
 public class Conjecture1 implements GraphReportExtension {
     public String getName() {
-        return "Conjecture 1";
+        return "AutographiX  Conjecture";
     }
 
     public Double alpha = 1.0;
 
     public String getDescription() {
-        return "Conjecture 1";
+        return "AutographiX  conjecture";
     }
 
     public Object calculate(GraphData gd) {
@@ -51,8 +51,8 @@ public class Conjecture1 implements GraphReportExtension {
                 second_zagreb/gd.getGraph().getEdgesCount();
         if(conj !=0)
             conj = -conj;
-        out.add("The formula (M_2^1/m-M_1^2/n = "+ conj
-                + ") is great than zero.");
+        out.add("The result of formula (M_2^1/m-M_1^2/n = "+ conj
+                + ") should be great than zero.");
         return out;
     }
 
