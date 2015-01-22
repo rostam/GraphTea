@@ -50,12 +50,13 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
         //File f = new File("test.png");
         URL url = null;
         try {
-            url = Paths.get("/home/rostam/zeta.jpg").toUri().toURL();
+            url = Paths.get("binary/zeta.jpg").toUri().toURL();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
-        gu.setMessage("<p><h1>The Zeta transformation of I is computed. <br/> The example here is for three vertices.</h1></p><p>" +
+        gu.setMessage("<p><h1>The Zeta transformation of I is computed. <br/> " +
+                "The example here is for three vertices.</h1></p><p>" +
                 "<table><tr><td><h1>I</h1></td><td>" +
                 "<img src=\"" + url.toString()+ "\"></img>" +
                 "</td><td><h1>Z(I)</h1></td></tr></table></p>", graphData.getBlackboard(),true);
