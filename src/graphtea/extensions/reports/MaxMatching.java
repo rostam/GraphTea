@@ -56,7 +56,11 @@ public class MaxMatching implements GraphReportExtension {
                         gd.getGraph().getVertex(i),
                         gd.getGraph().getVertex(match[i])));
         }
-        return sg;
+
+        Vector ret = new Vector();
+        ret.add("Number of Matching:" + sg.edges.size());
+        ret.add(sg);
+        return ret;
     }
 
 	@Override

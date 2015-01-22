@@ -60,7 +60,11 @@ public class RandomMatching implements GraphReportExtension {
             sg.edges.add(gd.getGraph().getEdge(v,vv.get(v)));
         }
 
-        return sg;
+        Vector ret = new Vector();
+        ret.add("Number of Matching:" + sg.edges.size());
+        ret.add(sg);
+
+        return ret;
     }
 
 	@Override
