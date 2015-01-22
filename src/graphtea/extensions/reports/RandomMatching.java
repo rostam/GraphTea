@@ -40,7 +40,11 @@ public class RandomMatching implements GraphReportExtension {
             vi.add(i);
         }
 
-        for(Vertex v1 : gd.getGraph()) {
+        Vertex[] varr = gd.getGraph().getVertexArray();
+        Vertex[] rvarr = (Vertex[]) rotate(varr,r.nextInt(gd.getGraph().getVerticesCount()-2));
+
+
+        for(Vertex v1 : rvarr) {
             for(Vertex v2 : gd.getGraph().getNeighbors(v1)) {
                 if(vi.contains(v1.getId()) && vi.contains(v2.getId())) {
                     vv.put(v1,v2);
@@ -72,4 +76,13 @@ public class RandomMatching implements GraphReportExtension {
 		// TODO Auto-generated method stub
 		return "Property";
 	}
+
+    Vertex[] rotate(final Vertex[] unOrderedArr, final int orderToRotate) {
+        final int length = unOrderedArr.length;
+        final Vertex[] rotated = new Vertex[length];
+        for (int i = 0; i < length; i++) {
+            rotated[(i + orderToRotate) % length] = unOrderedArr[i];
+        }
+        return rotated;
+    }
 }

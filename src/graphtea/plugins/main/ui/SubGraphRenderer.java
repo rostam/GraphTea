@@ -44,7 +44,7 @@ public class SubGraphRenderer implements GBasicCellRenderer<SubGraph> {
         if (mysd.edges != null && mysd.edges.size() > 0) {
             txt += "<BR><B>E: </B> {";
             for (Edge e : mysd.edges) {
-                txt = txt + e.getLabel() + ", ";
+                txt = txt + e.source.getId() + "-"+ e.target.getId() + ", ";
             }
             txt = txt.substring(0, txt.length() - 2) + "}";
         }
