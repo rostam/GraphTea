@@ -60,6 +60,7 @@ public class MaxMatching implements GraphReportExtension {
         Vector ret = new Vector();
         ret.add("Number of Matching:" + sg.edges.size());
         ret.add(sg);
+
         return ret;
     }
 

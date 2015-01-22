@@ -23,7 +23,9 @@ import java.util.HashSet;
  * @author Azin Azadi
  */
 public class SubGraphRenderer implements GBasicCellRenderer<SubGraph> {
+    public static SubGraph sgbck = new SubGraph();
     public Component getRendererComponent(SubGraph sd) {
+        sgbck=sd;
         final SubGraph mysd = new SubGraph(sd.graph);
         mysd.vertices = new HashSet<Vertex>(sd.vertices);
         mysd.edges = new HashSet<Edge>(sd.edges);
@@ -44,7 +46,7 @@ public class SubGraphRenderer implements GBasicCellRenderer<SubGraph> {
         if (mysd.edges != null && mysd.edges.size() > 0) {
             txt += "<BR><B>E: </B> {";
             for (Edge e : mysd.edges) {
-                txt = txt + e.source.getId() + "-"+ e.target.getId() + ", ";
+                txt = txt + e.source.getLabel() + "-"+ e.target.getLabel() + ", ";
             }
             txt = txt.substring(0, txt.length() - 2) + "}";
         }
