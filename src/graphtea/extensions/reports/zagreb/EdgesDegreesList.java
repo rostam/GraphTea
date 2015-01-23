@@ -3,7 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
-package graphtea.extensions.reports.basicreports;
+package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.Edge;
 import graphtea.platform.lang.CommandAttitude;
