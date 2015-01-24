@@ -37,7 +37,11 @@ public class SelectedEdgesZagrebIndex implements GraphReportExtension, Parametri
 
         double first_zagreb = 0;
         for (Vertex v : gd.getGraph().vertices()) {
-            first_zagreb += Math.pow(gd.getGraph().getDegree(v), alpha + 1);
+            for (Vertex nv : gd.getGraph().getNeighbors(v))
+                if(gd.getGraph().getEdge(v,nv).isSelected()) {
+                   first_zagreb += Math.pow(gd.getGraph().getDegree(v), alpha + 1);
+                    break;
+                }
         }
 
         double second_zagreb = 0;
