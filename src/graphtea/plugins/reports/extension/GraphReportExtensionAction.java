@@ -121,7 +121,6 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 
 						}catch(Exception e)
 						{
-
 						}
 
 						}
