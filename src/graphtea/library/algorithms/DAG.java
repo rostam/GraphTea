@@ -15,7 +15,6 @@ import graphtea.platform.lang.Pair;
 
 import java.util.*;
 
-import com.sun.jmx.remote.internal.ArrayQueue;
 
 /**
  * this class contains some basic algorithms of Directed Acyclic Graphs

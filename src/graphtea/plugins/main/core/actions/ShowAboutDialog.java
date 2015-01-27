@@ -4,20 +4,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.main.core.actions;
 
-import com.sun.jndi.toolkit.url.UrlUtil;
 import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;
-import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.ui.UIUtils;
-
-import javax.swing.*;
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-
 
 /**
  * displays the about dialog of graphtea

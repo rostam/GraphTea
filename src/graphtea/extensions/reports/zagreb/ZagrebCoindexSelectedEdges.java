@@ -5,7 +5,6 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
@@ -19,24 +18,24 @@ import java.util.ArrayList;
 
  */
 
-@CommandAttitude(name = "zagreb_coindex", abbreviation = "_zci")
-public class ZagrebCoindex implements GraphReportExtension, Parametrizable {
+@CommandAttitude(name = "zagreb_coindex_edges", abbreviation = "_zcie")
+public class ZagrebCoindexSelectedEdges implements GraphReportExtension, Parametrizable {
     public String getName() {
-        return "All Zagreb Coindices";
+        return "Zagreb Coindices of Selected Edges";
     }
 
     @Parameter(name = "Alpha", description = "")
     public Double alpha = 1.0;
 
     public String getDescription() {
-        return "All Zagreb Coindices";
+        return "Zagreb Coindices of Selected Edges";
     }
 
     public Object calculate(GraphData gd) {
         ArrayList<String> out = new ArrayList<String>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
-        out.add("First Zagreb Coindex : "+ zif.getFirstZagrebCoindex(alpha));
-        out.add("Second Zagreb Coindex : "+ zif.getSecondZagrebCoindex(alpha));
+        out.add("First Zagreb Coindex : "+ zif.getFirstZagrebCoindexSelectedEdges(alpha));
+        out.add("Second Zagreb Coindex : "+ zif.getSecondZagrebCoindexSelectedEdges(alpha));
         return out;
     }
 

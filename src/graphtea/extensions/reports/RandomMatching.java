@@ -20,9 +20,6 @@ import java.util.*;
 
 @CommandAttitude(name = "maxium_matching", abbreviation = "_max_match")
 public class RandomMatching implements GraphReportExtension {
-    class EdgeInt extends HashMap<Integer,Integer> {
-    }
-
     public String getName() {
         return "Random Matching";
     }

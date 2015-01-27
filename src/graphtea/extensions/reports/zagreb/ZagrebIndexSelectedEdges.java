@@ -19,24 +19,26 @@ import java.util.ArrayList;
 
  */
 
-@CommandAttitude(name = "zagreb_coindex", abbreviation = "_zci")
-public class ZagrebCoindex implements GraphReportExtension, Parametrizable {
+@CommandAttitude(name = "zagreb_index_edges", abbreviation = "_zie")
+public class ZagrebIndexSelectedEdges implements GraphReportExtension, Parametrizable {
     public String getName() {
-        return "All Zagreb Coindices";
+        return "Zagreb Indices of Selected Edges";
     }
 
     @Parameter(name = "Alpha", description = "")
     public Double alpha = 1.0;
 
     public String getDescription() {
-        return "All Zagreb Coindices";
+        return "Zagreb Indices of Selected Edges";
     }
 
     public Object calculate(GraphData gd) {
         ArrayList<String> out = new ArrayList<String>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
-        out.add("First Zagreb Coindex : "+ zif.getFirstZagrebCoindex(alpha));
-        out.add("Second Zagreb Coindex : "+ zif.getSecondZagrebCoindex(alpha));
+        out.add("First General Zagreb Index : "+ zif.getFirstZagrebSelectedEdges(alpha));
+        out.add("Second General Zagreb Index : "+ zif.getSecondZagrebSelectedEdges(alpha));
+        out.add("First Reformulated Zagreb Index : " + zif.getFirstReZagrebSelectedEdges(alpha));
+        out.add("Second Reformulated Zagreb Index : " + zif.getSecondReZagrebSelectedEdges(alpha));
         return out;
     }
 

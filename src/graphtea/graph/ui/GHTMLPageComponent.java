@@ -5,8 +5,6 @@
 
 package graphtea.graph.ui;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
-import graphtea.graph.JGraph;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
 

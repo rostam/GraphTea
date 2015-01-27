@@ -4,15 +4,12 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.zagreb;
 
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.RendTable;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-import graphtea.ui.components.gpropertyeditor.utils.ObjectViewer;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -22,10 +19,10 @@ import java.util.Vector;
 
  */
 
-@CommandAttitude(name = "inc_zagreb_index", abbreviation = "_izi")
-public class IncrementalZagrebIndex implements GraphReportExtension, Parametrizable {
+@CommandAttitude(name = "inc_zagreb_index_edges", abbreviation = "_izie")
+public class IncrementalZagrebCoindexSelectedEdges implements GraphReportExtension, Parametrizable {
     public String getName() {
-        return "Incremental Zagreb Indices";
+        return "Incremental Zagreb Indices of Selected Edges";
     }
 
     @Parameter(name = "Starting Value of Alpha", description = "")
@@ -38,30 +35,25 @@ public class IncrementalZagrebIndex implements GraphReportExtension, Parametriza
     public Double inc = 0.1;
 
     public String getDescription() {
-        return "Incremental Zagreb Indices";
+        return "Incremental Zagreb Coindices of Selected Edges";
     }
 
     public Object calculate(GraphData gd) {
-        ArrayList<String> out = new ArrayList<String>();
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add("Alpha");
-        ret.get(0).add("First General Zagreb Index");
-        ret.get(0).add("Second General Zagreb Index");
-        ret.get(0).add("First Reformulated Zagreb Index");
-        ret.get(0).add("Second Reformulated Zagreb Index");
+        ret.get(0).add("First Zagreb Coindex");
+        ret.get(0).add("Second Zagreb Coindex");
 
 
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
         int ind = 0;
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;
             ret.add(new Vector<Object>());
             ret.get(ind).add(alpha);
-            ret.get(ind).add(zif.getFirstZagreb(alpha));
-            ret.get(ind).add(zif.getSecondZagreb(alpha));
-            ret.get(ind).add(zif.getFirstReZagreb(alpha));
-            ret.get(ind).add(zif.getSecondReZagreb(alpha));
+            ret.get(ind).add(zif.getFirstZagrebCoindexSelectedEdges(alpha));
+            ret.get(ind).add(zif.getSecondZagrebCoindexSelectedEdges(alpha));
         }
         return ret;
     }

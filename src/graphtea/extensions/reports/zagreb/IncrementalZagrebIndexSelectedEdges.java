@@ -12,7 +12,6 @@ import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-import graphtea.ui.components.gpropertyeditor.utils.ObjectViewer;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -22,10 +21,10 @@ import java.util.Vector;
 
  */
 
-@CommandAttitude(name = "inc_zagreb_index", abbreviation = "_izi")
-public class IncrementalZagrebIndex implements GraphReportExtension, Parametrizable {
+@CommandAttitude(name = "inc_zagreb_index_edges", abbreviation = "_izie")
+public class IncrementalZagrebIndexSelectedEdges implements GraphReportExtension, Parametrizable {
     public String getName() {
-        return "Incremental Zagreb Indices";
+        return "Incremental Zagreb Indices of Selected Edges";
     }
 
     @Parameter(name = "Starting Value of Alpha", description = "")
@@ -38,7 +37,7 @@ public class IncrementalZagrebIndex implements GraphReportExtension, Parametriza
     public Double inc = 0.1;
 
     public String getDescription() {
-        return "Incremental Zagreb Indices";
+        return "Incremental Zagreb Indices of Selected Edges";
     }
 
     public Object calculate(GraphData gd) {
@@ -51,17 +50,16 @@ public class IncrementalZagrebIndex implements GraphReportExtension, Parametriza
         ret.get(0).add("First Reformulated Zagreb Index");
         ret.get(0).add("Second Reformulated Zagreb Index");
 
-
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
         int ind = 0;
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;
             ret.add(new Vector<Object>());
             ret.get(ind).add(alpha);
-            ret.get(ind).add(zif.getFirstZagreb(alpha));
-            ret.get(ind).add(zif.getSecondZagreb(alpha));
-            ret.get(ind).add(zif.getFirstReZagreb(alpha));
-            ret.get(ind).add(zif.getSecondReZagreb(alpha));
+            ret.get(ind).add(zif.getFirstZagrebSelectedEdges(alpha));
+            ret.get(ind).add(zif.getSecondZagrebSelectedEdges(alpha));
+            ret.get(ind).add(zif.getFirstReZagrebSelectedEdges(alpha));
+            ret.get(ind).add(zif.getSecondReZagrebSelectedEdges(alpha));
         }
         return ret;
     }

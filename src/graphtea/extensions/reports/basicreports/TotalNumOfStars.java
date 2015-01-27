@@ -5,12 +5,9 @@
 
 package graphtea.extensions.reports.basicreports;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.platform.parameter.Parameter;
-import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -35,6 +32,7 @@ public class TotalNumOfStars implements GraphReportExtension {
                 int deg = g.getDegree(v);
                 sum += choose(deg, i+1).intValue();
             }
+            if(i==0) sum /= 2;
             ret.add("NumOf(K1," + (i+1) + ") = "+sum );
         }
 
