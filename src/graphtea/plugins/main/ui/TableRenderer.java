@@ -20,6 +20,7 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Vector;
 
@@ -45,6 +46,7 @@ public class TableRenderer implements GBasicCellRenderer<RendTable> {
             names[i] = (String)sd.get(0).get(i);
         }
 
+        //BigDecimal bd = new BigDecimal();
         Object[][] data = new Object[sd.size()-1][sd.get(0).size()];
         for(int i=1;i<data.length;i++) {
             for(int j=0;j < data[i].length;j++) {

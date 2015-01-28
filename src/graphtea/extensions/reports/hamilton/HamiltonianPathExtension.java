@@ -15,14 +15,14 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "hamiltonianـcycle", abbreviation = "_hc")
-public class HamiltonianCycleExtension implements GraphReportExtension {
+@CommandAttitude(name = "hamiltonianـpath", abbreviation = "_hp")
+public class HamiltonianPathExtension implements GraphReportExtension {
     public String getName() {
-        return "Hamiltonian Cycle";
+        return "Hamiltonian Path";
     }
 
     public String getDescription() {
-        return "Hamiltonian Cycle";
+        return "Hamiltonian Path";
     }
 
     public Object calculate(GraphData gd) {
@@ -51,9 +51,6 @@ public class HamiltonianCycleExtension implements GraphReportExtension {
             sg.edges.add(gd.getGraph().getEdge(gd.getGraph().getVertex(path[i]),
                     gd.getGraph().getVertex(path[i + 1])));
         }
-
-        sg.edges.add(gd.getGraph().getEdge(gd.getGraph().getVertex(path[0]),
-                gd.getGraph().getVertex(path[path.length-1])));
 
         return sg;
     }

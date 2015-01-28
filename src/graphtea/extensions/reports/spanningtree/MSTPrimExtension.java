@@ -2,11 +2,10 @@
 // Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
-package graphtea.extensions.reports.hamilton;
+package graphtea.extensions.reports.spanningtree;
 
 
 import graphtea.graph.graph.SubGraph;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -15,20 +14,19 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "hamiltonianـcycle", abbreviation = "_hc")
-public class HamiltonianCycleExtension implements GraphReportExtension {
+@CommandAttitude(name = "mst_prim", abbreviation = "_mst_p")
+public class MSTPrimExtension implements GraphReportExtension {
     public String getName() {
-        return "Hamiltonian Cycle";
+        return "MST Prim";
     }
 
     public String getDescription() {
-        return "Hamiltonian Cycle";
+        return "MST Prim";
     }
 
     public Object calculate(GraphData gd) {
         SubGraph sg = new SubGraph();
-
-        HamiltonianCycle hc = new HamiltonianCycle();
+        MSTPrim mp = new MSTPrim();
         double[][] adj = gd.getGraph().getAdjacencyMatrix().getArray();
         int[][] adjMatrix = new int[gd.getGraph().getVerticesCount()]
                 [gd.getGraph().getVerticesCount()];
@@ -39,28 +37,20 @@ public class HamiltonianCycleExtension implements GraphReportExtension {
                 else adjMatrix[i][j]=1;
             }
         }
-        int[] path = hc.HamiltonCycle(adjMatrix);
-
-        if(path == null) return sg;
-
-        for(int i=0 ;i<path.length;i++) {
-            sg.vertices.add(gd.getGraph().getVertex(path[i]));
+        int[] parent = mp.prim(adjMatrix);
+        for(int i=0;i<gd.getGraph().getVerticesCount();i++) {
+            if(parent[i] != -1) {
+                sg.edges.add(gd.getGraph().getEdge(gd.getGraph().getVertex(i),
+                        gd.getGraph().getVertex(parent[i])));
+            }
         }
-
-        for(int i=0 ;i<path.length-1;i++) {
-            sg.edges.add(gd.getGraph().getEdge(gd.getGraph().getVertex(path[i]),
-                    gd.getGraph().getVertex(path[i + 1])));
-        }
-
-        sg.edges.add(gd.getGraph().getEdge(gd.getGraph().getVertex(path[0]),
-                gd.getGraph().getVertex(path[path.length-1])));
-
         return sg;
     }
 
 	@Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "Property";
+		return "Minimum Spanning Tree";
 	}
+
 }
