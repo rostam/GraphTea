@@ -22,7 +22,7 @@ import java.util.Vector;
 @CommandAttitude(name = "inc_zagreb_index_edges", abbreviation = "_izie")
 public class IncrementalZagrebCoindexSelectedEdges implements GraphReportExtension, Parametrizable {
     public String getName() {
-        return "Incremental Zagreb Indices of Selected Edges";
+        return "Incremental Zagreb Coindices of Selected Edges";
     }
 
     @Parameter(name = "Starting Value of Alpha", description = "")
