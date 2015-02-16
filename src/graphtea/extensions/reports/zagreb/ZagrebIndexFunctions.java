@@ -87,7 +87,6 @@ public class ZagrebIndexFunctions {
             }
         }
 
-        first_zagreb /= 2;
 
         return first_zagreb;
     }
@@ -107,7 +106,6 @@ public class ZagrebIndexFunctions {
             }
         }
 
-        second_zagreb /= 2;
 
         return second_zagreb;
     }
