@@ -1,7 +1,10 @@
 package graphtea.extensions.reports.zagreb;
 
+import graphtea.graph.GraphUtils;
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
+import graphtea.library.algorithms.util.LibraryUtils;
 import graphtea.plugins.main.GraphData;
 
 import java.util.ArrayList;
@@ -76,17 +79,13 @@ public class ZagrebIndexFunctions {
     double getFirstZagrebCoindex(double alpha) {
         double first_zagreb = 0;
 
-        for (Vertex v1 : gd.getGraph().getVertexArray()) {
-            for (Vertex v2 : gd.getGraph().getVertexArray()) {
-                if (v1.getId() != v2.getId()) {
-                    if (!gd.getGraph().isEdge(v1, v2)) {
-                        first_zagreb += Math.pow(gd.getGraph().getDegree(v1), alpha - 1) +
-                                Math.pow(gd.getGraph().getDegree(v2), alpha - 1);
-                    }
-                }
-            }
+        GraphModel g = gd.getGraph();
+        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
+        for (Edge e : g2.getEdges()) {
+            int v1 = g.getDegree(g.getVertex(e.source.getId()));
+            int v2 = g.getDegree(g.getVertex(e.target.getId()));
+            first_zagreb += Math.pow(v1, alpha - 1) + Math.pow(v2, alpha - 1);
         }
-
 
         return first_zagreb;
     }
@@ -94,18 +93,14 @@ public class ZagrebIndexFunctions {
     double getSecondZagrebCoindex(double alpha) {
         double second_zagreb = 0;
 
-        for (Vertex v1 : gd.getGraph().getVertexArray()) {
-            for (Vertex v2 : gd.getGraph().getVertexArray()) {
-                if (v1.getId() != v2.getId()) {
-                    if (!gd.getGraph().isEdge(v1, v2)) {
-                        second_zagreb += Math.pow(gd.getGraph().getDegree(v1) *
-                                gd.getGraph().getDegree(v2), alpha);
+        GraphModel g = gd.getGraph();
+        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
 
-                    }
-                }
-            }
+        for (Edge e : g2.getEdges()) {
+            int v1 = g.getDegree(g.getVertex(e.source.getId()));
+            int v2 = g.getDegree(g.getVertex(e.target.getId()));
+            second_zagreb += Math.pow(v1*v2, alpha);
         }
-
 
         return second_zagreb;
     }
