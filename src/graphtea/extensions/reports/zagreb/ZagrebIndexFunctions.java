@@ -84,7 +84,7 @@ public class ZagrebIndexFunctions {
         for (Edge e : g2.getEdges()) {
             int v1 = g.getDegree(g.getVertex(e.source.getId()));
             int v2 = g.getDegree(g.getVertex(e.target.getId()));
-            first_zagreb += Math.pow(v1, alpha - 1) + Math.pow(v2, alpha - 1);
+            first_zagreb += Math.pow(v1, alpha) + Math.pow(v2, alpha);
         }
 
         return first_zagreb;
@@ -193,8 +193,8 @@ public class ZagrebIndexFunctions {
                 if(cond1 && cond2) {
                     if (v1.getId() != v2.getId()) {
                         if (!gd.getGraph().isEdge(v1, v2)) {
-                            first_zagreb += Math.pow(gd.getGraph().getDegree(v1), alpha - 1) +
-                                    Math.pow(gd.getGraph().getDegree(v2), alpha - 1);
+                            first_zagreb += Math.pow(gd.getGraph().getDegree(v1), alpha) +
+                                    Math.pow(gd.getGraph().getDegree(v2), alpha);
                         }
                     }
                 }
@@ -240,7 +240,6 @@ public class ZagrebIndexFunctions {
         second_zagreb /= 2;
         return second_zagreb;
     }
-
 
     private boolean edge_adj(Edge e1,Edge e2) {
         if(e1.source.getId()==e2.source.getId()  &&
