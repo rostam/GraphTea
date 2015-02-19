@@ -5,7 +5,6 @@
 
 package graphtea.extensions.actions;
 
-import graphtea.extensions.reports.MaxMatching;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;

@@ -1,4 +1,4 @@
-package graphtea.extensions.reports;
+package graphtea.extensions.reports.matching;
 
 import java.util.Arrays;
 import java.util.List;

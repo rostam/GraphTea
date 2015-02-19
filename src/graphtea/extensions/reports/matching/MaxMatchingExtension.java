@@ -2,7 +2,7 @@
 // Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
-package graphtea.extensions.reports;
+package graphtea.extensions.reports.matching;
 
 
 import graphtea.graph.graph.Edge;
@@ -18,7 +18,7 @@ import java.util.*;
  */
 
 @CommandAttitude(name = "maxium_matching", abbreviation = "_max_match")
-public class MaxMatching implements GraphReportExtension {
+public class MaxMatchingExtension implements GraphReportExtension {
     class EdgeInt extends HashMap<Integer,Integer> {
     }
 
