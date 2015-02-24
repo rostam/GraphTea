@@ -50,7 +50,15 @@ public class TableRenderer implements GBasicCellRenderer<RendTable> {
         Object[][] data = new Object[sd.size()-1][sd.get(0).size()];
         for(int i=1;i<data.length;i++) {
             for(int j=0;j < data[i].length;j++) {
-                data[i-1][j] = sd.get(i).get(j);
+                Object o = sd.get(i).get(j);
+                if(o instanceof Double) {
+                    Double toBeTruncated = (Double) o;
+                    Double truncatedDouble =
+                            new BigDecimal(toBeTruncated).
+                                    setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    o = truncatedDouble;
+                }
+                data[i-1][j] = o;
             }
         }
 

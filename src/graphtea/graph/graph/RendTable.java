@@ -1,5 +1,6 @@
 package graphtea.graph.graph;
 
+import java.math.BigDecimal;
 import java.util.Vector;
 
 /**
@@ -10,10 +11,18 @@ public class RendTable extends Vector<Vector<Object>> {
         String out = "";
         for(int i=0;i<this.size();i++) {
             for(int j=0;j<this.get(0).size();j++) {
+                Object o = this.get(i).get(j);
+                if(o instanceof Double) {
+                    Double toBeTruncated = (Double) o;
+                    Double truncatedDouble =
+                            new BigDecimal(toBeTruncated).
+                                    setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    o = truncatedDouble;
+                }
                 if(j!=this.get(0).size()-1)
-                  out += this.get(i).get(j) + ", ";
+                  out += o + ", ";
                 else
-                    out += this.get(i).get(j);
+                    out += o;
             }
             out += "\n";
         }
