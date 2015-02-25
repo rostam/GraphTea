@@ -21,10 +21,10 @@ import java.util.Vector;
 
  */
 
-@CommandAttitude(name = "conj5", abbreviation = "_conj5")
+@CommandAttitude(name = "conj4", abbreviation = "_conj4")
 public class Conjecture5 implements GraphReportExtension,Parametrizable {
     public String getName() {
-        return "ZIndices of Matching Conjecture 5";
+        return "ZIndices of Matching Conjecture 4";
     }
 
     @Parameter(name = "Starting Value of Alpha", description = "")
@@ -37,7 +37,7 @@ public class Conjecture5 implements GraphReportExtension,Parametrizable {
     public Double inc = 0.1;
 
     public String getDescription() {
-        return "ZIndices of Matching Conjecture 5";
+        return "ZIndices of Matching Conjecture 4";
     }
 
     public Object calculate(GraphData gd) {
@@ -45,7 +45,6 @@ public class Conjecture5 implements GraphReportExtension,Parametrizable {
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add("Alpha");
-        ret.get(0).add("");
         ret.get(0).add(" M^{a+1}_1 (Matching) ");
         ret.get(0).add(" ((2a_m + b_m + 2k)/2k) M^{a}_1 (Matching) ");
 
