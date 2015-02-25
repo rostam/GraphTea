@@ -241,6 +241,25 @@ public class ZagrebIndexFunctions {
         return second_zagreb;
     }
 
+    public double getFirstVariableZagrebIndex(double alpha) {
+        double ret = 0;
+        for(Vertex v : gd.getGraph()) {
+            ret += Math.pow(gd.getGraph().getDegree(v),
+                    2*alpha);
+        }
+        return ret;
+    }
+
+    public double getSecondVariableZagrebIndex(double alpha) {
+        double ret = 0;
+        for(Edge e : gd.getGraph().getEdges()) {
+            double degs = gd.getGraph().getDegree(e.source);
+            double degt = gd.getGraph().getDegree(e.target);
+            ret+= Math.pow(degs*degt,alpha);
+        }
+        return ret;
+    }
+
     private boolean edge_adj(Edge e1,Edge e2) {
         if(e1.source.getId()==e2.source.getId()  &&
                 e1.target.getId()==e2.target.getId()) return false;
