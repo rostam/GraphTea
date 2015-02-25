@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "conj", abbreviation = "_conj")
-public class Conjecture1 implements GraphReportExtension {
+public class AutographixConj implements GraphReportExtension {
     public String getName() {
         return "AutographiX  Conjecture";
     }
