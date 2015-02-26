@@ -51,8 +51,8 @@ public class Conjecture20 implements GraphReportExtension,Parametrizable {
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;
             double secondZagreb = zif.getSecondZagreb(alpha);
-            double rhs = zif.getFirstZagreb(alpha)
-                    *zif.getFirstReZagreb(alpha+1);
+            double rhs = zif.getFirstZagreb(alpha-1)
+                    *zif.getFirstReZagreb(alpha);
             rhs=rhs/(2*gd.getGraph().getEdgesCount());
             ret.add(new Vector<Object>());
             ret.get(ind).add(alpha);
