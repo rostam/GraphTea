@@ -28,7 +28,7 @@ public class Conjecture5 implements GraphReportExtension,Parametrizable {
     }
 
     @Parameter(name = "Starting Value of Alpha", description = "")
-    public Double start_alpha = -10.0;
+    public Double start_alpha = 0.0;
 
     @Parameter(name = "End Value of Alpha", description = "")
     public Double end_alpha = 10.0;
@@ -48,7 +48,6 @@ public class Conjecture5 implements GraphReportExtension,Parametrizable {
         ret.get(0).add(" M^{a+1}_1 (Matching) ");
         ret.get(0).add(" ((2a_m + b_m + 2k)/2k) M^{a}_1 (Matching) ");
 
-        int ind = 0;
         double k = 0;
         for(Edge e : gd.getGraph().getEdges()) {
             if(e.isSelected()) k++;
@@ -87,6 +86,7 @@ public class Conjecture5 implements GraphReportExtension,Parametrizable {
             }
         }
 
+        int ind = 0;
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;
             double firstZagrebAPlus1 = zif.getFirstZagrebSelectedEdges(alpha);
@@ -95,7 +95,7 @@ public class Conjecture5 implements GraphReportExtension,Parametrizable {
             ret.add(new Vector<Object>());
             ret.get(ind).add(alpha);
             ret.get(ind).add(firstZagrebAPlus1);
-            ret.get(ind).add(firstZagrebA);
+            ret.get(ind).add(coef*firstZagrebA);
         }
         return ret;
     }
