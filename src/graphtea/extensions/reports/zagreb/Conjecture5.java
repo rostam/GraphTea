@@ -89,7 +89,7 @@ public class Conjecture5 implements GraphReportExtension,Parametrizable {
 
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;
-            double firstZagrebAPlus1 = zif.getFirstZagrebSelectedEdges(alpha+1);
+            double firstZagrebAPlus1 = zif.getFirstZagrebSelectedEdges(alpha);
             double firstZagrebA = zif.getFirstZagrebSelectedEdges(alpha);
             double coef = (2*am + bm + 2*k)/(2*k);
             ret.add(new Vector<Object>());
