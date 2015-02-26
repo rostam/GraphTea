@@ -45,7 +45,7 @@ public class Conjecture20 implements GraphReportExtension,Parametrizable {
         ret.add(new Vector<Object>());
         ret.get(0).add("Alpha");
         ret.get(0).add(" M^{a}_2 (G) ");
-        ret.get(0).add(" 1/2m M^{a}_1(G) M^{a+1}_1(G) ");
+        ret.get(0).add(" 1/2n M^{a}_1(G) M^{a+1}_1(G) ");
 
         int ind = 0;
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
@@ -53,7 +53,7 @@ public class Conjecture20 implements GraphReportExtension,Parametrizable {
             double secondZagreb = zif.getSecondZagreb(alpha);
             double rhs = zif.getFirstZagreb(alpha-1)
                     *zif.getFirstReZagreb(alpha);
-            rhs=rhs/(2*gd.getGraph().getEdgesCount());
+            rhs=rhs/(2*gd.getGraph().getVerticesCount());
             ret.add(new Vector<Object>());
             ret.get(ind).add(alpha);
             ret.get(ind).add(secondZagreb);
