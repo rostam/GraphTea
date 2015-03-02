@@ -20,10 +20,10 @@ import java.util.Vector;
 
  */
 
-@CommandAttitude(name = "conj20", abbreviation = "_conj20")
-public class Conjecture20 implements GraphReportExtension,Parametrizable {
+@CommandAttitude(name = "conj5", abbreviation = "_conj5")
+public class Conjecture6 implements GraphReportExtension,Parametrizable {
     public String getName() {
-        return "ZIndices of Matching Conjecture 20";
+        return "ZIndices of Matching Conjecture 5";
     }
 
     @Parameter(name = "Starting Value of Alpha", description = "")
@@ -36,7 +36,7 @@ public class Conjecture20 implements GraphReportExtension,Parametrizable {
     public Double inc = 0.1;
 
     public String getDescription() {
-        return "ZIndices of Matching Conjecture 20";
+        return "ZIndices of Matching Conjecture 4";
     }
 
     public Object calculate(GraphData gd) {
@@ -44,21 +44,20 @@ public class Conjecture20 implements GraphReportExtension,Parametrizable {
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add("Alpha");
-        ret.get(0).add(" M^{a}_2 (G) ");
-        ret.get(0).add(" 1/2n M^{a}_1(G) M^{a+1}_1(G) ");
+        ret.get(0).add(" EM^{a}_2 (G) ");
+        ret.get(0).add(" 1/2m EM^{a}_1 (G)*EM^{a+1}_1 (G)  ");
 
         int ind = 0;
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;
-            double secondZagreb = zif.getSecondZagreb(alpha);
-            double rhs = zif.getFirstZagreb(alpha-1)
-                    *zif.getFirstZagreb(alpha);
-            System.out.println();
-            rhs=rhs/(2*gd.getGraph().getVerticesCount());
+            double firstReZagreb = zif.getFirstReZagreb(alpha-1);
+            double firstReZagrebA1 = zif.getFirstReZagreb(alpha);
+            double secondReZagreb = zif.getSecondReZagreb(alpha);
+            double coef = 1/(2.*gd.getGraph().getEdgesCount());
             ret.add(new Vector<Object>());
             ret.get(ind).add(alpha);
-            ret.get(ind).add(secondZagreb);
-            ret.get(ind).add(rhs);
+            ret.get(ind).add(secondReZagreb);
+            ret.get(ind).add(coef*firstReZagreb*firstReZagrebA1);
         }
         return ret;
     }
