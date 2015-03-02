@@ -56,10 +56,10 @@ public class Conjecture34 implements GraphReportExtension,Parametrizable {
         int ind = 0;
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;
-            double first_zagreb = zif.getFirstZagrebSelectedEdges(alpha);
+            double first_zagreb = zif.getFirstZagrebSelectedEdges(alpha-1);
             double second_zagreb = zif.getSecondZagrebSelectedEdges(alpha);
-            double nMinus1PowAlpha = Math.pow(
-                    gd.getGraph().getVerticesCount(),alpha);
+            double nMinus1PowAlpha =
+                    Math.pow(gd.getGraph().getVerticesCount()-1,alpha);
 
             double maxDegPowAlpha = Math.pow(maxDeg,alpha);
             ret.add(new Vector<Object>());
