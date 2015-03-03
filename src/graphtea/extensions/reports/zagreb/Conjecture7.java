@@ -12,8 +12,8 @@ import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
+import sun.nio.cs.ext.MacGreek;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -21,14 +21,14 @@ import java.util.Vector;
 
  */
 
-@CommandAttitude(name = "conj2", abbreviation = "_conj2")
-public class Conjecture2 implements GraphReportExtension,Parametrizable {
+@CommandAttitude(name = "conj6", abbreviation = "_conj6")
+public class Conjecture7 implements GraphReportExtension,Parametrizable {
     public String getName() {
-        return "ZIndices of Matching Conjecture";
+        return "ZIndices of Matching Conjecture 6";
     }
 
     @Parameter(name = "Starting Value of Alpha", description = "")
-    public Double start_alpha = -10.0;
+    public Double start_alpha = 0.0;
 
     @Parameter(name = "End Value of Alpha", description = "")
     public Double end_alpha = 10.0;
@@ -36,9 +36,8 @@ public class Conjecture2 implements GraphReportExtension,Parametrizable {
     @Parameter(name = "Incremental Value", description = "")
     public Double inc = 0.1;
 
-
     public String getDescription() {
-        return "ZIndices of Matching Conjecture";
+        return "ZIndices of Matching Conjecture 6";
     }
 
     public Object calculate(GraphData gd) {
@@ -46,18 +45,24 @@ public class Conjecture2 implements GraphReportExtension,Parametrizable {
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add("Alpha");
-        ret.get(0).add(" M^{a+1}_1 (Matching) ");
-        ret.get(0).add(" 2M^{a}_2 (Matching) ");
+        ret.get(0).add(" M^{2a}_1 (G) ");
+        ret.get(0).add(" 2m/n M^{2a-1}_1 (G)");
+        ret.get(0).add(" n(2m/n)^a");
 
         int ind = 0;
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;
-            double first_zagreb = zif.getFirstZagrebSelectedEdges(alpha);
-            double second_zagreb = zif.getSecondZagrebSelectedEdges(alpha);
+            double fAlpha2A=zif.getFirstZagreb(2*alpha-1);
+            double fAlpha2AMinus1=zif.getFirstZagreb(2*alpha-2);
+            double coef = 2*gd.getGraph().getEdgesCount()/
+                    gd.getGraph().getVerticesCount();
+
             ret.add(new Vector<Object>());
             ret.get(ind).add(alpha);
-            ret.get(ind).add(first_zagreb);
-            ret.get(ind).add(2*second_zagreb);
+            ret.get(ind).add(fAlpha2A);
+            ret.get(ind).add(coef*fAlpha2AMinus1);
+            ret.get(ind).add(gd.getGraph().getVerticesCount()*
+                    Math.pow(coef,alpha));
         }
         return ret;
     }
