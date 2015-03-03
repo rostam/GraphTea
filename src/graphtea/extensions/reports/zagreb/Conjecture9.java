@@ -97,7 +97,7 @@ public class Conjecture9 implements GraphReportExtension,Parametrizable {
             ret.get(ind).add(fZagreb);
             ret.get(ind).add(2*k*Math.pow(coef,2*alpha));
             ret.get(ind).add(coef*fZagreb2);
-        }go
+        }
         return ret;
     }
 

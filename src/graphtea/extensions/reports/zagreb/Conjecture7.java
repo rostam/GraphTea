@@ -47,14 +47,14 @@ public class Conjecture7 implements GraphReportExtension,Parametrizable {
         ret.get(0).add("Alpha");
         ret.get(0).add(" M^{2a}_1 (G) ");
         ret.get(0).add(" 2m/n M^{2a-1}_1 (G)");
-        ret.get(0).add(" n(2m/n)^a");
+        ret.get(0).add(" n(2m/n)^2a");
 
         int ind = 0;
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;
             double fAlpha2A=zif.getFirstZagreb(2*alpha-1);
             double fAlpha2AMinus1=zif.getFirstZagreb(2*alpha-2);
-            double coef = 2*gd.getGraph().getEdgesCount()/
+            double coef = 2.*gd.getGraph().getEdgesCount()/
                     gd.getGraph().getVerticesCount();
 
             ret.add(new Vector<Object>());
@@ -62,7 +62,7 @@ public class Conjecture7 implements GraphReportExtension,Parametrizable {
             ret.get(ind).add(fAlpha2A);
             ret.get(ind).add(coef*fAlpha2AMinus1);
             ret.get(ind).add(gd.getGraph().getVerticesCount()*
-                    Math.pow(coef,alpha));
+                    Math.pow(coef,2*alpha));
         }
         return ret;
     }
