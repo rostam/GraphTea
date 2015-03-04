@@ -46,6 +46,7 @@ public class Conjecture8 implements GraphReportExtension,Parametrizable {
         ret.get(0).add("Alpha");
         ret.get(0).add(" 2*M^{a}_2 (M) ");
         ret.get(0).add(" M^{a+1}_1 (M)");
+        ret.get(0).add(" (2a_m+b_m+2k/2k)^(a)M^{a}_1 (M)");
         ret.get(0).add(" (2a_m+b_m+2k/2k)^(a-1)M^{a+1}_1 (M)");
         double k = 0;
         for(Edge e : gd.getGraph().getEdges()) {
@@ -90,13 +91,16 @@ public class Conjecture8 implements GraphReportExtension,Parametrizable {
             ind++;
             double sZagreb=zif.getSecondZagrebSelectedEdges(alpha);
             double fZagreb=zif.getFirstZagrebSelectedEdges(alpha);
+            double fZagreb1=zif.getFirstZagrebSelectedEdges(alpha-1);
             double coef = (2*am + bm + 2*k)/(2*k);
             ret.add(new Vector<Object>());
             ret.get(ind).add(alpha);
             ret.get(ind).add(2*sZagreb);
             ret.get(ind).add(fZagreb);
+            ret.get(ind).add(Math.pow(coef,alpha)*fZagreb1);
             ret.get(ind).add(Math.pow(coef,alpha-1)*fZagreb);
         }
+
         return ret;
     }
 
