@@ -20,7 +20,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "conj1415", abbreviation = "_conj1415")
-public class Conjecture314315 implements GraphReportExtension,Parametrizable {
+public class Conjecture1415 implements GraphReportExtension,Parametrizable {
     public String getName() {
         return "ZIndices of Matching Conjecture 1415";
     }
@@ -43,24 +43,42 @@ public class Conjecture314315 implements GraphReportExtension,Parametrizable {
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add("Alpha");
-        ret.get(0).add(" M^{a}_2 (Matching) ");
+        ret.get(0).add(" M^{a}_2 (M) ");
+        ret.get(0).add(" Delta m ");
         ret.get(0).add(" m(n-1) ");
         ret.get(0).add(" 2m^2/n ");
+        ret.get(0).add(" 1/2 (2m/n)^a M^a_1(M) ");
+        ret.get(0).add(" 1/2 (2m/n)^a M^a_1(G) ");
+
+        double maxDeg = 0;
+        for(Vertex v : gd.getGraph()) {
+            if(gd.getGraph().getDegree(v) > maxDeg)
+                maxDeg = gd.getGraph().getDegree(v);
+        }
 
         int ind = 0;
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;
-            double second_zagreb = zif.getSecondZagrebSelectedEdges(alpha);
+            double fZagrebM = zif.getFirstZagrebSelectedEdges(alpha-1);
+            double fZagrebG = zif.getFirstZagreb(alpha - 1);
+            double sZagreb = zif.getSecondZagrebSelectedEdges(alpha);
             double mnMinus1 = gd.getGraph().getEdgesCount()
                     *(gd.getGraph().numOfVertices()-1);
             double twomP2On =
                     (Math.pow(gd.getGraph().getEdgesCount(),2)*2)/
                             gd.getGraph().numOfVertices();
+
+            double coef = 2.*gd.getGraph().getEdgesCount()/
+                    gd.getGraph().getVerticesCount();
+            coef = 1/2.*Math.pow(coef, alpha);
             ret.add(new Vector<Object>());
             ret.get(ind).add(alpha);
-            ret.get(ind).add(second_zagreb);
+            ret.get(ind).add(sZagreb);
+            ret.get(ind).add(maxDeg*gd.getGraph().getEdgesCount());
             ret.get(ind).add(mnMinus1);
             ret.get(ind).add(twomP2On);
+            ret.get(ind).add(coef*fZagrebM);
+            ret.get(ind).add(coef*fZagrebG);
         }
         return ret;
     }
