@@ -27,3 +27,6 @@ build.log
 prefs
 
 Thumbs.db
+
+# installers
+install4j/GraphTea.*
