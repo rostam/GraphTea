@@ -11,6 +11,7 @@ import graphtea.library.BaseVertex;
 import graphtea.library.algorithms.Algorithm;
 import graphtea.library.algorithms.AutomatedAlgorithm;
 import graphtea.library.algorithms.util.EventUtils;
+import graphtea.library.event.Event;
 import graphtea.library.event.GraphRequest;
 import graphtea.library.event.VertexEvent;
 import graphtea.library.event.VertexRequest;
@@ -77,7 +78,7 @@ public class Dijkstra<VertexType extends BaseVertex,
         PriorityQueue<VertexType> Q = new PriorityQueue<VertexType>(1, vComp);
 
         Q.add(vertex);
-        dispatchEvent(new VertexEvent<VertexType, EdgeType>(graph, vertex, VertexEvent.EventType.MARK));
+        //dispatchEvent(new VertexEvent<VertexType, EdgeType>(graph, vertex, VertexEvent.EventType.MARK));
         vertex.setMark(true);
         while (!Q.isEmpty()) {
             VertexType vMin = Q.poll();
@@ -86,26 +87,27 @@ public class Dijkstra<VertexType extends BaseVertex,
             if (edg != null)
                 edg.setMark(true);
 //            vMin.setColor(2);
-            EventUtils.algorithmStep(this, "");
+
+            //EventUtils.algorithmStep(this, "");
             selectedVertices.add(vMin);
             Iterator<EdgeType> iet = graph.edgeIterator(vMin);
             while ((iet.hasNext())) {
                 EdgeType edge = iet.next();
-//                edge.setColor((int) (Math.random() * 10));
-//           EventUtils.algorithmStep(this,600);
+                edge.setColor((int) (Math.random() * 10));
+           //EventUtils.algorithmStep(this,600);
                 VertexType target = vMin == edge.source ? edge.target : edge.source;
                 VertexType source = vMin;
                 if (!selectedVertices.contains(target)) {
                     if (dist[target.getId()] > dist[source.getId()] + edge.getWeight()) {
                         dist[target.getId()] = dist[source.getId()] + edge.getWeight();
-//                        dispatchEvent(new EdgeEvent<VertexType, EdgeType>(graph, edge, EdgeEvent.EventType.MARK));
-//                        dispatchEvent(new VertexEvent<VertexType, EdgeType>(graph, target, VertexEvent.EventType.MARK));
-//                        edge.setMark(true);
+                        //dispatchEvent(new EdgeEvent<VertexType, EdgeType>(graph, edge, EdgeEvent.EventType.MARK));
+                        //dispatchEvent(new VertexEvent<VertexType, EdgeType>(graph, target, VertexEvent.EventType.MARK));
+                        edge.setMark(true);
                         edges.put(target, edge);
-//                        target.setMark(true);
-//                        target.setColor(5);
+                        target.setMark(true);
+                        target.setColor(5);
                         Q.add(target);
-//                        prev.add(edge.source.getId(), edge.target);
+                        prev.add(edge.source.getId(), edge.target);
                     }
                 }
             }
@@ -121,6 +123,8 @@ public class Dijkstra<VertexType extends BaseVertex,
         VertexRequest<VertexType, EdgeType> vr = new VertexRequest<VertexType, EdgeType>(g, "Please choose a vertex for the Dijkstra algorithm.");
         dispatchEvent(vr);
         VertexType v = vr.getVertex();
+        System.out.println("Bah bah " + v.toString());
         getShortestPath(g, v);
+        System.out.println("Bah bah 1" + v.toString());
     }
 }

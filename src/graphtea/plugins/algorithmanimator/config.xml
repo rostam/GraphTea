@@ -42,18 +42,18 @@
                 id="do dfs"/>
         <action class="graphtea.plugins.algorithmanimator.BFSAnim"
                 id="do bfs"/>
-        <action class="graphtea.plugins.algorithmanimator.PrimAnim"
-                id="do prim"/>
-        <action
-                class="graphtea.plugins.algorithmanimator.KruskalAnim"
-                id="do kruskal"/>
+        <!--<action class="graphtea.plugins.algorithmanimator.PrimAnim"-->
+                <!--id="do prim"/>-->
+        <!--<action-->
+                <!--class="graphtea.plugins.algorithmanimator.KruskalAnim"-->
+                <!--id="do kruskal"/>-->
         <action
                 class="graphtea.plugins.algorithmanimator.AppVertexCoverAnim"
                 id="do app vertex cover"/>
-        <action
-                class="graphtea.plugins.algorithmanimator.DijkstraAnim"
-                id="do dijkstra"/>
         <!--<action-->
+                <!--class="graphtea.plugins.algorithmanimator.DijkstraAnim"-->
+                <!--id="do dijkstra"/>-->
+        <!--&lt;!&ndash;<action&ndash;&gt;-->
         <!--class="graphtea.plugins.algorithmanimator.BellmanFordAnim"-->
         <!--id="do bellmanford"/>-->
         <action
