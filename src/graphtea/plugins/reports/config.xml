@@ -9,14 +9,14 @@
 <root>
 	<actions>
 		<action
-			class="graphtea.plugins.reports.spectralreports.maxflowmincut.GomoryHuTree" />
+			class="graphtea.extensions.reports.spectralreports.maxflowmincut.GomoryHuTree" />
 		<!--<action-->
-			<!--class="graphtea.plugins.reports.spectralreports.maxflowmincut.MaximumFlow" />-->
+			<!--class="graphtea.extensions.reports.spectralreports.maxflowmincut.MaximumFlow" />-->
 		<!--<action-->
-			<!--class="graphtea.plugins.reports.spectralreports.maxflowmincut.MinimumCut" />-->
-		<!--<action class="graphtea.plugins.reports.spectralreports.IsBipartite" />-->
-		<!--<action class="graphtea.plugins.reports.spectralreports.PerfectMatchingReport" />-->
-		<action class="graphtea.plugins.reports.spectralreports.LaplacianOfGraph" />
+			<!--class="graphtea.extensions.reports.spectralreports.maxflowmincut.MinimumCut" />-->
+		<!--<action class="graphtea.extensions.reports.spectralreports.IsBipartite" />-->
+		<!--<action class="graphtea.extensions.reports.spectralreports.PerfectMatchingReport" />-->
+		<action class="graphtea.extensions.reports.spectralreports.LaplacianOfGraph" />
 		<!--<action class="graphtea.plugins.reports.ShowReports" id="reports show" />-->
 	</actions>
 	<ui>

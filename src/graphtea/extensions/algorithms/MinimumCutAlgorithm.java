@@ -5,7 +5,7 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
-import graphtea.plugins.reports.spectralreports.maxflowmincut.MinCut;
+import graphtea.extensions.reports.spectralreports.maxflowmincut.MinCut;
 
 /**
  * Created with IntelliJ IDEA.

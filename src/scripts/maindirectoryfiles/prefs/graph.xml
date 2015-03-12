@@ -2422,34 +2422,34 @@
           <entry key="object" value="graphtea.plugins.reports.basicreports.test"/>
         </map>
       </node>
-      <node name="graphtea.plugins.reports.spectralreports.IsBipartite">
+      <node name="graphtea.extensions.reports.spectralreports.IsBipartite">
         <map>
-          <entry key="object" value="graphtea.plugins.reports.spectralreports.IsBipartite"/>
+          <entry key="object" value="graphtea.extensions.reports.spectralreports.IsBipartite"/>
         </map>
       </node>
-      <node name="graphtea.plugins.reports.spectralreports.LaplacianOfGraph">
+      <node name="graphtea.extensions.reports.spectralreports.LaplacianOfGraph">
         <map>
-          <entry key="object" value="graphtea.plugins.reports.spectralreports.LaplacianOfGraph"/>
+          <entry key="object" value="graphtea.extensions.reports.spectralreports.LaplacianOfGraph"/>
         </map>
       </node>
-      <node name="graphtea.plugins.reports.spectralreports.PerfectMatchingReport">
+      <node name="graphtea.extensions.reports.spectralreports.PerfectMatchingReport">
         <map>
-          <entry key="object" value="graphtea.plugins.reports.spectralreports.PerfectMatchingReport"/>
+          <entry key="object" value="graphtea.extensions.reports.spectralreports.PerfectMatchingReport"/>
         </map>
       </node>
-      <node name="graphtea.plugins.reports.spectralreports.SpectralGraphTheoryReport">
+      <node name="graphtea.extensions.reports.spectralreports.SpectralGraphTheoryReport">
         <map>
-          <entry key="object" value="graphtea.plugins.reports.spectralreports.SpectralGraphTheoryReport"/>
+          <entry key="object" value="graphtea.extensions.reports.spectralreports.SpectralGraphTheoryReport"/>
         </map>
       </node>
-      <node name="graphtea.plugins.reports.spectralreports.maxflowmincut.GomoryHuTree">
+      <node name="graphtea.extensions.reports.spectralreports.maxflowmincut.GomoryHuTree">
         <map>
-          <entry key="object" value="graphtea.plugins.reports.spectralreports.maxflowmincut.GomoryHuTree"/>
+          <entry key="object" value="graphtea.extensions.reports.spectralreports.maxflowmincut.GomoryHuTree"/>
         </map>
       </node>
-      <node name="graphtea.plugins.reports.spectralreports.maxflowmincut.MaximumFlow">
+      <node name="graphtea.extensions.reports.spectralreports.maxflowmincut.MaximumFlow">
         <map>
-          <entry key="object" value="graphtea.plugins.reports.spectralreports.maxflowmincut.MaximumFlow"/>
+          <entry key="object" value="graphtea.extensions.reports.spectralreports.maxflowmincut.MaximumFlow"/>
         </map>
       </node>
       <node name="graphtea.plugins.search.SearchAction">
