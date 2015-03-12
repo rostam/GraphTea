@@ -92,10 +92,10 @@ public class LocalSF extends AbstractAction {
     void start() {
         g = blackboard.getData(GraphAttrSet.name);
         gv = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
-        if (gv instanceof FastRenderer) {
-            FastRenderer fgv = (FastRenderer) gv;
-            fgv.forceQuickPaint = true;
-        }
+//        if (gv instanceof FastRenderer) {
+//            FastRenderer fgv = (FastRenderer) gv;
+//            fgv.forceQuickPaint = true;
+//        }
         if (!g2a.containsKey(g)) {
             a = new animatorLSF(blackboard, g, gv);
             g2a.put(g, a);
