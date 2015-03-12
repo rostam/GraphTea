@@ -10,6 +10,8 @@ import graphtea.graph.graph.Vertex;
 import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.platform.Application;
 import graphtea.platform.core.BlackBoard;
+import graphtea.platform.core.Listener;
+import graphtea.platform.core.exception.ExceptionOccuredData;
 import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.plugin.PluginInterface;
 import graphtea.platform.preferences.lastsettings.StorableOnExit;
@@ -53,18 +55,28 @@ public class Init implements PluginInterface, StorableOnExit {
             e.printStackTrace();
         }
 
-        //setup google analytics so that we know which features the users use more and need to get improved
-   
-        //track("App", "Started");
 
+        track("App", "Started");
+        blackboard.addListener(ExceptionOccuredData.EVENT_KEY, new Listener() {
+            public void keyChanged(String key, Object value) {
+                trackError(((ExceptionOccuredData)value).e.getMessage());
+            }
+        });
     }
 
+    public static void trackError(String stacktrace) {
+        System.out.println("errr: " + stacktrace);
+        try {
+            sendGet( ("http://graphtheorysoftware.com/tik/err?data=" + stacktrace).replaceAll(" ", "-") );
+        } catch (Exception e) {
+        }
+
+    }
     public static void track(String category, String action) {
         System.out.println(action);
         try {
             sendGet( ("http://graphtheorysoftware.com/tik/run?data=" + category + ":" + action).replaceAll(" ", "-") );
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -77,8 +89,8 @@ public class Init implements PluginInterface, StorableOnExit {
         con.setRequestMethod("GET");
 
         int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'GET' request to URL : " + url);
-        System.out.println("Response Code : " + responseCode);
+//        System.out.println("\nSending 'GET' request to URL : " + url);
+//        System.out.println("Response Code : " + responseCode);
     }
 }
  

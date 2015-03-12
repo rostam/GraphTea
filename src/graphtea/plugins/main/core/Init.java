@@ -77,6 +77,7 @@ public class Init implements graphtea.platform.plugin.PluginInterface, StorableO
                     if (JOptionPane.showConfirmDialog(null, "Do you want to exit?",
                             "Application Exiting...", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                         try {
+                            graphtea.plugins.main.Init.track("App", "Closed");
                             SETTINGS.saveSettings();
                         } catch (Exception e1) {
                             e1.printStackTrace();
