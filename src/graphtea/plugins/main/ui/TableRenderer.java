@@ -48,9 +48,9 @@ public class TableRenderer implements GBasicCellRenderer<RendTable> {
 
         //BigDecimal bd = new BigDecimal();
         Object[][] data = new Object[sd.size()-1][sd.get(0).size()];
-        for(int i=1;i<data.length;i++) {
+        for(int i=0;i<sd.size()-1;i++) {
             for(int j=0;j < data[i].length;j++) {
-                Object o = sd.get(i).get(j);
+                Object o = sd.get(i+1).get(j);
                 if(o instanceof Double) {
                     Double toBeTruncated = (Double) o;
                     Double truncatedDouble =
@@ -58,7 +58,7 @@ public class TableRenderer implements GBasicCellRenderer<RendTable> {
                                     setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
                     o = truncatedDouble;
                 }
-                data[i-1][j] = o;
+                data[i][j] = o;
             }
         }
 

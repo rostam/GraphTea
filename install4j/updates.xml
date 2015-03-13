@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <updateDescriptor baseUrl="">
-  <entry targetMediaFileId="25" updatableVersionMin="" updatableVersionMax="" fileName="GraphTea.deb" newVersion="1.5.0.newrooz" newMediaFileId="25" fileSize="3217560" bundledJre="" archive="true">
-    <comment language="en" />
-  </entry>
-  <entry targetMediaFileId="26" updatableVersionMin="" updatableVersionMax="" fileName="GraphTea.exe" newVersion="1.5.0.newrooz" newMediaFileId="26" fileSize="30737408" bundledJre="windows-x86-1.8.0_31" archive="false">
-    <comment language="en" />
-  </entry>
-  <entry targetMediaFileId="29" updatableVersionMin="" updatableVersionMax="" fileName="GraphTea.dmg" newVersion="1.5.0.newrooz" newMediaFileId="29" fileSize="53107331" bundledJre="macosx-amd64-1.7.0_72_unpacked" archive="true">
+  <entry targetMediaFileId="25" updatableVersionMin="" updatableVersionMax="" fileName="GraphTea.deb" newVersion="1.5.0.newrooz" newMediaFileId="25" fileSize="3200380" bundledJre="" archive="true">
     <comment language="en" />
   </entry>
 </updateDescriptor>
