@@ -1,0 +1,72 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>properties sidebar</title>
+<link rel="stylesheet" type="text/css" href="welcome/common.css">
+</head>
+
+<body>
+
+<p class="doctitle"><span class="keyword">How to create MatLab Extensions</span></p>
+<p></p>
+<p class="sectiontitle"> 1. Introduction</p>
+<p>Using Extensions is the most simple way to add new functionalities to Graph<sup>Tea</sup>. Graph<sup>Tea</sup>
+itself is written by Java language, but it is possible to write extensions for it with another languages including MatLab.</p>
+<p> After reading this article you will be able to create a <span class="keyword">Graph Report</span> extension using MatLab. </p>
+<p class="sectiontitle">2. How it works?</p>
+<p>Adding MatLab extensions to Graph<sup>Tea</sup> is so simple and is done in a similar way to another extension. You write your extenion in a <span class="keyword">&quot;.m&quot;</span> MatLab file and put it in extensions directory. On starting, Graph<sup>Tea</sup> will load your file into a standard Report extension, and it will be shown on <span class="keyword">Reports Sidebar</span>. When user wants to calculate the report value, Graph<sup>Tea</sup> will open a MatLab engine and calculate your &quot;.m&quot; file giving it, its desired inputs; and after that Graph<sup>Tea</sup> will show the calculated result to the user. So the only thing you should do is to put your &quot;.m&quot; file in <span class="keyword">&quot;extensions directory&quot;</span>, and give Graph<sup>Tea</sup> some information about the arguments of your function and so on.</p>
+<p class="sectiontitle">3. A Sample MatLab Extension</p>
+<p>This is a Sample MatLab Extension:</p>
+<p>helloWorld.m:</p>
+<pre>
+% description: Hello Description
+% args: num_of_vertices() , @java.lang.Integer k = 5
+
+function y=helloWorld(n,x)
+
+y=n+x;
+</pre>
+<p>The first line of your file MUST start with <span class="keyword">&quot;% description: &quot;</span>, Other wise Graph<sup>Tea</sup> will not consider your file as a MatLab extension. The text after (Hello Description) will provide a decription of what your extension does. Write there a brief description of your extension.</p>
+<p>If you write description line properly, Graph<sup>Tea</sup> will assume your file as a MatLab report extension. The extension name will be your file name (&quot;helloWorld&quot;), and when it wants to calculate your report it will open a MatLab engine, change the workspace directory to the directory of your extension and call a the file name as a function (&quot;helloWorld(n,x)&quot;). So if yout file name is &quot;xxx.m&quot; your extension name will be &quot;xxx&quot; and you should create a function in your file named &quot;xxx(...)&quot;.</p>
+<p>Your reports will need some information about current editing graph to do the calculations based on. Graph<sup>Tea</sup> provides a simple way to give your extensions its necessary information. First of all you add them as your function parameters (&quot;n,x&quot;), Then you should tell Graph<sup>Tea</sup> about the type of parameters, and the way they can be filled. </p>
+<p>The second line is the args line. is starts with <span class="keyword">&quot;% args: &quot;</span> and after that the the descriptions of your function arguments one by one. You can use two types of arguments. </p>
+<p class="subsectiontitle">1. Automatically filled arguments:</p>
+<p>	These arguments are automatically filled and passed to your function and Graph<sup>Tea</sup> will not see them at all. For example you may want to have incidence matrix of currently editing graph as a parameter. These parameters are filled using Graph<sup>Tea</sup> <span class="keyword">Shell</span>. You write a shell command as a description and Graph<sup>Tea</sup> will execute it each time it wants to run your extension and puts the result of command in your argument. here &quot;num_of_vertices()&quot; is a shell command which returns the number of graph verticecs.</p>
+<p class="image"><img src="matlab howto images/num_of_vertices.png" alt="running num of vertices" width="531" height="338" /></p>
+<p class="image">Running num_of_vertices() as a Shell command</p>
+<p>You can put every shell command as argument descriptor. There are 2 methods that would help you alot:</p>
+<p><span class="keyword">weighted_matrix()</span>: will generate a MatLab styled weighted incidence matrix of edges. </p>
+<pre>bsh % print(weighted_matrix());
+  [ 0 , 0 , 1 ; 0 , 0 , 0 ; 1 , 0 , 0 ]
+</pre>
+<p><span class="keyword">matlab_matrix()</span>: will generate the incidence matrix.</p>
+
+<p>You can also define your own shell command to use as arguments.</p>
+<p class="subsectiontitle">2. User Arguments:</p>
+<p>These arguments are filled by user. For example you may want to create an extension which calculates the number of vertices which degree is equal to &quot;k&quot;. So k will not have a fixed value. One time user may wants to know the number of vertices with degree 1 (i.e. the number of tree leafs) and another time he may wants to know the number of vertices with degree 2. These arguments are known as User Arguments. The argument descryptor should be in this form:</p>
+<p>@type name = dafault value</p>
+<p><span class="keyword">Type</span> represents the argument type. It should be a java class name (Including package name) , (here: &quot;java.lang.Integer&quot;). As you may not know much about java language you can use following types blindly as your type ;)</p>
+<p><span class="keyword">java.lang.Integer</span> -&gt; when your argument is an Integer (like 1 , 2, 3, -1 ,-100 ,...)</p>
+<p><span class="keyword">java.lang.double</span> -&gt; when your argument is a Double (like 1.1, -45.324, ...)</p>
+<p><span class="keyword">java.lang.Boolean</span> -&gt; when your argument is a Boolean (True, False)</p>
+<p><span class="keyword">java.lang.String</span> -&gt; when your argument is a String (&quot;Hi there&quot;, &quot;message...&quot;)</p>
+<p>&nbsp;</p>
+<p><span class="keyword">name</span> represents the name of your arguments which will be shown to the user (here &quot;k&quot;). Choose a small, brief and descriptive name for your argument.</p>
+<p><span class="keyword">default value</span> represents the default value of your argument. (here &quot;5&quot;).</p>
+<p>&nbsp;</p>
+<p>User arguments are similar to parameters of extensions, (you can read about them in: <a href="graphtea/wiki/createyourfirstextension.htm" title="create your first extension tutorial" target="_blank">create your first extension</a>), So they will be added to prameter window like this:</p>
+<p class="image"><img src="matlab howto images/parameter window.png" alt="Parameter Window" width="320" height="374" /></p>
+<p class="image">The Parameter window, parameter name is &quot;k&quot; and its default value is &quot;5&quot;</p>
+<p class="image">read more about it in: <a href="welcome/what_is_reports.html">What is Reports</a></p>
+<p class="subsectiontitle">3. Last Notes</p>
+<p>1.There is a MatLab extension which calculates the network flow in a graph. it is located in <b>extensions\graphtea\extensions\networkFlow.m</b>. It may help you to understand the MatLab Extensions better!</p>
+<p>2. Graph<sup>Tea</sup> will create a shell command for your MatLab Extensions. It's name will be the same of your extension name, and it's parameters are consisted of your extension's User Arguments. So if you are familiar with java programming language, you can use your extension directly from shell to perform more complicated calculations.</p>
+<p class="image"><img src="matlab howto images/shell.png" alt="Running in shell" width="584" height="384" /></p>
+<p class="image">running a command in shell</p>
+<p class="subsectiontitle">4. Farther Reading</p>
+<p>1. <a href="welcome/what_is_reports.html">What is reports</a></p>
+<p>2. <a href="welcome/what_is_shell_browsable.html">What is shell</a></p>
+<p>3. <a href="graphtea/wiki/createyourfirstextension.htm">Create your first java extension Tutorial</a></p>
+</body>
+</html>
