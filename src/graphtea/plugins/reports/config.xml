@@ -8,24 +8,11 @@
 
 <root>
 	<actions>
-		<action
-			class="graphtea.extensions.reports.spectralreports.maxflowmincut.GomoryHuTree" />
-		<!--<action-->
-			<!--class="graphtea.extensions.reports.spectralreports.maxflowmincut.MaximumFlow" />-->
-		<!--<action-->
-			<!--class="graphtea.extensions.reports.spectralreports.maxflowmincut.MinimumCut" />-->
-		<!--<action class="graphtea.extensions.reports.spectralreports.IsBipartite" />-->
-		<!--<action class="graphtea.extensions.reports.spectralreports.PerfectMatchingReport" />-->
-		<action class="graphtea.extensions.reports.spectralreports.LaplacianOfGraph" />
-		<!--<action class="graphtea.plugins.reports.ShowReports" id="reports show" />-->
 	</actions>
 	<ui>
 		<menues>
 			<submenu label="Reports" place="300">
 			</submenu>
-			<!--<submenu label="_Reports">-->
-			<!--<menu label="_Vertices" action="vertex report"/>-->
-			<!--</submenu>-->
 		</menues>
 		<sidebars>
 			<sidebar class="graphtea.plugins.reports.ui.ReportsSideBar"
