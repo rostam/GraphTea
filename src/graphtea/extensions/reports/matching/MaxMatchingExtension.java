@@ -66,7 +66,6 @@ public class MaxMatchingExtension implements GraphReportExtension {
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
-		return "Property";
+		return "Matching";
 	}
 }

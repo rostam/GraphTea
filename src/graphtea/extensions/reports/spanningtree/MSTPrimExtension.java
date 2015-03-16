@@ -17,11 +17,11 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 @CommandAttitude(name = "mst_prim", abbreviation = "_mst_p")
 public class MSTPrimExtension implements GraphReportExtension {
     public String getName() {
-        return "MST Prim";
+        return "Prim";
     }
 
     public String getDescription() {
-        return "MST Prim";
+        return "Prim";
     }
 
     public Object calculate(GraphData gd) {
@@ -49,7 +49,6 @@ public class MSTPrimExtension implements GraphReportExtension {
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "Minimum Spanning Tree";
 	}
 

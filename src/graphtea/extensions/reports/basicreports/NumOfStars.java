@@ -67,7 +67,7 @@ public class NumOfStars implements GraphReportExtension, Parametrizable {
 	@Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "Property";
+		return "General";
 	}
 
 

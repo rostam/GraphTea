@@ -75,7 +75,7 @@ public class TotalNumOfStars implements GraphReportExtension {
 	@Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "Property";
+		return "General";
 	}
 
 }

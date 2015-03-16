@@ -77,7 +77,6 @@ private double[] round (double[] array, int prec)
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "Spectral";
 	}
 }

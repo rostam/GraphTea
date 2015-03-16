@@ -47,6 +47,6 @@ public class NumOfVerticesWithDegK implements GraphReportExtension, Parametrizab
 	@Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "Property";
+		return "General";
 	}
 }

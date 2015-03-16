@@ -54,7 +54,7 @@ public class ColoringReport implements GraphReportExtension, ColoringListener, P
     }
 
     public String getName() {
-        return "Graph Coloring";
+        return "All Vertex Colorings";
     }
 
     public String getDescription() {
@@ -67,7 +67,6 @@ public class ColoringReport implements GraphReportExtension, ColoringListener, P
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Coloring";
 	}
 }

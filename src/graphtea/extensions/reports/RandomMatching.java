@@ -76,7 +76,7 @@ public class RandomMatching implements GraphReportExtension {
 	@Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "Property";
+		return "General";
 	}
 
     Vertex[] rotate(final Vertex[] unOrderedArr, final int orderToRotate) {

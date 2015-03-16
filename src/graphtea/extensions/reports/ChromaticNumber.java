@@ -46,7 +46,6 @@ public class ChromaticNumber implements GraphReportExtension, ColoringListener {
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
-		return "Property";
+		return "Coloring";
 	}
 }
