@@ -7,17 +7,10 @@
 	-->
 
 <root>
-	<actions>
-	</actions>
 	<ui>
 		<menues>
 			<submenu label="Reports" place="300">
 			</submenu>
 		</menues>
-		<sidebars>
-			<sidebar class="graphtea.plugins.reports.ui.ReportsSideBar"
-				id="ReportsSideBar" image="/graphtea/plugins/reports/ui/sbicon.GIF"
-				label="Graph Reports" place="1000" />
-		</sidebars>
 	</ui>
 </root>

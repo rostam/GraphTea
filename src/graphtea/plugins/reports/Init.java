@@ -24,7 +24,13 @@ public class Init implements PluginInterface {
         ExtensionLoader.registerExtensionHandler(new GraphReportExtensionHandler());
     }
 
+    private BlackBoard blackboard;
+    private ReportsUI rui;
+
     public void init(BlackBoard blackboard) {
+        this.blackboard = blackboard;
+        rui = new ReportsUI(blackboard, true);
+
         UI ui = (UI) blackboard.getData(UI.name);
         try {
             ui.addXML("/graphtea/plugins/reports/config.xml", getClass());
@@ -38,10 +44,14 @@ public class Init implements PluginInterface {
             }
         });
 
+
+
     }
 
     private void postInit() {
-        ReportsUI rui = ReportsUI.self;
+        UI ui = (UI) blackboard.getData(UI.name);
+        ui.getGFrame().getSidebar().addButton(this.getClass().getResource("/graphtea/plugins/reports/ui/sbicon.GIF"), rui.propEd, "Graph Reports");
+
         rui.initTable();
     }
 }

@@ -39,7 +39,8 @@ import java.util.jar.JarFile;
  *
  * @author Azin Azadi
  */
-public class UI {
+public class
+        UI {
     public static final String name = "GraphUI.UI";
 
     BlackBoard blackboard = null;
@@ -87,18 +88,6 @@ public class UI {
         loadXML(XMLFilePath, resClass, frame);
     }
 
-    //this method is not tested yet
-    public void addXMLFromString(String XMLString, Class resClass) throws IOException, SAXException {
-        UIHandlerImpl i = new UIHandlerImpl(frame, blackboard, actions, resClass);
-        try {
-            UIParser.parse(new InputSource(XMLString), i);
-        } catch (SAXException e) {
-            throw e;
-        } catch (ParserConfigurationException e) {
-            ExceptionHandler.catchException(e);
-        }
-
-    }
 
     public void loadXML(String XMLFilePath, Class resClass, GFrame frame
     ) throws IOException, SAXException {
@@ -116,55 +105,6 @@ public class UI {
         }
         frame.validate();
     }
-
-    //todo: no usage of this method,
-    public static String extractHelpPlugin(BlackBoard blackboard, Plugger plugger, String index, String dest, String filter) {
-        try {
-            File f = new File(dest);
-            if (!f.isDirectory())
-                f.mkdir();
-            f = new File(dest + "/" + index);
-            if (!f.isFile()) {
-                JarFile jarFile = new JarFile(plugger.files.get("help"));
-                Enumeration<JarEntry> entries = jarFile.entries();
-                while (entries.hasMoreElements()) {
-                    JarEntry je = entries.nextElement();
-
-                    if (!je.getName().startsWith(filter))
-                        continue;
-
-                    System.out.println("Extracting " + je.getName());
-                    String fname = je.getName().substring(filter.length());
-
-                    if (je.isDirectory())
-                        (new File(dest + "/" + fname)).mkdir();
-                    else {
-                        File efile = new File(dest, fname);
-
-                        InputStream in = new BufferedInputStream(jarFile
-                                .getInputStream(je));
-                        OutputStream out = new BufferedOutputStream(
-                                new FileOutputStream(efile));
-                        byte[] buffer = new byte[2048];
-                        for (; ;) {
-                            int nBytes = in.read(buffer);
-                            if (nBytes <= 0)
-                                break;
-                            out.write(buffer, 0, nBytes);
-                        }
-                        out.flush();
-                        out.close();
-                        in.close();
-                    }
-                }
-            }
-            return f.getAbsolutePath();
-        } catch (Exception e) {
-            StaticUtils.addExceptiontoLog(e, blackboard);
-        }
-        return null;
-    }
-
 
     public GFrame getGFrame() {
         return frame;

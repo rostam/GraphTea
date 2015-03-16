@@ -10,34 +10,23 @@ import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.ExtensionHandler;
 import graphtea.plugins.reports.ui.ReportsUI;
 
+import java.util.Vector;
+
 /**
  * @author azin azadi
 
  */
 public class GraphReportExtensionHandler implements ExtensionHandler {
-    protected AbstractAction a = null;
+    protected GraphReportExtensionAction a = null;
     public static final String REPORTS_UI = "reports ui";
     public static final String REPORTS_SIDEBAR = "reports side_bar";
 
-    /**
-     * @return null if ext doesn't implements GraphGeneratorExtension
-     */
     public AbstractAction handle(BlackBoard b, Object ext) {
         a = null;
         if (ext instanceof GraphReportExtension) {
             try {
-                ReportsUI rsd = b.getData(REPORTS_UI);
-                ReportsUI sb = b.getData(REPORTS_SIDEBAR);
-                if (rsd == null) {
-                    rsd = new ReportsUI(b, true);
-                    sb = new ReportsUI(b, false);
-                    b.setData(REPORTS_UI, rsd);
-                    b.setData(REPORTS_SIDEBAR, sb);
-                }
                 GraphReportExtension gr = (GraphReportExtension) ext;
                 a = new GraphReportExtensionAction(b, gr);
-                rsd.addReport(gr);
-                sb.addReport(gr);
             } catch (Exception e) {
                 ExceptionHandler.catchException(e);
             }

@@ -5,9 +5,12 @@
 package graphtea.plugins.reports.ui;
 
 import graphtea.platform.core.BlackBoard;
+import graphtea.platform.extension.Extension;
+import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
+import graphtea.plugins.reports.extension.GraphReportExtensionHandler;
 import graphtea.ui.AttributeSetView;
 import graphtea.ui.ParameterShower;
 import graphtea.ui.PortableNotifiableAttributeSetImpl;
@@ -16,11 +19,8 @@ import graphtea.ui.components.gpropertyeditor.GPropertyTableModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -30,8 +30,7 @@ public class ReportsUI {
     JLabel info = new JLabel("Click on a report to calculate it");
     public GPropertyEditor propEd = new GPropertyEditor();
     GraphData graphData;
-    public ArrayList<GraphReportExtension> reports = new ArrayList<GraphReportExtension>();
-    public HashMap<String, GraphReportExtension> reportByName = new HashMap<String, GraphReportExtension>();
+    public HashMap<String, GraphReportExtension> reportByName = new HashMap<>();
 
     public PortableNotifiableAttributeSetImpl reportResults = new PortableNotifiableAttributeSetImpl();
 
@@ -57,7 +56,9 @@ public class ReportsUI {
     }
 
     public void initTable() {
-        for (GraphReportExtension gre : reports) {
+        System.out.println(ExtensionLoader.extensions);
+        for (Object e : ExtensionLoader.extensions.get(GraphReportExtensionHandler.class)) {
+            GraphReportExtension gre = (GraphReportExtension) e;
             String name = gre.getName();
             reportResults.put(name, "Click to Calculate");
             reportByName.put(name, gre);
@@ -97,14 +98,6 @@ public class ReportsUI {
         wrapper.add(info, BorderLayout.NORTH);
         return wrapper;
     }
-//    public Component getComponent(blackboard b) {
-//        return ;
-//    }
-
-    public void addReport(GraphReportExtension gre) {
-        reports.add(gre);
-//        reCalculateReports();
-    }
 
     public void show() {
         frm.setVisible(true);
@@ -112,20 +105,6 @@ public class ReportsUI {
 
     public void hide() {
         frm.setVisible(false);
-    }
-
-    public void reCalculateReports() {
-        if (graphData.getGraph() == null)
-            return;
-        for (GraphReportExtension gre : reports) {
-            String name = gre.getName();
-            reportResults.put(name, gre.calculate(graphData));
-            reportByName.put(name, gre);
-            AttributeSetView view = reportResults.getView();
-            view.setEditable(name, false);
-            view.setDescription(name, gre.getDescription());
-        }
-        propEd.connect(reportResults);
     }
 
     public void reCalculateReport(String reportName) {

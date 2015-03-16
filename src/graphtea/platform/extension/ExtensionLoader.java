@@ -13,7 +13,9 @@ import graphtea.platform.preferences.lastsettings.StorableOnExit;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Vector;
 
 /**
  * The base class for loading extensions.
@@ -24,6 +26,7 @@ import java.util.HashSet;
 public class ExtensionLoader implements StorableOnExit {
     private static HashSet<ExtensionHandler> registeredExtensionHandlers = new HashSet<ExtensionHandler>();
     private static HashSet<UnknownExtensionLoader> registeredUnknownExtensionLoaders = new HashSet<UnknownExtensionLoader>();
+    public static HashMap<Class<? extends ExtensionHandler>, Vector> extensions = new HashMap<>();
 
     /**
      * Registers extHandler as an extension handler, so after this new extension that are loaded
@@ -53,14 +56,24 @@ public class ExtensionLoader implements StorableOnExit {
     /**
      * gets e as an extension and tries to create Its relating AbstractAction
      * using registered ExtensionHandlers
+     *
+     * This should be the only place to handle extensions otherwise we are in problem,
+     * because here we keep list of handled extensions for further uses. everything else will
+     * not be in this list.
      */
     public static AbstractAction handleExtension(BlackBoard b, Object e) {
         AbstractAction a = null;
-        for (ExtensionHandler _ : registeredExtensionHandlers) {
-            if (a == null)
-                a = _.handle(b, e);
-            else
-                _.handle(b, e);
+        for (ExtensionHandler handler : registeredExtensionHandlers) {
+            AbstractAction ret = handler.handle(b, e);
+            if (ret != null){
+                if (a == null) {
+                    a = ret;
+                }
+                if (!extensions.containsKey(handler.getClass())){
+                    extensions.put(handler.getClass(), new Vector());
+                }
+                extensions.get(handler.getClass()).add(e);
+            }
         }
         return a;
     }
