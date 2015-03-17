@@ -45,10 +45,9 @@ public class ReportsUI {
     private void initComponents() {
         sidebar = new JPanel(new BorderLayout(0, 0));
         html = new GHTMLPageComponent(blackboard);
-        JScrollPane jsp = new JScrollPane(html);
         html.setPreferredSize(new Dimension(400, 100));
         sidebar.setPreferredSize(new Dimension(400, 100));
-        sidebar.add(jsp, BorderLayout.CENTER);
+        sidebar.add(html, BorderLayout.CENTER);
     }
 
     public void initTable() {

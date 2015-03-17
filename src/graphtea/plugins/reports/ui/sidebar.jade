@@ -1,9 +1,10 @@
 !!! 5
 html
   style.
-    a { color: black; line-height: 20px;}
-    h2 { margin-top: 26px; margin-bottom: 13px; font-size: 16px;}
-    body { line-height: 20px; font-size: 13px; }
+    a { color: black; }
+    h2 { margin-top: 13px; padding-top: 13px; margin-bottom: 13px; font-size: 13px; border-top: 1px solid #AAAAAA;}
+    body {  font-size: 13px; margin: 16px; }
+    .report { margin-bottom: 5px; }
   body
     h1 Reports
     p  Click on a report...
@@ -11,6 +12,6 @@ html
         h2 #{category}
         div
             for report in categoryLists.get(category)
-              a(href="#{report.getClass().getName()}&handler=PerformExtension")#{report.getName()}
-              br
+              div(class='report')
+                  a(href="#{report.getClass().getName()}&handler=PerformExtension")#{report.getName()}
 

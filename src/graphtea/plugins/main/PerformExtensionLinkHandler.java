@@ -14,9 +14,6 @@ import java.net.URL;
 public class PerformExtensionLinkHandler implements HyperlinkHandler {
 
     public void handle(String extensionClass, BlackBoard b, URL currentURL) {
-        System.out.println(extensionClass);
-        System.out.println(((AbstractExtensionAction) (ExtensionLoader.loadedInstances.get(extensionClass))));
-        System.out.println(ExtensionLoader.loadedInstances);
         b.setData(UIUtils.getUIEventKey(((AbstractExtensionAction) (ExtensionLoader.loadedInstances.get(extensionClass))).actionId), "click on link");
     }
 }
