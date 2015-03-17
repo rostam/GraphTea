@@ -6,7 +6,7 @@
 package graphtea.plugins.algorithmanimator.core.atoms.extension;
 
 import graphtea.platform.core.BlackBoard;
-import graphtea.ui.AbstractExtensionAction;
+import graphtea.ui.extension.AbstractExtensionAction;
 
 
 public class AtomAnimatorExtensionAction

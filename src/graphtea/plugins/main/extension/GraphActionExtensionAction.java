@@ -6,7 +6,7 @@ package graphtea.plugins.main.extension;
 
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
-import graphtea.ui.AbstractExtensionAction;
+import graphtea.ui.extension.AbstractExtensionAction;
 
 /**
  * @author azin azadi

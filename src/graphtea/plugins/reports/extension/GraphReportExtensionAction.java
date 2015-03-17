@@ -6,19 +6,17 @@ package graphtea.plugins.reports.extension;
 
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
-import graphtea.ui.AbstractExtensionAction;
+import graphtea.ui.extension.AbstractExtensionAction;
 import graphtea.ui.UIUtils;
 import graphtea.ui.components.gpropertyeditor.GCellRenderer;
 import graphtea.ui.components.utils.GFrameLocationProvider;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileWriter;
 
 /**

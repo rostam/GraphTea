@@ -1,0 +1,16 @@
+!!! 5
+html
+  style.
+    a { color: black; line-height: 20px;}
+    h2 { margin-top: 26px; margin-bottom: 13px; font-size: 16px;}
+    body { line-height: 20px; font-size: 13px; }
+  body
+    h1 Reports
+    p  Click on a report...
+    for category in categories
+        h2 #{category}
+        div
+            for report in categoryLists.get(category)
+              a(href="#{report.getClass().getName()}&handler=PerformExtension")#{report.getName()}
+              br
+

@@ -11,7 +11,7 @@ import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.StaticUtils;
 import graphtea.plugins.main.saveload.ExampleFileFilter;
 import graphtea.plugins.main.saveload.core.GraphIOException;
-import graphtea.ui.AbstractExtensionAction;
+import graphtea.ui.extension.AbstractExtensionAction;
 
 import javax.swing.*;
 import java.io.File;

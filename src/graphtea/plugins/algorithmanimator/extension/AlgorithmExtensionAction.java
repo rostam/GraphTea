@@ -8,7 +8,7 @@ package graphtea.plugins.algorithmanimator.extension;
 import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.AlgorithmAnimator;
-import graphtea.ui.AbstractExtensionAction;
+import graphtea.ui.extension.AbstractExtensionAction;
 
 
 public class AlgorithmExtensionAction

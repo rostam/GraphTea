@@ -13,7 +13,7 @@ import graphtea.plugins.main.core.actions.StatusBarMessage;
 import graphtea.plugins.main.saveload.ExampleFileFilter;
 import graphtea.plugins.main.saveload.SaveLoadPluginMethods;
 import graphtea.plugins.main.saveload.core.GraphIOException;
-import graphtea.ui.AbstractExtensionAction;
+import graphtea.ui.extension.AbstractExtensionAction;
 
 import javax.swing.*;
 import java.io.File;

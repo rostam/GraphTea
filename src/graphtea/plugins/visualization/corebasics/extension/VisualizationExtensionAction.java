@@ -9,7 +9,7 @@ import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.visualization.corebasics.animator.GeneralAnimator;
-import graphtea.ui.AbstractExtensionAction;
+import graphtea.ui.extension.AbstractExtensionAction;
 
 /**
  * @author Rouzbeh Ebrahimi

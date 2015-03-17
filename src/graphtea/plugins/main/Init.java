@@ -7,6 +7,7 @@ package graphtea.plugins.main;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
+import graphtea.graph.ui.GHTMLPageComponent;
 import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.platform.Application;
 import graphtea.platform.core.BlackBoard;
@@ -30,6 +31,7 @@ import java.net.HttpURLConnection;
 public class Init implements PluginInterface, StorableOnExit {
     static {
         ExtensionLoader.registerExtensionHandler(new GraphActionExtensionHandler());
+        GHTMLPageComponent.registerHyperLinkHandler("PerformExtension", new PerformExtensionLinkHandler());
     }
 
     public void init(BlackBoard blackboard) {

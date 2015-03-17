@@ -2351,11 +2351,6 @@
           <entry key="object" value="graphtea.plugins.main.select.ScaleOutSelection"/>
         </map>
       </node>
-      <node name="graphtea.plugins.reports.ShowReports">
-        <map>
-          <entry key="object" value="graphtea.plugins.reports.ShowReports"/>
-        </map>
-      </node>
       <node name="graphtea.plugins.reports.basicreports.AdjMatrixEigenValues">
         <map>
           <entry key="object" value="graphtea.plugins.reports.basicreports.AdjMatrixEigenValues"/>

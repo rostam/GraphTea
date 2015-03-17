@@ -11,7 +11,7 @@ import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.lang.Pair;
 import graphtea.platform.preferences.lastsettings.StorableOnExit;
 import graphtea.platform.StaticUtils;
-import graphtea.ui.AbstractExtensionAction;
+import graphtea.ui.extension.AbstractExtensionAction;
 import graphtea.ui.UIUtils;
 import graphtea.ui.actions.UIEventData;
 import graphtea.ui.components.*;

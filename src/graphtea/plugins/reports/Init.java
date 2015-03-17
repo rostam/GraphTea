@@ -25,11 +25,9 @@ public class Init implements PluginInterface {
     }
 
     private BlackBoard blackboard;
-    private ReportsUI rui;
 
     public void init(BlackBoard blackboard) {
         this.blackboard = blackboard;
-        rui = new ReportsUI(blackboard, true);
 
         UI ui = (UI) blackboard.getData(UI.name);
         try {
@@ -43,14 +41,13 @@ public class Init implements PluginInterface {
                 postInit();
             }
         });
-
-
-
     }
 
     private void postInit() {
         UI ui = (UI) blackboard.getData(UI.name);
-        ui.getGFrame().getSidebar().addButton(this.getClass().getResource("/graphtea/plugins/reports/ui/sbicon.GIF"), rui.propEd, "Graph Reports");
+        ReportsUI rui = new ReportsUI(blackboard);
+
+        ui.getGFrame().getSidebar().addButton(this.getClass().getResource("/graphtea/plugins/reports/ui/sbicon.GIF"), rui.sidebar, "Graph Reports");
 
         rui.initTable();
     }

@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
  * this is a frame fo showing the confiurations before running an Extension
  *
  * @author azin azadi
- * @see graphtea.ui.AbstractExtensionAction
+ * @see graphtea.ui.extension.AbstractExtensionAction
  * @see Extension
  */
 public class ExtensionConfigFrame extends javax.swing.JFrame {

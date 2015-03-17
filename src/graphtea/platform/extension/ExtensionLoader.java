@@ -26,7 +26,11 @@ import java.util.Vector;
 public class ExtensionLoader implements StorableOnExit {
     private static HashSet<ExtensionHandler> registeredExtensionHandlers = new HashSet<ExtensionHandler>();
     private static HashSet<UnknownExtensionLoader> registeredUnknownExtensionLoaders = new HashSet<UnknownExtensionLoader>();
-    public static HashMap<Class<? extends ExtensionHandler>, Vector> extensions = new HashMap<>();
+    // categorises the known extensions on their type. The type (eg report, generator, ...) is identified
+    // by the respective ExtensionHandler
+    public static HashMap<Class<? extends ExtensionHandler>, Vector> extensionsList = new HashMap<>();
+    // maps an extension class (eg GeneratePath), to the loaded AbstractAction
+    public static HashMap<String, AbstractAction> loadedInstances = new HashMap<String, AbstractAction>();
 
     /**
      * Registers extHandler as an extension handler, so after this new extension that are loaded
@@ -69,10 +73,11 @@ public class ExtensionLoader implements StorableOnExit {
                 if (a == null) {
                     a = ret;
                 }
-                if (!extensions.containsKey(handler.getClass())){
-                    extensions.put(handler.getClass(), new Vector());
+                if (!extensionsList.containsKey(handler.getClass())){
+                    extensionsList.put(handler.getClass(), new Vector());
                 }
-                extensions.get(handler.getClass()).add(e);
+                extensionsList.get(handler.getClass()).add(e);
+                loadedInstances.put(e.getClass().getName(), a);
             }
         }
         return a;

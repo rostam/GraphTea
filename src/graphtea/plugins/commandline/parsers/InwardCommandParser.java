@@ -12,7 +12,7 @@ import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.plugins.commandline.Shell;
 import graphtea.plugins.commandline.ShellConsole;
 import graphtea.plugins.commandline.commands.ShellCommandException;
-import graphtea.ui.ExtensionShellCommandProvider;
+import graphtea.ui.extension.ExtensionShellCommandProvider;
 
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;

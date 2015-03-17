@@ -43,9 +43,6 @@ public class GSidebar extends JPanel {
      * adds a button to side bar, and match it to component
      */
     public void addButton(String iconFileName, Component component, String label) {
-        System.out.println(1111111110);
-        System.out.println(new ImageIcon(iconFileName));
-        System.out.println(new ImageIcon(iconFileName));
         addButton(new ImageIcon(iconFileName), component, label);
     }
 
@@ -54,7 +51,6 @@ public class GSidebar extends JPanel {
     }
 
     public void addButton(Icon icon, Component c, String label) {
-        System.out.println("Adding ShellSideBar with Icon : " + icon);
         GSidebarButton b = new GSidebarButton(icon, c, this, label);
         if (label.equals("shell"))
             add(b,1);

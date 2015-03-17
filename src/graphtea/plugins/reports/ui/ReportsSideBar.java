@@ -16,7 +16,7 @@ public class ReportsSideBar implements GComponentInterface {
 
         ReportsUI reportsUI = ((ReportsUI) b.getData(GraphReportExtensionHandler.REPORTS_SIDEBAR));
 //        reportsUI.reCalculateReports();
-        return reportsUI.initWrapper();
+        return reportsUI.sidebar;
 
     }
 }

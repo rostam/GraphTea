@@ -33,7 +33,7 @@ public interface ExtensionHandler {
      * @param extension the extension which we want to create the AbstractAction from
      * @return not null if it was a valid case and the operation was successfull, null if it was not a valid case or it
      *         is done without creating any actions(in some cases)
-     * @see graphtea.ui.AbstractExtensionAction
+     * @see graphtea.ui.extension.AbstractExtensionAction
      */
     public AbstractAction handle(BlackBoard b, Object extension);
 }

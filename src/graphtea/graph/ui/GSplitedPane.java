@@ -18,7 +18,7 @@ public class GSplitedPane extends JSplitPane {
         super(JSplitPane.VERTICAL_SPLIT, helper, main);
         this.helper = helper;
         this.main = main;
-        setDividerLocation(125);
+        setDividerLocation(225);
         setDividerSize(1);
     }
 }

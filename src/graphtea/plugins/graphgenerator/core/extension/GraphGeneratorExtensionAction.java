@@ -8,7 +8,7 @@ package graphtea.plugins.graphgenerator.core.extension;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.graphgenerator.GraphGenerator;
-import graphtea.ui.AbstractExtensionAction;
+import graphtea.ui.extension.AbstractExtensionAction;
 
 import java.awt.*;
 

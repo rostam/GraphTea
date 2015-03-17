@@ -4,111 +4,78 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.reports.ui;
 
+import de.neuland.jade4j.Jade4J;
+import graphtea.extensions.reports.basicreports.NumOfEdges;
+import graphtea.graph.ui.GHTMLPageComponent;
+import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;
-import graphtea.platform.extension.Extension;
 import graphtea.platform.extension.ExtensionLoader;
-import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionHandler;
-import graphtea.ui.AttributeSetView;
-import graphtea.ui.ParameterShower;
-import graphtea.ui.PortableNotifiableAttributeSetImpl;
-import graphtea.ui.components.gpropertyeditor.GPropertyEditor;
-import graphtea.ui.components.gpropertyeditor.GPropertyTableModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Vector;
+
 
 /**
  * @author azin azadi
  */
 public class ReportsUI {
-    JLabel info = new JLabel("Click on a report to calculate it");
-    public GPropertyEditor propEd = new GPropertyEditor();
     GraphData graphData;
     public HashMap<String, GraphReportExtension> reportByName = new HashMap<>();
 
-    public PortableNotifiableAttributeSetImpl reportResults = new PortableNotifiableAttributeSetImpl();
-
-    JFrame frm = new JFrame("Reports");
     public static ReportsUI self = null;
+    public GHTMLPageComponent html;
+    private final BlackBoard blackboard;
+    public JPanel sidebar;
 
-    public ReportsUI(BlackBoard b, boolean init) {
+    public ReportsUI(BlackBoard b) {
         super();
-        if (init)
-            initComponents();
-        propEd.connect(reportResults);
         self = this;
-        BlackBoard blackboard = b;
-        graphData = new GraphData(blackboard);
+        this.blackboard = b;
+        graphData = new GraphData(b);
+        initComponents();
     }
 
     private void initComponents() {
-        BorderLayout lom = new BorderLayout(0, 0);
-        frm.setLayout(lom);
-        frm.add(initWrapper());
-        frm.setPreferredSize(new Dimension(150,100));
-        frm.pack();
+        sidebar = new JPanel(new BorderLayout(0, 0));
+        html = new GHTMLPageComponent(blackboard);
+        JScrollPane jsp = new JScrollPane(html);
+        html.setPreferredSize(new Dimension(400, 100));
+        sidebar.setPreferredSize(new Dimension(400, 100));
+        sidebar.add(jsp, BorderLayout.CENTER);
     }
 
     public void initTable() {
-        System.out.println(ExtensionLoader.extensions);
-        for (Object e : ExtensionLoader.extensions.get(GraphReportExtensionHandler.class)) {
-            GraphReportExtension gre = (GraphReportExtension) e;
-            String name = gre.getName();
-            reportResults.put(name, "Click to Calculate");
-            reportByName.put(name, gre);
-            AttributeSetView view = reportResults.getView();
-            view.setEditable(name, false);
-            view.setDescription(name, gre.getDescription());
-        }
-        propEd.connect(reportResults);
-        propEd.getTable().addNotify();
-        propEd.getTable().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                int row = propEd.getTable().rowAtPoint(e.getPoint());
-                GPropertyTableModel gtm = (GPropertyTableModel) propEd.getTable().getModel();
-                ParameterShower ps = new ParameterShower();
-                String name = (String) gtm.getValueAt(row, 0);
-                GraphReportExtension o = reportByName.get(name);
-                if (o instanceof Parametrizable){
-                    if (ps.xshow(o)) {
-                        reCalculateReport(name);
-                    }
-                }
-                else{
-                    reCalculateReport(name);
-                }
-
+        String h = "";
+        HashMap<String, Object> model = new HashMap<>();
+        Vector<GraphReportExtension> reports = ExtensionLoader.extensionsList.get(GraphReportExtensionHandler.class);
+        HashSet<String> categories = new HashSet<>();
+        HashMap<String, Vector<GraphReportExtension>> categoryLists = new HashMap<>();
+        for (GraphReportExtension report : reports) {
+            String category = report.getCategory();
+            categories.add(category);
+            if (!categoryLists.containsKey(category)){
+                categoryLists.put(category, new Vector<GraphReportExtension>());
             }
-        });
+            categoryLists.get(category).add(report);
+        }
 
-    }
 
-    JPanel initWrapper() {
-        JPanel wrapper = new JPanel(new BorderLayout(0, 0));
-        JScrollPane jsp = new JScrollPane(propEd);
-        propEd.setPreferredSize(new Dimension(150,100));
-        wrapper.setPreferredSize(new Dimension(150, 100));
-        wrapper.add(jsp, BorderLayout.CENTER);
-        wrapper.add(info, BorderLayout.NORTH);
-        return wrapper;
-    }
-
-    public void show() {
-        frm.setVisible(true);
-    }
-
-    public void hide() {
-        frm.setVisible(false);
-    }
-
-    public void reCalculateReport(String reportName) {
-        GraphReportExtension gre = reportByName.get(reportName);
-        reportResults.put(reportName, gre.calculate(graphData));
+        model.put("reports", reports);
+        model.put("categories", categories);
+        model.put("categoryLists", categoryLists);
+        try {
+            h = Jade4J.render(getClass().getResource("sidebar.jade"), model);
+        } catch (IOException e) {
+            StaticUtils.addExceptionLog(e);
+        }
+        System.out.println(h);
+        html.setHTML(h);
     }
 }
