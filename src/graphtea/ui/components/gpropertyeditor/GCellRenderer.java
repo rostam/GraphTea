@@ -9,10 +9,10 @@ import graphtea.ui.AttributeSetView;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.Map;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * this class is a part of gpropertyeditor, which creates a property editor with a jtable

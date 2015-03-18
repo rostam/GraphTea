@@ -14,7 +14,10 @@ import graphtea.library.algorithms.util.EventUtils;
 import graphtea.library.event.GraphRequest;
 import graphtea.library.util.Pair;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Stack;
+import java.util.Vector;
 
 /**
  * This Method find the biconnected components of a

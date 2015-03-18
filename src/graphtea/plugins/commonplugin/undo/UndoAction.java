@@ -9,7 +9,6 @@ author :roozbeh
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.io.GraphJSON;
-import graphtea.graph.io.GraphML;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.commonplugin.Init;

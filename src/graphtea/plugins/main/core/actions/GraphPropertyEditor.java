@@ -12,7 +12,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.graph.old.GStroke;
-import static graphtea.graph.old.GStroke.*;
 import graphtea.platform.attribute.*;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
@@ -25,6 +24,8 @@ import graphtea.ui.UIUtils;
 import graphtea.ui.components.gpropertyeditor.GPropertyEditor;
 
 import java.util.HashSet;
+
+import static graphtea.graph.old.GStroke.*;
 
 /**
  * the left side property editor of graphtea gui

@@ -4,8 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform.core.exception;
 
-import graphtea.platform.StaticUtils;
 import graphtea.platform.Application;
+import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;
 
 import java.lang.Thread.UncaughtExceptionHandler;

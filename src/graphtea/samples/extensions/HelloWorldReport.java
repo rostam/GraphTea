@@ -5,9 +5,6 @@
 
 package graphtea.samples.extensions;
 
-import java.io.File;
-
-import graphtea.plugins.connector.matlab.MatlabRunner;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 

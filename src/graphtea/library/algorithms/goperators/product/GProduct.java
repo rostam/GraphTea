@@ -10,9 +10,6 @@ import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;
 import graphtea.library.util.Pair;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 
 /**
  * @author Mohammad Ali Rostami

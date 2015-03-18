@@ -5,11 +5,11 @@
 
 package graphtea.plugins.graphgenerator.core.extension;
 
+import graphtea.platform.StaticUtils;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.ExtensionHandler;
-import graphtea.platform.StaticUtils;
 
 /**
  * the plug in handler for graph generators, this class loads classes that are implementing

@@ -5,7 +5,6 @@
 package graphtea.plugins.commonplugin;
 
 import graphtea.graph.atributeset.GraphAttrSet;
-import graphtea.graph.event.GraphModelListener;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.Listener;

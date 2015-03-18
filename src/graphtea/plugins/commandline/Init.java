@@ -14,8 +14,8 @@ import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.plugin.PluginInterface;
 import graphtea.plugins.commandline.extensionloader.BSHExtensionLoader;
-import graphtea.ui.extension.ExtensionShellCommandProvider;
 import graphtea.ui.UI;
+import graphtea.ui.extension.ExtensionShellCommandProvider;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;

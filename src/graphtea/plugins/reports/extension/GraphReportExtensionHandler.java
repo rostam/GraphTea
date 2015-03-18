@@ -8,9 +8,6 @@ import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.ExtensionHandler;
-import graphtea.plugins.reports.ui.ReportsUI;
-
-import java.util.Vector;
 
 /**
  * @author azin azadi

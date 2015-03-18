@@ -11,7 +11,6 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.ui.UIUtils;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * @author azin azadi

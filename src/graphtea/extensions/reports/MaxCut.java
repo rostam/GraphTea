@@ -3,20 +3,14 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports;
+
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-import graphtea.graph.graph.Edge;
-import graphtea.platform.core.BlackBoard;
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.SubGraph;
-import graphtea.graph.graph.Vertex;
-import graphtea.library.BaseVertex;
-import java.util.Iterator;
-import java.util.ArrayDeque;
-import java.util.HashSet;
+
 import java.util.Random;
-import java.util.Vector;
 /**
  * @author Mostafa Shaeri (m.shaeri@stu.umz.ac.ir)
  */

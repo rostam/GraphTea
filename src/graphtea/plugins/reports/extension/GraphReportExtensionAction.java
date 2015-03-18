@@ -6,13 +6,12 @@ package graphtea.plugins.reports.extension;
 
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
-import graphtea.ui.extension.AbstractExtensionAction;
 import graphtea.ui.UIUtils;
 import graphtea.ui.components.gpropertyeditor.GCellRenderer;
 import graphtea.ui.components.utils.GFrameLocationProvider;
+import graphtea.ui.extension.AbstractExtensionAction;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

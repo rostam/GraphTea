@@ -6,9 +6,9 @@ package graphtea.ui;
 
 import graphtea.platform.attribute.AttributeListener;
 import graphtea.platform.attribute.AttributeSet;
+import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
-import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.ui.components.utils.GAttrFrame;
 
 import javax.swing.*;

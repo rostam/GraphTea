@@ -18,11 +18,8 @@ import graphtea.platform.plugin.PluginInterface;
 import graphtea.platform.preferences.lastsettings.StorableOnExit;
 import graphtea.plugins.main.extension.GraphActionExtensionHandler;
 
-
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import java.net.HttpURLConnection;
 
 
 /**
@@ -84,13 +81,13 @@ public class Init implements PluginInterface, StorableOnExit {
 
     public static void sendGet(String url) throws Exception {
 
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        //URL obj = new URL(url);
+        //HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
         // optional default is GET
-        con.setRequestMethod("GET");
+        //con.setRequestMethod("GET");
 
-        int responseCode = con.getResponseCode();
+        //int responseCode = con.getResponseCode();
 //        System.out.println("\nSending 'GET' request to URL : " + url);
 //        System.out.println("Response Code : " + responseCode);
     }

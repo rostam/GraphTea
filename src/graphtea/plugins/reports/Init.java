@@ -10,10 +10,8 @@ import graphtea.platform.core.Listener;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.plugin.PluginInterface;
-import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionHandler;
 import graphtea.plugins.reports.ui.ReportsUI;
-import graphtea.ui.AttributeSetView;
 import graphtea.ui.UI;
 
 /**

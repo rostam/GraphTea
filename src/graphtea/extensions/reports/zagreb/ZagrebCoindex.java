@@ -5,7 +5,6 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
@@ -37,6 +36,9 @@ public class ZagrebCoindex implements GraphReportExtension, Parametrizable {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
         out.add("First Zagreb Coindex : "+ zif.getFirstZagrebCoindex(alpha));
         out.add("Second Zagreb Coindex : "+ zif.getSecondZagrebCoindex(alpha));
+        out.add("First Zagreb Reformulated Coindex : " + zif.getFirstReZagrebCoindex(alpha));
+        out.add("Second Zagreb Reformulated Coindex : " + zif.getSecondReZagrebCoindex(alpha));
+
         return out;
     }
 

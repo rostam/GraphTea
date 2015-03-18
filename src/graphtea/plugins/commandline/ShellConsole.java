@@ -8,9 +8,9 @@ package graphtea.plugins.commandline;
 import bsh.ConsoleInterface;
 import bsh.util.GUIConsoleInterface;
 import bsh.util.NameCompletion;
+import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.plugins.commandline.parsers.DefaultParser;
 import graphtea.plugins.commandline.util.Utils;
-import graphtea.platform.core.exception.ExceptionHandler;
 
 import javax.swing.*;
 import javax.swing.text.*;

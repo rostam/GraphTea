@@ -4,11 +4,11 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform.preferences.lastsettings;
 
+import graphtea.platform.StaticUtils;
 import graphtea.platform.attribute.AttributeListener;
 import graphtea.platform.attribute.NotifiableAttributeSetImpl;
-import graphtea.platform.extension.Extension;
-import graphtea.platform.StaticUtils;
 import graphtea.platform.core.exception.ExceptionHandler;
+import graphtea.platform.extension.Extension;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.preferences.Preferences;
 

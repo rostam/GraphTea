@@ -5,23 +5,13 @@
 
 package graphtea.plugins.main.ui;
 
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.SubGraph;
-import graphtea.graph.graph.Vertex;
-import graphtea.platform.Application;
-import graphtea.plugins.main.GraphData;
 import graphtea.ui.components.gpropertyeditor.GBasicCellRenderer;
-import graphtea.ui.components.gpropertyeditor.GCellRenderer;
 
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Vector;
 
 /**

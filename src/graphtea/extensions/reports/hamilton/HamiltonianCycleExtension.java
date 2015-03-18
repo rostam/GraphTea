@@ -6,7 +6,6 @@ package graphtea.extensions.reports.hamilton;
 
 
 import graphtea.graph.graph.SubGraph;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;

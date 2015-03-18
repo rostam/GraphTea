@@ -10,8 +10,8 @@ import graphtea.graph.atributeset.VertexAttrSet;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.core.BlackBoard;
 import graphtea.platform.StaticUtils;
+import graphtea.platform.core.BlackBoard;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 

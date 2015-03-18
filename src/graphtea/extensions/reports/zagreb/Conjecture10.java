@@ -6,7 +6,6 @@ package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.RendTable;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -18,44 +17,37 @@ import java.util.Vector;
 
  */
 
-@CommandAttitude(name = "conj2", abbreviation = "_conj2")
-public class Conjecture2 implements GraphReportExtension,Parametrizable {
+@CommandAttitude(name = "conj10", abbreviation = "_conj10")
+public class Conjecture10 implements GraphReportExtension,Parametrizable {
     public String getName() {
-        return "ZIndices of Matching Conjecture";
+        return "ZIndices of Matching Conjecture 10";
     }
 
-    @Parameter(name = "Starting Value of Alpha", description = "")
-    public Double start_alpha = -10.0;
-
-    @Parameter(name = "End Value of Alpha", description = "")
-    public Double end_alpha = 10.0;
-
-    @Parameter(name = "Incremental Value", description = "")
-    public Double inc = 0.1;
-
-
     public String getDescription() {
-        return "ZIndices of Matching Conjecture";
+        return "ZIndices of Matching Conjecture 10";
     }
 
     public Object calculate(GraphData gd) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
-        ret.get(0).add("Alpha");
-        ret.get(0).add(" M^{a+1}_1 (Matching) ");
-        ret.get(0).add(" 2M^{a}_2 (Matching) ");
-
+        ret.get(0).add("n(n-1)^2-4mn+2d(K12)+6m");
+        ret.get(0).add("n(n-1)^3-4mn+2d()+6m");
+        ret.get(0).add("n(n-1)^4-4mn+2d(P3)+6m");
+        ret.get(0).add("n(n-1)^5-4mn+2d(P3)+6m");
         int ind = 0;
-        for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
-            ind++;
-            double first_zagreb = zif.getFirstZagrebSelectedEdges(alpha);
-            double second_zagreb = zif.getSecondZagrebSelectedEdges(alpha);
-            ret.add(new Vector<Object>());
-            ret.get(ind).add(alpha);
-            ret.get(ind).add(first_zagreb);
-            ret.get(ind).add(2*second_zagreb);
-        }
+        //for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
+        //    ind++;
+        //    double fZagreb=zif.getFirstZagrebSelectedEdges(2*alpha - 1);
+        //    double fZagreb2=zif.getFirstZagrebSelectedEdges(2*alpha - 2);
+
+         //   double coef = (2*am + bm + 2*k)/(2*k);
+         //   ret.add(new Vector<Object>());
+          //  ret.get(ind).add(alpha);
+           // ret.get(ind).add(fZagreb);
+           // ret.get(ind).add(2*k*Math.pow(coef,2*alpha));
+           // ret.get(ind).add(coef*fZagreb2);
+       // }
         return ret;
     }
 

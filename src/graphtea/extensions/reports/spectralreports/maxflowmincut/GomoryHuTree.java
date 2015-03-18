@@ -4,7 +4,7 @@ import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class GomoryHuTree implements GraphReportExtension  {
 		

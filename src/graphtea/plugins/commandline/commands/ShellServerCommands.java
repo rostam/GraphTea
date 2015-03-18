@@ -1,20 +1,19 @@
 package graphtea.plugins.commandline.commands;
 
+import bsh.ConsoleInterface;
+import bsh.Interpreter;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.commandline.Shell;
+import graphtea.plugins.main.GraphData;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.Reader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.io.Reader;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import java.io.PrintStream;
-
-import bsh.ConsoleInterface;
-import bsh.Interpreter;
 
 /**
  * @author Mohamad Ali Rostami

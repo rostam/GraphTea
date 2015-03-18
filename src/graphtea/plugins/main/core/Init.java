@@ -28,7 +28,6 @@ import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URL;
-import java.util.Vector;
 
 /**
  * @author Reza Mohammadi, azin

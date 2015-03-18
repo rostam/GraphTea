@@ -12,9 +12,9 @@ import graphtea.ui.components.gpropertyeditor.editors.GStringEditor;
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
 import java.awt.*;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Collections;
 
 /**
  * 1- inplace editing and outplace editing

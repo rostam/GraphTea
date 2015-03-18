@@ -1,5 +1,10 @@
 package graphtea.extensions.reports.spectralreports.maxflowmincut;
-import Jama.*; 
+
+import Jama.EigenvalueDecomposition;
+import Jama.LUDecomposition;
+import Jama.Matrix;
+import Jama.QRDecomposition;
+
 import java.util.Date;
 
 /** Example of use of Matrix Class, featuring magic squares. **/

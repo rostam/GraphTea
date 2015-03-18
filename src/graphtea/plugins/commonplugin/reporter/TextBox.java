@@ -6,9 +6,9 @@
 package graphtea.plugins.commonplugin.reporter;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
 
 public class TextBox extends JFrame {
     JPanel contentPane;

@@ -8,10 +8,6 @@ package graphtea.graph.ui;
 import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 /**

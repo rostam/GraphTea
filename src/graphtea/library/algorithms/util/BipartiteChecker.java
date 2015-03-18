@@ -1,8 +1,5 @@
 package graphtea.library.algorithms.util;
 
-import java.lang.reflect.Array;
-import java.util.LinkedList;
-
 import graphtea.library.BaseEdge;
 import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;
@@ -10,6 +7,9 @@ import graphtea.library.algorithms.Algorithm;
 import graphtea.library.algorithms.AutomatedAlgorithm;
 import graphtea.library.event.MessageEvent;
 import graphtea.library.event.typedef.BaseGraphRequest;
+
+import java.lang.reflect.Array;
+import java.util.LinkedList;
 
 /**
  * The details of the algorithm used here can be found at:

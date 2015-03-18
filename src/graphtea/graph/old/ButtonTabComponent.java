@@ -5,8 +5,6 @@
 
 package graphtea.graph.old;
 
-import graphtea.graph.ui.GTabbedGraphPane;
-
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;

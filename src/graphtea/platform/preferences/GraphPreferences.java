@@ -5,9 +5,9 @@
 package graphtea.platform.preferences;
 
 import graphtea.platform.attribute.AttributeListener;
+import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.lang.ArrayX;
 import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
-import graphtea.platform.core.exception.ExceptionHandler;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;

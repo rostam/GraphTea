@@ -15,13 +15,14 @@ import graphtea.library.BaseEdge;
 import graphtea.library.BaseVertex;
 import graphtea.library.event.Event;
 import graphtea.library.event.GraphEvent;
-import static graphtea.library.event.GraphEvent.EventType.NEW_GRAPH;
 import graphtea.library.event.typedef.BaseGraphEvent;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.AtomAnimator;
 
 import java.util.HashMap;
 import java.util.Iterator;
+
+import static graphtea.library.event.GraphEvent.EventType.NEW_GRAPH;
 
 /**
  * @author Azin Azadi

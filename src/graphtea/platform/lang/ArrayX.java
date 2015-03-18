@@ -4,8 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform.lang;
 
-import graphtea.platform.attribute.AtomAttribute;
 import graphtea.platform.StaticUtils;
+import graphtea.platform.attribute.AtomAttribute;
 
 import java.util.Vector;
 

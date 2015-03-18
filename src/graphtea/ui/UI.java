@@ -14,8 +14,6 @@ import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.ExtensionLoader;
-import graphtea.platform.StaticUtils;
-import graphtea.platform.plugin.Plugger;
 import graphtea.ui.actions.UIEventHandler;
 import graphtea.ui.components.GFrame;
 import graphtea.ui.components.utils.GFrameLocationProvider;
@@ -26,11 +24,8 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.*;
-import java.util.Enumeration;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
 /**
  * this class is the base class of UI actions,

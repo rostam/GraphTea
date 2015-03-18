@@ -10,8 +10,6 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.platform.parameter.Parameter;
-import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -50,24 +48,29 @@ public class SubTreeCounting implements GraphReportExtension {
             ret.add(new Vector<Object>());
             ret.get(i).add(i+"");
             for(int j=1;j<=maxDeg;j++) {
-                int sum = 0;
-                for(Edge e : g.getEdges()) {
-                    if (i == j) {
-                        sum += choose(g.getDegree(e.source)-1,i).intValue()*
-                                choose(g.getDegree(e.target)-1,j).intValue();
-                    } else {
-                        sum += choose(g.getDegree(e.source)-1,i).intValue()*
-                                choose(g.getDegree(e.target)-1,j).intValue();
-                        sum += choose(g.getDegree(e.source)-1,j).intValue()*
-                                choose(g.getDegree(e.target)-1,i).intValue();
-                    }
-                }
+                int sum = countSubtrees(g, i, j);
                 ret.get(i).add(sum);
             }
         }
 
 
         return ret;
+    }
+
+    public static int countSubtrees(GraphModel g, int i, int j) {
+        int sum = 0;
+        for(Edge e : g.getEdges()) {
+            if (i == j) {
+                sum += choose(g.getDegree(e.source)-1,i).intValue()*
+                        choose(g.getDegree(e.target)-1,j).intValue();
+            } else {
+                sum += choose(g.getDegree(e.source)-1,i).intValue()*
+                        choose(g.getDegree(e.target)-1,j).intValue();
+                sum += choose(g.getDegree(e.source)-1,j).intValue()*
+                        choose(g.getDegree(e.target)-1,i).intValue();
+            }
+        }
+        return sum;
     }
 
     public static BigInteger choose(int x, int y) {

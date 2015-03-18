@@ -1,11 +1,11 @@
 package graphtea.extensions.algorithms;
 
+import graphtea.extensions.reports.spectralreports.maxflowmincut.MinCut;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
-import graphtea.extensions.reports.spectralreports.maxflowmincut.MinCut;
 
 /**
  * Created with IntelliJ IDEA.

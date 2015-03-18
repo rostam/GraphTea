@@ -5,7 +5,6 @@
 package graphtea.plugins.reports.ui;
 
 import de.neuland.jade4j.Jade4J;
-import graphtea.extensions.reports.basicreports.NumOfEdges;
 import graphtea.graph.ui.GHTMLPageComponent;
 import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;

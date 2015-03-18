@@ -6,11 +6,11 @@ package graphtea.plugins.main.saveload;
 
 
 import graphtea.graph.graph.GraphModel;
+import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphReaderExtension;
 import graphtea.plugins.main.saveload.xmlparser.GraphmlHandlerImpl;
 import graphtea.plugins.main.saveload.xmlparser.GraphmlParser;
-import graphtea.platform.core.exception.ExceptionHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 

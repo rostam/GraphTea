@@ -7,7 +7,6 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
-import java.util.Iterator;
 import java.util.Vector;
 
 /**

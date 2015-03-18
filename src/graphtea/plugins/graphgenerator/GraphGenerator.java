@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.graphgenerator;
 
+import graphtea.extensions.generators.*;
 import graphtea.graph.event.GraphEvent;
 import graphtea.graph.graph.*;
 import graphtea.graph.ui.GTabbedGraphPane;
@@ -12,7 +13,6 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.platform.plugin.PluginMethods;
 import graphtea.plugins.graphgenerator.core.GraphGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
-import graphtea.extensions.generators.*;
 import graphtea.plugins.main.core.CorePluginMethods;
 import graphtea.plugins.main.core.actions.vertex.AddVertex;
 

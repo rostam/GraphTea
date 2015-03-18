@@ -5,10 +5,10 @@
 
 package graphtea.plugins.algorithmanimator.core.atoms.extension;
 
+import graphtea.platform.StaticUtils;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.extension.ExtensionHandler;
-import graphtea.platform.StaticUtils;
 import graphtea.plugins.algorithmanimator.core.AlgorithmAnimator;
 
 public class AtomAnimatorExtensionHandler implements ExtensionHandler {

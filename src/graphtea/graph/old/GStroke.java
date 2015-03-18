@@ -4,14 +4,15 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.graph.old;
 
-import graphtea.platform.lang.FromStringProvider;
 import graphtea.platform.StaticUtils;
+import graphtea.platform.lang.FromStringProvider;
 
 import java.awt.*;
-import static java.awt.BasicStroke.CAP_BUTT;
-import static java.awt.BasicStroke.JOIN_MITER;
 import java.io.Serializable;
 import java.util.Vector;
+
+import static java.awt.BasicStroke.CAP_BUTT;
+import static java.awt.BasicStroke.JOIN_MITER;
 
 /**
  * User: root

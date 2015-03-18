@@ -7,12 +7,9 @@ package graphtea.extensions.actions;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.extension.GraphActionExtension;
-
-import java.util.Iterator;
 
 
 /**

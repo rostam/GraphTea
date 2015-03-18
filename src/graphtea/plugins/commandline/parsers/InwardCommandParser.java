@@ -7,8 +7,8 @@ package graphtea.plugins.commandline.parsers;
 
 import bsh.EvalError;
 import bsh.Interpreter;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.core.exception.ExceptionHandler;
+import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.commandline.Shell;
 import graphtea.plugins.commandline.ShellConsole;
 import graphtea.plugins.commandline.commands.ShellCommandException;

@@ -4,15 +4,12 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.zagreb;
 
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.RendTable;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-import sun.nio.cs.ext.MacGreek;
 
 import java.util.Vector;
 

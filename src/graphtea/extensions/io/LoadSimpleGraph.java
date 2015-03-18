@@ -18,9 +18,10 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static java.lang.Integer.parseInt;
 
 /**
  * sample.simplegraph :<br>

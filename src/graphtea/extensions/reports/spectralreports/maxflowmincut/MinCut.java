@@ -2,6 +2,7 @@ package graphtea.extensions.reports.spectralreports.maxflowmincut;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
+
 import java.util.LinkedList;
 
 public class MinCut{

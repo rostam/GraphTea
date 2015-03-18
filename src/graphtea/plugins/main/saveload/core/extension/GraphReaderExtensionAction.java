@@ -6,9 +6,9 @@ package graphtea.plugins.main.saveload.core.extension;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.ui.GTabbedGraphPane;
+import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
-import graphtea.platform.StaticUtils;
 import graphtea.plugins.main.saveload.ExampleFileFilter;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.ui.extension.AbstractExtensionAction;

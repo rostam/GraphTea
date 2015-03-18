@@ -6,18 +6,15 @@ import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.graph.old.GStroke;
 import graphtea.library.BaseVertexProperties;
-import graphtea.library.Path;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
-import graphtea.plugins.main.GraphData;
-import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
+import java.io.File;
 import java.util.Scanner;
 import java.util.Vector;
 

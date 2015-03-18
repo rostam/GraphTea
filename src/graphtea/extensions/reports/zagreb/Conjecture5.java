@@ -13,7 +13,6 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 /**

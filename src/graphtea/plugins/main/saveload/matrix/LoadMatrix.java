@@ -9,12 +9,11 @@ import graphtea.plugins.main.saveload.SaveLoadPluginMethods;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphReaderExtension;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
-import javax.swing.JOptionPane;
 
 /**
  * @author Hooman Mohajeri Moghaddam

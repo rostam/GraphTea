@@ -4,8 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.graph.old;
 
-import graphtea.platform.lang.FromStringProvider;
 import graphtea.platform.StaticUtils;
+import graphtea.platform.lang.FromStringProvider;
 
 import java.awt.*;
 import java.io.Serializable;

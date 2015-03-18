@@ -4,14 +4,13 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.ui.xml;
 
+import graphtea.platform.StaticUtils;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.lang.Pair;
 import graphtea.platform.preferences.lastsettings.StorableOnExit;
-import graphtea.platform.StaticUtils;
-import graphtea.ui.extension.AbstractExtensionAction;
 import graphtea.ui.UIUtils;
 import graphtea.ui.actions.UIEventData;
 import graphtea.ui.components.*;
@@ -20,6 +19,7 @@ import graphtea.ui.components.gmenu.GMenuItem;
 import graphtea.ui.components.gmenu.KeyBoardShortCut;
 import graphtea.ui.components.gmenu.KeyBoardShortCutProvider;
 import graphtea.ui.components.gsidebar.GSidebar;
+import graphtea.ui.extension.AbstractExtensionAction;
 import graphtea.ui.extension.UIActionExtensionAction;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

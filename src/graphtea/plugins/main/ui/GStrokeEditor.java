@@ -5,8 +5,9 @@
 package graphtea.plugins.main.ui;
 
 import graphtea.graph.old.GStroke;
-import static graphtea.graph.old.GStroke.*;
 import graphtea.ui.components.gpropertyeditor.editors.inplace.GComboEditor;
+
+import static graphtea.graph.old.GStroke.*;
 
 /**
  * @author azin azadi

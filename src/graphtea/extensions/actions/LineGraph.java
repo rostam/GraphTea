@@ -24,10 +24,11 @@ import java.util.Iterator;
 public class LineGraph implements GraphActionExtension {
 
     public void action(GraphData graphData) {
+        graphData.core.showGraph(createLineGraph(graphData.getGraph()));
+    }
 
-        GraphModel g1 = graphData.getGraph();
+    public static GraphModel createLineGraph(GraphModel g1) {
         GraphModel g2 = new GraphModel(false);//
-        Vertex vg1[] = g1.getVertexArray();
 
         for (Edge e : g1.getEdges()) {
             Vertex v = new Vertex();
@@ -55,7 +56,7 @@ public class LineGraph implements GraphActionExtension {
                 }
             }
         }
-        graphData.core.showGraph(g2);
+        return g2;
     }
 
     public String getName() {

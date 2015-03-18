@@ -9,9 +9,9 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
+import graphtea.platform.StaticUtils;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;
-import graphtea.platform.StaticUtils;
 
 import java.awt.*;
 import java.io.*;

@@ -5,11 +5,11 @@
 
 package graphtea.plugins.connector.matlab;
 
+import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.Extension;
 import graphtea.platform.extension.UnknownExtensionLoader;
-import graphtea.platform.StaticUtils;
 import graphtea.platform.plugin.Plugger;
 import graphtea.plugins.commandline.Shell;
 import graphtea.plugins.connector.ConnectorDS;

@@ -5,9 +5,7 @@
 
 package graphtea.plugins.main.ui;
 
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.IndSubGraphs;
-import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.Application;
 import graphtea.plugins.main.GraphData;
@@ -19,9 +17,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Vector;
 
 /**
  * @author Azin Azadi

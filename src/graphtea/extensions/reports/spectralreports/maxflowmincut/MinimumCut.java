@@ -1,9 +1,6 @@
 package graphtea.extensions.reports.spectralreports.maxflowmincut;
 
 
-
-import javax.swing.JOptionPane;
-
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -16,6 +13,8 @@ import graphtea.library.event.VertexRequest;
 import graphtea.plugins.algorithmanimator.core.AlgorithmAnimator;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
+
+import javax.swing.*;
 
 public class MinimumCut extends Algorithm implements GraphReportExtension{
 

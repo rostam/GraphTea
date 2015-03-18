@@ -8,7 +8,6 @@ package graphtea.extensions.reports.zagreb;
 import graphtea.graph.graph.Edge;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
-import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;

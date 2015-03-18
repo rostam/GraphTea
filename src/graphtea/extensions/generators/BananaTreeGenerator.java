@@ -6,10 +6,10 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.parameter.Parameter;
-import graphtea.platform.parameter.Parametrizable;
 import graphtea.platform.StaticUtils;
 import graphtea.platform.lang.CommandAttitude;
+import graphtea.platform.parameter.Parameter;
+import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 

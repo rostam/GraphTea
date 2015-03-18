@@ -10,10 +10,7 @@ import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;
 import graphtea.library.algorithms.Algorithm;
 import graphtea.library.algorithms.AutomatedAlgorithm;
-import graphtea.library.algorithms.util.EventUtils;
-import graphtea.library.event.Event;
 import graphtea.library.event.GraphRequest;
-import graphtea.library.event.VertexEvent;
 import graphtea.library.event.VertexRequest;
 import graphtea.library.exceptions.InvalidVertexException;
 

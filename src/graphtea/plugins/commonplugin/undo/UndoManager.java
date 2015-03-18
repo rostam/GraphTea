@@ -10,8 +10,6 @@ package graphtea.plugins.commonplugin.undo;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.io.GraphJSON;
-import graphtea.graph.io.GraphML;
-import graphtea.plugins.main.GraphData;
 
 public class UndoManager {
     public static final String EVENT_KEY = "Undo Log Manager";

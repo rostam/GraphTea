@@ -4,8 +4,8 @@ package graphtea.extensions.reports.hamilton;
  * Created by rostam on 27.01.15.
  * Hamiltonian Cycle
  */
+
 import java.util.Arrays;
-import java.util.Random;
 
 public class HamiltonianCycle
 

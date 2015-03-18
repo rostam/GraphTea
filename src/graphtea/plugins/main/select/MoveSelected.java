@@ -6,7 +6,10 @@ package graphtea.plugins.main.select;
 
 import graphtea.graph.event.GraphEvent;
 import graphtea.graph.event.VertexEvent;
-import graphtea.graph.graph.*;
+import graphtea.graph.graph.AbstractGraphRenderer;
+import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.SubGraph;
+import graphtea.graph.graph.Vertex;
 import graphtea.library.exceptions.InvalidVertexException;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;

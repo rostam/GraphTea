@@ -1,6 +1,6 @@
 package graphtea.extensions.reports.zagreb;
 
-import graphtea.graph.GraphUtils;
+import graphtea.extensions.actions.LineGraph;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -50,6 +50,37 @@ public class ZagrebIndexFunctions {
             first_re_zagreb += Math.pow(d, alpha + 1);
         }
         return first_re_zagreb;
+    }
+
+    public double getFirstReZagrebCoindex(double alpha) {
+        double ret = 0;
+        GraphModel g = gd.getGraph();
+        GraphModel lg = LineGraph.createLineGraph(g);
+        GraphModel clg = (GraphModel) LibraryUtils.complement(lg);
+
+        for (Edge e : clg.getEdges()) {
+            int v1 = g.getDegree(lg.getVertex(e.source.getId()));
+            int v2 = g.getDegree(lg.getVertex(e.target.getId()));
+            ret += Math.pow(v1, alpha) + Math.pow(v2, alpha);
+        }
+
+        return ret;
+    }
+
+
+    public double getSecondReZagrebCoindex(double alpha) {
+        double ret = 0;
+        GraphModel g = gd.getGraph();
+        GraphModel lg = LineGraph.createLineGraph(g);
+        GraphModel clg = (GraphModel) LibraryUtils.complement(lg);
+
+        for (Edge e : clg.getEdges()) {
+            int v1 = g.getDegree(lg.getVertex(e.source.getId()));
+            int v2 = g.getDegree(lg.getVertex(e.target.getId()));
+            ret += Math.pow(v1*v2, alpha);
+        }
+
+        return ret;
     }
 
     double getSecondReZagreb(double alpha) {

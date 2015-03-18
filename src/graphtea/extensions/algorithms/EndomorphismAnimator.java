@@ -1,18 +1,13 @@
 package graphtea.extensions.algorithms;
 
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
-import graphtea.library.Path;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
-import graphtea.plugins.main.core.AlgorithmUtils;
 
 import javax.swing.*;
-import java.awt.geom.Point2D;
-import java.util.Vector;
 
 /**
  * author: rostam

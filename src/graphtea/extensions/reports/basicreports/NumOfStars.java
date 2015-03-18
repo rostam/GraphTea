@@ -7,18 +7,13 @@ package graphtea.extensions.reports.basicreports;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.library.BaseGraph;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
+import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
-import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import graphtea.platform.parameter.Parametrizable;
-
 import java.math.BigInteger;
-
-import java.util.ArrayList;
 
 /**
  * @author Mohammad Ali Rostami
