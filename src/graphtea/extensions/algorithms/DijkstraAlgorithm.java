@@ -78,7 +78,7 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
             //step("Consider the neighbour vertex with the minimum weight.");
             //step("");
             step("Compute the distance from the starting node until the neighbours" +
-                    "of the node" + vMin.getLabel() + ".");
+                    " of the node " + vMin.getLabel() + " .");
             step("");
             GraphUtils gu = new GraphUtils();
 
@@ -86,9 +86,10 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
                 Edge edge = iet.next();
                 Vertex target = vMin == edge.source ? edge.target : edge.source;
                 Vertex source = vMin;
+                int tmp = dist[source.getId()] + edge.getWeight();
                 if (!selectedVertices.contains(target)) {
                     gu.setMessage("Currently computed distnace:"
-                                    + dist[source.getId()] + edge.getWeight(),
+                                    + tmp,
                             graphData.getBlackboard(), true);
                     step("<br/>");
                     if (dist[target.getId()] > dist[source.getId()] + edge.getWeight()) {
