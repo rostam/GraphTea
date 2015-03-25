@@ -10,11 +10,8 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.graph.ui.GTabbedGraphPane;
-import graphtea.library.algorithms.goperators.EdgeInduced;
-import graphtea.library.algorithms.goperators.GraphUnion;
-import graphtea.library.algorithms.goperators.VertexInduced;
-import graphtea.library.algorithms.goperators.product.GCartesianProduct;
-import graphtea.library.algorithms.goperators.product.GPopularProduct;
+import graphtea.library.algorithms.goperators.*;
+import graphtea.library.algorithms.goperators.product.*;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.lang.CommandAttitude;
@@ -27,6 +24,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 
 /**
@@ -43,13 +41,6 @@ public class GraphCommands {
     }
 
     GraphData datas;
-
-//    @CommandAttitude(name = "matlab" , abbreviation = "_ml"
-//            , description = "")
-//    public String matlab(String command) {
-//        String parsed;
-////        return ConnectorReportExtension(parsed);
-//    }
 
     @CommandAttitude(name = "current_graph", abbreviation = "_cg"
             , description = "the matrix related to the graph")
@@ -244,30 +235,51 @@ public class GraphCommands {
         return graphModel;
     }
 
-//    @CommandAttitude(name = "gcomplement", abbreviation = "_gc", description = "complement")
-//    public GraphModel gcomplement(@Parameter(name = "graph_name") GraphModel g1_name) {
-//        GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-//        GraphModel g1 = null;
-//        for (Component component : gtp.getTabedPane().getComponents()) {
-//            if (!(component instanceof JGraph))
-//                continue;
-//
-//            GraphModel graph = ((JGraph) component).getGraph();
-//            if (graph.getLabel().equals(g1_name))
-//                g1 = graph;
-//        }
-//        g1 = g1_name;
-////        GraphModel graphModel = GComplement.complement((GraphModel)g1);
-////        graphModel.setDirected(g1.isDirected());
-////        gtp.addGraph(graphModel);
-//        return g1;
-//    }
+    @CommandAttitude(name = "gcorona", abbreviation = "_gcorona", description = "Creates the union of two given graphs")
+    public GraphModel gcorona(@Parameter(name = "first_graph")GraphModel g1
+            , @Parameter(name = "second_graph")GraphModel g2) {
+        GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
+        GraphModel graphModel = (GraphModel) GraphCorona.corona(g1,g2);
+        Vertex[] varr=graphModel.getVertexArray();
+        int k =0;
+        System.out.println("gvc" + g1.getVerticesCount() + " " +
+             g2.getVerticesCount()+ " " + graphModel.getVerticesCount());
+        for(int i=g1.getVerticesCount();i< graphModel.getVerticesCount();
+            i=i+g2.getVerticesCount(),k++) {
+            for(int j=0;j<g2.getVerticesCount();j++) {
+                int index=g1.getVerticesCount()+g2.getVerticesCount()*k + j;
+                GraphPoint gp1 = varr[index].getLocation();
+                GraphPoint gp2 = varr[k].getLocation();
+                GraphPoint gp3 = GraphPoint.sub(gp2,gp1);
+                System.out.println("div" + gp3);
+                gp3= GraphPoint.div(gp3,2);
+                gp3.add(gp1);
+                graphModel.getVertex(varr[index].getId()).setLocation(gp3);
+            }
+        }
+        graphModel.setDirected(g1.isDirected());
+        gtp.addGraph(graphModel);
+        return graphModel;
+    }
 
-//    @CommandAttitude(name = "help_window", abbreviation = "_hw"
-//            , description = "Shows the help window")
-//    public void showHelpWindow() {
-//        datas.help.showHelpWindow();
-//    }
+    @CommandAttitude(name = "gsum", abbreviation = "_gsum",
+            description = "Creates the sum of two given graphs")
+    public GraphModel gsum(@Parameter(name = "first_graph")GraphModel g1
+            , @Parameter(name = "second_graph")GraphModel g2) {
+        GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
+        GraphModel graphModel = (GraphModel) GraphUnion.union(g1,g2);
+        Vertex[] varr = graphModel.getVertexArray();
+        for(int i=0; i < g1.getVerticesCount();i++) {
+            for(int j=0;j<g2.getVerticesCount();j++) {
+                graphModel.addEdge(new Edge(
+                        varr[i],varr[g1.getVerticesCount()+j]
+                ));
+            }
+        }
+        graphModel.setDirected(g1.isDirected());
+        gtp.addGraph(graphModel);
+        return graphModel;
+    }
 
     @CommandAttitude(name = "cartesian_product", abbreviation = "_cproduct", description = "Computes and shows the cartesian product of given graphs")
     public void cartesian_product(@Parameter(name = "first_graph")GraphModel g1
@@ -286,11 +298,13 @@ public class GraphCommands {
         gtp.addGraph(graphModel);
     }
 
-    @CommandAttitude(name = "product", abbreviation = "_product", description = "Computes and shows Popular product of given graphs")
-    public void product(@Parameter(name = "first_graph")GraphModel g1
+    @CommandAttitude(name = "gdisjunction",
+            abbreviation = "_disj",
+            description = "Computes the disjunction of graphs")
+    public void disjunction(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        GPopularProduct p = new GPopularProduct();
+        GDisjunction p = new GDisjunction();
         GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
@@ -303,18 +317,45 @@ public class GraphCommands {
         gtp.addGraph(graphModel);
     }
 
-//    @CommandAttitude(name = "preview_file", abbreviation = "_pf"
-//            , description = "Previews the given filename")
-//    public void showPreview(@Parameter(name = "filename:") String fileName) throws ShellCommandException {
-//        try {
-//            datas.preview.showPreview(fileName);
-//        } catch (Exception e) {
-//            throw new ShellCommandException("File does not exist of corrupted");
-//        }
-//
-//    }
+    @CommandAttitude(name = "gsymdiff",
+            abbreviation = "_symdiff",
+            description = "Computes the symmetric difference of graphs")
+    public void symdiff(@Parameter(name = "first_graph")GraphModel g1
+            , @Parameter(name = "second_graph")GraphModel g2) {
+        GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
+        GSymDiff p = new GSymDiff();
+        GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
+        graphModel.setDirected(g1.isDirected());
+        int n = graphModel.getVerticesCount();
+        Point ps[] = PositionGenerators.circle(200, 300, 300, n);
+        int count = 0;
+        for (Vertex v : graphModel) {
+            v.setLocation(new GraphPoint(ps[count].x, ps[count].y));
+            count++;
+        }
+        gtp.addGraph(graphModel);
 
-    //
+    }
+
+    @CommandAttitude(name = "gcomposition",
+            abbreviation = "composition",
+            description = "Computes the composition of graphs")
+    public void composition(@Parameter(name = "first_graph")GraphModel g1
+            , @Parameter(name = "second_graph")GraphModel g2) {
+        GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
+        GComposition p = new GComposition();
+        GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
+        graphModel.setDirected(g1.isDirected());
+        int n = graphModel.getVerticesCount();
+        Point ps[] = PositionGenerators.circle(200, 300, 300, n);
+        int count = 0;
+        for (Vertex v : graphModel) {
+            v.setLocation(new GraphPoint(ps[count].x, ps[count].y));
+            count++;
+        }
+        gtp.addGraph(graphModel);
+
+    }
 
     @CommandAttitude(name = "load_graphml", abbreviation = "_lg"
             , description = "loads a graph from a GrapmML file")
