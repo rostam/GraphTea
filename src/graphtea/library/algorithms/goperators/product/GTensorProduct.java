@@ -8,7 +8,7 @@ package graphtea.library.algorithms.goperators.product;
 import graphtea.library.BaseVertex;
 
 //todo: doc needed (rostam)
-public class GPopularProduct extends GProduct {
+public class GTensorProduct extends GProduct {
     public boolean compare(BaseVertex v1OfFirstG, BaseVertex v2OfFirstG, BaseVertex v1OfSecondG, BaseVertex v2OfSecondG) {
         return g1.isEdge(v1OfFirstG, v2OfFirstG)
                 && g2.isEdge(v1OfSecondG, v2OfSecondG);

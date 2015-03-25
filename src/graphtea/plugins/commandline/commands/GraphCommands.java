@@ -298,6 +298,23 @@ public class GraphCommands {
         gtp.addGraph(graphModel);
     }
 
+    @CommandAttitude(name = "tensor_product", abbreviation = "_tproduct", description = "Computes and shows the cartesian product of given graphs")
+    public void tensor_product(@Parameter(name = "first_graph")GraphModel g1
+            , @Parameter(name = "second_graph")GraphModel g2) {
+        GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
+        GTensorProduct p = new GTensorProduct();
+        GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
+        graphModel.setDirected(g1.isDirected());
+        int n = graphModel.getVerticesCount();
+        Point ps[] = PositionGenerators.circle(250, 300, 300, n);
+        int count = 0;
+        for (Vertex v : graphModel) {
+            v.setLocation(new GraphPoint(ps[count].x, ps[count].y));
+            count++;
+        }
+        gtp.addGraph(graphModel);
+    }
+
     @CommandAttitude(name = "gdisjunction",
             abbreviation = "_disj",
             description = "Computes the disjunction of graphs")
