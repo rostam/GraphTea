@@ -47,7 +47,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
     @UserModifiableProperty(displayName = "Default Vertex Stroke")
     public static GStroke defaultBorderStroke = GStroke.strong;
     @UserModifiableProperty(displayName = "Default Size of Vertices")
-    public static Dimension defaultShapeDimension = new Dimension(40, 40);
+    public static Dimension defaultShapeDimension = new Dimension(50, 50);
     @UserModifiableProperty(displayName = "Default Edge Color")
     public static Color defaultEdgeColor = new Color(130,130,130);
 

@@ -12,6 +12,7 @@ import graphtea.graph.graph.Vertex;
 import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.library.algorithms.goperators.*;
 import graphtea.library.algorithms.goperators.product.*;
+import graphtea.library.util.Pair;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.lang.CommandAttitude;
@@ -24,7 +25,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.HashSet;
 
 /**
@@ -215,24 +215,32 @@ public class GraphCommands {
         return gm;
     }
 
-    @CommandAttitude(name = "gjoin", abbreviation = "_jn", description = "Joins two graphs")
-    public void gjoin(@Parameter(name = "first_graph")GraphModel g1,
-                      @Parameter(name = "second_graph")GraphModel g2) {
-        GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        GraphModel graphModel = (GraphModel) GraphUnion.union(g1, g2);
-        graphModel.setDirected(g1.isDirected());
-        gtp.addGraph(graphModel);
-    }
-
-
     @CommandAttitude(name = "gunion", abbreviation = "_un", description = "Creates the union of two given graphs")
     public GraphModel gunion(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
         GraphModel graphModel = (GraphModel) GraphUnion.union(g1, g2);
+        setUnionLabel(g1, g2, graphModel);
         graphModel.setDirected(g1.isDirected());
         gtp.addGraph(graphModel);
         return graphModel;
+    }
+
+    public void setUnionLabel(GraphModel g1, GraphModel g2, GraphModel graphModel) {
+        for(Vertex v : graphModel) {
+        //    v.getSize().multiply(1.5);
+        }
+        for(int i=0;i < g1.getVerticesCount();i++) {
+            Vertex v = graphModel.getVertex(i);
+            String gname = g1.getLabel();
+            graphModel.getVertex(i).setLabel(gname.substring(1) + "_" + v.getLabel());
+        }
+        for(int i=0;i < g2.getVerticesCount();i++) {
+            int ind = i + g1.getVerticesCount();
+            Vertex v = graphModel.getVertex(ind);
+            String gname = g2.getLabel();
+            graphModel.getVertex(ind).setLabel(gname.substring(1) + "_" + v.getLabel());
+        }
     }
 
     @CommandAttitude(name = "gcorona", abbreviation = "_gcorona", description = "Creates the union of two given graphs")
@@ -240,18 +248,20 @@ public class GraphCommands {
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
         GraphModel graphModel = (GraphModel) GraphCorona.corona(g1,g2);
+        for(Vertex v : graphModel) {
+            //v.getSize().multiply(1.5);
+        }
         Vertex[] varr=graphModel.getVertexArray();
         int k =0;
-        System.out.println("gvc" + g1.getVerticesCount() + " " +
-             g2.getVerticesCount()+ " " + graphModel.getVerticesCount());
         for(int i=g1.getVerticesCount();i< graphModel.getVerticesCount();
             i=i+g2.getVerticesCount(),k++) {
+            varr[k].setLabel(g1.getLabel().substring(1)+ "_"+varr[k].getLabel());
             for(int j=0;j<g2.getVerticesCount();j++) {
                 int index=g1.getVerticesCount()+g2.getVerticesCount()*k + j;
+                varr[index].setLabel(g2.getLabel().substring(1)+"_"+varr[index].getLabel()+"_"+k);
                 GraphPoint gp1 = varr[index].getLocation();
                 GraphPoint gp2 = varr[k].getLocation();
                 GraphPoint gp3 = GraphPoint.sub(gp2,gp1);
-                System.out.println("div" + gp3);
                 gp3= GraphPoint.div(gp3,2);
                 gp3.add(gp1);
                 graphModel.getVertex(varr[index].getId()).setLocation(gp3);
@@ -268,6 +278,7 @@ public class GraphCommands {
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
         GraphModel graphModel = (GraphModel) GraphUnion.union(g1,g2);
+        setUnionLabel(g1,g2,graphModel);
         Vertex[] varr = graphModel.getVertexArray();
         for(int i=0; i < g1.getVerticesCount();i++) {
             for(int j=0;j<g2.getVerticesCount();j++) {
@@ -287,6 +298,7 @@ public class GraphCommands {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
         GCartesianProduct p = new GCartesianProduct();
         GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
+        setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
         Point ps[] = PositionGenerators.circle(250, 300, 300, n);
@@ -298,12 +310,21 @@ public class GraphCommands {
         gtp.addGraph(graphModel);
     }
 
+    public void setProductLabel(GraphModel graphModel) {
+        //for(Vertex v:graphModel) v.getSize().multiply(1.5);
+        for(Vertex v:graphModel) {
+            Pair<Vertex,Vertex> pp = (Pair<Vertex, Vertex>) v.getProp().obj;
+            v.setLabel(pp.first.getLabel()+ "_"+pp.second.getLabel());
+        }
+    }
+
     @CommandAttitude(name = "tensor_product", abbreviation = "_tproduct", description = "Computes and shows the cartesian product of given graphs")
     public void tensor_product(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
         GTensorProduct p = new GTensorProduct();
         GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
+        setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
         Point ps[] = PositionGenerators.circle(250, 300, 300, n);
@@ -342,6 +363,7 @@ public class GraphCommands {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
         GSymDiff p = new GSymDiff();
         GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
+        setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
         Point ps[] = PositionGenerators.circle(200, 300, 300, n);
@@ -355,13 +377,14 @@ public class GraphCommands {
     }
 
     @CommandAttitude(name = "gcomposition",
-            abbreviation = "composition",
+            abbreviation = "_composition",
             description = "Computes the composition of graphs")
     public void composition(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
         GComposition p = new GComposition();
         GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
+        setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
         Point ps[] = PositionGenerators.circle(200, 300, 300, n);
@@ -388,22 +411,6 @@ public class GraphCommands {
         }
     }
 
-    Vertex getVertexByID(String id) {
-        int ID = Integer.parseInt(id);
-        for (Vertex v : datas.getGraph()) {
-            if (v.getId() == ID)
-                return v;
-        }
-        return null;
-    }
-
-    Vertex getVertexByLabel(String label) {
-        for (Vertex v : datas.getGraph()) {
-            if (v.getLabel().equals(label))
-                return v;
-        }
-        return null;
-    }
 }
 
 
