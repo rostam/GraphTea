@@ -54,13 +54,14 @@ public class ZagrebIndexFunctions {
 
     public double getFirstReZagrebCoindex(double alpha) {
         double ret = 0;
+        if(gd.getGraph().getEdgesCount()==1) return ret;
         GraphModel g = gd.getGraph();
         GraphModel lg = LineGraph.createLineGraph(g);
         GraphModel clg = (GraphModel) LibraryUtils.complement(lg);
 
         for (Edge e : clg.getEdges()) {
-            int v1 = g.getDegree(lg.getVertex(e.source.getId()));
-            int v2 = g.getDegree(lg.getVertex(e.target.getId()));
+            int v1 = lg.getDegree(lg.getVertex(e.source.getId()));
+            int v2 = lg.getDegree(lg.getVertex(e.target.getId()));
             ret += Math.pow(v1, alpha) + Math.pow(v2, alpha);
         }
 
@@ -71,12 +72,13 @@ public class ZagrebIndexFunctions {
     public double getSecondReZagrebCoindex(double alpha) {
         double ret = 0;
         GraphModel g = gd.getGraph();
+        if(gd.getGraph().getEdgesCount()==1) return ret;
         GraphModel lg = LineGraph.createLineGraph(g);
         GraphModel clg = (GraphModel) LibraryUtils.complement(lg);
 
         for (Edge e : clg.getEdges()) {
-            int v1 = g.getDegree(lg.getVertex(e.source.getId()));
-            int v2 = g.getDegree(lg.getVertex(e.target.getId()));
+            int v1 = lg.getDegree(lg.getVertex(e.source.getId()));
+            int v2 = lg.getDegree(lg.getVertex(e.target.getId()));
             ret += Math.pow(v1*v2, alpha);
         }
 
