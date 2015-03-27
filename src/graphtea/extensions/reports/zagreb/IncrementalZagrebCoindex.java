@@ -45,6 +45,8 @@ public class IncrementalZagrebCoindex implements GraphReportExtension, Parametri
         ret.get(0).add("Alpha");
         ret.get(0).add("First Zagreb Coindex");
         ret.get(0).add("Second Zagreb Coindex");
+        ret.get(0).add("First Zagreb Reformulated Coindex");
+        ret.get(0).add("Second Zagreb Reformulated Coindex");
 
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
         int ind = 0;
@@ -54,6 +56,8 @@ public class IncrementalZagrebCoindex implements GraphReportExtension, Parametri
             ret.get(ind).add(alpha);
             ret.get(ind).add(zif.getFirstZagrebCoindex(alpha));
             ret.get(ind).add(zif.getSecondZagrebCoindex(alpha));
+            ret.get(ind).add(zif.getFirstReZagrebCoindex(alpha));
+            ret.get(ind).add(zif.getSecondReZagrebCoindex(alpha));
         }
         return ret;
     }
