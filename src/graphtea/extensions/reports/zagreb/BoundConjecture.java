@@ -41,12 +41,20 @@ public class BoundConjecture implements GraphReportExtension{
         ret.get(0).add(" 5 ");
         ret.get(0).add(" 6 ");
         ret.get(0).add(" 7 ");
+        ret.get(0).add(" 8 ");
+        ret.get(0).add(" 9 ");
+        ret.get(0).add(" 10 ");
+        ret.get(0).add(" 11 ");
+
 
         double maxDeg = 0;
+        double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
         for(Vertex v : gd.getGraph()) {
-            if(gd.getGraph().getDegree(v) > maxDeg)
+            if(gd.getGraph().getDegree(v) > maxDeg) {
+                maxDeg2 = maxDeg;
                 maxDeg = gd.getGraph().getDegree(v);
+            }
             if(gd.getGraph().getDegree(v) < minDeg)
                 minDeg = gd.getGraph().getDegree(v);
         }
@@ -71,6 +79,15 @@ public class BoundConjecture implements GraphReportExtension{
                 ));
         ret.get(1).add((Math.pow(maxDeg+minDeg,2)/(n*maxDeg*minDeg))*m*m);
         ret.get(1).add((n/m)*zif.getSecondZagreb(1));
+        
+        ret.get(1).add(2*m*(maxDeg+minDeg)-(n*maxDeg*minDeg));
+        ret.get(1).add((4*m*m + 2*m*(n-1)*(maxDeg-minDeg))/(n-maxDeg-minDeg));
+        ret.get(1).add((Math.pow(2*m-maxDeg,2)/n-1)
+                        + Math.pow(maxDeg,2)
+                        + ((n-1)/4)*Math.pow(maxDeg2-minDeg,2));
+        ret.get(1).add(Math.pow(maxDeg,2)
+                       + (maxDeg2+minDeg)*(2*m-maxDeg)
+                       - (n-1)*(maxDeg2*minDeg));
         return ret;
     }
 
