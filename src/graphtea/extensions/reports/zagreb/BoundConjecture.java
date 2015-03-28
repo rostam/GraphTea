@@ -55,13 +55,13 @@ public class BoundConjecture implements GraphReportExtension{
         double n = gd.getGraph().getVerticesCount();
 
         ret.add(new Vector<Object>());
-        ret.get(1).add(zif.getFirstZagreb(2));
+        ret.get(1).add(zif.getFirstZagreb(1));
         ret.get(1).add(m*(m+1));
         ret.get(1).add(n*(2*m-n+1));
-        ret.get(1).add((2*m/(n-1)) + n - 2);
-        ret.get(1).add((2*m/(n-1))
+        ret.get(1).add(((2*m/(n-1)) + n - 2)*m);
+        ret.get(1).add(m*((2*m/(n-1))
                 + ((n-2)/(n-1)*maxDeg)
-                + (maxDeg-minDeg)*(1 - (maxDeg/(n-1))));
+                + (maxDeg-minDeg)*(1 - (maxDeg/(n-1)))));
         ret.get(1).add(
                 Math.max(
                 m*(maxDeg+minDeg-1
