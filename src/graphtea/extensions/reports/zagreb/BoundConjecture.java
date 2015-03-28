@@ -10,8 +10,11 @@ import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
+import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Vector;
 
 /**
@@ -50,14 +53,18 @@ public class BoundConjecture implements GraphReportExtension{
         double maxDeg = 0;
         double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
-        for(Vertex v : gd.getGraph()) {
-            if(gd.getGraph().getDegree(v) > maxDeg) {
-                maxDeg2 = maxDeg;
-                maxDeg = gd.getGraph().getDegree(v);
+
+        ArrayList<Integer> al = AlgorithmUtils.getDegreesList(gd.getGraph());
+        Collections.sort(al);
+        maxDeg = al.get(al.size()-1);
+        minDeg = al.get(0);
+        for(int i=al.size()-2;i>=0;i--) {
+            if(al.get(i) != maxDeg) {
+                maxDeg2 = al.get(i);
+                break;
             }
-            if(gd.getGraph().getDegree(v) < minDeg)
-                minDeg = gd.getGraph().getDegree(v);
         }
+        if(maxDeg2 == 0) maxDeg2=maxDeg;
 
         double m = gd.getGraph().getEdgesCount();
         double n = gd.getGraph().getVerticesCount();
@@ -77,15 +84,17 @@ public class BoundConjecture implements GraphReportExtension{
                 m*(minDeg+1
                 +((2*m-(minDeg*(n-1)))/2))
                 ));
-        ret.get(1).add((Math.pow(maxDeg+minDeg,2)/(n*maxDeg*minDeg))*m*m);
+        ret.get(1).add((Math.pow(maxDeg+minDeg,2.)/(n*maxDeg*minDeg))*m*m);
         ret.get(1).add((n/m)*zif.getSecondZagreb(1));
-        
+
         ret.get(1).add(2*m*(maxDeg+minDeg)-(n*maxDeg*minDeg));
         ret.get(1).add((4*m*m + 2*m*(n-1)*(maxDeg-minDeg))/(n-maxDeg-minDeg));
-        ret.get(1).add((Math.pow(2*m-maxDeg,2)/n-1)
-                        + Math.pow(maxDeg,2)
-                        + ((n-1)/4)*Math.pow(maxDeg2-minDeg,2));
-        ret.get(1).add(Math.pow(maxDeg,2)
+
+        ret.get(1).add((Math.pow((2*m)-maxDeg,2.)/(n-1))
+                        + Math.pow(maxDeg,2.)
+                        + ((n-1)/4)*Math.pow(maxDeg2-minDeg,2.));
+
+        ret.get(1).add(Math.pow(maxDeg,2.)
                        + (maxDeg2+minDeg)*(2*m-maxDeg)
                        - (n-1)*(maxDeg2*minDeg));
         return ret;
