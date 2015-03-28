@@ -52,7 +52,6 @@ public class TableRenderer implements GBasicCellRenderer<RendTable> {
             }
         }
 
-
         JTable table = new JTable(data,names);
         JScrollPane scrollpane = new JScrollPane(table);
 
