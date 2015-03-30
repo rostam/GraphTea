@@ -36,12 +36,12 @@ public class TableRenderer implements GBasicCellRenderer<RendTable> {
             names[i] = (String)sd.get(0).get(i);
         }
 
-        //BigDecimal bd = new BigDecimal();
         Object[][] data = new Object[sd.size()-1][sd.get(0).size()];
         for(int i=0;i<sd.size()-1;i++) {
             for(int j=0;j < data[i].length;j++) {
                 Object o = sd.get(i+1).get(j);
-                if(o instanceof Double) {
+
+                if(o instanceof Double && !o.toString().equals("NaN")) {
                     Double toBeTruncated = (Double) o;
                     Double truncatedDouble =
                             new BigDecimal(toBeTruncated).

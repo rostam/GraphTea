@@ -33,7 +33,7 @@ public class ZagrebCoindexSelectedEdges implements GraphReportExtension, Paramet
 
     public Object calculate(GraphData gd) {
         ArrayList<String> out = new ArrayList<String>();
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         out.add("First Zagreb Coindex : "+ zif.getFirstZagrebCoindexSelectedEdges(alpha));
         out.add("Second Zagreb Coindex : "+ zif.getSecondZagrebCoindexSelectedEdges(alpha));
         return out;

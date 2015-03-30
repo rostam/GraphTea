@@ -49,7 +49,7 @@ public class IncrementalZagrebIndexSelectedEdges implements GraphReportExtension
         ret.get(0).add("Second Reformulated Zagreb Index");
 
         int ind = 0;
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;
             ret.add(new Vector<Object>());

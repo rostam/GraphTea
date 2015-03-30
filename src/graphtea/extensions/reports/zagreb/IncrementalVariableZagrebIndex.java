@@ -46,7 +46,7 @@ public class IncrementalVariableZagrebIndex implements GraphReportExtension, Par
         ret.get(0).add("First Variable Zagreb Index");
         ret.get(0).add("Second Variable Zagreb Index");
 
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         int ind = 0;
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;

@@ -33,7 +33,7 @@ public class ZagrebIndexSelectedEdges implements GraphReportExtension, Parametri
 
     public Object calculate(GraphData gd) {
         ArrayList<String> out = new ArrayList<String>();
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         out.add("First General Zagreb Index : "+ zif.getFirstZagrebSelectedEdges(alpha));
         out.add("Second General Zagreb Index : "+ zif.getSecondZagrebSelectedEdges(alpha));
         out.add("First Reformulated Zagreb Index : " + zif.getFirstReZagrebSelectedEdges(alpha));

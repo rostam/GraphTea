@@ -49,7 +49,7 @@ public class IncrementalZagrebIndex implements GraphReportExtension, Parametriza
         ret.get(0).add("Second Reformulated Zagreb Index");
 
 
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         int ind = 0;
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;

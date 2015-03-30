@@ -32,7 +32,7 @@ public class VariableZagrebIndex implements GraphReportExtension, Parametrizable
 
     public Object calculate(GraphData gd) {
         ArrayList<String> out = new ArrayList<String>();
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         out.add("First Variable Zagreb Index : "+ zif.getFirstVariableZagrebIndex(alpha));
         out.add("Second Variable Zagreb Index : "+ zif.getSecondVariableZagrebIndex(alpha));
         return out;

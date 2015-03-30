@@ -5,7 +5,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.algorithms.util.LibraryUtils;
-import graphtea.plugins.main.GraphData;
 
 import java.util.ArrayList;
 
@@ -14,27 +13,27 @@ import java.util.ArrayList;
  * Class containg the functions for computation of Zagreb indices
  */
 public class ZagrebIndexFunctions {
-    GraphData gd;
-
-    public ZagrebIndexFunctions(GraphData gd) {
-        this.gd = gd;
+    GraphModel g;
+    
+    public ZagrebIndexFunctions(GraphModel g) {
+        this.g = g;
     }
 
     public double getFirstZagreb(double alpha) {
         double first_zagreb = 0;
-        for (Vertex v : gd.getGraph().vertices()) {
-            first_zagreb += Math.pow(gd.getGraph().getDegree(v), alpha + 1);
+        for (Vertex v : g.vertices()) {
+            first_zagreb += Math.pow(g.getDegree(v), alpha + 1);
         }
         return first_zagreb;
     }
 
     public double getSecondZagreb(double alpha) {
         double second_zagreb = 0;
-        for (Edge e : gd.getGraph().getEdges()) {
+        for (Edge e : g.getEdges()) {
             second_zagreb +=
                     Math.pow(
-                            gd.getGraph().getDegree(e.source) *
-                                    gd.getGraph().getDegree(e.target), alpha);
+                            g.getDegree(e.source) *
+                                    g.getDegree(e.target), alpha);
         }
 
         return second_zagreb;
@@ -42,10 +41,10 @@ public class ZagrebIndexFunctions {
 
     public double getFirstReZagreb(double alpha) {
         double first_re_zagreb = 0;
-        for (Edge e : gd.getGraph().getEdges()) {
+        for (Edge e : g.getEdges()) {
 
-            int d = gd.getGraph().getDegree(e.source) +
-                    gd.getGraph().getDegree(e.target) - 2;
+            int d = g.getDegree(e.source) +
+                    g.getDegree(e.target) - 2;
 
             first_re_zagreb += Math.pow(d, alpha + 1);
         }
@@ -54,8 +53,7 @@ public class ZagrebIndexFunctions {
 
     public double getFirstReZagrebCoindex(double alpha) {
         double ret = 0;
-        if(gd.getGraph().getEdgesCount()==1) return ret;
-        GraphModel g = gd.getGraph();
+        if(g.getEdgesCount()==1) return ret;
         GraphModel lg = LineGraph.createLineGraph(g);
         GraphModel clg = (GraphModel) LibraryUtils.complement(lg);
 
@@ -71,8 +69,7 @@ public class ZagrebIndexFunctions {
 
     public double getSecondReZagrebCoindex(double alpha) {
         double ret = 0;
-        GraphModel g = gd.getGraph();
-        if(gd.getGraph().getEdgesCount()==1) return ret;
+        if(g.getEdgesCount()==1) return ret;
         GraphModel lg = LineGraph.createLineGraph(g);
         GraphModel clg = (GraphModel) LibraryUtils.complement(lg);
 
@@ -88,17 +85,17 @@ public class ZagrebIndexFunctions {
     double getSecondReZagreb(double alpha) {
         double second_re_zagreb = 0;
         ArrayList<Edge> eds = new ArrayList<Edge>();
-        for (Edge ee : gd.getGraph().getEdges()) {
+        for (Edge ee : g.getEdges()) {
             eds.add(ee);
         }
         for (Edge e1 : eds) {
             for (Edge e2 : eds) {
                 if (edge_adj(e1, e2)) {
-                    int d1 = gd.getGraph().getDegree(e1.source) +
-                            gd.getGraph().getDegree(e1.target) - 2;
+                    int d1 = g.getDegree(e1.source) +
+                            g.getDegree(e1.target) - 2;
 
-                    int d2 = gd.getGraph().getDegree(e2.source) +
-                            gd.getGraph().getDegree(e2.target) - 2;
+                    int d2 = g.getDegree(e2.source) +
+                            g.getDegree(e2.target) - 2;
 
                     second_re_zagreb += Math.pow(d1 * d2, alpha);
                 }
@@ -112,7 +109,6 @@ public class ZagrebIndexFunctions {
     double getFirstZagrebCoindex(double alpha) {
         double first_zagreb = 0;
 
-        GraphModel g = gd.getGraph();
         GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
         for (Edge e : g2.getEdges()) {
             int v1 = g.getDegree(g.getVertex(e.source.getId()));
@@ -126,7 +122,6 @@ public class ZagrebIndexFunctions {
     double getSecondZagrebCoindex(double alpha) {
         double second_zagreb = 0;
 
-        GraphModel g = gd.getGraph();
         GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
 
         for (Edge e : g2.getEdges()) {
@@ -140,10 +135,10 @@ public class ZagrebIndexFunctions {
 
     public double getFirstZagrebSelectedEdges(double alpha) {
         double first_zagreb = 0;
-        for (Vertex v : gd.getGraph().vertices()) {
-            for (Vertex nv : gd.getGraph().getNeighbors(v))
-                if (gd.getGraph().getEdge(v, nv).isSelected()) {
-                    first_zagreb += Math.pow(gd.getGraph().getDegree(v), alpha + 1);
+        for (Vertex v : g.vertices()) {
+            for (Vertex nv : g.getNeighbors(v))
+                if (g.getEdge(v, nv).isSelected()) {
+                    first_zagreb += Math.pow(g.getDegree(v), alpha + 1);
                     break;
                 }
         }
@@ -152,12 +147,12 @@ public class ZagrebIndexFunctions {
 
     public double getSecondZagrebSelectedEdges(double alpha) {
         double second_zagreb = 0;
-        for (Edge e : gd.getGraph().getEdges()) {
+        for (Edge e : g.getEdges()) {
             if (e.isSelected()) {
                 second_zagreb +=
                         Math.pow(
-                                gd.getGraph().getDegree(e.source) *
-                                        gd.getGraph().getDegree(e.target), alpha);
+                                g.getDegree(e.source) *
+                                        g.getDegree(e.target), alpha);
             }
         }
         return second_zagreb;
@@ -165,10 +160,10 @@ public class ZagrebIndexFunctions {
 
     public double getFirstReZagrebSelectedEdges(double alpha) {
         double first_re_zagreb = 0;
-        for (Edge e : gd.getGraph().getEdges()) {
+        for (Edge e : g.getEdges()) {
             if (e.isSelected()) {
-                int d = gd.getGraph().getDegree(e.source) +
-                        gd.getGraph().getDegree(e.target) - 2;
+                int d = g.getDegree(e.source) +
+                        g.getDegree(e.target) - 2;
 
                 first_re_zagreb += Math.pow(d, alpha + 1);
             }
@@ -179,18 +174,18 @@ public class ZagrebIndexFunctions {
     double getSecondReZagrebSelectedEdges(double alpha) {
         double second_re_zagreb = 0;
         ArrayList<Edge> eds = new ArrayList<Edge>();
-        for (Edge ee : gd.getGraph().getEdges()) {
+        for (Edge ee : g.getEdges()) {
             eds.add(ee);
         }
         for (Edge e1 : eds) {
             for (Edge e2 : eds) {
                 if (e1.isSelected() && e2.isSelected()) {
                     if (edge_adj(e1, e2)) {
-                        int d1 = gd.getGraph().getDegree(e1.source) +
-                                gd.getGraph().getDegree(e1.target) - 2;
+                        int d1 = g.getDegree(e1.source) +
+                                g.getDegree(e1.target) - 2;
 
-                        int d2 = gd.getGraph().getDegree(e2.source) +
-                                gd.getGraph().getDegree(e2.target) - 2;
+                        int d2 = g.getDegree(e2.source) +
+                                g.getDegree(e2.target) - 2;
 
                         second_re_zagreb += Math.pow(d1 * d2, alpha);
                     }
@@ -206,18 +201,18 @@ public class ZagrebIndexFunctions {
         double first_zagreb = 0;
 
         boolean cond1 = false, cond2=false;
-        for (Vertex v1 : gd.getGraph().getVertexArray()) {
-            for (Vertex v2 : gd.getGraph().getVertexArray()) {
+        for (Vertex v1 : g.getVertexArray()) {
+            for (Vertex v2 : g.getVertexArray()) {
 
-                for(Vertex nv1 : gd.getGraph().getNeighbors(v1)) {
-                    if(gd.getGraph().getEdge(v1,nv1).isSelected()) {
+                for(Vertex nv1 : g.getNeighbors(v1)) {
+                    if(g.getEdge(v1,nv1).isSelected()) {
                         cond1 = true;
                         break;
                     }
                 }
 
-                for(Vertex nv2 : gd.getGraph().getNeighbors(v2)) {
-                    if(gd.getGraph().getEdge(v2,nv2).isSelected()) {
+                for(Vertex nv2 : g.getNeighbors(v2)) {
+                    if(g.getEdge(v2,nv2).isSelected()) {
                         cond2 = true;
                         break;
                     }
@@ -225,9 +220,9 @@ public class ZagrebIndexFunctions {
 
                 if(cond1 && cond2) {
                     if (v1.getId() != v2.getId()) {
-                        if (!gd.getGraph().isEdge(v1, v2)) {
-                            first_zagreb += Math.pow(gd.getGraph().getDegree(v1), alpha) +
-                                    Math.pow(gd.getGraph().getDegree(v2), alpha);
+                        if (!g.isEdge(v1, v2)) {
+                            first_zagreb += Math.pow(g.getDegree(v1), alpha) +
+                                    Math.pow(g.getDegree(v2), alpha);
                         }
                     }
                 }
@@ -243,26 +238,26 @@ public class ZagrebIndexFunctions {
         double second_zagreb = 0;
 
         boolean cond1 = false, cond2 = false;
-        for (Vertex v1 : gd.getGraph().getVertexArray()) {
-            for (Vertex v2 : gd.getGraph().getVertexArray()) {
-                for (Vertex nv1 : gd.getGraph().getNeighbors(v1)) {
-                    if (gd.getGraph().getEdge(v1, nv1).isSelected()) {
+        for (Vertex v1 : g.getVertexArray()) {
+            for (Vertex v2 : g.getVertexArray()) {
+                for (Vertex nv1 : g.getNeighbors(v1)) {
+                    if (g.getEdge(v1, nv1).isSelected()) {
                         cond1 = true;
                         break;
                     }
                 }
 
-                for (Vertex nv2 : gd.getGraph().getNeighbors(v2)) {
-                    if (gd.getGraph().getEdge(v2, nv2).isSelected()) {
+                for (Vertex nv2 : g.getNeighbors(v2)) {
+                    if (g.getEdge(v2, nv2).isSelected()) {
                         cond2 = true;
                         break;
                     }
                 }
                 if (cond1 && cond2) {
                     if (v1.getId() != v2.getId()) {
-                        if (!gd.getGraph().isEdge(v1, v2)) {
-                            second_zagreb += Math.pow(gd.getGraph().getDegree(v1) *
-                                    gd.getGraph().getDegree(v2), alpha);
+                        if (!g.isEdge(v1, v2)) {
+                            second_zagreb += Math.pow(g.getDegree(v1) *
+                                    g.getDegree(v2), alpha);
 
                         }
                     }
@@ -276,8 +271,8 @@ public class ZagrebIndexFunctions {
 
     public double getFirstVariableZagrebIndex(double alpha) {
         double ret = 0;
-        for(Vertex v : gd.getGraph()) {
-            ret += Math.pow(gd.getGraph().getDegree(v),
+        for(Vertex v : g) {
+            ret += Math.pow(g.getDegree(v),
                     2*alpha);
         }
         return ret;
@@ -285,9 +280,9 @@ public class ZagrebIndexFunctions {
 
     public double getSecondVariableZagrebIndex(double alpha) {
         double ret = 0;
-        for(Edge e : gd.getGraph().getEdges()) {
-            double degs = gd.getGraph().getDegree(e.source);
-            double degt = gd.getGraph().getDegree(e.target);
+        for(Edge e : g.getEdges()) {
+            double degs = g.getDegree(e.source);
+            double degt = g.getDegree(e.target);
             ret+= Math.pow(degs*degt,alpha);
         }
         return ret;

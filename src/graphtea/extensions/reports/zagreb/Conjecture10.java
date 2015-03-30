@@ -28,7 +28,7 @@ public class Conjecture10 implements GraphReportExtension,Parametrizable {
     }
 
     public Object calculate(GraphData gd) {
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add("n(n-1)^2-4mn+2d(K12)+6m");

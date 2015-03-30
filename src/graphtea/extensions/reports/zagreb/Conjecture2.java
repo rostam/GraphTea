@@ -39,7 +39,7 @@ public class Conjecture2 implements GraphReportExtension,Parametrizable {
     }
 
     public Object calculate(GraphData gd) {
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add("Alpha");

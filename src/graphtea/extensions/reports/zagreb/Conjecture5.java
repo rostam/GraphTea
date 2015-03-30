@@ -40,7 +40,7 @@ public class Conjecture5 implements GraphReportExtension,Parametrizable {
     }
 
     public Object calculate(GraphData gd) {
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add("Alpha");
@@ -91,6 +91,7 @@ public class Conjecture5 implements GraphReportExtension,Parametrizable {
             double firstZagrebAPlus1 = zif.getFirstZagrebSelectedEdges(alpha);
             double firstZagrebA = zif.getFirstZagrebSelectedEdges(alpha-1);
             double coef = (2*am + bm + 2*k)/(2*k);
+
             ret.add(new Vector<Object>());
             ret.get(ind).add(alpha);
             ret.get(ind).add(firstZagrebAPlus1);

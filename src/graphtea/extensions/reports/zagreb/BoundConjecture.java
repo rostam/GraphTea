@@ -33,7 +33,7 @@ public class BoundConjecture implements GraphReportExtension{
     }
 
     public Object calculate(GraphData gd) {
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd);
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add(" M^2_1(G) ");
@@ -48,6 +48,7 @@ public class BoundConjecture implements GraphReportExtension{
         ret.get(0).add(" 9 ");
         ret.get(0).add(" 10 ");
         ret.get(0).add(" 11 ");
+        ret.get(0).add(" 12 ");
 
 
         double maxDeg = 0;
@@ -57,14 +58,19 @@ public class BoundConjecture implements GraphReportExtension{
         ArrayList<Integer> al = AlgorithmUtils.getDegreesList(gd.getGraph());
         Collections.sort(al);
         maxDeg = al.get(al.size()-1);
+        if(al.size()-2>=0) maxDeg2 = al.get(al.size()-2);
+        else maxDeg2 = maxDeg;
         minDeg = al.get(0);
-        for(int i=al.size()-2;i>=0;i--) {
-            if(al.get(i) != maxDeg) {
-                maxDeg2 = al.get(i);
-                break;
-            }
-        }
+
         if(maxDeg2 == 0) maxDeg2=maxDeg;
+
+        double a=0;
+        double b=0;
+
+        for(Vertex v : gd.getGraph()) {
+            if(gd.getGraph().getDegree(v)==maxDeg) a++;
+            if(gd.getGraph().getDegree(v)==minDeg) b++;
+        }
 
         double m = gd.getGraph().getEdgesCount();
         double n = gd.getGraph().getVerticesCount();
@@ -88,7 +94,7 @@ public class BoundConjecture implements GraphReportExtension{
         ret.get(1).add((n/m)*zif.getSecondZagreb(1));
 
         ret.get(1).add(2*m*(maxDeg+minDeg)-(n*maxDeg*minDeg));
-        ret.get(1).add((4*m*m + 2*m*(n-1)*(maxDeg-minDeg))/(n-maxDeg-minDeg));
+        ret.get(1).add((4*m*m + 2*m*(n-1)*(maxDeg-minDeg))/(n+maxDeg-minDeg));
 
         ret.get(1).add((Math.pow((2*m)-maxDeg,2.)/(n-1))
                         + Math.pow(maxDeg,2.)
@@ -97,6 +103,10 @@ public class BoundConjecture implements GraphReportExtension{
         ret.get(1).add(Math.pow(maxDeg,2.)
                        + (maxDeg2+minDeg)*(2*m-maxDeg)
                        - (n-1)*(maxDeg2*minDeg));
+
+        ret.get(1).add((2*m*(maxDeg+minDeg))
+                    - (n*minDeg*maxDeg)
+                    - (n-a-b)*(maxDeg-minDeg-1));
         return ret;
     }
 
