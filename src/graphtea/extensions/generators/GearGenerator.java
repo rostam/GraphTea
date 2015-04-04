@@ -22,9 +22,9 @@ import java.awt.*;
  * @author Mohammad Ali Rostami
  * @email ma.rostami@yahoo.com
  */
-@CommandAttitude(name = "generate_wheel", abbreviation = "_g_w"
-        , description = "generate a n vertices wheel graph")
-public class WheelGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
+@CommandAttitude(name = "generate_gear", abbreviation = "_g_g"
+        , description = "generate a n vertices gear graph")
+public class GearGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     private GraphModel g;
     @Parameter(name = "n")
     public static Integer n = 5;
@@ -32,11 +32,11 @@ public class WheelGenerator implements GraphGeneratorExtension, Parametrizable, 
     private Vertex[] v;
 
     public String getName() {
-        return "Wheel Graph";
+        return "Gear Graph";
     }
 
     public String getDescription() {
-        return "Wheel Graph";
+        return "Gear Graph";
     }
 
     public void setWorkingGraph(GraphModel g) {
@@ -44,37 +44,42 @@ public class WheelGenerator implements GraphGeneratorExtension, Parametrizable, 
     }
 
     public Vertex[] getVertices() {
-        Vertex[] ret = new Vertex[n];
-        for (int i = 0; i < n; i++)
+        Vertex[] ret = new Vertex[2*n+1];
+        for (int i = 0; i < 2*n+1; i++)
             ret[i] = new Vertex();
         this.v = ret;
         return ret;
     }
 
     public Edge[] getEdges() {
-        Edge[] ret = new Edge[2 * n - 2];
-        int counter = 0;
-        for (int i = 1; i < n - 1; i++) {
-            ret[counter] = new Edge(v[i], v[i + 1]);
-            counter++;
+
+        Edge[] ret = new Edge[3*n];
+        int ecnt = 0;
+
+        for(int i=1;i<=2*n-1;i++){
+            ret[ecnt] = new Edge(v[i], v[i + 1]);
+            ecnt++;
         }
 
-        ret[counter] = new Edge(v[n - 1], v[1]);
-        counter++;
+        ret[ecnt] = new Edge(v[2*n],v[1]);
+        ecnt++;
 
-        for (int i = 1; i < n; i++) {
-            ret[counter] = new Edge(v[0], v[i]);
-            counter++;
+        for(int i=1;i<=2*n;i=i+2) {
+            ret[ecnt] = new Edge(v[0],v[i]);
+            ecnt++;
         }
+
+        System.out.println("gear" + ecnt);
         return ret;
     }
 
     public Point[] getVertexPositions() {
-        Point p[] = new Point[n];
-        Point p1[] = PositionGenerators.circle(50000, 200, 200, n - 1);
-        Point p2 = new Point(200, 200);
-        System.arraycopy(p1, 0, p, 1, n - 1);
-        p[0] = p2;
+        Point p[] = new Point[2*n+1];
+        Point p1[] = PositionGenerators.circle(50000, 200, 200, 2*n);
+        p[0] = new Point(200, 200);
+        for(int i=1;i<=2*n;i++) {
+            p[i] = p1[i-1];
+        }
         return p;
     }
 
@@ -92,9 +97,9 @@ public class WheelGenerator implements GraphGeneratorExtension, Parametrizable, 
     /**
      * generates a Wheel Graph with given parameters
      */
-    public static GraphModel generateWheel(int n) {
-        WheelGenerator.n = n;
-        return GraphGenerator.getGraph(false, new WheelGenerator());
+    public static GraphModel generateGear(int n) {
+        GearGenerator.n = n;
+        return GraphGenerator.getGraph(false, new GearGenerator());
     }
 
 }

@@ -106,10 +106,14 @@ public class GraphGenerator implements PluginMethods {
         Edge[] edges = gi.getEdges();
         for (Vertex v : vertices)
             ret.insertVertex(v);
-        for (int i = 0; i < vertices.length; i++)
+
+        for (int i = 0; i < vertices.length; i++) {
             vertices[i].setLocation(new GraphPoint(pos[i].x, pos[i].y));
+        }
+
         for (Edge e : edges)
             ret.insertEdge(e);
+
         return ret;
     }
 

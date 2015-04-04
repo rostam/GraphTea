@@ -27,6 +27,9 @@ public class HelmGraph implements GraphGeneratorExtension, Parametrizable, Simpl
 	@Parameter(name = "n")
 	public static int n = 3;
 
+    @Parameter(name = "closed")
+    public static boolean closed = false;
+
 	GraphModel g;
 
 	public void setWorkingGraph(GraphModel g)
@@ -57,14 +60,25 @@ public class HelmGraph implements GraphGeneratorExtension, Parametrizable, Simpl
 
 	public Edge[] getEdges()
 	{
-		Edge[] result = new Edge[3*n];
+		Edge[] result;
+        if(!closed) result = new Edge[3*n];
+        else result = new Edge[3*n+n];
+        int ecnt = 0;
 		for (int i = 0; i < n; i++)
 		{
-			result[i] = new Edge(v[i], v[n+i]);
-			result[n+i] = new Edge(v[n+i], v[2*n]);
-			result[2*n+i] = new Edge(v[n+i],v[n+((i+1)%n)]);
+			result[ecnt] = new Edge(v[i], v[n+i]);
+            ecnt++;
+			result[ecnt] = new Edge(v[n+i], v[2*n]);
+            ecnt++;
+			result[ecnt] = new Edge(v[n+i],v[n+((i+1)%n)]);
+            ecnt++;
+            if(closed) {
+                result[ecnt] = new Edge(v[i],v[((i+1)%n)]);
+                ecnt++;
+            }
 		}
-		return result;
+
+        return result;
 	}
 
 	public Point[] getVertexPositions()
