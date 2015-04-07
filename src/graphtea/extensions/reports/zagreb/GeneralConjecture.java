@@ -7,6 +7,8 @@ package graphtea.extensions.reports.zagreb;
 import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
+import graphtea.platform.parameter.Parameter;
+import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -20,30 +22,27 @@ import java.util.Vector;
 
  */
 
-@CommandAttitude(name = "bound1conj", abbreviation = "_b1conj")
-public class Bound1Conjecture implements GraphReportExtension{
+@CommandAttitude(name = "generalconj", abbreviation = "_gconj")
+public class GeneralConjecture implements GraphReportExtension,Parametrizable{
+    @Parameter(name = "Alpha", description = "")
+    public Double alpha = 0.0;
+
     public String getName() {
-        return "Bound1 Conjecture";
+        return "General Conjecture";
     }
 
     public String getDescription() {
-        return "Bound1 Conjecture";
+        return "General Conjecture";
     }
 
     public Object calculate(GraphData gd) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
-        ret.get(0).add(" M^2_1(G) ");
+        ret.get(0).add(" M^(alpha+1)_1(G) ");
         ret.get(0).add(" 1 ");
         ret.get(0).add(" 2 ");
         ret.get(0).add(" 3 ");
-        ret.get(0).add(" 4 ");
-        ret.get(0).add(" 5 ");
-        ret.get(0).add(" 6 ");
-        ret.get(0).add(" 7 ");
-        ret.get(0).add(" 8 ");
-
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -69,41 +68,23 @@ public class Bound1Conjecture implements GraphReportExtension{
         double m = gd.getGraph().getEdgesCount();
         double n = gd.getGraph().getVerticesCount();
 
+        double M12=zif.getSecondZagreb(1);
+        double M21=zif.getFirstZagreb(1);
+        double M22=zif.getSecondZagreb(2);
+
         ret.add(new Vector<Object>());
-        ret.get(1).add(zif.getFirstZagreb(1));
+        ret.get(1).add(zif.getFirstZagreb(alpha));
         //1
-        ret.get(1).add(
-                Math.max(
-                        m*(maxDeg+minDeg-1
-                                +((2*m-(minDeg*(n-1)))/maxDeg)),
-                        m*(minDeg+1
-                                +((2*m-(minDeg*(n-1)))/2))
-                ));
+        ret.get(1).add((Math.pow(Math.pow(maxDeg,alpha+1)+Math.pow(minDeg,alpha+1),2)*n*n)/
+                (4*Math.pow(maxDeg*minDeg,alpha+1)*zif.getFirstZagreb(-alpha-1-1)));
         //2
-        ret.get(1).add(m*((2*m/(n-1))
-                + ((n-2)/(n-1)*maxDeg)
-                + (maxDeg-minDeg)*(1 - (maxDeg/(n-1)))));
-        //9
-        ret.get(1).add((4*m*m + 2*m*(n-1)*(maxDeg-minDeg))/(n+maxDeg-minDeg));
-        //10
-        ret.get(1).add((Math.pow((2*m)-maxDeg,2.)/(n-1))
-                + Math.pow(maxDeg,2.)
-                + ((n-1)/4)*Math.pow(maxDeg2-minDeg,2.));
-        //11
-        ret.get(1).add(Math.pow(maxDeg,2.)
-                + (maxDeg2+minDeg)*(2*m-maxDeg)
-                - (n-1)*(maxDeg2*minDeg));
-        //12
-        ret.get(1).add((2*m*(maxDeg+minDeg))
-                - (n*minDeg*maxDeg)
-                - (n-a-b)*(maxDeg-minDeg-1));
-        //7
-        ret.get(1).add((n/m)*zif.getSecondZagreb(1));
-
-        //8
-        ret.get(1).add((Math.pow(maxDeg*maxDeg + minDeg*minDeg,2)*n*n)/
-                        (4*maxDeg*maxDeg*minDeg*minDeg*zif.getFirstZagreb(-3)));
-
+        ret.get(1).add((Math.pow(maxDeg+minDeg,2)
+                *Math.pow(zif.getFirstZagreb(alpha-1),2))/
+                (4*m*minDeg*maxDeg*zif.getFirstZagreb(alpha-2)));
+        //3
+        ret.get(1).add((Math.pow(Math.pow(maxDeg,alpha+1/2) + Math.pow(minDeg,alpha+1/2),2)*
+                Math.pow(zif.getFirstZagreb(((alpha+1)/2)-1),2))/
+                (4*n*Math.pow(maxDeg*minDeg,(alpha+1)/2)));
         return ret;
     }
 
@@ -112,4 +93,9 @@ public class Bound1Conjecture implements GraphReportExtension{
 		// TODO Auto-generated method stub
 		return "Topological Indices";
 	}
+
+    @Override
+    public String checkParameters() {
+        return null;
+    }
 }

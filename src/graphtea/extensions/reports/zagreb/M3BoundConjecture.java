@@ -43,6 +43,9 @@ public class M3BoundConjecture implements GraphReportExtension{
         ret.get(0).add(" 6 ");
         ret.get(0).add(" 7 ");
         ret.get(0).add(" 8 ");
+        ret.get(0).add(" 9 ");
+        ret.get(0).add(" 10 ");
+        ret.get(0).add(" 11 ");
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -91,6 +94,17 @@ public class M3BoundConjecture implements GraphReportExtension{
         ret.get(1).add((n/m)*M22);
         //8
         ret.get(1).add((n/(2*m))*zif.getFirstZagreb(3));
+        //9
+        ret.get(1).add((Math.pow(Math.pow(maxDeg,3)+Math.pow(minDeg,3),2)*n*n)/
+                        (4*Math.pow(maxDeg*minDeg,3)*zif.getFirstZagreb(-4)));
+        //10
+        ret.get(1).add((Math.pow(maxDeg+minDeg,2)
+                *Math.pow(zif.getFirstZagreb(1),2))/
+                (8*m*minDeg*maxDeg));
+        //11
+        ret.get(1).add((Math.pow(Math.pow(maxDeg,1.5) + Math.pow(minDeg,1.5),2)*
+                        Math.pow(zif.getFirstZagreb(0.5),2))/
+                        (4*n*Math.pow(maxDeg*minDeg,1.5)));
         return ret;
     }
 
