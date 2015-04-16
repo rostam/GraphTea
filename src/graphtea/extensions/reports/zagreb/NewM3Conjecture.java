@@ -80,11 +80,11 @@ public class NewM3Conjecture implements GraphReportExtension{
         ret.get(1).add((maxDeg+minDeg)*M21 - 2*m*minDeg*maxDeg);
         //3
         ret.get(1).add(Math.pow(maxDeg,3) + maxDeg
-                - 2*(m - maxDeg)*(((n-2)*minDeg-3)
+                - (m - maxDeg)*(2*((n-2)*minDeg-3)
                 -(n+minDeg+1)*((2*(m-maxDeg)/n-2)+n-3)));
         //4
         ret.get(1).add(Math.pow(maxDeg,3) + maxDeg
-                - 2*(m - maxDeg)*(((n-2)*(minDeg-1)-3)
+                - (m - maxDeg)*(2*((n-2)*(minDeg-1)-3)
                 -(n+minDeg)*((2*(m-maxDeg)/n-2)+n-3)));
         //5
         ret.get(1).add((n/(2*m))*zif.getFirstZagreb(3));
