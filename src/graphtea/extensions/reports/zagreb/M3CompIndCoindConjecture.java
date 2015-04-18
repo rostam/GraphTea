@@ -6,6 +6,7 @@ package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
+import graphtea.library.algorithms.goperators.GraphComplement;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -20,29 +21,28 @@ import java.util.Vector;
 
  */
 
-@CommandAttitude(name = "m3boundconj", abbreviation = "_m3conj")
-public class NewM3Conjecture implements GraphReportExtension{
+@CommandAttitude(name = "m3norconj", abbreviation = "_m3norconj")
+public class M3CompIndCoindConjecture implements GraphReportExtension{
     public String getName() {
-        return "New M3 Conjecture";
+        return "M3 Comp Index + Coindex Conj";
     }
 
     public String getDescription() {
-        return "New M3 Conjecture";
+        return "M3 Comp Index + Coindex Conj";
     }
 
     public Object calculate(GraphData gd) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
+        ZagrebIndexFunctions zifc
+        = new ZagrebIndexFunctions((graphtea.graph.graph.GraphModel)
+                GraphComplement.complement(gd.getGraph()));
+
+
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
-        ret.get(0).add(" M^2_1(G) ");
+        ret.get(0).add(" M^3_1(G) + Mco^3_1(G) ");
         ret.get(0).add(" 1 ");
         ret.get(0).add(" 2 ");
-        ret.get(0).add(" 3 ");
-        ret.get(0).add(" 4 ");
-        ret.get(0).add(" 5 ");
-        ret.get(0).add(" 6 ");
-        ret.get(0).add(" 7 ");
-        ret.get(0).add(" 8 ");
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -68,37 +68,24 @@ public class NewM3Conjecture implements GraphReportExtension{
         double m = gd.getGraph().getEdgesCount();
         double n = gd.getGraph().getVerticesCount();
 
-        double M12=zif.getSecondZagreb(1);
         double M21=zif.getFirstZagreb(1);
-        double M22=zif.getSecondZagreb(2);
+        double M12=zif.getSecondZagreb(1);
+        double M31=zif.getFirstZagreb(2);
+        double M31gc=zifc.getFirstZagreb(2);
+        double Mc31=zif.getFirstZagrebCoindex(2);
+        double Mc31gc=zifc.getFirstZagrebCoindex(2);
 
         ret.add(new Vector<Object>());
-        ret.get(1).add(zif.getFirstZagreb(2));
+        ret.get(1).add(M31gc+Mc31gc);
         //1
-        ret.get(1).add(2*M12 + n*M21 - 4*m*m);
+        ret.get(1).add(n*Math.pow(n-1,3) - 4*m*(n-1)*(n-1)
+           + (n-1)*(2*m*(maxDeg+minDeg)+n*maxDeg*minDeg*(n-a-b)*(maxDeg-minDeg-1)));
         //2
-        ret.get(1).add((maxDeg+minDeg)*M21 - 2*m*minDeg*maxDeg);
-        //3
-        ret.get(1).add(Math.pow(maxDeg,3) + maxDeg
-                - (m - maxDeg)*(2*((n-2)*minDeg-3)
-                -(n+minDeg+1)*((2*(m-maxDeg)/(n-2))+n-3)));
-        //4
-        ret.get(1).add(Math.pow(maxDeg,3) + maxDeg
-                - (m - maxDeg)*(2*((n-2)*(minDeg-1)-3)
-                -(n+minDeg)*((2*(m-maxDeg)/(n-2))+n-3)));
-        //5
-        ret.get(1).add((n/(2*m))*zif.getFirstZagreb(3));
-        //6
-        ret.get(1).add((Math.pow(Math.pow(maxDeg,3)+Math.pow(minDeg,3),2)*n*n)/
-                        (4*Math.pow(maxDeg*minDeg,3)*zif.getFirstZagreb(-4)));
-        //7
-        ret.get(1).add((Math.pow(maxDeg+minDeg,2)
-                *Math.pow(zif.getFirstZagreb(1),2))/
-                (8*m*minDeg*maxDeg));
-        //8
-        ret.get(1).add((Math.pow(Math.pow(maxDeg,1.5) + Math.pow(minDeg,1.5),2)*
-                        Math.pow(zif.getFirstZagreb(0.5),2))/
-                        (4*n*Math.pow(maxDeg*minDeg,1.5)));
+        ret.get(1).add(n*Math.pow(n-1,3) - 4*m*(n-1)*(n-1)
+                + (n-1)*(maxDeg*maxDeg + (Math.pow(2*m-maxDeg,2)/(n-1)))
+                        + (2*(n-2)/Math.pow(n-1,2))*Math.pow(maxDeg2 - minDeg,2)
+        );
+
         return ret;
     }
 
