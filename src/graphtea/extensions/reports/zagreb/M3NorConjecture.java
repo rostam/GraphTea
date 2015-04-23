@@ -75,6 +75,7 @@ public class M3NorConjecture implements GraphReportExtension{
 
         ret.add(new Vector<Object>());
         ret.get(1).add(M31+M31gc);
+        if(maxDeg == minDeg) a=0;
         //1
         ret.get(1).add(n*Math.pow(n-1,3) - 6*m*(n-1)*(n-maxDeg-minDeg-1)
                        - 3*(n-1)*(n*maxDeg*minDeg+(n-a-b)*(maxDeg-minDeg-1)));

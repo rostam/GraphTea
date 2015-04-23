@@ -111,8 +111,11 @@ public class GraphGenerator implements PluginMethods {
             vertices[i].setLocation(new GraphPoint(pos[i].x, pos[i].y));
         }
 
-        for (Edge e : edges)
+        for (Edge e : edges) {
             ret.insertEdge(e);
+        }
+
+
 
         return ret;
     }
