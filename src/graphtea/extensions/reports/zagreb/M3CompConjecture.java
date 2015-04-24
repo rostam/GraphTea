@@ -77,10 +77,10 @@ public class M3CompConjecture implements GraphReportExtension{
         ret.get(1).add(M31gc);
         //1
         ret.get(1).add(n*Math.pow(n-1,3) - 6*m*Math.pow(n-1,2)
-                       - (3*(n-1) - (M21/(2*m)))*M21);
+                       + (3*(n-1) - (M21/(2*m)))*M21);
         //2
         ret.get(1).add(n*Math.pow(n-1,3) - 6*m*Math.pow(n-1,2)
-            + 2*m*maxDeg*minDeg-(3*n-maxDeg-minDeg-3)*M21);
+            + 2*m*maxDeg*minDeg+(3*n-maxDeg-minDeg-3)*M21);
 
         return ret;
     }
