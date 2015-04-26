@@ -43,6 +43,7 @@ public class NewM3Conjecture implements GraphReportExtension{
         ret.get(0).add(" 6 ");
         ret.get(0).add(" 7 ");
         ret.get(0).add(" 8 ");
+        ret.get(0).add(" 9 ");
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -99,6 +100,9 @@ public class NewM3Conjecture implements GraphReportExtension{
         ret.get(1).add((Math.pow(Math.pow(maxDeg,1.5) + Math.pow(minDeg,1.5),2)*
                         Math.pow(zif.getFirstZagreb(0.5),2))/
                         (4*n*Math.pow(maxDeg*minDeg,1.5)));
+        //9
+        ret.get(1).add(Math.pow(maxDeg,3) + maxDeg + (m-maxDeg)*(n*n-n+1) +
+         2*(m-maxDeg)*(((m-maxDeg)*(n*2)/(n-2))- Math.sqrt(2*(m-maxDeg)+(1/4))));
         return ret;
     }
 
