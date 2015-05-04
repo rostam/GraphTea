@@ -34,7 +34,7 @@ public class NewM3Conjecture implements GraphReportExtension{
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
-        ret.get(0).add(" M^2_1(G) ");
+        ret.get(0).add(" M^3_1(G) ");
         ret.get(0).add(" 1 ");
         ret.get(0).add(" 2 ");
         ret.get(0).add(" 3 ");
@@ -44,6 +44,7 @@ public class NewM3Conjecture implements GraphReportExtension{
         ret.get(0).add(" 7 ");
         ret.get(0).add(" 8 ");
         ret.get(0).add(" 9 ");
+        ret.get(0).add(" 10 ");
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -103,6 +104,13 @@ public class NewM3Conjecture implements GraphReportExtension{
         //9
         ret.get(1).add(Math.pow(maxDeg,3) + maxDeg + (m-maxDeg)*(n*n-n+1) +
          2*(m-maxDeg)*(((m-maxDeg)*(n*2)/(n-2))- Math.sqrt(2*(m-maxDeg)+(1/4))));
+
+        double n2=Math.ceil(n/2.);
+        double kn = n*n2*(1-(n2/n));
+        double val = kn*Math.pow(maxDeg-minDeg,2)*(maxDeg+minDeg)
+                + 2*m*M21;
+        //10
+        ret.get(1).add(val/n);
         return ret;
     }
 

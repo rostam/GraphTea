@@ -83,7 +83,7 @@ public class M3CoindConjecture implements GraphReportExtension{
         //2
         ret.get(1).add((2*m*(n-1)-M21)*(M21/(2*m)));
         //3
-        ret.get(1).add((n-maxDeg-minDeg-1)*M21 - 2*m*maxDeg*minDeg);
+        ret.get(1).add((n-maxDeg-minDeg-1)*M21 + 2*m*maxDeg*minDeg);
 
         return ret;
     }

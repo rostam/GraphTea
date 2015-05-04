@@ -34,7 +34,7 @@ public class M3BoundConjecture implements GraphReportExtension{
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
-        ret.get(0).add(" M^2_1(G) ");
+        ret.get(0).add(" M^3_1(G) ");
         ret.get(0).add(" 1 ");
         ret.get(0).add(" 2 ");
         ret.get(0).add(" 3 ");
@@ -105,6 +105,7 @@ public class M3BoundConjecture implements GraphReportExtension{
         ret.get(1).add((Math.pow(Math.pow(maxDeg,1.5) + Math.pow(minDeg,1.5),2)*
                         Math.pow(zif.getFirstZagreb(0.5),2))/
                         (4*n*Math.pow(maxDeg*minDeg,1.5)));
+
         return ret;
     }
 

@@ -7,7 +7,10 @@ package graphtea.extensions.reports.spectralreports;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
+import graphtea.platform.parameter.Parameter;
+import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -15,11 +18,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * @author Mohammad Ali Rostami
+ * @author M. Ali Rostami
  */
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class EigenValues implements GraphReportExtension {
+public class EigenValues implements GraphReportExtension,Parametrizable {
+
+    @Parameter(name = "power:", description = "")
+    public double power = 1;
 
     double round(double value, int decimalPlace) {
         double power_of_ten = 1;
@@ -32,51 +38,61 @@ public class EigenValues implements GraphReportExtension {
     public Object calculate(GraphData gd) {
         try {
             ArrayList<String> res = new ArrayList<String>();
-            res.add("Adjacency Matrix");
             Matrix A = gd.getGraph().getWeightedAdjacencyMatrix();
-            for(double[] a: A.getArray())
-            	res.add(Arrays.toString(a));
             res.add("Eigen Values");
             EigenvalueDecomposition ed = A.eig();
             double rv[] = ed.getRealEigenvalues();
             double iv[] = ed.getImagEigenvalues();
 
-            
-            for (int i = 0; i < rv.length; i++)
+            for (int i = 0; i < rv.length; i++) {
                 if (iv[i] != 0)
-                	res.add("" + round(rv[i], 3) + " + " + round(iv[i], 3) + "i");
+                    res.add("" + round(rv[i], 3) + " + " + round(iv[i], 3) + "i");
                 else
-                	res.add("" + round(rv[i], 3));
-            res.add("Eigen Vectors:\n");
-            double[][] eigenVectors = ed.getV().getArray();
-            for (int k = 0; k < eigenVectors.length; k++)
-            		res.add(Arrays.toString(round(eigenVectors[k], 3)));
+                    res.add("" + round(rv[i], 3));
+            }
+
+            res.add("Power of sum of Eigen Values");
+            double sum = 0;
+            double sum_i = 0;
+            for(int i=0;i < rv.length;i++)
+                sum += Math.pow(Math.abs(rv[i]),power);
+            for(int i=0;i < iv.length;i++)
+                sum_i +=  Math.abs(iv[i]);
+
+            if (sum_i != 0) {
+                sum_i=0;
+                Complex num = new Complex(0,0);
+                for(int i=0;i < iv.length;i++) {
+                    Complex tmp = new Complex(rv[i], iv[i]);
+                    tmp.pow(new Complex(power,0));
+                    num.plus(tmp);
+                }
+                res.add("" + round(num.re(), 3) + " + "
+                        + round(num.im(), 3) + "i");
+            } else {
+                res.add("" + round(sum, 3));
+            }
             return res;
         } catch (Exception e) {
         }
         return "";
     }
-    
-
-private double[] round (double[] array, int prec)
-{
-	double[] res=array;
-	for(int i=0;i<array.length;i++)
-		res[i]=round(res[i],prec);
-	return res;
-	
-}
 
     public String getName() {
-        return "Spectrum of Adjacency";
+        return "Eigen Values";
     }
 
     public String getDescription() {
-        return "Adjacency Matrix";
+        return "Eigen Values";
     }
 
 	@Override
 	public String getCategory() {
 		return "Spectral";
 	}
+
+    @Override
+    public String checkParameters() {
+        return null;
+    }
 }

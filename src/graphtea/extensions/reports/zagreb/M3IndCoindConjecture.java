@@ -73,6 +73,7 @@ public class M3IndCoindConjecture implements GraphReportExtension{
         double M31=zif.getFirstZagreb(2);
         double M31gc=zifc.getFirstZagreb(2);
         double Mc31=zif.getFirstZagrebCoindex(2);
+        if(maxDeg==minDeg) a=0;
 
         ret.add(new Vector<Object>());
         ret.get(1).add(M31+Mc31);
