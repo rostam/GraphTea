@@ -35,6 +35,7 @@ public class NewM3Conjecture implements GraphReportExtension{
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add(" M^3_1(G) ");
+        ret.get(0).add(" 0 ");
         ret.get(0).add(" 1 ");
         ret.get(0).add(" 2 ");
         ret.get(0).add(" 3 ");
@@ -66,6 +67,7 @@ public class NewM3Conjecture implements GraphReportExtension{
             if(gd.getGraph().getDegree(v)==maxDeg) a++;
             if(gd.getGraph().getDegree(v)==minDeg) b++;
         }
+        if(maxDeg==minDeg) b=0;
 
         double m = gd.getGraph().getEdgesCount();
         double n = gd.getGraph().getVerticesCount();
@@ -76,6 +78,9 @@ public class NewM3Conjecture implements GraphReportExtension{
 
         ret.add(new Vector<Object>());
         ret.get(1).add(zif.getFirstZagreb(2));
+        //0
+        ret.get(1).add((maxDeg+minDeg)*M21 - 2*m*minDeg*maxDeg
+                  - (2*m-a*maxDeg-b*minDeg)*(maxDeg-minDeg-1));
         //1
         ret.get(1).add(2*M12 + n*M21 - 4*m*m);
         //2

@@ -25,7 +25,7 @@ import java.util.Arrays;
 public class EigenValues implements GraphReportExtension,Parametrizable {
 
     @Parameter(name = "power:", description = "")
-    public double power = 1;
+    public double power = 2;
 
     double round(double value, int decimalPlace) {
         double power_of_ten = 1;
@@ -39,19 +39,22 @@ public class EigenValues implements GraphReportExtension,Parametrizable {
         try {
             ArrayList<String> res = new ArrayList<String>();
             Matrix A = gd.getGraph().getWeightedAdjacencyMatrix();
-            res.add("Eigen Values");
             EigenvalueDecomposition ed = A.eig();
             double rv[] = ed.getRealEigenvalues();
             double iv[] = ed.getImagEigenvalues();
-
-            for (int i = 0; i < rv.length; i++) {
-                if (iv[i] != 0)
-                    res.add("" + round(rv[i], 3) + " + " + round(iv[i], 3) + "i");
-                else
-                    res.add("" + round(rv[i], 3));
+            double maxrv=0;
+            double minrv=1000000;
+            for(double value : rv) {
+                double tval = Math.abs(value);
+                if(maxrv < tval) maxrv=tval;
+                if(minrv > tval) minrv=tval;
             }
+            res.add("Largest Eigen Value");
+            res.add(round(maxrv, 3)+"");
+            res.add("Smallest Eigen Value");
+            res.add(round(minrv, 3)+"");
 
-            res.add("Power of sum of Eigen Values");
+            res.add("Sum of power of Eigen Values");
             double sum = 0;
             double sum_i = 0;
             for(int i=0;i < rv.length;i++)
@@ -71,6 +74,13 @@ public class EigenValues implements GraphReportExtension,Parametrizable {
                         + round(num.im(), 3) + "i");
             } else {
                 res.add("" + round(sum, 3));
+            }
+            res.add("Eigen Values");
+            for (int i = 0; i < rv.length; i++) {
+                if (iv[i] != 0)
+                    res.add("" + round(rv[i], 3) + " + " + round(iv[i], 3) + "i");
+                else
+                    res.add("" + round(rv[i], 3));
             }
             return res;
         } catch (Exception e) {
