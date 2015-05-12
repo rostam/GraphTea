@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform;
 
+import graphtea.graph.graph.GraphPoint;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionOccuredData;
 import graphtea.platform.extension.ExtensionLoader;
@@ -122,11 +123,13 @@ public class StaticUtils {
         if (classname.equals(ArrayX.class.getName())) return ArrayX.fromString(data);
 
         if (classname.equals(File.class.getName())) return new File(data);
+        
         FromStringProvider fromStringProvider = pr.get(classname);
         if (fromStringProvider == null)
             return null;
-        else
+        else{
             return fromStringProvider.fromString(data);
+        }
     }
 
     static HashMap<String, FromStringProvider> pr = new HashMap<String, FromStringProvider>();

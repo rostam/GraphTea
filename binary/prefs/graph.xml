@@ -1347,6 +1347,16 @@
           <entry key="object" value="graphtea.extensions.AutoUpdater"/>
         </map>
       </node>
+      <node name="graphtea.extensions.actions.GraphArt">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.GraphArt"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.GraphArtActionExtendTree">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.GraphArtActionExtendTree"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.actions.GraphPower">
         <map>
           <entry key="k" value="2"/>
@@ -1367,6 +1377,21 @@
           <entry key="selectedVertex" value=""/>
         </map>
       </node>
+      <node name="graphtea.extensions.actions.Tree">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.Tree"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.TreeMap">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.TreeMap"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.WineGraph">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.WineGraph"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.algorithms.CholeskyFactorizationExtension">
         <map>
           <entry key="object" value="graphtea.extensions.algorithms.CholeskyFactorizationExtension"/>
@@ -1375,6 +1400,41 @@
       <node name="graphtea.extensions.algorithms.EndomorphismAnimator">
         <map>
           <entry key="object" value="graphtea.extensions.algorithms.EndomorphismAnimator"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.ForceDirectedVisualizer">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.ForceDirectedVisualizer"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.HomomorphismAnimator">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.HomomorphismAnimator"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.MaximunFlowAlgorithm">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.MaximunFlowAlgorithm"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.MinimumCutAlgorithm">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.MinimumCutAlgorithm"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.NetworkGenerateorAlgrithm">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.NetworkGenerateorAlgrithm"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.SampleAlgorithm">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.SampleAlgorithm"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.algorithms.WineAlgorithm">
+        <map>
+          <entry key="object" value="graphtea.extensions.algorithms.WineAlgorithm"/>
         </map>
       </node>
       <node name="graphtea.extensions.connectivity.Redis">
@@ -1397,9 +1457,9 @@
       </node>
       <node name="graphtea.extensions.generators.BananaTreeGenerator">
         <map>
-          <entry key="k" value="3"/>
+          <entry key="k" value="4"/>
           <entry key="object" value="graphtea.extensions.generators.BananaTreeGenerator"/>
-          <entry key="n" value="3"/>
+          <entry key="n" value="4"/>
           <entry key="depth" value="BInt5"/>
         </map>
       </node>
@@ -1539,7 +1599,7 @@
           <entry key="object" value="graphtea.extensions.generators.TreeGenerator"/>
           <entry key="depth" value="3"/>
           <entry key="degree" value="3"/>
-          <entry key="m" value="java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular #$%# java.lang.String #$%# Circular"/>
+          <entry key="m" value="java.lang.String #$%# Circular #$%# java.lang.String #$%# Backward #$%# java.lang.String #$%# UpDown #$%# java.lang.String #$%# Circular"/>
         </map>
       </node>
       <node name="graphtea.extensions.generators.WheelGenerator">
@@ -1707,12 +1767,12 @@
       <node name="graphtea.graph.graph.FastRenderer">
         <map>
           <entry key="object" value="graphtea.graph.graph.FastRenderer"/>
-          <entry key="defaultShapeDimension" value="java.awt.Dimension[width=40,height=40]"/>
+          <entry key="defaultShapeDimension" value="java.awt.Dimension[width=15,height=15]"/>
           <entry key="defaultVertexColor" value="java.awt.Color[r=204,g=204,b=204]"/>
           <entry key="defaultFont" value="java.awt.Font[family=Arial,name=Arial,style=bold,size=24]"/>
           <entry key="defaultVertexShape" value="Oval"/>
           <entry key="defaultStroke" value="solid"/>
-          <entry key="defaultVertexRadius" value="10"/>
+          <entry key="defaultVertexRadius" value="7"/>
           <entry key="defaultEdgeColor" value="java.awt.Color[r=153,g=153,b=153]"/>
           <entry key="defaultBorderStroke" value="simple"/>
         </map>
@@ -2282,7 +2342,7 @@
       <node name="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler">
         <map>
           <entry key="object" value="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler"/>
-          <entry key="defaultFile" value="C:\Users\Fesi\Downloads\100.simplegraph"/>
+          <entry key="defaultFile" value="F:\Studium\BachelorArbeit\GraphTea\Germoney.simplegraph"/>
         </map>
       </node>
       <node name="graphtea.plugins.main.saveload.core.extension.GraphReaderExtensionAction">

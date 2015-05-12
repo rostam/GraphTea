@@ -100,9 +100,16 @@ public class GraphPoint extends Point2D.Double implements Serializable, FromStri
         return Math.sqrt(PX * PX + PY * PY);
     }
 
-    public GraphPoint fromString(String data) {
+    /**
+     * changed by Sebastian Glaﬂ 03.05.2015
+     */
+    public GraphPoint fromString(String data) {   	
         data = data.replace(',', ' ');
-        Scanner _ = new Scanner(data);
-        return new GraphPoint(_.nextDouble(), _.nextDouble());
+        while(data.startsWith(" "))
+        	data=data.substring(1);
+        String[] dataList = data.split(" ");
+        double  d1 =  java.lang.Double.parseDouble(dataList[0]);
+        double  d2 =  java.lang.Double.parseDouble(dataList[1]);
+        return new GraphPoint(d1, d2);
     }
 }

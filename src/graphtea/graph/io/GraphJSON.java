@@ -1,6 +1,5 @@
 package graphtea.graph.io;
 
-import com.google.gson.Gson;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GraphPoint;
@@ -9,6 +8,8 @@ import graphtea.graph.graph.Vertex;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Vector;
+
+import com.google.gson.Gson;
 
 /**
  * this class converts the GraphModel object to json and back
