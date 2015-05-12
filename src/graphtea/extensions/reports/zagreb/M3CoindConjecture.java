@@ -41,6 +41,7 @@ public class M3CoindConjecture implements GraphReportExtension{
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add(" Mc^3_1(G) ");
+        ret.get(0).add(" 0 ");
         ret.get(0).add(" 1 ");
         ret.get(0).add(" 2 ");
         ret.get(0).add(" 3 ");
@@ -78,6 +79,10 @@ public class M3CoindConjecture implements GraphReportExtension{
 
         ret.add(new Vector<Object>());
         ret.get(1).add(Mc31);
+        double tmp0=2*m*(n-1)*M21 -
+                Math.pow(M21-2*m+Math.sqrt(n*M21),2);
+        //0
+        ret.get(1).add(tmp0/(2*m));
         //1
         ret.get(1).add((m*(n-1)-M21)*(M21/m) + 2*M12);
         //2
