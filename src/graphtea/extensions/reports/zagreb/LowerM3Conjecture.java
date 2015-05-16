@@ -76,7 +76,7 @@ public class LowerM3Conjecture implements GraphReportExtension{
         //2
         ret.get(1).add(Math.pow(M21,2)/(2*m));
         //3
-        ret.get(1).add(-((M21/m) - 2*M12));
+        ret.get(1).add(((Math.pow(M21,2)/m) - 2*M12));
         //4
         ret.get(1).add(((2*m)/n)*M21);
 
