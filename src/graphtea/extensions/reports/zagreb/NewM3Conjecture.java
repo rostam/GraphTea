@@ -73,7 +73,7 @@ public class NewM3Conjecture implements GraphReportExtension{
         double M12=zif.getSecondZagreb(1);
         double M21=zif.getFirstZagreb(1);
         double M22=zif.getSecondZagreb(2);
-        double Mm31=zif.getFirstReZagreb(-4);
+        double Mm31=zif.getFirstZagreb(-4);
 
         ret.add(new Vector<Object>());
         ret.get(1).add(zif.getFirstZagreb(2));
