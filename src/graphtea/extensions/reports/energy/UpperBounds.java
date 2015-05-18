@@ -2,8 +2,12 @@
 // Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
-package graphtea.extensions.reports.zagreb;
+package graphtea.extensions.reports.energy;
 
+import Jama.EigenvalueDecomposition;
+import Jama.Matrix;
+import graphtea.extensions.reports.spectralreports.EigenValues;
+import graphtea.extensions.reports.zagreb.ZagrebIndexFunctions;
 import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -12,6 +16,7 @@ import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Vector;
 
@@ -20,25 +25,42 @@ import java.util.Vector;
 
  */
 
-@CommandAttitude(name = "lowerm2conj", abbreviation = "_lm2conj")
-public class LowerM2Conjecture implements GraphReportExtension{
+@CommandAttitude(name = "newInvs", abbreviation = "_newInv")
+public class UpperBounds implements GraphReportExtension{
     public String getName() {
-        return "Lower M2 Conjecture";
+        return "Upper Bounds";
     }
 
     public String getDescription() {
-        return "Lower M2 Conjecture";
+        return "Upper Bounds";
     }
 
     public Object calculate(GraphData gd) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
-        ret.get(0).add(" M^3_1(G) ");
+        ret.get(0).add(" E(G) ");
         ret.get(0).add(" 1.1 ");
         ret.get(0).add(" 1.2 ");
         ret.get(0).add(" 1.3 ");
         ret.get(0).add(" 1.4 ");
+        ret.get(0).add(" 1.5 ");
+        ret.get(0).add(" 1.6 ");
+
+        Matrix A = gd.getGraph().getWeightedAdjacencyMatrix();
+        EigenvalueDecomposition ed = A.eig();
+        double rv[] = ed.getRealEigenvalues();
+        double sum=0;
+
+
+        //positiv RV
+        Double[] prv = new Double[rv.length];
+        for(int i=0;i<rv.length;i++) {
+            prv[i] = Math.abs(rv[i]);
+            sum += prv[i];
+        }
+
+        Arrays.sort(prv, Collections.reverseOrder());
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -71,17 +93,28 @@ public class LowerM2Conjecture implements GraphReportExtension{
         double Mm11=zif.getFirstZagreb(-2);
 
         ret.add(new Vector<Object>());
-        ret.get(1).add(M21);
+        ret.get(1).add(sum);
         //1
-        ret.get(1).add(Math.pow(2*m - n + Math.sqrt(2*m*Mm11),2)/n);
+        ret.get(1).add(Math.sqrt(2*m*n));
         //2
-        ret.get(1).add(Math.pow(maxDeg,2)+(Math.pow(2*m-maxDeg,2)/(n-1))
-                + ((Math.pow(n-2,2)*(maxDeg2-minDeg))/Math.pow(n-1,2)));
+        ret.get(1).add(prv[0]
+                + Math.sqrt((n-1)*(2*m - Math.pow(prv[0],2))));
         //3
-        ret.get(1).add(Math.pow(maxDeg,2)+(Math.pow(2*m-maxDeg,2)/(n-1))
-                  + ((2*(n-2)*(maxDeg2-minDeg))/Math.pow(n-1,2)));
+        ret.get(1).add(n*Math.sqrt(M21/(2*m)));
         //4
-        ret.get(1).add((4*m*m)/n);
+        double up = (n-1)*Math.sqrt((M21-maxDeg*maxDeg)*(2*m-prv[0]*prv[0]));
+        double down = 2*m - maxDeg;
+        ret.get(1).add(prv[0] + up/down);
+        //5
+        double tmp =  Math.sqrt((n - 1) * (2 * m - Math.pow(prv[0], 2))
+                + (Math.pow(n - 2, 2)/(n-1)) * Math.pow(prv[1] - prv[prv.length-1],2));
+
+        ret.get(1).add(prv[0] + tmp);
+        //6
+        tmp =  Math.sqrt((n - 1) * (2 * m - Math.pow(prv[0], 2))
+                + (((n - 2)*2)/(n-1)) * Math.pow(prv[1] - prv[prv.length - 1], 2));
+
+        ret.get(1).add(prv[0] + tmp);
 
         return ret;
     }
@@ -89,6 +122,6 @@ public class LowerM2Conjecture implements GraphReportExtension{
     @Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "Topological Indices";
+		return "Graph Energy";
 	}
 }
