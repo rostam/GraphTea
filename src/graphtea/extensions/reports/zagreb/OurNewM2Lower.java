@@ -74,7 +74,7 @@ public class OurNewM2Lower implements GraphReportExtension{
         ret.get(1).add(M21);
         //1
         ret.get(1).add(maxDeg*maxDeg +
-                       maxDeg2*maxDeg
+                       maxDeg2*maxDeg2
             + Math.pow((2*(m+1) - (n+maxDeg+maxDeg2)
                 + Math.sqrt((2*m-maxDeg-maxDeg2)
                 *(Mm11-((1/maxDeg)-(1/maxDeg2))))),2)/(n-2));
