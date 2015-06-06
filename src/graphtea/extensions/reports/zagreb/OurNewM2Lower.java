@@ -39,6 +39,7 @@ public class OurNewM2Lower implements GraphReportExtension{
         ret.get(0).add(" 1.2 ");
         ret.get(0).add(" 1.3 ");
         ret.get(0).add(" 1.4 ");
+        ret.get(0).add(" 1.5 ");
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -90,6 +91,10 @@ public class OurNewM2Lower implements GraphReportExtension{
         ret.get(1).add(maxDeg*maxDeg +
                 maxDeg2*maxDeg2 +
                 (Math.pow(2*m-maxDeg - maxDeg2, 2) / (n - 2)));
+        //5
+        ret.get(1).add(maxDeg*maxDeg +
+                        minDeg*minDeg +
+                (Math.pow(2*m-maxDeg - minDeg, 2) / (n - 2)));
 
         return ret;
     }
