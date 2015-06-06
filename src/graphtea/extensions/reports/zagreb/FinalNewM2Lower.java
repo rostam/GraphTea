@@ -30,16 +30,17 @@ public class FinalNewM2Lower implements GraphReportExtension{
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add(" M^2_1(G) ");
-        ret.get(0).add("SR4 max ");
-        ret.get(0).add("SR4 min ");
-        ret.get(0).add("S3 max  ");
-        ret.get(0).add("My  FMC ");
-        ret.get(0).add("Das FMC ");
-        ret.get(0).add("S2 max ");
-        ret.get(0).add("S2 min ");
-        ret.get(0).add("My max ");
-        ret.get(0).add("Das max ");
-        ret.get(0).add("illc");
+        ret.get(0).add(" SR4 max ");
+        ret.get(0).add(" SR4 min ");
+        ret.get(0).add(" S3 max  ");
+        ret.get(0).add(" S3 min  ");
+        ret.get(0).add(" My  FMC ");
+        ret.get(0).add(" Das FMC ");
+        ret.get(0).add(" S2 max ");
+        ret.get(0).add(" S2 min ");
+        ret.get(0).add(" My max ");
+        ret.get(0).add(" Das max ");
+        ret.get(0).add(" illc ");
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -80,14 +81,14 @@ public class FinalNewM2Lower implements GraphReportExtension{
                 maxDeg2*maxDeg2
                 + Math.pow((2*(m+1) - (n+maxDeg+maxDeg2)
                 + Math.sqrt((2*m-maxDeg-maxDeg2)
-                *(Mm11-((1/maxDeg)-(1/maxDeg2))))),2)/(n-2));
+                *(Mm11-((1/maxDeg)+(1/maxDeg2))))),2)/(n-2));
 
 //SR4 min
         ret.get(1).add(maxDeg*maxDeg +
                 minDeg*minDeg
                 + Math.pow((2*(m+1) - (n+maxDeg+minDeg)
                 + Math.sqrt((2*m-maxDeg-minDeg)
-                *(Mm11-((1/maxDeg)-(1/minDeg))))),2)/(n-2));
+                *(Mm11-((1/maxDeg)+(1/minDeg))))),2)/(n-2));
 //S3 max
         ret.get(1).add(maxDeg*maxDeg +
                 maxDeg2*maxDeg2 +
