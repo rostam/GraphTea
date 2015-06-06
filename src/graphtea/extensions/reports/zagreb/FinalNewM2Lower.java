@@ -103,11 +103,11 @@ public class FinalNewM2Lower implements GraphReportExtension{
 
 //My  FMC
         ret.get(1).add(Math.pow(maxDeg,2)+(Math.pow(2*m-maxDeg,2)/(n-1))
-                + ((Math.pow(n-2,2)*(maxDeg2-minDeg))/Math.pow(n-1,2)));
+                + ((Math.pow(n-2,2)*Math.pow(maxDeg2-minDeg,2))/Math.pow(n-1,2)));
 
 //Das FMC
         ret.get(1).add(Math.pow(maxDeg,2)+(Math.pow(2*m-maxDeg,2)/(n-1))
-                + ((2*(n-2)*(maxDeg2-minDeg))/Math.pow(n-1,2)));
+                + ((2*(n-2)*Math.pow(maxDeg2-minDeg,2))/Math.pow(n-1,2)));
 
 //S2 max
         ret.get(1).add(maxDeg*maxDeg +
