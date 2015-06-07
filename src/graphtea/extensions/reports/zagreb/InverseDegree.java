@@ -35,9 +35,11 @@ public class InverseDegree implements GraphReportExtension{
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add(" M^-1_1(G) ");
-        ret.get(0).add(" 1.1 ");
-        ret.get(0).add(" 1.2 ");
-        ret.get(0).add(" 1.3 ");
+        ret.get(0).add(" S3 Max ");
+        ret.get(0).add(" S3 Min ");
+        ret.get(0).add(" S2 Max ");
+        ret.get(0).add(" S2 Min ");
+        ret.get(0).add(" Base ");
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -71,13 +73,21 @@ public class InverseDegree implements GraphReportExtension{
 
         ret.add(new Vector<Object>());
         ret.get(1).add(Mm11);
-        //1
+        //S3 Max
         ret.get(1).add((1/maxDeg) + (1/maxDeg2)
                 + (Math.pow(n-2,2)/(2*m-maxDeg-maxDeg2)));
-        //2
+      //S3 Max
+        ret.get(1).add((1/maxDeg) + (1/minDeg)
+                + (Math.pow(n-2,2)/(2*m-maxDeg-minDeg)));
+        
+        //S2 Max
         ret.get(1).add((1/maxDeg) + (1/maxDeg2)
                 + ((n-2)*(2*m-maxDeg-maxDeg2)/
                 (M21-maxDeg*maxDeg-maxDeg2*maxDeg2)));
+        //S2 Min
+        ret.get(1).add((1/maxDeg) + (1/minDeg)
+                + ((n-2)*(2*m-maxDeg-minDeg)/
+                (M21-maxDeg*maxDeg-minDeg*minDeg)));
         //3
         ret.get(1).add((2*m*n)/(M21));
 
