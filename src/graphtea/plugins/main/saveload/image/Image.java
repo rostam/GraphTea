@@ -26,7 +26,8 @@ public class Image {
     static boolean debug = false;
 
     public static BufferedImage Graph2Image(AbstractGraphRenderer gv, GraphModel gm) {
-        Rectangle r = gm.getZoomedBounds().getBounds();
+        //Rectangle r = gm.getZoomedBounds().getBounds();
+        Rectangle r = gv.getBounds();
         if (debug) System.out.println("start");
         //todo: the following line is depended on graph view to be a swing component
         BufferedImage bi = gv.getGraphicsConfiguration().createCompatibleImage(r.width, r.height);
