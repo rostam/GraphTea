@@ -1,13 +1,19 @@
-<Baden-Wuerttemberg>
-id=0
-x=200
-y=700
-</Baden-Wuerttemberg>
-<Bayern>
-id=1
-x=400
-y=700
-</Bayern>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<map>
+    <File
+</map>
+<vertexes>
+    <vertex id="Baden-Wuerttemberg">
+        <Id>0</Id>
+        <x>200</x>
+        <y>700</y>
+    </vertex> 
+    <vertex id="Bayern">
+        <Id>1</Id>
+        <x>400</x>
+        <y>700</y>
+    </vertex>
+</vertexes>
 <Berlin>
 id=2
 x=490

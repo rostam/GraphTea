@@ -1,32 +1,30 @@
 package graphtea.extensions.actions;
 
+import graphtea.extensions.algorithms.Cluster;
+import graphtea.extensions.algorithms.LloydKMeans;
 import graphtea.extensions.gui.TMSettingContainer;
 import graphtea.extensions.gui.TreeMapDialog;
-import graphtea.extensions.io.LoadSimpleGraph;
 import graphtea.extensions.io.MapFileReader;
-import graphtea.extensions.io.SaveSimpleGraph;
 import graphtea.graph.graph.*;
-import graphtea.graph.old.GStroke;
 import graphtea.library.BaseVertex;
+import graphtea.plugins.algorithmanimator.core.atoms.NewGraph;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.main.extension.GraphActionExtension;
-import graphtea.plugins.main.saveload.core.GraphIOException;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.QuadCurve2D;
 import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
- * This Action relocate Vertexes to a geographic location. 
+ * This Action relocate Vertexes to a geographic location.
+ * 
  * @author Sebastian Glass
  * @since 03.05.2015
  * 
@@ -34,6 +32,7 @@ import javax.imageio.ImageIO;
 public class TreeMap implements GraphActionExtension {
 
 	static final String CURVE_WIDTH = "Curve Width";
+	private Iterator<Edge> it;
 
 	@Override
 	public String getName() {
@@ -48,87 +47,103 @@ public class TreeMap implements GraphActionExtension {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void action(GraphData graphData) {
-		TMSettingContainer sc = TreeMapDialog.showDialog();
-		if (sc == null) {
-			// Cancel of TreeMapDialog
-			return;
-		}
-		Vertex.addGlobalUserDefinedAttribute(CURVE_WIDTH, 1);
-		GraphModel g1 = graphData.getGraph();
+		// Abfrage der Einstellungen über ein TreeMapDialog(syncroner Aufruf)
+		TMSettingContainer tmSettingContainer = TreeMapDialog.showDialog();
+		if (tmSettingContainer == null)
+			return; // TreeMapDialog wurde abgebrochen; Action wird abgebrochen
 
-		GraphModel g2;
-		try {
-			g2 = relocate(g1, sc);
-		} catch (MappingException e) {
-			e.printStackTrace();
-			return;
+		/*
+		 * I DONT KNOW
+		 */
+		Vertex.addGlobalUserDefinedAttribute(CURVE_WIDTH, 1);
+
+		// Lesen des Graphen aus XML
+		MapFileReader mapFileReader = new MapFileReader("./maps/"
+				+ tmSettingContainer.getMap() + "/map.data");
+		GraphModel newGraph = mapFileReader.getGraph();
+
+		Edge[] edges = new Edge[newGraph.getEdgesCount()];
+		it = newGraph.getEdges().iterator();
+		for (int i = 0; i < edges.length; i++) {
+			edges[i] = it.next();
 		}
-		graphData.core.showGraph(g2);
+
+		for (Edge edge : edges) {
+			newGraph.removeEdge(edge);
+			Vertex[] points = splitLine(edge.source, edge.target, 2);
+			for (Vertex graphPoint : points) {
+
+				newGraph.addVertex(graphPoint);
+			}
+			if (points.length > 1)
+				for (int i = 0; i < points.length; i++) {
+
+					newGraph.addEdge(new Edge(points[i], points[i + 1]));
+				}
+			newGraph.addEdge(new Edge(edge.source, points[0]));
+			newGraph.addEdge(new Edge(points[points.length - 1], edge.target));
+
+		}
+
+		// rearrange Vertexes
+		{
+			ArrayList<GraphPoint> p = new ArrayList<GraphPoint>();
+
+			for (Vertex v : newGraph.getVertexArray()) {
+				if (v.getLabel().equals("noch zu Relokalisieren"))
+					p.add(v.getLocation());
+			}
+			Cluster[] c = LloydKMeans.cluster(
+					p.toArray(new GraphPoint[p.size()]),
+					tmSettingContainer.getK());
+			for (Cluster cluster : c) {
+				for (GraphPoint pointC : cluster.getMembers()) {
+					for (int i = 0; i < newGraph.getVerticesCount(); i++) {
+						if (newGraph.getVertex(i).getLocation().equals(pointC)
+								& newGraph.getVertex(i).getLabel()
+										.equals("noch zu Relokalisieren")) {
+
+							newGraph.getVertex(i).setLabel("");
+							newGraph.getVertex(i).setLocation(
+									cluster.getCentroid());
+							break;
+						}
+					}
+				}
+			}
+		}
+		// Zeichnen des Graphen
+		graphData.core.showGraph(newGraph);
 		TreeMapPainter p = new TreeMapPainter(graphData);
 		AbstractGraphRenderer gr = AbstractGraphRenderer
 				.getCurrentGraphRenderer(graphData.getBlackboard());
-		File file = new File("./maps/" + sc.getMap() + "/background.png");
-		try {
-			gr.setBackgroundImage(ImageIO.read(file));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-			System.err.println("MapImage not found at File '"
-					+ file.getAbsolutePath() + "'.");
-			return;
-		}
+		// Setzen des Hintergrundbilds
+		File file = new File("./maps/" + tmSettingContainer.getMap()
+				+ "/background.png");
+		newGraph.setBackgroundImageFile(file);
 
 		gr.addPostPaintHandler(p);
 		gr.repaint();
 
 	}
 
-	private GraphModel relocate(GraphModel g1, TMSettingContainer sc)
-			throws MappingException {
-		GraphModel g2 = null;
-		SaveSimpleGraph ssg = new SaveSimpleGraph();
-		LoadSimpleGraph lsg = new LoadSimpleGraph();
-		try {
-			ssg.write(new File("./tmpg1"), g1);
-			g2 = lsg.read(new File("./tmpg1"));
-		} catch (GraphIOException e) {
-			e.printStackTrace();
+	private Vertex[] splitLine(Vertex source, Vertex target, int i) {
+
+		GraphPoint supportVector = source.getLocation();// as p
+		GraphPoint directionVector = GraphPoint.sub(target.getLocation(),
+				source.getLocation());// as u
+		// x = p+t*u | 0<t<1
+		// x = p*(t/i)*u | 0<t<i (Gerade durch 2 Punkte)
+		Vertex[] points = new Vertex[i - 1];
+		for (int t = 1; t < i; t++) {
+			Vertex v = new Vertex();
+			v.setLabel("noch zu Relokalisieren");
+			v.setLocation(GraphPoint.add(supportVector,
+					GraphPoint.mul(directionVector, ((double) t) / i)));
+			points[t - 1] = v;
 		}
 
-		g2.setFont(new Font(g2.getFont().getName(), g2.getFont().getStyle(), 0));
-		g2.setLabel("TreeMapG0");
-
-		MapFileReader mfr = new MapFileReader("./maps/" + sc.getMap() + "/map.data");
-		for (Vertex v : g2) {
-			// Relocate Edge by 'map.data'
-			GraphPoint p = null;
-			switch (sc.getMappingCode()) {
-			case 1:
-				p = mfr.getPositionByLabel(v.getLabel());
-				if (p == null)
-					throw new MappingException("Label not found: "
-							+ v.getLabel());
-
-				break;
-			case 2:
-				p = mfr.getPositionByID(v.getId());
-				if (p == null)
-					throw new MappingException("ID not found: " + v.getId());
-
-				break;
-			default:
-				break;
-			}
-
-			v.setLocation(p);
-			v.setSize(new GraphPoint(15, 15));
-		}
-
-		for (Edge e : g2.getEdges()) {
-
-			e.setStroke(GStroke.dashed_dotted);
-			e.setColor(8);
-		}
-		return g2;
+		return points;
 	}
 
 }
@@ -157,9 +172,9 @@ class TreeMapPainter implements PaintHandler {
 
 		AbstractGraphRenderer.getCurrentGraphRenderer(gd.getBlackboard())
 				.ignoreRepaints(new Runnable() {
-					@SuppressWarnings({ "unchecked"})
+					@SuppressWarnings({ "unchecked" })
 					public void run() {
-						//boolean[] marks = new boolean[n];
+						// boolean[] marks = new boolean[n];
 						Vertex V[] = G.getVertexArray();
 						final Vertex parent[] = new Vertex[n];
 						// consider the hole structure as a tree

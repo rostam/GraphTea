@@ -1,13 +1,23 @@
 package graphtea.extensions.io;
 
-import graphtea.graph.graph.GraphPoint;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
-import java.io.BufferedReader;
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+import org.w3c.dom.Element;
+
+import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.Vertex;
+
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 
@@ -18,88 +28,66 @@ import java.util.List;
 
 public class MapFileReader {
 
-	int actualID = 0;
-	List<MapPoint> points = new ArrayList<MapPoint>();
+	private GraphModel graph;
 
-	public MapFileReader(String path) {
-		try {
-			@SuppressWarnings("resource")
-			BufferedReader br = new BufferedReader(new FileReader(
-					new File(path)));
-			String str = null;
-			String actual = "";
-			int xbuff = 0, ybuff = 0, idbuff = 0;
-
-			while ((str = br.readLine()) != null) {
-				if (str.startsWith("</" + actual)) {
-					actualID++;
-					points.add(new MapPoint(actual, idbuff, xbuff, ybuff));
-					actual = "";
+	public MapFileReader(String path){
+		 try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			    DocumentBuilder builder = factory.newDocumentBuilder();
+			    Document document = builder.parse( new File(path.replace(".data", ".xml")) );
+			    NodeList nList = document.getElementsByTagName("vertex");
+			    GraphModel g2 = new GraphModel(false);
+			    g2.setAllowLoops(true);
+			    Vertex root = new Vertex();
+			    root.setLocation(new GraphPoint(0,0));
+			    g2.addVertex(root);
+			    for (int temp = 0; temp < nList.getLength(); temp++) {
+			    	 
+					Node nNode = nList.item(temp);			
 					
-				} else if (str.startsWith("<")) {
-					actual = str.substring(str.indexOf("<") + 1,
-							str.indexOf(">"));
-				} else {
-					if (!actual.equals("") & str.contains("="))// if in actual
-																// block
-					{
-						String[] list = str.split("=");
-						switch (list[0].toLowerCase()) {
-						case "x":
-							xbuff = Integer.parseInt(list[1]);
-							break;
-						case "y":
-							ybuff = Integer.parseInt(list[1]);
-							break;
-						case "id":
-							idbuff = Integer.parseInt(list[1]);
-							break;
-						default:
-							break;
+					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element eElement = (Element) nNode;
+						boolean isRoot= eElement.getAttribute("type").equals("root");
+						String id = eElement.getAttribute("id");
+						int x =  Integer.parseInt(eElement.getElementsByTagName("x").item(0).getTextContent());
+						int y =  Integer.parseInt(eElement.getElementsByTagName("y").item(0).getTextContent());
+						int value=0;
+						
+						
+						Vertex newVertex = new Vertex();
+						newVertex.setLocation(new GraphPoint(x, y));
+						newVertex.setLabel(id);
+						
+						if(!isRoot){
+							g2.addVertex(newVertex);
+							value = Integer.parseInt(eElement.getElementsByTagName("value").item(0).getTextContent());
+							Edge e = new Edge(newVertex, root);
+							e.setWeight(value);
+							g2.addEdge(e);
+						}else{
+							root.setLocation(newVertex.getLocation());
+							root.setLabel(newVertex.getLabel());
+						//	root =  newVertex;
 						}
-					}
-				}
-			}
 
-		} catch (IOException e) {
+					}
+			    }
+				this.setGraph(g2);
+
+		} catch (DOMException | ParserConfigurationException | SAXException
+				| IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public GraphPoint getPositionByID(int id) {
-		for (int i = 0; i < points.size(); i++) {
-			if (points.get(i).getID() == id)
-				return (GraphPoint) points.get(i);
-		}
-		return null;
+	public GraphModel getGraph() {
+		return graph;
 	}
 
-	public GraphPoint getPositionByLabel(String label) {
-		for (int i = 0; i < points.size(); i++) {
-			if (points.get(i).getName().equals(label))
-				return (GraphPoint) points.get(i);
-		}
-		return null;
-	}
-}
-
-class MapPoint extends GraphPoint {
-
-	private static final long serialVersionUID = -1121005549351322119L;
-	private String name;
-	private int id;
-
-	public MapPoint(String s, int id, int x, int y) {
-		super(x, y);
-		this.id = id;
-		this.name = s;
+	public void setGraph(GraphModel graph) {
+		this.graph = graph;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public int getID() {
-		return id;
-	}
+	
 }

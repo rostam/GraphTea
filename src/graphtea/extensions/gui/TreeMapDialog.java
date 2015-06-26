@@ -4,12 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JRadioButton;
 import javax.swing.JLabel;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 /**
  * This dialog enables the choose of a country to load the specific locations of
@@ -25,12 +26,13 @@ public class TreeMapDialog extends JDialog {
 
 	private static final long serialVersionUID = 8828381029045899188L;
 	private TMSettingContainer setting = new TMSettingContainer();
+	private JSlider slider;
+	private JLabel lblNumberOfSubtrees;
 
 	public TreeMapDialog() {
 		setDefaultFrameSettings();
 		TreeMapListener treeActionListener = new TreeMapListener(this);
 		generateComboBox(treeActionListener);
-		addRadioButtons(treeActionListener);
 		addJButtons(treeActionListener);
 
 		JLabel lblWhichCountryDo = new JLabel(
@@ -40,8 +42,27 @@ public class TreeMapDialog extends JDialog {
 
 		JLabel lblNoteNewCountries = new JLabel(
 				"Note: new countries can be added in './maps'");
-		lblNoteNewCountries.setBounds(18, 72, 366, 14);
+		lblNoteNewCountries.setBounds(18, 113, 366, 14);
 		getContentPane().add(lblNoteNewCountries);
+		
+		lblNumberOfSubtrees = new JLabel("Number of Subtrees: k=2");
+		lblNumberOfSubtrees.setBounds(18, 72, 168, 14);
+		getContentPane().add(lblNumberOfSubtrees);
+		
+		slider = new JSlider();
+		slider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				lblNumberOfSubtrees.setText("Number of Subtrees: k="+((JSlider)arg0.getSource()).getValue());
+			}
+		});
+		slider.setSnapToTicks(true);
+		slider.setPaintTicks(true);
+		slider.setPaintLabels(true);
+		slider.setValue(2);
+		slider.setBounds(196, 72, 188, 30);
+		getContentPane().add(slider);
+		
+		
 
 		setting.setMappingCode(1);
 	}
@@ -49,7 +70,7 @@ public class TreeMapDialog extends JDialog {
 	private void addJButtons(TreeMapListener treeActionListener) {
 		JButton btn = new JButton("Go!");
 
-		btn.setBounds(284, 125, 100, 25);
+		btn.setBounds(281, 138, 100, 25);
 		btn.setActionCommand("GoButton");
 
 		btn.addActionListener(treeActionListener);
@@ -57,28 +78,10 @@ public class TreeMapDialog extends JDialog {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setActionCommand("Cancel");
 		btn.addActionListener(treeActionListener);
-		btnCancel.setBounds(174, 126, 100, 25);
+		btnCancel.setBounds(171, 138, 100, 25);
 		getContentPane().add(btnCancel);
 	}
 
-	private void addRadioButtons(TreeMapListener treeActionListener) {
-		JRadioButton opt1 = new JRadioButton("Map by Labels");
-		opt1.setSelected(true);
-		JRadioButton opt2 = new JRadioButton("Map by IDs");
-		// Link the RadioButtons
-		ButtonGroup btnGrp = new ButtonGroup();
-		btnGrp.add(opt1);
-		btnGrp.add(opt2);
-		opt1.setBounds(208, 93, 176, 25);
-		opt2.setBounds(18, 93, 176, 25);
-		opt1.setActionCommand("Opt1");
-		opt2.setActionCommand("Opt2");
-		opt1.addActionListener(treeActionListener);
-		opt2.addActionListener(treeActionListener);
-		getContentPane().add(opt1);
-		getContentPane().add(opt2);
-
-	}
 
 	private void generateComboBox(ActionListener treeActionListener) {
 		// Get Map List
@@ -98,7 +101,7 @@ public class TreeMapDialog extends JDialog {
 
 	private void setDefaultFrameSettings() {
 		setTitle("\"Tree to Map\"-Mapper");
-		setBounds(100, 100, 400, 189);
+		setBounds(100, 100, 400, 202);
 		setModal(true);
 		getContentPane().setLayout(null);
 		setResizable(false);
@@ -119,6 +122,7 @@ public class TreeMapDialog extends JDialog {
 	}
 
 	public TMSettingContainer getSetting() {
+		setting.setK(slider.getValue());
 		return setting;
 	}
 
@@ -151,14 +155,6 @@ class TreeMapListener implements ActionListener {
 		case "Cancel":
 			sc = null;
 			source.setVisible(false);
-			break;
-		case "Opt1":
-			sc.setMappingCode(1);
-
-			break;
-		case "Opt2":
-			sc.setMappingCode(2);
-
 			break;
 		default:
 			break;

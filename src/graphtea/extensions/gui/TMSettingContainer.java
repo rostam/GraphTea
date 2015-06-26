@@ -10,6 +10,7 @@ package graphtea.extensions.gui;
 public class TMSettingContainer {
 	private String map;
 	private int mappingCode;
+	private int K;
 
 	public int getMappingCode() {
 		return mappingCode;
@@ -25,5 +26,12 @@ public class TMSettingContainer {
 
 	public void setMap(String map) {
 		this.map = map;
+	}
+
+	public int getK() {
+		return K;
+	}
+	public void setK(int K) {
+		this.K= K;
 	}
 }

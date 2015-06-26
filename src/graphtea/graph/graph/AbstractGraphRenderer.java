@@ -25,7 +25,6 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
     int minx, miny;
     boolean isGraphChanged = true;
     private HashSet<PaintHandler<AbstractGraphRenderer>> prePaintHandlers = new HashSet<PaintHandler<AbstractGraphRenderer>>();
-    private Image backgroundImage=null;
     
     
     public static AbstractGraphRenderer getCurrentGraphRenderer(BlackBoard b) {
@@ -193,10 +192,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
 //                showTime(4);
 //                g.clearRect(0,0, getWidth(), getHeight());
            
-            if(backgroundImage!=null){
             
-            	bufferedG.drawImage(backgroundImage,minx, miny,(int) (backgroundImage.getWidth(null)),(int) (backgroundImage.getHeight(null)) ,null);
-            }
             for (PaintHandler p : prePaintHandlers)
                 p.paint(mainG, this, drawExtras);
             render((Graphics2D) bufferedG, drawExtras);
@@ -277,8 +273,6 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
         return miny;
     }
 
-	public void setBackgroundImage(BufferedImage read) {
-		backgroundImage=read;
-	}
+	
 	
 }

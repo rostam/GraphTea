@@ -65,7 +65,7 @@ public class GraphAttrSet implements AttributeSet {
         ret.put(DRAW_VERTEX_LABELS, g.isDrawVertexLabels());
         ret.put(DRAW_EDGE_LABELS, g.isDrawEdgeLabels());
         ret.put(IS_EDGES_CURVED, g.isEdgesCurved());
-        ret.put(Allow_Loops, g.getBackgroundImageFile());
+        ret.put(Allow_Loops, g.isAllowLoops());
         ret.put(DIRECTED, g.isDirected() ? EDGEDEFAULT_DIRECTED : EDGEDEFAULT_UNDIRECTED);
         ret.put(LABEL, g.getLabel());
         ret.put(ZOOM, g.getZoom());
