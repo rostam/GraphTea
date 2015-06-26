@@ -59,7 +59,7 @@ public class TreeMap implements GraphActionExtension {
 
 		// Lesen des Graphen aus XML
 		MapFileReader mapFileReader = new MapFileReader("./maps/"
-				+ tmSettingContainer.getMap() + "/map.data");
+				+ tmSettingContainer.getMap() + "/map.xml");
 		GraphModel newGraph = mapFileReader.getGraph();
 
 		Edge[] edges = new Edge[newGraph.getEdgesCount()];
