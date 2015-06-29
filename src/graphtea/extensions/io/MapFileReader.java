@@ -21,7 +21,7 @@ import java.io.IOException;
 
 /**
  * 
- * @author Sebastian Glaﬂ
+ * @author Sebastian Glass
  * @since 03.05.2015
  *
  */

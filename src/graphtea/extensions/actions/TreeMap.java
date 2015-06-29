@@ -21,6 +21,7 @@ import java.awt.geom.QuadCurve2D;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Vector;
 
 /**
  * This Action relocate Vertexes to a geographic location.
@@ -47,7 +48,7 @@ public class TreeMap implements GraphActionExtension {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void action(GraphData graphData) {
-		// Abfrage der Einstellungen über ein TreeMapDialog(syncroner Aufruf)
+		// Abfrage der Einstellungen ueber ein TreeMapDialog(syncroner Aufruf)
 		TMSettingContainer tmSettingContainer = TreeMapDialog.showDialog();
 		if (tmSettingContainer == null)
 			return; // TreeMapDialog wurde abgebrochen; Action wird abgebrochen
@@ -112,9 +113,31 @@ public class TreeMap implements GraphActionExtension {
 				}
 			}
 		}
+
+        // Erste Knot aendern
+        Vertex zero=newGraph.getVertex(0);
+        Vertex neu = new Vertex();
+        GraphPoint gp = zero.getLocation();
+        neu.setLocation(GraphPoint.add(gp,new GraphPoint(5,5)));
+        newGraph.addVertex(neu);
+
+        Vector<Integer> vv = new Vector<Integer>();
+
+        for(Vertex nv : newGraph.getNeighbors(zero)) {
+            if(vv.contains(nv.getId())) break;
+            vv.add(nv.getId());
+        }
+        for(Integer nv : vv) {
+            newGraph.addEdge(new Edge(newGraph.getVertex(nv),neu));
+            System.out.println("after add edge" + nv);
+            newGraph.removeEdge(newGraph.getEdge(zero,newGraph.getVertex(nv)));
+        }
+
+        newGraph.addEdge(new Edge(zero,neu));
+
 		// Zeichnen des Graphen
-		graphData.core.showGraph(newGraph);
-		TreeMapPainter p = new TreeMapPainter(graphData);
+        graphData.core.showGraph(newGraph);
+        TreeMapPainter p = new TreeMapPainter(graphData);
 		AbstractGraphRenderer gr = AbstractGraphRenderer
 				.getCurrentGraphRenderer(graphData.getBlackboard());
 		// Setzen des Hintergrundbilds
@@ -122,6 +145,9 @@ public class TreeMap implements GraphActionExtension {
 				+ "/background.png");
 		newGraph.setBackgroundImageFile(file);
 
+        for(Edge e:newGraph.edges()) {
+            e.setColor(Color.white.getRGB());
+        }
 		gr.addPostPaintHandler(p);
 		gr.repaint();
 

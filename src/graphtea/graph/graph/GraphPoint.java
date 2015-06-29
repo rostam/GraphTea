@@ -101,7 +101,7 @@ public class GraphPoint extends Point2D.Double implements Serializable, FromStri
     }
 
     /**
-     * changed by Sebastian Glaﬂ 03.05.2015
+     * changed by Sebastian Glass 03.05.2015
      */
     public GraphPoint fromString(String data) {   	
         data = data.replace(',', ' ');
