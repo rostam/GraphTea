@@ -18,7 +18,7 @@ public class GFontEditor extends GDialogEditor<Font> {
 
     public JComponent getComponent(Font font) {
         jFontChooser = new JFontChooser();
-        jFontChooser.setFont(font);
+        //jFontChooser.setFont(font);
         return jFontChooser;
     }
 

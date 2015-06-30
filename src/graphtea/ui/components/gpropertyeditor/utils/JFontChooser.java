@@ -143,13 +143,13 @@ public class JFontChooser extends JComponent {
     public void setFont(Font font) {
         if (font == null) font = txtSample.getFont();
 
-        fontList.setSelectedValue(font.getName(), true);
-        fontList.ensureIndexIsVisible(fontList.getSelectedIndex());
-        sizeList.setSelectedValue("" + font.getSize(), true);
-        sizeList.ensureIndexIsVisible(sizeList.getSelectedIndex());
+        //fontList.setSelectedValue(font.getName(), true);
+        //fontList.ensureIndexIsVisible(fontList.getSelectedIndex());
+        //sizeList.setSelectedValue("" + font.getSize(), true);
+        //sizeList.ensureIndexIsVisible(sizeList.getSelectedIndex());
 
-        cbBold.setSelected(font.isBold());
-        cbItalic.setSelected(font.isItalic());
+        //cbBold.setSelected(font.isBold());
+        //cbItalic.setSelected(font.isItalic());
     }
 
     public Font getFont() {
@@ -158,7 +158,9 @@ public class JFontChooser extends JComponent {
 
     private Font getCurrentFont() {
         String fontFamily = (String) fontList.getSelectedValue();
-        int fontSize = Integer.parseInt((String) sizeList.getSelectedValue());
+        int fontSize=24;
+        if(sizeList.getSelectedValue()!=null)
+            fontSize = Integer.parseInt((String) sizeList.getSelectedValue());
 
         int fontType = Font.PLAIN;
 
