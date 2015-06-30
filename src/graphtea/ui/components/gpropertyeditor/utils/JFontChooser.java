@@ -158,7 +158,9 @@ public class JFontChooser extends JComponent {
 
     private Font getCurrentFont() {
         String fontFamily = (String) fontList.getSelectedValue();
-        int fontSize = Integer.parseInt((String) sizeList.getSelectedValue());
+        int fontSize=24;
+        if(sizeList.getSelectedValue()!=null)
+          fontSize = Integer.parseInt((String) sizeList.getSelectedValue());
 
         int fontType = Font.PLAIN;
 
