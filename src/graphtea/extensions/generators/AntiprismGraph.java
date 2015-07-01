@@ -15,9 +15,10 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 import java.awt.*;
+import java.util.Vector;
 
 @CommandAttitude(name = "generate_helmn", abbreviation = "_g_prism", description = "generates a Prism graph of order n")
-public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
+public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
 
     //the depth should be positive, and also if it is very large the
     //generated graph is too large to generate.
@@ -40,11 +41,11 @@ public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
     }
 
     public String getName() {
-        return "Prism Graph";
+        return "Antiprism Graph";
     }
 
     public String getDescription() {
-        return "Prism Graph";
+        return "Antiprism Graph";
     }
 
     public GraphPoint[] getVertexPositions() {
@@ -67,21 +68,33 @@ public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
     public GraphModel generateGraph() {
         GraphModel g = new GraphModel(false);
         Vertex[] v = new Vertex[2 * n];
-        Edge[] e = new Edge[3 * n];
+        Edge[] e = new Edge[4 * n];
 
         //generating vertices
-        for (int i = 0; i < 2 * n; i++)
+        for (int i = 0; i < 2 * n; i++) {
             v[i] = new Vertex();
+        }
+        g.insertVertices(v);
 
+
+        int cnt =0;
         //generating edges
         for (int i = 0; i < n; i++) {
-            e[i] = new Edge(v[i], v[(i + 1) % n]);
-            if ((i + n + 1) == 2 * n) e[i + n] = new Edge(v[i + n], v[n]);
-            else e[i + n] = new Edge(v[i + n], v[i + n + 1]);
-            e[i + (2 * n)] = new Edge(v[i], v[(i + n)]);
+            e[cnt] = new Edge(v[i], v[(i + 1) % n]);
+            cnt++;
+            if ((i + n + 1) == 2 * n) e[cnt] = new Edge(v[i + n], v[n]);
+            else e[cnt] = new Edge(v[i + n], v[i + n + 1]);
+            cnt++;
+            e[cnt] = new Edge(v[i], v[(i+n)]);
+            cnt++;
+            e[cnt] = new Edge(v[(i + 1) % n], v[i+n]);
+            cnt++;
         }
 
-        g.insertVertices(v);
+        for(cnt=0;cnt < 16;cnt++) {
+            System.out.println("fahm " + e[cnt]);
+        }
+
         g.insertEdges(e);
 
         //generating and setting vertex positions

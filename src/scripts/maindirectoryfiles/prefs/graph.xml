@@ -1507,10 +1507,10 @@
           <entry key="object" value="graphtea.extensions.generators.PmnGenerator"/>
         </map>
       </node>
-      <node name="graphtea.extensions.generators.PrismGraph">
+      <node name="graphtea.extensions.generators.AntiprismGraph">
         <map>
           <entry key="n" value="4"/>
-          <entry key="object" value="graphtea.extensions.generators.PrismGraph"/>
+          <entry key="object" value="graphtea.extensions.generators.AntiprismGraph"/>
         </map>
       </node>
       <node name="graphtea.extensions.generators.RandomGenerator">
