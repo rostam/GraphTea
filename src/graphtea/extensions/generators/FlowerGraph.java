@@ -121,4 +121,9 @@ public static void main(String[] args) {
         graphtea.platform.Application.main(args);
 //        StaticUtils.loadSingleExtension(graphtea.samples.extensions.HelmGraph.class);
     }
+
+    @Override
+    public String getCategory() {
+        return "General Graphs";
+    }
 }

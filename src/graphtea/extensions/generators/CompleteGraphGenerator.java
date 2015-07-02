@@ -80,4 +80,9 @@ public class CompleteGraphGenerator implements GraphGeneratorExtension, Parametr
         CompleteGraphGenerator.n = n;
         return GraphGenerator.getGraph(false, new CompleteGraphGenerator());
     }
+
+    @Override
+    public String getCategory() {
+        return "General Graphs";
+    }
 }

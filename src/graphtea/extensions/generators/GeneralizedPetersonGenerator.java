@@ -103,4 +103,8 @@ public class GeneralizedPetersonGenerator implements GraphGeneratorExtension, Pa
         return GraphGenerator.getGraph(false, new GeneralizedPetersonGenerator());
     }
 
+    @Override
+    public String getCategory() {
+        return "General Graphs";
+    }
 }

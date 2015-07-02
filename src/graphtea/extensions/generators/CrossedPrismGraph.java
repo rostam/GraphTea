@@ -17,7 +17,7 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 import java.awt.*;
 
 @CommandAttitude(name = "generate_helmn", abbreviation = "_g_prism", description = "generates a Prism graph of order n")
-public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
+public class CrossedPrismGraph implements GraphGeneratorExtension, Parametrizable {
 
     //the depth should be positive, and also if it is very large the
     //generated graph is too large to generate.
@@ -40,11 +40,11 @@ public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
     }
 
     public String getName() {
-        return "Prism Graph";
+        return "Crossed Prism Graph";
     }
 
     public String getDescription() {
-        return "Prism Graph";
+        return "Crossed Prism Graph";
     }
 
     public GraphPoint[] getVertexPositions() {
@@ -73,12 +73,19 @@ public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
         for (int i = 0; i < 2 * n; i++)
             v[i] = new Vertex();
 
+        int cnt=0;
         //generating edges
         for (int i = 0; i < n; i++) {
-            e[i] = new Edge(v[i], v[(i + 1) % n]);
-            if ((i + n + 1) == 2 * n) e[i + n] = new Edge(v[i + n], v[n]);
-            else e[i + n] = new Edge(v[i + n], v[i + n + 1]);
-            e[i + (2 * n)] = new Edge(v[i], v[(i + n)]);
+            e[cnt] = new Edge(v[i], v[(i + 1) % n]);
+            cnt++;
+            if ((i + n + 1) == 2 * n) e[cnt] = new Edge(v[i + n], v[n]);
+            else e[cnt] = new Edge(v[i + n], v[i + n + 1]);
+            cnt++;
+            if(cnt%2==0)
+                e[cnt] = new Edge(v[i+1], v[(i + n)]);
+            else
+                e[cnt] = new Edge(v[i-1], v[(i + n)]);
+            cnt++;
         }
 
         g.insertVertices(v);

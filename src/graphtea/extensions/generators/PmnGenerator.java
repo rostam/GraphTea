@@ -100,4 +100,9 @@ public class PmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
         PmnGenerator.n = n;
         return GraphGenerator.getGraph(false, new PmnGenerator());
     }
+
+    @Override
+    public String getCategory() {
+        return "General Graphs";
+    }
 }

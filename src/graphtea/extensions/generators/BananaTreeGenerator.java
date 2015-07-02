@@ -94,4 +94,9 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
         StaticUtils.loadSingleExtension(BananaTreeGenerator.class);
 
     }
+
+    @Override
+    public String getCategory() {
+        return "Trees";
+    }
 }

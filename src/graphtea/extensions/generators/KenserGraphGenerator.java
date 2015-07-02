@@ -93,4 +93,8 @@ public class KenserGraphGenerator implements GraphGeneratorExtension, Parametriz
     }
 
 
+    @Override
+    public String getCategory() {
+        return "General Graphs";
+    }
 }

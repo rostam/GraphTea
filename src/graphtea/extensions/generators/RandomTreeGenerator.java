@@ -103,4 +103,8 @@ public class RandomTreeGenerator implements GraphGeneratorExtension, Parametriza
         return GraphGenerator.getGraph(false, new RandomTreeGenerator());
     }
 
+    @Override
+    public String getCategory() {
+        return "Trees";
+    }
 }

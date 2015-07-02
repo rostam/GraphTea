@@ -102,4 +102,8 @@ public class GearGenerator implements GraphGeneratorExtension, Parametrizable, S
         return GraphGenerator.getGraph(false, new GearGenerator());
     }
 
+    @Override
+    public String getCategory() {
+        return "General Graphs";
+    }
 }

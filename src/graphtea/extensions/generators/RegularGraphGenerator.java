@@ -100,6 +100,11 @@ public class RegularGraphGenerator implements GraphGeneratorExtension, Parametri
         return GraphGenerator.getGraph(false, this);
     }
 
+    @Override
+    public String getCategory() {
+        return "Regular Graphs";
+    }
+
     /**
      * generates a Km,n Graph with given parameters
      */

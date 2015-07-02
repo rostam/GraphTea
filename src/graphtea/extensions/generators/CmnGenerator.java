@@ -103,5 +103,10 @@ public class CmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
         CmnGenerator.n = n;
         return GraphGenerator.getGraph(false, new CmnGenerator());
     }
+
+    @Override
+    public String getCategory() {
+        return "General Graphs";
+    }
 }
 

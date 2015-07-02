@@ -100,4 +100,8 @@ public class TadpoleGenerator implements GraphGeneratorExtension, Parametrizable
         return GraphGenerator.getGraph(false, new TadpoleGenerator());
     }
 
+    @Override
+    public String getCategory() {
+        return "General Graphs";
+    };
 }

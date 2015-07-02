@@ -80,4 +80,8 @@ public class CircleGenerator implements GraphGeneratorExtension, Parametrizable,
         return GraphGenerator.getGraph(false, new CircleGenerator());
     }
 
+    @Override
+    public String getCategory() {
+        return "General Graphs";
+    }
 }

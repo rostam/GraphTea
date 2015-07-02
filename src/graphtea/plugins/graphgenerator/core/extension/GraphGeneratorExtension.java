@@ -12,8 +12,9 @@ import graphtea.plugins.graphgenerator.core.GraphGeneratorInterface;
 /**
  * represents a Graph Generator
  *
- * @author azin azadi
+ * @author M. Ali Rostami
 
  */
 public interface GraphGeneratorExtension extends Extension, GraphGeneratorInterface {
+    public String getCategory();
 }

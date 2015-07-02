@@ -78,4 +78,8 @@ public class StarGenerator implements GraphGeneratorExtension, Parametrizable, S
         return GraphGenerator.getGraph(false, new StarGenerator());
     }
 
+    @Override
+    public String getCategory() {
+        return "Trees";
+    }
 }

@@ -76,4 +76,9 @@ public class BinaryTreeGenerator implements GraphGeneratorExtension, Parametriza
             v[i].setLocation(pos[i]);
         return g;
     }
+
+    @Override
+    public String getCategory() {
+        return "General Graphs";
+    }
 }

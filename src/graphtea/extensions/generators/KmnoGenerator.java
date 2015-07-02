@@ -140,4 +140,9 @@ public class KmnoGenerator implements GraphGeneratorExtension, Parametrizable, S
         StaticUtils.loadSingleExtension(KmnoGenerator.class);
 
     }
+
+    @Override
+    public String getCategory() {
+        return "Multipartite Graphs";
+    }
 }

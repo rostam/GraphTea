@@ -97,4 +97,8 @@ public class WheelGenerator implements GraphGeneratorExtension, Parametrizable, 
         return GraphGenerator.getGraph(false, new WheelGenerator());
     }
 
+    @Override
+    public String getCategory() {
+        return "Trees";
+    }
 }

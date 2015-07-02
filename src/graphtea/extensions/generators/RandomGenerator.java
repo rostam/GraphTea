@@ -100,4 +100,8 @@ public class RandomGenerator implements GraphGeneratorExtension, Parametrizable,
         return GraphGenerator.getGraph(false, new RandomGenerator());
     }
 
+    @Override
+    public String getCategory() {
+        return "Random Graphs";
+    }
 }

@@ -167,4 +167,8 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
         return GraphGenerator.getGraph(false, new TreeGenerator());
     }
 
+    @Override
+    public String getCategory() {
+        return "Trees";
+    }
 }

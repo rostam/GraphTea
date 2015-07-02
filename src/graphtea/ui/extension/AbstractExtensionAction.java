@@ -11,6 +11,7 @@ import graphtea.platform.extension.Extension;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
+import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 import graphtea.plugins.main.Init;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.ui.ParameterShower;
@@ -57,6 +58,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
 
 
     static HashMap<String, JMenu> reportSubMenus = new HashMap<String, JMenu>();
+    static HashMap<String, JMenu> generateSubMenus = new HashMap<String, JMenu>();
 
     public AbstractExtensionAction(BlackBoard bb, t sp) {
         super(bb);
@@ -76,6 +78,19 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
                         reportSubMenus.put(temp.getCategory(), categoryMenu);
                     } else
                         categoryMenu = reportSubMenus.get(temp.getCategory());
+                    GMenuBar.insert(parentMenu, categoryMenu, getMenuPlace());
+                    GMenuBar.insert(categoryMenu, menuItem, getMenuPlace());
+                } else
+                    GMenuBar.insert(parentMenu, menuItem, getMenuPlace());
+            } else if (parentMenu.getText().equalsIgnoreCase("generate graph")) {
+                GraphGeneratorExtension temp = (GraphGeneratorExtension) sp;
+                if (temp.getCategory() != null) {
+                    JMenu categoryMenu;
+                    if (!generateSubMenus.containsKey(temp.getCategory())) {
+                        categoryMenu = new JMenu(temp.getCategory());
+                        generateSubMenus.put(temp.getCategory(), categoryMenu);
+                    } else
+                        categoryMenu = generateSubMenus.get(temp.getCategory());
                     GMenuBar.insert(parentMenu, categoryMenu, getMenuPlace());
                     GMenuBar.insert(categoryMenu, menuItem, getMenuPlace());
                 } else

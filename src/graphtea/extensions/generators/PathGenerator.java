@@ -79,4 +79,9 @@ public class PathGenerator implements GraphGeneratorExtension, Parametrizable, S
         PathGenerator.n = n;
         return GraphGenerator.getGraph(false, new PathGenerator());
     }
+
+    @Override
+    public String getCategory() {
+        return "Trees";
+    }
 }

@@ -91,10 +91,6 @@ public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
             cnt++;
         }
 
-        for(cnt=0;cnt < 16;cnt++) {
-            System.out.println("fahm " + e[cnt]);
-        }
-
         g.insertEdges(e);
 
         //generating and setting vertex positions
@@ -102,5 +98,10 @@ public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
         for (int i = 0; i < 2*n; i++)
             v[i].setLocation(pos[i]);
         return g;
+    }
+
+    @Override
+    public String getCategory() {
+        return "Prism Graphs";
     }
 }
