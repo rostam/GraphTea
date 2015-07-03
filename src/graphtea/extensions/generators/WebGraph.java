@@ -126,6 +126,6 @@ public class WebGraph implements GraphGeneratorExtension, Parametrizable, Simple
 
     @Override
     public String getCategory() {
-        return "General Graphs";
+        return "Web Class Graphs";
     }
 }

@@ -121,6 +121,6 @@ public static void main(String[] args) {
 
     @Override
     public String getCategory() {
-        return "Bipartite Graphs";
+        return "Web Class Graphs";
     }
 }

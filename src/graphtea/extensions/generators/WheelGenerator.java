@@ -99,6 +99,6 @@ public class WheelGenerator implements GraphGeneratorExtension, Parametrizable, 
 
     @Override
     public String getCategory() {
-        return "Trees";
+        return "Web Class Graphs";
     }
 }

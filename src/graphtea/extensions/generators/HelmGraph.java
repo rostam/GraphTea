@@ -129,6 +129,6 @@ public static void main(String[] args) {
 
     @Override
     public String getCategory() {
-        return "Helm Graph";
+        return "Web Class Graphs";
     }
 }

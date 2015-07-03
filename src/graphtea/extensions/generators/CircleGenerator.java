@@ -82,6 +82,6 @@ public class CircleGenerator implements GraphGeneratorExtension, Parametrizable,
 
     @Override
     public String getCategory() {
-        return "General Graphs";
+        return "Web Class Graphs";
     }
 }

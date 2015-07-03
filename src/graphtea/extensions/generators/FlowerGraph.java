@@ -124,6 +124,6 @@ public static void main(String[] args) {
 
     @Override
     public String getCategory() {
-        return "General Graphs";
+        return "Web Class Graphs";
     }
 }
