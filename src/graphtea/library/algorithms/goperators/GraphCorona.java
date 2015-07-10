@@ -6,6 +6,8 @@
 package graphtea.library.algorithms.goperators;
 
 import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseEdge;
 import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;
@@ -51,6 +53,7 @@ public class GraphCorona
                 g.insertVertex(nvt);
                 g.addEdge((EdgeType) ee.getCopy(
                         temp1.get(v1), nvt));
+
             }
 
             iet = g2.lightEdgeIterator();
@@ -60,7 +63,28 @@ public class GraphCorona
             }
 
         }
+        System.out. println("corona 4");
+        g.setDirected(g1.isDirected());
 
         return g;
+    }
+
+    public void setPositions(GraphModel g1, GraphModel g2,GraphModel g) {
+        Vertex[] varr=g.getVertexArray();
+        int k =0;
+        for(int i=g1.getVerticesCount();i< g.getVerticesCount();
+            i=i+g2.getVerticesCount(),k++) {
+            varr[k].setLabel(g1.getLabel().substring(1)+ "_"+varr[k].getLabel());
+            for(int j=0;j<g2.getVerticesCount();j++) {
+                int index=g1.getVerticesCount()+g2.getVerticesCount()*k + j;
+                varr[index].setLabel(g2.getLabel().substring(1)+"_"+varr[index].getLabel()+"_"+k);
+                GraphPoint gp1 = varr[index].getLocation();
+                GraphPoint gp2 = varr[k].getLocation();
+                GraphPoint gp3 = GraphPoint.sub(gp2,gp1);
+                gp3= GraphPoint.div(gp3,2);
+                gp3.add(gp1);
+                g.getVertex(varr[index].getId()).setLocation(gp3);
+            }
+        }
     }
 }

@@ -56,4 +56,8 @@ public class ComplementGraph implements GraphActionExtension {
                 "are not existent in the initial graph.";
     }
 
+    @Override
+    public String getCategory() {
+        return "Transformations";
+    }
 }

@@ -5,10 +5,14 @@
 
 package graphtea.library.algorithms.goperators.product;
 
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseEdge;
 import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;
 import graphtea.library.util.Pair;
+
+import java.awt.*;
 
 
 /**
@@ -48,6 +52,8 @@ public abstract class GProduct
             }
         }
 
+        g.setDirected(g1.isDirected());
+
         return g;
     }
 
@@ -55,4 +61,14 @@ public abstract class GProduct
             , VertexType v2OfFirstG
             , VertexType v1OfSecondG
             , VertexType v2OfSecondG);
+
+    public abstract void setPositions(GraphModel g);
+
+    public void setProductLabel(GraphModel graphModel) {
+        //for(Vertex v:graphModel) v.getSize().multiply(1.5);
+        for(Vertex v:graphModel) {
+            Pair<Vertex,Vertex> pp = (Pair<Vertex, Vertex>) v.getProp().obj;
+            v.setLabel(pp.first.getLabel()+ "_"+pp.second.getLabel());
+        }
+    }
 }

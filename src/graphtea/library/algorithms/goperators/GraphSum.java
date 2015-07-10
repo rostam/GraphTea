@@ -5,6 +5,8 @@
 
 package graphtea.library.algorithms.goperators;
 
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseEdge;
 import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;
@@ -69,5 +71,22 @@ public class GraphSum
             }
         }
         return g;
+    }
+
+    public static void setUnionLabel(GraphModel g1, GraphModel g2, GraphModel graphModel) {
+        for(Vertex v : graphModel) {
+            //    v.getSize().multiply(1.5);
+        }
+        for(int i=0;i < g1.getVerticesCount();i++) {
+            Vertex v = graphModel.getVertex(i);
+            String gname = g1.getLabel();
+            graphModel.getVertex(i).setLabel(gname.substring(1) + "_" + v.getLabel());
+        }
+        for(int i=0;i < g2.getVerticesCount();i++) {
+            int ind = i + g1.getVerticesCount();
+            Vertex v = graphModel.getVertex(ind);
+            String gname = g2.getLabel();
+            graphModel.getVertex(ind).setLabel(gname.substring(1) + "_" + v.getLabel());
+        }
     }
 }

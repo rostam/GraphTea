@@ -227,7 +227,8 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         //pak kardan e menu e action e ezafe
         GMenuBar menu = frame.getMenu();
         for (int i = 0; i < menu.getMenuCount(); i++) {
-            if (menu.getMenu(i).getText().equals("Actions") && menu.getMenu(i).getSubElements().length == 1) {
+            if (menu.getMenu(i).getText().equals("Operators")
+                    && menu.getMenu(i).getSubElements().length == 1) {
                 menu.remove(i);
                 return;
             }

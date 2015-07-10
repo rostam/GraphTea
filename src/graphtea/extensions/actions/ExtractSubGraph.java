@@ -60,4 +60,8 @@ public class ExtractSubGraph implements GraphActionExtension {
         return "";
     }
 
+    @Override
+    public String getCategory() {
+        return "Basic Operations";
+    }
 }

@@ -70,6 +70,11 @@ public class GraphPower implements GraphActionExtension, Parametrizable {
         subtree = new Vector<Vertex>();
         return (k < 2 ? "K must be larger than 1" : null);
     }
+
+    @Override
+    public String getCategory() {
+        return "Transformations";
+    }
 }
 
 

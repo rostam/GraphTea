@@ -90,4 +90,9 @@ public class DeleteSelected implements GraphActionExtension {
         ClearSelection.clearSelected(blackboard);
 
     }
+
+    @Override
+    public String getCategory() {
+        return "Basic Operations";
+    }
 }

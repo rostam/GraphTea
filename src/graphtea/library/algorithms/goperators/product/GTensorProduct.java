@@ -5,12 +5,31 @@
 
 package graphtea.library.algorithms.goperators.product;
 
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseVertex;
+import graphtea.plugins.graphgenerator.core.PositionGenerators;
+
+import java.awt.*;
 
 //todo: doc needed (rostam)
 public class GTensorProduct extends GProduct {
     public boolean compare(BaseVertex v1OfFirstG, BaseVertex v2OfFirstG, BaseVertex v1OfSecondG, BaseVertex v2OfSecondG) {
         return g1.isEdge(v1OfFirstG, v2OfFirstG)
                 && g2.isEdge(v1OfSecondG, v2OfSecondG);
+    }
+
+    @Override
+    public void setPositions(GraphModel g) {
+        setProductLabel(g);
+        g.setDirected(g1.isDirected());
+        int n = g.getVerticesCount();
+        Point ps[] = PositionGenerators.circle(250, 300, 300, n);
+        int count = 0;
+        for (Vertex v : g) {
+            v.setLocation(new GraphPoint(ps[count].x, ps[count].y));
+            count++;
+        }
     }
 }

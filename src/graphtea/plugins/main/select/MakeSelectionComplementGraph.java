@@ -69,4 +69,8 @@ public class MakeSelectionComplementGraph implements GraphActionExtension {
         return edges;
     }
 
+    @Override
+    public String getCategory() {
+        return "Basic Operations";
+    }
 }

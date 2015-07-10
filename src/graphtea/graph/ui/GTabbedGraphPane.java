@@ -18,6 +18,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.util.HashMap;
 
 /**
  * provides a tabbed UI Interface for editing multiple graphs in multiple tabs
@@ -32,6 +33,8 @@ public class GTabbedGraphPane extends GTabbedPane {
     public static GTabbedGraphPane getCurrentGTabbedGraphPane(BlackBoard b) {
         return b.getData(GTabbedGraphPane.NAME);
     }
+
+    private HashMap<String, GraphModel> graphs = new HashMap<String, GraphModel>();
 
     public GTabbedGraphPane(BlackBoard b) {
         super(b);
@@ -63,6 +66,10 @@ public class GTabbedGraphPane extends GTabbedPane {
         }
     }
 
+    public HashMap<String,GraphModel> getGraphs() {
+        return graphs;
+    }
+
     /**
      * create a tab for the given graph, the name of tab will be "G" + graph label
      *
@@ -77,6 +84,7 @@ public class GTabbedGraphPane extends GTabbedPane {
 
         final JComponent gsp = addComponent(g.getLabel(), c, true);
 
+        graphs.put(g.getLabel(),g);
 
         new GraphNotifiableAttrSet(g).addAttributeListener(new AttributeListener() {
             JComponent cc = gsp;

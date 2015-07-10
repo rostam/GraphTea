@@ -83,4 +83,9 @@ public class VertexSemitotalGraph implements GraphActionExtension, Parametrizabl
     public String checkParameters() {
         return null;
     }
+
+    @Override
+    public String getCategory() {
+        return "Transformations";
+    }
 }

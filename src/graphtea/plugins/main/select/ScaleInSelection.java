@@ -23,4 +23,9 @@ public class ScaleInSelection extends ScaleOutSelection {
     protected void setNewLocation(Vertex v, GraphPoint loc, double x, double y) {
         v.setLocation(new GraphPoint(loc.x + x * 1.25, loc.y + y * 1.25));
     }
+
+    @Override
+    public String getCategory() {
+        return "Basic Operations";
+    }
 }

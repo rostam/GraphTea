@@ -5,11 +5,17 @@
 
 package graphtea.library.algorithms.goperators.product;
 
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseVertex;
+import graphtea.plugins.graphgenerator.core.PositionGenerators;
+
+import java.awt.*;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email a.rostami@gmail.com
  */
 
 public class GCartesianProduct extends GProduct {
@@ -18,5 +24,17 @@ public class GCartesianProduct extends GProduct {
                 && g2.isEdge(v1OfSecondG, v2OfSecondG))
                 || (v1OfSecondG == v2OfSecondG
                 && g1.isEdge(v1OfFirstG, v2OfFirstG));
+    }
+
+    @Override
+    public void setPositions(GraphModel g) {
+        int n = g.getVerticesCount();
+        Point ps[] = PositionGenerators.circle(250, 300, 300, n);
+        setProductLabel(g);
+        int count = 0;
+        for (Vertex v : g) {
+            v.setLocation(new GraphPoint(ps[count].x, ps[count].y));
+            count++;
+        }
     }
 }

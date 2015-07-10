@@ -80,4 +80,9 @@ public class BarycentricSubdivisionGraph implements GraphActionExtension, Parame
     public String checkParameters() {
         return null;
     }
+
+    @Override
+    public String getCategory() {
+        return "Transformations";
+    }
 }

@@ -111,4 +111,9 @@ public class ParalineGraph implements GraphActionExtension , Parametrizable {
     public String checkParameters() {
         return null;
     }
+
+    @Override
+    public String getCategory() {
+        return "Transformations";
+    }
 }

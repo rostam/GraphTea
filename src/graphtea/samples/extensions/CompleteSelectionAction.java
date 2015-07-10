@@ -33,4 +33,9 @@ public class CompleteSelectionAction implements GraphActionExtension {
     public String getDescription() {
         return "Makes the selected subgraph a complete subgraph";
     }
+
+    @Override
+    public String getCategory() {
+        return "Basic Operations";
+    }
 }

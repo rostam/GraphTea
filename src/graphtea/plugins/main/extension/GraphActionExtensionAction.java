@@ -23,7 +23,7 @@ public class GraphActionExtensionAction extends AbstractExtensionAction {
     }
 
     public String getParentMenuName() {
-        return "Actions";
+        return "Operators";
     }
 
     public void performExtension() {

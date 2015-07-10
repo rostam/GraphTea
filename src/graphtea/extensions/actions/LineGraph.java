@@ -67,4 +67,8 @@ public class LineGraph implements GraphActionExtension {
         return "Makes a graph including the edges of original graph as vertices ";
     }
 
+    @Override
+    public String getCategory() {
+        return "Transformations";
+    }
 }
