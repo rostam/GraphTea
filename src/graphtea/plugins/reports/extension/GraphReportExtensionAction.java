@@ -7,6 +7,7 @@ package graphtea.plugins.reports.extension;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.platform.core.BlackBoard;
+import graphtea.platform.parameter.Parameter;
 import graphtea.plugins.main.GraphData;
 import graphtea.ui.UIUtils;
 import graphtea.ui.components.gpropertyeditor.GCellRenderer;
@@ -30,6 +31,13 @@ import java.util.Vector;
 public class GraphReportExtensionAction extends AbstractExtensionAction {
 	protected GraphReportExtension mr;
     public static boolean activeConjCheck = false;
+	public static boolean conjCheck = false;
+	public static boolean connected = true;
+	public static int Size = 9;
+	public static boolean upto = false;
+    public static boolean Integral = false;
+    public static boolean LaplacianIntegral = false;
+
 
 	public GraphReportExtensionAction(BlackBoard bb, GraphReportExtension gg) {
 		super(bb, gg);
@@ -54,13 +62,8 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 
 			public void run() {
                 Object result;
-                if(activeConjCheck) {
-                  int[] resInts = CheckForAll.forall(mr);
-                  Vector vector = new Vector<Integer>();
-                  for(int ii : resInts) {
-                      vector.add(ii);
-                  }
-                  result = vector;
+                if(activeConjCheck && !mr.getName().equals("Conjecture Checking")) {
+                  result = CheckForAll.forall(mr);
                 } else {
                     result = mr.calculate(new GraphData(blackboard).getGraph());
                 }

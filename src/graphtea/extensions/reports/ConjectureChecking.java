@@ -18,9 +18,12 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public boolean connected = true;
     @Parameter(name = "Size", description = "")
     public int Size = 9;
-    @Parameter(name = "Iterative", description = "")
-    public boolean iterative = false;
-
+    @Parameter(name = "Up to", description = "")
+    public boolean upto = false;
+    @Parameter(name = "Integral", description = "")
+    public boolean Integral = false;
+    @Parameter(name = "Laplacian Integral", description = "")
+    public boolean LaplacianIntegral = false;
 
     public String getName() {
         return "Conjecture Checking";
@@ -29,7 +32,13 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         return "";
     }
     public Object calculate(GraphModel g) {
-    	GraphReportExtensionAction.activeConjCheck = conjCheck;
+        GraphReportExtensionAction.activeConjCheck = conjCheck;
+        GraphReportExtensionAction.connected = connected;
+        GraphReportExtensionAction.Size = Size;
+        GraphReportExtensionAction.upto = upto;
+        GraphReportExtensionAction.Integral = Integral;
+        GraphReportExtensionAction.LaplacianIntegral = LaplacianIntegral;
+
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";
     }
