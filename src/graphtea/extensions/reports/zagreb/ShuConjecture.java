@@ -5,6 +5,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.reports.basicreports.SubTreeCounting;
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.algorithms.goperators.GraphComplement;
@@ -32,11 +33,11 @@ public class ShuConjecture implements GraphReportExtension{
         return "Shu Conj";
     }
 
-    public Object calculate(GraphData gd) {
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
+    public Object calculate(GraphModel g) {
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifc
         = new ZagrebIndexFunctions((graphtea.graph.graph.GraphModel)
-                GraphComplement.complement(gd.getGraph()));
+                GraphComplement.complement(g));
 
 
         RendTable ret = new RendTable();
@@ -51,7 +52,7 @@ public class ShuConjecture implements GraphReportExtension{
         double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
 
-        ArrayList<Integer> al = AlgorithmUtils.getDegreesList(gd.getGraph());
+        ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);
         maxDeg = al.get(al.size()-1);
         if(al.size()-2>=0) maxDeg2 = al.get(al.size()-2);
@@ -63,13 +64,13 @@ public class ShuConjecture implements GraphReportExtension{
         double a=0;
         double b=0;
 
-        for(Vertex v : gd.getGraph()) {
-            if(gd.getGraph().getDegree(v)==maxDeg) a++;
-            if(gd.getGraph().getDegree(v)==minDeg) b++;
+        for(Vertex v : g) {
+            if(g.getDegree(v)==maxDeg) a++;
+            if(g.getDegree(v)==minDeg) b++;
         }
 
-        double m = gd.getGraph().getEdgesCount();
-        double n = gd.getGraph().getVerticesCount();
+        double m = g.getEdgesCount();
+        double n = g.getVerticesCount();
 
         double M21=zif.getFirstZagreb(1);
         double M21gc=zifc.getFirstZagreb(1);
@@ -82,7 +83,7 @@ public class ShuConjecture implements GraphReportExtension{
 
 
         double sigmaP3 =
-             SubTreeCounting.countSubtrees(gd.getGraph(),1,1);
+             SubTreeCounting.countSubtrees(g,1,1);
 
         ret.add(new Vector<Object>());
         ret.get(1).add(Mc31+Mc31gc);

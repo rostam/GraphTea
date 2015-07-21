@@ -5,6 +5,7 @@
 
 package graphtea.extensions.reports;
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -25,8 +26,8 @@ public class ChromaticNumber implements GraphReportExtension, ColoringListener {
     int ct;
     boolean found;
 
-    public Object calculate(GraphData gd) {
-        p = new Partitioner(gd.getGraph());
+    public Object calculate(GraphModel g) {
+        p = new Partitioner(g);
         ct = 1;
         found = false;
         while (!found) {

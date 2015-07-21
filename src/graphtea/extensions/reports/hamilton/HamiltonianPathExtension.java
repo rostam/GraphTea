@@ -5,6 +5,7 @@
 package graphtea.extensions.reports.hamilton;
 
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
@@ -24,16 +25,16 @@ public class HamiltonianPathExtension implements GraphReportExtension {
         return "Hamiltonian Path";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         SubGraph sg = new SubGraph();
 
         HamiltonianCycle hc = new HamiltonianCycle();
-        double[][] adj = gd.getGraph().getAdjacencyMatrix().getArray();
-        int[][] adjMatrix = new int[gd.getGraph().getVerticesCount()]
-                [gd.getGraph().getVerticesCount()];
+        double[][] adj = g.getAdjacencyMatrix().getArray();
+        int[][] adjMatrix = new int[g.getVerticesCount()]
+                [g.getVerticesCount()];
 
-        for(int i=0;i<gd.getGraph().getVerticesCount();i++) {
-            for(int j=0;j<gd.getGraph().getVerticesCount();j++) {
+        for(int i=0;i<g.getVerticesCount();i++) {
+            for(int j=0;j<g.getVerticesCount();j++) {
                 if(adj[i][j] == 0) adjMatrix[i][j]=0;
                 else adjMatrix[i][j]=1;
             }
@@ -43,12 +44,12 @@ public class HamiltonianPathExtension implements GraphReportExtension {
         if(path == null) return sg;
 
         for(int i=0 ;i<path.length;i++) {
-            sg.vertices.add(gd.getGraph().getVertex(path[i]));
+            sg.vertices.add(g.getVertex(path[i]));
         }
 
         for(int i=0 ;i<path.length-1;i++) {
-            sg.edges.add(gd.getGraph().getEdge(gd.getGraph().getVertex(path[i]),
-                    gd.getGraph().getVertex(path[i + 1])));
+            sg.edges.add(g.getEdge(g.getVertex(path[i]),
+                    g.getVertex(path[i + 1])));
         }
 
         return sg;

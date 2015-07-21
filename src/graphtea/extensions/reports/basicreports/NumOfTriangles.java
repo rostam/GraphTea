@@ -18,9 +18,8 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 @CommandAttitude(name = "num_of_triangles", abbreviation = "_notri")
 public class NumOfTriangles implements GraphReportExtension {
-    public Object calculate(GraphData gd) {
-        GraphModel graph = gd.getGraph();
-        return getNumOfTriangles(graph);
+    public Object calculate(GraphModel g) {
+        return getNumOfTriangles(g);
     }
 
     /**

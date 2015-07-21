@@ -5,6 +5,7 @@
 package graphtea.extensions.reports.spanningtree;
 
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
@@ -24,24 +25,24 @@ public class MSTPrimExtension implements GraphReportExtension {
         return "Prim";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         SubGraph sg = new SubGraph();
         MSTPrim mp = new MSTPrim();
-        double[][] adj = gd.getGraph().getAdjacencyMatrix().getArray();
-        int[][] adjMatrix = new int[gd.getGraph().getVerticesCount()]
-                [gd.getGraph().getVerticesCount()];
+        double[][] adj = g.getAdjacencyMatrix().getArray();
+        int[][] adjMatrix = new int[g.getVerticesCount()]
+                [g.getVerticesCount()];
 
-        for(int i=0;i<gd.getGraph().getVerticesCount();i++) {
-            for(int j=0;j<gd.getGraph().getVerticesCount();j++) {
+        for(int i=0;i<g.getVerticesCount();i++) {
+            for(int j=0;j<g.getVerticesCount();j++) {
                 if(adj[i][j] == 0) adjMatrix[i][j]=0;
                 else adjMatrix[i][j]=1;
             }
         }
         int[] parent = mp.prim(adjMatrix);
-        for(int i=0;i<gd.getGraph().getVerticesCount();i++) {
+        for(int i=0;i<g.getVerticesCount();i++) {
             if(parent[i] != -1) {
-                sg.edges.add(gd.getGraph().getEdge(gd.getGraph().getVertex(i),
-                        gd.getGraph().getVertex(parent[i])));
+                sg.edges.add(g.getEdge(g.getVertex(i),
+                        g.getVertex(parent[i])));
             }
         }
         return sg;

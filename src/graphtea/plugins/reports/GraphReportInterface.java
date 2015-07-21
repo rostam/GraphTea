@@ -4,6 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.reports;
 
+import graphtea.graph.graph.GraphModel;
+import graphtea.platform.parameter.Parameter;
 import graphtea.plugins.main.GraphData;
 
 /**
@@ -11,7 +13,7 @@ import graphtea.plugins.main.GraphData;
 
  */
 public interface GraphReportInterface<t> {
-    public t calculate(GraphData gd);
+    public t calculate(GraphModel g);
 
     /**
     * return the category of report like: connectivity, general, coloring, ...

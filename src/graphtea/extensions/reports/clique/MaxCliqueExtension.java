@@ -30,12 +30,12 @@ public class MaxCliqueExtension implements GraphReportExtension {
         return "Maximal Cliques";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         Vector<SubGraph> ret = new Vector<SubGraph>();
-        MaxCliqueAlg mca = new MaxCliqueAlg(gd.getGraph());
+        MaxCliqueAlg mca = new MaxCliqueAlg(g);
         Cliques mcs = mca.allMaxCliques();
         for(Vector<Vertex> ss : mcs) {
-            SubGraph sg = new SubGraph(gd.getGraph());
+            SubGraph sg = new SubGraph(g);
             for(Vertex v : ss) {
                 sg.vertices.add(v);
             }

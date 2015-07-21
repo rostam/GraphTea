@@ -27,16 +27,15 @@ public class SubTreeCounting implements GraphReportExtension {
     //@Parameter(name = "k", description = "")
     //public Integer k = 1;
 
-    public Object calculate(GraphData gd) {
-        GraphModel g = gd.getGraph();
+    public Object calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<String>();
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
 
         double maxDeg = 0;
-        for(Vertex v : gd.getGraph()) {
-            if(gd.getGraph().getDegree(v) > maxDeg)
-                maxDeg = gd.getGraph().getDegree(v);
+        for(Vertex v : g) {
+            if(g.getDegree(v) > maxDeg)
+                maxDeg = g.getDegree(v);
         }
 
         ret.get(0).add("D(i,j)");

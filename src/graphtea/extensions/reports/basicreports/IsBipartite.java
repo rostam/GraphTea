@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.basicreports;
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.library.algorithms.util.BipartiteChecker;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -23,10 +24,10 @@ public class IsBipartite implements GraphReportExtension  {
 		return "Is the graph Bipartite?";
 	}
 
-	public Object calculate(GraphData gd) {
-		if(gd.getGraph().numOfVertices()==0)
+	public Object calculate(GraphModel g) {
+		if(g.numOfVertices()==0)
 			return new String("Graph empty");
-		return new String(BipartiteChecker.isBipartite(gd.getGraph())+"");
+		return new String(BipartiteChecker.isBipartite(g)+"");
 
 	}
 

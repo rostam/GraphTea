@@ -39,8 +39,8 @@ public class MaxIndependentSetReport implements GraphReportExtension {
     }
 
 
-    public Object calculate(GraphData gd) {
-        GraphModel graph = gd.getGraph();
+    public Object calculate(GraphModel g) {
+        GraphModel graph = g;
         Vector<ArrayDeque<BaseVertex>> maxsets = getMaxIndependentSet(graph);
         Vector<SubGraph> ret = new Vector<SubGraph>();
         for (ArrayDeque<BaseVertex> maxset : maxsets) {

@@ -19,9 +19,8 @@ import java.util.ArrayList;
 
 @CommandAttitude(name = "max_and_min_degree", abbreviation = "_mmd")
 public class MaxAndMinDegree implements GraphReportExtension {
-    public Object calculate(GraphData gd) {
-        GraphModel graph = gd.getGraph();
-        return maxAndMinDegree(graph);
+    public Object calculate(GraphModel g) {
+        return maxAndMinDegree(g);
     }
 
     /**

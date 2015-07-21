@@ -6,6 +6,7 @@
 package graphtea.extensions.reports;
 
 import graphtea.graph.graph.GraphColoring;
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
@@ -28,8 +29,8 @@ public class ColoringReport implements GraphReportExtension, ColoringListener, P
     @Parameter(name = "All Colorings", description = "Create a list of all colorings of graph using minimum number of colors")
     public Boolean allColorings=false;
 
-    public Object calculate(GraphData gd) {
-        p = new Partitioner(gd.getGraph());
+    public Object calculate(GraphModel g) {
+        p = new Partitioner(g);
         colorings = new Vector<GraphColoring>(1);
         int ct = lowerBound;
         found = false;

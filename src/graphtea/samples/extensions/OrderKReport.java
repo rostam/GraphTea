@@ -32,9 +32,8 @@ public class OrderKReport implements GraphReportExtension, Parametrizable {
         return "Number of vertices with degree k";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel graph) {
         int ret = 0;
-        GraphModel graph = gd.getGraph();
         for (Vertex v : graph) {
             if (graph.getInDegree(v) + graph.getOutDegree(v) == k) {
                 ret++;

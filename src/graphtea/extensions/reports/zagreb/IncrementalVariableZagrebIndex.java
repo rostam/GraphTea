@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.zagreb;
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
@@ -38,7 +39,7 @@ public class IncrementalVariableZagrebIndex implements GraphReportExtension, Par
         return "Incremental Zagreb Indices";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<String>();
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
@@ -46,7 +47,7 @@ public class IncrementalVariableZagrebIndex implements GraphReportExtension, Par
         ret.get(0).add("First Variable Zagreb Index");
         ret.get(0).add("Second Variable Zagreb Index");
 
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         int ind = 0;
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
             ind++;

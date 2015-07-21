@@ -5,6 +5,7 @@
 package graphtea.extensions.reports;
 
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -31,23 +32,23 @@ public class RandomMatching implements GraphReportExtension {
 
     Random r = new Random();
     Random r2 = new Random(10);
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         SubGraph sg = new SubGraph();
-        int limit=r2.nextInt(gd.getGraph().getEdgesCount());
+        int limit=r2.nextInt(g.getEdgesCount());
 
         Vector<Integer> vi = new Vector<Integer>();
         HashMap<Vertex,Vertex> vv= new HashMap<Vertex, Vertex>();
-        for(int i=0;i<gd.getGraph().getVerticesCount();i++) {
+        for(int i=0;i<g.getVerticesCount();i++) {
             vi.add(i);
         }
 
-        Vertex[] varr = gd.getGraph().getVertexArray();
-        Vertex[] rvarr = (Vertex[]) rotate(varr,r.nextInt(gd.getGraph().getVerticesCount()-2));
+        Vertex[] varr = g.getVertexArray();
+        Vertex[] rvarr = (Vertex[]) rotate(varr,r.nextInt(g.getVerticesCount()-2));
 
 
         for(Vertex v1 : rvarr) {
             if(vv.size() > limit) break;
-            for(Vertex v2 : gd.getGraph().getNeighbors(v1)) {
+            for(Vertex v2 : g.getNeighbors(v1)) {
                 if(vi.contains(v1.getId()) && vi.contains(v2.getId())) {
                     vv.put(v1,v2);
 
@@ -64,7 +65,7 @@ public class RandomMatching implements GraphReportExtension {
         }
 
         for(Vertex v : vv.keySet()) {
-            sg.edges.add(gd.getGraph().getEdge(v,vv.get(v)));
+            sg.edges.add(g.getEdge(v,vv.get(v)));
         }
 
         Vector ret = new Vector();

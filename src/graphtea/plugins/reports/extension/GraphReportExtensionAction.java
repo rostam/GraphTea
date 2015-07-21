@@ -4,6 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.reports.extension;
 
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.RendTable;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
 import graphtea.ui.UIUtils;
@@ -17,6 +19,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Arrays;
+import java.util.Vector;
 
 /**
  * @author Hooman Mohajeri Moghaddam - added save button, fixed recalculate button
@@ -25,6 +29,7 @@ import java.io.FileWriter;
  */
 public class GraphReportExtensionAction extends AbstractExtensionAction {
 	protected GraphReportExtension mr;
+    public static boolean activeConjCheck = false;
 
 	public GraphReportExtensionAction(BlackBoard bb, GraphReportExtension gg) {
 		super(bb, gg);
@@ -36,7 +41,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 	}
 
 	public Object performExtensionInCommandLine() {
-		return mr.calculate(new GraphData(blackboard));
+		return mr.calculate(new GraphData(blackboard).getGraph());
 	}
 
 	Component rendererComponent;
@@ -48,9 +53,17 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 		new Thread() {
 
 			public void run() {
-
-				
-				Object result = mr.calculate(new GraphData(blackboard));
+                Object result;
+                if(activeConjCheck) {
+                  int[] resInts = CheckForAll.forall(mr);
+                  Vector vector = new Vector<Integer>();
+                  for(int ii : resInts) {
+                      vector.add(ii);
+                  }
+                  result = vector;
+                } else {
+                    result = mr.calculate(new GraphData(blackboard).getGraph());
+                }
 				if(result==null)
 					return;
 				jd = new JDialog(UIUtils.getGFrame(blackboard));
@@ -66,7 +79,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 				panel.add(recalc, BorderLayout.SOUTH);
 				recalc.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent actionEvent) {
-						Object result = mr.calculate(new GraphData(blackboard));
+						Object result = mr.calculate(new GraphData(blackboard).getGraph());
 						jd.remove(rendererComponent);
 						rendererComponent = GCellRenderer.getRendererFor(result);
 						rendererComponent.setEnabled(true);
@@ -111,7 +124,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 
 							File curFile = fileChooser.getSelectedFile();
 							FileWriter fw = new FileWriter(curFile);
-							Object result = mr.calculate(new GraphData(blackboard));
+							Object result = mr.calculate(new GraphData(blackboard).getGraph());
 							fw.write(result.toString());
 							fw.close();
 							JOptionPane.showMessageDialog(jd, "Saved to file successfuly.");
@@ -122,7 +135,6 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 
 						}
 					});
-
 
 				jd.add(panel, BorderLayout.SOUTH);
 				jd.setLocation(GFrameLocationProvider.getPopUpLocation());

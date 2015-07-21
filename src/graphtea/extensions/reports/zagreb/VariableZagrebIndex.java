@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.zagreb;
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
@@ -30,9 +31,9 @@ public class VariableZagrebIndex implements GraphReportExtension, Parametrizable
         return "All Variable Zagreb Indices";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<String>();
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         out.add("First Variable Zagreb Index : "+ zif.getFirstVariableZagrebIndex(alpha));
         out.add("Second Variable Zagreb Index : "+ zif.getSecondVariableZagrebIndex(alpha));
         return out;

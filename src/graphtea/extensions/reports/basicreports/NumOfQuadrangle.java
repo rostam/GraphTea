@@ -26,9 +26,8 @@ public class NumOfQuadrangle implements GraphReportExtension {
         return "number of quadrangle";
     }
 
-    public Object calculate(GraphData gd) {
-        GraphModel graph = gd.getGraph();
-        return getNumOfQuadrangles(graph);
+    public Object calculate(GraphModel g) {
+        return getNumOfQuadrangles(g);
     }
 
     /**

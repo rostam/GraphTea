@@ -19,9 +19,8 @@ import java.util.ArrayList;
 
 @CommandAttitude(name = "is_eulerian", abbreviation = "_ie")
 public class IsEulerian implements GraphReportExtension {
-    public Object calculate(GraphData gd) {
-        GraphModel graph = gd.getGraph();
-        return isEulerian(graph);
+    public Object calculate(GraphModel g) {
+        return isEulerian(g);
     }
 
     /**

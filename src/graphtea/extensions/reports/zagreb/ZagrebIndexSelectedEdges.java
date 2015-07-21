@@ -5,6 +5,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
@@ -31,9 +32,9 @@ public class ZagrebIndexSelectedEdges implements GraphReportExtension, Parametri
         return "Zagreb Indices of Selected Edges";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<String>();
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         out.add("First General Zagreb Index : "+ zif.getFirstZagrebSelectedEdges(alpha));
         out.add("Second General Zagreb Index : "+ zif.getSecondZagrebSelectedEdges(alpha));
         out.add("First Reformulated Zagreb Index : " + zif.getFirstReZagrebSelectedEdges(alpha));

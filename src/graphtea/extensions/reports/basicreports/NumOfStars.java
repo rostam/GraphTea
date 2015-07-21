@@ -25,8 +25,7 @@ public class NumOfStars implements GraphReportExtension, Parametrizable {
     @Parameter(name = "k", description = "")
     public Integer k = 1;
 
-    public Integer calculate(GraphData gd) {
-        GraphModel g = gd.getGraph();
+    public Integer calculate(GraphModel g) {
         int sum = 0;
         for(Vertex v : g) {
             int deg = g.getDegree(v);

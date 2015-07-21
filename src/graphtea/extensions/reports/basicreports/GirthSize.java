@@ -50,10 +50,8 @@ public class GirthSize implements GraphReportExtension {
     }
 
 
-    public Object calculate(GraphData gd) {
-        GraphModel graph = gd.getGraph();
-        return getgirthSize(graph);
-
+    public Object calculate(GraphModel g) {
+        return getgirthSize(g);
     }
 
     /**

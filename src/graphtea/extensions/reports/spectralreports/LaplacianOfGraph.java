@@ -97,7 +97,7 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 
 	/**
 	 * Gets the eigen values and vectors of the graph and returns them as an array of strings.
-	 * @param A the Adjacency matrix of the graph
+	 * @param matrix the Adjacency matrix of the graph
 	 * @return Laplacian of the graph
 	 */
 	private ArrayList<String> getEigenValuesAndVectors(Matrix matrix)
@@ -135,10 +135,9 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 		return "The Laplacian matrix associated with the graph";
 	}
 
-	public Object calculate(GraphData gd) {
+	public Object calculate(GraphModel g) {
 
 		try {
-			GraphModel g= gd.getGraph();
 			if(g.isDirected())
 			{
 				int a = JOptionPane.showOptionDialog(null, "Do you want to use in or out degrees for calculation of the Laplacian Matrix?", "Laplacian", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"In Degrees", "Out Degrees"}, "In Degrees");

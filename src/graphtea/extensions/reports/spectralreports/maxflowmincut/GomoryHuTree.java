@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.spectralreports.maxflowmincut;
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -17,19 +18,19 @@ public class GomoryHuTree implements GraphReportExtension  {
 		return "Constructs Gomory-Hu Tree";
 	}
 
-	public Object calculate(GraphData gd) {
-		if(gd.getGraph().isDirected())
+	public Object calculate(GraphModel g) {
+		if(g.isDirected())
 		{
 			JOptionPane.showMessageDialog(null,"Directed Graphs may not have Gomory-Hu tree");
 		return null;
 		}
 		
 		try {
-			GTabbedGraphPane gtgp = gd.getBlackboard().getData(GTabbedGraphPane.NAME);
-			GusfieldGomoryHuTree GGHT;
-			GGHT = new GusfieldGomoryHuTree(gd.getGraph());
-	    	gtgp.addGraph(GGHT.GHTree);
-	    	GGHT.perform();
+			//GTabbedGraphPane gtgp = gd.getBlackboard().getData(GTabbedGraphPane.NAME);
+			//GusfieldGomoryHuTree GGHT;
+			//GGHT = new GusfieldGomoryHuTree(g);
+	    	//gtgp.addGraph(GGHT.GHTree);
+	    	//GGHT.perform();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

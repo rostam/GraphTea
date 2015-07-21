@@ -28,10 +28,9 @@ public class NumOfVerticesWithDegK implements GraphReportExtension, Parametrizab
         return "Number of vertices in the Graph which degrees are k";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         int ret = 0;
 
-        GraphModel g = gd.getGraph();
         int t = (g.isDirected() ? 1 : 2);
         for (Vertex v : g) {
             if ((g.getInDegree(v) + g.getOutDegree(v)) / t == k)

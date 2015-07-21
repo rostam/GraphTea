@@ -5,6 +5,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
@@ -31,9 +32,9 @@ public class ZagrebCoindexSelectedEdges implements GraphReportExtension, Paramet
         return "Zagreb Coindices of Selected Edges";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<String>();
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         out.add("First Zagreb Coindex : "+ zif.getFirstZagrebCoindexSelectedEdges(alpha));
         out.add("Second Zagreb Coindex : "+ zif.getSecondZagrebCoindexSelectedEdges(alpha));
         return out;

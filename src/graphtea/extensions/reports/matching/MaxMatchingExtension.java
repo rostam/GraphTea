@@ -6,6 +6,7 @@ package graphtea.extensions.reports.matching;
 
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
@@ -33,14 +34,14 @@ public class MaxMatchingExtension implements GraphReportExtension {
         return "Maximum Matching";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel gg) {
         SubGraph sg = new SubGraph();
-        List<Integer>[] g = new List[gd.getGraph().getVerticesCount()];
-        for (int i = 0; i < gd.getGraph().getVerticesCount(); i++) {
+        List<Integer>[] g = new List[gg.getVerticesCount()];
+        for (int i = 0; i < gg.getVerticesCount(); i++) {
             g[i] = new ArrayList();
         }
 
-        for(Edge e : gd.getGraph().getEdges()) {
+        for(Edge e : gg.getEdges()) {
             g[e.source.getId()].add(e.target.getId());
         }
         MaximumMatching.maxMatching(g);
@@ -48,16 +49,16 @@ public class MaxMatchingExtension implements GraphReportExtension {
 
         for(int i=0;i<match.length;i++) {
             if(match[i]>=0) {
-                sg.vertices.add(gd.getGraph().getVertex(i));
-                sg.vertices.add(gd.getGraph().getVertex(match[i]));
+                sg.vertices.add(gg.getVertex(i));
+                sg.vertices.add(gg.getVertex(match[i]));
             }
         }
 
         for(int i=0;i<match.length;i++) {
             if(match[i] >= 0)
-                sg.edges.add(gd.getGraph().getEdge(
-                        gd.getGraph().getVertex(i),
-                        gd.getGraph().getVertex(match[i])));
+                sg.edges.add(gg.getEdge(
+                        gg.getVertex(i),
+                        gg.getVertex(match[i])));
         }
 
         Vector ret = new Vector();

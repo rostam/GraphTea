@@ -5,6 +5,7 @@
 
 package graphtea.extensions.reports.basicreports;
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -20,8 +21,8 @@ import java.util.Collections;
 
 @CommandAttitude(name = "vertices_degree_list", abbreviation = "_vdl")
 public class VerticesDegreesList implements GraphReportExtension {
-    public Object calculate(GraphData gd) {
-        ArrayList<Integer> al = AlgorithmUtils.getDegreesList(gd.getGraph());
+    public Object calculate(GraphModel g) {
+        ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);
         return al;
     }

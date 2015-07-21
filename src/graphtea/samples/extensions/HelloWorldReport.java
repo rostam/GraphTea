@@ -5,7 +5,7 @@
 
 package graphtea.samples.extensions;
 
-import graphtea.plugins.main.GraphData;
+import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 public class HelloWorldReport implements GraphReportExtension {
@@ -17,7 +17,7 @@ public class HelloWorldReport implements GraphReportExtension {
         return "just a hello world extension!";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
     	return "Hello World2!";
     }
 

@@ -5,6 +5,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -25,17 +26,17 @@ public class EdgeDegree implements GraphReportExtension<Integer> {
         return "For the edge u~v the edge degree is d(u)+d(v)-2.";
     }
 
-    public Integer calculate(GraphData gd) {
+    public Integer calculate(GraphModel g) {
         Edge ee = null;
-        for(Edge e : gd.getGraph().getEdges()) {
+        for(Edge e : g.getEdges()) {
             if(e.isSelected()) {
                 ee = e;
                 break;
             }
         }
         if(ee != null) {
-            return gd.getGraph().getDegree(ee.source) +
-                    gd.getGraph().getDegree(ee.target) -
+            return g.getDegree(ee.source) +
+                    g.getDegree(ee.target) -
                     2;
         }
 

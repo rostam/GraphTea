@@ -29,8 +29,8 @@ public class PathsofLengthTwo implements GraphReportExtension<Integer> {
         return "Number of Paths of Length 2";
     }
 
-    public Integer calculate(GraphData gd) {
-        GraphModel g1 = gd.getGraph();
+    public Integer calculate(GraphModel g) {
+        GraphModel g1 = g;
         GraphModel g2 = new GraphModel(false);//
         Vertex vg1[] = g1.getVertexArray();
 

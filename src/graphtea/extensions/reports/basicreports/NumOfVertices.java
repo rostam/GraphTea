@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.basicreports;
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -22,8 +23,8 @@ public class NumOfVertices implements GraphReportExtension {
         return "Number of vertices in the Graph";
     }
 
-    public Object calculate(GraphData gd) {
-        return gd.getGraph().getVerticesCount();
+    public Object calculate(GraphModel g) {
+        return g.getVerticesCount();
     }
 
 	@Override

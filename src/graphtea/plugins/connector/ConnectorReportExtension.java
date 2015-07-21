@@ -7,6 +7,7 @@ package graphtea.plugins.connector;
 
 
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.attribute.AttributeSet;
 import graphtea.platform.attribute.AttributeSetImpl;
 import graphtea.platform.core.BlackBoard;
@@ -48,7 +49,7 @@ public class ConnectorReportExtension implements GraphReportExtension, Parametri
         return connectorDs.description;
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         Shell currentShell = Shell.getCurrentShell(blackboard);
         String args = connectorDs.getArgs(); //this works becase atrs in this class points to atrs in connectorDS (they are the same!)
         return currentShell.evaluate(connectorDs.commandName + "(" + args + ")");

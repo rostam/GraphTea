@@ -6,6 +6,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -20,11 +21,11 @@ import java.util.Collections;
 
 @CommandAttitude(name = "edges_degree_list", abbreviation = "_edl")
 public class EdgesDegreesList implements GraphReportExtension {
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         ArrayList<Integer> al = new ArrayList<Integer>();
-        for(Edge e : gd.getGraph().getEdges()) {
-                int d = gd.getGraph().getDegree(e.source) +
-                gd.getGraph().getDegree(e.target) - 2;
+        for(Edge e : g.getEdges()) {
+                int d = g.getDegree(e.source) +
+                g.getDegree(e.target) - 2;
                 al.add(d);
         }
         Collections.sort(al);

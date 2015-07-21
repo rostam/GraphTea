@@ -7,6 +7,7 @@ package graphtea.extensions.reports.spectralreports;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.graph.graph.GraphModel;
 import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
@@ -35,10 +36,10 @@ public class EigenValues implements GraphReportExtension,Parametrizable {
                 / power_of_ten;
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         try {
             ArrayList<String> res = new ArrayList<String>();
-            Matrix A = gd.getGraph().getWeightedAdjacencyMatrix();
+            Matrix A = g.getWeightedAdjacencyMatrix();
             EigenvalueDecomposition ed = A.eig();
             double rv[] = ed.getRealEigenvalues();
             double iv[] = ed.getImagEigenvalues();

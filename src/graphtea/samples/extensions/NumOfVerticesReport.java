@@ -5,6 +5,7 @@
 
 package graphtea.samples.extensions;
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -17,7 +18,7 @@ public class NumOfVerticesReport implements GraphReportExtension {
         return "Number of vertices in graph";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         return 0;
     }
 

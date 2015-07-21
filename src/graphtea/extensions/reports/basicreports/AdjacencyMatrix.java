@@ -7,6 +7,7 @@ package graphtea.extensions.reports.basicreports;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -29,11 +30,11 @@ public class AdjacencyMatrix implements GraphReportExtension {
                 / power_of_ten;
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         try {
             ArrayList<String> res = new ArrayList<String>();
             res.add("Adjacency Matrix");
-            Matrix A = gd.getGraph().getWeightedAdjacencyMatrix();
+            Matrix A = g.getWeightedAdjacencyMatrix();
             for(double[] a: A.getArray())
             	res.add(Arrays.toString(a));
             res.add("Eigen Values");

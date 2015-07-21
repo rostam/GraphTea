@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.zagreb;
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -27,15 +28,15 @@ public class AutographixConj implements GraphReportExtension {
         return "AutographiX  conjecture";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<String>();
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
 
         double first_zagreb = zif.getFirstZagreb(alpha);
         double second_zagreb = zif.getSecondZagreb(alpha);
 
-        double conj = first_zagreb/gd.getGraph().numOfVertices() -
-                second_zagreb/gd.getGraph().getEdgesCount();
+        double conj = first_zagreb/g.numOfVertices() -
+                second_zagreb/g.getEdgesCount();
         if(conj !=0)
             conj = -conj;
         out.add("The result of formula (M_2^1/m-M_1^2/n = "+ conj

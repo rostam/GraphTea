@@ -47,7 +47,7 @@ public class GPropertyEditor extends JComponent {
 
         @Override
         public Dimension getMinimumSize() {
-            return new Dimension(150,1100);
+            return new Dimension(150, 1100);
         }
 
         @Override
@@ -114,8 +114,8 @@ public class GPropertyEditor extends JComponent {
 //        table.getColumnModel().getColumn(1).setWidth(50);
         initComponents();
         l.setEditable(false);
-	l.setLineWrap(true);
-	l.setWrapStyleWord(true);
+        l.setLineWrap(true);
+        l.setWrapStyleWord(true);
 
 //        l.setLineWrap(true);
 //        l.setPreferredSize(new Dimension(300,300));
@@ -216,9 +216,7 @@ public class GPropertyEditor extends JComponent {
     }
 
     NotifiableAttributeSetView target;
-
     public JTable getTable() {
         return table;
     }
-
 }

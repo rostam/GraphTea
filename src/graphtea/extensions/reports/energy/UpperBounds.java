@@ -8,6 +8,7 @@ import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.reports.spectralreports.EigenValues;
 import graphtea.extensions.reports.zagreb.ZagrebIndexFunctions;
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -35,8 +36,8 @@ public class UpperBounds implements GraphReportExtension{
         return "Upper Bounds";
     }
 
-    public Object calculate(GraphData gd) {
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(gd.getGraph());
+    public Object calculate(GraphModel g) {
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
         ret.get(0).add(" E(G) ");
@@ -47,7 +48,7 @@ public class UpperBounds implements GraphReportExtension{
         ret.get(0).add(" 1.5 ");
         ret.get(0).add(" 1.6 ");
 
-        Matrix A = gd.getGraph().getWeightedAdjacencyMatrix();
+        Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
         double rv[] = ed.getRealEigenvalues();
         double sum=0;
@@ -66,7 +67,7 @@ public class UpperBounds implements GraphReportExtension{
         double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
 
-        ArrayList<Integer> al = AlgorithmUtils.getDegreesList(gd.getGraph());
+        ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);
         maxDeg = al.get(al.size()-1);
         if(al.size()-2>=0) maxDeg2 = al.get(al.size()-2);
@@ -78,14 +79,14 @@ public class UpperBounds implements GraphReportExtension{
         double a=0;
         double b=0;
 
-        for(Vertex v : gd.getGraph()) {
-            if(gd.getGraph().getDegree(v)==maxDeg) a++;
-            if(gd.getGraph().getDegree(v)==minDeg) b++;
+        for(Vertex v : g) {
+            if(g.getDegree(v)==maxDeg) a++;
+            if(g.getDegree(v)==minDeg) b++;
         }
         if(maxDeg==minDeg) b=0;
 
-        double m = gd.getGraph().getEdgesCount();
-        double n = gd.getGraph().getVerticesCount();
+        double m = g.getEdgesCount();
+        double n = g.getVerticesCount();
 
         double M12=zif.getSecondZagreb(1);
         double M21=zif.getFirstZagreb(1);

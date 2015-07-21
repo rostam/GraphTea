@@ -25,8 +25,8 @@ public class MaxCut implements GraphReportExtension {
         return "Axproximate Maximum Cut In An Undirected Graph";
     }
 
-    public Object calculate(GraphData gd) {
-        return getMaxCut(gd.getGraph());
+    public Object calculate(GraphModel g) {
+        return getMaxCut(g);
     }
 
 

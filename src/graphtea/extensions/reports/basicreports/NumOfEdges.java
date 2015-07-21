@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.basicreports;
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -24,8 +25,8 @@ public class NumOfEdges implements GraphReportExtension<Integer> {
         return "Number of edges in the Graph";
     }
 
-    public Integer calculate(GraphData gd) {
-        return gd.getGraph().getEdgesCount();
+    public Integer calculate(GraphModel g) {
+        return g.getEdgesCount();
     }
 
 	@Override

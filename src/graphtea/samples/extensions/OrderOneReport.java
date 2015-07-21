@@ -19,9 +19,8 @@ public class OrderOneReport implements GraphReportExtension {
         return "Number of vertices with degree 1";
     }
 
-    public Object calculate(GraphData gd) {
+    public Object calculate(GraphModel graph) {
         int ret = 0;
-        GraphModel graph = gd.getGraph();
         for (Vertex v : graph) {
             if (graph.getInDegree(v) + graph.getOutDegree(v) == 1) {
                 ret++;
