@@ -1,8 +1,2 @@
-
-
-::----------------------------------------------------------------------
-:: GraphTea Startup Script
-::----------------------------------------------------------------------
-cd binary
-start /b javaw -jar graphtea-main.jar
+start /b javaw -jar binary/graphtea-main.jar
 
