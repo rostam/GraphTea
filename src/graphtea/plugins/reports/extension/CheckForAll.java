@@ -115,13 +115,25 @@ public class CheckForAll {
                         res = new int[ret.get(0).size()];
                     }
                     for (int i = 1; i < ret.get(0).size(); i++) {
-                        if(mr.getName().contains("Upper")) {
-                            if ((double) ret.get(1).get(0) <= (double) ret.get(1).get(i)) {
-                                res[i]++;
+                        if(!mr.getName().contains("Strict")) {
+                            if (mr.getName().contains("Upper")) {
+                                if ((double) ret.get(1).get(0) <= (double) ret.get(1).get(i)) {
+                                    res[i]++;
+                                }
+                            } else {
+                                if ((double) ret.get(1).get(0) >= (double) ret.get(1).get(i)) {
+                                    res[i]++;
+                                }
                             }
                         } else {
-                            if ((double) ret.get(1).get(0) >= (double) ret.get(1).get(i)) {
-                                res[i]++;
+                            if (mr.getName().contains("Upper")) {
+                                if ((double) ret.get(1).get(0) < (double) ret.get(1).get(i)) {
+                                    res[i]++;
+                                }
+                            } else {
+                                if ((double) ret.get(1).get(0) > (double) ret.get(1).get(i)) {
+                                    res[i]++;
+                                }
                             }
                         }
                     }
