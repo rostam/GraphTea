@@ -23,13 +23,13 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "m3finalconj", abbreviation = "_m3conj")
-public class EM1Upper implements GraphReportExtension{
+public class EM1LowerBound implements GraphReportExtension{
     public String getName() {
-        return "EM1 Upper";
+        return "EM1 Lower";
     }
 
     public String getDescription() {
-        return "EM1 Upper";
+        return "EM1 Lower";
     }
 
     public Object calculate(GraphModel g) {
@@ -116,7 +116,7 @@ public class EM1Upper implements GraphReportExtension{
         //N1
         ret.get(1).add(4*m*(maxDeg-1)*(maxDeg-1));
 
-        //
+
         return ret;
     }
 

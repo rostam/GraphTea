@@ -72,6 +72,7 @@ public class CheckForAll {
                     pb.validate();
                     jd.validate();
                     GraphModel g = new GraphModel();
+                    g.setDirected(false);
                     sc.nextLine();
                     String order = sc.nextLine();
                     order = order.substring(order.lastIndexOf("r") + 1,
@@ -87,7 +88,8 @@ public class CheckForAll {
                             String num = sc2.next();
                             if (num.contains(";")) num = num.substring(0, num.indexOf(";"));
                             int id = Integer.parseInt(num);
-                            g.addEdge(new Edge(g.getVertex(i), g.getVertex(id)));
+                            if(!g.isEdge(g.getVertex(i), g.getVertex(id)))
+                                g.addEdge(new Edge(g.getVertex(i), g.getVertex(id)));
                         }
                     }
                     gcount++;
@@ -113,8 +115,14 @@ public class CheckForAll {
                         res = new int[ret.get(0).size()];
                     }
                     for (int i = 1; i < ret.get(0).size(); i++) {
-                        if ((Double) ret.get(1).get(0) < (Double) ret.get(1).get(i)) {
-                            res[i]++;
+                        if(mr.getName().contains("Upper")) {
+                            if ((double) ret.get(1).get(0) <= (double) ret.get(1).get(i)) {
+                                res[i]++;
+                            }
+                        } else {
+                            if ((double) ret.get(1).get(0) >= (double) ret.get(1).get(i)) {
+                                res[i]++;
+                            }
                         }
                     }
                 }
