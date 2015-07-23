@@ -37,6 +37,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 	public static boolean upto = false;
     public static boolean Integral = false;
     public static boolean LaplacianIntegral = false;
+	public static boolean SignlessLaplacianIntegral = false;
 
 
 	public GraphReportExtensionAction(BlackBoard bb, GraphReportExtension gg) {

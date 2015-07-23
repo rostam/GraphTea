@@ -24,6 +24,8 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public boolean Integral = false;
     @Parameter(name = "Laplacian Integral", description = "")
     public boolean LaplacianIntegral = false;
+    @Parameter(name = "Signless Laplacian Integral", description = "")
+    public boolean SignlessLaplacianIntegral = false;
 
     public String getName() {
         return "Conjecture Checking";
@@ -38,6 +40,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         GraphReportExtensionAction.upto = upto;
         GraphReportExtensionAction.Integral = Integral;
         GraphReportExtensionAction.LaplacianIntegral = LaplacianIntegral;
+        GraphReportExtensionAction.SignlessLaplacianIntegral = SignlessLaplacianIntegral;
 
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";
