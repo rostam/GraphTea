@@ -12,6 +12,8 @@ import javax.swing.plaf.DimensionUIResource;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Vector;
@@ -32,6 +34,7 @@ public class CheckForAll {
         vSizes.put(7,853);
         vSizes.put(8,11117);
         vSizes.put(9, 261080);
+        vSizes.put(10,11716571);
 
         int size=0;
 
@@ -64,6 +67,17 @@ public class CheckForAll {
         int gcount = 0;
         int filterCount = 0;
 
+        FileWriter fw1,fw2,fw3;
+        String sw1="",sw2="",sw3="";
+
+        try {
+            fw1 = new FileWriter(new File("Integral"));
+            fw2 = new FileWriter(new File("LaplacianIntegral"));
+            fw3 = new FileWriter(new File("SignlessLaplacianIntegral"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         for(int cnt=start;cnt<=GraphReportExtensionAction.Size;cnt++) {
             try {
                 Scanner sc = new Scanner(new File("g"+cnt+"c.txt"));
@@ -73,8 +87,9 @@ public class CheckForAll {
                     jd.validate();
                     GraphModel g = new GraphModel();
                     g.setDirected(false);
-                    sc.nextLine();
+                    String fline = sc.nextLine();
                     String order = sc.nextLine();
+
                     order = order.substring(order.lastIndexOf("r") + 1,
                             order.lastIndexOf("."));
                     order = order.trim();
@@ -97,6 +112,7 @@ public class CheckForAll {
 
                     if(GraphReportExtensionAction.Integral) {
                         if(!isIntegral(g)) continue;
+
                     }
 
                     if(GraphReportExtensionAction.LaplacianIntegral) {
@@ -108,6 +124,7 @@ public class CheckForAll {
                     }
 
                     filterCount++;
+                    System.out.println("pass filtered: " + ord);
 
                     ret = (RendTable) mr.calculate(g);
                     if (ret.get(0).size() <= 2) return null;
