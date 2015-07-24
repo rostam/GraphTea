@@ -127,30 +127,43 @@ public class TreeMap implements GraphActionExtension {
 	}
 
 	private GraphModel groupHelpVertexes(GraphModel newGraph, int K) {
+		
 		ArrayList<GraphPoint> p = new ArrayList<GraphPoint>();
 		for (Vertex v : newGraph.getVertexArray()) {
+			// Alle Punkte, die 'noch zu Relokalisieren' sind (Hilfspunkte) werden gesammelt...
 			if (v.getLabel().equals("noch zu Relokalisieren"))
 				p.add(v.getLocation());
 		}
-		Cluster[] c = LloydKMeans.cluster(p.toArray(new GraphPoint[p.size()]), K);
+		GraphPoint[] pArray = p.toArray(new GraphPoint[p.size()]);
+		// ... und an den KMeans übergeben....
+		Cluster[] c = LloydKMeans.cluster(pArray, K);
+		// ... um die Clustermenge zu erhalten.		
 		for (Cluster cluster : c) {
-			Vertex v = new Vertex();
-			v.setLabel("");
-
-			v.setLocation(cluster.getCentroid());
-			newGraph.addVertex(v);
+			//Für jedes Cluster wird ein Mittelpunktvertex angelegt...
+			Vertex centerVertex = new Vertex();
+			centerVertex.setLabel("");
+			centerVertex.setLocation(cluster.getCenter());
+			newGraph.addVertex(centerVertex);
+			
 			for (GraphPoint pointC : cluster.getMembers()) {
+				//... und alle Hilfspunkte des Clusters auf diesen umgelegt...
 				for (int i = 0; i < newGraph.getVerticesCount(); i++) {
 					if (newGraph.getVertex(i).getLocation().equals(pointC)) {
-
-						Iterator<Vertex> list = newGraph.getNeighbors(newGraph.getVertex(i)).iterator();
+						//... indem sie im Graph gefunden werden,...
+						Vertex actualVertex = newGraph.getVertex(i);
+						Iterator<Vertex> list = newGraph.getNeighbors(actualVertex).iterator();
 						Vertex a = list.next();
 						Vertex b = list.next();
-						newGraph.addEdge(new Edge(a, v));
-						newGraph.addEdge(new Edge(v, b));
-						newGraph.removeEdge(newGraph.getEdge(a, newGraph.getVertex(i)));
-						newGraph.removeEdge(newGraph.getEdge(newGraph.getVertex(i), b));
-						newGraph.removeVertex(newGraph.getVertex(i--));
+						//...ihre verbindungen mit ihren Nachbarn für den Mittelpunktvertex übernommen werden...
+						newGraph.addEdge(new Edge(a, centerVertex));
+						newGraph.addEdge(new Edge(centerVertex, b));
+						//... und der alte Vertex mit seinen Kanten entfernt wird.
+						newGraph.removeEdge(newGraph.getEdge(a, actualVertex));
+						newGraph.removeEdge(newGraph.getEdge(actualVertex, b));
+						newGraph.removeVertex(actualVertex);
+						
+						i--;// Die Vertexmenge in der for-Schleife reduziert wurde. somit würde nicht Vertex_(i+1) sondern Vertex_(i+2)
+						//als nächster Vertex betrachtet werden. Um gegenzusteuern i--.
 						break;
 					}
 				}

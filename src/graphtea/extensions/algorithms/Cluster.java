@@ -6,25 +6,23 @@ import graphtea.graph.graph.GraphPoint;
 
 public class Cluster // Represents a cluster of GraphPoints
 {
-	GraphPoint center;
-	ArrayList<GraphPoint> member;
+	private ArrayList<GraphPoint> member;
+	private GraphPoint center;
 
-	public Cluster(GraphPoint a) {
-		center = a;
+	public Cluster(GraphPoint c) {
+		center = c;
 		member = new ArrayList<GraphPoint>();
 	}
 
-	public GraphPoint getCentroid() {
-		double x = 0., y = 0.;
-		for (GraphPoint a : member) {
-			x += a.x;
-			y += a.y;
-		}
-
-		return new GraphPoint((int) (x / member.size()), (int) (y / member.size()));
+	public GraphPoint getCenter() {
+		return center;
 	}
 	
 	public ArrayList<GraphPoint> getMembers(){
 		return member;
+	}
+	
+	public void addMember(GraphPoint p){
+		member.add(p);
 	}
 }
