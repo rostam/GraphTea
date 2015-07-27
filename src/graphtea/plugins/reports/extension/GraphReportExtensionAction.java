@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.Vector;
 
 /**
+ * @author M. Ali Rostami - Conjecture check
  * @author Hooman Mohajeri Moghaddam - added save button, fixed recalculate button
  * @author azin azadi
 
@@ -31,13 +32,15 @@ import java.util.Vector;
 public class GraphReportExtensionAction extends AbstractExtensionAction {
 	protected GraphReportExtension mr;
     public static boolean activeConjCheck = false;
-	public static boolean conjCheck = false;
 	public static boolean connected = true;
 	public static int Size = 9;
 	public static boolean upto = false;
-    public static boolean Integral = false;
-    public static boolean LaplacianIntegral = false;
-	public static boolean SignlessLaplacianIntegral = false;
+	public static boolean upperBound = true;
+	public static boolean lowerBound = true;
+	public static boolean strictLowerBound = true;
+	public static boolean strictUpperBound = true;
+
+	public static String currentType = "";
 
 
 	public GraphReportExtensionAction(BlackBoard bb, GraphReportExtension gg) {
@@ -63,8 +66,9 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 
 			public void run() {
                 Object result;
-                if(activeConjCheck && !mr.getName().equals("Conjecture Checking")) {
-                  result = CheckForAll.forall(mr);
+				if(activeConjCheck && !mr.getName().equals("Bound Check")) {
+					CheckForAll cfa = new CheckForAll(mr);
+                  	result = cfa.forall();
                 } else {
                     result = mr.calculate(new GraphData(blackboard).getGraph());
                 }

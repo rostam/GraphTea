@@ -14,6 +14,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
+import java.util.Vector;
 
 /**
  * @author Hooman Mohajeri Moghaddam
@@ -45,7 +47,6 @@ public class LoadMatrix implements GraphReaderExtension {
 	}
 
 	public static GraphModel loadMatrix(File selectedFile) throws IOException {
-
 		GraphModel g;
 		int a = JOptionPane.showConfirmDialog(null, "Do you want to load directed graph?", "Load Graph",  JOptionPane.YES_NO_OPTION);
 
@@ -60,6 +61,38 @@ public class LoadMatrix implements GraphReaderExtension {
 		while ((_ = br.readLine()) != null) s += _ + "\n";
 		Matrix.Matrix2Graph(Matrix.String2Matrix(s), g);
 		return g;
+	}
+
+	public static GraphModel loadMatrix(File selectedFile, boolean isDirected) throws IOException {
+		GraphModel g = new GraphModel(isDirected);
+		FileReader in = new FileReader(selectedFile);
+		BufferedReader br = new BufferedReader(in);
+		String _, s = "";
+		while ((_ = br.readLine()) != null) s += _ + "\n";
+		Matrix.Matrix2Graph(Matrix.String2Matrix(s), g);
+		return g;
+	}
+
+	public static Vector<GraphModel> loadMatrixes(File selectedFile, boolean isDirected) throws IOException {
+		Vector<GraphModel> gs = new Vector<>();
+		Scanner sc =new Scanner(selectedFile);
+		sc.nextLine();
+		String g="";
+
+		while (sc.hasNextLine()) {
+			String l = sc.nextLine();
+			if(!l.equals("")){
+				g+=l+"\n";
+			} else {
+				if(!g.equals("")) {
+					GraphModel tmp = new GraphModel(isDirected);
+					Matrix.Matrix2Graph(Matrix.String2Matrix(g), tmp);
+					gs.add(tmp);
+					g = "";
+				}
+			}
+		}
+		return gs;
 	}
 }
 

@@ -23,13 +23,13 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "m3finalconj", abbreviation = "_m3conj")
-public class EM1LowerBound implements GraphReportExtension{
+public class EM2UpperBound implements GraphReportExtension{
     public String getName() {
-        return "EM1 Lower";
+        return "EM2 Upper";
     }
 
     public String getDescription() {
-        return "EM1 Lower";
+        return "EM2 Upper";
     }
 
     public Object calculate(GraphModel g) {
@@ -40,18 +40,23 @@ public class EM1LowerBound implements GraphReportExtension{
 
         RendTable ret = new RendTable();
         ret.add(new Vector<Object>());
-        ret.get(0).add(" M^3_1(G) ");
-        ret.get(0).add("Z1");
-        ret.get(0).add("Z2");
-        ret.get(0).add("Z3");
-        ret.get(0).add("Z4");
-        ret.get(0).add("Ep3");
-        ret.get(0).add("Ep4");
-        ret.get(0).add("Psi1");        
-        ret.get(0).add("Psi2");        
-        ret.get(0).add("illc");
+        ret.get(0).add(" EM2 ");   
+        ret.get(0).add("Zeta1");        
+        ret.get(0).add("Zeta2");
+        ret.get(0).add("Zeta3");
+        ret.get(0).add("Zeta4");
+        ret.get(0).add("Eps3");
+        ret.get(0).add("Eps4");
+        ret.get(0).add("Zhou1 ");
+        ret.get(0).add("Zhou2");
+        ret.get(0).add("Zhou3");
+        ret.get(0).add("N4");
         ret.get(0).add("N2");
         ret.get(0).add("N1");
+        
+        
+        
+
         double maxDeg = 0;
         double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
@@ -85,7 +90,14 @@ public class EM1LowerBound implements GraphReportExtension{
         double Mm31=zif.getFirstZagreb(-4);
         double Mm11=zif.getFirstZagreb(-2);
         double EM1=zifL.getFirstZagreb(1);
-
+        double EM2=zifL.getSecondZagreb(1);
+        
+        double D12=((EM2-(M41/2)+(3*M31/2)-M21)/2);
+        
+        double K13=((M31-(3*M21)+(4*m))/6);
+        
+        double K14=((M41-(6*M31)+(11*M21)-(12*m))/24);
+        
         double Psi1=(Math.pow((2*(m+1) - (n+maxDeg+maxDeg2)
                 + Math.sqrt((2*m-maxDeg-maxDeg2)
                 *(Mm11-((1/maxDeg)+(1/maxDeg2))))),2)/(n-2));
@@ -119,43 +131,52 @@ public class EM1LowerBound implements GraphReportExtension{
         double Eps4=( Math.pow((M21-(maxDeg*maxDeg)-(minDeg*minDeg))
                 +Math.sqrt((n-2)*(M21-(maxDeg*maxDeg)-(minDeg*minDeg)))
                 -(2*m-maxDeg-minDeg),2)/(2*m-maxDeg-minDeg));
-
-
+        
+        
+        
         ret.add(new Vector<Object>());
 
-        ret.get(1).add(zifL.getFirstZagreb(1));
+        ret.get(1).add(zifL.getSecondZagreb(1));
+        
 
-        //new3
-        ret.get(1).add((maxDeg*maxDeg*maxDeg)+(maxDeg2*maxDeg2*maxDeg2)+(Zeta3)-(4*M21)+(2*M12)+(4*m));
-
-        //new4
-        ret.get(1).add((maxDeg*maxDeg*maxDeg)+(minDeg*minDeg*minDeg)+(Zeta4)-(4*M21)+(2*M12)+(4*m));
-
-        //new1 
-        ret.get(1).add((maxDeg*maxDeg*maxDeg)+(maxDeg2*maxDeg2*maxDeg2)+(Zeta1)-(4*M21)+(2*M12)+(4*m));
-
-        //new2
-        ret.get(1).add((maxDeg*maxDeg*maxDeg)+(minDeg*minDeg*minDeg)+(Zeta2)-(4*M21)+(2*M12)+(4*m));
-
+        
+        //Zeta1
+        ret.get(1).add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(maxDeg2*maxDeg2*maxDeg2)-Zeta1-(4*m));
+        
+        //Zeta2
+        ret.get(1).add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(minDeg*minDeg*minDeg)-Zeta2-(4*m));
+        
+        //Zeta3
+        ret.get(1).add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(maxDeg2*maxDeg2*maxDeg2)-Zeta3-(4*m));
+        
+        //Zeta4
+        ret.get(1).add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(minDeg*minDeg*minDeg)-Zeta4-(4*m));
 
         //Eps3
-        ret.get(1).add((maxDeg*maxDeg*maxDeg)+(maxDeg2*maxDeg2*maxDeg2)+(Eps3)-(4*M21)+(2*M12)+(4*m));
-
+        ret.get(1).add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(maxDeg2*maxDeg2*maxDeg2)-Eps3-(4*m));
+        
         //Eps4
-        ret.get(1).add((maxDeg*maxDeg*maxDeg)+(minDeg*minDeg*minDeg)+(Eps4)-(4*M21)+(2*M12)+(4*m));
+        ret.get(1).add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(minDeg*minDeg*minDeg)-Eps4-(4*m));
+        
+      //Zhou1
+        ret.get(1).add(Math.sqrt(M21-(3*m)+1)*(EM1/2));
 
-        //Psi1
-        ret.get(1).add(M31-(4*M21)+(2*maxDeg*maxDeg)+(2*maxDeg2*maxDeg2)+(2*Psi1)+2*(M12-M21+m)+2*m);
         
-        //Psi2
-        ret.get(1).add(M31-(4*M21)+(2*maxDeg*maxDeg)+(2*minDeg*minDeg)+(2*Psi2)+2*(M12-M21+m)+2*m);      
+        //Zhou2
+        ret.get(1).add(((M21/2)-m)*Math.pow(Math.sqrt(M21-(2*m)+(1/4))-(1/2),2)); 
         
-        //illc 
-        ret.get(1).add(((2*m/n)*M21)+(4*m)+(2*M12)-(4*M21));
-        //nilanjan de 2
-        ret.get(1).add(Math.pow(M21-(2*m),2)/m);
-        //nilanjan de 1
-        ret.get(1).add(4*m*(minDeg-1)*(minDeg-1));
+        //Zhou3
+        ret.get(1).add(Math.pow(M21-(2*m),2)*(maxDeg-1)/(2*maxDeg)); 
+        
+       //N3
+        ret.get(1).add((Math.pow(M21-(2*m),2)/2)-(m-1)*(minDeg-1)*(M21-(2*m))+((2*minDeg-3)*EM1/2)); 
+        //N2
+        ret.get(1).add(2*(M21-(2*m))*(maxDeg-1)*(maxDeg-1)); 
+        
+        //N1
+        ret.get(1).add(EM1*(maxDeg-1)); 
+
+
         return ret;
     }
 

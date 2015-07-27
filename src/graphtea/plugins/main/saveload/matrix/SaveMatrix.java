@@ -11,6 +11,8 @@ import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
+import java.util.Vector;
 
 /**
  * @author Azin Azadi
@@ -45,6 +47,13 @@ public class SaveMatrix implements GraphWriterExtension {
 
     public String getDescription() {
         return "Matrix File Format";
+    }
+
+    public static void saveMatrixes(File file, GraphModel g, boolean isDirected) throws IOException {
+        FileWriter output = new FileWriter(file,true);
+        output.append(System.getProperty("line.separator"));
+        output.append(Matrix.Matrix2String(Matrix.graph2Matrix(g)));
+        output.close();
     }
 }
 
