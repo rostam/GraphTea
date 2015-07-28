@@ -220,6 +220,7 @@ public class AllGraphs {
 
     public void filterGraphs(int Size) {
         if (isFileExists(currentType+Size+".txt")) return;
+        if (currentType.equals("")) return;
         jd.setVisible(true);
         jd.setAlwaysOnTop(true);
         int gcount = 0;
