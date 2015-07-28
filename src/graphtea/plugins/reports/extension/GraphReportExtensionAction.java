@@ -68,7 +68,11 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
                 Object result;
 				if(activeConjCheck && !mr.getName().equals("Bound Check")) {
 					CheckForAll cfa = new CheckForAll(mr);
-                  	result = cfa.forall();
+					if(GraphReportExtensionAction.currentType!="") {
+						result = cfa.forall();
+					} else {
+						result = cfa.forAllUnfiltered();
+					}
                 } else {
                     result = mr.calculate(new GraphData(blackboard).getGraph());
                 }
@@ -97,7 +101,6 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 
 					}
 				});
-
 
 				fileChooser = new JFileChooser();
 				JButton save = new JButton("Save");

@@ -56,6 +56,11 @@ public class CheckForAll {
         return retForm;
     }
 
+    public RendTable forAllUnfiltered() {
+        IterateAllGraphs iag = new IterateAllGraphs(mr,GraphReportExtensionAction.currentType);
+        return iag.iterate(GraphReportExtensionAction.Size);
+    }
+
     public void checkTypeOfBounds(RendTable ret, int[] res, int i) {
         if (GraphReportExtensionAction.upperBound) {
             if ((double) ret.get(1).get(0) <= (double) ret.get(1).get(i)) {
