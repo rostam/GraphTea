@@ -65,19 +65,19 @@ public class AllGraphs {
 
     public void checkTypeOfBounds(RendTable ret, int[] res, int i) {
         if (GraphReportExtensionAction.upperBound) {
-            if ((double) ret.get(1).get(0) <= (double) ret.get(1).get(i)) {
-                res[i]++;
-            }
-        } else if (GraphReportExtensionAction.lowerBound) {
             if ((double) ret.get(1).get(0) >= (double) ret.get(1).get(i)) {
                 res[i]++;
             }
-        } else if (GraphReportExtensionAction.strictUpperBound) {
-            if ((double) ret.get(1).get(0) < (double) ret.get(1).get(i)) {
+        } else if (GraphReportExtensionAction.lowerBound) {
+            if ((double) ret.get(1).get(0) <= (double) ret.get(1).get(i)) {
                 res[i]++;
             }
         } else if (GraphReportExtensionAction.strictUpperBound) {
             if ((double) ret.get(1).get(0) > (double) ret.get(1).get(i)) {
+                res[i]++;
+            }
+        } else if (GraphReportExtensionAction.strictUpperBound) {
+            if ((double) ret.get(1).get(0) < (double) ret.get(1).get(i)) {
                 res[i]++;
             }
         }
