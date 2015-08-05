@@ -19,6 +19,16 @@ public class ZagrebIndexFunctions {
         this.g = g;
     }
 
+    public double getHyperZagrebIndex() {
+        double hz = 0;
+        for(Edge e : g.getEdges()) {
+            hz += Math.pow(
+                    g.getDegree(e.source) + g.getDegree(e.source)
+                    ,2);
+        }
+        return hz;
+    }
+
     public double getFirstZagreb(double alpha) {
         double first_zagreb = 0;
         for (Vertex v : g.vertices()) {
