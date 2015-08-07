@@ -5,6 +5,8 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.actions.LineGraph;
+import graphtea.extensions.reports.basicreports.SubTreeCounting;
+import graphtea.extensions.reports.connectivity.KConnected;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
@@ -47,6 +49,7 @@ public class EM1UpperBound implements GraphReportExtension{
         ret.get(0).add("N4");
         ret.get(0).add("N2");
         ret.get(0).add("N1");
+        ret.get(0).add("Theorem 1");
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -115,6 +118,12 @@ public class EM1UpperBound implements GraphReportExtension{
 
         //N1
         ret.get(1).add(4*m*(maxDeg-1)*(maxDeg-1));
+        //Theorem 1
+        int k = KConnected.kconn(g);
+        ret.get(1).add(k*Math.pow(k+n-3,2)
+                + 4*(n-2)*(n-2)*SubTreeCounting.choose(k,2).intValue()
+                + 4*(n-3)*(n-3)*SubTreeCounting.choose((int) (n-k-1),2).intValue()
+                + k*(n-k-1)*Math.pow(2*n-5,2));
 
 
         return ret;
