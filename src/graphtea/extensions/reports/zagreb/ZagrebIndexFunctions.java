@@ -28,7 +28,7 @@ public class ZagrebIndexFunctions {
                     g.getDegree(e.source) + g.getDegree(e.source)
                     ,2);
         }
-        return hz;
+        return hz/2;
     }
 
     public double getFirstZagreb(double alpha) {
