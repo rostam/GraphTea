@@ -54,7 +54,8 @@ public class PathsofLengthTwo implements GraphReportExtension<Integer> {
                 while (ie2.hasNext()) {
                     Edge e2 = ie2.next();
                     if (e != e2) {
-                        Edge ne = new Edge((Vertex) e.getProp().obj, (Vertex) e2.getProp().obj);
+                        Edge ne = new Edge((Vertex) e.getProp().obj,
+                                (Vertex) e2.getProp().obj);
                         g2.insertEdge(ne);
                     }
                 }

@@ -39,6 +39,7 @@ public class LineGraph implements GraphActionExtension {
             loc.add(e.getCurveControlPoint());
             v.setLocation(loc);
             e.getProp().obj = v;
+            v.getProp().obj = e;
             g2.insertVertex(v);
         }
         for (Vertex v : g1) {

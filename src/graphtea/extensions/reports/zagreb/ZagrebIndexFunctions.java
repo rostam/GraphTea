@@ -1,11 +1,13 @@
 package graphtea.extensions.reports.zagreb;
 
+import com.sun.corba.se.impl.orbutil.graph.Graph;
 import graphtea.extensions.actions.LineGraph;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.algorithms.util.LibraryUtils;
 
+import javax.sound.sampled.Line;
 import java.util.ArrayList;
 
 /**
@@ -294,6 +296,64 @@ public class ZagrebIndexFunctions {
             double degs = g.getDegree(e.source);
             double degt = g.getDegree(e.target);
             ret+= Math.pow(degs*degt,alpha);
+        }
+        return ret;
+    }
+
+    public double getFirstPathZagrebIndex(double alpha) {
+        double ret = 0;
+        GraphModel g2 = LineGraph.createLineGraph(g);
+        for(Edge e : g2.getEdges()) {
+            Vertex src = e.source;
+            Vertex tgt = e.target;
+            Edge e1= (Edge) src.getProp().obj;
+            Edge e2= (Edge) src.getProp().obj;
+            if(e1.source.getId()==e2.source.getId()) {
+                ret+=Math.pow(g.getDegree(e1.target),alpha-1);
+                ret+=Math.pow(g.getDegree(e2.target),alpha-1);
+            }
+
+            if(e1.target.getId()==e2.source.getId()) {
+                ret += Math.pow(g.getDegree(e1.source), alpha - 1);
+                ret += Math.pow(g.getDegree(e2.target), alpha - 1);
+            }
+
+            if(e1.source.getId()==e2.target.getId()) {
+                ret+=Math.pow(g.getDegree(e1.target),alpha-1);
+                ret+=Math.pow(g.getDegree(e2.source),alpha-1);
+            }
+
+            if(e1.target.getId()==e2.target.getId()) {
+                ret+=Math.pow(g.getDegree(e1.source),alpha-1);
+                ret+=Math.pow(g.getDegree(e2.source),alpha-1);
+            }
+        }
+        return ret;
+    }
+
+    public double getSecondPathZagrebIndex(double alpha) {
+        double ret = 0;
+        GraphModel g2 = LineGraph.createLineGraph(g);
+        for(Edge e : g2.getEdges()) {
+            Vertex src = e.source;
+            Vertex tgt = e.target;
+            Edge e1= (Edge) src.getProp().obj;
+            Edge e2= (Edge) src.getProp().obj;
+            if(e1.source.getId()==e2.source.getId()) {
+                ret+=Math.pow(g.getDegree(e1.target)*g.getDegree(e2.target),alpha);
+            }
+
+            if(e1.target.getId()==e2.source.getId()) {
+                ret += Math.pow(g.getDegree(e1.source)*g.getDegree(e2.target),alpha);
+            }
+
+            if(e1.source.getId()==e2.target.getId()) {
+                ret+=Math.pow(g.getDegree(e1.target)*g.getDegree(e2.source),alpha);
+            }
+
+            if(e1.target.getId()==e2.target.getId()) {
+                ret+=Math.pow(g.getDegree(e1.source)*g.getDegree(e2.source),alpha);
+            }
         }
         return ret;
     }
