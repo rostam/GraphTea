@@ -25,10 +25,10 @@ public class ZagrebIndexFunctions {
         double hz = 0;
         for(Edge e : g.getEdges()) {
             hz += Math.pow(
-                    g.getDegree(e.source) + g.getDegree(e.source)
+                    g.getDegree(e.source) + g.getDegree(e.target)
                     ,2);
         }
-        return hz/2;
+        return hz;
     }
 
     public double getFirstZagreb(double alpha) {
