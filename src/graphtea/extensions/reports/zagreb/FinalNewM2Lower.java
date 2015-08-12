@@ -140,7 +140,7 @@ public class FinalNewM2Lower implements GraphReportExtension{
     @Override
     public String getCategory() {
         // TODO Auto-generated method stub
-        return "Topological Indices";
+        return "Topological Indices-Conjectures";
     }
 }
 

@@ -59,6 +59,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
 
 
     static HashMap<String, JMenu> reportSubMenus = new HashMap<String, JMenu>();
+    static HashMap<String, JMenu> reportSubSubMenus = new HashMap<String, JMenu>();
     static HashMap<String, JMenu> generateSubMenus = new HashMap<String, JMenu>();
     static HashMap<String, JMenu> operatorsSubmenus = new HashMap<String, JMenu>();
 
@@ -74,14 +75,39 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
             if (parentMenu.getText().equalsIgnoreCase("reports")) {
                 GraphReportExtension<t> temp = (GraphReportExtension<t>) sp;
                 if (temp.getCategory() != null) {
-                    JMenu categoryMenu;
-                    if (!reportSubMenus.containsKey(temp.getCategory())) {
-                        categoryMenu = new JMenu(temp.getCategory());
-                        reportSubMenus.put(temp.getCategory(), categoryMenu);
-                    } else
-                        categoryMenu = reportSubMenus.get(temp.getCategory());
-                    GMenuBar.insert(parentMenu, categoryMenu, getMenuPlace());
-                    GMenuBar.insert(categoryMenu, menuItem, getMenuPlace());
+                    if(!temp.getCategory().contains("-")) {
+                        JMenu categoryMenu;
+                        if (!reportSubMenus.containsKey(temp.getCategory())) {
+                            categoryMenu = new JMenu(temp.getCategory());
+                            reportSubMenus.put(temp.getCategory(), categoryMenu);
+                        } else
+                            categoryMenu = reportSubMenus.get(temp.getCategory());
+                        GMenuBar.insert(parentMenu, categoryMenu, getMenuPlace());
+                        GMenuBar.insert(categoryMenu, menuItem, getMenuPlace());
+                    } else {
+                        JMenu categoryMenu;
+                        JMenu subsub;
+
+                        String cat = temp.getCategory();
+                        String sub = cat.substring(0, cat.indexOf("-"));
+                        String subsubStr = cat.substring(cat.indexOf("-")+1);
+                        if (!reportSubMenus.containsKey(sub)) {
+                            categoryMenu = new JMenu(sub);
+                            reportSubMenus.put(sub, categoryMenu);
+                        } else
+                            categoryMenu = reportSubMenus.get(sub);
+
+                        if(!reportSubSubMenus.containsKey(subsubStr)) {
+                            subsub = new JMenu(subsubStr);
+                            reportSubSubMenus.put(subsubStr,subsub);
+                        } else {
+                            subsub=reportSubSubMenus.get(subsubStr);
+                        }
+
+                        GMenuBar.insert(parentMenu, categoryMenu, getMenuPlace());
+                        GMenuBar.insert(categoryMenu, subsub, getMenuPlace());
+                        GMenuBar.insert(subsub, menuItem, getMenuPlace());
+                    }
                 } else
                     GMenuBar.insert(parentMenu, menuItem, getMenuPlace());
             } else if (parentMenu.getText().equalsIgnoreCase("generate graph")) {

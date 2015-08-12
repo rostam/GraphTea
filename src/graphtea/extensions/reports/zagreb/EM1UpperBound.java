@@ -132,6 +132,6 @@ public class EM1UpperBound implements GraphReportExtension{
     @Override
     public String getCategory() {
         // TODO Auto-generated method stub
-        return "Topological Indices";
+        return "Topological Indices-Conjectures";
     }
 }

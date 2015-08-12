@@ -307,7 +307,7 @@ public class ZagrebIndexFunctions {
             Vertex src = e.source;
             Vertex tgt = e.target;
             Edge e1= (Edge) src.getProp().obj;
-            Edge e2= (Edge) src.getProp().obj;
+            Edge e2= (Edge) tgt.getProp().obj;
             if(e1.source.getId()==e2.source.getId()) {
                 ret+=Math.pow(g.getDegree(e1.target),alpha-1);
                 ret+=Math.pow(g.getDegree(e2.target),alpha-1);
@@ -338,7 +338,7 @@ public class ZagrebIndexFunctions {
             Vertex src = e.source;
             Vertex tgt = e.target;
             Edge e1= (Edge) src.getProp().obj;
-            Edge e2= (Edge) src.getProp().obj;
+            Edge e2= (Edge) tgt.getProp().obj;
             if(e1.source.getId()==e2.source.getId()) {
                 ret+=Math.pow(g.getDegree(e1.target)*g.getDegree(e2.target),alpha);
             }

@@ -126,11 +126,11 @@ public class KConnected implements GraphReportExtension {
     }
 
     public String getName() {
-        return "Graph Vertex Connectivity";
+        return "Vertex Connectivity";
     }
 
     public String getDescription() {
-        return "Graph Vertex Connectivity";
+        return "Vertex Connectivity";
     }
 
 

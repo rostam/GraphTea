@@ -132,6 +132,6 @@ ret.get(1).add((2*D12)+(12*K14)+(15*K13)-M31+(3*maxDeg*maxDeg)+(3*minDeg*minDeg)
     @Override
     public String getCategory() {
         // TODO Auto-generated method stub
-        return "Topological Indices";
+        return "Topological Indices-Conjectures";
     }
 }

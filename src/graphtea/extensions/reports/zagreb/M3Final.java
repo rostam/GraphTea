@@ -202,6 +202,6 @@ public class M3Final implements GraphReportExtension{
     @Override
     public String getCategory() {
         // TODO Auto-generated method stub
-        return "Topological Indices";
+        return "Topological Indices-Conjectures";
     }
 }

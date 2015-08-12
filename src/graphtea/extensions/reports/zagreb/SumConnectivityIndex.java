@@ -4,9 +4,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.zagreb;
 
+import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -16,37 +16,30 @@ import java.util.ArrayList;
 
  */
 
-@CommandAttitude(name = "conj", abbreviation = "_conj")
-public class AutographixConj implements GraphReportExtension {
+@CommandAttitude(name = "sumconn_index", abbreviation = "_sci")
+public class SumConnectivityIndex implements GraphReportExtension {
     public String getName() {
-        return "AutographiX  Conjecture";
+        return "Sum Connectivity Index";
     }
 
-    public Double alpha = 1.0;
-
     public String getDescription() {
-        return "AutographiX  conjecture";
+        return "Sum Connectivity Index";
     }
 
     public Object calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<String>();
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
+        double ret = 0;
+        for (Edge e : g.getEdges()) {
+            ret+=1./Math.sqrt(g.getDegree(e.source)+g.getDegree(e.target));
+        }
 
-        double first_zagreb = zif.getFirstZagreb(alpha);
-        double second_zagreb = zif.getSecondZagreb(alpha);
-
-        double conj = first_zagreb/g.numOfVertices() -
-                second_zagreb/g.getEdgesCount();
-        if(conj !=0)
-            conj = -conj;
-        out.add("The result of formula (M_2^1/m-M_1^2/n = "+ conj
-                + ") should be great than zero.");
+        out.add("Sum Connectivity Index : "+ ret);
         return out;
     }
 
     @Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "Topological Indices-Conjectures";
+		return "Topological Indices";
 	}
 }
