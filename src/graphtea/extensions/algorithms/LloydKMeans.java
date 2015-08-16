@@ -65,10 +65,13 @@ public class LloydKMeans {
 
 			// now improve by updating the center of the clusters
 			GraphPoint[] sum = new GraphPoint[k];
-			Arrays.fill(sum, new GraphPoint());
+			for (int i = 0; i < sum.length; i++)
+				sum[i] = new GraphPoint(0, 0);
+
 			int[] count = new int[k];
 
 			for (int i = 0; i < p.length; i++) {
+
 				sum[parent[i]].add(p[i].x, p[i].y);
 				count[parent[i]]++;
 			}

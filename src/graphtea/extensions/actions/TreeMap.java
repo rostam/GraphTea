@@ -19,6 +19,7 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.QuadCurve2D;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -51,12 +52,6 @@ public class TreeMap implements GraphActionExtension {
 		TMSettingContainer tmSettingContainer = TreeMapDialog.showDialog();
 		if (tmSettingContainer == null)
 			return; // TreeMapDialog wurde abgebrochen; Action wird abgebrochen
-
-		/*
-		 * I DONT KNOW
-		 */
-		Vertex.addGlobalUserDefinedAttribute(CURVE_WIDTH, 1);
-
 		// Lesen des Graphen aus XML
 		MapFileReader mapFileReader = new MapFileReader("./maps/" + tmSettingContainer.getMap() + "/map.xml");
 		GraphModel newGraph = mapFileReader.getGraph();
@@ -76,11 +71,16 @@ public class TreeMap implements GraphActionExtension {
 			}
 			if (points.length > 1)
 				for (int i = 0; i < points.length; i++) {
-
-					newGraph.addEdge(new Edge(points[i], points[i + 1]));
+					Edge newEdgeK = new Edge(points[i], points[i + 1]);
+					newEdgeK.setWeight(edge.getWeight());
+					newGraph.addEdge(newEdgeK);
 				}
-			newGraph.addEdge(new Edge(edge.source, points[0]));
-			newGraph.addEdge(new Edge(points[points.length - 1], edge.target));
+			Edge newEdge1 = new Edge(edge.source, points[0]);
+			Edge newEdgeN = new Edge(points[points.length - 1], edge.target);
+			newEdge1.setWeight(edge.getWeight());
+			newEdgeN.setWeight(edge.getWeight());
+			newGraph.addEdge(newEdge1);
+			newGraph.addEdge(newEdgeN);
 
 		}
 
@@ -88,28 +88,7 @@ public class TreeMap implements GraphActionExtension {
 
 		newGraph = groupHelpVertexes(newGraph, tmSettingContainer.getK());
 
-		// Erste Knot aendern
-		Vertex zero = newGraph.getVertex(0);
-		Vertex neu = new Vertex();
-		GraphPoint gp = zero.getLocation();
-		neu.setLocation(GraphPoint.add(gp, new GraphPoint(5, 5)));
-		newGraph.addVertex(neu);
-
-		Vector<Integer> vv = new Vector<Integer>();
-
-		for (Vertex nv : newGraph.getNeighbors(zero)) {
-			if (vv.contains(nv.getId()))
-				break;
-			vv.add(nv.getId());
-		}
-		for (Integer nv : vv) {
-			newGraph.addEdge(new Edge(newGraph.getVertex(nv), neu));
-			System.out.println("after add edge" + nv);
-			newGraph.removeEdge(newGraph.getEdge(zero, newGraph.getVertex(nv)));
-		}
-
-		newGraph.addEdge(new Edge(zero, neu));
-
+		normalise(newGraph);
 		// Zeichnen des Graphen
 		graphData.core.showGraph(newGraph);
 		TreeMapPainter p = new TreeMapPainter(graphData);
@@ -119,51 +98,86 @@ public class TreeMap implements GraphActionExtension {
 		newGraph.setBackgroundImageFile(file);
 
 		for (Edge e : newGraph.edges()) {
-			e.setColor(Color.white.getRGB());
+			e.setColor(Color.green.getRGB());
 		}
 		gr.addPostPaintHandler(p);
 		gr.repaint();
 
 	}
 
+	private void normalise(GraphModel newGraph) {
+		//Veraendere die Gewichte so, dass sie schoen anzeigbar sind
+	}
+
 	private GraphModel groupHelpVertexes(GraphModel newGraph, int K) {
-		
+
 		ArrayList<GraphPoint> p = new ArrayList<GraphPoint>();
 		for (Vertex v : newGraph.getVertexArray()) {
-			// Alle Punkte, die 'noch zu Relokalisieren' sind (Hilfspunkte) werden gesammelt...
+			// Alle Punkte, die 'noch zu Relokalisieren' sind (Hilfspunkte)
+			// werden gesammelt...
 			if (v.getLabel().equals("noch zu Relokalisieren"))
 				p.add(v.getLocation());
 		}
 		GraphPoint[] pArray = p.toArray(new GraphPoint[p.size()]);
-		// ... und an den KMeans übergeben....
+		// ... und an den KMeans uebergeben....
 		Cluster[] c = LloydKMeans.cluster(pArray, K);
-		// ... um die Clustermenge zu erhalten.		
+		// ... um die Clustermenge zu erhalten.
+
 		for (Cluster cluster : c) {
-			//Für jedes Cluster wird ein Mittelpunktvertex angelegt...
+			// Fuer jeden Cluster wird ein Mittelpunktvertex angelegt...
 			Vertex centerVertex = new Vertex();
 			centerVertex.setLabel("");
 			centerVertex.setLocation(cluster.getCenter());
 			newGraph.addVertex(centerVertex);
-			
+
 			for (GraphPoint pointC : cluster.getMembers()) {
-				//... und alle Hilfspunkte des Clusters auf diesen umgelegt...
+				// ... und alle Hilfspunkte des Clusters auf diesen umgelegt...
 				for (int i = 0; i < newGraph.getVerticesCount(); i++) {
 					if (newGraph.getVertex(i).getLocation().equals(pointC)) {
-						//... indem sie im Graph gefunden werden,...
+						// ... indem sie im Graph gefunden werden,...
 						Vertex actualVertex = newGraph.getVertex(i);
 						Iterator<Vertex> list = newGraph.getNeighbors(actualVertex).iterator();
 						Vertex a = list.next();
 						Vertex b = list.next();
-						//...ihre verbindungen mit ihren Nachbarn für den Mittelpunktvertex übernommen werden...
-						newGraph.addEdge(new Edge(a, centerVertex));
-						newGraph.addEdge(new Edge(centerVertex, b));
-						//... und der alte Vertex mit seinen Kanten entfernt wird.
+						// ...ihre Verbindungen mit ihren Nachbarn fuer den
+						// Mittelpunktvertex uebernommen werden...
+						Edge edge = new Edge(centerVertex, b);
+						edge.setWeight(newGraph.getEdge(a, actualVertex).getWeight());
+
+						if (newGraph.isEdge(edge.source, edge.target)) {
+							// Sollte eine Kante bereits im Graph vorkommen,
+							// werden nur die gewichte erhoeht.
+							newGraph.getEdge(edge.source, edge.target).setWeight(
+									newGraph.getEdge(edge.source, edge.target).getWeight() + edge.getWeight());
+						} else {
+							newGraph.addEdge(edge);
+						}
+
+						Edge baseEdge = new Edge(a, centerVertex);
+						baseEdge.setWeight(newGraph.getEdge(actualVertex, b).getWeight());
+
+						if (newGraph.isEdge(baseEdge.source, baseEdge.target)) {
+							// Sollte eine Kante bereits im Graph vorkommen,
+							// werden nur die gewichte erhoeht.
+							newGraph.getEdge(baseEdge.source, baseEdge.target)
+									.setWeight(newGraph.getEdge(baseEdge.source, baseEdge.target).getWeight()
+											+ baseEdge.getWeight());
+						} else {
+							newGraph.addEdge(baseEdge);
+						}
+
+						// ... und der alte Vertex mit seinen Kanten entfernt
+						// wird.
 						newGraph.removeEdge(newGraph.getEdge(a, actualVertex));
 						newGraph.removeEdge(newGraph.getEdge(actualVertex, b));
 						newGraph.removeVertex(actualVertex);
-						
-						i--;// Die Vertexmenge in der for-Schleife reduziert wurde. somit würde nicht Vertex_(i+1) sondern Vertex_(i+2)
-						//als nächster Vertex betrachtet werden. Um gegenzusteuern i--.
+
+						i--;// Die Vertexmenge in der for-Schleife wird
+							// reduziert.
+							// Somit wuerde nicht Vertex_(i+1) sondern
+							// Vertex_(i+2)
+						// als naechster Vertex betrachtet werden. Um
+						// gegenzusteuern i--.
 						break;
 					}
 				}
@@ -213,106 +227,81 @@ class TreeMapPainter implements PaintHandler {
 		if (n == 0)
 			return;
 
-		AbstractGraphRenderer.getCurrentGraphRenderer(gd.getBlackboard()).ignoreRepaints(new Runnable() {
-			@SuppressWarnings({ "unchecked" })
-			public void run() {
-				// boolean[] marks = new boolean[n];
-				Vertex V[] = G.getVertexArray();
-				final Vertex parent[] = new Vertex[n];
-				// consider the hole structure as a tree
-				AlgorithmUtils.BFSrun(G, V[0], new AlgorithmUtils.BFSListener() {
-					@Override
-					public void visit(BaseVertex v, BaseVertex p) {
-						parent[v.getId()] = (Vertex) p;
+	
+
+				AbstractGraphRenderer.getCurrentGraphRenderer(gd.getBlackboard()).ignoreRepaints(new Runnable() {
+					@SuppressWarnings({ "unchecked" })
+					public void run() {
+
+						// boolean[] marks = new boolean[n];
+						Vertex V[] = G.getVertexArray();
+						final Vertex parent[] = new Vertex[n];
+
+						// consider the hole structure as a tree
+						AlgorithmUtils.BFSrun(G, V[0], new AlgorithmUtils.BFSListener() {
+							@Override
+							public void visit(BaseVertex v, BaseVertex p) {
+								parent[v.getId()] = (Vertex) p;
+							}
+						});
+
+
+						for (Vertex v : G) {
+							if (v.getId() == 0)
+								continue;
+							if (v.getColor() == 0) {
+								Vertex v1 = parent[v.getId()];
+								if (v1 == null || v1.getColor() != 0)
+									continue;
+
+								Vertex v2 = parent[v1.getId()];
+								if (v2 == null || v2.getColor() != 0)
+									continue;
+
+								// generate the curve between v1, v2 and v3
+								GraphPoint p1 = v.getLocation();
+								GraphPoint p2 = v1.getLocation();
+								GraphPoint p3 = v2.getLocation();
+
+								// Integer w1 = numChild[v.getId()]/2;
+								Integer w1 = G.getEdge(v, v1).getWeight();// (Integer)
+																					// v.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
+
+								// Integer w2 = numChild[v1.getId()]/2;
+
+								Integer w3 = G.getEdge(v1, v2).getWeight();// (Integer)
+																					// v2.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
+
+								Integer w2 = (w1 + w3) / 2;
+
+								int startWidth = w1;
+								int endWidth = w3 ;
+								int middleWidth = w2;
+
+								double teta1 = AlgorithmUtils.getAngle(p1, p2);
+								double teta2 = AlgorithmUtils.getAngle(p1, p3);
+								double teta3 = AlgorithmUtils.getAngle(p2, p3);
+
+								java.awt.geom.QuadCurve2D c1 = new QuadCurve2D.Double(
+										p1.x - startWidth * Math.sin(teta1), p1.y + startWidth * Math.cos(teta1),
+										p2.x - middleWidth * Math.sin(teta2), p2.y + middleWidth * Math.cos(teta2),
+										p3.x - endWidth * Math.sin(teta3), p3.y + endWidth * Math.cos(teta3));
+
+								java.awt.geom.QuadCurve2D c2 = new QuadCurve2D.Double(p3.x + endWidth * Math.sin(teta3),
+										p3.y - endWidth * Math.cos(teta3), p2.x + middleWidth * Math.sin(teta2),
+										p2.y - middleWidth * Math.cos(teta2), p1.x + startWidth * Math.sin(teta1),
+										p1.y - startWidth * Math.cos(teta1));
+								GeneralPath gp = new GeneralPath(c1);
+								gp.append(c2, true);
+								gp.closePath();
+								gr.setColor(new Color(0, 0, 0));
+
+								// fill the curve
+								gr.fill(gp);
+							}
+						}
 					}
-				});
-				final int numChild[] = new int[n];
-				for (int nc = 0; nc < numChild.length; nc++)
-					numChild[nc] = 0;
-
-				for (Vertex v : G) {
-					if (G.getDegree(v) != 1)
-						continue;
-					Vertex par = v;
-					do {
-						int numN = G.getDegree(par) - 1;
-						par = parent[par.getId()];
-						if (par == null)
-							break;
-						numChild[par.getId()] += numN + G.getDegree(par);
-					} while (par != null);
-				}
-
-				for (Vertex v : G) {
-					if (v.getId() == 0)
-						continue;
-					if (v.getColor() == 0) {
-						Vertex v1 = parent[v.getId()];
-						if (v1 == null || v1.getColor() != 0)
-							continue;
-
-						Vertex v2 = parent[v1.getId()];
-						if (v2 == null || v2.getColor() != 0)
-							continue;
-
-						// generate the curve between v1, v2 and v3
-						GraphPoint p1 = v.getLocation();
-						GraphPoint p2 = v1.getLocation();
-						GraphPoint p3 = v2.getLocation();
-
-						GraphPoint m1 = AlgorithmUtils.getMiddlePoint(p1, p2);
-						GraphPoint m2 = AlgorithmUtils.getMiddlePoint(p2, p3);
-						GraphPoint cp = p2;
-
-						// Integer w1 = numChild[v.getId()]/2;
-						Integer w1 = (Integer) v.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
-						// Integer w2 = numChild[v1.getId()]/2;
-						Integer w2 = (Integer) v1.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
-						// Integer w3 = numChild[v2.getId()]/2;
-						Integer w3 = (Integer) v2.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
-
-						int startWidth = (w1 + w2) / 2;
-						int endWidth = (w3 + w2) / 2;
-						int middleWidth = w2;
-
-						double teta1 = AlgorithmUtils.getAngle(p1, p2);
-						double teta2 = AlgorithmUtils.getAngle(p1, p3);
-						double teta3 = AlgorithmUtils.getAngle(p2, p3);
-
-						// generate boundary curves
-						java.awt.geom.QuadCurve2D c1 = new QuadCurve2D.Double(m1.x - startWidth * Math.sin(teta1),
-								m1.y + startWidth * Math.cos(teta1), cp.x - middleWidth * Math.sin(teta2),
-								cp.y + middleWidth * Math.cos(teta2), m2.x - endWidth * Math.sin(teta3),
-								m2.y + endWidth * Math.cos(teta3));
-
-						java.awt.geom.QuadCurve2D c2 = new QuadCurve2D.Double(m2.x + endWidth * Math.sin(teta3),
-								m2.y - endWidth * Math.cos(teta3), cp.x + middleWidth * Math.sin(teta2),
-								cp.y - middleWidth * Math.cos(teta2), m1.x + startWidth * Math.sin(teta1),
-								m1.y - startWidth * Math.cos(teta1));
-
-						// mix them
-						GeneralPath gp = new GeneralPath(c1);
-						gp.append(c2, true);
-						gp.closePath();
-						gr.setColor(new Color(0, 0, 0));
-
-						// fill the curve
-						gr.fill(gp);
-
-						// double c11 = m1.x - startWidth *
-						// Math.sin(teta1);
-						// double c22 = m1.y + startWidth *
-						// Math.cos(teta1);
-
-						// if(G.getInDegree(v) + G.getOutDegree(v) == 2)
-						// {
-						// gr.setColor(Color.gray);
-						// gr.fillOval((int)c11-15,(int)c22-15,30,30);
-						// }
-
-					}
-				}
-			}
+			
 		}, false /* dont repaint after */);
 	}
 }

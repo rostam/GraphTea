@@ -34,4 +34,11 @@ public class TMSettingContainer {
 	public void setK(int K) {
 		this.K= K;
 	}
+
+	@Override
+	public String toString() {
+		return "TMSettingContainer [map=" + map + ", mappingCode=" + mappingCode + ", K=" + K + "]";
+	}
+	
+	
 }
