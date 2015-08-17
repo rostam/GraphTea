@@ -300,6 +300,15 @@ public class ZagrebIndexFunctions {
         return ret;
     }
 
+    public double getSecondMixZagrebIndex(double alpha, double beta) {
+        double ret=0;
+        for(Edge e : g.getEdges()) {
+            ret+=Math.pow(g.getDegree(e.source),alpha)*Math.pow(g.getDegree(e.source),beta) +
+                 Math.pow(g.getDegree(e.source),beta)*Math.pow(g.getDegree(e.target),alpha);
+        }
+        return ret;
+    }
+
     public double getFirstPathZagrebIndex(double alpha) {
         double ret = 0;
         GraphModel g2 = LineGraph.createLineGraph(g);

@@ -572,4 +572,25 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
         this.allowLoops = allowLoops;
     }
 
+	public GraphModel getCopy() {
+		GraphModel g = new GraphModel();
+		HashMap<Integer, Integer> vTov = new HashMap<>();
+		for (Vertex v : this) {
+			Vertex w = v.getCopy();
+
+			g.addVertex(w);
+			vTov.put(v.getId(), w.getId());
+		}
+
+		for (Edge e : this.getEdges()) {
+			Vertex src = e.source, tgt = e.target;
+			Edge ee = new Edge(g.getVertex(vTov.get(src.getId())),
+					g.getVertex(vTov.get(tgt.getId())));
+			g.addEdge(ee);
+		}
+
+		g.setDirected(false);
+
+		return g;
+	}
 }

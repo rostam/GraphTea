@@ -247,7 +247,7 @@ public class GraphCommands {
     public GraphModel gcorona(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        GraphModel graphModel = (GraphModel) GraphCorona.corona(g1,g2);
+        GraphModel graphModel = (GraphModel) VertexCorona.corona(g1, g2);
         for(Vertex v : graphModel) {
             //v.getSize().multiply(1.5);
         }

@@ -23,7 +23,7 @@ import java.util.Iterator;
  * @email ma.rostami@yahoo.com
  */
 
-public class GraphCorona
+public class VertexCorona
         extends Algorithm {
     public static <VertexType extends BaseVertex
             , EdgeType extends BaseEdge<VertexType>>
@@ -63,7 +63,6 @@ public class GraphCorona
             }
 
         }
-        System.out. println("corona 4");
         g.setDirected(g1.isDirected());
 
         return g;
