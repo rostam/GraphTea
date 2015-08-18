@@ -318,6 +318,14 @@ public class ZagrebIndexFunctions {
         return ret;
     }
 
+    public double getHarmonicIndex() {
+        double ret = 0;
+        for (Edge e : g.getEdges()) {
+            ret+=2./(g.getDegree(e.source)+g.getDegree(e.target));
+        }
+        return ret;
+    }
+
 
     public double getFirstPathZagrebIndex(double alpha) {
         double ret = 0;
