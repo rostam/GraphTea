@@ -27,19 +27,17 @@ public class SumConnectivityIndex implements GraphReportExtension {
     }
 
     public Object calculate(GraphModel g) {
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ArrayList<String> out = new ArrayList<String>();
-        double ret = 0;
-        for (Edge e : g.getEdges()) {
-            ret+=1./Math.sqrt(g.getDegree(e.source)+g.getDegree(e.target));
-        }
-
-        out.add("Sum Connectivity Index : "+ ret);
+        out.add("Sum Connectivity Index : "+zif.getGeneralSumConnectivityIndex(-0.5));
         return out;
     }
 
+
+
     @Override
-	public String getCategory() {
-		// TODO Auto-generated method stub
-		return "Topological Indices";
-	}
+    public String getCategory() {
+        // TODO Auto-generated method stub
+        return "Topological Indices";
+    }
 }

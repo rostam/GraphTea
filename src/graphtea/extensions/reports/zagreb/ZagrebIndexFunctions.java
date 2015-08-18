@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class ZagrebIndexFunctions {
     GraphModel g;
-    
+
     public ZagrebIndexFunctions(GraphModel g) {
         this.g = g;
     }
@@ -303,11 +303,21 @@ public class ZagrebIndexFunctions {
     public double getSecondMixZagrebIndex(double alpha, double beta) {
         double ret=0;
         for(Edge e : g.getEdges()) {
-            ret+=Math.pow(g.getDegree(e.source),alpha)*Math.pow(g.getDegree(e.source),beta) +
-                 Math.pow(g.getDegree(e.source),beta)*Math.pow(g.getDegree(e.target),alpha);
+            ret+=Math.pow(g.getDegree(e.source),alpha)*Math.pow(g.getDegree(e.target),beta) +
+                    Math.pow(g.getDegree(e.source),beta)*Math.pow(g.getDegree(e.target),alpha);
         }
         return ret;
     }
+
+
+    public double getGeneralSumConnectivityIndex(double alpha) {
+        double ret = 0;
+        for (Edge e : g.getEdges()) {
+            ret+=Math.pow(g.getDegree(e.source)+g.getDegree(e.target),alpha);
+        }
+        return ret;
+    }
+
 
     public double getFirstPathZagrebIndex(double alpha) {
         double ret = 0;

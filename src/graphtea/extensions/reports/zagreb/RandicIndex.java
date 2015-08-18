@@ -28,20 +28,18 @@ public class RandicIndex implements GraphReportExtension {
         return "Randic Index";
     }
 
-    public Object calculate(GraphModel g) {
-        ArrayList<String> out = new ArrayList<String>();
-        double ret = 0;
-        for (Edge e : g.getEdges()) {
-            ret+=1./Math.sqrt(g.getDegree(e.source)*g.getDegree(e.target));
-        }
 
-        out.add("Randic Index : "+ ret);
+    public Object calculate(GraphModel g) {
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
+        ArrayList<String> out = new ArrayList<String>();
+        out.add("Randic Index : "+zif.getSecondZagreb(-0.5));
         return out;
     }
 
+
     @Override
-	public String getCategory() {
-		// TODO Auto-generated method stub
-		return "Topological Indices";
-	}
+    public String getCategory() {
+        // TODO Auto-generated method stub
+        return "Topological Indices";
+    }
 }
