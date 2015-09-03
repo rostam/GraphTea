@@ -10,7 +10,6 @@ import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseVertex;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayDeque;

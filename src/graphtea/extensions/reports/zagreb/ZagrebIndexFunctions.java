@@ -1,13 +1,11 @@
 package graphtea.extensions.reports.zagreb;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
 import graphtea.extensions.actions.LineGraph;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.algorithms.util.LibraryUtils;
 
-import javax.sound.sampled.Line;
 import java.util.ArrayList;
 
 /**

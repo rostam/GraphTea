@@ -6,7 +6,6 @@
 package graphtea.plugins.connector;
 
 
-
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.attribute.AttributeSet;
 import graphtea.platform.attribute.AttributeSetImpl;
@@ -14,7 +13,6 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.commandline.Shell;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.io.File;

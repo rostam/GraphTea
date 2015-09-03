@@ -1,8 +1,6 @@
 package graphtea.extensions.reports.spectralreports.maxflowmincut;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.ui.GTabbedGraphPane;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import javax.swing.*;

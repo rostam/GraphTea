@@ -6,7 +6,6 @@
 package graphtea.samples.extensions;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 public class NumOfVerticesReport implements GraphReportExtension {

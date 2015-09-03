@@ -5,7 +5,6 @@
 
 package graphtea.extensions.actions;
 
-import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;

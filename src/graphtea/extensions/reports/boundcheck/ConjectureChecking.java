@@ -8,14 +8,8 @@ package graphtea.extensions.reports.boundcheck;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
-import graphtea.plugins.main.saveload.matrix.LoadMatrix;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionAction;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Vector;
 
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
     @Parameter(name = "Bound Check", description = "")

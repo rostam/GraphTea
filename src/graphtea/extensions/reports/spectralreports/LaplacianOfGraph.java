@@ -3,7 +3,6 @@ package graphtea.extensions.reports.spectralreports;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.graph.graph.GraphModel;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import javax.swing.*;

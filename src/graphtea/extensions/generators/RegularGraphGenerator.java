@@ -55,7 +55,7 @@ public class RegularGraphGenerator implements GraphGeneratorExtension, Parametri
     }
 
     public Edge[] getEdges() {
-        Edge[] ret = new Edge[n * deg / 2];
+        Edge[] ret = new Edge[(n*deg) / 2];
         int t = 0;
         if(deg%2 == 0) {
             for (int i = 0; i < n; i++) {
@@ -67,16 +67,18 @@ public class RegularGraphGenerator implements GraphGeneratorExtension, Parametri
             }
         } else {
             for (int i = 0; i < n; i=i+2) {
-                for (int j = i+1; j < i + ((deg - 1) / 2) + 1; j++) {
+                for (int j = i + 1; j < i + ((deg - 1) / 2) + 1; j++) {
                     Edge e = new Edge(v[i], v[j % n]);
                     ret[t++] = e;
                 }
 
-                for (int j = i-1; j > i - ((deg - 1) / 2) - 1 ; j--) {
-                    Edge e = new Edge(v[i], v[(j+n) % n]);
+                for (int j = i - 1; j > i - ((deg - 1) / 2) - 1; j--) {
+                    Edge e = new Edge(v[i], v[(j + n) % n]);
                     ret[t++] = e;
                 }
+            }
 
+            for (int i = 0; i < n/2; i++) {
                 ret[t++] = new Edge(v[i], v[(i+(n/2))%n]);
             }
         }

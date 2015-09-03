@@ -7,7 +7,6 @@ package graphtea.extensions.reports.basicreports;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 

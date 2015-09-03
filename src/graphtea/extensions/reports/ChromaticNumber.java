@@ -6,7 +6,6 @@
 package graphtea.extensions.reports;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**

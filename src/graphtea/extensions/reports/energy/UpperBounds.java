@@ -6,13 +6,11 @@ package graphtea.extensions.reports.energy;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
-import graphtea.extensions.reports.spectralreports.EigenValues;
 import graphtea.extensions.reports.zagreb.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 

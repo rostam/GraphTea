@@ -11,11 +11,7 @@ import graphtea.library.algorithms.Algorithm;
 import graphtea.library.event.GraphRequest;
 import graphtea.library.event.VertexRequest;
 import graphtea.platform.core.BlackBoard;
-import graphtea.plugins.algorithmanimator.core.AlgorithmAnimator;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import javax.swing.*;
 
 public class MaximumFlow extends Algorithm implements GraphReportExtension{
 

@@ -15,7 +15,6 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-import javax.swing.text.Position;
 import java.awt.*;
 
 /**

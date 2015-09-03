@@ -12,8 +12,6 @@ import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;
 import graphtea.library.util.Pair;
 
-import java.awt.*;
-
 
 /**
  * @author Mohammad Ali Rostami

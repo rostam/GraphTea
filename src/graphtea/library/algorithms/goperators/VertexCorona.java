@@ -12,7 +12,6 @@ import graphtea.library.BaseEdge;
 import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;
 import graphtea.library.algorithms.Algorithm;
-import graphtea.library.exceptions.InvalidVertexException;
 
 import java.util.HashMap;
 import java.util.HashSet;

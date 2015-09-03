@@ -6,7 +6,6 @@ import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 
 import java.util.HashMap;
-import java.util.Vector;
 
 /**
  * Created by rostam on 17.08.15.

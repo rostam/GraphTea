@@ -5,8 +5,6 @@
 package graphtea.plugins.reports;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.parameter.Parameter;
-import graphtea.plugins.main.GraphData;
 
 /**
  * @author azin azadi

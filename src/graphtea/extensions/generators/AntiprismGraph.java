@@ -15,7 +15,6 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 import java.awt.*;
-import java.util.Vector;
 
 @CommandAttitude(name = "generate_helmn", abbreviation = "_g_prism", description = "generates a Prism graph of order n")
 public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {

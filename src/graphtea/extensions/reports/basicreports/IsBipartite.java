@@ -2,7 +2,6 @@ package graphtea.extensions.reports.basicreports;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.library.algorithms.util.BipartiteChecker;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 

@@ -10,7 +10,6 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.math.BigInteger;

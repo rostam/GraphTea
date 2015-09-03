@@ -4,10 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.reports.extension;
 
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
 import graphtea.platform.core.BlackBoard;
-import graphtea.platform.parameter.Parameter;
 import graphtea.plugins.main.GraphData;
 import graphtea.ui.UIUtils;
 import graphtea.ui.components.gpropertyeditor.GCellRenderer;
@@ -20,8 +17,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Arrays;
-import java.util.Vector;
 
 /**
  * @author M. Ali Rostami - Conjecture check

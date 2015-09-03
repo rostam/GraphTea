@@ -6,7 +6,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
-import graphtea.plugins.main.saveload.matrix.LoadMatrix;
 import graphtea.plugins.main.saveload.matrix.SaveMatrix;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionAction;
@@ -17,7 +16,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Vector;
 
 /**
  * Created by rostam on 21.07.15.

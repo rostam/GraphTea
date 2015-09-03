@@ -12,11 +12,9 @@ import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @author M. Ali Rostami
