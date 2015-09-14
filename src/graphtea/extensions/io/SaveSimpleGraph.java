@@ -9,9 +9,9 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
+import graphtea.platform.StaticUtils;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;
-import graphtea.platform.StaticUtils;
 
 import java.awt.*;
 import java.io.*;
@@ -54,14 +54,11 @@ public class SaveSimpleGraph implements GraphWriterExtension {
             for (Vertex v : graph) {
                 o.println("vertex " + v.getId() + ":");
                 o.println("label " + v.getLabel());
-                o.println("size " + v.getSize().getX()
-                         + " " + v.getSize().getY());
                 GraphPoint p = v.getLocation();
                 o.println("location " + p.getX() + "," + p.getY());
                 o.println("color " + v.getColor());
                 o.println("labellocation " + v.getLabelLocation().getX()
                         +  " "  + v.getLabelLocation().getY() );
-
             }
 
             //output edges

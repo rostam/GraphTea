@@ -102,10 +102,7 @@ public class LoadSimpleGraph implements GraphReaderExtension {
                     final GraphPoint gp = new GraphPoint(0, 0);
                     sc.next();
                     curv.setLabel(sc.next());
-                    String tmp = sc.next();
-                    if(tmp.equals("size"))
-                    {curv.setSize((GraphPoint) StaticUtils.fromString(GraphPoint.class.getName(), sc.nextLine()));
-                    sc.next();}
+                    sc.next();
                     curv.setLocation((GraphPoint) StaticUtils.fromString(GraphPoint.class.getName(), sc.nextLine()));
                     sc.next();
                     curv.setColor(parseInt(sc.next()));
