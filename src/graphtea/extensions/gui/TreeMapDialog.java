@@ -1,16 +1,25 @@
 package graphtea.extensions.gui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.event.ChangeListener;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  * This dialog enables the choose of a country to load the specific locations of
@@ -28,8 +37,14 @@ public class TreeMapDialog extends JDialog {
 	private TMSettingContainer setting = new TMSettingContainer();
 	private JSlider slider;
 	private JLabel lblNumberOfSubtrees;
+	JCheckBox checkBox;
+	JCheckBox chckbxUseLogarithm;
+	JSpinner spinner;
+	JButton colorButton;
 
+	
 	public TreeMapDialog() {
+		
 		setDefaultFrameSettings();
 		TreeMapListener treeActionListener = new TreeMapListener(this);
 		generateComboBox(treeActionListener);
@@ -42,11 +57,11 @@ public class TreeMapDialog extends JDialog {
 
 		JLabel lblNoteNewCountries = new JLabel(
 				"Note: new countries can be added in './maps'");
-		lblNoteNewCountries.setBounds(18, 113, 366, 14);
+		lblNoteNewCountries.setBounds(18, 72, 366, 14);
 		getContentPane().add(lblNoteNewCountries);
 		
-		lblNumberOfSubtrees = new JLabel("Number of Subtrees: k=2");
-		lblNumberOfSubtrees.setBounds(18, 72, 168, 14);
+		lblNumberOfSubtrees = new JLabel("number of subtrees: k=2");
+		lblNumberOfSubtrees.setBounds(18, 97, 168, 14);
 		getContentPane().add(lblNumberOfSubtrees);
 		
 		slider = new JSlider();
@@ -59,8 +74,42 @@ public class TreeMapDialog extends JDialog {
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
 		slider.setValue(2);
-		slider.setBounds(196, 72, 188, 30);
+		slider.setBounds(164, 97, 188, 30);
 		getContentPane().add(slider);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Norm options", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(22, 122, 205, 107);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		checkBox = new JCheckBox("convert in percent");
+		checkBox.setActionCommand("percetCheckBox");
+		checkBox.setBounds(10, 21, 149, 23);
+		checkBox.addActionListener(treeActionListener);
+		panel.add(checkBox);
+		
+		chckbxUseLogarithm = new JCheckBox("use logarithm");
+		chckbxUseLogarithm.setActionCommand("logCheckBox");
+		chckbxUseLogarithm.addActionListener(treeActionListener);
+		chckbxUseLogarithm.setBounds(10, 47, 149, 23);
+		chckbxUseLogarithm.setHorizontalAlignment(SwingConstants.LEFT);
+		panel.add(chckbxUseLogarithm);
+		
+		JLabel label = new JLabel("Normfactor:");
+		label.setBounds(10, 80, 149, 14);
+		panel.add(label);
+		
+		spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(10.0, 0.001, 100.0, 0.001));
+		spinner.setBounds(136, 77, 59, 20);
+		panel.add(spinner);
+		
+		colorButton = new JButton("Color");
+		colorButton.addActionListener(treeActionListener);
+		colorButton.setActionCommand("Color");
+		colorButton.setBounds(237, 131, 115, 23);
+		getContentPane().add(colorButton);
 		
 		
 
@@ -70,7 +119,7 @@ public class TreeMapDialog extends JDialog {
 	private void addJButtons(TreeMapListener treeActionListener) {
 		JButton btn = new JButton("Go!");
 
-		btn.setBounds(281, 138, 100, 25);
+		btn.setBounds(237, 165, 115, 25);
 		btn.setActionCommand("GoButton");
 
 		btn.addActionListener(treeActionListener);
@@ -78,7 +127,7 @@ public class TreeMapDialog extends JDialog {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setActionCommand("Cancel");
 		btn.addActionListener(treeActionListener);
-		btnCancel.setBounds(171, 138, 100, 25);
+		btnCancel.setBounds(237, 201, 115, 25);
 		getContentPane().add(btnCancel);
 	}
 
@@ -91,7 +140,7 @@ public class TreeMapDialog extends JDialog {
 			
 			cbx.addItem(string);
 		}
-		cbx.setBounds(18, 36, 366, 25);
+		cbx.setBounds(18, 36, 334, 25);
 		cbx.setActionCommand("MapComboBox");
 		cbx.addActionListener(treeActionListener);
 		getContentPane().add(cbx);
@@ -101,7 +150,7 @@ public class TreeMapDialog extends JDialog {
 
 	private void setDefaultFrameSettings() {
 		setTitle("\"Tree to Map\"-Mapper");
-		setBounds(100, 100, 400, 202);
+		setBounds(100, 100, 368, 266);
 		setModal(true);
 		getContentPane().setLayout(null);
 		setResizable(false);
@@ -144,12 +193,23 @@ class TreeMapListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		TMSettingContainer sc = source.getSetting();
 		switch (e.getActionCommand()) {
+		case "Color":
+			Color selectedColor = JColorChooser.showDialog(source, "Pick a Color"
+	                , source.colorButton.getForeground());
+			source.colorButton.setForeground(selectedColor);
 		case "MapComboBox":
 			// Checked, but java... ._.
 			sc.setMap((String) ((JComboBox<String>) e.getSource())
 					.getSelectedItem());
 			break;
+		case "percetCheckBox":
+		case "logCheckBox":
+				int norm = (source.checkBox.isSelected()?1:0) + (source.chckbxUseLogarithm.isSelected()?2:0);
+				sc.setNorm(norm);
+			break;
 		case "GoButton":
+			sc.setFactor((double) source.spinner.getValue()); 
+			sc.setColor(source.colorButton.getForeground());
 			source.setVisible(false);
 			break;
 		case "Cancel":
@@ -161,5 +221,7 @@ class TreeMapListener implements ActionListener {
 		}
 		source.setSetting(sc);
 	}
+	
+
 
 }

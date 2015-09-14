@@ -1353,9 +1353,43 @@
           <entry key="k" value="2"/>
         </map>
       </node>
+      <node name="graphtea.extensions.actions.CartesianProduct">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.CartesianProduct"/>
+          <entry key="g0" value="G0"/>
+          <entry key="g1" value="G1"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.actions.ComplementGraph">
         <map>
           <entry key="object" value="graphtea.extensions.actions.ComplementGraph"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.Composition">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.Composition"/>
+          <entry key="g0" value="G0"/>
+          <entry key="g1" value="G1"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.CoronaProduct">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.CoronaProduct"/>
+          <entry key="fG" value="G0"/>
+          <entry key="sG" value="G1"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.Disjunction">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.Disjunction"/>
+          <entry key="g0" value="G0"/>
+          <entry key="g1" value="G1"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.EdgeSemitotalGraph">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.EdgeSemitotalGraph"/>
+          <entry key="k" value="2"/>
         </map>
       </node>
       <node name="graphtea.extensions.actions.ExtractSubGraph">
@@ -1384,6 +1418,12 @@
           <entry key="object" value="graphtea.extensions.actions.LineGraph"/>
         </map>
       </node>
+      <node name="graphtea.extensions.actions.ParalineGraph">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.ParalineGraph"/>
+          <entry key="k" value="2"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.actions.SearchInGraph">
         <map>
           <entry key="searchInSubgraph" value="false"/>
@@ -1391,6 +1431,33 @@
           <entry key="object" value="graphtea.extensions.actions.SearchInGraph"/>
           <entry key="searchIn" value="java.lang.String #$%# edges #$%# java.lang.String #$%# weights #$%# java.lang.String #$%# vertices #$%# java.lang.String #$%# neighbers #$%# java.lang.String #$%# neighbers"/>
           <entry key="selectedVertex" value=""/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.Sum">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.Sum"/>
+          <entry key="fG" value="G0"/>
+          <entry key="sG" value="G1"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.SymDiff">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.SymDiff"/>
+          <entry key="g0" value="G0"/>
+          <entry key="g1" value="G1"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.TensorProduct">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.TensorProduct"/>
+          <entry key="g0" value="G0"/>
+          <entry key="g1" value="G1"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.TotalGraph">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.TotalGraph"/>
+          <entry key="k" value="2"/>
         </map>
       </node>
       <node name="graphtea.extensions.actions.Tree">
@@ -1401,6 +1468,19 @@
       <node name="graphtea.extensions.actions.TreeMap">
         <map>
           <entry key="object" value="graphtea.extensions.actions.TreeMap"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.Union">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.Union"/>
+          <entry key="fG" value="G0"/>
+          <entry key="sG" value="G1"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.actions.VertexSemitotalGraph">
+        <map>
+          <entry key="object" value="graphtea.extensions.actions.VertexSemitotalGraph"/>
+          <entry key="k" value="2"/>
         </map>
       </node>
       <node name="graphtea.extensions.actions.WineGraph">
@@ -1491,6 +1571,12 @@
           <entry key="object" value="graphtea.extensions.generators.AntiprismGenerator"/>
         </map>
       </node>
+      <node name="graphtea.extensions.generators.AntiprismGraph">
+        <map>
+          <entry key="object" value="graphtea.extensions.generators.AntiprismGraph"/>
+          <entry key="n" value="4"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.generators.BananaTreeGenerator">
         <map>
           <entry key="k" value="4"/>
@@ -1518,10 +1604,22 @@
           <entry key="object" value="graphtea.extensions.generators.CocktailPartyGenerator"/>
         </map>
       </node>
+      <node name="graphtea.extensions.generators.CocktailPartyGraph">
+        <map>
+          <entry key="object" value="graphtea.extensions.generators.CocktailPartyGraph"/>
+          <entry key="n" value="3"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.generators.CompleteGraphGenerator">
         <map>
           <entry key="n" value="10"/>
           <entry key="object" value="graphtea.extensions.generators.CompleteGraphGenerator"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.generators.CrossedPrismGraph">
+        <map>
+          <entry key="object" value="graphtea.extensions.generators.CrossedPrismGraph"/>
+          <entry key="n" value="4"/>
         </map>
       </node>
       <node name="graphtea.extensions.generators.CrownGenerator">
@@ -1540,6 +1638,12 @@
         <map>
           <entry key="n" value="10"/>
           <entry key="object" value="graphtea.extensions.generators.FaceGenerator"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.generators.FlowerGraph">
+        <map>
+          <entry key="object" value="graphtea.extensions.generators.FlowerGraph"/>
+          <entry key="n" value="3"/>
         </map>
       </node>
       <node name="graphtea.extensions.generators.GearGenerator">
@@ -1838,9 +1942,30 @@
           <entry key="object" value="graphtea.extensions.reports.basicreports.test"/>
         </map>
       </node>
+      <node name="graphtea.extensions.reports.boundcheck.ConjectureChecking">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.boundcheck.ConjectureChecking"/>
+          <entry key="conjCheck" value="false"/>
+          <entry key="connected" value="true"/>
+          <entry key="Size" value="9"/>
+          <entry key="upto" value="false"/>
+          <entry key="Integral" value="false"/>
+          <entry key="LaplacianIntegral" value="false"/>
+          <entry key="QIntegral" value="false"/>
+          <entry key="upperBound" value="true"/>
+          <entry key="strictUpperBound" value="false"/>
+          <entry key="lowerBound" value="false"/>
+          <entry key="strictLowerBound" value="false"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.reports.clique.MaxCliqueExtension">
         <map>
           <entry key="object" value="graphtea.extensions.reports.clique.MaxCliqueExtension"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.reports.connectivity.KConnected">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.connectivity.KConnected"/>
         </map>
       </node>
       <node name="graphtea.extensions.reports.energy.NewLowerBounds">
@@ -1929,6 +2054,26 @@
           <entry key="object" value="graphtea.extensions.reports.zagreb.BoundConjecture"/>
         </map>
       </node>
+      <node name="graphtea.extensions.reports.zagreb.EM1LowerBound">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.zagreb.EM1LowerBound"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.reports.zagreb.EM1UpperBound">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.zagreb.EM1UpperBound"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.reports.zagreb.EM2LowerBound">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.zagreb.EM2LowerBound"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.reports.zagreb.EM2UpperBound">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.zagreb.EM2UpperBound"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.reports.zagreb.EdgeDegree">
         <map>
           <entry key="object" value="graphtea.extensions.reports.zagreb.EdgeDegree"/>
@@ -1953,6 +2098,16 @@
         <map>
           <entry key="object" value="graphtea.extensions.reports.zagreb.GeneralConjecture"/>
           <entry key="alpha" value="0.0"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.reports.zagreb.HarmonicIndex">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.zagreb.HarmonicIndex"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.reports.zagreb.HyperZagrebIndex">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.zagreb.HyperZagrebIndex"/>
         </map>
       </node>
       <node name="graphtea.extensions.reports.zagreb.IncrementalVariableZagrebIndex">
@@ -2030,6 +2185,11 @@
           <entry key="object" value="graphtea.extensions.reports.zagreb.M3CompIndCoindConjecture"/>
         </map>
       </node>
+      <node name="graphtea.extensions.reports.zagreb.M3Final">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.zagreb.M3Final"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.reports.zagreb.M3IndCoindConjecture">
         <map>
           <entry key="object" value="graphtea.extensions.reports.zagreb.M3IndCoindConjecture"/>
@@ -2060,9 +2220,32 @@
           <entry key="object" value="graphtea.extensions.reports.zagreb.OurNewM2Lower"/>
         </map>
       </node>
+      <node name="graphtea.extensions.reports.zagreb.PathZagrebIndex">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.zagreb.PathZagrebIndex"/>
+          <entry key="alpha" value="1.0"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.reports.zagreb.RandicIndex">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.zagreb.RandicIndex"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.reports.zagreb.SecondMixZagrebIndex">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.zagreb.SecondMixZagrebIndex"/>
+          <entry key="alpha" value="1.0"/>
+          <entry key="beta" value="1.0"/>
+        </map>
+      </node>
       <node name="graphtea.extensions.reports.zagreb.ShuConjecture">
         <map>
           <entry key="object" value="graphtea.extensions.reports.zagreb.ShuConjecture"/>
+        </map>
+      </node>
+      <node name="graphtea.extensions.reports.zagreb.SumConnectivityIndex">
+        <map>
+          <entry key="object" value="graphtea.extensions.reports.zagreb.SumConnectivityIndex"/>
         </map>
       </node>
       <node name="graphtea.extensions.reports.zagreb.VariableZagrebIndex">
@@ -2700,7 +2883,7 @@
       <node name="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler">
         <map>
           <entry key="object" value="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler"/>
-          <entry key="defaultFile" value="C:\Users\Fesi\Downloads\100.simplegraph"/>
+          <entry key="defaultFile" value="C:\Users\Sebastian\Desktop\dxy.png"/>
         </map>
       </node>
       <node name="graphtea.plugins.main.saveload.core.extension.GraphReaderExtensionAction">

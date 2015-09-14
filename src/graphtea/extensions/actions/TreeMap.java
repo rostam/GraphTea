@@ -35,6 +35,14 @@ public class TreeMap implements GraphActionExtension {
 	static final String CURVE_WIDTH = "Curve Width";
 	private Iterator<Edge> it;
 
+	static final int STANDARDIZE_MODE_NONE = 0;
+	static final int STANDARDIZE_MODE_LINEAR = 1;
+	static final int STANDARDIZE_MODE_LOG = 2;
+	static final int STANDARDIZE_MODE_BOTH = 3;
+
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	@Override
 	public String getName() {
 		return "TreeMap";
@@ -54,6 +62,7 @@ public class TreeMap implements GraphActionExtension {
 			return; // TreeMapDialog wurde abgebrochen; Action wird abgebrochen
 		// Lesen des Graphen aus XML
 		MapFileReader mapFileReader = new MapFileReader("./maps/" + tmSettingContainer.getMap() + "/map.xml");
+		
 		GraphModel newGraph = mapFileReader.getGraph();
 
 		Edge[] edges = new Edge[newGraph.getEdgesCount()];
@@ -88,25 +97,40 @@ public class TreeMap implements GraphActionExtension {
 
 		newGraph = groupHelpVertexes(newGraph, tmSettingContainer.getK());
 
-		normalise(newGraph);
+		standardize(newGraph, tmSettingContainer.getNorm(), tmSettingContainer.getFactor());
 		// Zeichnen des Graphen
 		graphData.core.showGraph(newGraph);
-		TreeMapPainter p = new TreeMapPainter(graphData);
+		TreeMapPainter p = new TreeMapPainter(graphData,tmSettingContainer.getColor());
 		AbstractGraphRenderer gr = AbstractGraphRenderer.getCurrentGraphRenderer(graphData.getBlackboard());
 		// Setzen des Hintergrundbilds
-		File file = new File("./maps/" + tmSettingContainer.getMap() + "/background.png");
+		File file = new File("./maps/" + tmSettingContainer.getMap() + "/"+mapFileReader.getBackground());
 		newGraph.setBackgroundImageFile(file);
 
 		for (Edge e : newGraph.edges()) {
-			e.setColor(Color.green.getRGB());
+			e.setColor(Color.WHITE.getRGB());
 		}
 		gr.addPostPaintHandler(p);
 		gr.repaint();
 
 	}
 
-	private void normalise(GraphModel newGraph) {
-		//Veraendere die Gewichte so, dass sie schoen anzeigbar sind
+	private void standardize(GraphModel newGraph, int mode, double skalar) {
+		int max = 1;
+		if (mode == STANDARDIZE_MODE_LOG | mode == STANDARDIZE_MODE_BOTH)
+			for (Edge e : newGraph.getEdges())
+				e.setWeight((int) log2(e.getWeight()));
+
+		if (mode == STANDARDIZE_MODE_LINEAR | mode == STANDARDIZE_MODE_BOTH)
+			for (Edge e : newGraph.getEdges())
+				if (e.getWeight() > max)
+					max = e.getWeight();
+
+		for (Edge e : newGraph.getEdges()) 
+			e.setWeight((int) ((e.getWeight() * skalar) / max));
+	}
+
+	public double log2(double d) {
+		return Math.log(d) / Math.log(2);
 	}
 
 	private GraphModel groupHelpVertexes(GraphModel newGraph, int K) {
@@ -211,8 +235,10 @@ class TreeMapPainter implements PaintHandler {
 
 	private GraphData gd;
 	private GraphModel G;
+	private Color color;
 
-	public TreeMapPainter(GraphData gd) {
+	public TreeMapPainter(GraphData gd,Color c) {
+		this.color = c;
 		this.gd = gd;
 		this.G = gd.getGraph();
 
@@ -227,81 +253,76 @@ class TreeMapPainter implements PaintHandler {
 		if (n == 0)
 			return;
 
-	
+		AbstractGraphRenderer.getCurrentGraphRenderer(gd.getBlackboard()).ignoreRepaints(new Runnable() {
+			@SuppressWarnings({ "unchecked" })
+			public void run() {
 
-				AbstractGraphRenderer.getCurrentGraphRenderer(gd.getBlackboard()).ignoreRepaints(new Runnable() {
-					@SuppressWarnings({ "unchecked" })
-					public void run() {
+				// boolean[] marks = new boolean[n];
+				Vertex V[] = G.getVertexArray();
+				final Vertex parent[] = new Vertex[n];
 
-						// boolean[] marks = new boolean[n];
-						Vertex V[] = G.getVertexArray();
-						final Vertex parent[] = new Vertex[n];
-
-						// consider the hole structure as a tree
-						AlgorithmUtils.BFSrun(G, V[0], new AlgorithmUtils.BFSListener() {
-							@Override
-							public void visit(BaseVertex v, BaseVertex p) {
-								parent[v.getId()] = (Vertex) p;
-							}
-						});
-
-
-						for (Vertex v : G) {
-							if (v.getId() == 0)
-								continue;
-							if (v.getColor() == 0) {
-								Vertex v1 = parent[v.getId()];
-								if (v1 == null || v1.getColor() != 0)
-									continue;
-
-								Vertex v2 = parent[v1.getId()];
-								if (v2 == null || v2.getColor() != 0)
-									continue;
-
-								// generate the curve between v1, v2 and v3
-								GraphPoint p1 = v.getLocation();
-								GraphPoint p2 = v1.getLocation();
-								GraphPoint p3 = v2.getLocation();
-
-								// Integer w1 = numChild[v.getId()]/2;
-								Integer w1 = G.getEdge(v, v1).getWeight();// (Integer)
-																					// v.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
-
-								// Integer w2 = numChild[v1.getId()]/2;
-
-								Integer w3 = G.getEdge(v1, v2).getWeight();// (Integer)
-																					// v2.getUserDefinedAttribute(WineGraph.CURVE_WIDTH);
-
-								Integer w2 = (w1 + w3) / 2;
-
-								int startWidth = w1;
-								int endWidth = w3 ;
-								int middleWidth = w2;
-
-								double teta1 = AlgorithmUtils.getAngle(p1, p2);
-								double teta2 = AlgorithmUtils.getAngle(p1, p3);
-								double teta3 = AlgorithmUtils.getAngle(p2, p3);
-
-								java.awt.geom.QuadCurve2D c1 = new QuadCurve2D.Double(
-										p1.x - startWidth * Math.sin(teta1), p1.y + startWidth * Math.cos(teta1),
-										p2.x - middleWidth * Math.sin(teta2), p2.y + middleWidth * Math.cos(teta2),
-										p3.x - endWidth * Math.sin(teta3), p3.y + endWidth * Math.cos(teta3));
-
-								java.awt.geom.QuadCurve2D c2 = new QuadCurve2D.Double(p3.x + endWidth * Math.sin(teta3),
-										p3.y - endWidth * Math.cos(teta3), p2.x + middleWidth * Math.sin(teta2),
-										p2.y - middleWidth * Math.cos(teta2), p1.x + startWidth * Math.sin(teta1),
-										p1.y - startWidth * Math.cos(teta1));
-								GeneralPath gp = new GeneralPath(c1);
-								gp.append(c2, true);
-								gp.closePath();
-								gr.setColor(new Color(0, 0, 0));
-
-								// fill the curve
-								gr.fill(gp);
-							}
-						}
+				// consider the hole structure as a tree
+				AlgorithmUtils.BFSrun(G, V[0], new AlgorithmUtils.BFSListener() {
+					@Override
+					public void visit(BaseVertex v, BaseVertex p) {
+						parent[v.getId()] = (Vertex) p;
 					}
-			
+				});
+
+				for (Vertex v : G) {
+					if (v.getId() == 0)
+						continue;
+					if (v.getColor() == 0) {
+						Vertex v1 = parent[v.getId()];
+						if (v1 == null || v1.getColor() != 0)
+							continue;
+
+						Vertex v2 = parent[v1.getId()];
+						if (v2 == null || v2.getColor() != 0)
+							continue;
+
+						// generate the curve between v1, v2 and v3
+						GraphPoint p1 = GraphPoint.mul(v.getLocation(),G.getZoomFactor());
+						GraphPoint p2 = GraphPoint.mul(v1.getLocation(),G.getZoomFactor());
+						GraphPoint p3 = GraphPoint.mul(v2.getLocation(),G.getZoomFactor());
+
+						Integer w1 = G.getEdge(v, v1).getWeight();// (Integer)
+						Integer w2 = G.getEdge(v1, v2).getWeight();// (Integer)
+						Integer w3 = 1;
+						
+						int startWidth = w1;
+						int endWidth = w3;
+						int middleWidth = w2;
+						if(!v.equals(G.getVertex(0))){
+							 startWidth = w3;
+							 endWidth = w1;
+							 middleWidth = w2;
+								
+						}
+						double teta1 = AlgorithmUtils.getAngle(p1, p2);
+						double teta2 = AlgorithmUtils.getAngle(p1, p3);
+						double teta3 = AlgorithmUtils.getAngle(p2, p3);
+
+						java.awt.geom.QuadCurve2D c1 = new QuadCurve2D.Double(p1.x - startWidth * Math.sin(teta1),
+								p1.y + startWidth * Math.cos(teta1), p2.x - middleWidth * Math.sin(teta2),
+								p2.y + middleWidth * Math.cos(teta2), p3.x - endWidth * Math.sin(teta3),
+								p3.y + endWidth * Math.cos(teta3));
+
+						java.awt.geom.QuadCurve2D c2 = new QuadCurve2D.Double(p3.x + endWidth * Math.sin(teta3),
+								p3.y - endWidth * Math.cos(teta3), p2.x + middleWidth * Math.sin(teta2),
+								p2.y - middleWidth * Math.cos(teta2), p1.x + startWidth * Math.sin(teta1),
+								p1.y - startWidth * Math.cos(teta1));
+						GeneralPath gp = new GeneralPath(c1);
+						gp.append(c2, true);
+						gp.closePath();
+						gr.setColor(color);
+
+						// fill the curve
+						gr.fill(gp);
+					}
+				}
+			}
+
 		}, false /* dont repaint after */);
 	}
 }

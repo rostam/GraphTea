@@ -29,13 +29,16 @@ import java.io.IOException;
 public class MapFileReader {
 
 	private GraphModel graph;
+	private String background;
 
 	public MapFileReader(String path){
 		 try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			    DocumentBuilder builder = factory.newDocumentBuilder();
 			    Document document = builder.parse( new File(path.replace(".data", ".xml")) );
-			    NodeList nList = document.getElementsByTagName("vertex");
+			    NodeList nList = document.getElementsByTagName("map");
+			    background =  ((Element)nList.item(0)).getElementsByTagName("File").item(0).getTextContent();
+			    nList = document.getElementsByTagName("vertex");
 			    GraphModel g2 = new GraphModel(false);
 			    g2.setAllowLoops(true);
 			    Vertex root = new Vertex();
@@ -87,6 +90,11 @@ public class MapFileReader {
 
 	public void setGraph(GraphModel graph) {
 		this.graph = graph;
+	}
+
+	public String getBackground() {
+		// TODO Auto-generated method stub
+		return background;
 	}
 
 	
