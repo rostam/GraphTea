@@ -1,0 +1,32 @@
+graph:
+undirected
+label G0
+font Arial 1 24
+begin vertices:
+vertex 0:
+label Berlin
+size 15.0 15.0
+location 646.0,169.0
+color 0
+labellocation 0.0 4.0
+vertex 1:
+label Thueringen
+size 15.0 15.0
+location 867.0,237.0
+color 0
+labellocation 0.0 4.0
+vertex 2:
+label Sachsen
+size 15.0 15.0
+location 638.0,282.0
+color 0
+labellocation 0.0 4.0
+begin edges
+1 -> 0
+label 10
+color 0
+weight 1
+0 -> 2
+label 02
+color 0
+weight 1
