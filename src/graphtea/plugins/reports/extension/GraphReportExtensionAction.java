@@ -34,6 +34,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 	public static boolean lowerBound = true;
 	public static boolean strictLowerBound = true;
 	public static boolean strictUpperBound = true;
+	public static boolean iterative = false;
 
 	public static String currentType = "";
 
@@ -62,12 +63,22 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 			public void run() {
                 Object result;
 				if(activeConjCheck && !mr.getName().equals("Bound Check")) {
-					CheckForAll cfa = new CheckForAll(mr);
-					if(GraphReportExtensionAction.currentType!="") {
-						result = cfa.forall();
+					if(!iterative) {
+						CheckForAll cfa = new CheckForAll(mr);
+						if (GraphReportExtensionAction.currentType != "") {
+							result = cfa.forall();
+						} else {
+							result = cfa.forAllUnfiltered();
+						}
 					} else {
-						result = cfa.forAllUnfiltered();
+						CheckForAll cfa = new CheckForAll(mr);
+						if (GraphReportExtensionAction.currentType != "") {
+							result = cfa.forallIterative();
+						} else {
+							result = cfa.forAllUnfiltered();
+						}
 					}
+
                 } else {
                     result = mr.calculate(new GraphData(blackboard).getGraph());
                 }

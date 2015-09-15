@@ -34,6 +34,9 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public boolean lowerBound = false;
     @Parameter(name="Stric Lower Bound", description = "")
     public boolean strictLowerBound = false;
+    @Parameter(name="Iterative", description = "")
+    public boolean iterative = false;
+
 
     String currentType = "";
 
@@ -52,6 +55,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         GraphReportExtensionAction.lowerBound = lowerBound;
         GraphReportExtensionAction.strictLowerBound = strictLowerBound;
         GraphReportExtensionAction.strictUpperBound = strictUpperBound;
+        GraphReportExtensionAction.iterative = iterative;
         if (Integral) currentType = "Integral";
         if (LaplacianIntegral) currentType = "LaplacianIntegral";
         if (QIntegral) currentType = "QIntegral";

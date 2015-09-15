@@ -286,6 +286,55 @@ public class IterateAllGraphs {
         return retForm;
     }
 
+    public RendTable iterateIterative(int Size) {
+        RendTable ret = new RendTable();
+        int[] res = null;
+        jd.setVisible(true);
+        jd.setAlwaysOnTop(true);
+        int gcount = 0;
+        int filterCount = 0;
+        RendTable retForm = new RendTable();
+        retForm.add(new Vector<Object>());
+
+        try {
+            Scanner sc = new Scanner(new File("g" + Size + "c.txt"));
+            while (sc.hasNext()) {
+                pb.setValue(gcount);
+                pb.validate();
+                jd.validate();
+                GraphModel g = parseGraph(sc);
+                gcount++;
+                ret = (RendTable) mr.calculate(g);
+                if(retForm.size()==1) retForm.get(0).addAll(ret.get(0));
+                retForm.add(new Vector<Object>());
+                retForm.lastElement().addAll(ret.get(1));
+
+                if (ret.get(0).size() <= 2) return null;
+                if (res == null) {
+                    res = new int[ret.get(0).size()];
+                }
+                for (int i = 1; i < ret.get(0).size(); i++) {
+                    checkTypeOfBounds(ret, res, i);
+                }
+                filterCount++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        //RendTable retForm = new RendTable();
+        //retForm.add(new Vector<Object>());
+        //retForm.add(new Vector<Object>());
+        //retForm.get(0).addAll(ret.get(0));
+        for (int iii = 0; iii < ret.get(0).size(); iii++) {
+        //    retForm.get(1).add(res[iii]);
+        }
+        //retForm.get(0).add("Num of Filtered Graphs");
+        retForm.get(1).add(filterCount);
+        jd.setVisible(false);
+        return retForm;
+    }
+
     public boolean isTheType(String type, GraphModel g) {
         if (currentType.equals("Integral")) {
             return isIntegral(g);

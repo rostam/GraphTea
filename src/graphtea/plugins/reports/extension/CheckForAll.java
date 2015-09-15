@@ -19,6 +19,48 @@ public class CheckForAll {
         this.mr=mr;
     }
 
+    public RendTable forallIterative() {
+        RendTable ret = new RendTable();
+        int[] res = null;
+        int start = 0;
+        if (GraphReportExtensionAction.upto) start = 2;
+        else start = GraphReportExtensionAction.Size;
+        Vector<GraphModel> gs=new Vector<>();
+        try {
+            gs = LoadMatrix.loadMatrixes(new File(GraphReportExtensionAction.currentType
+                    + GraphReportExtensionAction.Size + ".txt"), false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        RendTable retForm = new RendTable();
+        retForm.add(new Vector<Object>());
+
+        for(GraphModel g : gs) {
+            ret = (RendTable) mr.calculate(g);
+            if(retForm.size()==1) retForm.get(0).addAll(ret.get(0));
+            retForm.add(new Vector<Object>());
+            retForm.lastElement().addAll(ret.get(1));
+
+            if (ret.get(0).size() <= 2) return null;
+            if (res == null) {
+                res = new int[ret.get(0).size()];
+            }
+            for (int i = 1; i < ret.get(0).size(); i++) {
+                checkTypeOfBounds(ret, res, i);
+            }
+        }
+
+//        retForm.add(new Vector<Object>());
+
+        for (int iii = 0; iii < ret.get(0).size(); iii++) {
+//            retForm.get(1).add(res[iii]);
+        }
+//        retForm.get(0).add("Num of Filtered Graphs");
+//        retForm.get(1).add(gs.size());
+        return retForm;
+    }
+
     public RendTable forall() {
         RendTable ret = new RendTable();
         int[] res = null;
@@ -57,6 +99,11 @@ public class CheckForAll {
     }
 
     public RendTable forAllUnfiltered() {
+        IterateAllGraphs iag = new IterateAllGraphs(mr,GraphReportExtensionAction.currentType);
+        return iag.iterateIterative(GraphReportExtensionAction.Size);
+    }
+
+    public RendTable forAllUnfilteredIterative() {
         IterateAllGraphs iag = new IterateAllGraphs(mr,GraphReportExtensionAction.currentType);
         return iag.iterate(GraphReportExtensionAction.Size);
     }
