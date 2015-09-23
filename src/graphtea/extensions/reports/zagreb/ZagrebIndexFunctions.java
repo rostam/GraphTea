@@ -22,7 +22,8 @@ public class ZagrebIndexFunctions {
     public double getInverseSumIndegIndex() {
         double ret = 0;
         for(Edge e : g.getEdges()) {
-            ret += (g.getDegree(e.source)*g.getDegree(e.target))/(g.getDegree(e.source) + g.getDegree(e.target));
+            ret += (g.getDegree(e.source)*g.getDegree(e.target)*1.0)
+                    /(g.getDegree(e.source) + g.getDegree(e.target));
         }
         return ret;
     }

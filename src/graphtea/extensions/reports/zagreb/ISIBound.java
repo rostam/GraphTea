@@ -68,25 +68,25 @@ public class ISIBound implements GraphReportExtension{
         ret.get(1).add(zif.getInverseSumIndegIndex());
 
         //Theorem 13
-        double val = 0;
+        double val = 0.0;
         if(minDeg == 1) val=n+(1/n)-2;
         else if(minDeg >= 2) {
             if((n*minDeg)%2 == 0) {
-                val = (n*Math.pow(minDeg,2))/4;
+                val = (n*Math.pow(minDeg,2))/4.0;
             } else {
-                val = (n*Math.pow(minDeg,2))/4;
-                val += minDeg/2;
-                val += (2*minDeg)/(8*(2*minDeg + 1));
+                val = (n*Math.pow(minDeg,2))/4.0;
+                val += minDeg/2.0;
+                val += (2*minDeg)/(8.0*(2*minDeg + 1.0));
             }
         }
         ret.get(1).add(val);
 
         //Corollary 15
-        val = 0;
-        if((n*maxDeg)%2==0) val = (n*maxDeg*maxDeg)/4;
+        val = 0.0;
+        if((n*maxDeg)%2==0) val = (n*maxDeg*maxDeg)/4.0;
         else {
-            val = ((n-1)*maxDeg*maxDeg)/4;
-            val += (maxDeg*(maxDeg-1)*(maxDeg-1))/(2*(2*maxDeg-1));
+            val = ((n-1)*maxDeg*maxDeg)/4.0;
+            val += (maxDeg*(maxDeg-1)*(maxDeg-1.0))/(2.0*(2*maxDeg-1.0));
         }
         ret.get(1).add(val);
 
