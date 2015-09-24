@@ -46,6 +46,17 @@ public class ZagrebIndexFunctions {
         return first_zagreb;
     }
 
+    public double getThirdZagreb() {
+        double ret = 0;
+        for (Edge e : g.getEdges()) {
+            ret += Math.abs(g.getDegree(e.source) -
+                            g.getDegree(e.target));
+        }
+
+        return ret;
+    }
+
+
     public double getSecondZagreb(double alpha) {
         double second_zagreb = 0;
         for (Edge e : g.getEdges()) {
