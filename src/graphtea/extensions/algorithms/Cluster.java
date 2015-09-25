@@ -1,8 +1,8 @@
 package graphtea.extensions.algorithms;
 
-import java.util.ArrayList;
-
 import graphtea.graph.graph.GraphPoint;
+
+import java.util.ArrayList;
 
 public class Cluster // Represents a cluster of GraphPoints
 {

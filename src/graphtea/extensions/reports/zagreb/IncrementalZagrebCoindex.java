@@ -68,7 +68,6 @@ public class IncrementalZagrebCoindex implements GraphReportExtension, Parametri
 
     @Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
-		return "Topological Indices";
+        return "Topological Indices-Zagreb Indices";
 	}
 }

@@ -6,47 +6,33 @@ package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.platform.parameter.Parameter;
-import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 
 /**
  * @author Ali Rostami
-
  */
 
-@CommandAttitude(name = "second_mix_zagreb_index", abbreviation = "_smzi")
-public class SecondMixZagrebIndex implements GraphReportExtension, Parametrizable {
-
-    @Parameter(name = "Alpha", description = "")
-    public Double alpha = 1.0;
-    @Parameter(name = "Beta", description = "")
-    public Double beta = 1.0;
-
+@CommandAttitude(name = "zagreb_index", abbreviation = "_zi")
+public class ThirdZagrebIndex implements GraphReportExtension {
     public String getName() {
-        return "Second Mix Zagreb Index";
+        return "Third Zagreb Index";
     }
 
     public String getDescription() {
-        return "Second Mix Zagreb Index";
+        return "Third Zagreb Index";
     }
 
     public Object calculate(GraphModel g) {
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ArrayList<String> out = new ArrayList<String>();
-        out.add("Second Mix Zagreb Index : "+ zif.getSecondMixZagrebIndex(alpha,beta));
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
+        out.add("Third Zagreb Index : "+ zif.getThirdZagreb());
         return out;
     }
 
     @Override
 	public String getCategory() {
-        return "Topological Indices-Zagreb Indices";
+		return "Topological Indices-Zagreb Indices";
 	}
-
-    @Override
-    public String checkParameters() {
-        return null;
-    }
 }

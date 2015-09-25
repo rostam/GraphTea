@@ -12,17 +12,12 @@ import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.QuadCurve2D;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.Vector;
 
 /**
  * This Action relocate Vertexes to a geographic location.

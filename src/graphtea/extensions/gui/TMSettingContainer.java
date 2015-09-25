@@ -1,6 +1,6 @@
 package graphtea.extensions.gui;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * @author Sebastian Glass

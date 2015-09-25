@@ -45,7 +45,6 @@ public class AutographixConj implements GraphReportExtension {
 
     @Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "Topological Indices-Conjectures";
 	}
 }

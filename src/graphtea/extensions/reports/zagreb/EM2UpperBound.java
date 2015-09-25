@@ -52,9 +52,7 @@ public class EM2UpperBound implements GraphReportExtension{
         ret.get(0).add("N4");
         ret.get(0).add("N2");
         ret.get(0).add("N1");
-        
-        
-        
+
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -181,7 +179,6 @@ public class EM2UpperBound implements GraphReportExtension{
 
     @Override
     public String getCategory() {
-        // TODO Auto-generated method stub
         return "Topological Indices-Conjectures";
     }
 }

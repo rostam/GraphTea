@@ -44,7 +44,6 @@ public class EdgeDegree implements GraphReportExtension<Integer> {
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "General";
 	}
 }

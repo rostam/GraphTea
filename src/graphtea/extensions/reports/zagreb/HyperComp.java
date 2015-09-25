@@ -10,7 +10,6 @@ import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.algorithms.util.LibraryUtils;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -87,7 +86,6 @@ public class HyperComp implements GraphReportExtension{
 
     @Override
     public String getCategory() {
-        // TODO Auto-generated method stub
         return "Topological Indices-Conjectures";
     }
 }

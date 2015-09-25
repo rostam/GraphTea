@@ -5,7 +5,6 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.library.algorithms.util.LibraryUtils;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -39,7 +38,6 @@ public class HyperZagrebIndex implements GraphReportExtension {
 
     @Override
     public String getCategory() {
-        // TODO Auto-generated method stub
-        return "Topological Indices";
+        return "Topological Indices-Zagreb Indices";
     }
 }

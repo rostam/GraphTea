@@ -47,6 +47,6 @@ public class ZagrebIndex implements GraphReportExtension, Parametrizable {
     @Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "Topological Indices";
+		return "Topological Indices-Zagreb Indices";
 	}
 }
