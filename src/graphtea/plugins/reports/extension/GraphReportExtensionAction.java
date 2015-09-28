@@ -12,6 +12,7 @@ import graphtea.ui.components.utils.GFrameLocationProvider;
 import graphtea.ui.extension.AbstractExtensionAction;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,9 +36,12 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 	public static boolean strictLowerBound = true;
 	public static boolean strictUpperBound = true;
 	public static boolean iterative = false;
+	CheckForAll cfa = new CheckForAll(mr);
 
 	public static String currentType = "";
 
+
+	JButton cont   = new JButton("Continue");
 
 	public GraphReportExtensionAction(BlackBoard bb, GraphReportExtension gg) {
 		super(bb, gg);
@@ -63,8 +67,8 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 			public void run() {
                 Object result;
 				if(activeConjCheck && !mr.getName().equals("Bound Check")) {
+                    cont.setEnabled(true);
 					if(!iterative) {
-						CheckForAll cfa = new CheckForAll(mr);
 						if (GraphReportExtensionAction.currentType != "") {
 							result = cfa.forall();
 						} else {
@@ -75,12 +79,14 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 						if (GraphReportExtensionAction.currentType != "") {
 							result = cfa.forallIterative();
 						} else {
-							result = cfa.forAllUnfiltered();
+							result = cfa.forAllUnfilteredIterative();
 						}
 					}
 
                 } else {
+                    cont.setEnabled(false);
                     result = mr.calculate(new GraphData(blackboard).getGraph());
+
                 }
 				if(result==null)
 					return;
@@ -95,6 +101,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 				JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER)); 
 				JButton recalc = new JButton("Recalculate");
 				panel.add(recalc, BorderLayout.SOUTH);
+				panel.add(cont, BorderLayout.SOUTH);
 				recalc.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent actionEvent) {
 						Object result = mr.calculate(new GraphData(blackboard).getGraph());
@@ -108,13 +115,22 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 					}
 				});
 
+				cont.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent actionEvent) {
+						String out = JOptionPane.showInputDialog("Please enter the counter " +
+								"of the graph that you want to proceed.");
+						int cnt = Integer.parseInt(out);
+						new GraphData(blackboard).core.showGraph(cfa.getith(cnt));
+					}
+				});
+
 				fileChooser = new JFileChooser();
 				JButton save = new JButton("Save");
 				panel.add(save);
 				save.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent actionEvent) {
 
-						fileChooser.addChoosableFileFilter(new javax.swing.filechooser.FileFilter() {
+						fileChooser.addChoosableFileFilter(new FileFilter() {
 
 							@Override
 							public String getDescription() {

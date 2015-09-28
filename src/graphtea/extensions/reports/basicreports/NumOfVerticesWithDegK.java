@@ -28,6 +28,14 @@ public class NumOfVerticesWithDegK implements GraphReportExtension, Parametrizab
     }
 
     public Object calculate(GraphModel g) {
+        return numOfVerticesWithDegK(g,k);
+    }
+
+    public String checkParameters() {
+        return (k < 0 ? "K must be positive" : null);
+    }
+
+    public static int numOfVerticesWithDegK(GraphModel g, int k) {
         int ret = 0;
 
         int t = (g.isDirected() ? 1 : 2);
@@ -36,10 +44,6 @@ public class NumOfVerticesWithDegK implements GraphReportExtension, Parametrizab
                 ret++;
         }
         return ret;
-    }
-
-    public String checkParameters() {
-        return (k < 0 ? "K must be positive" : null);
     }
 
 	@Override

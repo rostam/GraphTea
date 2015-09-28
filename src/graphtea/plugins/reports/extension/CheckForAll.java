@@ -36,10 +36,17 @@ public class CheckForAll {
         RendTable retForm = new RendTable();
         retForm.add(new Vector<Object>());
 
+        int counter = 0;
         for(GraphModel g : gs) {
+            counter ++;
             ret = (RendTable) mr.calculate(g);
-            if(retForm.size()==1) retForm.get(0).addAll(ret.get(0));
+            if(retForm.size()==1) {
+                retForm.get(0).add("Counter");
+                System.out.println("i am herer");
+                retForm.get(0).addAll(ret.get(0));
+            }
             retForm.add(new Vector<Object>());
+            retForm.lastElement().add(counter);
             retForm.lastElement().addAll(ret.get(1));
 
             if (ret.get(0).size() <= 2) return null;
@@ -62,6 +69,7 @@ public class CheckForAll {
     }
 
     public RendTable forall() {
+        System.out.println("what");
         RendTable ret = new RendTable();
         int[] res = null;
         int start = 0;
@@ -100,12 +108,17 @@ public class CheckForAll {
 
     public RendTable forAllUnfiltered() {
         IterateAllGraphs iag = new IterateAllGraphs(mr,GraphReportExtensionAction.currentType);
-        return iag.iterateIterative(GraphReportExtensionAction.Size);
+        return iag.iterate(GraphReportExtensionAction.Size);
     }
 
     public RendTable forAllUnfilteredIterative() {
         IterateAllGraphs iag = new IterateAllGraphs(mr,GraphReportExtensionAction.currentType);
-        return iag.iterate(GraphReportExtensionAction.Size);
+        return iag.iterateIterative(GraphReportExtensionAction.Size);
+    }
+
+    public GraphModel getith(int cnt) {
+        IterateAllGraphs iag = new IterateAllGraphs(mr,GraphReportExtensionAction.currentType);
+        return iag.getith(GraphReportExtensionAction.Size,cnt);
     }
 
     public void checkTypeOfBounds(RendTable ret, int[] res, int i) {

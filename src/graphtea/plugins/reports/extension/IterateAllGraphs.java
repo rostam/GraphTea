@@ -6,9 +6,11 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
+import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.saveload.matrix.SaveMatrix;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -298,15 +300,21 @@ public class IterateAllGraphs {
 
         try {
             Scanner sc = new Scanner(new File("g" + Size + "c.txt"));
+            int Counter=0;
             while (sc.hasNext()) {
+                Counter++;
                 pb.setValue(gcount);
                 pb.validate();
                 jd.validate();
                 GraphModel g = parseGraph(sc);
                 gcount++;
                 ret = (RendTable) mr.calculate(g);
-                if(retForm.size()==1) retForm.get(0).addAll(ret.get(0));
+                if(retForm.size()==1) {
+                    retForm.get(0).add(" Counter ");
+                    retForm.get(0).addAll(ret.get(0));
+                }
                 retForm.add(new Vector<Object>());
+                retForm.lastElement().add(Counter);
                 retForm.lastElement().addAll(ret.get(1));
 
                 if (ret.get(0).size() <= 2) return null;
@@ -322,17 +330,50 @@ public class IterateAllGraphs {
             e.printStackTrace();
         }
 
-        //RendTable retForm = new RendTable();
-        //retForm.add(new Vector<Object>());
-        //retForm.add(new Vector<Object>());
-        //retForm.get(0).addAll(ret.get(0));
-        for (int iii = 0; iii < ret.get(0).size(); iii++) {
-        //    retForm.get(1).add(res[iii]);
-        }
-        //retForm.get(0).add("Num of Filtered Graphs");
         retForm.get(1).add(filterCount);
         jd.setVisible(false);
         return retForm;
+    }
+
+    public GraphModel getith(int Size, int cnt) {
+        if(cnt >= 30) {
+            jd.setVisible(true);
+            jd.setAlwaysOnTop(true);
+        }
+        int gcount = 0;
+        RendTable retForm = new RendTable();
+        retForm.add(new Vector<Object>());
+
+        try {
+            Scanner sc = new Scanner(new File("g" + Size + "c.txt"));
+            int Counter=0;
+            while (sc.hasNext()) {
+                Counter++;
+                if(cnt >= 30) {
+                    pb.setValue(gcount);
+                    pb.validate();
+                    jd.validate();
+                }
+                GraphModel g = parseGraph(sc);
+                if(Counter == cnt ){
+                    if(cnt >= 30) {
+                        jd.setVisible(false);
+                    }
+                    Point pp[] = PositionGenerators.circle(200,400,250,g.numOfVertices());
+                    int tmpcnt = 0;
+                    for(Vertex v : g) {
+                        v.setLocation(pp[tmpcnt]);
+                        tmpcnt++;
+                    }
+                    return g;
+                }
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public boolean isTheType(String type, GraphModel g) {
