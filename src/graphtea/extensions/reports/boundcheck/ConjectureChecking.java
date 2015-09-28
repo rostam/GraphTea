@@ -5,6 +5,7 @@
 
 package graphtea.extensions.reports.boundcheck;
 
+import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
@@ -59,7 +60,6 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         if (Integral) currentType = "Integral";
         if (LaplacianIntegral) currentType = "LaplacianIntegral";
         if (QIntegral) currentType = "QIntegral";
-
         System.out.println("type " + currentType);
         AllGraphs ag = new AllGraphs(this,currentType);
         ag.filterGraphs(Size);
