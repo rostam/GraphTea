@@ -44,6 +44,7 @@ public class HyperCheck implements GraphReportExtension{
         double maxDeg = 0;
         double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
+        double minDeg2 = 0;
 
         ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);
@@ -51,19 +52,22 @@ public class HyperCheck implements GraphReportExtension{
         if(al.size()-2>=0) maxDeg2 = al.get(al.size()-2);
         else maxDeg2 = maxDeg;
         minDeg = al.get(0);
-
+        if(al.size()>=2) minDeg2 = al.get(1);
+        else minDeg2 = minDeg;
         if(maxDeg2 == 0) maxDeg2=maxDeg;
 
         double a=0;
         double b=0;
         double c=0;
+        double d=0;
         int p = NumOfVerticesWithDegK.numOfVerticesWithDegK(g, 1);
 
         for(Vertex v : g) {
             if(g.getDegree(v)==maxDeg) a++;
             if(g.getDegree(v)==minDeg) b++;
             if(g.getDegree(v)==maxDeg2) c++;
-        }
+            if(g.getDegree(v)==minDeg2) d++;
+         }
         if(maxDeg==minDeg) b=0;
         if(maxDeg==maxDeg2) c=0;
 
