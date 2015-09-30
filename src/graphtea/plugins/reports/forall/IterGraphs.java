@@ -3,7 +3,6 @@ package graphtea.plugins.reports.forall;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
-import graphtea.plugins.main.saveload.matrix.Matrix;
 
 import java.io.*;
 import java.util.Collections;
@@ -47,8 +46,7 @@ public class IterGraphs {
                     cnt++;
                     pb.setValue(cnt);
                     pb.validate();
-                    GraphModel tmp = new GraphModel();
-                    Matrix.Matrix2Graph(Matrix.String2Matrix(g), tmp);
+                    GraphModel tmp = ShowG.parseGraph(new Scanner(g));
                     if(!filt.filter(tmp)) continue;
                     gs.add(cnt);
                     g = "";
@@ -80,8 +78,7 @@ public class IterGraphs {
                     cnt++;
                     pb.setValue(cnt);
                     pb.validate();
-                    GraphModel tmp = new GraphModel();
-                    Matrix.Matrix2Graph(Matrix.String2Matrix(g), tmp);
+                    GraphModel tmp = ShowG.parseGraph(new Scanner(g));
                     ret=(RendTable)f.f(tmp);
                     if(retForm.size()==1) {
                         retForm.get(0).add("Counter");
@@ -124,8 +121,7 @@ public class IterGraphs {
                     cnt++;
                     pb.setValue(cnt);
                     pb.validate();
-                    GraphModel tmp = new GraphModel();
-                    Matrix.Matrix2Graph(Matrix.String2Matrix(g), tmp);
+                    GraphModel tmp = ShowG.parseGraph(new Scanner(g));
                     ret=(RendTable)f.f(tmp);
                     if (ret.get(0).size() <= 2) return null;
                     if (res == null) {
