@@ -1,4 +1,4 @@
-package graphtea.plugins.reports.forall;
+package graphtea.extensions.reports.boundcheck.forall;
 
 /**
  * Created by rostam on 30.09.15.

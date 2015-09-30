@@ -1,9 +1,11 @@
-package graphtea.plugins.reports.forall;
+package graphtea.extensions.reports.boundcheck.forall;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
+import graphtea.plugins.graphgenerator.core.PositionGenerators;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,10 +21,11 @@ public class ShowG {
             String cur = new java.io.File(".").getCanonicalPath();
             ProcessBuilder process;
             if(System.getProperty("os.name").contains("Win")) {
-                process = new ProcessBuilder(cur + "\\showg_win32.exe", cur + "\\" + file);
+                process = new ProcessBuilder(cur + "\\showg_win32.exe", cur + "\\" + file+".g6");
             } else {
-                process = new ProcessBuilder(cur + "/showg", cur + "/" + file);
+                process = new ProcessBuilder(cur + "/showg.out", cur + "/" + file+".g6");
             }
+            System.out.println("pro " + process.command().get(0) + "pro " + process.command().get(1));
             Process p = process.start();
             p.waitFor();
             BufferedReader bri = new BufferedReader
@@ -38,19 +41,19 @@ public class ShowG {
     }
 
     public static GraphModel showOneG(String line) {
-        String g="";
+        String g = "";
 
         try {
             FileWriter fw = new FileWriter("tmpF.g6");
             fw.write(line);
-            fw.write(System.lineSeparator());
+            fw.write("\n");
             fw.close();
             String cur = new java.io.File(".").getCanonicalPath();
             ProcessBuilder process;
-            if(System.getProperty("os.name").contains("Win")) {
+            if (System.getProperty("os.name").contains("Win")) {
                 process = new ProcessBuilder(cur + "\\showg_win32.exe", cur + "\\tmpF.g6");
             } else {
-                process = new ProcessBuilder(cur + "/showg", cur + "/tmpF.g6");
+                process = new ProcessBuilder(cur + "/showg.out", cur + "/tmpF.g6");
             }
             Process p = process.start();
             p.waitFor();
@@ -58,7 +61,15 @@ public class ShowG {
                     (new InputStreamReader(p.getInputStream()));
             p.waitFor();
             Scanner sc = new Scanner(bri);
-            return parseGraph(sc);
+            sc.nextLine();
+            GraphModel gg = parseGraph(sc);
+            Point pp[] = PositionGenerators.circle(200, 400, 250, gg.numOfVertices());
+            int tmpcnt = 0;
+            for (Vertex v : gg) {
+                v.setLocation(pp[tmpcnt]);
+                tmpcnt++;
+            }
+            return gg;
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -71,12 +82,12 @@ public class ShowG {
     public static GraphModel parseGraph(Scanner sc) {
         GraphModel g = new GraphModel();
         g.setDirected(false);
-        sc.nextLine();
+        //sc.nextLine();
         String order = sc.nextLine();
-
         order = order.substring(order.lastIndexOf("r") + 1,
                 order.lastIndexOf("."));
         order = order.trim();
+
         int ord = Integer.parseInt(order);
         for (int i = 0; i < ord; i++) g.addVertex(new Vertex());
         for (int i = 0; i < ord; i++) {
@@ -93,14 +104,5 @@ public class ShowG {
         }
 
         return g;
-    }
-
-    public static void main(String[] args) throws IOException {
-        System.out.println(System.getProperty("os.name"));
-        BufferedReader br = ShowG.showG("tmpF.g6");
-        System.out.println(br.readLine());
-        System.out.println(br.readLine());
-        System.out.println(br.readLine());
-        System.out.println(br.readLine());
     }
 }
