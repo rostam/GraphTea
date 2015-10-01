@@ -5,6 +5,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.actions.LineGraph;
+import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
@@ -44,7 +45,7 @@ public class HyperCheck implements GraphReportExtension{
         double maxDeg = 0;
         double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
-        double minDeg2 = 0;
+        double minDeg2 = Utils.getMinNonPendentDegree(g); 
 
         ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);
@@ -52,8 +53,6 @@ public class HyperCheck implements GraphReportExtension{
         if(al.size()-2>=0) maxDeg2 = al.get(al.size()-2);
         else maxDeg2 = maxDeg;
         minDeg = al.get(0);
-        if(al.size()>=2) minDeg2 = al.get(1);
-        else minDeg2 = minDeg;
         if(maxDeg2 == 0) maxDeg2=maxDeg;
 
         double a=0;
@@ -90,11 +89,9 @@ public class HyperCheck implements GraphReportExtension{
         ret.get(1).add(p);
 
 
-
         //  ret.get(1).add(2*M12+(a*maxDeg*maxDeg*maxDeg)+(c*maxDeg2*maxDeg2*maxDeg2)
         //	+((maxDeg+maxDeg2)*(M21-a*maxDeg*maxDeg-c*maxDeg2*maxDeg2))
         //		+((maxDeg-maxDeg2-1-maxDeg*maxDeg2)*(2*m-a*maxDeg-c*maxDeg2)));
-
 
         // ret.get(1).add(zif.getFirstZagreb(1));
 
