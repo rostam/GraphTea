@@ -4,7 +4,6 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.reports.extension;
 
-import graphtea.extensions.reports.boundcheck.ConjectureChecking;
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
 import graphtea.extensions.reports.boundcheck.forall.ToCall;
 import graphtea.graph.graph.GraphModel;
@@ -33,7 +32,6 @@ import java.util.Scanner;
  */
 public class GraphReportExtensionAction extends AbstractExtensionAction {
 	protected GraphReportExtension mr;
-	public static String currentType = "";
 	public static String state = "";
 	JButton cont   = new JButton("Continue");
 
@@ -66,9 +64,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 			public String bound="";
 
 			public void run() {
-                //if(mr.getName().equals("Bound Check")) {
-				//	mr.calculate(new GraphData(blackboard).getGraph());
-					Scanner sc = new Scanner(state);
+				Scanner sc = new Scanner(state);
 					if(sc.hasNext()) {
 						activeConjCheck = Boolean.parseBoolean(sc.next());
 						iterative = Boolean.parseBoolean(sc.next());
@@ -76,24 +72,22 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 						size = Integer.parseInt(sc.next());
 						bound = sc.next();
 					}
-				//	return;
-				//}
-				//System.out.println("neg "+ );
-				if(activeConjCheck && !mr.getName().equals("Bound Check")) {
+			System.out.println("cin " + activeConjCheck + " " + iterative);
+			if(activeConjCheck && !mr.getName().equals("Bound Check")) {
 					cont.setEnabled(true);
 					if(!iterative) {
 						try {
 							result=IterGraphs.countBounds(type, size, new ToCall() {
-                                @Override
-                                public Object f(GraphModel g) {
-                                    return mr.calculate(g);
-                                }
-                            }, bound);
+								@Override
+								public Object f(GraphModel g) {
+									return mr.calculate(g);
+								}
+							}, bound);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 					} else {
-						System.out.println("bef count Bounds3");
+						System.out.println("salam"+ size + "type" + type+bound);
 						try {
 							result=IterGraphs.iterBounds(type, size, new ToCall() {
                                 @Override

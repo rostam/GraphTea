@@ -21,19 +21,17 @@ public class ShowG {
             String cur = new java.io.File(".").getCanonicalPath();
             ProcessBuilder process;
             if(System.getProperty("os.name").contains("Win")) {
-                process = new ProcessBuilder(cur + "\\showg_win32.exe", cur + "\\" + file+".g6");
+                process = new ProcessBuilder(cur + "\\showg_win32.exe", cur + "\\graphs\\" + file+".g6");
             } else {
-                process = new ProcessBuilder(cur + "/showg.out", cur + "/" + file+".g6");
+                process = new ProcessBuilder(cur + "/showg.out", cur + "/graphs/" + file+".g6");
             }
-            System.out.println("pro " + process.command().get(0) + "pro " + process.command().get(1));
+            System.out.println(process.command().get(0) + " at " +process.command().get(1));
             Process p = process.start();
-            p.waitFor();
+            //p.waitFor();
             BufferedReader bri = new BufferedReader
                     (new InputStreamReader(p.getInputStream()));
-            p.waitFor();
+            //p.waitFor();
             return bri;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,9 +49,9 @@ public class ShowG {
             String cur = new java.io.File(".").getCanonicalPath();
             ProcessBuilder process;
             if (System.getProperty("os.name").contains("Win")) {
-                process = new ProcessBuilder(cur + "\\showg_win32.exe", cur + "\\tmpF.g6");
+                process = new ProcessBuilder(cur + "\\showg_win32.exe", cur + "\\graphs\\tmpF.g6");
             } else {
-                process = new ProcessBuilder(cur + "/showg.out", cur + "/tmpF.g6");
+                process = new ProcessBuilder(cur + "/showg.out", cur + "/graphs/tmpF.g6");
             }
             Process p = process.start();
             p.waitFor();

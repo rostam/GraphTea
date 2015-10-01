@@ -6,6 +6,7 @@ import graphtea.graph.graph.RendTable;
 
 import java.io.*;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -53,8 +54,23 @@ public class IterGraphs {
             }
         }
         bri.close();
-        writeFilterGraphs(file,gs,filt.getName());
+        writeFilterGraphs(file, gs, filt.getName());
         pb.setVisible(false);
+    }
+
+    public static int getSize(String str) {
+        Scanner sc = null;
+        try {
+            sc = new Scanner(new File("graphs/sizes.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while(sc.hasNext()) {
+            String tmp = sc.next();
+            int ret = sc.nextInt();
+            if(tmp.contains(str)) return ret;
+        }
+        return 0;
     }
 
     public static RendTable iterBounds(String file, int size, ToCall f, String bound) throws IOException {
@@ -66,7 +82,9 @@ public class IterGraphs {
         BufferedReader bri = ShowG.showG(file+size);
         String line;
         String g="";
-        IterProgressBar pb = new IterProgressBar(size);
+        System.out.println("size " + getSize(file+size));
+        IterProgressBar pb = new IterProgressBar(getSize(file+size));
+        pb.setVisible(true);
         bri.readLine();
         int cnt =0;
         while ((line = bri.readLine()) != null) {
@@ -99,6 +117,25 @@ public class IterGraphs {
             }
         }
         bri.close();
+        cnt++;
+        pb.setVisible(false);
+        GraphModel tmp = ShowG.parseGraph(new Scanner(g));
+        ret=(RendTable)f.f(tmp);
+        if(retForm.size()==1) {
+            retForm.get(0).add("Counter");
+            retForm.get(0).addAll(ret.get(0));
+        }
+        retForm.add(new Vector<>());
+        retForm.lastElement().add(cnt);
+        retForm.lastElement().addAll(ret.get(1));
+
+        if (ret.get(0).size() <= 2) return null;
+        if (res == null) {
+            res = new int[ret.get(0).size()];
+        }
+        for (int i = 1; i < ret.get(0).size(); i++) {
+            checkTypeOfBounds(ret, res, i, bound);
+        }
         return retForm;
     }
 
@@ -109,11 +146,10 @@ public class IterGraphs {
 
         String line;
         String g="";
-        IterProgressBar pb = new IterProgressBar(size);
+        IterProgressBar pb = new IterProgressBar(getSize(file+size));
         bri.readLine();
         int cnt =0;
         while ((line = bri.readLine()) != null) {
-
             if(!line.equals("")) {
                 g+=line+"\n";
             } else {
@@ -135,7 +171,17 @@ public class IterGraphs {
             }
         }
         bri.close();
-
+        cnt++;
+        pb.setVisible(false);
+        GraphModel tmp = ShowG.parseGraph(new Scanner(g));
+        ret=(RendTable)f.f(tmp);
+        if (ret.get(0).size() <= 2) return null;
+        if (res == null) {
+            res = new int[ret.get(0).size()];
+        }
+        for (int i = 1; i < ret.get(0).size(); i++) {
+            checkTypeOfBounds(ret, res, i, bound);
+        }
         RendTable retForm = new RendTable();
         retForm.add(new Vector<>());
         retForm.add(new Vector<>());
@@ -149,7 +195,7 @@ public class IterGraphs {
     }
 
     public static GraphModel getith(String file, int size, int ith){
-        IterProgressBar pb = new IterProgressBar(size);
+        IterProgressBar pb = new IterProgressBar(ith);
         if(ith >= 30) {
             pb.setVisible(true);
             pb.setAlwaysOnTop(true);

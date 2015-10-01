@@ -43,11 +43,11 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public boolean strictLowerBound = false;
     @Parameter(name="Iterative", description = "")
     public boolean iterative = false;
+    @Parameter(name="tree", description = "")
+    public boolean tree = false;
 
     String currentType = "all";
     String bound="no";
-
-    public static String state = "";
 
     public String getName() {
         return "Bound Check";
@@ -61,6 +61,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         else if (LaplacianIntegral) {gf=new LaplacianIntegralFilter();}
         else if (QIntegral) {gf=new QIntegralFilter();}
         if(gf != null) currentType=gf.getName();
+        if(tree) currentType="tree";
 
         if(upperBound) bound="upper";
         else if(lowerBound) bound="lower";
@@ -74,9 +75,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
                 e.printStackTrace();
             }
         }
-
-        state = ""+conjCheck+" "+iterative+" "+currentType+" "+Size+" "+bound;
-        GraphReportExtensionAction.state=state;
+        GraphReportExtensionAction.state=""+conjCheck+" "+iterative+" "+currentType+" "+Size+" "+bound;
 
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";
