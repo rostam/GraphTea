@@ -6,7 +6,6 @@ import graphtea.graph.graph.RendTable;
 
 import java.io.*;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Vector;
 

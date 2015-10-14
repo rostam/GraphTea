@@ -9,8 +9,6 @@ import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
-import java.awt.*;
-
 /**
  * Created with IntelliJ IDEA.
  * User: rostam

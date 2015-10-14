@@ -87,7 +87,6 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 							e.printStackTrace();
 						}
 					} else {
-						System.out.println("salam"+ size + "type" + type+bound);
 						try {
 							result=IterGraphs.iterBounds(type, size, new ToCall() {
                                 @Override
