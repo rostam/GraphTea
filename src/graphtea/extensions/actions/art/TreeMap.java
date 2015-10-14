@@ -1,4 +1,4 @@
-package graphtea.extensions.actions;
+package graphtea.extensions.actions.art;
 
 
 import graphtea.extensions.algorithms.Cluster;

@@ -1,4 +1,4 @@
-package graphtea.extensions.actions;
+package graphtea.extensions.actions.product;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.ui.GTabbedGraphPane;
