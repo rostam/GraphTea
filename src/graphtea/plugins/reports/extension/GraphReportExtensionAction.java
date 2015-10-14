@@ -5,8 +5,6 @@
 package graphtea.plugins.reports.extension;
 
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
-import graphtea.extensions.reports.boundcheck.forall.ToCall;
-import graphtea.graph.graph.GraphModel;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
 import graphtea.ui.UIUtils;
@@ -21,8 +19,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * @author M. Ali Rostami - Conjecture check
@@ -32,9 +28,8 @@ import java.util.Scanner;
  */
 public class GraphReportExtensionAction extends AbstractExtensionAction {
 	protected GraphReportExtension mr;
-	public static String state = "";
-	JButton cont   = new JButton("Continue");
-
+	public static boolean activeConjCheck = false;
+	JButton cont = new JButton("Continue");
 
 	public GraphReportExtensionAction(BlackBoard bb, GraphReportExtension gg) {
 		super(bb, gg);
@@ -44,7 +39,6 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 	public String getParentMenuName() {
 		return "Reports";
 	}
-
 	public Object performExtensionInCommandLine() {
 		return mr.calculate(new GraphData(blackboard).getGraph());
 	}
@@ -53,58 +47,21 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 	Component ContentPane;
 	JDialog jd;
 	JFileChooser fileChooser;
+
 	public void performExtension() {
 		//        if (testAndSetParameters(gr)) {
 		new Thread() {
-			Object result=new Object();
-			boolean activeConjCheck = false;
-			boolean iterative = false;
-			public String type="";
-			int size=0;
-			public String bound="";
-
+			Object result = new Object();
 			public void run() {
-				Scanner sc = new Scanner(state);
-					if(sc.hasNext()) {
-						activeConjCheck = Boolean.parseBoolean(sc.next());
-						iterative = Boolean.parseBoolean(sc.next());
-						type = sc.next();
-						size = Integer.parseInt(sc.next());
-						bound = sc.next();
-					}
-			System.out.println("cin " + activeConjCheck + " " + iterative);
-			if(activeConjCheck && !mr.getName().equals("Bound Check")) {
+				if (activeConjCheck && !mr.getName().equals("Bound Check")) {
 					cont.setEnabled(true);
-					if(!iterative) {
-						try {
-							result=IterGraphs.countBounds(type, size, new ToCall() {
-								@Override
-								public Object f(GraphModel g) {
-									return mr.calculate(g);
-								}
-							}, bound);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					} else {
-						try {
-							result=IterGraphs.iterBounds(type, size, new ToCall() {
-                                @Override
-                                public Object f(GraphModel g) {
-                                    return mr.calculate(g);
-                                }
-                            }, bound);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
+					result= IterGraphs.wrapper(mr);
+				} else {
+					cont.setEnabled(false);
+					result = mr.calculate(new GraphData(blackboard).getGraph());
 
-                } else {
-                    cont.setEnabled(false);
-                    result = mr.calculate(new GraphData(blackboard).getGraph());
-
-                }
-				if(result==null)
+				}
+				if (result == null)
 					return;
 				jd = new JDialog(UIUtils.getGFrame(blackboard));
 				jd.setVisible(true);
@@ -114,7 +71,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 				rendererComponent = GCellRenderer.getRendererFor(result);
 				rendererComponent.setEnabled(true);
 				jd.add(rendererComponent, BorderLayout.CENTER);
-				JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER)); 
+				JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 				JButton recalc = new JButton("Recalculate");
 				panel.add(recalc, BorderLayout.SOUTH);
 				panel.add(cont, BorderLayout.SOUTH);
@@ -136,7 +93,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 						String out = JOptionPane.showInputDialog("Please enter the counter " +
 								"of the graph that you want to proceed.");
 						int cnt = Integer.parseInt(out);
-						new GraphData(blackboard).core.showGraph(IterGraphs.getith(type,size,cnt));
+						IterGraphs.show_ith(cnt,blackboard);
 					}
 				});
 
@@ -155,21 +112,19 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 
 							@Override
 							public boolean accept(File arg0) {
-								if (arg0.isDirectory()) 
+								if (arg0.isDirectory())
 									return true;
-								else 
-								{
+								else {
 									String path = arg0.getAbsolutePath().toLowerCase();
-									if ((path.endsWith("txt") && (path.charAt(path.length() - 4)) == '.')) 
+									if ((path.endsWith("txt") && (path.charAt(path.length() - 4)) == '.'))
 										return true;
 								}
 								return false;
 							}
-							});
+						});
 						fileChooser.setDialogTitle("Choose a file");
 						fileChooser.showSaveDialog(jd);
-						try
-						{
+						try {
 
 							File curFile = fileChooser.getSelectedFile();
 							FileWriter fw = new FileWriter(curFile);
@@ -178,19 +133,17 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 							fw.close();
 							JOptionPane.showMessageDialog(jd, "Saved to file successfuly.");
 
-						}catch(Exception e)
-						{
+						} catch (Exception e) {
 						}
 
-						}
-					});
+					}
+				});
 
 				jd.add(panel, BorderLayout.SOUTH);
 				jd.setLocation(GFrameLocationProvider.getPopUpLocation());
 				jd.pack();
 
-				}
-			}.start();
-		}
-
+			}
+		}.start();
 	}
+}

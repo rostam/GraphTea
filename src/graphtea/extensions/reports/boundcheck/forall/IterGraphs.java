@@ -1,8 +1,12 @@
 package graphtea.extensions.reports.boundcheck.forall;
 
 
+import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
+import graphtea.platform.core.BlackBoard;
+import graphtea.plugins.main.GraphData;
+import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.io.*;
 import java.util.Collections;
@@ -10,6 +14,59 @@ import java.util.Scanner;
 import java.util.Vector;
 
 public class IterGraphs {
+    public static String state = "";
+    public static boolean activeConjCheck = false;
+    public static boolean iterative = false;
+    public static String type = "";
+    public static int size = 0;
+    public static String bound = "";
+    public static String gens = "";
+
+    public static void parseState() {
+        if(!state.equals("")) {
+            Scanner sc = new Scanner(state);
+            sc.useDelimiter(",");
+            if (sc.hasNext()) {
+                activeConjCheck = Boolean.parseBoolean(sc.next());
+                iterative = Boolean.parseBoolean(sc.next());
+                type = sc.next();
+                size = Integer.parseInt(sc.next());
+                bound = sc.next();
+                gens = sc.next();
+            }
+        }
+    }
+
+    public static RendTable wrapper(final GraphReportExtension mr) {
+        parseState();
+        RendTable result = new RendTable();
+        if(!gens.equals("")) {
+            
+        } else if (!iterative) {
+            try {
+                result = IterGraphs.countBounds(type, size, new ToCall() {
+                    @Override
+                    public Object f(GraphModel g) {
+                        return mr.calculate(g);
+                    }
+                }, bound);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                result = IterGraphs.iterBounds(type, size, new ToCall() {
+                    @Override
+                    public Object f(GraphModel g) {
+                        return mr.calculate(g);
+                    }
+                }, bound);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
 
     public static void writeFilterGraphs(String file, Vector<Integer> gs, String filt) throws IOException {
         FileWriter fw = new FileWriter(new File(filt));
@@ -223,26 +280,31 @@ public class IterGraphs {
 
     public static void checkTypeOfBounds(RendTable ret, int[] res, int i, String bound) {
         switch (bound) {
-            case "upper":
+            case Bounds.Upper:
                 if ((double) ret.get(1).get(0) >= (double) ret.get(1).get(i)) {
                     res[i]++;
                 }
                 break;
-            case "lower":
+            case Bounds.Lower:
                 if ((double) ret.get(1).get(0) <= (double) ret.get(1).get(i)) {
                     res[i]++;
                 }
                 break;
-            case "strictLower":
+            case Bounds.StrictLower:
                 if ((double) ret.get(1).get(0) > (double) ret.get(1).get(i)) {
                     res[i]++;
                 }
                 break;
-            case "strictUpper":
+            case Bounds.StrictUpper:
                 if ((double) ret.get(1).get(0) < (double) ret.get(1).get(i)) {
                     res[i]++;
                 }
                 break;
         }
+    }
+
+    public static void show_ith(int cnt, BlackBoard blackboard) {
+        parseState();
+        new GraphData(blackboard).core.showGraph(IterGraphs.getith(type, size, cnt));
     }
 }

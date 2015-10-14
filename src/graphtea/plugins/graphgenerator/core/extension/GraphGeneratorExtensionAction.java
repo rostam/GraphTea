@@ -8,6 +8,7 @@ package graphtea.plugins.graphgenerator.core.extension;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.graphgenerator.GraphGenerator;
+import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.ui.extension.AbstractExtensionAction;
 
 import java.awt.*;
@@ -30,10 +31,15 @@ public class GraphGeneratorExtensionAction extends AbstractExtensionAction<Graph
         return GraphGenerator.generateGraphInRect(blackboard,getTarget(), new Rectangle(100, 100, 600,600));
     }
 
-
+    @Override
     public void performExtension() {
 //        GraphModel g = blackboard.get(GraphAttrSet.name);
         GraphGenerator.generateInRectangularBounds(getTarget(), blackboard);
+    }
+
+    @Override
+    public GraphModel generateGraph() {
+        return GraphGenerator.getGraph(false, (SimpleGeneratorInterface) getTarget());
     }
 
 }

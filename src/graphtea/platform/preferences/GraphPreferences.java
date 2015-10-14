@@ -73,7 +73,8 @@ public class GraphPreferences extends AbstractPreference implements AttributeLis
     public void attributeUpdated(String name, Object oldVal, Object newVal) {
         for (Object o : oneInstances) {
             for (Field f : o.getClass().getFields()) {
-                UserModifiableProperty anot = f.getAnnotation(UserModifiableProperty.class);
+                UserModifiableProperty anot = f.
+                        getAnnotation(UserModifiableProperty.class);
                 if (anot != null && (anot.displayName()).equals(name)) {
                     try {
 //                            o.getClass().getDeclaredField(f.getName()).set(o, newVal);

@@ -5,6 +5,7 @@
 
 package graphtea.ui.extension;
 
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.extension.Extension;
@@ -342,5 +343,6 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
     }
 
     public abstract void performExtension();
+    public GraphModel generateGraph(){return new GraphModel();}
 
 }

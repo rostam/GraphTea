@@ -71,7 +71,6 @@ public class CircleGenerator implements GraphGeneratorExtension, Parametrizable,
             return null;
     }
 
-
     /**
      * generates a Circle Graph with given parameters
      */

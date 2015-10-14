@@ -7,18 +7,32 @@ package graphtea.extensions.reports.boundcheck;
 
 import graphtea.extensions.reports.boundcheck.forall.GraphFilter;
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
-import graphtea.extensions.reports.boundcheck.forall.filters.IntegralFilter;
-import graphtea.extensions.reports.boundcheck.forall.filters.LaplacianIntegralFilter;
-import graphtea.extensions.reports.boundcheck.forall.filters.QIntegralFilter;
+import graphtea.extensions.reports.boundcheck.forall.filters.*;
 import graphtea.graph.graph.GraphModel;
+import graphtea.platform.Application;
+import graphtea.platform.core.AbstractAction;
+import graphtea.platform.extension.Extension;
+import graphtea.platform.extension.ExtensionHandler;
+import graphtea.platform.extension.ExtensionLoader;
+import graphtea.platform.lang.ArrayX;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
+import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionAction;
+import graphtea.ui.extension.AbstractExtensionAction;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
+    public ConjectureChecking() {
+        filter = Filters.getFilterNames();
+        type = Bounds.getBoundNames();
+        gens = GeneratorFilters.getGenFilters();
+    }
+
     @Parameter(name = "Bound Check", description = "")
     public boolean conjCheck = false;
     @Parameter(name = "Connected", description = "")
@@ -27,27 +41,18 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public int Size = 9;
     @Parameter(name = "Up to", description = "")
     public boolean upto = false;
-    @Parameter(name = "Integral", description = "")
-    public boolean Integral = false;
-    @Parameter(name = "Laplacian Integral", description = "")
-    public boolean LaplacianIntegral = false;
-    @Parameter(name = "Q-Integral", description = "")
-    public boolean QIntegral = false;
-    @Parameter(name="Upper Bound", description = "")
-    public boolean upperBound = true;
-    @Parameter(name="Strict Upper Bound", description = "")
-    public boolean strictUpperBound = false;
-    @Parameter(name="Lower Bound", description = "")
-    public boolean lowerBound = false;
-    @Parameter(name="Stric Lower Bound", description = "")
-    public boolean strictLowerBound = false;
+    @Parameter(name = "Filter", description = "")
+    public ArrayX<String> filter;
+    @Parameter(name = "Graph Generators", description = "")
+    public ArrayX<String> gens;
+    @Parameter(name = "Type")
+    public ArrayX<String> type;
     @Parameter(name="Iterative", description = "")
     public boolean iterative = false;
     @Parameter(name="tree", description = "")
     public boolean tree = false;
 
     String currentType = "all";
-    String bound="no";
 
     public String getName() {
         return "Bound Check";
@@ -55,19 +60,12 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public String getDescription() {
         return "";
     }
+
     public Object calculate(GraphModel g) {
-        GraphFilter gf=null;
-        if (Integral) {gf=new IntegralFilter();}
-        else if (LaplacianIntegral) {gf=new LaplacianIntegralFilter();}
-        else if (QIntegral) {gf=new QIntegralFilter();}
+        GeneratorFilters.generateGraphs("graphtea.extensions.generators.CompleteGraphGenerator");
+        GraphFilter gf=Filters.getCorrectFilter(filter);
         if(gf != null) currentType=gf.getName();
         if(tree) currentType="tree";
-
-        if(upperBound) bound="upper";
-        else if(lowerBound) bound="lower";
-        else if(strictUpperBound) bound="strictUpper";
-        else if(strictLowerBound) bound="strictLower";
-
         if(gf != null) {
             try {
                 IterGraphs.filter(gf.getName(), gf, Size);
@@ -75,12 +73,10 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
                 e.printStackTrace();
             }
         }
-        GraphReportExtensionAction.state=""+conjCheck+" "+iterative+" "+currentType+" "+Size+" "+bound;
-
+        IterGraphs.state=conjCheck+","+iterative+","+currentType+","+Size+","+type.getValue()+","+gens.getValue();
+        GraphReportExtensionAction.activeConjCheck=conjCheck;
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";
-
-
     }
 
 	@Override

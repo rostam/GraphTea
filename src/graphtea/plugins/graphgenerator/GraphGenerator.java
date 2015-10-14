@@ -115,8 +115,6 @@ public class GraphGenerator implements PluginMethods {
             ret.insertEdge(e);
         }
 
-
-
         return ret;
     }
 

@@ -54,8 +54,6 @@ public class GAttrFrame extends javax.swing.JDialog {
                 closeDialog();
             }
         });
-
-
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 finished(true);
