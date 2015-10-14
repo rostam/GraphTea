@@ -5,12 +5,18 @@
 
 package graphtea.extensions.reports.boundcheck;
 
-import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
+import graphtea.extensions.reports.boundcheck.forall.GraphFilter;
+import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
+import graphtea.extensions.reports.boundcheck.forall.filters.IntegralFilter;
+import graphtea.extensions.reports.boundcheck.forall.filters.LaplacianIntegralFilter;
+import graphtea.extensions.reports.boundcheck.forall.filters.QIntegralFilter;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionAction;
+
+import java.io.IOException;
 
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
     @Parameter(name = "Bound Check", description = "")
@@ -37,9 +43,11 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public boolean strictLowerBound = false;
     @Parameter(name="Iterative", description = "")
     public boolean iterative = false;
+    @Parameter(name="tree", description = "")
+    public boolean tree = false;
 
-
-    String currentType = "";
+    String currentType = "all";
+    String bound="no";
 
     public String getName() {
         return "Bound Check";
@@ -48,35 +56,35 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         return "";
     }
     public Object calculate(GraphModel g) {
-        GraphReportExtensionAction.activeConjCheck = conjCheck;
-        GraphReportExtensionAction.connected = connected;
-        GraphReportExtensionAction.Size = Size;
-        GraphReportExtensionAction.upto = upto;
-        GraphReportExtensionAction.upperBound = upperBound;
-        GraphReportExtensionAction.lowerBound = lowerBound;
-        GraphReportExtensionAction.strictLowerBound = strictLowerBound;
-        GraphReportExtensionAction.strictUpperBound = strictUpperBound;
-        GraphReportExtensionAction.iterative = iterative;
-        if (Integral) currentType = "Integral";
-        if (LaplacianIntegral) currentType = "LaplacianIntegral";
-        if (QIntegral) currentType = "QIntegral";
-        System.out.println("type " + currentType);
-        AllGraphs ag = new AllGraphs(this,currentType);
-        ag.filterGraphs(Size);
+        GraphFilter gf=null;
+        if (Integral) {gf=new IntegralFilter();}
+        else if (LaplacianIntegral) {gf=new LaplacianIntegralFilter();}
+        else if (QIntegral) {gf=new QIntegralFilter();}
+        if(gf != null) currentType=gf.getName();
+        if(tree) currentType="tree";
 
-        GraphReportExtensionAction.currentType=currentType;
+        if(upperBound) bound="upper";
+        else if(lowerBound) bound="lower";
+        else if(strictUpperBound) bound="strictUpper";
+        else if(strictLowerBound) bound="strictLower";
+
+        if(gf != null) {
+            try {
+                IterGraphs.filter(gf.getName(), gf, Size);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        GraphReportExtensionAction.state=""+conjCheck+" "+iterative+" "+currentType+" "+Size+" "+bound;
 
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";
-    }
 
-    public int getSize() {
-        return Size;
+
     }
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

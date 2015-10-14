@@ -4,6 +4,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.reports.extension;
 
+import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
+import graphtea.extensions.reports.boundcheck.forall.ToCall;
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
 import graphtea.ui.UIUtils;
@@ -18,6 +21,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * @author M. Ali Rostami - Conjecture check
@@ -27,21 +32,9 @@ import java.io.FileWriter;
  */
 public class GraphReportExtensionAction extends AbstractExtensionAction {
 	protected GraphReportExtension mr;
-    public static boolean activeConjCheck = false;
-	public static boolean connected = true;
-	public static int Size = 9;
-	public static boolean upto = false;
-	public static boolean upperBound = true;
-	public static boolean lowerBound = true;
-	public static boolean strictLowerBound = true;
-	public static boolean strictUpperBound = true;
-	public static boolean iterative = false;
-	CheckForAll cfa = new CheckForAll(mr);
-
-	public static String currentType = "";
-
-
+	public static String state = "";
 	JButton cont   = new JButton("Continue");
+
 
 	public GraphReportExtensionAction(BlackBoard bb, GraphReportExtension gg) {
 		super(bb, gg);
@@ -63,23 +56,47 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 	public void performExtension() {
 		//        if (testAndSetParameters(gr)) {
 		new Thread() {
+			Object result=new Object();
+			boolean activeConjCheck = false;
+			boolean iterative = false;
+			public String type="";
+			int size=0;
+			public String bound="";
 
 			public void run() {
-                Object result;
-				if(activeConjCheck && !mr.getName().equals("Bound Check")) {
-                    cont.setEnabled(true);
+				Scanner sc = new Scanner(state);
+					if(sc.hasNext()) {
+						activeConjCheck = Boolean.parseBoolean(sc.next());
+						iterative = Boolean.parseBoolean(sc.next());
+						type = sc.next();
+						size = Integer.parseInt(sc.next());
+						bound = sc.next();
+					}
+			System.out.println("cin " + activeConjCheck + " " + iterative);
+			if(activeConjCheck && !mr.getName().equals("Bound Check")) {
+					cont.setEnabled(true);
 					if(!iterative) {
-						if (GraphReportExtensionAction.currentType != "") {
-							result = cfa.forall();
-						} else {
-							result = cfa.forAllUnfiltered();
+						try {
+							result=IterGraphs.countBounds(type, size, new ToCall() {
+								@Override
+								public Object f(GraphModel g) {
+									return mr.calculate(g);
+								}
+							}, bound);
+						} catch (IOException e) {
+							e.printStackTrace();
 						}
 					} else {
-						CheckForAll cfa = new CheckForAll(mr);
-						if (GraphReportExtensionAction.currentType != "") {
-							result = cfa.forallIterative();
-						} else {
-							result = cfa.forAllUnfilteredIterative();
+						System.out.println("salam"+ size + "type" + type+bound);
+						try {
+							result=IterGraphs.iterBounds(type, size, new ToCall() {
+                                @Override
+                                public Object f(GraphModel g) {
+                                    return mr.calculate(g);
+                                }
+                            }, bound);
+						} catch (IOException e) {
+							e.printStackTrace();
 						}
 					}
 
@@ -120,7 +137,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 						String out = JOptionPane.showInputDialog("Please enter the counter " +
 								"of the graph that you want to proceed.");
 						int cnt = Integer.parseInt(out);
-						new GraphData(blackboard).core.showGraph(cfa.getith(cnt));
+						new GraphData(blackboard).core.showGraph(IterGraphs.getith(type,size,cnt));
 					}
 				});
 
