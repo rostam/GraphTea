@@ -62,7 +62,6 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     }
 
     public Object calculate(GraphModel g) {
-        GeneratorFilters.generateGraphs("graphtea.extensions.generators.CompleteGraphGenerator");
         GraphFilter gf=Filters.getCorrectFilter(filter);
         if(gf != null) currentType=gf.getName();
         if(tree) currentType="tree";

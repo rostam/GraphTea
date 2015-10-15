@@ -2,6 +2,7 @@ package graphtea.extensions.reports.boundcheck.forall;
 
 
 import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;
+import graphtea.extensions.reports.boundcheck.forall.filters.GeneratorFilters;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.platform.core.BlackBoard;
@@ -41,7 +42,21 @@ public class IterGraphs {
         parseState();
         RendTable result = new RendTable();
         if(!gens.equals("")) {
-            
+            if (!iterative) {
+                result = IterGraphs.countBoundsGenerators(type, size, new ToCall() {
+                    @Override
+                    public Object f(GraphModel g) {
+                        return mr.calculate(g);
+                    }
+                }, bound);
+            } else {
+                result = IterGraphs.iterBoundsGenerators(type, size, new ToCall() {
+                    @Override
+                    public Object f(GraphModel g) {
+                        return mr.calculate(g);
+                    }
+                }, bound);
+            }
         } else if (!iterative) {
             try {
                 result = IterGraphs.countBounds(type, size, new ToCall() {
@@ -66,6 +81,14 @@ public class IterGraphs {
             }
         }
         return result;
+    }
+
+    private static RendTable iterBoundsGenerators(String type, int size, ToCall toCall, String bound) {
+        return GeneratorFilters.generateGraphs(gens,toCall,bound);
+    }
+
+    private static RendTable countBoundsGenerators(String type, int size, ToCall toCall, String bound) {
+        return null;
     }
 
     public static void writeFilterGraphs(String file, Vector<Integer> gs, String filt) throws IOException {

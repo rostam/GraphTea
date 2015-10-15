@@ -14,6 +14,7 @@ public class Filters {
 
     public static ArrayX<String> getFilterNames() {
         return new ArrayX<>(
+                "",
                 Filters.Integral,
                 Filters.LaplacianIntegral,
                 Filters.QIntegral
