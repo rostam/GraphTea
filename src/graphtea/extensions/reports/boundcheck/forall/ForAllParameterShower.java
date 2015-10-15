@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.boundcheck.forall;
 
+import graphtea.library.util.Pair;
 import graphtea.platform.attribute.AttributeListener;
 import graphtea.platform.attribute.AttributeSet;
 import graphtea.platform.core.exception.ExceptionHandler;
@@ -17,6 +18,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.Vector;
 
 /**
  * this class provides the ability to show and edit the parametr of a
@@ -26,6 +29,10 @@ import java.util.Map;
  */
 public class ForAllParameterShower implements AttributeListener {
     private Object o;
+
+    public ForAllParameterShower(Object o) {
+        this.o = o;
+    }
 
     /**
      * show all the fields of the object which have setter and getter in a property editor in runtime
@@ -63,40 +70,56 @@ public class ForAllParameterShower implements AttributeListener {
 
     }
 
-    public boolean xshow(Object o) {
+    public Vector<Pair<Integer, Integer>> xshow(Object o) {
         try {
             this.o = o;
-            PortableNotifiableAttributeSetImpl p = new PortableNotifiableAttributeSetImpl();
-            p.addAttributeListener(this);
+            Vector<JTextField> v = new Vector<>();
+            JPanel myPanel = new JPanel();
+
             for (Field f : o.getClass().getFields()) {
                 Parameter anot = f.getAnnotation(Parameter.class);
                 if (anot != null) {
-                    addField(p, f, o+"", anot.name(), anot.description());
+                    JTextField xField = new JTextField(5);
+                    v.add(xField);
+                    myPanel.add(new JLabel("x:"));
+                    myPanel.add(xField);
                 }
             }
-            return GAttrFrame.showEditDialog(p, true).getReturnStatus();
+            int result = JOptionPane.showConfirmDialog(null, myPanel,
+                    "Please enter bound values", JOptionPane.OK_CANCEL_OPTION);
+            if (result == JOptionPane.OK_OPTION) {
+                Vector<Pair<Integer,Integer>> res = new Vector<>();
+                for(int i=0;i<v.size();i++) {
+                    Scanner sc = new Scanner(v.get(i).getText());
+                    sc.useDelimiter(":");
+                    res.add(new Pair<Integer, Integer>(
+                            Integer.parseInt(sc.next()),
+                            Integer.parseInt(sc.next())));
+                    return res;
+                }
+            }
         }
         catch (Exception e) {
             ExceptionHandler.catchException(e);
         }
-        return false;
+        return new Vector<>();
     }
 
-    public boolean show(Parametrizable p) {
-        boolean finished = false;
-        while (!finished) {
-            boolean b = xshow(p);
-            if (!b) {
-                return false;   //cancelled
-            }
-            String s = p.checkParameters();
-            if (s == null)
-                finished = true;
-            else
-                JOptionPane.showMessageDialog(null, s);
-        }
-        while (p.checkParameters() != null) ;
-        return true;
+    public Vector<Pair<Integer, Integer>> show(Parametrizable p) {
+        //boolean finished = false;
+        //while (!finished) {
+            return xshow(p);
+            //if (!b) {
+            //    return false;   //cancelled
+            //}
+            //String s = p.checkParameters();
+            //if (s == null)
+            //    finished = true;
+            //else
+            //    JOptionPane.showMessageDialog(null, s);
+        //}
+        //while (p.checkParameters() != null) ;
+        //return new Vector<>();
     }
 
     /**

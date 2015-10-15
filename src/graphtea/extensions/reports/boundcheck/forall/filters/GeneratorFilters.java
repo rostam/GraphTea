@@ -2,6 +2,7 @@ package graphtea.extensions.reports.boundcheck.forall.filters;
 
 import graphtea.extensions.reports.boundcheck.forall.ForAllParameterShower;
 import graphtea.graph.graph.GraphModel;
+import graphtea.library.util.Pair;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.extension.Extension;
 import graphtea.platform.extension.ExtensionLoader;
@@ -13,6 +14,7 @@ import graphtea.ui.extension.AbstractExtensionAction;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.Vector;
 
 /**
  * Created by rostam on 14.10.15.
@@ -34,8 +36,11 @@ public class GeneratorFilters {
 
     public static GraphModel generateGraphs(String name) {
         Extension ext = ((AbstractExtensionAction) hm.get(name)).getTarget();
-        ForAllParameterShower ps = new ForAllParameterShower();
-        ps.show((Parametrizable) ext);
+        ForAllParameterShower ps = new ForAllParameterShower((Parametrizable) ext);
+        Vector<Pair<Integer, Integer>> res =  ps.show((Parametrizable) ext);
+        for(int i=0;i<res.size();i++) {
+            
+        }
         GraphModel g = ((AbstractExtensionAction) hm.get(name)).generateGraph();
         return new GraphModel();
     }
