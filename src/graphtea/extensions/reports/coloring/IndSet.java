@@ -5,20 +5,26 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.util.Pair;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 public class IndSet {
   public static Vector<Integer> ISet(GraphModel g,
-                                     Vector<Integer> V_r,
-                                     Vector<Integer> V_c,
+                                     Vector<Integer> V_rr,
+                                     Vector<Integer> V_cc,
                                      int mode) {
+
+    Vector<Integer> V_r = new Vector<>();
+    V_r.addAll(V_rr);
+    Vector<Integer> V_c = new Vector<>();
+    V_c.addAll(V_cc);
+
     Vector<Integer> IS = new Vector<>();
     Vector<Edge> E_1 = new Vector<>();
     Vector<Edge> E_2 = new Vector<>();
     Vector<Edge> E_3 = new Vector<>();
     Vector<Edge> E_4 = new Vector<>();
 
-    int NumVertices_V_r = V_r.size();
     int NumOfVertices = V_r.size() + V_c.size();
     double rho;
     for (Edge ee : g.getEdges()) {
@@ -86,7 +92,7 @@ public class IndSet {
             if (e.source.getId() == n_1.getId() ||
                     e.target.getId() == n_1.getId()) {
               if (!is_deleted) {
-                V_c.remove(V_c.indexOf(n_1));
+                V_c.remove(V_c.indexOf(n_1.getId()));
                 is_deleted = true;
               }
               E_3.add(e);
@@ -123,7 +129,7 @@ public class IndSet {
             if (e.source.getId() == n_1.getId() ||
                     e.target.getId() == n_1.getId()) {
               if (!is_deleted) {
-                V_r.remove(V_r.indexOf(n_1));
+                V_r.remove(V_r.indexOf(n_1.getId()));
                 is_deleted = true;
               }
               E_2.add(e);
@@ -166,8 +172,8 @@ public class IndSet {
   }
 
   public static Vector<Integer> ISetRestricted(GraphModel g,
-                                     Vector<Integer> V_r,
-                                     Vector<Integer> V_c,
+                                     Vector<Integer> V_rr,
+                                     Vector<Integer> V_cc,
                                      int mode) {
     Vector<Integer> IS = new Vector<>();
     Vector<Edge> E_1 = new Vector<>();
@@ -175,7 +181,11 @@ public class IndSet {
     Vector<Edge> E_3 = new Vector<>();
     Vector<Edge> E_4 = new Vector<>();
 
-    int NumVertices_V_r = V_r.size();
+    Vector<Integer> V_r = new Vector<>();
+    V_r.addAll(V_rr);
+    Vector<Integer> V_c = new Vector<>();
+    V_c.addAll(V_cc);
+
     int NumOfVertices = V_r.size() + V_c.size();
     double rho=mode/2;
     if(rho==0) rho=1.5;
@@ -188,7 +198,7 @@ public class IndSet {
 
     while (!E_1.isEmpty()) {
       Vector<Integer> Degree = new Vector<>(NumOfVertices);
-      for (int i = 0; i < NumOfVertices; i++) Degree.set(i, 0);
+      for (int i = 0; i < NumOfVertices; i++) Degree.add(0);
       for (Edge e : E_1) {
         Degree.set(e.source.getId(), Degree.get(e.source.getId()) + 1);
         Degree.set(e.target.getId(), Degree.get(e.target.getId()) + 1);
@@ -202,7 +212,7 @@ public class IndSet {
       //vector<int>::iterator Degree_border = Degree.begin() + NumVertices_V_r;
 
       //min_element in V_r
-      int v_r = V_r.get(9);
+      int v_r = V_r.get(0);
       for (int v : V_r) {
         if (Degree.get(v) < Degree.get(v_r)) {
           v_r = v;
@@ -210,7 +220,7 @@ public class IndSet {
       }
 
       //min_element in V_c
-      int v_c = V_c.get(9);
+      int v_c = V_c.get(0);
       for (int v : V_c) {
         if (Degree.get(v) < Degree.get(v_c)) {
           v_c = v;
@@ -245,7 +255,7 @@ public class IndSet {
             if (e.source.getId() == n_1.getId() ||
                     e.target.getId() == n_1.getId()) {
               if (!is_deleted) {
-                V_c.remove(V_c.indexOf(n_1));
+                V_c.remove(V_c.indexOf(n_1.getId()));
                 is_deleted = true;
               }
               E_3.add(e);
@@ -255,7 +265,6 @@ public class IndSet {
           E_1.removeAll(erasedE);
 
           erasedE = new Vector<>();
-
           //E_2 -> E_4
           //Emulate reverse_iterator because of erase-operation
           for (Edge e : E_2) {
@@ -282,7 +291,7 @@ public class IndSet {
             if (e.source.getId() == n_1.getId() ||
                     e.target.getId() == n_1.getId()) {
               if (!is_deleted) {
-                V_r.remove(V_r.indexOf(n_1));
+                V_r.remove(V_r.indexOf(n_1.getId()));
                 is_deleted = true;
               }
               E_2.add(e);
@@ -304,7 +313,7 @@ public class IndSet {
           }
           E_3.removeAll(erasedE);
         }
-        V_c.remove(V_r.indexOf(v_c));
+        V_c.remove(V_c.indexOf(v_c));
       }
     }
 
@@ -326,9 +335,13 @@ public class IndSet {
 
 
   public static Vector<Integer> ISetVariant(GraphModel gg,
-                                            Vector<Integer> V_r,
-                                            Vector<Integer> V_c,
+                                            Vector<Integer> V_rr,
+                                            Vector<Integer> V_cc,
                                             float ratio) {
+    Vector<Integer> V_r = new Vector<>();
+    V_r.addAll(V_rr);
+    Vector<Integer> V_c = new Vector<>();
+    V_c.addAll(V_cc);
     Vector<Integer> IS = new Vector<>();
     Vector<Pair<Integer, Integer>> Degree_V_r = new Vector<>();
     Vector<Pair<Integer, Integer>> Degree_V_c = new Vector<>();
@@ -336,11 +349,11 @@ public class IndSet {
 
 
     for (int v_r : V_r) {
-      Degree_V_r.add(new Pair<Integer, Integer>(v_r, g.getDegree(g.getVertex(v_r))));
+      Degree_V_r.add(new Pair<>(v_r, g.getDegree(g.getVertex(v_r))));
     }
 
     for (int v_c : V_c) {
-      Degree_V_c.add(new Pair<Integer, Integer>(v_c, g.getDegree(g.getVertex(v_c))));
+      Degree_V_c.add(new Pair<>(v_c, g.getDegree(g.getVertex(v_c))));
     }
 
 
@@ -367,7 +380,7 @@ public class IndSet {
         Vector<Pair<Integer, Integer>> removedEdges = new Vector<>();
         for (Pair<Integer, Integer> di : Degree_V_r) {
           if (max_degree_V_r == di.second) {
-            g.removeVertex(g.getVertex(di.first));
+            clearVertex(g.getVertex(di.first),g);
             removedEdges.add(di);
           }
         }
@@ -376,7 +389,7 @@ public class IndSet {
         Vector<Pair<Integer, Integer>> removedEdges = new Vector<>();
         for (Pair<Integer, Integer> di : Degree_V_c) {
           if (max_degree_V_c == di.second) {
-            g.removeVertex(g.getVertex(di.first));
+            clearVertex(g.getVertex(di.first),g);
             removedEdges.add(di);
           }
         }
@@ -396,31 +409,29 @@ public class IndSet {
   }
 
   public static Vector<Integer> ISetVariantRestricted(GraphModel gg,
-                                            Vector<Integer> V_r,
-                                            Vector<Integer> V_c,
+                                            Vector<Integer> V_rr,
+                                            Vector<Integer> V_cc,
                                             float ratio) {
+    Vector<Integer> V_r = new Vector<>();
+    V_r.addAll(V_rr);
+    Vector<Integer> V_c = new Vector<>();
+    V_c.addAll(V_cc);
     Vector<Integer> IS = new Vector<>();
     Vector<Pair<Integer, Integer>> Degree_V_r = new Vector<>();
     Vector<Pair<Integer, Integer>> Degree_V_c = new Vector<>();
     GraphModel g = gg.getCopy();
-    int[][] es = g.getEdgeArray();
-    for(int i=0; i<g.numOfVertices();i++) {
-      int[] ns = es[i];
-      for(int j=0;j<ns.length;j++) {
-        Edge e = g.getEdge(g.getVertex(ns[j]),g.getVertex(i));
-        if(e.getWeight()==0)
-          g.removeEdge(e);
-      }
-    }
+    Vector<Edge> es = new Vector<>();
+    for(Edge e: g.getEdges()) if(e.getWeight() == 0) es.add(e);
+    for (Edge e : es) g.removeEdge(e);
+
 
     for (int v_r : V_r) {
-      Degree_V_r.add(new Pair<Integer, Integer>(v_r, g.getDegree(g.getVertex(v_r))));
+      Degree_V_r.add(new Pair<>(v_r, g.getDegree(g.getVertex(v_r))));
     }
 
     for (int v_c : V_c) {
-      Degree_V_c.add(new Pair<Integer, Integer>(v_c, g.getDegree(g.getVertex(v_c))));
+      Degree_V_c.add(new Pair<>(v_c, g.getDegree(g.getVertex(v_c))));
     }
-
 
     while (g.getEdgesCount() > 0) {
       int max_degree_V_r = 0;
@@ -445,7 +456,7 @@ public class IndSet {
         Vector<Pair<Integer, Integer>> removedEdges = new Vector<>();
         for (Pair<Integer, Integer> di : Degree_V_r) {
           if (max_degree_V_r == di.second) {
-            g.removeVertex(g.getVertex(di.first));
+            clearVertex(g.getVertex(di.first),g);
             removedEdges.add(di);
           }
         }
@@ -454,7 +465,7 @@ public class IndSet {
         Vector<Pair<Integer, Integer>> removedEdges = new Vector<>();
         for (Pair<Integer, Integer> di : Degree_V_c) {
           if (max_degree_V_c == di.second) {
-            g.removeVertex(g.getVertex(di.first));
+            clearVertex(g.getVertex(di.first),g);
             removedEdges.add(di);
           }
         }
@@ -471,5 +482,12 @@ public class IndSet {
     }
 
     return IS;
+  }
+
+  public static void clearVertex(Vertex s, GraphModel g) {
+    Vector<Edge> es = new Vector<>();
+    Iterator<Edge> ie = g.edgeIterator(s);
+    while(ie.hasNext()) es.add(ie.next());
+    for (Edge e : es) g.removeEdge(e);
   }
 }

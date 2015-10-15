@@ -1,10 +1,10 @@
 package graphtea.extensions.reports.coloring;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.Vertex;
 
 import java.util.Collections;
 import java.util.Vector;
+import graphtea.graph.graph.Vertex;
 
 
 public class Neighbors {
@@ -15,7 +15,7 @@ public class Neighbors {
     for(Vertex v : g.getNeighbors(g.getVertex(Vertex))) {
       for(Vertex nv : g.getNeighbors(v)) {
         if(nv.getId()!=Vertex) {
-          if(!neighbors.contains(nv)) neighbors.add(nv.getId());
+          if(!neighbors.contains(nv.getId())) neighbors.add(nv.getId());
         }
       }
     }
@@ -33,7 +33,7 @@ public class Neighbors {
       for (Vertex nv : g.getNeighbors(v)) {
         if (nv.getId() != Vertex) {
           if (g.getEdge(s, v).getWeight() == 1 || g.getEdge(v, nv).getWeight() == 1) {
-            if (!neighbors.contains(nv)) {
+            if (!neighbors.contains(nv.getId())) {
               neighbors.add(nv.getId());
             }
           }

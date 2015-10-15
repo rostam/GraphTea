@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.coloring;
 
+import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.util.Pair;
@@ -23,7 +24,7 @@ public class ColorAlgs {
     Vector<Integer> N2 = new Vector<>();
     Vector<Integer> forbidden = new Vector<>(g.numOfVertices());
     for(int i=0;i<g.numOfVertices();i++) forbidden.add(-1);
-    for (Vertex v : g) v.setColor(0);
+    for (int v : V) g.getVertex(v).setColor(0);
     for (int v : V) {
       if (g.getDegree(g.getVertex(v)) > 0) {
         forbidden.set(0, v);
@@ -56,10 +57,7 @@ public class ColorAlgs {
   }
 
   public static boolean IncidentToReqEdge(GraphModel g, int Vertex) {
-    for (Vertex v : g.getNeighbors(g.getVertex(Vertex))) {
-      if (g.getEdge(v, g.getVertex(Vertex)).getWeight() == 1)
-        return true;
-    }
+    for(Edge e : g.edges(g.getVertex(Vertex))) if(e.getWeight()==1) return true;
     return false;
   }
 
@@ -79,8 +77,9 @@ public class ColorAlgs {
   public static int PartialD2ColoringRestricted(GraphModel g, Vector<Integer> V) {
     Vector<Integer> N2 = new Vector<>();
     Vector<Integer> forbidden = new Vector<>(g.numOfVertices());
-    for(int i=0;i<g.numOfVertices();i++) forbidden.add(-1);
-    for (Vertex v : g) v.setColor(0);
+    for (int i = 0; i < g.numOfVertices(); i++) forbidden.add(-1);
+    for (int v : V) g.getVertex(v).setColor(0);
+
     for (int v : V) {
       forbidden.set(0, v);
       if (IncidentToReqEdge(g, v)) {
@@ -156,7 +155,7 @@ public class ColorAlgs {
 
     //Color all vertices which are not colored
     StarBicoloring(g, V_r, V_c);
-    return 0;
+    return getNumOfCols(g);
   }
 
   public static boolean StarBicoloring(GraphModel g, Vector<Integer> V_r, Vector<Integer> V_c) {
@@ -219,13 +218,14 @@ public class ColorAlgs {
    *
    * Output:
    * - G_b bipartite graph with colors given as weights vertex_color
-   */  public static int StarBicoloringSchemeRestricted(GraphModel g, Vector<Integer> V_r,
+   */  public static int StarBicoloringSchemeRestricted(GraphModel g,
+                                                        Vector<Integer> V_r,
                                          Vector<Integer> V_c,
                                          int Mode, int Mode2) {
     Vector<Integer> IS = new Vector<>();
-    Vector<Integer> num_colors = new Vector<>();
 
     //Compute independent set
+    System.out.println("Mode "+ Mode);
     if (Mode == 1) {
       IS = IndSet.ISetRestricted(g, V_r, V_c, Mode2); //ISet = IS_Coleman(G_b,V_r,V_c);
     } else if (Mode == 2) {
@@ -240,14 +240,6 @@ public class ColorAlgs {
       IS = IndSet.ISetVariantRestricted(g, V_r, V_c, 3.0f);
     } else if (Mode == 7) {
       IS = IndSet.ISetVariantRestricted(g, V_r, V_c, 3.5f);
-    } else if (Mode == 8) {
-      IS = IndSet.ISetVariantRestricted(g, V_r, V_c, 4.0f);
-    } else if (Mode == 9) {
-      IS = IndSet.ISetVariantRestricted(g, V_r, V_c, 4.5f);
-    } else if (Mode == 10) {
-      IS = IndSet.ISetVariantRestricted(g, V_r, V_c, 5.0f);
-    } else if (Mode == 11) {
-      IS = IndSet.ISetVariantRestricted(g, V_r, V_c, 5.5f);
     }
 
     //Color vertices in independent set with color 0
@@ -257,23 +249,19 @@ public class ColorAlgs {
 
     //Color all vertices which are not colored
     StarBicoloringRestricted(g, V_r, V_c);
-    return 0;
+
+    return getNumOfCols(g);
   }
 
   public static boolean StarBicoloringRestricted
           (GraphModel g, Vector<Integer> V_r, Vector<Integer> V_c) {
-    Vector<Integer> forbiddenColors = new Vector<>(V_r.size(), -1);
+    Vector<Integer> forbiddenColors = new Vector<>(V_r.size());
+    for(int i=0;i < V_r.size();i++) forbiddenColors.add(-1);
     Vector<Integer> Vertices = new Vector<>(V_r.size() + V_c.size());
 
-
     //GraphModel gg = g.getCopy();
-    for (int i = 0; i < V_r.size(); i++) {
-      Vertices.add(g.getVertex(i).getId());
-    }
-
-    for (int i = 0; i < V_c.size(); i++) {
-      Vertices.add(g.getVertex(i).getId());
-    }
+    for(int v_r : V_r) Vertices.add(v_r);
+    for(int v_c : V_c) Vertices.add(v_c);
 
     for (int v : Vertices) {
       if (g.getVertex(v).getColor() != 0) {
@@ -290,6 +278,7 @@ public class ColorAlgs {
             }
           } else {
             for (Vertex x : g.getNeighbors(w)) {
+              System.out.println(" jez " + g.getEdge(x,w).getWeight());
               if(g.getEdge(x,w).getWeight()==1) {
                 if (x.getColor() > 0) {
                   for (Vertex y : g.getNeighbors(x)) {
@@ -307,7 +296,9 @@ public class ColorAlgs {
       }
 
       for (int i = 0; i < forbiddenColors.size(); i++) {
-        if (forbiddenColors.get(i) != v) g.getVertex(v).setColor(i);
+        if (forbiddenColors.get(i) != v) {
+          g.getVertex(v).setColor(i);
+        }
       }
 
     }
@@ -354,7 +345,7 @@ public class ColorAlgs {
 
     //Color all vertices which are not colored
     StarBicoloringDynamicOrdering(g, V_r, V_c, sort);
-    return 0;
+    return getNumOfCols(g);
   }
 
   public static boolean StarBicoloringDynamicOrdering
@@ -450,7 +441,7 @@ public class ColorAlgs {
 
     //Color all vertices which are not colored
     StarBicoloringDynamicOrderingRestricted(g, V_r, V_c, sort);
-    return 0;
+    return getNumOfCols(g);
   }
 
   public static boolean StarBicoloringDynamicOrderingRestricted
@@ -560,7 +551,7 @@ public class ColorAlgs {
     Vector<Pair<Integer, Integer>> copy_real_r = new Vector<>();
     Vector<Pair<Integer, Integer>> copy_real_c = new Vector<>();
     Vector<Integer> forbiddenColors = new Vector<>(V_r.size());
-    for (int i = 0; i < forbiddenColors.size(); i++) {
+    for (int i = 0; i < V_r.size(); i++) {
       forbiddenColors.add(-1);
     }
 
@@ -591,7 +582,7 @@ public class ColorAlgs {
     while (gaux.getEdgesCount() > 0) {
       int max_degree_V_r_aux = 0;
       for (Pair<Integer, Integer> di : Degree_V_r_aux) {
-        di.second = gaux.getDegree(g.getVertex(di.first));
+        di.second = gaux.getDegree(gaux.getVertex(di.first));
         int degree_v_r = di.second;
         if (degree_v_r > max_degree_V_r_aux) {
           max_degree_V_r_aux = degree_v_r;
@@ -600,7 +591,7 @@ public class ColorAlgs {
 
       int max_degree_V_c_aux = 0;
       for (Pair<Integer, Integer> di : Degree_V_c_aux) {
-        di.second = gaux.getDegree(g.getVertex(di.first));
+        di.second = gaux.getDegree(gaux.getVertex(di.first));
         int degree_v_c = di.second;
         if (degree_v_c > max_degree_V_c_aux) {
           max_degree_V_c_aux = degree_v_c;
@@ -626,7 +617,7 @@ public class ColorAlgs {
               }
             }
 
-            gaux.removeVertex(gaux.getVertex(di.first));
+            IndSet.clearVertex(gaux.getVertex(di.first),gaux);
             removedEdges.add(di);
 
             forbiddenColors.set(0, v);
@@ -682,7 +673,7 @@ public class ColorAlgs {
               }
             }
 
-            gaux.removeVertex(gaux.getVertex(di.first));
+            IndSet.clearVertex(gaux.getVertex(di.first),gaux);
             removedEdges.add(di);
 
             forbiddenColors.set(0, v);
@@ -731,7 +722,7 @@ public class ColorAlgs {
     }
 
 
-    return 0;
+    return getNumOfCols(g);
   }
 
   public static int StarBicoloringSchemeCombinedVertexCoverColoringRestricted(GraphModel g,
@@ -758,7 +749,7 @@ public class ColorAlgs {
     Vector<Pair<Integer, Integer>> copy_real_r = new Vector<>();
     Vector<Pair<Integer, Integer>> copy_real_c = new Vector<>();
     Vector<Integer> forbiddenColors = new Vector<>(V_r.size());
-    for (int i = 0; i < forbiddenColors.size(); i++) {
+    for (int i = 0; i < V_r.size(); i++) {
       forbiddenColors.add(-1);
     }
 
@@ -789,21 +780,23 @@ public class ColorAlgs {
     while (gaux.getEdgesCount() > 0) {
       int max_degree_V_r_aux = 0;
       for (Pair<Integer, Integer> di : Degree_V_r_aux) {
-        di.second = gaux.getDegree(g.getVertex(di.first));
+        di.second = gaux.getDegree(gaux.getVertex(di.first));
         int degree_v_r = di.second;
         if (degree_v_r > max_degree_V_r_aux) {
           max_degree_V_r_aux = degree_v_r;
         }
       }
+      System.out.println("1");
 
       int max_degree_V_c_aux = 0;
       for (Pair<Integer, Integer> di : Degree_V_c_aux) {
-        di.second = gaux.getDegree(g.getVertex(di.first));
+        di.second = gaux.getDegree(gaux.getVertex(di.first));
         int degree_v_c = di.second;
         if (degree_v_c > max_degree_V_c_aux) {
           max_degree_V_c_aux = degree_v_c;
         }
       }
+      System.out.println("2");
 
       if (max_degree_V_r_aux > ratio * max_degree_V_c_aux) {
         Vector<Pair<Integer, Integer>> removedEdges = new Vector<>();
@@ -811,7 +804,7 @@ public class ColorAlgs {
           if (max_degree_V_r_aux == di.second) {
             Pair<Integer, Integer> cr = new Pair<>(0, 0);
             for (Pair<Integer, Integer> crtmp : copy_real_r) {
-              if (crtmp.second == di.first) {
+              if (crtmp.second.equals(di.first)) {
                 cr = crtmp;
                 break;
               }
@@ -823,10 +816,12 @@ public class ColorAlgs {
                 break;
               }
             }
+            System.out.println("33");
 
-            gaux.removeVertex(gaux.getVertex(di.first));
+            IndSet.clearVertex(gaux.getVertex(di.first),gaux);
             removedEdges.add(di);
 
+            System.out.println("44");
             forbiddenColors.set(0, v);
             for (Vertex w : g.getNeighbors(g.getVertex(v))) {
               if (w.getColor() <= 0) {
@@ -853,8 +848,10 @@ public class ColorAlgs {
                   }
                 }
               }
+              System.out.println("45s");
             }
-            Degree_V_r_aux.removeAll(removedEdges);
+            System.out.printf("456");
+
 
             //Find first color which can be assigned to v_c
             for (int i = 0; i < forbiddenColors.size(); i++) {
@@ -863,8 +860,10 @@ public class ColorAlgs {
                 break;
               }
             }
+            System.out.println("500");
           }
         }
+        Degree_V_r_aux.removeAll(removedEdges);
       } else {
         Vector<Pair<Integer, Integer>> removedEdges = new Vector<>();
         for (Pair<Integer, Integer> di : Degree_V_c_aux) {
@@ -884,11 +883,14 @@ public class ColorAlgs {
               }
             }
 
-            gaux.removeVertex(gaux.getVertex(di.first));
+            IndSet.clearVertex(gaux.getVertex(di.first),gaux);
             removedEdges.add(di);
 
+            System.out.println("3");
             forbiddenColors.set(0, v);
+            System.out.println("3.0q" + v);
             for (Vertex w : g.getNeighbors(g.getVertex(v))) {
+              System.out.println("3.1");
               if (w.getColor() <= 0) {
                 for (Vertex x : g.getNeighbors(w)) {
                   if (x.getColor() > 0) {
@@ -899,8 +901,11 @@ public class ColorAlgs {
 
                   }
                 }
+                System.out.println("3.2");
+
               } else { //Color[w]>0
                 for (Vertex x : g.getNeighbors(w)) {
+                  System.out.println("3.3");
                   if (x.getColor() > 0) {
                     if (g.getEdge(w, x).getWeight() == 1) {
                       for (Vertex y : g.getNeighbors(x)) {
@@ -915,6 +920,8 @@ public class ColorAlgs {
                 }
               }
             }
+            System.out.println("3.5");
+
             //Find first color which can be assigned to v_c
             for (int i = 0; i < forbiddenColors.size(); i++) {
               if (forbiddenColors.get(i) != v) {
@@ -924,6 +931,7 @@ public class ColorAlgs {
             }
           }
         }
+        System.out.println("4");
         Degree_V_c_aux.removeAll(removedEdges);
       }
     }
@@ -939,6 +947,6 @@ public class ColorAlgs {
     }
 
 
-    return 0;
+    return getNumOfCols(g);
   }
 }

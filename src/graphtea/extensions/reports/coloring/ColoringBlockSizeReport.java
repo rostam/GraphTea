@@ -7,18 +7,28 @@ import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
+import javax.print.DocFlavor;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
 
 public class ColoringBlockSizeReport implements GraphReportExtension {
 
-  public int color(int Coloring, int Ordering, int Mode,
-                   int RequiredPattern, int rho, int bls, File file) {
-    int blockSize = 100;
+  public static void main(String[] args) {
+    int res = color(1, 1, 1, 1, 1, 3, new File("./matrices/hor_131.mtx"));
+    System.out.println("No. of Colors: " + res);
+  }
+
+
+  public static int color(int Coloring, int Ordering, int Mode,
+                          int RequiredPattern, int rho,
+                          int blockSize, File file) {
     int Mode2=0;
     if (Ordering != 0) {
+      if(Coloring==3) {
         Ordering += 3;
+      }
     }
 
     if (Mode == 3) {
@@ -32,18 +42,13 @@ public class ColoringBlockSizeReport implements GraphReportExtension {
       }
     }
 
-    if (RequiredPattern == 3) {
-      if (bls != 0) {
-        blockSize = bls;
-      }
-    }
-
     Matrix mm = new Matrix(5,5);
     try {
       mm=MM.loadMatrixFromSPARSE(file);
     } catch (IOException e) {
       e.printStackTrace();
     }
+
     int rows = mm.getRowDimension();
     int cols = mm.getColumnDimension();
 
@@ -53,12 +58,14 @@ public class ColoringBlockSizeReport implements GraphReportExtension {
 
     for(int i=0; i < rows;i++) {
       Vertex v = new Vertex();
+      v.setColor(-1);
       g.addVertex(v);
       V_r.add(v.getId());
     }
 
     for(int i=0; i < cols;i++) {
       Vertex v = new Vertex();
+      v.setColor(-1);
       g.addVertex(v);
       V_c.add(v.getId());
     }
@@ -81,7 +88,7 @@ public class ColoringBlockSizeReport implements GraphReportExtension {
         break;
       case 1:
         for(Edge e : g.getEdges()) {
-          if(e.source.getId() + rows == e.target.getId()) {
+          if(Math.abs(e.source.getId()-e.target.getId())==rows) {
             e.setWeight(1);
             entries_pattern++;
           }
@@ -202,7 +209,8 @@ public class ColoringBlockSizeReport implements GraphReportExtension {
         num_colors=ColorAlgs.StarBicoloringScheme(g,V_r,V_c,Mode,Mode2);
         break;
       case 6:
-        System.out.println("StarBicoloringSchemeRestricted");
+        System.out.println("StarBicoloringSchemeRestricted "
+                + V_r.size() + " " +V_c.size() );
         num_colors=ColorAlgs.StarBicoloringSchemeRestricted(g, V_r, V_c, Mode, Mode2);
         break;
       case 7:
@@ -234,12 +242,6 @@ public class ColoringBlockSizeReport implements GraphReportExtension {
     ret.add(new Vector<Object>());
     ret.add(new Vector<Object>());
     ret.add(new Vector<Object>());
-    ret.add(new Vector<Object>());
-    ret.add(new Vector<Object>());
-    ret.add(new Vector<Object>());
-    ret.add(new Vector<Object>());
-    ret.add(new Vector<Object>());
-    ret.add(new Vector<Object>());
 
     ret.get(0).add(" Matrix ");
     for (int j = 1; j <= 8; j++) {
@@ -254,7 +256,7 @@ public class ColoringBlockSizeReport implements GraphReportExtension {
         cnt++;
         ret.get(cnt).add(child.getName());
         for (int j = 1; j <= 8; j++) {
-          int res = color(6, 1, 3, 3, 1, 10*j, child);
+          int res = color(10, 1, 3, 3, 1, 10*j, child);
           ret.get(cnt).add(res);
         }
       }
