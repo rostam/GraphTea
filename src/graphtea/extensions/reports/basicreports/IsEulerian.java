@@ -34,7 +34,7 @@ public class IsEulerian implements GraphReportExtension {
             return false;
         ArrayList<Integer> degrees = AlgorithmUtils.getDegreesList(graph);
         for (int d : degrees) {
-            if (d % 2 != 1) return false;
+            if (d % 2 != 0) return false;
         }
         return true;
     }
