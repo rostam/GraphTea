@@ -11,10 +11,11 @@ public class Filters {
     public final static String Integral = "Integral";
     public final static String LaplacianIntegral = "Laplacian Integral";
     public final static String QIntegral = "Q-Integral";
+    public final static String NoFilter = "No Filter";
 
     public static ArrayX<String> getFilterNames() {
         return new ArrayX<>(
-                "",
+                Filters.NoFilter,
                 Filters.Integral,
                 Filters.LaplacianIntegral,
                 Filters.QIntegral

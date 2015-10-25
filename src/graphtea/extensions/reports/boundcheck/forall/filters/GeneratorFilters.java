@@ -1,13 +1,11 @@
 package graphtea.extensions.reports.boundcheck.forall.filters;
 
-import graphtea.extensions.reports.boundcheck.forall.ForAllParameterShower;
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
 import graphtea.extensions.reports.boundcheck.forall.IterProgressBar;
 import graphtea.extensions.reports.boundcheck.forall.ToCall;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.library.util.Pair;
-import graphtea.platform.Application;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.extension.Extension;
 import graphtea.platform.extension.ExtensionLoader;
@@ -17,8 +15,6 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
-import graphtea.plugins.main.GraphData;
-import graphtea.ui.ParameterShower;
 import graphtea.ui.extension.AbstractExtensionAction;
 
 import javax.swing.*;
@@ -36,7 +32,7 @@ public class GeneratorFilters {
     public static HashMap<String, String>  nameToClass= new HashMap<>();
 
     public static ArrayX<String> getGenFilters() {
-        ArrayX ax = new ArrayX("");
+        ArrayX ax = new ArrayX("No Generator");
         for (String s : hm.keySet()) {
             if (s.contains("graphtea.extensions.generators.")) {
                 Extension ext = ((AbstractExtensionAction) hm.get(s)).getTarget();
@@ -47,7 +43,7 @@ public class GeneratorFilters {
         return ax;
     }
 
-    public static RendTable generateGraphs(String name,ToCall f, String bound) {
+    public static RendTable generateGraphs(String name,ToCall f,String bound) {
         RendTable ret = new RendTable();
         int[] result = null;
         RendTable retForm = new RendTable();
@@ -59,19 +55,22 @@ public class GeneratorFilters {
         Vector<JTextField> v = new Vector<>();
         JPanel myPanel = new JPanel();
         Parametrizable o = (Parametrizable) ext;
+        System.out.println("The name of class is "+o.getClass().getName());
         Vector<String> names = new Vector<>();
+        String fieldName = "";
         for (Field ff : o.getClass().getFields()) {
             Parameter anot = ff.getAnnotation(Parameter.class);
             if (anot != null) {
                 JTextField xField = new JTextField(5);
                 v.add(xField);
+                fieldName = anot.name();
                 myPanel.add(new JLabel(anot.name() + ":"));
                 myPanel.add(xField);
                 names.add(anot.name());
             }
         }
         int output = JOptionPane.showConfirmDialog(null, myPanel,
-                "Please enter bound values", JOptionPane.OK_CANCEL_OPTION);
+                "Please enter bound values for graph vertices:", JOptionPane.OK_CANCEL_OPTION);
         if (output == JOptionPane.OK_OPTION) {
             Vector<Pair<Integer, Integer>> res = new Vector<>();
             for (int i = 0; i < v.size(); i++) {
@@ -89,12 +88,16 @@ public class GeneratorFilters {
             for (int i = from; i <= to; i++) {
                 try {
                     o.getClass().getDeclaredField(names.get(0)).set(o, i);
-                    GraphModel g = GraphGenerator.getGraph(false, (SimpleGeneratorInterface) ext);
+                    GraphModel g = null;
+                    if(ext instanceof SimpleGeneratorInterface)
+                      g = GraphGenerator.getGraph(false, (SimpleGeneratorInterface) ext);
+                    else
+                      g = ((GraphGeneratorExtension) ext).generateGraph();
                     pb.setValue(i);
                     pb.validate();
                     ret=(RendTable)f.f(g);
                     if(retForm.size()==1) {
-                        retForm.get(0).add("Counter");
+                        retForm.get(0).add(fieldName);
                         retForm.get(0).addAll(ret.get(0));
                     }
                     retForm.add(new Vector<>());
@@ -115,6 +118,6 @@ public class GeneratorFilters {
                 }
             }
         }
-        return null;
+        return retForm;
     }
 }

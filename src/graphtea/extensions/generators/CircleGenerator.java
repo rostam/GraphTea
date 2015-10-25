@@ -22,7 +22,7 @@ import java.awt.*;
  */
 @CommandAttitude(name = "generate_cn", abbreviation = "_g_cn", description = "generated a Circle with n vertices")
 public class CircleGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
-    @Parameter(name = "N")
+    @Parameter(name = "n")
     public static Integer n = 10;
     Vertex[] v;
     GraphModel g;

@@ -23,7 +23,7 @@ public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
     //generated graph is too large to generate.
     //@Parameter(description = "depth of the tree")
     //public BoundedInteger depth = new BoundedInteger(3, 15, 1);
-    @Parameter(description = "Num of vertices")
+    @Parameter(name = "n",description = "Num of vertices")
     public static int n = 4;      //num of vertices
 
 

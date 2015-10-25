@@ -7,30 +7,23 @@ package graphtea.extensions.reports.boundcheck;
 
 import graphtea.extensions.reports.boundcheck.forall.GraphFilter;
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
-import graphtea.extensions.reports.boundcheck.forall.filters.*;
+import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;
+import graphtea.extensions.reports.boundcheck.forall.filters.Filters;
+import graphtea.extensions.reports.boundcheck.forall.filters.GeneratorFilters;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.Application;
-import graphtea.platform.core.AbstractAction;
-import graphtea.platform.extension.Extension;
-import graphtea.platform.extension.ExtensionHandler;
-import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.lang.ArrayX;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
-import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionAction;
-import graphtea.ui.extension.AbstractExtensionAction;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
 
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
     public ConjectureChecking() {
-        filter = Filters.getFilterNames();
+        filters = Filters.getFilterNames();
         type = Bounds.getBoundNames();
-        gens = GeneratorFilters.getGenFilters();
+        generators = GeneratorFilters.getGenFilters();
     }
 
     @Parameter(name = "Bound Check", description = "")
@@ -42,9 +35,9 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     @Parameter(name = "Up to", description = "")
     public boolean upto = false;
     @Parameter(name = "Filter", description = "")
-    public ArrayX<String> filter;
+    public ArrayX<String> filters;
     @Parameter(name = "Graph Generators", description = "")
-    public ArrayX<String> gens;
+    public ArrayX<String> generators;
     @Parameter(name = "Type")
     public ArrayX<String> type;
     @Parameter(name="Iterative", description = "")
@@ -62,7 +55,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     }
 
     public Object calculate(GraphModel g) {
-        GraphFilter gf=Filters.getCorrectFilter(filter);
+        GraphFilter gf=Filters.getCorrectFilter(filters);
         if(gf != null) currentType=gf.getName();
         if(tree) currentType="tree";
         if(gf != null) {
@@ -72,7 +65,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
                 e.printStackTrace();
             }
         }
-        IterGraphs.state=conjCheck+","+iterative+","+currentType+","+Size+","+type.getValue()+","+gens.getValue();
+        IterGraphs.state=conjCheck+","+iterative+","+currentType+","+Size+","+type.getValue()+","+ generators.getValue();
         GraphReportExtensionAction.activeConjCheck=conjCheck;
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";
