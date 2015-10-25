@@ -334,6 +334,7 @@ public class IterGraphs {
 
     public static void show_several(Vector<Integer> gs, BlackBoard blackboard) {
         parseState();
+        Collections.sort(gs);
         for(int i : gs) {
             show_ith(i,blackboard);
         }
