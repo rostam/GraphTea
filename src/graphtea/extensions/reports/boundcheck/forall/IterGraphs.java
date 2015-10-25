@@ -41,7 +41,7 @@ public class IterGraphs {
     public static RendTable wrapper(final GraphReportExtension mr) {
         parseState();
         RendTable result = new RendTable();
-        if(!gens.equals("")) {
+        if(!gens.equals(GeneratorFilters.NoGenerator)) {
             if (!iterative) {
                 result = IterGraphs.countBoundsGenerators(type, size, new ToCall() {
                     @Override
@@ -137,21 +137,6 @@ public class IterGraphs {
         pb.setVisible(false);
     }
 
-    public static int getSize(String str) {
-        Scanner sc = null;
-        try {
-            sc = new Scanner(new File("graphs/sizes.txt"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        while(sc.hasNext()) {
-            String tmp = sc.next();
-            int ret = sc.nextInt();
-            if(tmp.contains(str)) return ret;
-        }
-        return 0;
-    }
-
     public static RendTable iterBounds(String file, int size, ToCall f, String bound) throws IOException {
         RendTable ret = new RendTable();
         int[] res = null;
@@ -161,8 +146,7 @@ public class IterGraphs {
         BufferedReader bri = ShowG.showG(file+size);
         String line;
         String g="";
-        System.out.println("size " + getSize(file+size));
-        IterProgressBar pb = new IterProgressBar(getSize(file+size));
+        IterProgressBar pb = new IterProgressBar(Sizes.sizes.get(file+size));
         pb.setVisible(true);
         bri.readLine();
         int cnt =0;
@@ -225,7 +209,7 @@ public class IterGraphs {
 
         String line;
         String g="";
-        IterProgressBar pb = new IterProgressBar(getSize(file+size));
+        IterProgressBar pb = new IterProgressBar(Sizes.sizes.get(file+size));
         bri.readLine();
         int cnt =0;
         while ((line = bri.readLine()) != null) {

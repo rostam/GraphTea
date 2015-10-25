@@ -30,9 +30,10 @@ import java.util.Vector;
 public class GeneratorFilters {
     public static HashMap<String, AbstractAction> hm = ExtensionLoader.loadedInstances;
     public static HashMap<String, String>  nameToClass= new HashMap<>();
+    public static final String NoGenerator = "No Generator";
 
     public static ArrayX<String> getGenFilters() {
-        ArrayX ax = new ArrayX("No Generator");
+        ArrayX ax = new ArrayX(NoGenerator);
         for (String s : hm.keySet()) {
             if (s.contains("graphtea.extensions.generators.")) {
                 Extension ext = ((AbstractExtensionAction) hm.get(s)).getTarget();
