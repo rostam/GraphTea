@@ -146,7 +146,7 @@ public class IterGraphs {
         BufferedReader bri = ShowG.showG(file+size);
         String line;
         String g="";
-        IterProgressBar pb = new IterProgressBar(Sizes.sizes.get(file+size));
+        IterProgressBar pb = new IterProgressBar(Sizes.sizes.get(file + size));
         pb.setVisible(true);
         bri.readLine();
         int cnt =0;
@@ -266,8 +266,17 @@ public class IterGraphs {
 
         Scanner sc = null;
         try {
-            sc = new Scanner(new File(file+size+".g6"));
+            String cur = new java.io.File(".").getCanonicalPath();
+
+            if(System.getProperty("os.name").contains("Win")) {
+                cur =cur + "\\graphs\\";
+            } else {
+                cur =cur + "/graphs/";
+            }
+            sc = new Scanner(new File(cur+file+size+".g6"));
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         int cnt=0;
@@ -313,5 +322,20 @@ public class IterGraphs {
     public static void show_ith(int cnt, BlackBoard blackboard) {
         parseState();
         new GraphData(blackboard).core.showGraph(IterGraphs.getith(type, size, cnt));
+    }
+
+    public static void show_itojth(int from, int to, BlackBoard blackboard) {
+        parseState();
+        if(to-from > 10) return;
+        for(int i=from;i<=to;i++) {
+            show_ith(i,blackboard);
+        }
+    }
+
+    public static void show_several(Vector<Integer> gs, BlackBoard blackboard) {
+        parseState();
+        for(int i : gs) {
+            show_ith(i,blackboard);
+        }
     }
 }

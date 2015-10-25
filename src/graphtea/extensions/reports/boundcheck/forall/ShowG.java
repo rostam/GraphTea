@@ -45,17 +45,21 @@ public class ShowG {
         String g = "";
 
         try {
-            FileWriter fw = new FileWriter("tmpF.g6");
+            String cur = new java.io.File(".").getCanonicalPath();
+
+            if(System.getProperty("os.name").contains("Win")) {
+                cur =cur + "\\graphs\\";
+            } else {
+                cur =cur + "/graphs/";
+            }
+            FileWriter fw = new FileWriter(cur+"tmpF.g6");
             fw.write(line);
             fw.write("\n");
             fw.close();
-            String cur = new java.io.File(".").getCanonicalPath();
             ProcessBuilder process;
             if(System.getProperty("os.name").contains("Win")) {
-                cur =cur + "\\graphs\\";
                 process = new ProcessBuilder(cur + "showg_win32.exe", cur + "tmpF.g6");
             } else {
-                cur =cur + "/graphs/";
                 process = new ProcessBuilder(cur + "showg.out", cur + "tmpF.g6");
             }
 
