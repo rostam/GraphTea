@@ -16,24 +16,30 @@ import java.util.Scanner;
  * Created by rostam on 30.09.15.
  */
 public class ShowG {
+    public static ProcessBuilder getShowGProcess(String file) {
+        String cur = null;
+        try {
+            cur = new java.io.File(".").getCanonicalPath();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ProcessBuilder process;
+
+        if(System.getProperty("os.name").contains("Win")) {
+            cur =cur + "\\graphs\\";
+            process = new ProcessBuilder(cur + "showg_win32.exe", cur + file+".g6");
+        } else {
+            cur =cur + "/graphs/";
+            process = new ProcessBuilder(cur + "showg.out", cur + file+".g6");
+        }
+        return process;
+    }
+
     public static BufferedReader showG(String file) {
         try {
-            String cur = new java.io.File(".").getCanonicalPath();
-            ProcessBuilder process;
-
-            if(System.getProperty("os.name").contains("Win")) {
-                cur =cur + "\\graphs\\";
-                process = new ProcessBuilder(cur + "showg_win32.exe", cur + file+".g6");
-            } else {
-                cur =cur + "/graphs/";
-                process = new ProcessBuilder(cur + "showg.out", cur + file+".g6");
-            }
-            System.out.println(process.command().get(0) + " at " +process.command().get(1));
+            ProcessBuilder process = getShowGProcess(file);
             Process p = process.start();
-            //p.waitFor();
-            BufferedReader bri = new BufferedReader
-                    (new InputStreamReader(p.getInputStream()));
-            //p.waitFor();
+            BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
             return bri;
         } catch (IOException e) {
             e.printStackTrace();

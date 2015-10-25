@@ -65,7 +65,8 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
                 e.printStackTrace();
             }
         }
-        IterGraphs.state=conjCheck+","+iterative+","+currentType+","+Size+","+type.getValue()+","+ generators.getValue();
+        IterGraphs.state=conjCheck+","+iterative+","+currentType+","
+                +Size+","+type.getValue()+","+ generators.getValue();
         GraphReportExtensionAction.activeConjCheck=conjCheck;
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";
