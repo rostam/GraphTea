@@ -28,7 +28,7 @@ import java.io.FileWriter;
  */
 public class GraphReportExtensionAction extends AbstractExtensionAction {
 	protected GraphReportExtension mr;
-	public static boolean activeConjCheck = false;
+	public static IterGraphs ig=null;
 	JButton cont = new JButton("Continue");
 
 	public GraphReportExtensionAction(BlackBoard bb, GraphReportExtension gg) {
@@ -53,13 +53,12 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 		new Thread() {
 			Object result = new Object();
 			public void run() {
-				if (activeConjCheck && !mr.getName().equals("Bound Check")) {
+				if (ig!=null&&ig.activeConjCheck && !mr.getName().equals("Bound Check")) {
 					cont.setEnabled(true);
-					result= IterGraphs.wrapper(mr);
+					result=ig.wrapper(mr);
 				} else {
 					cont.setEnabled(false);
 					result = mr.calculate(new GraphData(blackboard).getGraph());
-
 				}
 				if (result == null)
 					return;
@@ -93,7 +92,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 						String out = JOptionPane.showInputDialog("Please enter the counter " +
 								"of the graph that you want to proceed.");
 						int cnt = Integer.parseInt(out);
-						IterGraphs.show_ith(cnt,blackboard);
+						ig.show_ith(cnt,blackboard);
 					}
 				});
 

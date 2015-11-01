@@ -19,21 +19,9 @@ import java.util.Vector;
  */
 public class TableRenderer implements GBasicCellRenderer<RendTable> {
     public Component getRendererComponent(final RendTable sd) {
-//        String txt = "";
-//        txt = "<HTML><BODY><table>";
-//        for(int i=1;i<sd.size();i++) {
-//          txt += "<tr>";
-//          for(int j=0;j<sd.get(i).size();j++) {
-//              txt += "<td>" + sd.get(i).get(j) + "</td>";
-//          }
-//         txt += "</tr>";
-//        }
-//        txt = txt + "</table></BODY></HTML>";
-
-        Vector col_names = new Vector();
         String[] names = new String[sd.get(0).size()];
         for(int i=0; i < sd.get(0).size();i++) {
-            names[i] = (String)sd.get(0).get(i);
+            names[i] = sd.get(0).get(i).toString();
         }
 
         Object[][] data = new Object[sd.size()-1][sd.get(0).size()];
@@ -56,9 +44,5 @@ public class TableRenderer implements GBasicCellRenderer<RendTable> {
         JScrollPane scrollpane = new JScrollPane(table);
 
         return scrollpane;
-    }
-
-    private void showOnGraph(SubGraph mysd) {
-
     }
 }

@@ -3,6 +3,9 @@ package graphtea.extensions.reports.boundcheck.forall;
 
 import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;
 import graphtea.extensions.reports.boundcheck.forall.filters.GeneratorFilters;
+import graphtea.extensions.reports.boundcheck.forall.iterators.AllGraphIterator;
+import graphtea.extensions.reports.boundcheck.forall.iterators.GraphGeneratorIterator;
+import graphtea.extensions.reports.boundcheck.forall.iterators.GraphModelIterator;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.platform.core.BlackBoard;
@@ -15,83 +18,71 @@ import java.util.Scanner;
 import java.util.Vector;
 
 public class IterGraphs {
-    public static String state = "";
-    public static boolean activeConjCheck = false;
-    public static boolean iterative = false;
-    public static String type = "";
-    public static int size = 0;
-    public static String bound = "";
-    public static String gens = "";
+    public boolean activeConjCheck = false;
+    public boolean iterative = false;
+    public String type = "";
+    public int size = 0;
+    public String bound = "";
+    public String gens = "";
 
-    public static void parseState() {
-        if(!state.equals("")) {
-            Scanner sc = new Scanner(state);
-            sc.useDelimiter(",");
-            if (sc.hasNext()) {
-                activeConjCheck = Boolean.parseBoolean(sc.next());
-                iterative = Boolean.parseBoolean(sc.next());
-                type = sc.next();
-                size = Integer.parseInt(sc.next());
-                bound = sc.next();
-                gens = sc.next();
-            }
-        }
+    public IterGraphs(boolean activeConjCheck,boolean iterative,
+                      String type, int size, String bound, String gens) {
+        this.activeConjCheck = activeConjCheck;this.iterative = iterative;
+        this.type = type;this.size = size;this.bound = bound;this.gens = gens;
     }
 
-    public static RendTable wrapper(final GraphReportExtension mr) {
-        parseState();
+    public RendTable wrapper(final GraphReportExtension mr) {
         RendTable result = new RendTable();
-        if(!gens.equals(GeneratorFilters.NoGenerator)) {
-            if (!iterative) {
-                result = IterGraphs.countBoundsGenerators(type, size, new ToCall() {
-                    @Override
-                    public Object f(GraphModel g) {
-                        return mr.calculate(g);
-                    }
-                }, bound);
-            } else {
-                result = IterGraphs.iterBoundsGenerators(type, size, new ToCall() {
-                    @Override
-                    public Object f(GraphModel g) {
-                        return mr.calculate(g);
-                    }
-                }, bound);
-            }
-        } else if (!iterative) {
-            try {
-                result = IterGraphs.countBounds(type, size, new ToCall() {
-                    @Override
-                    public Object f(GraphModel g) {
-                        return mr.calculate(g);
-                    }
-                }, bound);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        GraphModelIterator it;
+        if (!gens.equals(GeneratorFilters.NoGenerator)) {
+               it = new GraphGeneratorIterator(gens);
+
         } else {
-            try {
-                result = IterGraphs.iterBounds(type, size, new ToCall() {
-                    @Override
-                    public Object f(GraphModel g) {
-                        return mr.calculate(g);
-                    }
-                }, bound);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            it = new AllGraphIterator(type, size);
         }
+
+        ToCall f = new ToCall() {
+            @Override
+            public Object f(GraphModel g) {
+                return mr.calculate(g);
+            }
+        };
+
+        if(!iterative) {
+            result.add(new Vector<>());
+            result.add(new Vector<>());
+        }
+
+            int[] res=null;
+        while (it.hasNext()) {
+            if(iterative) {
+            getResIter(f, result, it.next(),it.getCount());
+            } else {
+                RendTable ret=(RendTable)f.f(it.next());
+                if(res==null) {
+                    result.get(0).addAll(ret.get(0));
+                    res=new int[ret.get(0).size()];
+                }
+                for (int i = 1; i < ret.get(0).size(); i++) {
+                    checkTypeOfBounds(ret, res, i, bound);
+                }
+
+            }
+
+        }
+
+        if(!iterative) {
+            for (int re : res) {
+                result.get(1).add(re);
+            }
+            result.get(0).add("Num of Filtered Graphs");
+            result.get(1).add(it.size());
+        }
+
         return result;
     }
 
-    private static RendTable iterBoundsGenerators(String type, int size, ToCall toCall, String bound) {
-        return GeneratorFilters.generateGraphs(gens,toCall,bound);
-    }
-
-    private static RendTable countBoundsGenerators(String type, int size, ToCall toCall, String bound) {
-        return null;
-    }
-
-    public static void writeFilterGraphs(String file, Vector<Integer> gs, String filt) throws IOException {
+    public void writeFilterGraphs(String file, Vector<Integer> gs, String filt) throws IOException {
         FileWriter fw = new FileWriter(new File(filt));
         Scanner sc = new Scanner(new File(file));
         int cnt=0;
@@ -108,9 +99,10 @@ public class IterGraphs {
         fw.close();
     }
 
-    public static void filter(String file, GraphFilter filt, int size) throws IOException {
+    public void filter(GraphFilter filt) throws IOException {
         String line;
         String g="";
+        String file = filt.getName();
         Vector<Integer> gs = new Vector<>();
         IterProgressBar pb = new IterProgressBar(size);
 
@@ -137,127 +129,19 @@ public class IterGraphs {
         pb.setVisible(false);
     }
 
-    public static RendTable iterBounds(String file, int size, ToCall f, String bound) throws IOException {
-        RendTable ret = new RendTable();
-        int[] res = null;
-        RendTable retForm = new RendTable();
+    private void getResIter(ToCall f, RendTable retForm, GraphModel g, int count) {
+        RendTable ret=(RendTable)f.f(g);
         retForm.add(new Vector<>());
-
-        BufferedReader bri = ShowG.showG(file+size);
-        String line;
-        String g="";
-        IterProgressBar pb = new IterProgressBar(Sizes.sizes.get(file + size));
-        pb.setVisible(true);
-        bri.readLine();
-        int cnt =0;
-        while ((line = bri.readLine()) != null) {
-            if(!line.equals("")) {
-                g+=line+"\n";
-            } else {
-                if(!g.equals("")) {
-                    cnt++;
-                    pb.setValue(cnt);
-                    pb.validate();
-                    GraphModel tmp = ShowG.parseGraph(new Scanner(g));
-                    ret=(RendTable)f.f(tmp);
-                    if(retForm.size()==1) {
-                        retForm.get(0).add("Counter");
-                        retForm.get(0).addAll(ret.get(0));
-                    }
-                    retForm.add(new Vector<>());
-                    retForm.lastElement().add(cnt);
-                    retForm.lastElement().addAll(ret.get(1));
-
-                    if (ret.get(0).size() <= 2) return null;
-                    if (res == null) {
-                        res = new int[ret.get(0).size()];
-                    }
-                    for (int i = 1; i < ret.get(0).size(); i++) {
-                        checkTypeOfBounds(ret, res, i, bound);
-                    }
-                    g = "";
-                }
-            }
-        }
-        bri.close();
-        cnt++;
-        pb.setVisible(false);
-        GraphModel tmp = ShowG.parseGraph(new Scanner(g));
-        ret=(RendTable)f.f(tmp);
         if(retForm.size()==1) {
             retForm.get(0).add("Counter");
             retForm.get(0).addAll(ret.get(0));
+        } else {
+            retForm.lastElement().add(count+"");
+            retForm.lastElement().addAll(ret.get(1));
         }
-        retForm.add(new Vector<>());
-        retForm.lastElement().add(cnt);
-        retForm.lastElement().addAll(ret.get(1));
-
-        if (ret.get(0).size() <= 2) return null;
-        if (res == null) {
-            res = new int[ret.get(0).size()];
-        }
-        for (int i = 1; i < ret.get(0).size(); i++) {
-            checkTypeOfBounds(ret, res, i, bound);
-        }
-        return retForm;
     }
 
-    public static RendTable countBounds(String file, int size, ToCall f, String bound) throws IOException {
-        RendTable ret = new RendTable();
-        int[] res = null;
-        BufferedReader bri = ShowG.showG(file+size);
-
-        String line;
-        String g="";
-        IterProgressBar pb = new IterProgressBar(Sizes.sizes.get(file+size));
-        bri.readLine();
-        int cnt =0;
-        while ((line = bri.readLine()) != null) {
-            if(!line.equals("")) {
-                g+=line+"\n";
-            } else {
-                if(!g.equals("")) {
-                    cnt++;
-                    pb.setValue(cnt);
-                    pb.validate();
-                    GraphModel tmp = ShowG.parseGraph(new Scanner(g));
-                    ret=(RendTable)f.f(tmp);
-                    if (ret.get(0).size() <= 2) return null;
-                    if (res == null) {
-                        res = new int[ret.get(0).size()];
-                    }
-                    for (int i = 1; i < ret.get(0).size(); i++) {
-                        checkTypeOfBounds(ret, res, i, bound);
-                    }
-                    g = "";
-                }
-            }
-        }
-        bri.close();
-        cnt++;
-        pb.setVisible(false);
-        GraphModel tmp = ShowG.parseGraph(new Scanner(g));
-        ret=(RendTable)f.f(tmp);
-        if (ret.get(0).size() <= 2) return null;
-        if (res == null) {
-            res = new int[ret.get(0).size()];
-        }
-        for (int i = 1; i < ret.get(0).size(); i++) {
-            checkTypeOfBounds(ret, res, i, bound);
-        }
-        RendTable retForm = new RendTable();
-        retForm.add(new Vector<>());
-        retForm.add(new Vector<>());
-        retForm.get(0).addAll(ret.get(0));
-        for (int iii = 0; iii < ret.get(0).size(); iii++) {
-            retForm.get(1).add(res[iii]);
-        }
-        retForm.get(0).add("Num of Filtered Graphs");
-        retForm.get(1).add(cnt);
-        return retForm;
-    }
-
-    public static GraphModel getith(String file, int size, int ith){
+    public GraphModel getith(String file, int size, int ith){
         IterProgressBar pb = new IterProgressBar(ith);
         if(ith >= 30) {
             pb.setVisible(true);
@@ -274,8 +158,6 @@ public class IterGraphs {
                 cur =cur + "/graphs/";
             }
             sc = new Scanner(new File(cur+file+size+".g6"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -294,7 +176,7 @@ public class IterGraphs {
     }
 
 
-    public static void checkTypeOfBounds(RendTable ret, int[] res, int i, String bound) {
+    public void checkTypeOfBounds(RendTable ret, int[] res, int i, String bound) {
         switch (bound) {
             case Bounds.Upper:
                 if ((double) ret.get(1).get(0) >= (double) ret.get(1).get(i)) {
@@ -319,21 +201,18 @@ public class IterGraphs {
         }
     }
 
-    public static void show_ith(int cnt, BlackBoard blackboard) {
-        parseState();
-        new GraphData(blackboard).core.showGraph(IterGraphs.getith(type, size, cnt));
+    public void show_ith(int cnt, BlackBoard blackboard) {
+        new GraphData(blackboard).core.showGraph(getith(type, size, cnt));
     }
 
-    public static void show_itojth(int from, int to, BlackBoard blackboard) {
-        parseState();
+    public void show_itojth(int from, int to, BlackBoard blackboard) {
         if(to-from > 10) return;
         for(int i=from;i<=to;i++) {
             show_ith(i,blackboard);
         }
     }
 
-    public static void show_several(Vector<Integer> gs, BlackBoard blackboard) {
-        parseState();
+    public void show_several(Vector<Integer> gs, BlackBoard blackboard) {
         Collections.sort(gs);
         for(int i : gs) {
             show_ith(i,blackboard);

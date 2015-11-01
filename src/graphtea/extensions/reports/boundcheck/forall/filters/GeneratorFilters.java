@@ -1,6 +1,5 @@
 package graphtea.extensions.reports.boundcheck.forall.filters;
 
-import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
 import graphtea.extensions.reports.boundcheck.forall.IterProgressBar;
 import graphtea.extensions.reports.boundcheck.forall.ToCall;
 import graphtea.graph.graph.GraphModel;
@@ -108,9 +107,6 @@ public class GeneratorFilters {
                     if (ret.get(0).size() <= 2) return null;
                     if (result == null) {
                         result = new int[ret.get(0).size()];
-                    }
-                    for (int ii = 1; ii < ret.get(0).size();ii++) {
-                        IterGraphs.checkTypeOfBounds(ret, result, ii, bound);
                     }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();

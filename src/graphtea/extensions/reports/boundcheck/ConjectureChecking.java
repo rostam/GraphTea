@@ -14,6 +14,7 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.ArrayX;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
+import graphtea.plugins.main.ui.GraphColoringRenderer;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionAction;
 
@@ -58,16 +59,15 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         GraphFilter gf=Filters.getCorrectFilter(filters);
         if(gf != null) currentType=gf.getName();
         if(tree) currentType="tree";
+        GraphReportExtensionAction.ig=new IterGraphs(conjCheck,iterative,currentType,
+                Size,type.getValue(),generators.getValue());
         if(gf != null) {
             try {
-                IterGraphs.filter(gf.getName(), gf, Size);
+                GraphReportExtensionAction.ig.filter(gf);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        IterGraphs.state=conjCheck+","+iterative+","+currentType+","
-                +Size+","+type.getValue()+","+ generators.getValue();
-        GraphReportExtensionAction.activeConjCheck=conjCheck;
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";
     }
