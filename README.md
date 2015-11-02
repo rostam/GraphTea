@@ -78,6 +78,7 @@ have fun!
 - Current Developers:
   - Mohammad Ali Rostami ali [at] c3e [dot] de
   - Azin Azadi aazadi [at] gmail [dot] com
+  - E. Suresh  sureshkako [at] gmail [dot] com
 
 - GraphTea is base on GraphLab, a software developed in Sharif university of Technology [0].
   - Supervisor: Dr. Amir Daneshgar [1]
