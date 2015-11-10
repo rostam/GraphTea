@@ -25,17 +25,21 @@ public class IterGraphs {
     public String bound = "";
     public String gens = "";
 
-    public IterGraphs(boolean activeConjCheck,boolean iterative,
+    public IterGraphs(boolean activeConjCheck, boolean iterative,
                       String type, int size, String bound, String gens) {
-        this.activeConjCheck = activeConjCheck;this.iterative = iterative;
-        this.type = type;this.size = size;this.bound = bound;this.gens = gens;
+        this.activeConjCheck = activeConjCheck;
+        this.iterative = iterative;
+        this.type = type;
+        this.size = size;
+        this.bound = bound;
+        this.gens = gens;
     }
 
     public RendTable wrapper(final GraphReportExtension mr) {
         RendTable result = new RendTable();
         GraphModelIterator it;
         if (!gens.equals(GeneratorFilters.NoGenerator)) {
-               it = new GraphGeneratorIterator(gens);
+            it = new GraphGeneratorIterator(gens);
 
         } else {
             it = new AllGraphIterator(type, size);
@@ -48,20 +52,22 @@ public class IterGraphs {
             }
         };
 
-        if(!iterative) {
+        if (!iterative) {
             result.add(new Vector<>());
             result.add(new Vector<>());
         }
 
-            int[] res=null;
+        int[] res = null;
+        int fl = 0;
         while (it.hasNext()) {
-            if(iterative) {
-            getResIter(f, result, it.next(),it.getCount());
+            fl++;
+            if (iterative) {
+                getResIter(f, result, it.next(), it.getCount());
             } else {
-                RendTable ret=(RendTable)f.f(it.next());
-                if(res==null) {
+                RendTable ret = (RendTable) f.f(it.next());
+                if (res == null) {
                     result.get(0).addAll(ret.get(0));
-                    res=new int[ret.get(0).size()];
+                    res = new int[ret.get(0).size()];
                 }
                 for (int i = 1; i < ret.get(0).size(); i++) {
                     checkTypeOfBounds(ret, res, i, bound);
@@ -71,7 +77,7 @@ public class IterGraphs {
 
         }
 
-        if(!iterative) {
+        if (!iterative) {
             for (int re : res) {
                 result.get(1).add(re);
             }
@@ -85,13 +91,13 @@ public class IterGraphs {
     public void writeFilterGraphs(String file, Vector<Integer> gs, String filt) throws IOException {
         FileWriter fw = new FileWriter(new File(filt));
         Scanner sc = new Scanner(new File(file));
-        int cnt=0;
-        int vecCnt=0;
+        int cnt = 0;
+        int vecCnt = 0;
         Collections.sort(gs);
-        while(sc.hasNext()) {
+        while (sc.hasNext()) {
             cnt++;
             String line = sc.nextLine();
-            if(gs.get(vecCnt) == cnt) {
+            if (gs.get(vecCnt) == cnt) {
                 fw.append(line);
                 vecCnt++;
             }
@@ -101,24 +107,24 @@ public class IterGraphs {
 
     public void filter(GraphFilter filt) throws IOException {
         String line;
-        String g="";
+        String g = "";
         String file = filt.getName();
         Vector<Integer> gs = new Vector<>();
         IterProgressBar pb = new IterProgressBar(size);
 
         BufferedReader bri = ShowG.showG(file);
         bri.readLine();
-        int cnt =0;
+        int cnt = 0;
         while ((line = bri.readLine()) != null) {
-            if(!line.equals("")) {
-                g+=line+"\n";
+            if (!line.equals("")) {
+                g += line + "\n";
             } else {
-                if(!g.equals("")) {
+                if (!g.equals("")) {
                     cnt++;
                     pb.setValue(cnt);
                     pb.validate();
                     GraphModel tmp = ShowG.parseGraph(new Scanner(g));
-                    if(!filt.filter(tmp)) continue;
+                    if (!filt.filter(tmp)) continue;
                     gs.add(cnt);
                     g = "";
                 }
@@ -130,20 +136,23 @@ public class IterGraphs {
     }
 
     private void getResIter(ToCall f, RendTable retForm, GraphModel g, int count) {
-        RendTable ret=(RendTable)f.f(g);
-        retForm.add(new Vector<>());
-        if(retForm.size()==1) {
+        RendTable ret = (RendTable) f.f(g);
+
+        if (retForm.size() == 0) {
+            retForm.add(new Vector<>());
             retForm.get(0).add("Counter");
             retForm.get(0).addAll(ret.get(0));
-        } else {
-            retForm.lastElement().add(count+"");
-            retForm.lastElement().addAll(ret.get(1));
         }
+        retForm.add(new Vector<Object>());
+
+        retForm.lastElement().add(count + "");
+        retForm.lastElement().addAll(ret.get(1));
+
     }
 
-    public GraphModel getith(String file, int size, int ith){
+    public GraphModel getith(String file, int size, int ith) {
         IterProgressBar pb = new IterProgressBar(ith);
-        if(ith >= 30) {
+        if (ith >= 30) {
             pb.setVisible(true);
             pb.setAlwaysOnTop(true);
         }
@@ -152,21 +161,21 @@ public class IterGraphs {
         try {
             String cur = new java.io.File(".").getCanonicalPath();
 
-            if(System.getProperty("os.name").contains("Win")) {
-                cur =cur + "\\graphs\\";
+            if (System.getProperty("os.name").contains("Win")) {
+                cur = cur + "\\graphs\\";
             } else {
-                cur =cur + "/graphs/";
+                cur = cur + "/graphs/";
             }
-            sc = new Scanner(new File(cur+file+size+".g6"));
+            sc = new Scanner(new File(cur + file + size + ".g6"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        int cnt=0;
-        while(sc.hasNext()) {
+        int cnt = 0;
+        while (sc.hasNext()) {
             cnt++;
             pb.setValue(cnt);
             String line = sc.nextLine();
-            if(ith == cnt) {
+            if (ith == cnt) {
                 pb.setVisible(false);
                 return ShowG.showOneG(line);
             }
@@ -206,16 +215,16 @@ public class IterGraphs {
     }
 
     public void show_itojth(int from, int to, BlackBoard blackboard) {
-        if(to-from > 10) return;
-        for(int i=from;i<=to;i++) {
-            show_ith(i,blackboard);
+        if (to - from > 10) return;
+        for (int i = from; i <= to; i++) {
+            show_ith(i, blackboard);
         }
     }
 
     public void show_several(Vector<Integer> gs, BlackBoard blackboard) {
         Collections.sort(gs);
-        for(int i : gs) {
-            show_ith(i,blackboard);
+        for (int i : gs) {
+            show_ith(i, blackboard);
         }
     }
 }

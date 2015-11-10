@@ -23,7 +23,7 @@ import java.awt.*;
 @CommandAttitude(name = "generate_cn", abbreviation = "_g_cn",
         description = "generated a Tadpole")
 public class TadpoleGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
-    @Parameter(name = "N")
+    @Parameter(name = "n")
     public static Integer n = 10;
 
     @Parameter(name = "k")

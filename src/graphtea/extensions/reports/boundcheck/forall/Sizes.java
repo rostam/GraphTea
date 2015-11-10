@@ -15,7 +15,7 @@ public class Sizes {
         sizes.put("all5",21);
         sizes.put("all6",112);
         sizes.put("all7",853);
-        sizes.put("all8",1117);
+        sizes.put("all8",11117);
         sizes.put("all9",261080);
         sizes.put("all10",12005168);
 
