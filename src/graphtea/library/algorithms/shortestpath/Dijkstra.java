@@ -40,6 +40,7 @@ public class Dijkstra<VertexType extends BaseVertex,
      *         from "vertex" to i, or null if there is no such vertex.
      * @throws InvalidVertexException if the supplied vertices are invalid.
      */
+
     public Vector<VertexType>
     getShortestPath(final BaseGraph<VertexType, EdgeType> graph,
                     VertexType vertex)
@@ -112,6 +113,8 @@ public class Dijkstra<VertexType extends BaseVertex,
 
         return prev;
     }
+
+
 
     public void doAlgorithm() {
         GraphRequest<VertexType, EdgeType> gr = new GraphRequest<VertexType, EdgeType>();
