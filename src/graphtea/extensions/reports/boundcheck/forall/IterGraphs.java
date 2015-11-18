@@ -8,6 +8,7 @@ import graphtea.extensions.reports.boundcheck.forall.iterators.GraphGeneratorIte
 import graphtea.extensions.reports.boundcheck.forall.iterators.GraphModelIterator;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -51,7 +52,6 @@ public class IterGraphs {
                 return mr.calculate(g);
             }
         };
-
         if (!iterative) {
             result.add(new Vector<>());
             result.add(new Vector<>());
@@ -89,31 +89,30 @@ public class IterGraphs {
     }
 
     public void writeFilterGraphs(String file, Vector<Integer> gs, String filt) throws IOException {
-        FileWriter fw = new FileWriter(new File(filt));
-        Scanner sc = new Scanner(new File(file));
+        FileWriter fw = ShowG.outG(filt);
+        Scanner br = ShowG.inG(file);
         int cnt = 0;
         int vecCnt = 0;
         Collections.sort(gs);
-        while (sc.hasNext()) {
+        String line = "";
+        while(br.hasNext()) {
+            line = br.nextLine();
             cnt++;
-            String line = sc.nextLine();
-            if (gs.get(vecCnt) == cnt) {
-                fw.append(line);
+            if (vecCnt < gs.size() && gs.get(vecCnt) == cnt) {
+                fw.append(line + "\n");
                 vecCnt++;
             }
         }
+        fw.flush();
         fw.close();
     }
 
-    public void filter(GraphFilter filt) throws IOException {
+    public void filter(String type, int size, GraphFilter filt) throws IOException {
         String line;
         String g = "";
-        String file = filt.getName();
         Vector<Integer> gs = new Vector<>();
         IterProgressBar pb = new IterProgressBar(size);
-
-        BufferedReader bri = ShowG.showG(file);
-        bri.readLine();
+        BufferedReader bri = ShowG.showG(type+size);
         int cnt = 0;
         while ((line = bri.readLine()) != null) {
             if (!line.equals("")) {
@@ -124,14 +123,16 @@ public class IterGraphs {
                     pb.setValue(cnt);
                     pb.validate();
                     GraphModel tmp = ShowG.parseGraph(new Scanner(g));
+                    g = "";
                     if (!filt.filter(tmp)) continue;
                     gs.add(cnt);
-                    g = "";
+
                 }
             }
         }
         bri.close();
-        writeFilterGraphs(file, gs, filt.getName());
+        writeFilterGraphs(type+size, gs, filt.getName() + size);
+        Sizes.sizes.put(filt.getName() + size,gs.size());
         pb.setVisible(false);
     }
 

@@ -44,8 +44,13 @@ public class ChromaticNumber implements GraphReportExtension, ColoringListener {
         return true;
     }
 
-	@Override
-	public String getCategory() {
-		return "Coloring";
-	}
+    @Override
+    public String getCategory() {
+        return "Coloring";
+    }
+
+    public static int getChromaticNumber(GraphModel g) {
+        ChromaticNumber cn = new ChromaticNumber();
+        return (int) cn.calculate(g);
+    }
 }

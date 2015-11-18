@@ -5,6 +5,7 @@
 
 package graphtea.extensions.reports.boundcheck;
 
+import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.boundcheck.forall.GraphFilter;
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
 import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;
@@ -21,6 +22,7 @@ import graphtea.plugins.reports.extension.GraphReportExtensionAction;
 import java.io.IOException;
 
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
+
     public ConjectureChecking() {
         filters = Filters.getFilterNames();
         type = Bounds.getBoundNames();
@@ -45,6 +47,8 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public boolean iterative = false;
     @Parameter(name="tree", description = "")
     public boolean tree = false;
+    @Parameter(name="chemical tree", description = "")
+    public boolean chemtree = false;
 
     String currentType = "all";
 
@@ -56,18 +60,24 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     }
 
     public Object calculate(GraphModel g) {
-        GraphFilter gf=Filters.getCorrectFilter(filters);
+        GraphFilter gf;
+        if(chemtree) gf=Filters.getCorrectFilter(filters,Filters.ChemTree);
+        else gf=Filters.getCorrectFilter(filters,null);
+
         if(gf != null) currentType=gf.getName();
         if(tree) currentType="tree";
+        if(chemtree) currentType="chemtree";
+        if(!tree && !chemtree) currentType="all";
         GraphReportExtensionAction.ig=new IterGraphs(conjCheck,iterative,currentType,
                 Size,type.getValue(),generators.getValue());
         if(gf != null) {
             try {
-                GraphReportExtensionAction.ig.filter(gf);
+                GraphReportExtensionAction.ig.filter("tree", Size, gf);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";
     }

@@ -12,21 +12,33 @@ public class Filters {
     public final static String LaplacianIntegral = "Laplacian Integral";
     public final static String QIntegral = "Q-Integral";
     public final static String NoFilter = "No Filter";
+    public final static String ChemTree = "Chemical Tree";
 
     public static ArrayX<String> getFilterNames() {
         return new ArrayX<>(
                 Filters.NoFilter,
                 Filters.Integral,
                 Filters.LaplacianIntegral,
-                Filters.QIntegral
+                Filters.QIntegral,
+                Filters.ChemTree
         );
     }
 
-    public static GraphFilter getCorrectFilter(ArrayX<String> filter) {
-        GraphFilter gf=null;
-        if (filter.getValue().equals(Filters.Integral)) {gf=new IntegralFilter();}
-        else if (filter.getValue().equals(Filters.LaplacianIntegral)) {gf=new LaplacianIntegralFilter();}
-        else if (filter.getValue().equals(Filters.QIntegral)) {gf=new QIntegralFilter();}
-        return gf;
+    public static GraphFilter getCorrectFilter(ArrayX<String> filter,String s) {
+        if(s==null) {
+            GraphFilter gf = null;
+            if (filter.getValue().equals(Filters.Integral)) {
+                gf = new IntegralFilter();
+            } else if (filter.getValue().equals(Filters.LaplacianIntegral)) {
+                gf = new LaplacianIntegralFilter();
+            } else if (filter.getValue().equals(Filters.QIntegral)) {
+                gf = new QIntegralFilter();
+            } else if (filter.getValue().equals(Filters.ChemTree)) {
+                gf = new ChemTreeFilter();
+            }
+            return gf;
+        }
+
+        return new ChemTreeFilter();
     }
 }

@@ -6,16 +6,47 @@ import graphtea.graph.graph.Vertex;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Scanner;
 
 /**
  * Created by rostam on 30.09.15.
  */
 public class ShowG {
+    public static FileWriter outG(String file) throws IOException {
+        String cur = null;
+        try {
+            cur = new java.io.File(".").getCanonicalPath();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(System.getProperty("os.name").contains("Win")) {
+            cur =cur + "\\graphs\\";
+        } else {
+            cur = cur + "/graphs/";
+        }
+
+        return new FileWriter(cur+file+".g6");
+    }
+
+    public static Scanner inG(String file) throws IOException {
+        String cur = null;
+        try {
+            cur = new java.io.File(".").getCanonicalPath();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(System.getProperty("os.name").contains("Win")) {
+            cur =cur + "\\graphs\\";
+        } else {
+            cur = cur + "/graphs/";
+        }
+
+        return new Scanner(new File(cur+file+".g6"));
+    }
+
     public static ProcessBuilder getShowGProcess(String file) {
         String cur = null;
         try {
@@ -29,9 +60,10 @@ public class ShowG {
             cur =cur + "\\graphs\\";
             process = new ProcessBuilder(cur + "showg_win32.exe", cur + file+".g6");
         } else {
-            cur =cur + "/graphs/";
-            process = new ProcessBuilder(cur + "showg.out", cur + file+".g6");
+            cur = cur + "/graphs/";
+            process = new ProcessBuilder(cur + "showg.out", cur + file + ".g6");
         }
+
         return process;
     }
 
@@ -106,14 +138,16 @@ public class ShowG {
         for (int i = 0; i < ord; i++) g.addVertex(new Vertex());
         for (int i = 0; i < ord; i++) {
             String tmp = sc.nextLine();
+            int first = Integer.parseInt(tmp.substring(0,tmp.indexOf(":")-1).trim());
             tmp = tmp.substring(tmp.indexOf(":") + 1);
             Scanner sc2 = new Scanner(tmp.trim());
             while (sc2.hasNext()) {
                 String num = sc2.next();
                 if (num.contains(";")) num = num.substring(0, num.indexOf(";"));
-                int id = Integer.parseInt(num);
-                if (!g.isEdge(g.getVertex(i), g.getVertex(id)))
-                    g.addEdge(new Edge(g.getVertex(i), g.getVertex(id)));
+                int id = Integer.parseInt(num.trim());
+                if (!g.isEdge(g.getVertex(first), g.getVertex(id))) {
+                    g.addEdge(new Edge(g.getVertex(first), g.getVertex(id)));
+                }
             }
         }
 
