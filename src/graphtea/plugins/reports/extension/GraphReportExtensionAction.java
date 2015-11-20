@@ -124,15 +124,14 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 						fileChooser.setDialogTitle("Choose a file");
 						fileChooser.showSaveDialog(jd);
 						try {
-
 							File curFile = fileChooser.getSelectedFile();
 							FileWriter fw = new FileWriter(curFile);
-							Object result = mr.calculate(new GraphData(blackboard).getGraph());
 							fw.write(result.toString());
 							fw.close();
 							JOptionPane.showMessageDialog(jd, "Saved to file successfuly.");
 
 						} catch (Exception e) {
+							e.printStackTrace();
 						}
 
 					}
