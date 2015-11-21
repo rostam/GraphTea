@@ -5,13 +5,12 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -39,22 +38,21 @@ public class IncrementalVariableZagrebIndex implements GraphReportExtension, Par
     }
 
     public Object calculate(GraphModel g) {
-        ArrayList<String> out = new ArrayList<String>();
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add("Alpha");
-        ret.get(0).add("First Variable Zagreb Index");
-        ret.get(0).add("Second Variable Zagreb Index");
-
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add("Alpha");
+        titles.add("First Variable Zagreb Index");
+        titles.add("Second Variable Zagreb Index");
+        ret.setTitles(titles);
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        int ind = 0;
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
-            ind++;
-            ret.add(new Vector<Object>());
-            ret.get(ind).add(alpha);
-            ret.get(ind).add(zif.getFirstVariableZagrebIndex(alpha));
-            ret.get(ind).add(zif.getSecondVariableZagrebIndex(alpha));
+            Vector<Object> v = new Vector<>();
+            v.add(alpha);
+            v.add(zif.getFirstVariableZagrebIndex(alpha));
+            v.add(zif.getSecondVariableZagrebIndex(alpha));
+            ret.add(v);
         }
+        System.out.println("chi " + ret.size());
         return ret;
     }
 

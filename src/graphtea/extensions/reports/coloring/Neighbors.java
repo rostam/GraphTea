@@ -1,10 +1,10 @@
 package graphtea.extensions.reports.coloring;
 
 import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.Vertex;
 
 import java.util.Collections;
 import java.util.Vector;
-import graphtea.graph.graph.Vertex;
 
 
 public class Neighbors {

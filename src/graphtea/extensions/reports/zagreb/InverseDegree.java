@@ -5,7 +5,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -32,14 +32,15 @@ public class InverseDegree implements GraphReportExtension{
 
     public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add(" M^-1_1(G) ");
-        ret.get(0).add(" S3 Max ");
-        ret.get(0).add(" S3 Min ");
-        ret.get(0).add(" S2 Max ");
-        ret.get(0).add(" S2 Min ");
-        ret.get(0).add(" Base ");
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add(" M^-1_1(G) ");
+        titles.add(" S3 Max ");
+        titles.add(" S3 Min ");
+        titles.add(" S2 Max ");
+        titles.add(" S2 Min ");
+        titles.add(" Base ");
+        ret.setTitles(titles);
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -71,25 +72,26 @@ public class InverseDegree implements GraphReportExtension{
         double M22=zif.getSecondZagreb(2);
         double Mm11=zif.getFirstZagreb(-2);
 
-        ret.add(new Vector<Object>());
-        ret.get(1).add(Mm11);
+        Vector<Object> v = new Vector<>();
+        v.add(Mm11);
         //S3 Max
-        ret.get(1).add((1/maxDeg) + (1/maxDeg2)
+        v.add((1/maxDeg) + (1/maxDeg2)
                 + (Math.pow(n-2,2)/(2*m-maxDeg-maxDeg2)));
       //S3 Max
-        ret.get(1).add((1/maxDeg) + (1/minDeg)
+        v.add((1/maxDeg) + (1/minDeg)
                 + (Math.pow(n-2,2)/(2*m-maxDeg-minDeg)));
         
         //S2 Max
-        ret.get(1).add((1/maxDeg) + (1/maxDeg2)
+        v.add((1/maxDeg) + (1/maxDeg2)
                 + ((n-2)*(2*m-maxDeg-maxDeg2)/
                 (M21-maxDeg*maxDeg-maxDeg2*maxDeg2)));
         //S2 Min
-        ret.get(1).add((1/maxDeg) + (1/minDeg)
+        v.add((1/maxDeg) + (1/minDeg)
                 + ((n-2)*(2*m-maxDeg-minDeg)/
                 (M21-maxDeg*maxDeg-minDeg*minDeg)));
         //3
-        ret.get(1).add((2*m*n)/(M21));
+        v.add((2*m*n)/(M21));
+        ret.add(v);
 
         return ret;
     }

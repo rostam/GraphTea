@@ -5,7 +5,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -32,20 +32,21 @@ public class M3BoundConjecture implements GraphReportExtension{
 
     public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add(" M^3_1(G) ");
-        ret.get(0).add(" 1 ");
-        ret.get(0).add(" 2 ");
-        ret.get(0).add(" 3 ");
-        ret.get(0).add(" 4 ");
-        ret.get(0).add(" 5 ");
-        ret.get(0).add(" 6 ");
-        ret.get(0).add(" 7 ");
-        ret.get(0).add(" 8 ");
-        ret.get(0).add(" 9 ");
-        ret.get(0).add(" 10 ");
-        ret.get(0).add(" 11 ");
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add(" M^3_1(G) ");
+        titles.add(" 1 ");
+        titles.add(" 2 ");
+        titles.add(" 3 ");
+        titles.add(" 4 ");
+        titles.add(" 5 ");
+        titles.add(" 6 ");
+        titles.add(" 7 ");
+        titles.add(" 8 ");
+        titles.add(" 9 ");
+        titles.add(" 10 ");
+        titles.add(" 11 ");
+        ret.setTitles(titles);
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -75,37 +76,37 @@ public class M3BoundConjecture implements GraphReportExtension{
         double M21=zif.getFirstZagreb(1);
         double M22=zif.getSecondZagreb(2);
 
-        ret.add(new Vector<Object>());
-        ret.get(1).add(zif.getFirstZagreb(2));
+        Vector<Object> v = new Vector<>();
+        v.add(zif.getFirstZagreb(2));
         //1
-        ret.get(1).add(2*M12 + n*M21 - 4*m*m);
+        v.add(2 * M12 + n * M21 - 4 * m * m);
         //2
-        ret.get(1).add((maxDeg+minDeg)*M21 - 2*m*minDeg*maxDeg);
+        v.add((maxDeg + minDeg) * M21 - 2 * m * minDeg * maxDeg);
         //3
-        ret.get(1).add(((2*m-(maxDeg*maxDeg-minDeg*minDeg))*M21)/n +
-                        (2*m*(n-1)*(maxDeg*maxDeg-minDeg*minDeg))/n);
+        v.add(((2 * m - (maxDeg * maxDeg - minDeg * minDeg)) * M21) / n +
+                (2 * m * (n - 1) * (maxDeg * maxDeg - minDeg * minDeg)) / n);
         //4
-        ret.get(1).add(n*n*(n-1)-2*M12);
+        v.add(n * n * (n - 1) - 2 * M12);
         //5
-        ret.get(1).add(m*n*n -2*M12);
+        v.add(m * n * n - 2 * M12);
         //6
-        ret.get(1).add(M22+m);
+        v.add(M22 + m);
         //7
-        ret.get(1).add((n/m)*M22);
+        v.add((n / m) * M22);
         //8
-        ret.get(1).add((n/(2*m))*zif.getFirstZagreb(3));
+        v.add((n / (2 * m)) * zif.getFirstZagreb(3));
         //9
-        ret.get(1).add((Math.pow(Math.pow(maxDeg,3)+Math.pow(minDeg,3),2)*n*n)/
-                        (4*Math.pow(maxDeg*minDeg,3)*zif.getFirstZagreb(-4)));
+        v.add((Math.pow(Math.pow(maxDeg, 3) + Math.pow(minDeg, 3), 2) * n * n) /
+                (4 * Math.pow(maxDeg * minDeg, 3) * zif.getFirstZagreb(-4)));
         //10
-        ret.get(1).add((Math.pow(maxDeg+minDeg,2)
-                *Math.pow(zif.getFirstZagreb(1),2))/
-                (8*m*minDeg*maxDeg));
+        v.add((Math.pow(maxDeg + minDeg, 2)
+                * Math.pow(zif.getFirstZagreb(1), 2)) /
+                (8 * m * minDeg * maxDeg));
         //11
-        ret.get(1).add((Math.pow(Math.pow(maxDeg,1.5) + Math.pow(minDeg,1.5),2)*
-                        Math.pow(zif.getFirstZagreb(0.5),2))/
-                        (4*n*Math.pow(maxDeg*minDeg,1.5)));
-
+        v.add((Math.pow(Math.pow(maxDeg, 1.5) + Math.pow(minDeg, 1.5), 2) *
+                Math.pow(zif.getFirstZagreb(0.5), 2)) /
+                (4 * n * Math.pow(maxDeg * minDeg, 1.5)));
+        ret.add(v);
         return ret;
     }
 

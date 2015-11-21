@@ -7,13 +7,12 @@ package graphtea.extensions.reports.basicreports;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -22,14 +21,9 @@ import java.util.Vector;
 
 @CommandAttitude(name = "num_of_stars", abbreviation = "_noss")
 public class SubTreeCounting implements GraphReportExtension {
-
-    //@Parameter(name = "k", description = "")
-    //public Integer k = 1;
-
     public Object calculate(GraphModel g) {
-        ArrayList<String> out = new ArrayList<String>();
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
+        RenderTable ret = new RenderTable();
+        Vector<Object> elem = new Vector<>();
 
         double maxDeg = 0;
         for(Vertex v : g) {
@@ -37,20 +31,21 @@ public class SubTreeCounting implements GraphReportExtension {
                 maxDeg = g.getDegree(v);
         }
 
-        ret.get(0).add("D(i,j)");
+        elem.add("D(i,j)");
         for(int i=1;i<=maxDeg;i++) {
-            ret.get(0).add("" + i);
+            elem.add("" + i);
         }
+        ret.add(elem);
 
         for(int i=1;i<=maxDeg;i++) {
-            ret.add(new Vector<Object>());
-            ret.get(i).add(i+"");
+            Vector<Object> tmp = new Vector<>();
+            tmp.add(i+"");
             for(int j=1;j<=maxDeg;j++) {
                 int sum = countSubtrees(g, i, j);
-                ret.get(i).add(sum);
+                tmp.add(sum);
             }
+            ret.add(tmp);
         }
-
 
         return ret;
     }

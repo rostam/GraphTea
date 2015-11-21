@@ -8,7 +8,7 @@ import graphtea.extensions.actions.LineGraph;
 import graphtea.extensions.reports.basicreports.SubTreeCounting;
 import graphtea.extensions.reports.connectivity.KConnected;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -39,16 +39,18 @@ public class EM1UpperBound implements GraphReportExtension{
                 LineGraph.createLineGraph(g)
         );
 
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add(" M^3_1(G) ");
-        ret.get(0).add("Psi1 ");
-        ret.get(0).add("Psi2");
-        ret.get(0).add("Zhou");
-        ret.get(0).add("N4");
-        ret.get(0).add("N2");
-        ret.get(0).add("N1");
-        ret.get(0).add("Theorem 1");
+        RenderTable ret = new RenderTable();
+
+        Vector<String> titles = new Vector<>();
+        titles.add(" M^3_1(G) ");
+        titles.add("Psi1 ");
+        titles.add("Psi2");
+        titles.add("Zhou");
+        titles.add("N4");
+        titles.add("N2");
+        titles.add("N1");
+        titles.add("Theorem 1");
+        ret.setTitles(titles);
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -92,45 +94,43 @@ public class EM1UpperBound implements GraphReportExtension{
                 + Math.sqrt((2*m-maxDeg-minDeg)
                 *(Mm11-((1/maxDeg)+(1/minDeg))))),2)/(n-2));
 
-        ret.add(new Vector<Object>());
+        Vector<Object> v = new Vector<>();
 
-        ret.get(1).add(zifL.getFirstZagreb(1));
+        v.add(zifL.getFirstZagreb(1));
 
         //new1+-----------
-        ret.get(1).add(M31-(4*maxDeg*maxDeg)-(4*maxDeg2*maxDeg2)-(4*Psi1)+(2*M12)+(4*m));
+        v.add(M31-(4*maxDeg*maxDeg)-(4*maxDeg2*maxDeg2)-(4*Psi1)+(2*M12)+(4*m));
 
 
         //new2
-        ret.get(1).add(M31-(4*maxDeg*maxDeg)-(4*minDeg*minDeg)-(4*Psi1)+(2*M12)+(4*m));
+        v.add(M31-(4*maxDeg*maxDeg)-(4*minDeg*minDeg)-(4*Psi1)+(2*M12)+(4*m));
 
         //new3
-        ret.get(1).add((M21*(n-4))+(4*M12)-(4*m*m)+(4*m));
+        v.add((M21*(n-4))+(4*M12)-(4*m*m)+(4*m));
 
         //N4
-        ret.get(1).add((M21-(2*m))*(m+(2*minDeg)-3)-(2*m*(m-1)*(minDeg-1)));
+        v.add((M21-(2*m))*(m+(2*minDeg)-3)-(2*m*(m-1)*(minDeg-1)));
 
         //N3
-        //ret.get(1).add(((maxDeg+minDeg-2)*(maxDeg+minDeg-2)*(M21-2*m)*(M21-2*m))/(4*m*(maxDeg-1)*(minDeg-1)));
+        //v.add(((maxDeg+minDeg-2)*(maxDeg+minDeg-2)*(M21-2*m)*(M21-2*m))/(4*m*(maxDeg-1)*(minDeg-1)));
 
         //N2
-        ret.get(1).add((2*(maxDeg+minDeg-2)*M21)-(4*m*(maxDeg*minDeg-1)));
+        v.add((2*(maxDeg+minDeg-2)*M21)-(4*m*(maxDeg*minDeg-1)));
 
         //N1
-        ret.get(1).add(4*m*(maxDeg-1)*(maxDeg-1));
+        v.add(4*m*(maxDeg-1)*(maxDeg-1));
         //Theorem 1
         int k = KConnected.kconn(g);
-        ret.get(1).add(k*Math.pow(k+n-3,2)
+        v.add(k*Math.pow(k+n-3,2)
                 + 4*(n-2)*(n-2)*SubTreeCounting.choose(k,2).intValue()
                 + 4*(n-3)*(n-3)*SubTreeCounting.choose((int) (n-k-1),2).intValue()
                 + k*(n-k-1)*Math.pow(2*n-5,2));
-
-
+        ret.add(v);
         return ret;
     }
 
     @Override
     public String getCategory() {
-        // TODO Auto-generated method stub
         return "Topological Indices-Conjectures";
     }
 }

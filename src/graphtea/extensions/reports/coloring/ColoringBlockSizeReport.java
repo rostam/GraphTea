@@ -3,12 +3,10 @@ package graphtea.extensions.reports.coloring;
 import Jama.Matrix;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import javax.print.DocFlavor;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
@@ -237,28 +235,26 @@ public class ColoringBlockSizeReport implements GraphReportExtension {
 
   @Override
   public Object calculate(GraphModel g) {
-    RendTable ret = new RendTable();
+    RenderTable ret = new RenderTable();
 
-    ret.add(new Vector<Object>());
-    ret.add(new Vector<Object>());
-    ret.add(new Vector<Object>());
-
-    ret.get(0).add(" Matrix ");
+    Vector<String> titles = new Vector<>();
+    titles.add(" Matrix ");
     for (int j = 1; j <= 8; j++) {
-      ret.get(0).add(" " + 10*j + " ");
+      titles.add(" " + 10 * j + " ");
     }
+    ret.setTitles(titles);
 
     File dir = new File("./matrices");
     File[] directoryListing = dir.listFiles();
     if (directoryListing != null) {
-      int cnt=0;
       for (File child : directoryListing) {
-        cnt++;
-        ret.get(cnt).add(child.getName());
+        Vector<Object> v = new Vector<>();
+        v.add(child.getName());
         for (int j = 1; j <= 8; j++) {
           int res = color(10, 1, 3, 3, 1, 10*j, child);
-          ret.get(cnt).add(res);
+          v.add(res);
         }
+        ret.add(v);
       }
     } else {
       System.out.println("error");

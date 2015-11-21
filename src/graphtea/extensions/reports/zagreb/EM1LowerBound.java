@@ -6,7 +6,7 @@ package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.actions.LineGraph;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -37,20 +37,21 @@ public class EM1LowerBound implements GraphReportExtension{
                 LineGraph.createLineGraph(g)
         );
 
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add(" M^3_1(G) ");
-        ret.get(0).add("Z1");
-        ret.get(0).add("Z2");
-        ret.get(0).add("Z3");
-        ret.get(0).add("Z4");
-        ret.get(0).add("Ep3");
-        ret.get(0).add("Ep4");
-        ret.get(0).add("Psi1");        
-        ret.get(0).add("Psi2");        
-        ret.get(0).add("illc");
-        ret.get(0).add("N2");
-        ret.get(0).add("N1");
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add(" M^3_1(G) ");
+        titles.add("Z1");
+        titles.add("Z2");
+        titles.add("Z3");
+        titles.add("Z4");
+        titles.add("Ep3");
+        titles.add("Ep4");
+        titles.add("Psi1");
+        titles.add("Psi2");
+        titles.add("illc");
+        titles.add("N2");
+        titles.add("N1");
+        ret.setTitles(titles);
         double maxDeg = 0;
         double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
@@ -120,41 +121,41 @@ public class EM1LowerBound implements GraphReportExtension{
                 -(2*m-maxDeg-minDeg),2)/(2*m-maxDeg-minDeg));
 
 
-        ret.add(new Vector<Object>());
-
-        ret.get(1).add(zifL.getFirstZagreb(1));
+        Vector<Object> v = new Vector<>();
+        v.add(zifL.getFirstZagreb(1));
 
         //new3
-        ret.get(1).add((maxDeg*maxDeg*maxDeg)+(maxDeg2*maxDeg2*maxDeg2)+(Zeta3)-(4*M21)+(2*M12)+(4*m));
+        v.add((maxDeg * maxDeg * maxDeg) + (maxDeg2 * maxDeg2 * maxDeg2) + (Zeta3) - (4 * M21) + (2 * M12) + (4 * m));
 
         //new4
-        ret.get(1).add((maxDeg*maxDeg*maxDeg)+(minDeg*minDeg*minDeg)+(Zeta4)-(4*M21)+(2*M12)+(4*m));
+        v.add((maxDeg * maxDeg * maxDeg) + (minDeg * minDeg * minDeg) + (Zeta4) - (4 * M21) + (2 * M12) + (4 * m));
 
         //new1 
-        ret.get(1).add((maxDeg*maxDeg*maxDeg)+(maxDeg2*maxDeg2*maxDeg2)+(Zeta1)-(4*M21)+(2*M12)+(4*m));
+        v.add((maxDeg * maxDeg * maxDeg) + (maxDeg2 * maxDeg2 * maxDeg2) + (Zeta1) - (4 * M21) + (2 * M12) + (4 * m));
 
         //new2
-        ret.get(1).add((maxDeg*maxDeg*maxDeg)+(minDeg*minDeg*minDeg)+(Zeta2)-(4*M21)+(2*M12)+(4*m));
+        v.add((maxDeg * maxDeg * maxDeg) + (minDeg * minDeg * minDeg) + (Zeta2) - (4 * M21) + (2 * M12) + (4 * m));
 
 
         //Eps3
-        ret.get(1).add((maxDeg*maxDeg*maxDeg)+(maxDeg2*maxDeg2*maxDeg2)+(Eps3)-(4*M21)+(2*M12)+(4*m));
+        v.add((maxDeg * maxDeg * maxDeg) + (maxDeg2 * maxDeg2 * maxDeg2) + (Eps3) - (4 * M21) + (2 * M12) + (4 * m));
 
         //Eps4
-        ret.get(1).add((maxDeg*maxDeg*maxDeg)+(minDeg*minDeg*minDeg)+(Eps4)-(4*M21)+(2*M12)+(4*m));
+        v.add((maxDeg * maxDeg * maxDeg) + (minDeg * minDeg * minDeg) + (Eps4) - (4 * M21) + (2 * M12) + (4 * m));
 
         //Psi1
-        ret.get(1).add(M31-(4*M21)+(2*maxDeg*maxDeg)+(2*maxDeg2*maxDeg2)+(2*Psi1)+2*(M12-M21+m)+2*m);
+        v.add(M31 - (4 * M21) + (2 * maxDeg * maxDeg) + (2 * maxDeg2 * maxDeg2) + (2 * Psi1) + 2 * (M12 - M21 + m) + 2 * m);
         
         //Psi2
-        ret.get(1).add(M31-(4*M21)+(2*maxDeg*maxDeg)+(2*minDeg*minDeg)+(2*Psi2)+2*(M12-M21+m)+2*m);      
+        v.add(M31 - (4 * M21) + (2 * maxDeg * maxDeg) + (2 * minDeg * minDeg) + (2 * Psi2) + 2 * (M12 - M21 + m) + 2 * m);
         
         //illc 
-        ret.get(1).add(((2*m/n)*M21)+(4*m)+(2*M12)-(4*M21));
+        v.add(((2 * m / n) * M21) + (4 * m) + (2 * M12) - (4 * M21));
         //nilanjan de 2
-        ret.get(1).add(Math.pow(M21-(2*m),2)/m);
+        v.add(Math.pow(M21 - (2 * m), 2) / m);
         //nilanjan de 1
-        ret.get(1).add(4*m*(minDeg-1)*(minDeg-1));
+        v.add(4 * m * (minDeg - 1) * (minDeg - 1));
+        ret.add(v);
         return ret;
     }
 

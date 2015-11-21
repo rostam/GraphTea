@@ -8,7 +8,7 @@ import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.reports.zagreb.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -36,24 +36,23 @@ public class NewLowerBounds implements GraphReportExtension{
 
     public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add(" E(G) ");
-        ret.get(0).add(" 1.1 ");
-        ret.get(0).add(" 1.2 ");
-        ret.get(0).add(" 1.3 ");
-        ret.get(0).add(" 1.4 ");
-        ret.get(0).add(" 1.5 ");
-        ret.get(0).add(" 1.6 ");
-        ret.get(0).add(" 1.7 ");
-
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add(" E(G) ");
+        titles.add(" 1.1 ");
+        titles.add(" 1.2 ");
+        titles.add(" 1.3 ");
+        titles.add(" 1.4 ");
+        titles.add(" 1.5 ");
+        titles.add(" 1.6 ");
+        titles.add(" 1.7 ");
+        ret.setTitles(titles);
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
         double rv[] = ed.getRealEigenvalues();
         double sum=0;
         double detA = Math.abs(A.det());
-
 
         //positiv RV
         Double[] prv = new Double[rv.length];
@@ -94,37 +93,37 @@ public class NewLowerBounds implements GraphReportExtension{
         double M22=zif.getSecondZagreb(2);
         double Mm11=zif.getFirstZagreb(-2);
 
-        ret.add(new Vector<Object>());
-        ret.get(1).add(sum);
+        Vector<Object> v = new Vector<>();
+        v.add(sum);
         //1
-        ret.get(1).add(Math.sqrt(2*m));
+        v.add(Math.sqrt(2*m));
         //2
-        ret.get(1).add((2*Math.sqrt(2*m*n)*Math.sqrt(prv[0]*prv[prv.length-1]))
+        v.add((2*Math.sqrt(2*m*n)*Math.sqrt(prv[0]*prv[prv.length-1]))
                 /(prv[0] + prv[prv.length-1]));
         //3
-        ret.get(1).add((prv[0]*prv[prv.length-1]*n + 2*m)/(prv[0] + prv[prv.length-1]));
+        v.add((prv[0]*prv[prv.length-1]*n + 2*m)/(prv[0] + prv[prv.length-1]));
         //4
-        ret.get(1).add(Math.sqrt(2*m*n
+        v.add(Math.sqrt(2*m*n
                 - (Math.pow(n*(prv[0]-prv[prv.length-1]),2)/4)));
         //5
         double alpha=n*Math.floor(n/2)*(1-(1/n)*Math.floor(n/2));
-        ret.get(1).add(Math.sqrt(2*m*n
+        v.add(Math.sqrt(2*m*n
                 - (Math.pow((prv[0]-prv[prv.length-1]),2)*alpha)));
         //6
-        if(detA==0) ret.get(1).add(0);
-        else ret.get(1).add(Math.sqrt(2*m + n*(n-1)*Math.pow(detA,2/n)));
+        if(detA==0) v.add(0);
+        else v.add(Math.sqrt(2*m + n*(n-1)*Math.pow(detA,2/n)));
 
         //7
         double up=n*Math.pow(prv[0]-prv[prv.length-1],2);
         double down=4*(prv[0] + prv[prv.length-1]);
-        ret.get(1).add(Math.sqrt(2*m*n) - (up/down));
+        v.add(Math.sqrt(2*m*n) - (up/down));
 
+        ret.add(v);
         return ret;
     }
 
     @Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "Graph Energy";
 	}
 }

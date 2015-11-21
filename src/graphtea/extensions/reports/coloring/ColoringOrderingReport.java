@@ -3,10 +3,8 @@ package graphtea.extensions.reports.coloring;
 import Jama.Matrix;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.parameter.Parameter;
-import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.io.File;
@@ -244,27 +242,25 @@ public class ColoringOrderingReport implements GraphReportExtension {
 
   @Override
   public Object calculate(GraphModel g) {
-    RendTable ret = new RendTable();
+    RenderTable ret = new RenderTable();
+    Vector<String> titles = new Vector<>();
+    titles.add(" Matrix ");
+    titles.add(" LFO ");
+    titles.add(" SLO ");
+    titles.add(" IDO ");
+    ret.setTitles(titles);
 
-    ret.add(new Vector<Object>());
-    ret.add(new Vector<Object>());
-    ret.add(new Vector<Object>());
-
-    ret.get(0).add(" Matrix ");
-    ret.get(0).add(" LFO ");
-    ret.get(0).add(" SLO ");
-    ret.get(0).add(" IDO ");
     File dir = new File("./matrices");
     File[] directoryListing = dir.listFiles();
     if (directoryListing != null) {
-      int cnt=0;
       for (File child : directoryListing) {
-        cnt++;
-        ret.get(cnt).add(child.getName());
+        Vector<Object> v = new Vector<>();
+        v.add(child.getName());
         for (int j = 1; j <= 3; j++) {
           int res = color(1, j, 3, 1, 1, 3, child);
-          ret.get(cnt).add(res);
+          v.add(res);
         }
+        ret.add(v);
       }
     } else {
       System.out.println("error");

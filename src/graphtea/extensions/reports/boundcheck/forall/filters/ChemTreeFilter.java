@@ -1,9 +1,6 @@
 package graphtea.extensions.reports.boundcheck.forall.filters;
 
-import Jama.EigenvalueDecomposition;
-import Jama.Matrix;
 import graphtea.extensions.reports.boundcheck.forall.GraphFilter;
-import graphtea.extensions.reports.boundcheck.forall.Utils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 

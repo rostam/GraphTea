@@ -15,10 +15,12 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 import graphtea.ui.extension.AbstractExtensionAction;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Vector;
 
 /**
  * Created by rostam on 31.10.15.

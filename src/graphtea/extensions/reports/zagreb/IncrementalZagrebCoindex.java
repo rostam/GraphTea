@@ -5,13 +5,11 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -39,25 +37,23 @@ public class IncrementalZagrebCoindex implements GraphReportExtension, Parametri
     }
 
     public Object calculate(GraphModel g) {
-        ArrayList<String> out = new ArrayList<String>();
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add("Alpha");
-        ret.get(0).add("First Zagreb Coindex");
-        ret.get(0).add("Second Zagreb Coindex");
-        ret.get(0).add("First Zagreb Reformulated Coindex");
-        ret.get(0).add("Second Zagreb Reformulated Coindex");
-
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add("Alpha");
+        titles.add("First Zagreb Coindex");
+        titles.add("Second Zagreb Coindex");
+        titles.add("First Zagreb Reformulated Coindex");
+        titles.add("Second Zagreb Reformulated Coindex");
+        ret.setTitles(titles);
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        int ind = 0;
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
-            ind++;
-            ret.add(new Vector<Object>());
-            ret.get(ind).add(alpha);
-            ret.get(ind).add(zif.getFirstZagrebCoindex(alpha));
-            ret.get(ind).add(zif.getSecondZagrebCoindex(alpha));
-            ret.get(ind).add(zif.getFirstReZagrebCoindex(alpha));
-            ret.get(ind).add(zif.getSecondReZagrebCoindex(alpha));
+            Vector<Object> v = new Vector<>();
+            v.add(alpha);
+            v.add(zif.getFirstZagrebCoindex(alpha));
+            v.add(zif.getSecondZagrebCoindex(alpha));
+            v.add(zif.getFirstReZagrebCoindex(alpha));
+            v.add(zif.getSecondReZagrebCoindex(alpha));
+            ret.add(v);
         }
         return ret;
     }

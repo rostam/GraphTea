@@ -5,8 +5,7 @@
 
 package graphtea.plugins.main.ui;
 
-import graphtea.graph.graph.RendTable;
-import graphtea.graph.graph.SubGraph;
+import graphtea.graph.graph.RenderTable;
 import graphtea.ui.components.gpropertyeditor.GBasicCellRenderer;
 
 import javax.swing.*;
@@ -17,32 +16,33 @@ import java.util.Vector;
 /**
  * @author Azin Azadi
  */
-public class TableRenderer implements GBasicCellRenderer<RendTable> {
-    public Component getRendererComponent(final RendTable sd) {
-        String[] names = new String[sd.get(0).size()];
-        for(int i=0; i < sd.get(0).size();i++) {
-            names[i] = sd.get(0).get(i).toString();
+public class TableRenderer implements GBasicCellRenderer<RenderTable> {
+    public Component getRendererComponent(final RenderTable sd) {
+        Object[] onames = (sd.getTitles()).toArray();
+        String[] names = new String[onames.length];
+        for(int i=0;i < onames.length;i++) {
+            names[i] = onames[i].toString();
         }
-
-        Object[][] data = new Object[sd.size()-1][sd.get(0).size()];
-        for(int i=0;i<sd.size()-1;i++) {
-            for(int j=0;j < data[i].length;j++) {
-                Object o = sd.get(i+1).get(j);
+        Object[][] data = new Object[sd.size()][sd.getTitles().size()];
+        int i=0;
+        while(!sd.isEmpty()) {
+            Vector<Object> row = sd.poll();
+            for(int j=0;j < row.size();j++) {
+                Object o = row.get(j);
 
                 if(o instanceof Double && !o.toString().equals("NaN")) {
                     Double toBeTruncated = (Double) o;
-                    Double truncatedDouble =
-                            new BigDecimal(toBeTruncated).
-                                    setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
-                    o = truncatedDouble;
+                    o = new BigDecimal(toBeTruncated).
+                            setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
                 }
+
                 data[i][j] = o;
             }
+            i++;
+
         }
 
         JTable table = new JTable(data,names);
-        JScrollPane scrollpane = new JScrollPane(table);
-
-        return scrollpane;
+        return new JScrollPane(table);
     }
 }

@@ -5,7 +5,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
@@ -38,21 +38,20 @@ public class IncrementalZagrebCoindexSelectedEdges implements GraphReportExtensi
     }
 
     public Object calculate(GraphModel g) {
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add("Alpha");
-        ret.get(0).add("First Zagreb Coindex");
-        ret.get(0).add("Second Zagreb Coindex");
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add("Alpha");
+        titles.add("First Zagreb Coindex");
+        titles.add("Second Zagreb Coindex");
+        ret.setTitles(titles);
 
-
-        int ind = 0;
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
-            ind++;
-            ret.add(new Vector<Object>());
-            ret.get(ind).add(alpha);
-            ret.get(ind).add(zif.getFirstZagrebCoindexSelectedEdges(alpha));
-            ret.get(ind).add(zif.getSecondZagrebCoindexSelectedEdges(alpha));
+            Vector<Object> v = new Vector<>();
+            v.add(alpha);
+            v.add(zif.getFirstZagrebCoindexSelectedEdges(alpha));
+            v.add(zif.getSecondZagrebCoindexSelectedEdges(alpha));
+            ret.add(v);
         }
         return ret;
     }

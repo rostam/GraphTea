@@ -5,7 +5,6 @@
 
 package graphtea.extensions.reports.boundcheck;
 
-import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.boundcheck.forall.GraphFilter;
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
 import graphtea.extensions.reports.boundcheck.forall.Sizes;
@@ -16,7 +15,6 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.ArrayX;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
-import graphtea.plugins.main.ui.GraphColoringRenderer;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionAction;
 
@@ -36,8 +34,8 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         }
 
         postproc = new ArrayX<>("No postprocessing");
-        postproc.addValidValue("1000 biggest values on the second column");
-        postproc.addValidValue("1000 smallest values on the second column");
+        postproc.addValidValue("500 biggest values on the second column");
+        postproc.addValidValue("500 smallest values on the second column");
     }
 
     @Parameter(name = "Bound Check", description = "")

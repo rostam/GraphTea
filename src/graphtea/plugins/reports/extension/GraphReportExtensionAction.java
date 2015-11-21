@@ -12,7 +12,6 @@ import graphtea.ui.components.gpropertyeditor.GCellRenderer;
 import graphtea.ui.components.utils.GFrameLocationProvider;
 import graphtea.ui.extension.AbstractExtensionAction;
 
-import javax.print.DocFlavor;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;

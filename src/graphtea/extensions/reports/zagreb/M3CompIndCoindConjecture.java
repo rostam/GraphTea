@@ -5,7 +5,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.algorithms.goperators.GraphComplement;
 import graphtea.platform.lang.CommandAttitude;
@@ -38,11 +38,12 @@ public class M3CompIndCoindConjecture implements GraphReportExtension{
                 GraphComplement.complement(g));
 
 
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add(" M^3_1(G) + Mco^3_1(G) ");
-        ret.get(0).add(" 1 ");
-        ret.get(0).add(" 2 ");
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add(" M^3_1(G) + Mco^3_1(G) ");
+        titles.add(" 1 ");
+        titles.add(" 2 ");
+        ret.setTitles(titles);
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -75,16 +76,17 @@ public class M3CompIndCoindConjecture implements GraphReportExtension{
         double Mc31=zif.getFirstZagrebCoindex(2);
         double Mc31gc=zifc.getFirstZagrebCoindex(2);
 
-        ret.add(new Vector<Object>());
-        ret.get(1).add(M31gc+Mc31gc);
+        Vector<Object> v = new Vector<>();
+        v.add(M31gc + Mc31gc);
         //1
-        ret.get(1).add(n*Math.pow(n-1,3) - 4*m*(n-1)*(n-1)
-           + (n-1)*(2*m*(maxDeg+minDeg)+n*maxDeg*minDeg*(n-a-b)*(maxDeg-minDeg-1)));
+        v.add(n * Math.pow(n - 1, 3) - 4 * m * (n - 1) * (n - 1)
+                + (n - 1) * (2 * m * (maxDeg + minDeg) + n * maxDeg * minDeg * (n - a - b) * (maxDeg - minDeg - 1)));
         //2
-        ret.get(1).add(n*Math.pow(n-1,3) - 4*m*(n-1)*(n-1)
-                + (n-1)*(maxDeg*maxDeg + (Math.pow(2*m-maxDeg,2)/(n-1)))
-                        + (2*(n-2)/Math.pow(n-1,2))*Math.pow(maxDeg2 - minDeg,2)
+        v.add(n * Math.pow(n - 1, 3) - 4 * m * (n - 1) * (n - 1)
+                        + (n - 1) * (maxDeg * maxDeg + (Math.pow(2 * m - maxDeg, 2) / (n - 1)))
+                        + (2 * (n - 2) / Math.pow(n - 1, 2)) * Math.pow(maxDeg2 - minDeg, 2)
         );
+        ret.add(v);
 
         return ret;
     }

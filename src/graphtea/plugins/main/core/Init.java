@@ -6,7 +6,7 @@ package graphtea.plugins.main.core;
 
 import graphtea.graph.graph.GraphColoring;
 import graphtea.graph.graph.IndSubGraphs;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.SubGraph;
 import graphtea.graph.old.ArrowHandler;
 import graphtea.graph.old.GShape;
@@ -64,7 +64,7 @@ public class Init implements graphtea.platform.plugin.PluginInterface, StorableO
             UIUtils.registerEditor(GStroke.class, new GStrokeEditor());
             UIUtils.registerEditor(GShape.class, new GSimpleComboEditor(new GShapeRenderer()));
             UIUtils.registerRenderer(SubGraph.class, new SubGraphRenderer());
-            UIUtils.registerRenderer(RendTable.class,new TableRenderer());
+            UIUtils.registerRenderer(RenderTable.class,new TableRenderer());
             UIUtils.registerRenderer(IndSubGraphs.class,new IndSetColoringRenderer());
             UIUtils.registerRenderer(GraphColoring.class, new GraphColoringRenderer());
 

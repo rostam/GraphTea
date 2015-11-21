@@ -1,7 +1,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -27,11 +27,12 @@ public class ISIBound implements GraphReportExtension{
 
     public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add(" ISI(G) ");
-        ret.get(0).add(" Theorem 13 ");
-        ret.get(0).add(" Corollary 15 ");
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add(" ISI(G) ");
+        titles.add(" Theorem 13 ");
+        titles.add(" Corollary 15 ");
+        ret.setTitles(titles);
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -63,9 +64,9 @@ public class ISIBound implements GraphReportExtension{
         double M22=zif.getSecondZagreb(2);
         double Mm11=zif.getFirstZagreb(-2);
 
-        ret.add(new Vector<Object>());
+        Vector<Object> v = new Vector<>();
 
-        ret.get(1).add(zif.getInverseSumIndegIndex());
+        v.add(zif.getInverseSumIndegIndex());
 
         //Theorem 13
         double val = 0.0;
@@ -79,7 +80,7 @@ public class ISIBound implements GraphReportExtension{
                 val += (2*minDeg)/(8.0*(2*minDeg + 1.0));
             }
         }
-        ret.get(1).add(val);
+        v.add(val);
 
         //Corollary 15
         val = 0.0;
@@ -88,8 +89,8 @@ public class ISIBound implements GraphReportExtension{
             val = ((n-1)*maxDeg*maxDeg)/4.0;
             val += (maxDeg*(maxDeg-1)*(maxDeg-1.0))/(2.0*(2*maxDeg-1.0));
         }
-        ret.get(1).add(val);
-
+        v.add(val);
+        ret.add(v);
         return ret;
     }
 

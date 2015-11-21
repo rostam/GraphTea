@@ -6,7 +6,7 @@ package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.actions.LineGraph;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -37,22 +37,22 @@ public class EM2UpperBound implements GraphReportExtension{
                 LineGraph.createLineGraph(g)
         );
 
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add(" EM2 ");   
-        ret.get(0).add("Zeta1");        
-        ret.get(0).add("Zeta2");
-        ret.get(0).add("Zeta3");
-        ret.get(0).add("Zeta4");
-        ret.get(0).add("Eps3");
-        ret.get(0).add("Eps4");
-        ret.get(0).add("Zhou1 ");
-        ret.get(0).add("Zhou2");
-        ret.get(0).add("Zhou3");
-        ret.get(0).add("N4");
-        ret.get(0).add("N2");
-        ret.get(0).add("N1");
-
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add(" EM2 ");   
+        titles.add("Zeta1");        
+        titles.add("Zeta2");
+        titles.add("Zeta3");
+        titles.add("Zeta4");
+        titles.add("Eps3");
+        titles.add("Eps4");
+        titles.add("Zhou1 ");
+        titles.add("Zhou2");
+        titles.add("Zhou3");
+        titles.add("N4");
+        titles.add("N2");
+        titles.add("N1");
+        ret.setTitles(titles);
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -131,48 +131,47 @@ public class EM2UpperBound implements GraphReportExtension{
         
         
         
-        ret.add(new Vector<Object>());
-
-        ret.get(1).add(zifL.getSecondZagreb(1));
+        Vector<Object> v = new Vector<>();
+        v.add(zifL.getSecondZagreb(1));
         
 
         
         //Zeta1
-        ret.get(1).add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(maxDeg2*maxDeg2*maxDeg2)-Zeta1-(4*m));
+        v.add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(maxDeg2*maxDeg2*maxDeg2)-Zeta1-(4*m));
         
         //Zeta2
-        ret.get(1).add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(minDeg*minDeg*minDeg)-Zeta2-(4*m));
+        v.add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(minDeg*minDeg*minDeg)-Zeta2-(4*m));
         
         //Zeta3
-        ret.get(1).add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(maxDeg2*maxDeg2*maxDeg2)-Zeta3-(4*m));
+        v.add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(maxDeg2*maxDeg2*maxDeg2)-Zeta3-(4*m));
         
         //Zeta4
-        ret.get(1).add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(minDeg*minDeg*minDeg)-Zeta4-(4*m));
+        v.add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(minDeg*minDeg*minDeg)-Zeta4-(4*m));
 
         //Eps3
-        ret.get(1).add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(maxDeg2*maxDeg2*maxDeg2)-Eps3-(4*m));
+        v.add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(maxDeg2*maxDeg2*maxDeg2)-Eps3-(4*m));
         
         //Eps4
-        ret.get(1).add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(minDeg*minDeg*minDeg)-Eps4-(4*m));
+        v.add((2*D12)+(12*K14)+(15*K13)+(3*M21)-(maxDeg*maxDeg*maxDeg)-(minDeg*minDeg*minDeg)-Eps4-(4*m));
         
       //Zhou1
-        ret.get(1).add(Math.sqrt(M21-(3*m)+1)*(EM1/2));
+        v.add(Math.sqrt(M21-(3*m)+1)*(EM1/2));
 
         
         //Zhou2
-        ret.get(1).add(((M21/2)-m)*Math.pow(Math.sqrt(M21-(2*m)+(1/4))-(1/2),2)); 
+        v.add(((M21/2)-m)*Math.pow(Math.sqrt(M21-(2*m)+(1/4))-(1/2),2)); 
         
         //Zhou3
-        ret.get(1).add(Math.pow(M21-(2*m),2)*(maxDeg-1)/(2*maxDeg)); 
+        v.add(Math.pow(M21-(2*m),2)*(maxDeg-1)/(2*maxDeg)); 
         
        //N3
-        ret.get(1).add((Math.pow(M21-(2*m),2)/2)-(m-1)*(minDeg-1)*(M21-(2*m))+((2*minDeg-3)*EM1/2)); 
+        v.add((Math.pow(M21-(2*m),2)/2)-(m-1)*(minDeg-1)*(M21-(2*m))+((2*minDeg-3)*EM1/2)); 
         //N2
-        ret.get(1).add(2*(M21-(2*m))*(maxDeg-1)*(maxDeg-1)); 
+        v.add(2*(M21-(2*m))*(maxDeg-1)*(maxDeg-1)); 
         
         //N1
-        ret.get(1).add(EM1*(maxDeg-1)); 
-
+        v.add(EM1*(maxDeg-1)); 
+        ret.add(v);
 
         return ret;
     }

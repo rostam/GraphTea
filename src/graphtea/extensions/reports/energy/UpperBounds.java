@@ -8,7 +8,7 @@ import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.reports.zagreb.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -36,21 +36,21 @@ public class UpperBounds implements GraphReportExtension{
 
     public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add(" E(G) ");
-        ret.get(0).add(" 1.1 ");
-        ret.get(0).add(" 1.2 ");
-        ret.get(0).add(" 1.3 ");
-        ret.get(0).add(" 1.4 ");
-        ret.get(0).add(" 1.5 ");
-        ret.get(0).add(" 1.6 ");
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add(" E(G) ");
+        titles.add(" 1.1 ");
+        titles.add(" 1.2 ");
+        titles.add(" 1.3 ");
+        titles.add(" 1.4 ");
+        titles.add(" 1.5 ");
+        titles.add(" 1.6 ");
+        ret.setTitles(titles);
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
         double rv[] = ed.getRealEigenvalues();
         double sum=0;
-
 
         //positiv RV
         Double[] prv = new Double[rv.length];
@@ -91,29 +91,30 @@ public class UpperBounds implements GraphReportExtension{
         double M22=zif.getSecondZagreb(2);
         double Mm11=zif.getFirstZagreb(-2);
 
-        ret.add(new Vector<Object>());
-        ret.get(1).add(sum);
+        Vector<Object> v = new Vector<>();
+        v.add(sum);
         //1
-        ret.get(1).add(Math.sqrt(2*m*n));
+        v.add(Math.sqrt(2*m*n));
         //2
-        ret.get(1).add(prv[0]
+        v.add(prv[0]
                 + Math.sqrt((n-1)*(2*m - Math.pow(prv[0],2))));
         //3
-        ret.get(1).add(n*Math.sqrt(M21/(2*m)));
+        v.add(n*Math.sqrt(M21/(2*m)));
         //4
         double up = (n-1)*Math.sqrt((M21-maxDeg*maxDeg)*(2*m-prv[0]*prv[0]));
         double down = 2*m - maxDeg;
-        ret.get(1).add(prv[0] + up/down);
+        v.add(prv[0] + up/down);
         //5
         double tmp =  Math.sqrt((n - 1) * (2 * m - Math.pow(prv[0], 2))
                 + (Math.pow(n - 2, 2)/(n-1)) * Math.pow(prv[1] - prv[prv.length-1],2));
 
-        ret.get(1).add(prv[0] + tmp);
+        v.add(prv[0] + tmp);
         //6
         tmp =  Math.sqrt((n - 1) * (2 * m - Math.pow(prv[0], 2))
                 + (((n - 2)*2)/(n-1)) * Math.pow(prv[1] - prv[prv.length - 1], 2));
 
-        ret.get(1).add(prv[0] + tmp);
+        v.add(prv[0] + tmp);
+        ret.add(v);
 
         return ret;
     }

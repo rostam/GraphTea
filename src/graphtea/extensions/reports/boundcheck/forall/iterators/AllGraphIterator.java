@@ -7,7 +7,6 @@ import graphtea.graph.graph.GraphModel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**

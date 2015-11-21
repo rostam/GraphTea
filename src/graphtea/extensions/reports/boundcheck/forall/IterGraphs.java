@@ -6,17 +6,20 @@ import graphtea.extensions.reports.boundcheck.forall.filters.GeneratorFilters;
 import graphtea.extensions.reports.boundcheck.forall.iterators.AllGraphIterator;
 import graphtea.extensions.reports.boundcheck.forall.iterators.GraphGeneratorIterator;
 import graphtea.extensions.reports.boundcheck.forall.iterators.GraphModelIterator;
-import graphtea.extensions.reports.boundcheck.forall.iterators.MyPriorityQueue;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
-import graphtea.graph.graph.Vertex;
+import graphtea.graph.graph.RenderTable;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import javax.swing.*;
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.Vector;
 
 public class IterGraphs {
     private final Integer part;
@@ -40,8 +43,7 @@ public class IterGraphs {
         this.postproc = postproc;
     }
 
-    public RendTable wrapper(final GraphReportExtension mr) {
-        RendTable result = new RendTable();
+    public RenderTable wrapper(final GraphReportExtension mr) {
         GraphModelIterator it;
         if (!gens.equals(GeneratorFilters.NoGenerator)) {
             it = new GraphGeneratorIterator(gens);
@@ -60,48 +62,40 @@ public class IterGraphs {
                 return mr.calculate(g);
             }
         };
-        if (!iterative) {
-            result.add(new Vector<>());
-            result.add(new Vector<>());
-        }
 
         int[] res = null;
         int fl = 0;
-        MyPriorityQueue pq = new MyPriorityQueue(1, 500);
+        RenderTable pq = new RenderTable();
         while (it.hasNext()) {
             fl++;
             GraphModel g = it.next();
             if (iterative) {
-                if (size >= 8 && type.contains("all")) {
-                    getResIterLimited(f, result, g, it.getCount(), pq);
-                } else {
-                    getResIter(f, result, g, it.getCount());
-                }
+                    getResIterLimited(f, g, it.getCount(), pq);
             } else {
-                RendTable ret = (RendTable) f.f(g);
+                RenderTable ret = (RenderTable) f.f(g);
+                Vector<Object> vo = ret.poll();
                 if (res == null) {
-                    result.get(0).addAll(ret.get(0));
-                    res = new int[ret.get(0).size()];
+                    Vector<String> tts = ret.getTitles();
+                    tts.add("Num of Filtered Graphs");
+                    pq.setTitles(tts);
+                    res = new int[vo.size()];
                 }
-                for (int i = 1; i < ret.get(0).size(); i++) {
-                    checkTypeOfBounds(ret, res, i, bound);
+                for (int i = 1; i < vo.size(); i++) {
+                    checkTypeOfBounds(vo, res, i, bound);
                 }
             }
-        }
-
-        if (size >= 8 && type.contains("all")) {
-            pq.getRendTable(result);
         }
 
         if (!iterative) {
+            Vector<Object> result = new Vector<>();
             for (int re : res) {
-                result.get(1).add(re);
+                result.add(re);
             }
-            result.get(0).add("Num of Filtered Graphs");
-            result.get(1).add(it.size());
+            result.add(it.size());
+            pq.add(result);
         }
 
-        return result;
+        return pq;
     }
 
     public void writeFilterGraphs(String file, Vector<Integer> gs, String filt) throws IOException {
@@ -152,37 +146,22 @@ public class IterGraphs {
         pb.setVisible(false);
     }
 
-    private void getResIter(ToCall f, RendTable retForm, GraphModel g, int count) {
-        RendTable ret = (RendTable) f.f(g);
-
-        if (retForm.size() == 0) {
-            retForm.add(new Vector<>());
-            retForm.get(0).add("Counter");
-            retForm.get(0).addAll(ret.get(0));
+    private void getResIterLimited(ToCall f, GraphModel g, int count, RenderTable mpq) {
+        RenderTable ret = (RenderTable) f.f(g);
+        if (mpq.getTitles().size() == 0) {
+            Vector<String> tts = new Vector<>();
+            tts.add("Index");
+            tts.addAll(ret.getTitles());
+            mpq.setTitles(tts);
         }
-        retForm.add(new Vector<Object>());
 
-        retForm.lastElement().add(count + "");
-        retForm.lastElement().addAll(ret.get(1));
-
-    }
-
-    private void getResIterLimited(ToCall f, RendTable retForm, GraphModel g, int count
-            , MyPriorityQueue mpq) {
-        RendTable ret = (RendTable) f.f(g);
         Vector<Object> data = new Vector<>();
         data.add(count + "");
-        for (Object o : ret.get(1)) {
+        for (Object o : ret.poll()) {
             data.add(o);
         }
         mpq.add(data);
 
-
-        if (retForm.size() == 0) {
-            retForm.add(new Vector<>());
-            retForm.get(0).add("Index");
-            retForm.get(0).addAll(ret.get(0));
-        }
     }
 
     public GraphModel getith(String file, int size, int ith) {
@@ -220,26 +199,25 @@ public class IterGraphs {
         return null;
     }
 
-
-    public void checkTypeOfBounds(RendTable ret, int[] res, int i, String bound) {
+    public void checkTypeOfBounds(Vector<Object> vo, int[] res, int i, String bound) {
         switch (bound) {
             case Bounds.Upper:
-                if ((double) ret.get(1).get(0) >= (double) ret.get(1).get(i)) {
+                if ((double) vo.get(0) >= (double) vo.get(i)) {
                     res[i]++;
                 }
                 break;
             case Bounds.Lower:
-                if ((double) ret.get(1).get(0) <= (double) ret.get(1).get(i)) {
+                if ((double) vo.get(0) <= (double) vo.get(i)) {
                     res[i]++;
                 }
                 break;
             case Bounds.StrictLower:
-                if ((double) ret.get(1).get(0) > (double) ret.get(1).get(i)) {
+                if ((double) vo.get(0) > (double) vo.get(i)) {
                     res[i]++;
                 }
                 break;
             case Bounds.StrictUpper:
-                if ((double) ret.get(1).get(0) < (double) ret.get(1).get(i)) {
+                if ((double) vo.get(0) < (double) vo.get(i)) {
                     res[i]++;
                 }
                 break;

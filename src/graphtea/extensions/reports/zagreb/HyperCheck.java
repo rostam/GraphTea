@@ -8,7 +8,7 @@ import graphtea.extensions.actions.LineGraph;
 import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RendTable;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -37,10 +37,9 @@ public class HyperCheck implements GraphReportExtension{
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(LineGraph.createLineGraph(g));
 
-        RendTable ret = new RendTable();
-        ret.add(new Vector<Object>());
-        ret.get(0).add(" p ");
-
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add(" p ");
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -82,20 +81,18 @@ public class HyperCheck implements GraphReportExtension{
         double Mm11=zif.getFirstZagreb(-2);
 
 
-        ret.add(new Vector<Object>());
+        Vector<Object> v = new Vector<>();
+        v.add(p);
+        ret.add(v);
 
 
-
-        ret.get(1).add(p);
-
-
-        //  ret.get(1).add(2*M12+(a*maxDeg*maxDeg*maxDeg)+(c*maxDeg2*maxDeg2*maxDeg2)
+        //  v.add(2*M12+(a*maxDeg*maxDeg*maxDeg)+(c*maxDeg2*maxDeg2*maxDeg2)
         //	+((maxDeg+maxDeg2)*(M21-a*maxDeg*maxDeg-c*maxDeg2*maxDeg2))
         //		+((maxDeg-maxDeg2-1-maxDeg*maxDeg2)*(2*m-a*maxDeg-c*maxDeg2)));
 
-        // ret.get(1).add(zif.getFirstZagreb(1));
+        // v.add(zif.getFirstZagreb(1));
 
-        // ret.get(1).add((2*m*(maxDeg+minDeg))
+        // v.add((2*m*(maxDeg+minDeg))
         //       - (n*minDeg*maxDeg)
         //     - (n-a-b)*(maxDeg-minDeg-1));
 

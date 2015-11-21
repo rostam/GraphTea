@@ -6,7 +6,6 @@
 
 package graphtea.plugins.graphgenerator.core.extension;
 
-import graphtea.graph.graph.GraphModel;
 import graphtea.platform.extension.Extension;
 import graphtea.plugins.graphgenerator.core.GraphGeneratorInterface;
 
