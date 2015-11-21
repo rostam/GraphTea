@@ -73,6 +73,10 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     }
 
     public Object calculate(GraphModel g) {
+        if(!conjCheck) {
+            GraphReportExtensionAction.ig=null;
+            return "Conjecture Checkign is disabled.";
+        }
         GraphFilter gf;
         if(chemtree) gf=Filters.getCorrectFilter(filters,Filters.ChemTree);
         else gf=Filters.getCorrectFilter(filters,null);

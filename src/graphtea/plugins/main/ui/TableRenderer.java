@@ -17,6 +17,8 @@ import java.util.Vector;
  * @author Azin Azadi
  */
 public class TableRenderer implements GBasicCellRenderer<RenderTable> {
+    JTable table = new JTable();
+
     public Component getRendererComponent(final RenderTable sd) {
         Object[] onames = (sd.getTitles()).toArray();
         String[] names = new String[onames.length];
@@ -42,7 +44,7 @@ public class TableRenderer implements GBasicCellRenderer<RenderTable> {
 
         }
 
-        JTable table = new JTable(data,names);
+        table = new JTable(data,names);
         return new JScrollPane(table);
     }
 }

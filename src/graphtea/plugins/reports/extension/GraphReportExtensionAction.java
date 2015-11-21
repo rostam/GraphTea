@@ -5,6 +5,7 @@
 package graphtea.plugins.reports.extension;
 
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
+import graphtea.graph.graph.RenderTable;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
 import graphtea.ui.UIUtils;
@@ -20,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Iterator;
+import java.util.Vector;
 
 /**
  * @author M. Ali Rostami - Conjecture check
@@ -127,11 +129,25 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 						try {
 							File curFile = fileChooser.getSelectedFile();
 							FileWriter fw = new FileWriter(curFile);
-							Iterator<String> iter = (Iterator<String>) result;
-							while(iter.hasNext()) {
-								fw.write(iter.next() + "\n");
+							JViewport viewp = ((JScrollPane) rendererComponent).getViewport();
+							if(viewp.getView() instanceof JTable) {
+								JTable table = (JTable) viewp.getView();
+								for (int row = 0; row < table.getRowCount(); row++) {
+									for (int col = 0; col < table.getColumnCount(); col++) {
+										if (col != table.getColumnCount() - 1) {
+											fw.write(table.getValueAt(row, col) + ",");
+										} else {
+											fw.write(table.getValueAt(row, col).toString());
+										}
+									}
+									fw.write("\n");
+								}
+								fw.close();
+							} else {
+								JList list = (JList) viewp.getView();
+								fw.write(list.toString());
+								fw.close();
 							}
-							fw.close();
 							JOptionPane.showMessageDialog(jd, "Saved to file successfuly.");
 
 						} catch (Exception e) {

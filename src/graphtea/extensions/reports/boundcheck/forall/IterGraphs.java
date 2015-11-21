@@ -165,11 +165,12 @@ public class IterGraphs {
     }
 
     public GraphModel getith(String file, int size, int ith) {
-        IterProgressBar pb = new IterProgressBar(ith);
+        IterProgressBar pb = new IterProgressBar(ith+5);
+        pb.setVisible(false);
         if (ith >= 30) {
             pb.setVisible(true);
             pb.setAlwaysOnTop(true);
-            pb.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
+            pb.setDefaultCloseOperation(IterProgressBar.DO_NOTHING_ON_CLOSE);
         }
 
         Scanner sc = null;
