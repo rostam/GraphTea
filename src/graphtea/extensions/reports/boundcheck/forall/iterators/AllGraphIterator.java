@@ -16,17 +16,17 @@ import java.util.Scanner;
  */
 public class AllGraphIterator extends GraphModelIterator {
     BufferedReader bri;
-    int size;
     int maxCnt;
     int cnt=0;
     IterProgressBar pb;
+    int size;
 
-    public AllGraphIterator(String file, int size) {
-        this.size = size;
-        this.maxCnt = Sizes.sizes.get(file+size);
-        bri = ShowG.showG(file + size + "");
+    public AllGraphIterator(String fileSize, int size, Integer part) {
+        this.maxCnt = Sizes.sizes.get(fileSize);
+        bri = ShowG.showG(fileSize);
         pb = new IterProgressBar(maxCnt);
         pb.setVisible(true);
+        this.size=size;
     }
 
     public int size() {

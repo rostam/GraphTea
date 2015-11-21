@@ -12,6 +12,7 @@ import graphtea.ui.components.gpropertyeditor.GCellRenderer;
 import graphtea.ui.components.utils.GFrameLocationProvider;
 import graphtea.ui.extension.AbstractExtensionAction;
 
+import javax.print.DocFlavor;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
@@ -19,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Iterator;
 
 /**
  * @author M. Ali Rostami - Conjecture check
@@ -126,7 +128,10 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 						try {
 							File curFile = fileChooser.getSelectedFile();
 							FileWriter fw = new FileWriter(curFile);
-							fw.write(result.toString());
+							Iterator<String> iter = (Iterator<String>) result;
+							while(iter.hasNext()) {
+								fw.write(iter.next() + "\n");
+							}
 							fw.close();
 							JOptionPane.showMessageDialog(jd, "Saved to file successfuly.");
 

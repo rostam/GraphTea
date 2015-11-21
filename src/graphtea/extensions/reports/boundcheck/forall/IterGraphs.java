@@ -6,6 +6,7 @@ import graphtea.extensions.reports.boundcheck.forall.filters.GeneratorFilters;
 import graphtea.extensions.reports.boundcheck.forall.iterators.AllGraphIterator;
 import graphtea.extensions.reports.boundcheck.forall.iterators.GraphGeneratorIterator;
 import graphtea.extensions.reports.boundcheck.forall.iterators.GraphModelIterator;
+import graphtea.extensions.reports.boundcheck.forall.iterators.MyPriorityQueue;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RendTable;
 import graphtea.graph.graph.Vertex;
@@ -13,27 +14,30 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
+import javax.swing.*;
 import java.io.*;
-import java.util.Collections;
-import java.util.Scanner;
-import java.util.Vector;
+import java.util.*;
 
 public class IterGraphs {
+    private final Integer part;
     public boolean activeConjCheck = false;
     public boolean iterative = false;
     public String type = "";
     public int size = 0;
     public String bound = "";
     public String gens = "";
+    public String postproc = "";
 
     public IterGraphs(boolean activeConjCheck, boolean iterative,
-                      String type, int size, String bound, String gens) {
+                      String type, int size, String bound, String gens, Integer part, String postproc) {
         this.activeConjCheck = activeConjCheck;
         this.iterative = iterative;
         this.type = type;
         this.size = size;
         this.bound = bound;
         this.gens = gens;
+        this.part = part;
+        this.postproc = postproc;
     }
 
     public RendTable wrapper(final GraphReportExtension mr) {
@@ -43,7 +47,11 @@ public class IterGraphs {
             it = new GraphGeneratorIterator(gens);
 
         } else {
-            it = new AllGraphIterator(type, size);
+            if (size == 10 && part != 0) {
+                it = new AllGraphIterator(type + size + part, size, part);
+            } else {
+                it = new AllGraphIterator(type + size, size, part);
+            }
         }
 
         ToCall f = new ToCall() {
@@ -59,12 +67,18 @@ public class IterGraphs {
 
         int[] res = null;
         int fl = 0;
+        MyPriorityQueue pq = new MyPriorityQueue(1, 500);
         while (it.hasNext()) {
             fl++;
+            GraphModel g = it.next();
             if (iterative) {
-                getResIter(f, result, it.next(), it.getCount());
+                if (size >= 8 && type.contains("all")) {
+                    getResIterLimited(f, result, g, it.getCount(), pq);
+                } else {
+                    getResIter(f, result, g, it.getCount());
+                }
             } else {
-                RendTable ret = (RendTable) f.f(it.next());
+                RendTable ret = (RendTable) f.f(g);
                 if (res == null) {
                     result.get(0).addAll(ret.get(0));
                     res = new int[ret.get(0).size()];
@@ -72,9 +86,11 @@ public class IterGraphs {
                 for (int i = 1; i < ret.get(0).size(); i++) {
                     checkTypeOfBounds(ret, res, i, bound);
                 }
-
             }
+        }
 
+        if (size >= 8 && type.contains("all")) {
+            pq.getRendTable(result);
         }
 
         if (!iterative) {
@@ -95,7 +111,7 @@ public class IterGraphs {
         int vecCnt = 0;
         Collections.sort(gs);
         String line = "";
-        while(br.hasNext()) {
+        while (br.hasNext()) {
             line = br.nextLine();
             cnt++;
             if (vecCnt < gs.size() && gs.get(vecCnt) == cnt) {
@@ -112,7 +128,7 @@ public class IterGraphs {
         String g = "";
         Vector<Integer> gs = new Vector<>();
         IterProgressBar pb = new IterProgressBar(size);
-        BufferedReader bri = ShowG.showG(type+size);
+        BufferedReader bri = ShowG.showG(type + size);
         int cnt = 0;
         while ((line = bri.readLine()) != null) {
             if (!line.equals("")) {
@@ -131,8 +147,8 @@ public class IterGraphs {
             }
         }
         bri.close();
-        writeFilterGraphs(type+size, gs, filt.getName() + size);
-        Sizes.sizes.put(filt.getName() + size,gs.size());
+        writeFilterGraphs(type + size, gs, filt.getName() + size);
+        Sizes.sizes.put(filt.getName() + size, gs.size());
         pb.setVisible(false);
     }
 
@@ -151,11 +167,30 @@ public class IterGraphs {
 
     }
 
+    private void getResIterLimited(ToCall f, RendTable retForm, GraphModel g, int count
+            , MyPriorityQueue mpq) {
+        RendTable ret = (RendTable) f.f(g);
+        Vector<Object> data = new Vector<>();
+        data.add(count + "");
+        for (Object o : ret.get(1)) {
+            data.add(o);
+        }
+        mpq.add(data);
+
+
+        if (retForm.size() == 0) {
+            retForm.add(new Vector<>());
+            retForm.get(0).add("Index");
+            retForm.get(0).addAll(ret.get(0));
+        }
+    }
+
     public GraphModel getith(String file, int size, int ith) {
         IterProgressBar pb = new IterProgressBar(ith);
         if (ith >= 30) {
             pb.setVisible(true);
             pb.setAlwaysOnTop(true);
+            pb.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
         }
 
         Scanner sc = null;

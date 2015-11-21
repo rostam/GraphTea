@@ -12,8 +12,8 @@ import java.util.Scanner;
  */
 public class DivideBigData extends JFrame {
     public static void main(String[] args) throws IOException {
-        int size = 1715024;
-        int part = 10;
+        int size = 901274;
+        int part = 14;
         //Create a file chooser
         final JFileChooser fc = new JFileChooser();
 
@@ -24,16 +24,16 @@ public class DivideBigData extends JFrame {
             Scanner sc = new Scanner(file);
             for(int i=0;i < part;i++) {
                 String tmp = file.getAbsolutePath();
-                tmp = tmp.substring(0,tmp.lastIndexOf("/"));
+                tmp = tmp.substring(0,tmp.lastIndexOf("/")+1);
                 String tmp2 = file.getName().substring(0,file.getName().lastIndexOf("."));
                 tmp = tmp + tmp2 + +(i+1) + ".g6";
                 FileWriter fw = new FileWriter(new File(tmp));
                 System.out.println(tmp);
-//                for(int j=0;j < size;j++) {
-//                    if(sc.hasNext()) {
-//                        fw.write(sc.nextLine());
-//                    }
-//                }
+                for(int j=0;j < size;j++) {
+                    if(sc.hasNext()) {
+                        fw.write(sc.nextLine()+"\n");
+                    }
+                }
                 fw.close();
             }
 
