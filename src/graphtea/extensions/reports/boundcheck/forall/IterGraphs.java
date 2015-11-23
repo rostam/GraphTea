@@ -1,6 +1,7 @@
 package graphtea.extensions.reports.boundcheck.forall;
 
 
+import graphtea.extensions.reports.boundcheck.ConjectureChecking;
 import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;
 import graphtea.extensions.reports.boundcheck.forall.filters.GeneratorFilters;
 import graphtea.extensions.reports.boundcheck.forall.iterators.AllGraphIterator;
@@ -160,7 +161,11 @@ public class IterGraphs {
         for (Object o : ret.poll()) {
             data.add(o);
         }
-        mpq.add(data);
+        if (ConjectureChecking.PostP.getValue().equals("Equality Filter")) {
+            if (Double.parseDouble(ConjectureChecking.ppvalue) == ((Double)data.get(1)).doubleValue()) {
+                mpq.add(data);
+            }
+        } else mpq.add(data);
 
     }
 

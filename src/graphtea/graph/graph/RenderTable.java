@@ -9,7 +9,7 @@ import java.util.Vector;
  * Render Table for reports
  */
 public class RenderTable extends PriorityQueue<Vector<Object>> {
-    int which = 0;
+    int which = 1;
     int maxSize = 500;
 
     Vector<String> titles = new Vector<>();
@@ -24,14 +24,11 @@ public class RenderTable extends PriorityQueue<Vector<Object>> {
 
     public RenderTable() {
         super(1000,new RenderTableMaxComparator(1));
-        this.which = 1;
-        this.maxSize = 500;
     }
 
     public RenderTable(int which) {
         super(1000,new RenderTableMaxComparator(which));
         this.which=which;
-        this.maxSize = 500;
     }
 
     public RenderTable(int which, int maxSize) {

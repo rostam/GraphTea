@@ -12,6 +12,7 @@ import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;
 import graphtea.extensions.reports.boundcheck.forall.filters.Filters;
 import graphtea.extensions.reports.boundcheck.forall.filters.GeneratorFilters;
 import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.ArrayX;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
@@ -33,9 +34,13 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
             else        Sizes.sizes.put("all10"+(i+1),901274);
         }
 
-        postproc = new ArrayX<>("No postprocessing");
-        postproc.addValidValue("500 biggest values on the second column");
-        postproc.addValidValue("500 smallest values on the second column");
+        PostP = new ArrayX<>("No postprocessing");
+        PostP.addValidValue("Equality Filter");
+        PostP.addValidValue("Max Filter");
+        PostP.addValidValue("Min Filter");
+//        PostP.addValidValue(RenderTable.MaxFilter);
+//        PostP.addValidValue(RenderTable.MinFilter);
+//        PostP.addValidValue(RenderTable.Equalfilter);
     }
 
     @Parameter(name = "Bound Check", description = "")
@@ -60,8 +65,10 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public boolean tree = false;
     @Parameter(name="Chemical tree", description = "")
     public boolean chemtree = false;
-    @Parameter(name="Post Processing", description = "")
-    public ArrayX<String> postproc;
+    @Parameter(name="Post Processing Type", description = "")
+    public static ArrayX<String> PostP;
+    @Parameter(name="Post Processing Value",description = "")
+    public static String ppvalue = "0";
 
     String currentType = "all";
 
@@ -79,14 +86,14 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         }
         GraphFilter gf;
         if(chemtree) gf=Filters.getCorrectFilter(filters,Filters.ChemTree);
-        else gf=Filters.getCorrectFilter(filters,null);
+        else gf=Filters.getCorrectFilter(filters, null);
 
         if(gf != null) currentType=gf.getName();
         if(tree) currentType="tree";
         if(chemtree) currentType="chemtree";
         if(!tree && !chemtree) currentType="all";
         GraphReportExtensionAction.ig=new IterGraphs(conjCheck,iterative,currentType,
-                Size,type.getValue(),generators.getValue(),part.getValue(),postproc.getValue());
+                Size,type.getValue(),generators.getValue(),part.getValue(), PostP.getValue());
         if(gf != null) {
             try {
                 if(tree) {
@@ -103,10 +110,10 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         return "Conjecture Checkign is disabled.";
     }
 
-	@Override
-	public String getCategory() {
-		return null;
-	}
+    @Override
+    public String getCategory() {
+        return null;
+    }
 
     @Override
     public String checkParameters() {
