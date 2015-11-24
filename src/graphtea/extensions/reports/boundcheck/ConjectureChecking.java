@@ -38,9 +38,6 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         PostP.addValidValue("Equality Filter");
         PostP.addValidValue("Max Filter");
         PostP.addValidValue("Min Filter");
-//        PostP.addValidValue(RenderTable.MaxFilter);
-//        PostP.addValidValue(RenderTable.MinFilter);
-//        PostP.addValidValue(RenderTable.Equalfilter);
     }
 
     @Parameter(name = "Bound Check", description = "")

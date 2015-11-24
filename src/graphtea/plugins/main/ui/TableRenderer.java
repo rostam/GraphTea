@@ -35,7 +35,7 @@ public class TableRenderer implements GBasicCellRenderer<RenderTable> {
                 if(o instanceof Double && !o.toString().equals("NaN")) {
                     Double toBeTruncated = (Double) o;
                     o = new BigDecimal(toBeTruncated).
-                            setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
+                            setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
                 }
 
                 data[i][j] = o;

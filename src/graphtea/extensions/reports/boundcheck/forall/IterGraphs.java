@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.Vector;
@@ -162,7 +163,11 @@ public class IterGraphs {
             data.add(o);
         }
         if (ConjectureChecking.PostP.getValue().equals("Equality Filter")) {
-            if (Double.parseDouble(ConjectureChecking.ppvalue) == ((Double)data.get(1)).doubleValue()) {
+            Double toBeTruncated = (Double) ((Double)data.get(1)).doubleValue();
+            Double o = new BigDecimal(toBeTruncated).
+                    setScale(8, BigDecimal.ROUND_HALF_UP).doubleValue();
+
+            if (Double.parseDouble(ConjectureChecking.ppvalue) == o.doubleValue()) {
                 mpq.add(data);
             }
         } else mpq.add(data);
