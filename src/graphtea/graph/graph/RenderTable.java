@@ -10,7 +10,8 @@ import java.util.Vector;
  */
 public class RenderTable extends PriorityQueue<Vector<Object>> {
     int which = 1;
-    int maxSize = 500;
+    int maxSize = 5000;
+    public static boolean noFilter = false;
 
     Vector<String> titles = new Vector<>();
 
@@ -45,6 +46,7 @@ public class RenderTable extends PriorityQueue<Vector<Object>> {
 
     public boolean add(Vector<Object> v) {
         boolean ret = super.add(v);
+        if(noFilter) return ret;
         if(super.size() > maxSize) super.poll();
         return ret;
     }

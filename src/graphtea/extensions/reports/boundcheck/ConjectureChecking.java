@@ -81,6 +81,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
             GraphReportExtensionAction.ig=null;
             return "Conjecture Checkign is disabled.";
         }
+        if(PostP.getValue().equals("No postprocessing")) RenderTable.noFilter=true;
         GraphFilter gf;
         if(chemtree) gf=Filters.getCorrectFilter(filters,Filters.ChemTree);
         else gf=Filters.getCorrectFilter(filters, null);
