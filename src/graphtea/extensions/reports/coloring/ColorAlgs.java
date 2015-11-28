@@ -4,6 +4,7 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.util.Pair;
+import graphtea.plugins.main.GraphData;
 
 import java.util.Iterator;
 import java.util.Vector;
@@ -53,7 +54,7 @@ public class ColorAlgs {
     for (Vertex v : g) {
       if (v.getColor() > res) res = v.getColor();
     }
-    return res;
+    return res+1;
   }
 
   public static boolean IncidentToReqEdge(GraphModel g, int Vertex) {

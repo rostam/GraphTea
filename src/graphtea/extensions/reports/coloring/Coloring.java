@@ -4,6 +4,7 @@ import Jama.Matrix;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
+import graphtea.platform.lang.ArrayX;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -18,17 +19,7 @@ public class Coloring implements GraphReportExtension,Parametrizable {
   public int color() {
     int blockSize = 100;
     int Mode2=0;
-//Coloring
-//    if (argc < 3) {
-//      printf("Insufficient arguments. Coloring Algorithm [Ordering][Independent Set][Rho][Pattern][Blocksize] Matrix\n");
-//      printf("Algorithm [PartialD2ColoringColumns|PartialD2ColoringRows|PartialD2RestrictedColumns|PartialD2RestrictedRows|StarBicoloringScheme|StarBicoloringSchemeRestricted|StarBicoloringSchemeDynamicOrdering|StarBicoloringSchemeCombinedVertexCoverColoring|StarBicoloringSchemeDynamicOrderingRestricted|StarBicoloringSchemeCombinedVertexCoverColoringRestricted]\n");
-//      printf("Ordering [LFO|SLO|IDO]\n");
-//      printf("Independent Set [Best|Variant]\n");
-//      printf("Rho [1|1.5..]\n");
-//      printf("Blocksize integer\n");
-//      printf("Note that not all parameters are required for all algorithms\n");
-//      return -1;
-//    }
+
     if (Ordering != 0) {
       //if ((Coloring == 3) || (Coloring == 3) || (Coloring == 3) || (Coloring == 3) || (Coloring == 3)) {
         Ordering += 3;
@@ -54,13 +45,14 @@ public class Coloring implements GraphReportExtension,Parametrizable {
 
     Matrix mm = new Matrix(5,5);
     try {
-      mm=MM.loadMatrixFromSPARSE(new File(file));
+      File f = new File("matrices/"+file);
+      System.out.println("file"+f.getAbsolutePath());
+      mm=MM.loadMatrixFromSPARSE(f);
     } catch (IOException e) {
       e.printStackTrace();
     }
     int rows = mm.getRowDimension();
     int cols = mm.getColumnDimension();
-    System.out.println(rows+"what"+cols);
 
     GraphModel g = new GraphModel(false);
     Vector<Integer> V_r = new Vector<>();
@@ -264,6 +256,10 @@ public class Coloring implements GraphReportExtension,Parametrizable {
     return num_colors;
   }
 
+  public int Coloring = 1;
+  public int Ordering= 1;
+  public int Mode = 3;
+  public int RequiredPattern=1;
   @Parameter(name = "Algorithm", description = "PartialD2ColoringColumns -> 1\n" +
           "PartialD2ColoringRows -> 2;\n" +
           "PartialD2RestrictedColumns -> 3;\n" +
@@ -274,17 +270,23 @@ public class Coloring implements GraphReportExtension,Parametrizable {
           " StarBicoloringSchemeCombinedVertexCoverColoring -> 8;\n" +
           "StarBicoloringSchemeDynamicOrderingRestricted -> 9;\n" +
           "StarBicoloringSchemeCombinedVertexCoverColoringRestricted -> 10;\n")
+  public ArrayX<String> cols = new ArrayX<>("PartialD2ColoringColumns","PartialD2ColoringRows ", "PartialD2RestrictedColumns" ,
+          "PartialD2RestrictedRows", "StarBicoloringScheme -> 5" ,
+          "StarBicoloringSchemeRestricted" ,"StarBicoloringSchemeDynamicOrdering" ,
+          " StarBicoloringSchemeCombinedVertexCoverColoring","StarBicoloringSchemeDynamicOrderingRestricted" ,
+          "StarBicoloringSchemeCombinedVertexCoverColoringRestricted");
 
-
-  public int Coloring = 1;
   @Parameter(name = "Ordering", description = "[LFO|SLO|IDO]")
-  public int Ordering= 1;
+  public ArrayX<String> ord= new ArrayX<>("LFO","SLO","IDO");
+  //public int Ordering= 1;
   @Parameter(name = "Independent Set", description = "[Best 3|Variant 0]")
-  public int Mode = 3;
+  public ArrayX<String> iset= new ArrayX<>("Best","Variant");
+  //public int Mode = 3;
   @Parameter(name = "Pattern", description = "[Full 2 |Diagonal 1| BlockDiagonal 3]")
-  public int RequiredPattern=1;
+  public ArrayX<String> pat= new ArrayX<>("Diagonal","Full","BlockDiagonal");
+  //public int RequiredPattern=1;
   @Parameter(name = "Matrix File", description = "")
-  public String file = "arc130.mtx";
+  public String file = "abb313.mtx";
   @Parameter(name = "rho", description = "")
   public int rho = 1;
   @Parameter(name = "Block Size", description = "")
@@ -292,6 +294,25 @@ public class Coloring implements GraphReportExtension,Parametrizable {
 
   @Override
   public Object calculate(GraphModel g) {
+    if(ord.getValue().equals("LFO")) Ordering=1;
+    if(ord.getValue().equals("SLO")) Ordering=2;
+    if(ord.getValue().equals("IDO")) Ordering=3;
+    if(iset.getValue().equals("Best")) Mode=3;
+    if(iset.getValue().equals("Variant")) Mode=0;
+    if(pat.getValue().equals("Full")) RequiredPattern=2;
+    if(pat.getValue().equals("Diagonal")) RequiredPattern=1;
+    if(pat.getValue().equals("BlockDiagonal")) RequiredPattern=3;
+    if(cols.getValue().equals("PartialD2ColoringColumns")) Coloring=1;
+    if(cols.getValue().equals("PartialD2ColoringRows")) Coloring=2;
+    if(cols.getValue().equals("PartialD2RestrictedColumns")) Coloring=3;
+    if(cols.getValue().equals("PartialD2RestrictedRows")) Coloring=4;
+    if(cols.getValue().equals("StarBicoloringScheme")) Coloring=5;
+    if(cols.getValue().equals("StarBicoloringSchemeRestricted")) Coloring=6;
+    if(cols.getValue().equals("StarBicoloringSchemeDynamicOrdering")) Coloring=7;
+    if(cols.getValue().equals("StarBicoloringSchemeCombinedVertexCoverColoring")) Coloring=8;
+    if(cols.getValue().equals("StarBicoloringSchemeDynamicOrderingRestricted")) Coloring=9;
+    if(cols.getValue().equals("StarBicoloringSchemeCombinedVertexCoverColoringRestricted")) Coloring=10;
+
     int res = color();
     return res;
   }

@@ -64,7 +64,7 @@ public class BaseEdge<VertexType extends BaseVertex>
     /**
      * Sets the color of the edge.
      *
-     * @param color Sets col as the color of the edge.
+     * @param color Sets cols as the color of the edge.
      */
     public void setColor(int color) {
         getProp().color = color;
