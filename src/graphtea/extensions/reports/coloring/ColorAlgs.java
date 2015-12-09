@@ -22,14 +22,13 @@ public class ColorAlgs {
    * - G_b bipartite graph with colors as weights vertex_color
    */
   public static int PartialD2Coloring(GraphModel g, Vector<Integer> V) {
-    Vector<Integer> N2 = new Vector<>();
-    Vector<Integer> forbidden = new Vector<>(g.numOfVertices());
+    Vector<Integer> forbidden = new Vector<>();
     for(int i=0;i<g.numOfVertices();i++) forbidden.add(-1);
     for (int v : V) g.getVertex(v).setColor(0);
     for (int v : V) {
       if (g.getDegree(g.getVertex(v)) > 0) {
         forbidden.set(0, v);
-        N2 = Neighbors.N_2(g, v);
+        Vector<Integer> N2 = Neighbors.N_2(g, v);
         for (int n2 : N2) {
           if (g.getVertex(n2).getColor() > 0) {
             forbidden.set(g.getVertex(n2).getColor(), v);
@@ -46,15 +45,15 @@ public class ColorAlgs {
       }
     }
 
-    return getNumOfCols(g);
+    return getNumOfCols(g,V);
   }
 
-  public static int getNumOfCols(GraphModel g) {
+  public static int getNumOfCols(GraphModel g, Vector<Integer> V) {
     int res = 0;
-    for (Vertex v : g) {
-      if (v.getColor() > res) res = v.getColor();
+    for (int v : V) {
+      if (g.getVertex(v).getColor() > res) res = g.getVertex(v).getColor();
     }
-    return res+1;
+    return res;
   }
 
   public static boolean IncidentToReqEdge(GraphModel g, int Vertex) {
@@ -101,7 +100,7 @@ public class ColorAlgs {
       }
     }
 
-    return getNumOfCols(g);
+    return getNumOfCols(g,V);
   }
 
   /**
@@ -122,7 +121,6 @@ public class ColorAlgs {
                                          Vector<Integer> V_c,
                                          int Mode, int Mode2) {
     Vector<Integer> IS = new Vector<>();
-    Vector<Integer> num_colors = new Vector<>();
 
     //Compute independent set
     if (Mode == 1) {
@@ -156,7 +154,10 @@ public class ColorAlgs {
 
     //Color all vertices which are not colored
     StarBicoloring(g, V_r, V_c);
-    return getNumOfCols(g);
+    Vector<Integer> V = new Vector<>();
+    V.addAll(V_c);
+    V.addAll(V_r);
+    return getNumOfCols(g,V);
   }
 
   public static boolean StarBicoloring(GraphModel g, Vector<Integer> V_r, Vector<Integer> V_c) {
@@ -251,7 +252,10 @@ public class ColorAlgs {
     //Color all vertices which are not colored
     StarBicoloringRestricted(g, V_r, V_c);
 
-    return getNumOfCols(g);
+    Vector<Integer> V = new Vector<>();
+    V.addAll(V_c);
+    V.addAll(V_r);
+    return getNumOfCols(g,V);
   }
 
   public static boolean StarBicoloringRestricted
@@ -346,7 +350,10 @@ public class ColorAlgs {
 
     //Color all vertices which are not colored
     StarBicoloringDynamicOrdering(g, V_r, V_c, sort);
-    return getNumOfCols(g);
+    Vector<Integer> V = new Vector<>();
+    V.addAll(V_c);
+    V.addAll(V_r);
+    return getNumOfCols(g,V);
   }
 
   public static boolean StarBicoloringDynamicOrdering
@@ -442,7 +449,10 @@ public class ColorAlgs {
 
     //Color all vertices which are not colored
     StarBicoloringDynamicOrderingRestricted(g, V_r, V_c, sort);
-    return getNumOfCols(g);
+    Vector<Integer> V = new Vector<>();
+    V.addAll(V_c);
+    V.addAll(V_r);
+    return getNumOfCols(g,V);
   }
 
   public static boolean StarBicoloringDynamicOrderingRestricted
@@ -723,7 +733,10 @@ public class ColorAlgs {
     }
 
 
-    return getNumOfCols(g);
+    Vector<Integer> V = new Vector<>();
+    V.addAll(V_c);
+    V.addAll(V_r);
+    return getNumOfCols(g,V);
   }
 
   public static int StarBicoloringSchemeCombinedVertexCoverColoringRestricted(GraphModel g,
@@ -735,7 +748,6 @@ public class ColorAlgs {
     Vector<Integer> V_c = new Vector<>();
     V_r.addAll(V_rr);
     V_c.addAll(V_cc);
-    Vector<Integer> num_colors;
     Vector<Integer> V_r_aux = new Vector<>();
     Vector<Integer> V_c_aux = new Vector<>();
     V_r_aux.addAll(V_r);
@@ -948,6 +960,9 @@ public class ColorAlgs {
     }
 
 
-    return getNumOfCols(g);
+    Vector<Integer> V = new Vector<>();
+    V.addAll(V_c);
+    V.addAll(V_r);
+    return getNumOfCols(g,V);
   }
 }

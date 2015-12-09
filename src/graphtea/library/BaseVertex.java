@@ -54,7 +54,7 @@ public class BaseVertex {
     /**
      * Sets the color of the vertex.
      *
-     * @param color Sets cols as the color of the vertex.
+     * @param color Sets colorings as the color of the vertex.
      */
     public void setColor(int color) {
         prop.color = color;

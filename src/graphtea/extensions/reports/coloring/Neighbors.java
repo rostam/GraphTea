@@ -9,29 +9,28 @@ import java.util.Vector;
 
 public class Neighbors {
 //Compute the distance-2 neighbors of Vertex
-  public static Vector<Integer> N_2(GraphModel g, int Vertex) {
+  public static Vector<Integer> N_2(GraphModel g, int startV) {
     Vector<Integer> neighbors = new Vector<>();
 
-    for(Vertex v : g.getNeighbors(g.getVertex(Vertex))) {
+    for(Vertex v : g.getNeighbors(g.getVertex(startV))) {
       for(Vertex nv : g.getNeighbors(v)) {
-        if(nv.getId()!=Vertex) {
+        if(nv.getId()!=startV) {
           if(!neighbors.contains(nv.getId())) neighbors.add(nv.getId());
         }
       }
     }
 
-    Collections.sort(neighbors);
+    //Collections.sort(neighbors);
     return neighbors;
   }
 
-  public static Vector<Integer> N_2_restricted(GraphModel g, int Vertex) {
+  public static Vector<Integer> N_2_restricted(GraphModel g, int startV) {
     Vector<Integer> neighbors = new Vector<>();
-    Vertex s = g.getVertex(Vertex);
-
+    Vertex s = g.getVertex(startV);
 
     for(Vertex v : g.getNeighbors(s)) {
       for (Vertex nv : g.getNeighbors(v)) {
-        if (nv.getId() != Vertex) {
+        if (nv.getId() != startV) {
           if (g.getEdge(s, v).getWeight() == 1 || g.getEdge(v, nv).getWeight() == 1) {
             if (!neighbors.contains(nv.getId())) {
               neighbors.add(nv.getId());

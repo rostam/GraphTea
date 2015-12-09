@@ -20,11 +20,7 @@ public class Coloring implements GraphReportExtension,Parametrizable {
     int blockSize = 100;
     int Mode2=0;
 
-    if (Ordering != 0) {
-      //if ((Coloring == 3) || (Coloring == 3) || (Coloring == 3) || (Coloring == 3) || (Coloring == 3)) {
-        Ordering += 3;
-      //}
-    }
+   if (Ordering!=0){if ((Coloring==3)||(Coloring==3)||(Coloring==3)||(Coloring==3)||(Coloring==3)){Ordering+=3;}}
 
     if (Mode == 3) {
       if (rho != 0) {
@@ -94,11 +90,13 @@ public class Coloring implements GraphReportExtension,Parametrizable {
           if(e.source.getId() + rows == e.target.getId()) {
             e.setWeight(1);
             entries_pattern++;
+          } else {
+            e.setWeight(0);
           }
         }
 
         System.out.println("Entries_pattern: " + entries_pattern);
-        System.out.println("Density_pattern:_" + (entries_pattern / rows * 100.0));
+        System.out.println("Density_pattern:_" + ((entries_pattern /(rows*1.0)))*100.0);
         break;
       case 2:
         System.out.println("Full");
@@ -127,7 +125,7 @@ public class Coloring implements GraphReportExtension,Parametrizable {
         break;
     }
 
-    System.out.println( "Ordering: " + Ordering);
+    System.out.println("Ordering: " + Ordering);
     System.out.println("Coloring" + Coloring);
     System.out.println("RequiredPattern: " + RequiredPattern);
     System.out.println("Mode" + Mode);
@@ -209,7 +207,10 @@ public class Coloring implements GraphReportExtension,Parametrizable {
     }
     int num_colors=0;
 
+    System.out.println("test" + V_r.size() + " " + V_c.size());
+
     //Coloring of the vertices
+    System.out.println("ras "+Coloring);
     switch (Coloring) {
       case 1:
         System.out.println("PartialD2ColoringCols");
@@ -270,8 +271,8 @@ public class Coloring implements GraphReportExtension,Parametrizable {
           " StarBicoloringSchemeCombinedVertexCoverColoring -> 8;\n" +
           "StarBicoloringSchemeDynamicOrderingRestricted -> 9;\n" +
           "StarBicoloringSchemeCombinedVertexCoverColoringRestricted -> 10;\n")
-  public ArrayX<String> cols = new ArrayX<>("PartialD2ColoringColumns","PartialD2ColoringRows ", "PartialD2RestrictedColumns" ,
-          "PartialD2RestrictedRows", "StarBicoloringScheme -> 5" ,
+  public ArrayX<String> colorings = new ArrayX<>("PartialD2ColoringColumns","PartialD2ColoringRows", "PartialD2RestrictedColumns" ,
+          "PartialD2RestrictedRows", "StarBicoloringScheme" ,
           "StarBicoloringSchemeRestricted" ,"StarBicoloringSchemeDynamicOrdering" ,
           " StarBicoloringSchemeCombinedVertexCoverColoring","StarBicoloringSchemeDynamicOrderingRestricted" ,
           "StarBicoloringSchemeCombinedVertexCoverColoringRestricted");
@@ -302,16 +303,16 @@ public class Coloring implements GraphReportExtension,Parametrizable {
     if(pat.getValue().equals("Full")) RequiredPattern=2;
     if(pat.getValue().equals("Diagonal")) RequiredPattern=1;
     if(pat.getValue().equals("BlockDiagonal")) RequiredPattern=3;
-    if(cols.getValue().equals("PartialD2ColoringColumns")) Coloring=1;
-    if(cols.getValue().equals("PartialD2ColoringRows")) Coloring=2;
-    if(cols.getValue().equals("PartialD2RestrictedColumns")) Coloring=3;
-    if(cols.getValue().equals("PartialD2RestrictedRows")) Coloring=4;
-    if(cols.getValue().equals("StarBicoloringScheme")) Coloring=5;
-    if(cols.getValue().equals("StarBicoloringSchemeRestricted")) Coloring=6;
-    if(cols.getValue().equals("StarBicoloringSchemeDynamicOrdering")) Coloring=7;
-    if(cols.getValue().equals("StarBicoloringSchemeCombinedVertexCoverColoring")) Coloring=8;
-    if(cols.getValue().equals("StarBicoloringSchemeDynamicOrderingRestricted")) Coloring=9;
-    if(cols.getValue().equals("StarBicoloringSchemeCombinedVertexCoverColoringRestricted")) Coloring=10;
+    if(colorings.getValue().equals("PartialD2ColoringColumns")) Coloring=1;
+    if(colorings.getValue().equals("PartialD2ColoringRows")) Coloring=2;
+    if(colorings.getValue().equals("PartialD2RestrictedColumns")) Coloring=3;
+    if(colorings.getValue().equals("PartialD2RestrictedRows")) Coloring=4;
+    if(colorings.getValue().equals("StarBicoloringScheme")) Coloring=5;
+    if(colorings.getValue().equals("StarBicoloringSchemeRestricted")) Coloring=6;
+    if(colorings.getValue().equals("StarBicoloringSchemeDynamicOrdering")) Coloring=7;
+    if(colorings.getValue().equals("StarBicoloringSchemeCombinedVertexCoverColoring")) Coloring=8;
+    if(colorings.getValue().equals("StarBicoloringSchemeDynamicOrderingRestricted")) Coloring=9;
+    if(colorings.getValue().equals("StarBicoloringSchemeCombinedVertexCoverColoringRestricted")) Coloring=10;
 
     int res = color();
     return res;

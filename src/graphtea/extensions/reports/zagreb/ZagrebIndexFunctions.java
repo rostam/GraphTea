@@ -28,6 +28,19 @@ public class ZagrebIndexFunctions {
         return ret;
     }
 
+    public double getEdgeDegree(double alpha) {
+        double edge_degree = 0;
+        for (Edge e : g.getEdges()) {
+            edge_degree +=
+                    Math.pow(
+                            g.getDegree(e.source) +
+                                    g.getDegree(e.target) - 2, alpha);
+        }
+
+        return edge_degree;
+    }
+
+
     public double getHyperZagrebIndex() {
         double hz = 0;
         for(Edge e : g.getEdges()) {
@@ -50,7 +63,7 @@ public class ZagrebIndexFunctions {
         double ret = 0;
         for (Edge e : g.getEdges()) {
             ret += Math.abs(g.getDegree(e.source) -
-                            g.getDegree(e.target));
+                    g.getDegree(e.target));
         }
 
         return ret;
