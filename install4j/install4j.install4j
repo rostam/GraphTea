@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="6.0.3" transformSequenceNumber="5">
   <directoryPresets config="/home/rostam/kara/GraphTeaMain" />
+<<<<<<< b137d3fae29da79ee8cd8666f5ac0a9f1001a7ad
   <application name="GraphTea" distributionSourceDir="" applicationId="4290-9418-0817-4715" mediaDir="/home/rostam/kara/GraphTeaMain/install4j" mediaFilePattern="${compiler:sys.shortName}" compression="6" lzmaCompression="true" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="GraphTea" publisher="Graph Theory Software" publisherWeb="graphtheorysoftware.com" version="1.6.0.newrooz" allPathsRelative="false" backupOnSave="false" autoSave="true" convertDotsToUnderscores="true" macSignature="????" macVolumeId="4d886cd642a2b46d" javaMinVersion="1.6" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
+=======
+  <application name="GraphTea" distributionSourceDir="" applicationId="4290-9418-0817-4715" mediaDir="./" mediaFilePattern="${compiler:sys.shortName}" compression="6" lzmaCompression="true" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="GraphTea" publisher="Graph Theory Software" publisherWeb="graphtheorysoftware.com" version="1.5.0.newrooz" allPathsRelative="false" backupOnSave="false" autoSave="true" convertDotsToUnderscores="true" macSignature="????" macVolumeId="4d886cd642a2b46d" javaMinVersion="1.6" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
+>>>>>>> new presentation stuff
     <languages skipLanguageSelection="false" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
       <additionalLanguages />
@@ -22,14 +26,14 @@
       <mountPoint id="23" root="" location="" mode="755" />
     </mountPoints>
     <entries>
-      <dirEntry mountPoint="23" file="/home/rostam/kara/GraphTeaMain/binary" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="binary" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+      <dirEntry mountPoint="23" file="../binary" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="binary" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
     </entries>
     <components />
   </files>
   <launchers>
-    <launcher name="run" id="22" customizedId="" external="false" excludeFromMenu="false" unixMode="755" menuName="" icnsFile="" customMacBundleIdentifier="false" macBundleIdentifier="" swtApp="false" fileset="" macBundleBinary="JavaApplicationStub" addMacEntitlements="false" macEntitlementsFile="" useCustomMacosExecutableName="false" customMacosExecutableName="">
+    <launcher name="run" id="22" customizedId="" external="false" excludeFromMenu="false" unixMode="755" menuName="GraphTea" icnsFile="" customMacBundleIdentifier="false" macBundleIdentifier="" swtApp="false" fileset="" macBundleBinary="JavaApplicationStub" addMacEntitlements="false" macEntitlementsFile="" useCustomMacosExecutableName="false" customMacosExecutableName="">
       <executable name="GraphTea" type="1" iconSet="true" iconFile="" executableDir="" redirectStderr="true" stderrFile="error.log" stderrMode="append" redirectStdout="true" stdoutFile="output.log" stdoutMode="append" failOnStderrOutput="false" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="false" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" checkConsoleParameter="false" globalSingleInstance="false" singleInstanceActivate="true" dpiAware="false">
         <versionInfo include="false" fileVersion="" fileDescription="" legalCopyright="" internalName="GraphTea" productName="" />
       </executable>
@@ -175,6 +179,23 @@
                 </serializedBean>
                 <condition />
               </action>
+              <action name="" id="70" customizedId="" beanClass="com.install4j.runtime.beans.actions.desktop.CreateStartMenuEntryAction" enabled="true" commentSet="false" comment="" actionElevationType="elevated" rollbackBarrier="false" multiExec="false" failureStrategy="1" errorMessage="">
+                <serializedBean>
+                  <java class="java.beans.XMLDecoder">
+                    <object class="com.install4j.runtime.beans.actions.desktop.CreateStartMenuEntryAction">
+                      <void property="entryName">
+                        <string>GraphTea</string>
+                      </void>
+                      <void property="file">
+                        <object class="java.io.File">
+                          <string>GraphTea.bat</string>
+                        </object>
+                      </void>
+                    </object>
+                  </java>
+                </serializedBean>
+                <condition>!context.getBooleanVariable("sys.programGroupDisabled")</condition>
+              </action>
             </actions>
             <formComponents />
           </screen>
@@ -188,8 +209,41 @@
             <validation />
             <preActivation />
             <postActivation />
-            <actions />
-            <formComponents />
+            <actions>
+              <action name="" id="106" customizedId="" beanClass="com.install4j.runtime.beans.actions.finish.ExecuteLauncherAction" enabled="true" commentSet="false" comment="" actionElevationType="none" rollbackBarrier="false" multiExec="false" failureStrategy="1" errorMessage="">
+                <serializedBean>
+                  <java class="java.beans.XMLDecoder">
+                    <object class="com.install4j.runtime.beans.actions.finish.ExecuteLauncherAction">
+                      <void property="launcherId">
+                        <string>22</string>
+                      </void>
+                    </object>
+                  </java>
+                </serializedBean>
+                <condition>context.getBooleanVariable("executeLauncherAction") &amp;&amp; (!context.isUnattended())</condition>
+              </action>
+            </actions>
+            <formComponents>
+              <formComponent name="Execute launcher" id="107" customizedId="" beanClass="com.install4j.runtime.beans.formcomponents.CheckboxComponent" enabled="true" commentSet="false" comment="" insetTop="" insetLeft="" insetBottom="" insetRight="" resetInitOnPrevious="false">
+                <serializedBean>
+                  <java class="java.beans.XMLDecoder">
+                    <object class="com.install4j.runtime.beans.formcomponents.CheckboxComponent">
+                      <void property="checkboxText">
+                        <string>${i18n:RunEntryExec("${compiler:sys.fullName}")}</string>
+                      </void>
+                      <void property="initiallySelected">
+                        <boolean>true</boolean>
+                      </void>
+                      <void property="variableName">
+                        <string>executeLauncherAction</string>
+                      </void>
+                    </object>
+                  </java>
+                </serializedBean>
+                <initScript />
+                <visibilityScript />
+              </formComponent>
+            </formComponents>
           </screen>
         </screens>
       </application>
@@ -332,9 +386,13 @@
         <content />
       </postUninstallScript>
     </linuxDeb>
+<<<<<<< b137d3fae29da79ee8cd8666f5ac0a9f1001a7ad
     <windows name="Windows" id="26" customizedId="" mediaFileName="" installDir="${compiler:sys.shortName}" overridePrincipalLanguage="false" jreBitType="32" runPostProcessor="false" postProcessor="" failOnPostProcessorError="false" useLegacyMediaFileIds="false" legacyMediaFileIds="" downloadURL="" includeAllDownloadableComponents="false" includedJRE="windows-x86-1.8.0_45" manualJREEntry="false" bundleType="1" jreURL="" jreShared="false" directDownload="false" installOnlyIfNecessary="false" customInstallBaseDir="" contentFilesType="1" verifyIntegrity="true">
       <excludedComponents />
       <includedDownloadableComponents />
+=======
+    <windows name="Windows" id="26" customizedId="" mediaFileName="" installDir="${compiler:sys.shortName}" overridePrincipalLanguage="false" jreBitType="32" runPostProcessor="false" postProcessor="" failOnPostProcessorError="false" useLegacyMediaFileIds="false" legacyMediaFileIds="" includedJRE="windows-x86-1.8.0_31" manualJREEntry="false" bundleType="1" jreURL="" jreShared="false" directDownload="false" installOnlyIfNecessary="false" customInstallBaseDir="" contentFilesType="1" downloadURL="" verifyIntegrity="true">
+>>>>>>> new presentation stuff
       <excludedLaunchers />
       <excludedBeans />
       <overriddenPrincipalLanguage id="en" customLocalizationFile="" />
@@ -348,6 +406,11 @@
     <macosArchive name="Mac OS X Single Bundle Archive" id="29" customizedId="" mediaFileName="" installDir="${compiler:sys.shortName}" overridePrincipalLanguage="false" jreBitType="all" runPostProcessor="false" postProcessor="" failOnPostProcessorError="false" useLegacyMediaFileIds="false" legacyMediaFileIds="" downloadURL="" includeAllDownloadableComponents="true" includedJRE="macosx-amd64-1.8.0_45_unpacked" manualJREEntry="false" appleJre="false" archiveType="dmg" volumeName="${compiler:sys.shortName}" launcherId="22">
       <excludedComponents />
       <includedDownloadableComponents />
+<<<<<<< b137d3fae29da79ee8cd8666f5ac0a9f1001a7ad
+=======
+    </windows>
+    <macosArchive name="Mac OS X Single Bundle Archive" id="29" customizedId="" mediaFileName="" installDir="${compiler:sys.shortName}" overridePrincipalLanguage="false" jreBitType="all" runPostProcessor="false" postProcessor="" failOnPostProcessorError="false" useLegacyMediaFileIds="false" legacyMediaFileIds="" includedJRE="macosx-amd64-1.8.0_25_unpacked" manualJREEntry="false" appleJre="false" archiveType="dmg" volumeName="${compiler:sys.shortName}" launcherId="22">
+>>>>>>> new presentation stuff
       <excludedBeans />
       <overriddenPrincipalLanguage id="en" customLocalizationFile="" />
       <exclude />
