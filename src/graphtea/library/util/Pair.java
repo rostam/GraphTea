@@ -11,10 +11,12 @@
 
 package graphtea.library.util;
 
+import java.io.Serializable;
+
 /**
  * @author Omid
  */
-public class Pair<First, Second> {
+public class Pair<First, Second> implements Serializable{
     public First first;
     public Second second;
 
