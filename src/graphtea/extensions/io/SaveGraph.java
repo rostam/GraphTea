@@ -32,7 +32,6 @@ public class SaveGraph implements GraphWriterExtension {
         try {
             ObjectOutputStream out = new ObjectOutputStream(
                     new FileOutputStream(file));
-            out.writeObject(graph.getLabel());
             out.writeObject(new GraphSaveObject(graph));
             out.close();
 

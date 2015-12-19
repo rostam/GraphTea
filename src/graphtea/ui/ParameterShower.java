@@ -16,6 +16,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * this class provides the ability to show and edit the parametr of a
@@ -128,7 +129,7 @@ public class ParameterShower implements AttributeListener {
         if (AttributeSet.class.isAssignableFrom(f.getType())) {
             if (f.get(o) instanceof AttributeSet) {
                 AttributeSet as = (AttributeSet) f.get(o);
-                for (Map.Entry<String, Object> x : as.getAttrs().entrySet()) {
+                for (Map.Entry<String, Object> x : ((Set<Map.Entry>) as.getAttrs().entrySet())) {
                     String nam = "atrset." + f.getName() + "." + x.getKey();
                     p.put(nam, x.getValue());
                     p.getView().setDisplayName(nam, x.getKey());

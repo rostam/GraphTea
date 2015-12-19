@@ -24,6 +24,7 @@ import graphtea.ui.UIUtils;
 import graphtea.ui.components.gpropertyeditor.GPropertyEditor;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import static graphtea.graph.old.GStroke.*;
 
@@ -271,7 +272,7 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
             for (Edge e : selectedEdges) {
                 if (i < 1000) {
                     AttributeSet eAtrs = new EdgeAttrSet(e);
-                    for (String atrName : eAtrs.getAttrs().keySet()) {
+                    for (String atrName : ((Set<String>)eAtrs.getAttrs().keySet())) {
                         String key = edgeAtrName(atrName);
                         insertAttributeToSelectionAtrs(retAtrs, key, eAtrs, atrName);
                         selectView.setDisplayName(key, atrName);

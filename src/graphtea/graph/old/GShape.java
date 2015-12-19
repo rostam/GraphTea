@@ -8,7 +8,9 @@ import graphtea.platform.StaticUtils;
 import graphtea.platform.lang.FromStringProvider;
 
 import java.awt.*;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  * User: Azin Azadi,Rouzbeh Ebrahimi
@@ -27,32 +29,36 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
     public String toString() {
         return name;
     }
+    private void writeObject(java.io.ObjectOutputStream stream)
+            throws IOException {
+        stream.writeObject(name);
+    }
+
+    private void readObject(java.io.ObjectInputStream stream)
+            throws IOException, ClassNotFoundException {
+        name = (String) stream.readObject();
+    }
 
     public GShape(String name) {
         this.name = name;
+//        if (! all.containsKey(name))
+//            all.put(name, this);
     }
 
     public void draw(Graphics g, int x, int y, int shapeWidth, int shapeHeight) {
-//        GStroke s = vertexView.model.gets;
-//        ((Graphics2D) g).setStroke(s.stroke);
-//        s.paint(g, null);
-//        s.stroke.
-//        gg.setStroke(s.stroke);
         ((Graphics2D) g).translate(x, y);
-        drawShape(this, g, shapeWidth, shapeHeight);
+        drawShape(this.name, g, shapeWidth, shapeHeight);
         ((Graphics2D) g).translate(-x, -y);
     }
 
     public void fill(Graphics g, int x, int y, int shapeWidth, int shapeHeight) {
         ((Graphics2D) g).translate(x, y);
-        fillShape(this, g, shapeWidth, shapeHeight);
+        fillShape(this.name, g, shapeWidth, shapeHeight);
         ((Graphics2D) g).translate(-x, -y);
     }
 
     public String name;
-    public static GShape editor = new GShape("");
-    public static GShape renderer = new GShape("");
-
+    public static HashMap<String, GShape> all = new HashMap<>();
     public static final GShape RECTANGLE = new GShape("Rectangle");
     public static final GShape OVAL = new GShape("Oval");
     public static final GShape ROUNDRECT = new GShape("Round Rectangle");
@@ -82,83 +88,83 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
     public static final GShape NICETENPOINTSTAR = new GShape("10 Point Nice Star");
 
 
-    public static void drawShape(GShape shape, Graphics g, int w, int h) {
-        if (shape.equals(RECTANGLE)) {
+    public static void drawShape(String shapeName, Graphics g, int w, int h) {
+        if (shapeName.equals(RECTANGLE.name)) {
             g.drawRect(0, 0, w - 1, h - 1);
-        } else if (shape.equals(OVAL)) {
+        } else if (shapeName.equals(OVAL.name)) {
             g.drawOval(0, 0, w - 1, h - 1);
-        } else if (shape.equals(ROUNDRECT)) {
+        } else if (shapeName.equals(ROUNDRECT.name)) {
             g.drawRoundRect(0, 0, w - 1, h - 1, w / 2, h / 2);
-        } else if (shape.equals(LEFTWARDTTRIANGLE)) {
+        } else if (shapeName.equals(LEFTWARDTTRIANGLE.name)) {
             int[][] points = provideTrianglePoints(h, w, true);
             g.drawPolygon(points[0], points[1], 3);
-        } else if (shape.equals(RIGHTWARDTRIANGLE)) {
+        } else if (shapeName.equals(RIGHTWARDTRIANGLE.name)) {
             int[][] points = provideTrianglePoints(h, w, false);
             g.drawPolygon(points[0], points[1], 3);
-        } else if (shape.equals(UPWARDTRIANGLE)) {
+        } else if (shapeName.equals(UPWARDTRIANGLE.name)) {
             int[][] points = provideTrianglePoints(h, w, true);
             g.drawPolygon(points[1], points[0], 3);
-        } else if (shape.equals(DOWNWARDTRIANGLE)) {
+        } else if (shapeName.equals(DOWNWARDTRIANGLE.name)) {
             int[][] points = provideTrianglePoints(h, w, false);
             g.drawPolygon(points[1], points[0], 3);
-        } else if (shape.equals(DOWNWARDTRAPEZOID)) {
+        } else if (shapeName.equals(DOWNWARDTRAPEZOID.name)) {
             int[][] points = provideTrapezoidPoints(h, w, true);
             g.drawPolygon(points[0], points[1], 4);
-        } else if (shape.equals(RIGHTWARDTRAPEZOID)) {
+        } else if (shapeName.equals(RIGHTWARDTRAPEZOID.name)) {
             int[][] points = provideTrapezoidPoints(h, w, true);
             g.drawPolygon(points[1], points[0], 4);
-        } else if (shape.equals(UPWARDTRAPEZOID)) {
+        } else if (shapeName.equals(UPWARDTRAPEZOID.name)) {
             int[][] points = provideTrapezoidPoints(h, w, false);
             g.drawPolygon(points[0], points[1], 4);
-        } else if (shape.equals(LEFTWARDTRAPEZOID)) {
+        } else if (shapeName.equals(LEFTWARDTRAPEZOID.name)) {
             int[][] points = provideTrapezoidPoints(h, w, false);
             g.drawPolygon(points[1], points[0], 4);
-        } else if (shape.equals(DOWNWARDPARALLELOGRAM)) {
+        } else if (shapeName.equals(DOWNWARDPARALLELOGRAM.name)) {
             int[][] points = provideParallelogramPoints(h, w, true);
             g.drawPolygon(points[0], points[1], 4);
-        } else if (shape.equals(UPWARDPARALLELOGRAM)) {
+        } else if (shapeName.equals(UPWARDPARALLELOGRAM.name)) {
             int[][] points = provideParallelogramPoints(h, w, false);
             g.drawPolygon(points[1], points[0], 4);
-        } else if (shape.equals(REGULARHEXAGON)) {
+        } else if (shapeName.equals(REGULARHEXAGON.name)) {
             int[][] points = provideRegularPolygonPoints(h, w, 6);
             g.drawPolygon(points[0], points[1], 6);
-        } else if (shape.equals(REGULARPENTAGON)) {
+        } else if (shapeName.equals(REGULARPENTAGON.name)) {
             int[][] points = provideRegularPolygonPoints(h, w, 5);
             g.drawPolygon(points[0], points[1], 5);
-        } else if (shape.equals(STAR)) {
+        } else if (shapeName.equals(STAR.name)) {
             int[][] points = provideStarPoints(h, w, 5);
             g.drawPolygon(points[0], points[1], 10);
-        } else if (shape.equals(SIXPOINTSTAR)) {
+        } else if (shapeName.equals(SIXPOINTSTAR.name)) {
             int[][] points = provideStarPoints(h, w, 6);
             g.drawPolygon(points[0], points[1], 12);
-        } else if (shape.equals(SEVENPOINTSTAR)) {
+        } else if (shapeName.equals(SEVENPOINTSTAR.name)) {
             int[][] points = provideStarPoints(h, w, 7);
             g.drawPolygon(points[0], points[1], 14);
-        } else if (shape.equals(EIGHTPOINTSTAR)) {
+        } else if (shapeName.equals(EIGHTPOINTSTAR.name)) {
             int[][] points = provideStarPoints(h, w, 8);
             g.drawPolygon(points[0], points[1], 16);
-        } else if (shape.equals(NINEPOINTSTAR)) {
+        } else if (shapeName.equals(NINEPOINTSTAR.name)) {
             int[][] points = provideStarPoints(h, w, 9);
             g.drawPolygon(points[0], points[1], 18);
-        } else if (shape.equals(TENPOINTSTAR)) {
+        } else if (shapeName.equals(TENPOINTSTAR.name)) {
             int[][] points = provideStarPoints(h, w, 10);
             g.drawPolygon(points[0], points[1], 20);
-        } else if (shape.equals(NICESTAR)) {
+        } else if (shapeName.equals(NICESTAR.name)) {
             int[][] points = provideNiceStarPoints(h, w, 5);
             g.drawPolygon(points[0], points[1], 10);
-        } else if (shape.equals(NICESIXPOINTSTAR)) {
+        } else if (shapeName.equals(NICESIXPOINTSTAR.name)) {
             int[][] points = provideNiceStarPoints(h, w, 6);
             g.drawPolygon(points[0], points[1], 12);
-        } else if (shape.equals(NICESEVENPOINTSTAR)) {
+        } else if (shapeName.equals(NICESEVENPOINTSTAR.name)) {
             int[][] points = provideNiceStarPoints(h, w, 7);
             g.drawPolygon(points[0], points[1], 14);
-        } else if (shape.equals(NICEEIGHTPOINTSTAR)) {
+        } else if (shapeName.equals(NICEEIGHTPOINTSTAR.name)) {
             int[][] points = provideNiceStarPoints(h, w, 8);
             g.drawPolygon(points[0], points[1], 16);
-        } else if (shape.equals(NICENINEPOINTSTAR)) {
+        } else if (shapeName.equals(NICENINEPOINTSTAR.name)) {
             int[][] points = provideNiceStarPoints(h, w, 9);
             g.drawPolygon(points[0], points[1], 18);
-        } else if (shape.equals(NICETENPOINTSTAR)) {
+        } else if (shapeName.equals(NICETENPOINTSTAR.name)) {
             int[][] points = provideNiceStarPoints(h, w, 10);
             g.drawPolygon(points[0], points[1], 20);
         }
@@ -167,110 +173,110 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
     }
 
 
-    public static void fillShape(GShape shape, Graphics g, int w, int h) {
-        if (shape.equals(RECTANGLE)) {
+    public static void fillShape(String shapeName, Graphics g, int w, int h) {
+        if (shapeName.equals(RECTANGLE.name)) {
             g.fillRect(0, 0, w - 1, h - 1);
         }
-        if (shape.equals(OVAL)) {
+        if (shapeName.equals(OVAL.name)) {
             g.fillOval(0, 0, w - 1, h - 1);
         }
-        if (shape.equals(ROUNDRECT)) {
+        if (shapeName.equals(ROUNDRECT.name)) {
             g.fillRoundRect(0, 0, w - 1, h - 1, w / 2, h / 2);
         }
-        if (shape.equals(LEFTWARDTTRIANGLE)) {
+        if (shapeName.equals(LEFTWARDTTRIANGLE.name)) {
             int[][] points = provideTrianglePoints(h, w, true);
             g.fillPolygon(points[0], points[1], 3);
         }
-        if (shape.equals(RIGHTWARDTRIANGLE)) {
+        if (shapeName.equals(RIGHTWARDTRIANGLE.name)) {
             int[][] points = provideTrianglePoints(h, w, false);
             g.fillPolygon(points[0], points[1], 3);
         }
-        if (shape.equals(UPWARDTRIANGLE)) {
+        if (shapeName.equals(UPWARDTRIANGLE.name)) {
             int[][] points = provideTrianglePoints(h, w, true);
             g.fillPolygon(points[1], points[0], 3);
         }
-        if (shape.equals(DOWNWARDTRIANGLE)) {
+        if (shapeName.equals(DOWNWARDTRIANGLE.name)) {
             int[][] points = provideTrianglePoints(h, w, false);
             g.fillPolygon(points[1], points[0], 3);
         }
-        if (shape.equals(RIGHTWARDTRAPEZOID)) {
+        if (shapeName.equals(RIGHTWARDTRAPEZOID.name)) {
             int[][] points = provideTrapezoidPoints(h, w, true);
             g.fillPolygon(points[1], points[0], 4);
         }
-        if (shape.equals(DOWNWARDTRAPEZOID)) {
+        if (shapeName.equals(DOWNWARDTRAPEZOID.name)) {
             int[][] points = provideTrapezoidPoints(h, w, true);
             g.fillPolygon(points[0], points[1], 4);
         }
-        if (shape.equals(LEFTWARDTRAPEZOID)) {
+        if (shapeName.equals(LEFTWARDTRAPEZOID.name)) {
             int[][] points = provideTrapezoidPoints(h, w, false);
             g.fillPolygon(points[1], points[0], 4);
         }
-        if (shape.equals(UPWARDTRAPEZOID)) {
+        if (shapeName.equals(UPWARDTRAPEZOID.name)) {
             int[][] points = provideTrapezoidPoints(h, w, false);
             g.fillPolygon(points[0], points[1], 4);
         }
-        if (shape.equals(DOWNWARDPARALLELOGRAM)) {
+        if (shapeName.equals(DOWNWARDPARALLELOGRAM.name)) {
             int[][] points = provideParallelogramPoints(h, w, true);
             g.fillPolygon(points[0], points[1], 4);
         }
 
-        if (shape.equals(UPWARDPARALLELOGRAM)) {
+        if (shapeName.equals(UPWARDPARALLELOGRAM.name)) {
             int[][] points = provideParallelogramPoints(h, w, false);
             g.fillPolygon(points[1], points[0], 4);
         }
-        if (shape.equals(REGULARHEXAGON)) {
+        if (shapeName.equals(REGULARHEXAGON.name)) {
             int[][] points = provideRegularPolygonPoints(h, w, 6);
             g.fillPolygon(points[0], points[1], 6);
         }
-        if (shape.equals(REGULARPENTAGON)) {
+        if (shapeName.equals(REGULARPENTAGON.name)) {
             int[][] points = provideRegularPolygonPoints(h, w, 5);
             g.fillPolygon(points[0], points[1], 5);
         }
-        if (shape.equals(STAR)) {
+        if (shapeName.equals(STAR.name)) {
             int[][] points = provideStarPoints(h, w, 5);
             g.fillPolygon(points[0], points[1], 10);
         }
-        if (shape.equals(SIXPOINTSTAR)) {
+        if (shapeName.equals(SIXPOINTSTAR.name)) {
             int[][] points = provideStarPoints(h, w, 6);
             g.fillPolygon(points[0], points[1], 12);
         }
-        if (shape.equals(SEVENPOINTSTAR)) {
+        if (shapeName.equals(SEVENPOINTSTAR.name)) {
             int[][] points = provideStarPoints(h, w, 7);
             g.fillPolygon(points[0], points[1], 14);
         }
-        if (shape.equals(EIGHTPOINTSTAR)) {
+        if (shapeName.equals(EIGHTPOINTSTAR.name)) {
             int[][] points = provideStarPoints(h, w, 8);
             g.fillPolygon(points[0], points[1], 16);
         }
-        if (shape.equals(NINEPOINTSTAR)) {
+        if (shapeName.equals(NINEPOINTSTAR.name)) {
             int[][] points = provideStarPoints(h, w, 9);
             g.fillPolygon(points[0], points[1], 18);
         }
-        if (shape.equals(TENPOINTSTAR)) {
+        if (shapeName.equals(TENPOINTSTAR.name)) {
             int[][] points = provideStarPoints(h, w, 10);
             g.fillPolygon(points[0], points[1], 20);
         }
-        if (shape.equals(NICESTAR)) {
+        if (shapeName.equals(NICESTAR.name)) {
             int[][] points = provideNiceStarPoints(h, w, 5);
             g.fillPolygon(points[0], points[1], 10);
         }
-        if (shape.equals(NICESIXPOINTSTAR)) {
+        if (shapeName.equals(NICESIXPOINTSTAR.name)) {
             int[][] points = provideNiceStarPoints(h, w, 6);
             g.fillPolygon(points[0], points[1], 12);
         }
-        if (shape.equals(NICESEVENPOINTSTAR)) {
+        if (shapeName.equals(NICESEVENPOINTSTAR.name)) {
             int[][] points = provideNiceStarPoints(h, w, 7);
             g.fillPolygon(points[0], points[1], 14);
         }
-        if (shape.equals(NICEEIGHTPOINTSTAR)) {
+        if (shapeName.equals(NICEEIGHTPOINTSTAR.name)) {
             int[][] points = provideNiceStarPoints(h, w, 8);
             g.fillPolygon(points[0], points[1], 16);
         }
-        if (shape.equals(NICENINEPOINTSTAR)) {
+        if (shapeName.equals(NICENINEPOINTSTAR.name)) {
             int[][] points = provideNiceStarPoints(h, w, 9);
             g.fillPolygon(points[0], points[1], 18);
         }
-        if (shape.equals(NICETENPOINTSTAR)) {
+        if (shapeName.equals(NICETENPOINTSTAR.name)) {
             int[][] points = provideNiceStarPoints(h, w, 10);
             g.fillPolygon(points[0], points[1], 20);
         }

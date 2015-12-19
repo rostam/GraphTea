@@ -42,7 +42,6 @@ public class LoadGraph implements GraphReaderExtension {
         try {
             ObjectInputStream in = new ObjectInputStream(
                     new FileInputStream(file));
-            String label = (String) in.readObject();
             GraphSaveObject gso = (GraphSaveObject) in.readObject();
             return gso.getG();
         } catch (IOException e) {

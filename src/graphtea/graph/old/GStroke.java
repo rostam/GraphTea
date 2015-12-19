@@ -8,6 +8,7 @@ import graphtea.platform.StaticUtils;
 import graphtea.platform.lang.FromStringProvider;
 
 import java.awt.*;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Vector;
 
@@ -17,15 +18,13 @@ import static java.awt.BasicStroke.JOIN_MITER;
 /**
  * User: root
  */
-public class GStroke implements Serializable, FromStringProvider<GStroke> {
+public class GStroke implements Serializable,  FromStringProvider<GStroke> {
     static {
         StaticUtils.setFromStringProvider(GStroke.class.getName(), new GStroke());
     }
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1699990527314740484L;
+    private static final
+    long serialVersionUID = 1699990527314740484L;
     static Vector<GStroke> strokes = new Vector<GStroke>();
     public static GStroke empty = new GStroke("Empty", 0, new float[]{0, 100000000f});
     public static GStroke simple = new GStroke("simple", 1, new float[]{1, 0});
@@ -61,33 +60,6 @@ public class GStroke implements Serializable, FromStringProvider<GStroke> {
     public GStroke() {
     }
 
-//    Edge e;
-
-//    public void handleEdge(Edge e) {
-//        this.e = e;
-//        stroke = solid.stroke;
-//        e.model.getAttributes().put(STROKE, solid);
-//        e.model.addAttributeListener(this, new String[]{STROKE});
-//        e.view.addPostPaintHandler(this);
-//    }
-
-    /**
-     * just changes the stroke of the graphics if nesecary
-     */
-//    public void paint(Graphics g, Component unused) {
-//        Graphics2D gg = ((Graphics2D) g);
-//        if (!gg.getStroke().equals(stroke))
-//            gg.setStroke(stroke);
-//    }
-
-//    public void attributeUpdated(String name, Object oldVal, Object newVal) {
-//        if (name.equals(STROKE)) {
-//        stroke = ((GStroke) newVal).stroke;
-//            Graphics g=e.view.getGraphics();
-//            ((Graphics2D) g).setStroke(stroke);
-//            e.view.repaint();
-//        }
-//    }
     public GStroke fromString(String data) {
         for (GStroke _ : strokes)
             if (_.name.equals(data)) {
@@ -98,5 +70,18 @@ public class GStroke implements Serializable, FromStringProvider<GStroke> {
 
     public String toString() {
         return name;
+    }
+
+    private void writeObject(java.io.ObjectOutputStream stream)
+            throws IOException {
+        stream.writeObject(name);
+    }
+
+    private void readObject(java.io.ObjectInputStream stream)
+            throws IOException, ClassNotFoundException {
+        name = (String) stream.readObject();
+        GStroke target = fromString(name);
+        stroke = target.stroke;
+        w = target.w;
     }
 }

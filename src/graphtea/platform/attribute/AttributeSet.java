@@ -11,15 +11,15 @@ import java.util.Map;
  *
  * @author Azin Azadi
  */
-public interface AttributeSet {
+public interface AttributeSet<T> {
 
     /**
      * @return a unmodifiable copy of attributes in this object
      */
-    Map<String, Object> getAttrs();
+    Map<String, T> getAttrs();
 
 
-    void put(String name, Object value);
+    void put(String name, T value);
 
     Object get(String name);
 

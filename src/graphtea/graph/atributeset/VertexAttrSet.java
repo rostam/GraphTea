@@ -23,7 +23,7 @@ public class VertexAttrSet implements AttributeSet {
     public static final String LABEL = "Label";
     public static final String COLOR = "Color";
     public static final String SHAPE = "Shape";
-    public static final String BORDER = "Border";
+    public static final String BORDER = "Border Stroke";
     public static final String LOCATION = "Location";
     public static final String SIZE = "Size";
     public static final String MARK = "Mark";

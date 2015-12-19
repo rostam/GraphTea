@@ -31,9 +31,9 @@ public class GShapeRenderer implements ValueSet, GBasicCellRenderer<GShape> {
                 int h = getHeight();
                 g.drawString(((GShape) value).name + "", h + 4, (h - 2) / 2 + 8);
                 g.setColor(Color.lightGray);
-                GShape.fillShape((GShape) value, g, h - 1, h - 1);
+                GShape.fillShape(((GShape) value).name, g, h - 1, h - 1);
                 g.setColor(Color.darkGray);
-                GShape.drawShape((GShape) value, g, h - 1, h - 1);
+                GShape.drawShape(((GShape) value).name, g, h - 1, h - 1);
 //                g.setColor(Color.black);
             }
         };

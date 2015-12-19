@@ -15,19 +15,26 @@ public class GraphSaveObject implements Serializable {
     Vector<VertexSaveObject> vs = new Vector<>();
     Vector<EdgeSaveObject> es = new Vector<>();
     boolean directed = false;
+    String label = "";
     public GraphSaveObject(GraphModel g) {
-        directed=g.isDirected();
+        directed    = g.isDirected();
+        label       = g.getLabel();
+
         for(Vertex v: g) vs.add(new VertexSaveObject(v));
         for(Edge e : g.edges()) es.add(new EdgeSaveObject(e));
     }
 
     public GraphModel getG() {
         GraphModel g = new GraphModel();
+        System.out.println(1);
         for(VertexSaveObject v: vs) {
             g.addVertex(v.getVertex());
         }
 
+
+        System.out.println(2);
         for(EdgeSaveObject e : es) {
+            System.out.println(e);
             e.addEdge(g);
         }
         g.setDirected(directed);
