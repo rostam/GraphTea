@@ -14,8 +14,6 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileWriter;
@@ -137,7 +135,7 @@ public class IterGraphs {
         String g = "";
         Vector<Integer> gs = new Vector<>();
         IterProgressBar pb = new IterProgressBar(size);
-        BufferedReader bri = ShowG.showG(type + size);
+        BufferedReader bri = ShowG.showG(type + size,1,size);
         int cnt = 0;
         while ((line = bri.readLine()) != null) {
             if (!line.equals("")) {

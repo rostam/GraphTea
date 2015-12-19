@@ -3,9 +3,6 @@ package graphtea.extensions.reports.boundcheck.forall;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.plugins.graphgenerator.core.PositionGenerators;
-
-import java.awt.*;
 import java.io.*;
 import java.util.Scanner;
 
@@ -65,7 +62,6 @@ public class ShowG {
             cur = cur + "/graphs/";
             String parameter2 = cur+file+".g6";
             process = new ProcessBuilder(cur + "showg.out", parameter1,parameter2.trim());
-            System.out.println(process.command());
         }
 
         return process;
@@ -100,65 +96,6 @@ public class ShowG {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
-    }
-
-
-    public static BufferedReader showG(String file) {
-        try {
-            ProcessBuilder process = getShowGProcess(file);
-            Process p = process.start();
-            BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            return bri;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static GraphModel showOneG(String line) {
-        String g = "";
-
-        try {
-            String cur = new java.io.File(".").getCanonicalPath();
-
-            if(System.getProperty("os.name").contains("Win")) {
-                cur =cur + "\\graphs\\";
-            } else {
-                cur =cur + "/graphs/";
-            }
-            FileWriter fw = new FileWriter(cur+"tmpF.g6");
-            fw.write(line);
-            fw.write("\n");
-            fw.close();
-            ProcessBuilder process;
-            if(System.getProperty("os.name").contains("Win")) {
-                process = new ProcessBuilder(cur + "showg_win32.exe", cur + "tmpF.g6");
-            } else {
-                process = new ProcessBuilder(cur + "showg.out", cur + "tmpF.g6");
-            }
-
-            Process p = process.start();
-            p.waitFor();
-            BufferedReader bri = new BufferedReader
-                    (new InputStreamReader(p.getInputStream()));
-            p.waitFor();
-            Scanner sc = new Scanner(bri);
-            sc.nextLine();
-            GraphModel gg = parseGraph(sc);
-            Point pp[] = PositionGenerators.circle(200, 400, 250, gg.numOfVertices());
-            int tmpcnt = 0;
-            for (Vertex v : gg) {
-                v.setLocation(pp[tmpcnt]);
-                tmpcnt++;
-            }
-            return gg;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         return null;
     }
 
