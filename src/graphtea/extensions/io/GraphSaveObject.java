@@ -41,7 +41,7 @@ public class GraphSaveObject implements Serializable {
         return g;
     }
 
-    public static byte[] getBytesOfGraph(GraphModel g) {
+    public static ByteArrayOutputStream getBytesOfGraph(GraphModel g) {
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
         try {
             ObjectOutputStream oop = new ObjectOutputStream(bout);
@@ -51,7 +51,14 @@ public class GraphSaveObject implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return bout;
+    }
+    public static String graph2String(GraphModel g){
+        return getBytesOfGraph(g).toString();
+    }
+
+    public static GraphModel String2Graph(String s){
+        return getGraphFromBytes(s.getBytes());
     }
 
     public static GraphModel getGraphFromBytes(byte[] b) {

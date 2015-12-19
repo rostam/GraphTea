@@ -26,8 +26,8 @@
 
         <action class="graphtea.plugins.main.core.actions.GraphPropertyEditor"/>
 
-        <!--<action class="graphtea.plugins.commonplugin.undo.UndoAction" id="Undo Action"/>-->
-        <!--<action class="graphtea.plugins.commonplugin.undo.RedoAction" id="Redo Action"/>-->
+        <action class="graphtea.plugins.commonplugin.undo.UndoAction" id="Undo Action"/>
+        <action class="graphtea.plugins.commonplugin.undo.RedoAction" id="Redo Action"/>
         <action class="graphtea.ui.actions.ExitAction" id="Exit"/>
         <action class="graphtea.plugins.main.core.actions.graph.NewGraph" id="New"/>
         <!--<action class="graphtea.plugins.main.core.actions.graph.ClearGraph" id="Clear"/>-->
@@ -101,16 +101,16 @@
             </submenu>
             <!--<submenu label="_View" place="15">-->
             <!--</submenu>-->
-            <!--<submenu label="_Edit" place="20">-->
-                <!--<menu label="_Undo" action="Undo Action" accelerator="control+Z" place="10"/>-->
-                <!--<menu label="_Redo" action="Redo Action" accelerator="alt+control+Z" place="20"/>-->
+            <submenu label="_Edit" place="20">
+                <menu label="_Undo" action="Undo Action" accelerator="control+Z" place="10"/>
+                <menu label="_Redo" action="Redo Action" accelerator="alt+control+Z" place="20"/>
                 <!--<menu label="seperator_menu" place="40"/>-->
                 <!--<menu label="_Cut" action="Cut" accelerator="control+X" place="500"/>-->
                 <!--<menu label="_Copy" action="Copy" accelerator="control+C" place="510"/>-->
                 <!--<menu label="_Paste" action="Paste" accelerator="control+V" place="520"/>-->
-            <!--</submenu>-->
+            </submenu>
             <!--<submenu label="Graph">-->
-                <!--<menu label="C_lear Graph" action="Clear" place="9000"/>-->
+            <!--<menu label="C_lear Graph" action="Clear" place="9000"/>-->
             <!--</submenu>-->
 
             <!--<submenu label="_View" place="40">-->
@@ -134,16 +134,16 @@
 
             </toolbar>
 
-            <!--<toolbar place="20">-->
-                <!--<tool label="Undo Action" action="Undo Action"-->
-                      <!--image="/graphtea/plugins/main/resources/undo24_.gif"/>-->
-                <!--<tool label="Redo Action" action="Redo Action"-->
-                      <!--image="/graphtea/plugins/main/resources/redo24_.gif"/>-->
-            <!--</toolbar>-->
+            <toolbar place="20">
+                <tool label="Undo Action" action="Undo Action"
+                      image="/graphtea/plugins/main/resources/undo24_.gif"/>
+                <tool label="Redo Action" action="Redo Action"
+                      image="/graphtea/plugins/main/resources/redo24_.gif"/>
+            </toolbar>
             <!--<toolbar place="30">-->
-                <!--<tool label="Cut" action="Cut" image="/graphtea/plugins/main/resources/_cut24.gif"/>-->
-                <!--<tool label="Copy" action="Copy" image="/graphtea/plugins/main/resources/_copy24.gif"/>-->
-                <!--<tool label="Paste" action="Paste" image="/graphtea/plugins/main/resources/paste24_.gif"/>-->
+            <!--<tool label="Cut" action="Cut" image="/graphtea/plugins/main/resources/_cut24.gif"/>-->
+            <!--<tool label="Copy" action="Copy" image="/graphtea/plugins/main/resources/_copy24.gif"/>-->
+            <!--<tool label="Paste" action="Paste" image="/graphtea/plugins/main/resources/paste24_.gif"/>-->
             <!--</toolbar>-->
             <!--<toolbar place="40">-->
             <!--<tool label="Zoom In" action="Zoom In" image="/graphtea/plugins/main/resources/zoomIn24_.gif"/>-->

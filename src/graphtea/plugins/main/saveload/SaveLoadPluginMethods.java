@@ -77,20 +77,6 @@ public class SaveLoadPluginMethods implements PluginMethods {
     }
 
 
-    /**
-     * @see graphtea.plugins.main.saveload.Save#saveGraphML(graphtea.graph.graph.GraphModel,java.io.File)
-     */
-    public void saveAsGraphML(File file) throws IOException {
-        graphtea.plugins.main.saveload.Save.saveGraphML(getGraph(), file);
-    }
-
-    /**
-     * @see graphtea.plugins.main.saveload.Save#saveGraphML(graphtea.graph.graph.GraphModel,java.io.File)
-     */
-    public void saveAsGraphML(GraphModel g, File f) throws IOException {
-        graphtea.plugins.main.saveload.Save.saveGraphML(g, f);
-    }
-
 //************************     L O A D       ***********************************
 
     /**
@@ -100,13 +86,6 @@ public class SaveLoadPluginMethods implements PluginMethods {
      */
     public GraphModel loadMatrix(File file) throws IOException {
         return LoadMatrix.loadMatrix(file);
-    }
-
-    /**
-     * clears the current graph and load a graphml file saved in file to the current graph
-     */
-    public GraphModel loadGraphML(File f) throws IOException, ParserConfigurationException, SAXException {
-        return graphtea.plugins.main.saveload.Load.loadGraphFromFile(f);
     }
 
     /**
@@ -137,7 +116,6 @@ public class SaveLoadPluginMethods implements PluginMethods {
             if (i > 0 && i < filename.length() - 1) {
                 return filename.substring(i + 1).toLowerCase();
             }
-            ;
         }
         return null;
     }

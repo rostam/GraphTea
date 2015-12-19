@@ -4,12 +4,12 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.main.ccp;
 
+import graphtea.extensions.io.GraphSaveObject;
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
-import graphtea.graph.io.GraphML;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.select.Select;
@@ -48,7 +48,7 @@ public class Copy extends AbstractAction {
         copyGraph(subGraph, g);
 //        gg.view.repaint();
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-        String data = GraphML.graph2GraphML_with_headers(g);
+        String data = GraphSaveObject.graph2String(g);
 
 
         StringSelection string = new StringSelection(data);

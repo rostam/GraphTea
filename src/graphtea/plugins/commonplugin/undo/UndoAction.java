@@ -7,8 +7,8 @@ package graphtea.plugins.commonplugin.undo;
 author :roozbeh
 */
 
+import graphtea.extensions.io.GraphSaveObject;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.io.GraphJSON;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.commonplugin.Init;
@@ -37,7 +37,7 @@ public class UndoAction extends AbstractAction {
         GraphData gd = new GraphData(blackboard);
         UndoManager logManager = Init.undoers.get(gd.getGraph());
         String ud = logManager.getNextUndoData();
-        GraphModel gm = GraphJSON.Json2Graph(ud);
+        GraphModel gm = GraphSaveObject.String2Graph(ud);
 //        gd.getGraph().addSubGraph();
         gd.getGraphRenderer().setGraph(gm);
     }

@@ -8,8 +8,8 @@ package graphtea.plugins.commonplugin.undo;
 * author: azin azadi
 */
 
+import graphtea.extensions.io.GraphSaveObject;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.io.GraphJSON;
 
 public class UndoManager {
     public static final String EVENT_KEY = "Undo Log Manager";
@@ -25,11 +25,13 @@ public class UndoManager {
     String lastgml = "";
 
     void watchGraph(final GraphModel g) {
+        System.out.println("watch undo manager");
         new Thread() {
             public void run() {
                 while (true) {
                     try {
-                        String cur = GraphJSON.Graph2Json(g);
+
+                        String cur = GraphSaveObject.graph2String(g);
                         if (!cur.equals(lastgml)) {
                             //st changed
                             System.out.println(cur);

@@ -9,7 +9,6 @@ package graphtea.samples;
  * This is a sample class for who wants to debug his/her developing extensions.
  * Just replace your extension's class name with HelloWorldReport
  *
- * see: http://graphtea.sharif.edu/trac/wiki/ExtensionDebugging #todo:[tea] link to get updated
  * @author Azin Azadi
  */
 

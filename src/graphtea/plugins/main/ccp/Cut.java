@@ -4,12 +4,12 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.main.ccp;
 
+import graphtea.extensions.io.GraphSaveObject;
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
-import graphtea.graph.io.GraphML;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.select.ClearSelection;
@@ -49,15 +49,7 @@ public class Cut extends AbstractAction {
 
 
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-        String data = (""
-                + "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-                + "<!DOCTYPE graphml SYSTEM \"graphml.dtd\">\n"
-                + "<graphml xmlns=\"http://graphml.graphdrawing.org/xmlns\"\n"
-                + "    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
-                + "    xsi:schemaLocation=\"http://graphml.graphdrawing.org/xmlns\n"
-                + "     http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd\">\n"
-                + GraphML.graph2GraphML(g)
-                + "</graphml>");
+        String data = GraphSaveObject.graph2String(g);
 
 
         StringSelection string = new StringSelection(data);

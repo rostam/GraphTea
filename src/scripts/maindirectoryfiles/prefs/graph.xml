@@ -2274,11 +2274,6 @@
           <entry key="object" value="graphtea.plugins.main.saveload.Load"/>
         </map>
       </node>
-      <node name="graphtea.plugins.main.saveload.Save">
-        <map>
-          <entry key="object" value="graphtea.plugins.main.saveload.Save"/>
-        </map>
-      </node>
       <node name="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler">
         <map>
           <entry key="object" value="graphtea.plugins.main.saveload.core.extension.GraphIOExtensionHandler"/>
