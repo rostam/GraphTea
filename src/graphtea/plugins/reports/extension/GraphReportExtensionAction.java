@@ -57,7 +57,8 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 			Object result = new Object();
 			public void run() {
 				if (ig!=null&&ig.activeConjCheck && !mr.getName().equals("Bound Check")) {
-					cont.setEnabled(true);
+					if(ig.gens.equals("")) cont.setEnabled(true);
+					else cont.setEnabled(false);
 					result=ig.wrapper(mr);
 				} else {
 					cont.setEnabled(false);

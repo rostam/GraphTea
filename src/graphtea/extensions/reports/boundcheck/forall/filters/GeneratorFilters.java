@@ -71,10 +71,13 @@ public class GeneratorFilters {
             Vector<Pair<Integer, Integer>> res = new Vector<>();
             for (int i = 0; i < v.size(); i++) {
                 Scanner sc = new Scanner(v.get(i).getText());
-                sc.useDelimiter(":");
-                res.add(new Pair<>(
-                        Integer.parseInt(sc.next()),
-                        Integer.parseInt(sc.next())));
+                if(i==0) {
+                    sc.useDelimiter(":");
+                    res.add(new Pair<>(
+                            Integer.parseInt(sc.next()),
+                            Integer.parseInt(sc.next())));
+                } else {
+                }
 
             }
             int from = res.get(0).first;
