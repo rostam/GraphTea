@@ -5,6 +5,7 @@
 package graphtea.plugins.reports.extension;
 
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
+import graphtea.extensions.reports.boundcheck.forall.iterators.AllGraphIterator;
 import graphtea.graph.graph.RenderTable;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
@@ -57,7 +58,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 			Object result = new Object();
 			public void run() {
 				if (ig!=null&&ig.activeConjCheck && !mr.getName().equals("Bound Check")) {
-					if(ig.gens.equals("")) cont.setEnabled(true);
+					if(ig.gens.equals("No Generator")) cont.setEnabled(true);
 					else cont.setEnabled(false);
 					result=ig.wrapper(mr);
 				} else {
@@ -93,10 +94,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 
 				cont.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent actionEvent) {
-						String out = JOptionPane.showInputDialog("Please enter the counter " +
-								"of the graph that you want to proceed.");
-						int cnt = Integer.parseInt(out);
-						ig.show_ith(cnt,blackboard);
+						ig.showWrapper(blackboard);
 					}
 				});
 

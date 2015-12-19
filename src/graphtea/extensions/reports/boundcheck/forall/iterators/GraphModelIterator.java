@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 /**
  * Created by rostam on 01.11.15.
+ *
  */
 public abstract  class GraphModelIterator implements Iterator<GraphModel> {
     public abstract int size();

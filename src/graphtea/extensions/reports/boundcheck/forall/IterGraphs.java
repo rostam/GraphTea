@@ -9,13 +9,15 @@ import graphtea.extensions.reports.boundcheck.forall.iterators.GraphGeneratorIte
 import graphtea.extensions.reports.boundcheck.forall.iterators.GraphModelIterator;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
+import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
+import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -24,7 +26,7 @@ import java.util.Scanner;
 import java.util.Vector;
 
 public class IterGraphs {
-    private final Integer part;
+    private final boolean part;
     public boolean activeConjCheck = false;
     public boolean iterative = false;
     public String type = "";
@@ -34,7 +36,7 @@ public class IterGraphs {
     public String postproc = "";
 
     public IterGraphs(boolean activeConjCheck, boolean iterative,
-                      String type, int size, String bound, String gens, Integer part, String postproc) {
+                      String type, int size, String bound, String gens, boolean part, String postproc) {
         this.activeConjCheck = activeConjCheck;
         this.iterative = iterative;
         this.type = type;
@@ -51,11 +53,7 @@ public class IterGraphs {
             it = new GraphGeneratorIterator(gens);
 
         } else {
-            if (size == 10 && part != 0) {
-                it = new AllGraphIterator(type + size + part, size, part);
-            } else {
                 it = new AllGraphIterator(type + size, size, part);
-            }
         }
 
         ToCall f = new ToCall() {
@@ -99,6 +97,21 @@ public class IterGraphs {
 
         return pq;
     }
+
+    public void showWrapper(BlackBoard blackboard) {
+        AllGraphIterator agi = new AllGraphIterator(type + size, size, true);
+        GraphModel g = agi.next();
+        Point pp[] = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
+
+        int tmpcnt = 0;
+        for (Vertex v : g) {
+            v.setLocation(pp[tmpcnt]);
+            tmpcnt++;
+        }
+
+        new GraphData(blackboard).core.showGraph(g);
+    }
+
 
     public void writeFilterGraphs(String file, Vector<Integer> gs, String filt) throws IOException {
         FileWriter fw = ShowG.outG(filt);
@@ -174,42 +187,6 @@ public class IterGraphs {
 
     }
 
-    public GraphModel getith(String file, int size, int ith) {
-        IterProgressBar pb = new IterProgressBar(ith+5);
-        pb.setVisible(false);
-        if (ith >= 30) {
-            pb.setVisible(true);
-            pb.setAlwaysOnTop(true);
-            pb.setDefaultCloseOperation(IterProgressBar.DO_NOTHING_ON_CLOSE);
-        }
-
-        Scanner sc = null;
-        try {
-            String cur = new java.io.File(".").getCanonicalPath();
-
-            if (System.getProperty("os.name").contains("Win")) {
-                cur = cur + "\\graphs\\";
-            } else {
-                cur = cur + "/graphs/";
-            }
-            sc = new Scanner(new File(cur + file + size + ".g6"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int cnt = 0;
-        while (sc.hasNext()) {
-            cnt++;
-            pb.setValue(cnt);
-            String line = sc.nextLine();
-            if (ith == cnt) {
-                pb.setVisible(false);
-                return ShowG.showOneG(line);
-            }
-        }
-        pb.setVisible(false);
-        return null;
-    }
-
     public void checkTypeOfBounds(Vector<Object> vo, int[] res, int i, String bound) {
         switch (bound) {
             case Bounds.Upper:
@@ -232,24 +209,6 @@ public class IterGraphs {
                     res[i]++;
                 }
                 break;
-        }
-    }
-
-    public void show_ith(int cnt, BlackBoard blackboard) {
-        new GraphData(blackboard).core.showGraph(getith(type, size, cnt));
-    }
-
-    public void show_itojth(int from, int to, BlackBoard blackboard) {
-        if (to - from > 10) return;
-        for (int i = from; i <= to; i++) {
-            show_ith(i, blackboard);
-        }
-    }
-
-    public void show_several(Vector<Integer> gs, BlackBoard blackboard) {
-        Collections.sort(gs);
-        for (int i : gs) {
-            show_ith(i, blackboard);
         }
     }
 }

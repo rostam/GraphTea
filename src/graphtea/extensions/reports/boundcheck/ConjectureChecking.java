@@ -7,7 +7,6 @@ package graphtea.extensions.reports.boundcheck;
 
 import graphtea.extensions.reports.boundcheck.forall.GraphFilter;
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
-import graphtea.extensions.reports.boundcheck.forall.Sizes;
 import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;
 import graphtea.extensions.reports.boundcheck.forall.filters.Filters;
 import graphtea.extensions.reports.boundcheck.forall.filters.GeneratorFilters;
@@ -27,13 +26,6 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         filters = Filters.getFilterNames();
         type = Bounds.getBoundNames();
         generators = GeneratorFilters.getGenFilters();
-        part=new ArrayX<>(0);
-        for(int i=0;i<14;i++) {
-            part.addValidValue(i+1);
-            if(i==13)   Sizes.sizes.put("all10"+(i+1),9);
-            else        Sizes.sizes.put("all10"+(i+1),901274);
-        }
-
         PostP = new ArrayX<>("No postprocessing");
         PostP.addValidValue("Equality Filter");
         PostP.addValidValue("Max Filter");
@@ -46,8 +38,8 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public boolean connected = true;
     @Parameter(name = "Size", description = "")
     public int Size = 9;
-    @Parameter(name = "Partitions", description = "")
-    public ArrayX<Integer> part;
+    @Parameter(name = "Partition", description = "")
+    public boolean part = false;
     @Parameter(name = "Up to", description = "")
     public boolean upto = false;
     @Parameter(name = "Filter", description = "")
@@ -85,13 +77,12 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         GraphFilter gf;
         if(chemtree) gf=Filters.getCorrectFilter(filters,Filters.ChemTree);
         else gf=Filters.getCorrectFilter(filters, null);
-
         if(gf != null) currentType=gf.getName();
         if(tree) currentType="tree";
         if(chemtree) currentType="chemtree";
         if(!tree && !chemtree) currentType="all";
         GraphReportExtensionAction.ig=new IterGraphs(conjCheck,iterative,currentType,
-                Size,type.getValue(),generators.getValue(),part.getValue(), PostP.getValue());
+                Size,type.getValue(),generators.getValue(),part, PostP.getValue());
         if(gf != null) {
             try {
                 if(tree) {

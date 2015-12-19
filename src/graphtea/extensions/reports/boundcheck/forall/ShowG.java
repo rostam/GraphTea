@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 /**
  * Created by rostam on 30.09.15.
+ *
  */
 public class ShowG {
     public static FileWriter outG(String file) throws IOException {
@@ -47,6 +48,29 @@ public class ShowG {
         return new Scanner(new File(cur+file+".g6"));
     }
 
+    public static ProcessBuilder getShowGProcess(String file, int from, int to) {
+        String cur = null;
+        try {
+            cur = new java.io.File(".").getCanonicalPath();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ProcessBuilder process;
+        String parameter1="-p"+from+":"+to;
+        if(System.getProperty("os.name").contains("Win")) {
+            cur =cur + "\\graphs\\";
+            String parameter2 = cur+file+".g6";
+            process = new ProcessBuilder(cur + "showg_win32.exe", parameter1,parameter2.trim());
+        } else {
+            cur = cur + "/graphs/";
+            String parameter2 = cur+file+".g6";
+            process = new ProcessBuilder(cur + "showg.out", parameter1,parameter2.trim());
+            System.out.println(process.command());
+        }
+
+        return process;
+    }
+
     public static ProcessBuilder getShowGProcess(String file) {
         String cur = null;
         try {
@@ -66,6 +90,19 @@ public class ShowG {
 
         return process;
     }
+
+    public static BufferedReader showG(String file, int from, int to) {
+        try {
+            ProcessBuilder process = getShowGProcess(file, from,to);
+            Process p = process.start();
+            BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            return bri;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public static BufferedReader showG(String file) {
         try {

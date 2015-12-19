@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 /**
  * Created by rostam on 25.10.15.
+ * The actual sizes of sets of graphs
  */
 public class Sizes {
     public static HashMap<String, Integer> sizes = new HashMap<>();
@@ -39,5 +40,9 @@ public class Sizes {
         sizes.put("tree18",123867);
         sizes.put("tree19",317955);
         sizes.put("tree20",823065);
+
+        sizes.put("tree21",2144505);
+        sizes.put("tree22",5623756);
+        sizes.put("tree23",14828074);
     }
 }
