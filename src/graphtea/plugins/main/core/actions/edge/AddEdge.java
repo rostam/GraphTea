@@ -101,8 +101,8 @@ public class AddEdge extends AbstractAction implements PaintHandler {
                     Vertex v2 = ve.v;
                     if (v2 != null && isDrag)   //!it was released on empty space
                         if (!v1.equals(v2) || exitedFromV1) {
-                            doJob(g, v1, v2);
                             blackboard.setData("undo point", g);
+                            doJob(g, v1, v2);
                         }
 //            unListenEvent(VertexMouseDraggingData.event);
                 }

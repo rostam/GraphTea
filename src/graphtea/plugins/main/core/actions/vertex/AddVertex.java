@@ -72,8 +72,8 @@ public class AddVertex extends AbstractAction {
                 return;
             }
             GraphModel graph = gpd.graph;
-            doJob(graph, gpd.mousePos);
             blackboard.setData("undo point", graph);
+            doJob(graph, gpd.mousePos);
         }
         blackboard.setData(ClearSelection.lastTimeGraphWasClear, true);
 
