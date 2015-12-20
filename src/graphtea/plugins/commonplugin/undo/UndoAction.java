@@ -3,47 +3,92 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.commonplugin.undo;
-/*
-author :roozbeh
-*/
 
 import graphtea.extensions.io.GraphSaveObject;
-import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
-import graphtea.plugins.commonplugin.Init;
+import graphtea.platform.core.Listener;
 import graphtea.plugins.main.GraphData;
 import graphtea.ui.UIUtils;
 
-public class UndoAction extends AbstractAction {
+import java.util.HashMap;
+import java.util.Stack;
 
-    public static final String EVENT_KEY = UIUtils.getUIEventKey("Undo Action");
+public class UndoAction extends AbstractAction {
+    public static final String UNDO_EVENT = UIUtils.getUIEventKey("Undo Action");
+    public static final String REDO_EVENT = UIUtils.getUIEventKey("Redo Action");
+    private HashMap<GraphModel, Stack<GraphSaveObject>> undoers = new HashMap<>();
+    private HashMap<GraphModel, Stack<GraphSaveObject>> redoers = new HashMap<>();
+
+    public void pushUndo(GraphModel label, GraphSaveObject gso) {
+        if(undoers.get(label) == null) {
+            undoers.put(label,new Stack<GraphSaveObject>());
+        }
+        redoers.put(label,new Stack<GraphSaveObject>());  //reset redo for this graph
+        undoers.get(label).push(gso);
+    }
+
+    public GraphSaveObject popUndo(GraphModel label) {
+        if(undoers.get(label)== null) return null;
+        if(undoers.get(label).size()==0) return null;
+        GraphSaveObject temp = undoers.get(label).pop();
+        if(redoers.get(label)== null) {
+            redoers. put(label,new Stack<GraphSaveObject>());
+        }
+        redoers.get(label).push(temp);
+        return temp;
+    }
+
+    public GraphSaveObject popRedo(GraphModel label) {
+        if(redoers.get(label)== null) return null;
+        if(redoers.get(label).size()==0) return null;
+        GraphSaveObject temp = redoers.get(label).pop();
+        if(undoers.get(label)!= null) undoers.get(label).push(temp);
+        return temp;
+    }
+
 
     public UndoAction(BlackBoard bb) {
         super(bb);
-        listen4Event(EVENT_KEY);
+        listen4Event(UNDO_EVENT);
+        listen4Event(REDO_EVENT);
+
+        bb.addListener("undo point", new Listener<GraphModel>() {
+            public void keyChanged(String key, GraphModel value) {
+                System.out.println("undo point" + value);
+                pushUndo(value, new GraphSaveObject(value));
+            }
+        });
     }
 
     public void performAction(String eventName, Object value) {
-        undo(blackboard);
+        System.out.println("Perform action: " + eventName);
+        System.out.println(UNDO_EVENT);
+        if (eventName.equals(UNDO_EVENT))
+            undo();
+        else
+            redo();
     }
 
-    /**
-     * undo the last undoabe operation done in the context of current blackboard
-     *
-     * @param blackboard
-     */
-    public static void undo(BlackBoard blackboard) {
+    public void undo() {
         GraphData gd = new GraphData(blackboard);
         GraphModel cur = gd.getGraph();
-        byte[] bb = blackboard.popUndo(cur.getLabel());
-        if(bb == null) return;
-        GraphSaveObject gso = GraphSaveObject.getGraphSaveOobjectfromBytes(bb);
-        GraphModel g = GraphSaveObject.getGraphFromBytes(bb);
+        GraphSaveObject gso = popUndo(cur);
+        System.out.println("Undo: "+gso);
+        if(gso == null) return;
         cur.clear();
         gso.insertIntoGraph(cur);
         gd.getGraphRenderer().repaintGraph();
+    }
+
+    public  void redo() {
+        GraphData gd = new GraphData(blackboard);
+        GraphModel cur = gd.getGraph();
+        GraphSaveObject gso = popRedo(cur);
+        if (gso == null) return;
+        cur.clear();
+        gso.insertIntoGraph(cur);
     }
 
 }

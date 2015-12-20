@@ -9,14 +9,14 @@ package graphtea.platform.core;
  *
  * @author Azin Azadi
  */
-public interface Listener {
+public interface Listener<T> {
 
     /**
      * Event occured, Go and call the listeners to do the Job
      *
      * @param key
      */
-    public void keyChanged(String key, Object value);
+    public void keyChanged(String key, T value);
 
 
 }

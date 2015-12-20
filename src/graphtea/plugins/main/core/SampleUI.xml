@@ -27,7 +27,6 @@
         <action class="graphtea.plugins.main.core.actions.GraphPropertyEditor"/>
 
         <action class="graphtea.plugins.commonplugin.undo.UndoAction" id="Undo Action"/>
-        <action class="graphtea.plugins.commonplugin.undo.RedoAction" id="Redo Action"/>
         <action class="graphtea.ui.actions.ExitAction" id="Exit"/>
         <action class="graphtea.plugins.main.core.actions.graph.NewGraph" id="New"/>
         <!--<action class="graphtea.plugins.main.core.actions.graph.ClearGraph" id="Clear"/>-->

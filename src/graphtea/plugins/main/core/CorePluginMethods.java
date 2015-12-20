@@ -13,8 +13,6 @@ import graphtea.graph.ui.GHTMLPageComponent;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.plugin.PluginMethods;
-import graphtea.plugins.commonplugin.undo.RedoAction;
-import graphtea.plugins.commonplugin.undo.UndoAction;
 import graphtea.plugins.main.ccp.Copy;
 import graphtea.plugins.main.ccp.Cut;
 import graphtea.plugins.main.core.actions.AddTab;
@@ -124,21 +122,6 @@ public class CorePluginMethods implements PluginMethods {
         DeleteVertex.doJob(g, v);
     }
 
-//*********************      U N D O / R E D O        *************************
-
-    /**
-     * @see graphtea.plugins.commonplugin.undo.UndoAction#undo(graphtea.platform.core.BlackBoard)
-     */
-    public void undo() {
-        UndoAction.undo(blackboard);
-    }
-
-    /**
-     * @see graphtea.plugins.commonplugin.undo.RedoAction#redo(graphtea.platform.core.BlackBoard)
-     */
-    public void redo() {
-        RedoAction.redo(blackboard);
-    }
 
 //*********************   TABBED EDITING      *******************************
 

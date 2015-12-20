@@ -100,13 +100,9 @@ public class AddEdge extends AbstractAction implements PaintHandler {
                 if (v1 != null) {
                     Vertex v2 = ve.v;
                     if (v2 != null && isDrag)   //!it was released on empty space
-                        if (!v1.equals(v2)) {
-                            Edge e = doJob(g, v1, v2);
-                            blackboard.pushUndo(g.getLabel(), GraphSaveObject.getBytesOfGraph(g));
-                        } else if (exitedFromV1) {
-                            //User has revisited v1 > add loop
-                            Edge e = doJob(g, v1, v2);
-                            blackboard.pushUndo(g.getLabel(), GraphSaveObject.getBytesOfGraph(g));
+                        if (!v1.equals(v2) || exitedFromV1) {
+                            doJob(g, v1, v2);
+                            blackboard.setData("undo point", g);
                         }
 //            unListenEvent(VertexMouseDraggingData.event);
                 }
