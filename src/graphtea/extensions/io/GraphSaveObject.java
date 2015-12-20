@@ -4,6 +4,7 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 
+import javax.xml.bind.DatatypeConverter;
 import java.io.*;
 import java.util.Vector;
 
@@ -26,22 +27,21 @@ public class GraphSaveObject implements Serializable {
 
     public GraphModel getG() {
         GraphModel g = new GraphModel();
-        System.out.println(1);
-        for(VertexSaveObject v: vs) {
-            g.addVertex(v.getVertex());
-        }
-
-
-        System.out.println(2);
-        for(EdgeSaveObject e : es) {
-            System.out.println(e);
-            e.addEdge(g);
-        }
-        g.setDirected(directed);
+        insertIntoGraph(g);
         return g;
     }
 
-    public static ByteArrayOutputStream getBytesOfGraph(GraphModel g) {
+    public void insertIntoGraph(GraphModel g){
+        for(VertexSaveObject v: vs) {
+            g.addVertex(v.getVertex());
+        }
+        for(EdgeSaveObject e : es) {
+            e.addEdge(g);
+        }
+        g.setDirected(directed);
+    }
+
+    public static byte[] getBytesOfGraph(GraphModel g) {
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
         try {
             ObjectOutputStream oop = new ObjectOutputStream(bout);
@@ -51,27 +51,35 @@ public class GraphSaveObject implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return bout;
+        return bout.toByteArray();
     }
     public static String graph2String(GraphModel g){
-        return getBytesOfGraph(g).toString();
+        return DatatypeConverter.printBase64Binary(getBytesOfGraph(g));
     }
 
     public static GraphModel String2Graph(String s){
-        return getGraphFromBytes(s.getBytes());
+        return getGraphFromBytes(DatatypeConverter.parseBase64Binary(s));
     }
 
-    public static GraphModel getGraphFromBytes(byte[] b) {
+    public static GraphSaveObject string2GraphSaveObject(String s){
+        return getGraphSaveOobjectfromBytes(DatatypeConverter.parseBase64Binary(s));
+    }
+
+    public static GraphSaveObject getGraphSaveOobjectfromBytes(byte[] b){
         try {
             ObjectInputStream ois = new ObjectInputStream(
                     new ByteArrayInputStream(b));
             GraphSaveObject gso = (GraphSaveObject) ois.readObject();
-            return gso.getG();
+            return gso;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
+
+    }
+    public static GraphModel getGraphFromBytes(byte[] b) {
+        return getGraphSaveOobjectfromBytes(b).getG();
     }
 }

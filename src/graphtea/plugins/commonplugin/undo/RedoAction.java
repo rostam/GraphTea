@@ -36,9 +36,15 @@ public class RedoAction extends AbstractAction {
      */
     public static void redo(BlackBoard blackboard) {
         GraphData gd = new GraphData(blackboard);
+        GraphModel cur = gd.getGraph();
+
         UndoManager logManager = Init.undoers.get(gd.getGraph());
-        String gs = logManager.getNextRedoData();
-        GraphModel gm = GraphSaveObject.String2Graph(gs);
-        gd.getGraphRenderer().setGraph(gm);
+        String ud = logManager.getNextRedoData();
+        if (ud == null) return;
+
+        GraphSaveObject gso = GraphSaveObject.string2GraphSaveObject(ud);
+
+        cur.clear();
+        gso.insertIntoGraph(cur);
     }
 }

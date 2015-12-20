@@ -8,6 +8,7 @@ author :roozbeh
 */
 
 import graphtea.extensions.io.GraphSaveObject;
+import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
@@ -35,11 +36,16 @@ public class UndoAction extends AbstractAction {
      */
     public static void undo(BlackBoard blackboard) {
         GraphData gd = new GraphData(blackboard);
+        GraphModel cur = gd.getGraph();
+
         UndoManager logManager = Init.undoers.get(gd.getGraph());
         String ud = logManager.getNextUndoData();
-        GraphModel gm = GraphSaveObject.String2Graph(ud);
-//        gd.getGraph().addSubGraph();
-        gd.getGraphRenderer().setGraph(gm);
+        if (ud == null) return;
+        System.out.println("UNDO: "+ ud);
+        GraphSaveObject gso = GraphSaveObject.string2GraphSaveObject(ud);
+
+        cur.clear();
+        gso.insertIntoGraph(cur);
     }
 
 }

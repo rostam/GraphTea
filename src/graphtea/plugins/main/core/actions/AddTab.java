@@ -45,7 +45,7 @@ public class AddTab extends AbstractAction {
     }
 
     /**
-     * creates a graph ans add it as a tab to the current editing graph window
+     * creates a graph and add it as a tab to the current editing graph window
      */
     public static void addTabNoGUI(boolean isdirected , BlackBoard blackboard) {
         GTabbedGraphPane gtgp = blackboard.getData(GTabbedGraphPane.NAME);

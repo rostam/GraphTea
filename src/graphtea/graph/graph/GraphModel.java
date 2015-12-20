@@ -238,6 +238,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 
 	public void clear() {
 		super.clear();
+        lastUsedID = 0;
 		fireGraphChange(GRAPH_CLEARED_GRAPH_CHANGE, null, null);
 	}
 

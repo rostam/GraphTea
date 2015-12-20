@@ -34,7 +34,6 @@ public class UndoManager {
                         String cur = GraphSaveObject.graph2String(g);
                         if (!cur.equals(lastgml)) {
                             //st changed
-                            System.out.println(cur);
                             addChange(cur);
                             lastgml = cur;
                         }

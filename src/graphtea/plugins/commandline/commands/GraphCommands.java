@@ -400,20 +400,6 @@ public class GraphCommands {
 
     }
 
-    @CommandAttitude(name = "load_graphml", abbreviation = "_lg"
-            , description = "loads a graph from a GrapmML file")
-    public void loadGraphML(@Parameter(name = "filename")String fileName) {
-        try {
-            datas.saveLoad.loadGraphML(new File(fileName));
-        } catch (IOException e) {
-            ExceptionHandler.catchException(e);
-        } catch (ParserConfigurationException e) {
-            ExceptionHandler.catchException(e);
-        } catch (SAXException e) {
-            ExceptionHandler.catchException(e);
-        }
-    }
-
 }
 
 

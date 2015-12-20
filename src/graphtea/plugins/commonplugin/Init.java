@@ -19,9 +19,9 @@ import java.util.HashMap;
  */
 public class Init implements PluginInterface, StorableOnExit {
     public static HashMap<GraphModel, UndoManager> undoers = new HashMap<GraphModel, UndoManager>();
+
     public void init(BlackBoard blackboard) {
         new graphtea.plugins.commonplugin.reporter.Init().init(blackboard);
-
 
         //make all graphs undoable
         blackboard.addListener(GraphAttrSet.name, new Listener() {
@@ -34,5 +34,7 @@ public class Init implements PluginInterface, StorableOnExit {
 
             }
         });
+        GraphModel g = blackboard.getData(GraphAttrSet.name);
+        undoers.put(g, new UndoManager(g));
     }
 }
