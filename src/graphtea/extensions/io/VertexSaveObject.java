@@ -24,15 +24,6 @@ public class VertexSaveObject implements Serializable {
 
     public VertexSaveObject(Vertex v) {
         attrs=new SerializedAttrSet(new VertexAttrSet(v));
-//        this.gs=new StrokeSaveObject(v.getShapeStroke());
-//        this.label=v.getLabel();
-//        this.color=v.getColor();
-//        this.mark=v.getMark();
-//        this.selected=v.isSelected();
-//        this.loc=v.getLocation();
-//        this.shape = v.getShape().name;
-//        this.shapeSize=v.getSize();
-//        this.labelLoc=v.getLabelLocation();
     }
 
     public Vertex getVertex() {

@@ -8,6 +8,7 @@ import graphtea.platform.StaticUtils;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Stack;
 import java.util.Vector;
 
 /**
@@ -53,7 +54,35 @@ public class BlackBoard {
     private HashMap<String, Object> data = new HashMap<String, Object>();
     private HashMap<String, HashSet<Listener>> listeners = new HashMap<String, HashSet<Listener>>();
     private HashMap<String, Vector<Couple<Boolean, Listener>>> addRemoveAfterFiring = new HashMap<String, Vector<Couple<Boolean, Listener>>>();
-    private HashMap<String, Integer> firingNames = new HashMap<String, Integer>();
+    private HashMap<String, Integer> firingNames = new HashMap<>();
+    private HashMap<String, Stack<byte[]>> undoers = new HashMap<>();
+    private HashMap<String, Stack<byte[]>> redoers = new HashMap<>();
+
+    public void pushUndo(String label, byte[] g) {
+        if(undoers.get(label) == null) {
+            undoers.put(label,new Stack<byte[]>());
+        }
+        undoers.get(label).push(g);
+    }
+
+    public byte[] popUndo(String label) {
+        if(undoers.get(label)== null) return null;
+        if(undoers.get(label).size()==0) return null;
+        byte[] temp = undoers.get(label).pop();
+        if(redoers.get(label)== null) {
+            redoers. put(label,new Stack<byte[]>());
+        }
+        redoers.get(label).push(temp);
+        return temp;
+    }
+
+    public byte[] popRedo(String label) {
+        if(redoers.get(label)== null) return null;
+        if(redoers.get(label).size()==0) return null;
+        byte[] temp = redoers.get(label).pop();
+        if(undoers.get(label)!= null) undoers.get(label).push(temp);
+        return temp;
+    }
 
     /**
      * @param eventName
@@ -180,7 +209,6 @@ public class BlackBoard {
             fi = 0;
         return fi;
     }
-
 
     //todo: agar vasat e fire kardan iek thread e dige set kard oon name ro chekar baiad kard?
     private class Couple<A, B> {

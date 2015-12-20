@@ -37,15 +37,13 @@ public class UndoAction extends AbstractAction {
     public static void undo(BlackBoard blackboard) {
         GraphData gd = new GraphData(blackboard);
         GraphModel cur = gd.getGraph();
-
-        UndoManager logManager = Init.undoers.get(gd.getGraph());
-        String ud = logManager.getNextUndoData();
-        if (ud == null) return;
-        System.out.println("UNDO: "+ ud);
-        GraphSaveObject gso = GraphSaveObject.string2GraphSaveObject(ud);
-
+        byte[] bb = blackboard.popUndo(cur.getLabel());
+        if(bb == null) return;
+        GraphSaveObject gso = GraphSaveObject.getGraphSaveOobjectfromBytes(bb);
+        GraphModel g = GraphSaveObject.getGraphFromBytes(bb);
         cur.clear();
         gso.insertIntoGraph(cur);
+        gd.getGraphRenderer().repaintGraph();
     }
 
 }

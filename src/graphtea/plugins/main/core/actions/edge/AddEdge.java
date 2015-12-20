@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.main.core.actions.edge;
 
+import graphtea.extensions.io.GraphSaveObject;
 import graphtea.graph.GraphUtils;
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.event.GraphEvent;
@@ -101,9 +102,11 @@ public class AddEdge extends AbstractAction implements PaintHandler {
                     if (v2 != null && isDrag)   //!it was released on empty space
                         if (!v1.equals(v2)) {
                             Edge e = doJob(g, v1, v2);
+                            blackboard.pushUndo(g.getLabel(), GraphSaveObject.getBytesOfGraph(g));
                         } else if (exitedFromV1) {
                             //User has revisited v1 > add loop
                             Edge e = doJob(g, v1, v2);
+                            blackboard.pushUndo(g.getLabel(), GraphSaveObject.getBytesOfGraph(g));
                         }
 //            unListenEvent(VertexMouseDraggingData.event);
                 }
