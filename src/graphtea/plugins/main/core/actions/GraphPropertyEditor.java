@@ -197,6 +197,12 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
             xx.setModel(getTarget());
             prosheet.connect(xx);
         }
+        getTarget().addAttributeListener(new AttributeListener() {
+            @Override
+            public void attributeUpdated(String name, Object oldVal, Object newVal) {
+                blackboard.setData("undo point", lastGraph());
+            }
+        });
     }
 
     public void attributeUpdated(String name, Object oldVal, Object newVal) {
