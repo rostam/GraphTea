@@ -6,6 +6,7 @@ import graphtea.graph.graph.Vertex;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.*;
+import java.util.Arrays;
 import java.util.Vector;
 
 /**
@@ -53,6 +54,20 @@ public class GraphSaveObject implements Serializable {
         }
         return bout.toByteArray();
     }
+
+    public static byte[] getBytesOfGraphSaveObject(GraphSaveObject gso) {
+        ByteArrayOutputStream bout = new ByteArrayOutputStream();
+        try {
+            ObjectOutputStream oop = new ObjectOutputStream(bout);
+            oop.writeObject(gso);
+            oop.flush();
+            oop.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bout.toByteArray();
+    }
+
     public static String graph2String(GraphModel g){
         return DatatypeConverter.printBase64Binary(getBytesOfGraph(g));
     }

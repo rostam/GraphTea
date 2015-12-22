@@ -12,6 +12,7 @@ import graphtea.platform.core.Listener;
 import graphtea.plugins.main.GraphData;
 import graphtea.ui.UIUtils;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -26,7 +27,18 @@ public class UndoAction extends AbstractAction {
             undoers.put(label,new Stack<GraphSaveObject>());
         }
         redoers.put(label,new Stack<GraphSaveObject>());  //reset redo for this graph
-        undoers.get(label).push(gso);
+        boolean isContained = false;
+        for(GraphSaveObject tmp : undoers.get(label)) {
+            byte[] b1 = GraphSaveObject.getBytesOfGraphSaveObject(tmp);
+            byte[] b2 = GraphSaveObject.getBytesOfGraphSaveObject(gso);
+            if (Arrays.equals(b1, b2)) {
+                isContained = true;
+                break;
+            }
+        }
+        if(!isContained) {
+            undoers.get(label).push(gso);
+        }
     }
 
     public GraphSaveObject popUndo(GraphModel label) {
@@ -34,7 +46,7 @@ public class UndoAction extends AbstractAction {
         if(undoers.get(label).size()==0) return null;
         GraphSaveObject temp = undoers.get(label).pop();
         if(redoers.get(label)== null) {
-            redoers. put(label,new Stack<GraphSaveObject>());
+            redoers.put(label, new Stack<GraphSaveObject>());
         }
         redoers.get(label).push(temp);
         return temp;
@@ -56,15 +68,12 @@ public class UndoAction extends AbstractAction {
 
         bb.addListener("undo point", new Listener<GraphModel>() {
             public void keyChanged(String key, GraphModel value) {
-                System.out.println("undo point" + value);
                 pushUndo(value, new GraphSaveObject(value));
             }
         });
     }
 
     public void performAction(String eventName, Object value) {
-        System.out.println("Perform action: " + eventName);
-        System.out.println(UNDO_EVENT);
         if (eventName.equals(UNDO_EVENT))
             undo();
         else
@@ -75,7 +84,6 @@ public class UndoAction extends AbstractAction {
         GraphData gd = new GraphData(blackboard);
         GraphModel cur = gd.getGraph();
         GraphSaveObject gso = popUndo(cur);
-        System.out.println("Undo: "+gso);
         if(gso == null) return;
         cur.clear();
         gso.insertIntoGraph(cur);

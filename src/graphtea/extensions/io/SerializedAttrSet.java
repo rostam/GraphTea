@@ -37,8 +37,8 @@ public class SerializedAttrSet<Binding extends AttributeSet> implements Serializ
             if (val instanceof Serializable) {
                 attrs.put(key, (Serializable) val);
             }
-            else
-                System.out.println(key + "Is not serializable! --wouldnt save!");
+//            else
+//                System.out.println(key + "Is not serializable! --wouldnt save!");
         }
     }
 
