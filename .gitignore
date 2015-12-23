@@ -15,6 +15,7 @@
 # building
 target
 build
+binary
 null
 tmp
 temp

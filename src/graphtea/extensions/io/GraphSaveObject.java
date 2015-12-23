@@ -14,7 +14,15 @@ import java.util.Vector;
  *
  */
 public class GraphSaveObject implements Serializable {
-    Vector<VertexSaveObject> vs = new Vector<>();
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof GraphSaveObject){
+            GraphSaveObject t = (GraphSaveObject) obj;
+            return this.vs.equals(t.vs) && this.es.equals(t.es);
+        } else return false;
+    }
+
+    public Vector<VertexSaveObject> vs = new Vector<>();
     Vector<EdgeSaveObject> es = new Vector<>();
     boolean directed = false;
     String label = "";

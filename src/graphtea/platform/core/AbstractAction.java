@@ -18,11 +18,11 @@ package graphtea.platform.core;
  * <p/>
  * note: As you may see working with AbstractAction to handle UI events is not so simple, Also there are many classes in !GraphTea that use AbstractAction. But this is not advised to you, It is easier to use Extensions whenever you want to interact with user interface. (basically UIActionExtension, but almost every extensions are welcome!)
  *
+ * @author rouzbeh ebrahimi
+ * @author Azin Azadi
  * @see graphtea.ui.extension.UIActionExtension
  * @see graphtea.platform.core.Action
  * @see graphtea.platform.core.BlackBoard
- * @author rouzbeh ebrahimi
- * @author Azin Azadi
  */
 public abstract class AbstractAction implements Action, Listener {
     protected BlackBoard blackboard;
@@ -54,9 +54,14 @@ public abstract class AbstractAction implements Action, Listener {
     /**
      * @param key
      */
-    public final void keyChanged(String key, Object value) {
-        if (enabled)
+    public void keyChanged(String key, Object value) {
+        if (enabled) {
+            if (this.trackUndos()) {
+//                System.out.println("AbstractAction ->  UNDO POINT");
+                blackboard.setData("undo point", null);
+            }
             performAction(key, value);
+        }
     }
 
 
@@ -75,8 +80,6 @@ public abstract class AbstractAction implements Action, Listener {
 
     /**
      * listens for an event in the black board, (so multiple listening is available)
-     *
-     * @param e the Event for listening
      */
     protected final void listen4Event(String key) {
         blackboard.addListener(key, this);
@@ -109,6 +112,13 @@ public abstract class AbstractAction implements Action, Listener {
         if (!enabled) {
             enabled = true;
         }
+    }
+
+    /**
+     * @return true if this action should fire an undo event
+     */
+    public boolean trackUndos() {
+        return true;
     }
 
     public final boolean isEnable() {

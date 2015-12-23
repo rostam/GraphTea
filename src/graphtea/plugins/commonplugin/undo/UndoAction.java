@@ -22,23 +22,38 @@ public class UndoAction extends AbstractAction {
     private HashMap<GraphModel, Stack<GraphSaveObject>> undoers = new HashMap<>();
     private HashMap<GraphModel, Stack<GraphSaveObject>> redoers = new HashMap<>();
 
-    public void pushUndo(GraphModel label, GraphSaveObject gso) {
-        if(undoers.get(label) == null) {
-            undoers.put(label,new Stack<GraphSaveObject>());
+    public void pushUndo(GraphModel g) {
+        if (g == null) return;
+
+        GraphSaveObject gso = new GraphSaveObject(g);
+
+        redoers.put(g,new Stack<GraphSaveObject>());  //reset redo for this graph
+
+        if(undoers.get(g) == null || undoers.get(g).size() == 0) {
+            undoers.put(g,new Stack<GraphSaveObject>());
+            undoers.get(g).push(gso);
+            return;
         }
-        redoers.put(label,new Stack<GraphSaveObject>());  //reset redo for this graph
-        boolean isContained = false;
-        for(GraphSaveObject tmp : undoers.get(label)) {
-            byte[] b1 = GraphSaveObject.getBytesOfGraphSaveObject(tmp);
-            byte[] b2 = GraphSaveObject.getBytesOfGraphSaveObject(gso);
-            if (Arrays.equals(b1, b2)) {
-                isContained = true;
-                break;
-            }
+
+        // just add the point if it is not on the top
+        if (!gso.equals(undoers.get(g).peek())) {
+//            System.out.println("new undo point: " + gso);
+            undoers.get(g).push(gso);
         }
-        if(!isContained) {
-            undoers.get(label).push(gso);
-        }
+
+//        boolean isContained = false;
+//        for(GraphSaveObject tmp : undoers.get(g)) {
+//            byte[] b1 = GraphSaveObject.getBytesOfGraphSaveObject(tmp);
+//            byte[] b2 = GraphSaveObject.getBytesOfGraphSaveObject(gso);
+//            if (Arrays.equals(b1, b2)) {
+//                isContained = true;
+//                break;
+//            }
+//        }
+//        if(!isContained) {
+//            System.out.println("undo point" + gso);
+//            undoers.get(g).push(gso);
+//        }
     }
 
     public GraphSaveObject popUndo(GraphModel label) {
@@ -65,10 +80,12 @@ public class UndoAction extends AbstractAction {
         super(bb);
         listen4Event(UNDO_EVENT);
         listen4Event(REDO_EVENT);
+        final GraphData gd = new GraphData(bb);
 
         bb.addListener("undo point", new Listener<GraphModel>() {
             public void keyChanged(String key, GraphModel value) {
-                pushUndo(value, new GraphSaveObject(value));
+            GraphModel g = gd.getGraph();
+            if (g != null) pushUndo(g);
             }
         });
     }
@@ -83,8 +100,11 @@ public class UndoAction extends AbstractAction {
     public void undo() {
         GraphData gd = new GraphData(blackboard);
         GraphModel cur = gd.getGraph();
+//        System.out.println("UNDO #: " + undoers.get(cur).size());
+
         GraphSaveObject gso = popUndo(cur);
         if(gso == null) return;
+//        System.out.println("GSO: " + gso.vs.size());
         cur.clear();
         gso.insertIntoGraph(cur);
         gd.getGraphRenderer().repaintGraph();
@@ -99,4 +119,8 @@ public class UndoAction extends AbstractAction {
         gso.insertIntoGraph(cur);
     }
 
+    public boolean trackUndos() {
+//        System.out.println("Undo's undo track");
+        return false;
+    }
 }

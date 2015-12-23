@@ -115,29 +115,18 @@ public class MoveSelected extends AbstractAction {
     double starty;
     AbstractGraphRenderer gv;
     Vertex v;
-//    MouseMotionAdapter mlistener = new MouseMotionAdapter() {
-//        public synchronized void mouseDragging(MouseEvent e) {
-//            xx = e.getX();
-//            yy = e.getY();
-//            moveVertices();
-//        }
-//    };
 
     private void drag() {
         VertexEvent data = blackboard.getData(VertexEvent.EVENT_KEY);
         x = data.mousePos.x;
         y = data.mousePos.y;
-//        startx = x;
-//        starty = y;
         v = data.v;
-//todo        listen4Event(VertexMouseDraggingData.event);
-//        data.v.view.addMouseMotionListener(mlistener);
     }
 
     private void drop() {
+        blackboard.setData("undo point", null);
         blackboard.setData("MoveSelected.moving", "no");
-//        v.view.removeMouseMotionListener(mlistener);
-//        GraphDropData data = blackboard.get(GraphDropData.name);
+
         AbstractGraphRenderer ren = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
         ren.ignoreRepaints(new Runnable() {
             public void run() {
@@ -168,40 +157,9 @@ public class MoveSelected extends AbstractAction {
     double xx;
     double yy;
 
+    @Override
+    public boolean trackUndos() {
+        // the undos are tracked in the drop() method. we don't want to track undos during the move
+        return false;
+    }
 }
-//
-//class SelectedVerticesCursorUpdator extends GraphAction {
-//    /**
-//     * constructor
-//     *
-//     * @param bb the blackboard of the action
-//     */
-//    public SelectedVerticesCursorUpdator(blackboard bb) {
-//        super(bb);
-//        listen4Event(SelectData.event);
-//    }
-//
-//    /**
-//     * determines the cursors that the vertices has before changing their cursors,
-//     * this also determines the vertices whose cursors changed
-//     */
-//    HashMap<Vertex, Cursor> lastCursors = new HashMap<Vertex, Cursor>();
-//
-//    public void performJob(GraphData graphData) {
-//        HashSet<Vertex> selectedVertices = graphData.select.getSelectedVertices();
-//        for (Vertex v : lastCursors.keySet()) {
-//            if (!selectedVertices.contains(v)) {
-////                v.view.setCursor(lastCursors.get(v));
-//                // last cursors had some problems, so i didn;t use it temporarily
-//                v.view.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-////                System.out.println("cleared");
-//            }
-//        }
-//        lastCursors.clear();
-//        for (Vertex v : selectedVertices) {
-////            lastCursors.put(v, v.view.getCursor());
-//            v.view.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-////            System.out.println("setted");
-//        }
-//    }
-//}

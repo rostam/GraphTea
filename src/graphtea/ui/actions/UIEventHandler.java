@@ -77,6 +77,11 @@ public class UIEventHandler extends AbstractAction {
         return actionsmap.get(id);
     }
 
+    @Override
+    public boolean trackUndos() {
+        return false;
+    }
+
     /**
      * it first check that is there exists any actions that addListener for the event? (is there any log with the name
      * registered by UIEventData.name(id) in blackboard?)

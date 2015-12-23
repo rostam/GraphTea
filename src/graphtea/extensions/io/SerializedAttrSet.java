@@ -42,6 +42,12 @@ public class SerializedAttrSet<Binding extends AttributeSet> implements Serializ
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (! (obj instanceof SerializedAttrSet) )  return false;
+        return attrs.equals(((SerializedAttrSet) obj).attrs);
+    }
+
 
 
 

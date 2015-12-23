@@ -14,13 +14,13 @@ import java.io.Serializable;
  */
 
 public class VertexSaveObject implements Serializable {
-    String shape;
-    StrokeSaveObject gs;
-    String label;
-    int color;
-    boolean mark,selected;
-    GraphPoint loc, shapeSize, labelLoc;
     SerializedAttrSet<VertexAttrSet> attrs;
+
+    @Override
+    public boolean equals(Object obj) {
+        if (! (obj instanceof VertexSaveObject) )  return false;
+        return attrs.equals(((VertexSaveObject) obj).attrs);
+    }
 
     public VertexSaveObject(Vertex v) {
         attrs=new SerializedAttrSet(new VertexAttrSet(v));
