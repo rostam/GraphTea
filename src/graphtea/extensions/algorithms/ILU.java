@@ -32,6 +32,8 @@ public class ILU extends GraphAlgorithm implements AlgorithmExtension {
                 if(g.isEdge(v1,v)) OutV.add(v);
             }
 
+            step("All in-edges of the selected vertex would be connected" +
+                    "to all out-edges.");
             for(Vertex iv : InV) {
                 for(Vertex ov : OutV) {
                     if(!g.isEdge(iv,ov)) {
@@ -40,17 +42,10 @@ public class ILU extends GraphAlgorithm implements AlgorithmExtension {
                     }
                 }
             }
-
-            System.out.println("Fillin" + fillin);
-
-            graphData.getGraphRenderer().repaint();
-            graphData.getGraphRenderer().repaintGraph();
-            graphData.getGraphRenderer().validate();
+            step("The selected vertex would be removed.");
             g.removeVertex(v1);
+            step("The vertex is removed and the number of fillins is" + fillin + ".");
             if(g.numOfVertices()==0) cont = false;
-            graphData.getGraphRenderer().repaint();
-            graphData.getGraphRenderer().repaintGraph();
-            graphData.getGraphRenderer().validate();
        }
     }
 
