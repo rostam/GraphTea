@@ -32,9 +32,11 @@ public class IterGraphs {
     public String bound = "";
     public String gens = "";
     public String postproc = "";
+    public GraphFilter gf;
 
     public IterGraphs(boolean activeConjCheck, boolean iterative,
-                      String type, int size, String bound, String gens, boolean part, String postproc) {
+                      String type, int size, String bound, String gens, boolean part,
+                      String postproc,GraphFilter gf) {
         this.activeConjCheck = activeConjCheck;
         this.iterative = iterative;
         this.type = type;
@@ -43,6 +45,7 @@ public class IterGraphs {
         this.gens = gens;
         this.part = part;
         this.postproc = postproc;
+        this.gf=gf;
     }
 
     public RenderTable wrapper(final GraphReportExtension mr) {
@@ -67,6 +70,7 @@ public class IterGraphs {
         while (it.hasNext()) {
             fl++;
             GraphModel g = it.next();
+            if(gf!=null) if(!gf.filter(g)) continue;
             if (iterative) {
                     getResIterLimited(f, g, it.getCount(), pq);
             } else {

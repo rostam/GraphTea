@@ -24,21 +24,18 @@ public class Filters {
         );
     }
 
-    public static GraphFilter getCorrectFilter(ArrayX<String> filter,String s) {
-        if(s==null) {
-            GraphFilter gf = null;
-            if (filter.getValue().equals(Filters.Integral)) {
-                gf = new IntegralFilter();
-            } else if (filter.getValue().equals(Filters.LaplacianIntegral)) {
-                gf = new LaplacianIntegralFilter();
-            } else if (filter.getValue().equals(Filters.QIntegral)) {
-                gf = new QIntegralFilter();
-            } else if (filter.getValue().equals(Filters.ChemTree)) {
-                gf = new ChemTreeFilter();
-            }
-            return gf;
+    public static GraphFilter getCorrectFilter(ArrayX<String> filter) {
+        GraphFilter gf = null;
+        if (filter.getValue().equals(Filters.Integral)) {
+            gf = new IntegralFilter();
+        } else if (filter.getValue().equals(Filters.LaplacianIntegral)) {
+            gf = new LaplacianIntegralFilter();
+        } else if (filter.getValue().equals(Filters.QIntegral)) {
+            gf = new QIntegralFilter();
+        } else if (filter.getValue().equals(Filters.ChemTree)) {
+            gf = new ChemTreeFilter();
         }
+        return gf;
 
-        return new ChemTreeFilter();
     }
 }

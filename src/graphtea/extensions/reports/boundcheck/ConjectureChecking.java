@@ -4,8 +4,6 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.reports.boundcheck;
-
-import graphtea.extensions.reports.boundcheck.forall.GraphFilter;
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
 import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;
 import graphtea.extensions.reports.boundcheck.forall.filters.Filters;
@@ -18,12 +16,9 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionAction;
 
-import java.io.IOException;
-
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
-
     public ConjectureChecking() {
-        filters = Filters.getFilterNames();
+        gfilters= Filters.getFilterNames();
         type = Bounds.getBoundNames();
         generators = GeneratorFilters.getGenFilters();
         PostP = new ArrayX<>("No postprocessing");
@@ -40,10 +35,10 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public int Size = 9;
     @Parameter(name = "Partition", description = "")
     public boolean part = false;
-    @Parameter(name = "Up to", description = "")
-    public boolean upto = false;
-    @Parameter(name = "Filter", description = "")
-    public ArrayX<String> filters;
+//    @Parameter(name = "Up to", description = "")
+//    public boolean upto = false;
+    @Parameter(name = "Filters", description = "")
+    public ArrayX<String> gfilters;
     @Parameter(name = "Graph Generators", description = "")
     public ArrayX<String> generators;
     @Parameter(name = "Type")
@@ -52,11 +47,10 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public boolean iterative = false;
     @Parameter(name="Tree", description = "")
     public boolean tree = false;
-    @Parameter(name="Chemical tree", description = "")
-    public boolean chemtree = false;
     @Parameter(name="Post Processing Type", description = "")
     public static ArrayX<String> PostP;
-    @Parameter(name="Post Processing Value",description = "")
+    @Parameter(name="Post Processing Value",description = "This is the value" +
+            "which the equality post-processing filter uses to compare.")
     public static String ppvalue = "0";
 
     String currentType = "all";
@@ -64,6 +58,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public String getName() {
         return "Bound Check";
     }
+
     public String getDescription() {
         return "";
     }
@@ -74,26 +69,11 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
             return "Conjecture Checkign is disabled.";
         }
         if(PostP.getValue().equals("No postprocessing")) RenderTable.noFilter=true;
-        GraphFilter gf;
-        if(chemtree) gf=Filters.getCorrectFilter(filters,Filters.ChemTree);
-        else gf=Filters.getCorrectFilter(filters, null);
-        if(gf != null) currentType=gf.getName();
         if(tree) currentType="tree";
-        if(chemtree) currentType="chemtree";
-        if(!tree && !chemtree) currentType="all";
+        if(!tree) currentType="all";
         GraphReportExtensionAction.ig=new IterGraphs(conjCheck,iterative,currentType,
-                Size,type.getValue(),generators.getValue(),part, PostP.getValue());
-        if(gf != null) {
-            try {
-                if(tree) {
-                    GraphReportExtensionAction.ig.filter("tree", Size, gf);
-                } else {
-                    GraphReportExtensionAction.ig.filter("all", Size, gf);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+                Size,type.getValue(),generators.getValue(),part, PostP.getValue(),
+                Filters.getCorrectFilter(gfilters));
 
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";
