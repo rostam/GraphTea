@@ -140,6 +140,8 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
             } else if (parentMenu != null)
                 GMenuBar.insert(parentMenu, menuItem, getMenuPlace());
         }
+
+
         createExtensionCommandsForCommandLine();
     }
 

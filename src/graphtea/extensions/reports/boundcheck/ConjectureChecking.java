@@ -18,7 +18,7 @@ import graphtea.plugins.reports.extension.GraphReportExtensionAction;
 
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
     public ConjectureChecking() {
-        gfilters= Filters.getFilterNames();
+        graphFilters = Filters.getFilterNames();
         type = Bounds.getBoundNames();
         generators = GeneratorFilters.getGenFilters();
         PostP = new ArrayX<>("No postprocessing");
@@ -37,8 +37,8 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public boolean part = false;
 //    @Parameter(name = "Up to", description = "")
 //    public boolean upto = false;
-    @Parameter(name = "Filters", description = "")
-    public ArrayX<String> gfilters;
+    @Parameter(name = "Filter", description = "")
+    public ArrayX<String> graphFilters;
     @Parameter(name = "Graph Generators", description = "")
     public ArrayX<String> generators;
     @Parameter(name = "Type")
@@ -73,7 +73,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         if(!tree) currentType="all";
         GraphReportExtensionAction.ig=new IterGraphs(conjCheck,iterative,currentType,
                 Size,type.getValue(),generators.getValue(),part, PostP.getValue(),
-                Filters.getCorrectFilter(gfilters));
+                Filters.getCorrectFilter(graphFilters));
 
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";
