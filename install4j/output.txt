@@ -1,11 +1,5 @@
 # List of generated media files. The columns are tab-separated:
 # id | media file type | display name | media file path
-<<<<<<< b137d3fae29da79ee8cd8666f5ac0a9f1001a7ad
 25	unix	Linux Deb Archive	/home/rostam/kara/GraphTeaMain/install4j/GraphTea.deb
 26	windows	Windows	/home/rostam/kara/GraphTeaMain/install4j/GraphTea.exe
 29	macos	Mac OS X Single Bundle Archive	/home/rostam/kara/GraphTeaMain/install4j/GraphTea.dmg
-=======
-25	unix	Linux Deb Archive	/Users/azin/GraphTea/install4j/GraphTea.deb
-26	windows	Windows	/Users/azin/GraphTea/install4j/GraphTea.exe
-29	macos	Mac OS X Single Bundle Archive	/Users/azin/GraphTea/install4j/GraphTea.dmg
->>>>>>> new presentation stuff
