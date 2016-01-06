@@ -46,20 +46,19 @@ public class HeuristicColoring {
     }
 
     public static int colorRestricted(GraphModel g, Set<Integer> order) {
-        Map<Integer,Integer> vertexDegree = new HashMap<>();
-        for(Vertex v : g) {
-            vertexDegree.put(v.getId(),g.getDegree(v));
-            v.setColor(0);
-        }
-
-       // vertexDegree=sortByComparator(vertexDegree, false);
+        //Map<Integer,Integer> vertexDegree = new HashMap<>();
+//        for(Vertex v : g) {
+//            vertexDegree.put(v.getId(),g.getDegree(v));
+//            v.setColor(0);
+//        }
+//
+//       // vertexDegree=sortByComparator(vertexDegree, false);
         for(int id : order) {
             if(incidentToReqEdge(g,g.getVertex(id))) {
                 int col = minPossibleColorRestricted(g, g.getVertex(id));
                 g.getVertex(id).setColor(col);
             }
         }
-
         return Helper.numberOfColors(g);
     }
 
