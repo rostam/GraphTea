@@ -59,7 +59,8 @@ public class Helper {
         }
         for(int i=0;i<rows;i++) {
             for(int j=0;j<cols;j++) {
-                if(mm.get(i,j) != 0) gOfILU.addEdge(new Edge(
+                if(mm.get(i,j) != 0)
+                    gOfILU.addEdge(new Edge(
                         gOfILU.getVertex(i),gOfILU.getVertex(j)
                 ));
             }

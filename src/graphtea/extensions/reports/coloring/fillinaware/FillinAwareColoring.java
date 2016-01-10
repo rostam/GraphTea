@@ -27,11 +27,11 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
       e.printStackTrace();
     }
     Matrix mm1=Sparsify.sparsify(mm, 1);
-//    System.out.println("mat");
-//    printArr(mm.getArray());
     Matrix mm10=Sparsify.sparsify(mm, 10);
     Matrix mmDiv32=Sparsify.sparsify(mm, (int) Math.floor(mm.getColumnDimension()/32));
     Matrix mmDiv8=Sparsify.sparsify(mm, (int) Math.floor(mm.getColumnDimension()/8));
+    MatrixHeatMap hm = new MatrixHeatMap(mmDiv32);
+
     int fillin   =Helper.getFillinMinDeg(Helper.getGraphOfILU(mm));
     int fillin1  =Helper.getFillinMinDeg(Helper.getGraphOfILU(mm1));
     int fillin10 =Helper.getFillinMinDeg(Helper.getGraphOfILU(mm10));
@@ -53,6 +53,7 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     GraphModel gCol10= Helper.getGraphOfColoringRestricted(mm,mm10);
     GraphModel gColDiv32= Helper.getGraphOfColoringRestricted(mm,mmDiv32);
     GraphModel gColDiv8= Helper.getGraphOfColoringRestricted(mm,mmDiv8);
+    gCol.getAVertex().setColor();
 
     results.add(Helper.numOfNonzeros(mm)  +"+"+fillin  +"+"
             +HeuristicColoring.colorRestricted(gCol, HeuristicColoring.getOrdering(gCol,"MaxDegree")));

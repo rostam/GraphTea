@@ -67,7 +67,6 @@ public class HeuristicColoring {
     //public static boolean DESC = false;
     private static Map<Integer, Integer> sortByComparator(Map<Integer, Integer> unsortMap, final boolean order)
     {
-
         List<Map.Entry<Integer, Integer>> list = new LinkedList<Map.Entry<Integer, Integer>>(unsortMap.entrySet());
 
         // Sorting the list based on values
