@@ -53,7 +53,6 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     GraphModel gCol10= Helper.getGraphOfColoringRestricted(mm,mm10);
     GraphModel gColDiv32= Helper.getGraphOfColoringRestricted(mm,mmDiv32);
     GraphModel gColDiv8= Helper.getGraphOfColoringRestricted(mm,mmDiv8);
-    gCol.getAVertex().setColor();
 
     results.add(Helper.numOfNonzeros(mm)  +"+"+fillin  +"+"
             +HeuristicColoring.colorRestricted(gCol, HeuristicColoring.getOrdering(gCol,"MaxDegree")));
