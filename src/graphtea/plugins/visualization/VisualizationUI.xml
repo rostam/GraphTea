@@ -16,6 +16,7 @@
         <action class="graphtea.plugins.visualization.treevisualizations.BackwardTrees" group="" id="BackwardTrees"/>
         <action class="graphtea.plugins.visualization.localsfvis.circular" group="" id="circular"/>
         <action class="graphtea.plugins.visualization.localsfvis.Random" group="" id="Random"/>
+        <action class="graphtea.plugins.visualization.LocalityLens" id="LocalityLenses"/>
     </actions>
     <ui>
         <menues>
@@ -27,7 +28,7 @@
                 <menu label="seperator_menu" place="40"/>
                 <menu label="_Hierarchical Tree" action="HierarchicalTreeVisualization" place="100"/>
                 <menu label="_Backward Tree" action="BackwardTrees" place="140"/>
-
+                <menu label="Locality Lenses" action="LocalityLenses"/>
             </submenu>
 
         </menues>
