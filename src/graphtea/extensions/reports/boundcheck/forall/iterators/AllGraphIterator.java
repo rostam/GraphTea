@@ -22,7 +22,7 @@ public class AllGraphIterator extends GraphModelIterator {
 
     public AllGraphIterator(String fileSize, int size, boolean part) {
         from = 1;
-        to = Sizes.sizes.get(fileSize);
+        to = size;
         if(part) {
             String out = JOptionPane.showInputDialog(
                     "Please enter a bound for the graphs that you want to check.\n" +
@@ -59,7 +59,7 @@ public class AllGraphIterator extends GraphModelIterator {
 
     @Override
     public boolean hasNext() {
-        return cnt < to;
+        return cnt <= to;
     }
 
     @Override
@@ -68,10 +68,15 @@ public class AllGraphIterator extends GraphModelIterator {
         String g = "";
         try {
             bri.readLine();
+            g=bri.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int i = 0; i <= size; i++) {
+        String tmp = g.substring(g.indexOf("order"));
+        tmp = tmp.substring(tmp.indexOf(" "),tmp.length()-1);
+        int numOfVertices = Integer.parseInt(tmp.trim());
+        g+= "\n";
+        for (int i = 0; i < numOfVertices; i++) {
             try {
                 g += bri.readLine() + "\n";
             } catch (IOException e) {
@@ -79,12 +84,10 @@ public class AllGraphIterator extends GraphModelIterator {
                 return new GraphModel();
             }
         }
-
-        pb.setValue(cnt - from +1);
+        pb.setValue(cnt - from + 1);
         if(cnt > to-2) {
             pb.setVisible(false);
         }
-
         return ShowG.parseGraph(new Scanner(g));
     }
 

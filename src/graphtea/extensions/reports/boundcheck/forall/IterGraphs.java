@@ -15,12 +15,7 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.Scanner;
 import java.util.Vector;
 
 public class IterGraphs {
@@ -52,9 +47,8 @@ public class IterGraphs {
         GraphModelIterator it;
         if (!gens.equals(GeneratorFilters.NoGenerator)) {
             it = new GraphGeneratorIterator(gens);
-
         } else {
-                it = new AllGraphIterator(type + size, size, part);
+            it = new AllGraphIterator(type,size,part);
         }
 
         ToCall f = new ToCall() {
@@ -63,7 +57,6 @@ public class IterGraphs {
                 return mr.calculate(g);
             }
         };
-
         int[] res = null;
         int fl = 0;
         RenderTable pq = new RenderTable();
@@ -101,7 +94,7 @@ public class IterGraphs {
     }
 
     public void showWrapper(BlackBoard blackboard) {
-        AllGraphIterator agi = new AllGraphIterator(type + size, size, true);
+        AllGraphIterator agi = new AllGraphIterator(type, size, true);
         GraphModel g = agi.next();
         Point pp[] = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
@@ -112,55 +105,6 @@ public class IterGraphs {
         }
 
         new GraphData(blackboard).core.showGraph(g);
-    }
-
-
-    public void writeFilterGraphs(String file, Vector<Integer> gs, String filt) throws IOException {
-        FileWriter fw = ShowG.outG(filt);
-        Scanner br = ShowG.inG(file);
-        int cnt = 0;
-        int vecCnt = 0;
-        Collections.sort(gs);
-        String line = "";
-        while (br.hasNext()) {
-            line = br.nextLine();
-            cnt++;
-            if (vecCnt < gs.size() && gs.get(vecCnt) == cnt) {
-                fw.append(line + "\n");
-                vecCnt++;
-            }
-        }
-        fw.flush();
-        fw.close();
-    }
-
-    public void filter(String type, int size, GraphFilter filt) throws IOException {
-        String line;
-        String g = "";
-        Vector<Integer> gs = new Vector<>();
-        IterProgressBar pb = new IterProgressBar(size);
-        BufferedReader bri = ShowG.showG(type + size,1,size);
-        int cnt = 0;
-        while ((line = bri.readLine()) != null) {
-            if (!line.equals("")) {
-                g += line + "\n";
-            } else {
-                if (!g.equals("")) {
-                    cnt++;
-                    pb.setValue(cnt);
-                    pb.validate();
-                    GraphModel tmp = ShowG.parseGraph(new Scanner(g));
-                    g = "";
-                    if (!filt.filter(tmp)) continue;
-                    gs.add(cnt);
-
-                }
-            }
-        }
-        bri.close();
-        writeFilterGraphs(type + size, gs, filt.getName() + size);
-        Sizes.sizes.put(filt.getName() + size, gs.size());
-        pb.setVisible(false);
     }
 
     private void getResIterLimited(ToCall f, GraphModel g, int count, RenderTable mpq) {

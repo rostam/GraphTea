@@ -30,7 +30,7 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     Matrix mm10=Sparsify.sparsify(mm, 10);
     Matrix mmDiv32=Sparsify.sparsify(mm, (int) Math.floor(mm.getColumnDimension()/32));
     Matrix mmDiv8=Sparsify.sparsify(mm, (int) Math.floor(mm.getColumnDimension()/8));
-    MatrixHeatMap hm = new MatrixHeatMap(mmDiv32);
+    //MatrixHeatMap hm = new MatrixHeatMap(mmDiv8);
 
     int fillin   =Helper.getFillinMinDeg(Helper.getGraphOfILU(mm));
     int fillin1  =Helper.getFillinMinDeg(Helper.getGraphOfILU(mm1));

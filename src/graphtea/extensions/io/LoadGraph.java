@@ -31,7 +31,7 @@ public class LoadGraph implements GraphReaderExtension {
     }
 
     public String getName() {
-        return "Graph";
+        return "GraphTea Format";
     }
 
     public String getExtension() {

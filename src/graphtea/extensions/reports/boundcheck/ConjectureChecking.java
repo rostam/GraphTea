@@ -5,6 +5,7 @@
 
 package graphtea.extensions.reports.boundcheck;
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
+import graphtea.extensions.reports.boundcheck.forall.Sizes;
 import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;
 import graphtea.extensions.reports.boundcheck.forall.filters.Filters;
 import graphtea.extensions.reports.boundcheck.forall.filters.GeneratorFilters;
@@ -16,10 +17,12 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionAction;
 
+import javax.swing.*;
+
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
     public ConjectureChecking() {
         graphFilters = Filters.getFilterNames();
-        type = Bounds.getBoundNames();
+        boundType = Bounds.getBoundNames();
         generators = GeneratorFilters.getGenFilters();
         PostP = new ArrayX<>("No postprocessing");
         PostP.addValidValue("Equality Filter");
@@ -31,8 +34,8 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public boolean conjCheck = false;
     @Parameter(name = "Connected", description = "")
     public boolean connected = true;
-    @Parameter(name = "Size", description = "")
-    public int Size = 9;
+    @Parameter(name = "Num Of Nodes", description = "")
+    public int numOfNodes = 9;
     @Parameter(name = "Partition", description = "")
     public boolean part = false;
 //    @Parameter(name = "Up to", description = "")
@@ -41,19 +44,20 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public ArrayX<String> graphFilters;
     @Parameter(name = "Graph Generators", description = "")
     public ArrayX<String> generators;
-    @Parameter(name = "Type")
-    public ArrayX<String> type;
+    @Parameter(name = "Bound Type", description = "The tyoe of bound.")
+    public ArrayX<String> boundType;
     @Parameter(name="Iterative", description = "")
     public boolean iterative = false;
-    @Parameter(name="Tree", description = "")
-    public boolean tree = false;
     @Parameter(name="Post Processing Type", description = "")
     public static ArrayX<String> PostP;
     @Parameter(name="Post Processing Value",description = "This is the value" +
             "which the equality post-processing filter uses to compare.")
     public static String ppvalue = "0";
+    @Parameter(name="Graph Type", description = "Type of graphs")
+    public ArrayX<String> GraphType=new ArrayX<>("all","tree","custom");
 
     String currentType = "all";
+    int size = 0;
 
     public String getName() {
         return "Bound Check";
@@ -69,10 +73,17 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
             return "Conjecture Checkign is disabled.";
         }
         if(PostP.getValue().equals("No postprocessing")) RenderTable.noFilter=true;
-        if(tree) currentType="tree";
-        if(!tree) currentType="all";
+        if(GraphType.getValue().equals("custom")) {
+            currentType=JOptionPane.showInputDialog("Please enter the cutom graph6 format file:");
+            size= Integer.parseInt(JOptionPane.showInputDialog("Please enter the number of graphs in file:"));
+        } else {
+            currentType=GraphType.getValue();
+            currentType=currentType+numOfNodes;
+            size=  Sizes.sizes.get(currentType);
+        }
+
         GraphReportExtensionAction.ig=new IterGraphs(conjCheck,iterative,currentType,
-                Size,type.getValue(),generators.getValue(),part, PostP.getValue(),
+                size,boundType.getValue(),generators.getValue(),part, PostP.getValue(),
                 Filters.getCorrectFilter(graphFilters));
 
         if(conjCheck) return "Conjecture Checking is enabled.";
