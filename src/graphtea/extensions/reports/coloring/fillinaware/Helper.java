@@ -134,7 +134,7 @@ public class Helper {
         return gOfCol;
     }
 
-    public static int ILUOneStep(GraphModel g, Vertex selected) {
+    public static int ILUOneStep(GraphModel g, Vertex selected, int el) {
         Vector<Vertex> inVer=new Vector<>();
         Vector<Vertex> outVer=new Vector<>();
         int fillin=0;
@@ -143,14 +143,22 @@ public class Helper {
             if(g.isEdge(selected,v)) outVer.add(v);
         }
 
-        g.removeVertex(selected);
-
         for (Vertex anInVer : inVer) {
             for (Vertex anOutVer : outVer) {
                 if (anInVer.getId() != anOutVer.getId()) {
-                    if (!g.isEdge(anInVer, anOutVer)) {
-                        g.addEdge(new Edge(anInVer, anOutVer));
-                        fillin++;
+                    if(selected.getId()<anInVer.getId() &&
+                            selected.getId()<anOutVer.getId()) {
+                        if (!g.isEdge(anInVer, anOutVer)) {
+                            Edge e = new Edge(anInVer, anOutVer);
+                            Edge e1 = g.getEdge(anInVer,selected);
+                            Edge e2 = g.getEdge(selected,anOutVer);
+
+                            e.setWeight(e1.getWeight()+e2.getWeight()+1);
+                            if(e1.getWeight()+e2.getWeight()+1 <= el) {
+                                g.addEdge(e);
+                                fillin++;
+                            }
+                        }
                     }
                 }
             }
@@ -158,14 +166,15 @@ public class Helper {
         return fillin;
     }
 
-    public static int getFillinMinDeg(GraphModel g) {
+    public static int getFillinMinDeg(GraphModel g, int el) {
         int fillin = 0;
 //        while(g.numOfVertices()!=1) {
 //            Vertex v = Helper.getMinDegVertex(g);
 //            fillin+=Helper.ILUOneStep(g, v);
 //        }
+        for(Edge e : g.edges()) e.setWeight(0);
         for(int i=0;i<g.numOfVertices();i++) {
-            fillin+=Helper.ILUOneStep(g,g.getVertex(i));
+            fillin+=Helper.ILUOneStep(g,g.getVertex(i), el);
         }
         return fillin;
     }

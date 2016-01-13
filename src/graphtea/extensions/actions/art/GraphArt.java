@@ -1,19 +1,15 @@
 package graphtea.extensions.actions.art;
 
-import graphtea.extensions.io.LoadSimpleGraph;
-import graphtea.extensions.io.SaveSimpleGraph;
 import graphtea.graph.graph.*;
 import graphtea.graph.old.GStroke;
 import graphtea.library.BaseVertex;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.main.extension.GraphActionExtension;
-import graphtea.plugins.main.saveload.core.GraphIOException;
 
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.QuadCurve2D;
-import java.io.File;
 
 /**
  * @author: rostam
@@ -35,16 +31,7 @@ public class GraphArt implements GraphActionExtension {
         Vertex.addGlobalUserDefinedAttribute(CURVE_WIDTH,1);
 
         GraphModel g1 = graphData.getGraph();
-
-        GraphModel g2 = null;
-        SaveSimpleGraph ssg = new SaveSimpleGraph();
-        LoadSimpleGraph lsg = new LoadSimpleGraph();
-        try {
-            ssg.write(new File("tmpg1"),g1);
-            g2 = lsg.read(new File("tmpg1"));
-        } catch (GraphIOException e) {
-            e.printStackTrace();
-        }
+        GraphModel g2 = g1.getCopy();
         g2.setFont(new Font(g2.getFont().getName(),g2.getFont().getStyle(), 0));
         g2.setLabel("TreeG0");
 

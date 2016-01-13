@@ -15,6 +15,8 @@ import java.util.Vector;
 public class FillinAwareColoring implements GraphReportExtension,Parametrizable {
   @Parameter(name = "Matrix File", description = "")
   public String file = "abb313.mtx";
+  @Parameter(name="k from ILU(k)")
+  public int el = 2;
 
   @Override
   public Object calculate(GraphModel g) {
@@ -32,11 +34,11 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     Matrix mmDiv8=Sparsify.sparsify(mm, (int) Math.floor(mm.getColumnDimension()/8));
     //MatrixHeatMap hm = new MatrixHeatMap(mmDiv8);
 
-    int fillin   =Helper.getFillinMinDeg(Helper.getGraphOfILU(mm));
-    int fillin1  =Helper.getFillinMinDeg(Helper.getGraphOfILU(mm1));
-    int fillin10 =Helper.getFillinMinDeg(Helper.getGraphOfILU(mm10));
-    int fillinDivide32 =Helper.getFillinMinDeg(Helper.getGraphOfILU(mmDiv32));
-    int fillinDivide8 =Helper.getFillinMinDeg(Helper.getGraphOfILU(mmDiv8));
+    int fillin   =0;//Helper.getFillinMinDeg(Helper.getGraphOfILU(mm),el);
+    int fillin1  =Helper.getFillinMinDeg(Helper.getGraphOfILU(mm1),el);
+    int fillin10 =Helper.getFillinMinDeg(Helper.getGraphOfILU(mm10),el);
+    int fillinDivide32 =Helper.getFillinMinDeg(Helper.getGraphOfILU(mmDiv32),el);
+    int fillinDivide8 =Helper.getFillinMinDeg(Helper.getGraphOfILU(mmDiv8),el);
 
     RenderTable ret = new RenderTable();
     Vector<String> titles = new Vector<>();
