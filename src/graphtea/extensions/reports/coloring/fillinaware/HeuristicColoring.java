@@ -53,7 +53,8 @@ public class HeuristicColoring {
 //        }
 //
 //       // vertexDegree=sortByComparator(vertexDegree, false);
-        for(int id : order) {
+        //for(int id : order) {
+        for(int id =0;id<g.numOfVertices();id++){
             if(incidentToReqEdge(g,g.getVertex(id))) {
                 int col = minPossibleColorRestricted(g, g.getVertex(id));
                 g.getVertex(id).setColor(col);
@@ -110,16 +111,15 @@ public class HeuristicColoring {
     }
 
     public static boolean incidentToReqEdge(GraphModel g, Vertex v) {
-        for(Edge e : g.edges(v)) if(e.getWeight()==1) return true;
+        for(Vertex neigh : g.getNeighbors(v)) if (g.getEdge(v, neigh).getWeight() == 1) return true;
         return false;
     }
 
     public static Vector<Vertex> requiredNeighbours(GraphModel g, Vertex v) {
         Vector<Vertex> ns = new Vector<>();
-        for(Edge e : g.edges(v)) {
-            if(e.getWeight()==1) {
-                if(e.source.getId()==v.getId()) ns.add(e.target);
-                else if(e.target.getId()==v.getId()) ns.add(e.source);
+        for(Vertex neigh : g.neighbors(v)) {
+            if(g.getEdge(v,neigh).getWeight()==1) {
+                ns.add(neigh);
             }
         }
         return ns;

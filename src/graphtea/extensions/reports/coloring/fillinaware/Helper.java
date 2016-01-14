@@ -46,7 +46,7 @@ public class Helper {
         for(Vertex v:g) {
             if(v.getColor()>max) max = v.getColor();
         }
-        return max+1;
+        return max;
     }
 
     public static GraphModel getGraphOfILU(Matrix mm) {

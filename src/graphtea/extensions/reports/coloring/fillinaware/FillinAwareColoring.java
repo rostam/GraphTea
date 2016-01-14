@@ -4,6 +4,7 @@ import Jama.Matrix;
 import graphtea.extensions.reports.coloring.MM;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
+import graphtea.graph.graph.Vertex;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
