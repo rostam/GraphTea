@@ -32,7 +32,7 @@ public class Sparsify {
 
         int d1 = ((rows / k) - 1) * k;
         for (int cnt1 = d1; cnt1 < rows; cnt1++) {
-            for (int cnt2 = d1; cnt2 < rows; cnt2++) {
+            for (int cnt2 = d1; cnt2 < cols; cnt2++) {
                 if (mm.get(cnt1, cnt2) != 0) {
                     newMM.set(cnt1, cnt2, 1);
                 }

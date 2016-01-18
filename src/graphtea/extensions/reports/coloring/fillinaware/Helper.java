@@ -75,7 +75,7 @@ public class Helper {
         //undirected graph for one sided coloring
         GraphModel gOfCol = new GraphModel(false);
 
-        for(int i=0;i<cols;i++) {
+        for(int i=0;i<rows;i++) {
             Vertex v = new Vertex();
             v.setColor(0);
             gOfCol.addVertex(v);
@@ -177,18 +177,6 @@ public class Helper {
             fillin+=Helper.ILUOneStep(g,g.getVertex(i), el);
         }
         return fillin;
-    }
-
-    public static int numOfNonzeros(Matrix mm) {
-        int rows = mm.getRowDimension();
-        int cols = mm.getColumnDimension();
-        int nnz=0;
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if(mm.get(i,j)!=0) nnz++;
-            }
-        }
-        return nnz;
     }
 
 }
