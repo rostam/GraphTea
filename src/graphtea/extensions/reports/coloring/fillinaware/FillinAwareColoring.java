@@ -45,10 +45,11 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     //F = number of fillins in initally required elemetns matrix
     //C = the number of colors in one sided restricted coloring
     //k blocking size
-    titles.add(" NNZ+F+C k=1 ");
-    titles.add(" NNZ+F+C k=10 ");
-    titles.add(" NNZ+F+C k=n/32 ");
-    titles.add(" NNZ+F+C k=n/8 ");
+    //P Potentially Required Edges
+    titles.add(" NNZ+F+C+P k=1 ");
+    titles.add(" NNZ+F+C+P k=10 ");
+    titles.add(" NNZ+F+C+P k=n/32 ");
+    titles.add(" NNZ+F+C+P k=n/8 ");
     ret.setTitles(titles);
     File dir = new File(getPathOfMats());
     File[] directoryListing = dir.listFiles();
@@ -72,14 +73,14 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     Vector<Object> results = new Vector<>();
     Matrix mm1=Sparsify.sparsify(mm, 1);
     Matrix mm10=Sparsify.sparsify(mm, 10);
-    Matrix mmDiv32=Sparsify.sparsify(mm, (int) Math.floor(mm.getColumnDimension()/32));
-    Matrix mmDiv8=Sparsify.sparsify(mm, (int) Math.floor(mm.getColumnDimension()/8));
+    Matrix mmDiv32=Sparsify.sparsify(mm, (int) Math.floor(mm.getColumnDimension() / 32));
+    Matrix mmDiv8=Sparsify.sparsify(mm, (int) Math.floor(mm.getColumnDimension() / 8));
 
     //int fillin   =0;//Helper.getFillinMinDeg(Helper.getGraphOfILU(mm),el);
-    int fillin1  =Helper.getFillinMinDeg(Helper.getGraphOfILU(mm1), el);
-    int fillin10 =Helper.getFillinMinDeg(Helper.getGraphOfILU(mm10), el);
-    int fillinDivide32 =Helper.getFillinMinDeg(Helper.getGraphOfILU(mmDiv32), el);
-    int fillinDivide8 =Helper.getFillinMinDeg(Helper.getGraphOfILU(mmDiv8), el);
+    GraphModel gILU1 = Helper.getGraphOfILU(mm1);
+    GraphModel gILU10 = Helper.getGraphOfILU(mm10);
+    GraphModel gILUDiv32 = Helper.getGraphOfILU(mmDiv32);
+    GraphModel gILUDiv8 = Helper.getGraphOfILU(mmDiv8);
 
     GraphModel gCol  = Helper.getGraphOfColoring(mm);
     GraphModel gCol1 = Helper.getGraphOfColoringRestricted(mm, mm1);
@@ -87,18 +88,29 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     GraphModel gColDiv32= Helper.getGraphOfColoringRestricted(mm, mmDiv32);
     GraphModel gColDiv8= Helper.getGraphOfColoringRestricted(mm, mmDiv8);
 
-    results.add(fileName);
+    int fillin1  =Helper.getFillinMinDeg(gILU1, el);
+    int fillin10 =Helper.getFillinMinDeg(gILU10, el);
+    int fillinDivide32 =Helper.getFillinMinDeg(gILUDiv32, el);
+    int fillinDivide8 =Helper.getFillinMinDeg(gILUDiv8, el);
+
+    int col1 = HCol.colorRestricted(gCol1, HCol.ordering(gCol, "MaxDegree"));
+    int col10 = HCol.colorRestricted(gCol10, HCol.ordering(gCol, "MaxDegree"));
+    int colDiv32 = HCol.colorRestricted(gColDiv32, HCol.ordering(gCol, "MaxDegree"));
+    int colDiv8 = HCol.colorRestricted(gColDiv8, HCol.ordering(gCol, "MaxDegree"));
+
+    int pot1 = Helper.getPotReqEdges(gCol1, mm, mm1);
+    int pot10 = Helper.getPotReqEdges(gCol10, mm, mm10);
+    int potDiv32 = Helper.getPotReqEdges(gColDiv32,mm,mmDiv32);
+    int potDiv8 = Helper.getPotReqEdges(gColDiv8,mm,mmDiv8);
+
+            results.add(fileName);
     //results.add(Helper.numOfNonzeros(mm)  +"+"+fillin  +"+"
-    //        +HeuristicColoring.colorRestricted(gCol, HeuristicColoring.getOrdering(gCol,"MaxDegree")));
+    //        +HCol.colorRestricted(gCol, HCol.ordering(gCol,"MaxDegree")));
     results.add(mm.getColumnDimension()*1.0);
-    results.add(MM.NNZ(mm1) +"+"+fillin1 +"+"
-            +HeuristicColoring.colorRestricted(gCol1, HeuristicColoring.getOrdering(gCol,"MaxDegree")));
-    results.add(MM.NNZ(mm10)+"+"+fillin10+"+"
-            +HeuristicColoring.colorRestricted(gCol10, HeuristicColoring.getOrdering(gCol,"MaxDegree")));
-    results.add(MM.NNZ(mmDiv32)+"+"+fillinDivide32
-            +"+"+HeuristicColoring.colorRestricted(gColDiv32, HeuristicColoring.getOrdering(gCol,"MaxDegree")));
-    results.add(MM.NNZ(mmDiv8)+"+"+fillinDivide8+"+"
-            +HeuristicColoring.colorRestricted(gColDiv8, HeuristicColoring.getOrdering(gCol,"MaxDegree")));
+    results.add(MM.NNZ(mm1) +"+"+fillin1 +"+"+col1+"+"+pot1);
+    results.add(MM.NNZ(mm10)+"+"+fillin10+"+"+ col10+"+" +pot10);
+    results.add(MM.NNZ(mmDiv32)+"+"+fillinDivide32 +"+"+ colDiv32+"+"+potDiv32);
+    results.add(MM.NNZ(mmDiv8)+"+"+fillinDivide8+"+"+colDiv8+"+"+potDiv8);
 
     return results;
 

@@ -10,7 +10,7 @@ import java.util.*;
  * Created by rostam on 30.12.15.
  *
  */
-public class HeuristicColoring {
+public class HCol {
 //    public static int color(GraphModel g) {
 //        Map<Integer,Integer> vertexDegree = new HashMap<>();
 //
@@ -30,7 +30,7 @@ public class HeuristicColoring {
 //    }
 
     //required edges are specifed by weights equal 1
-    public static Set<Integer> getOrdering(GraphModel g, String s) {
+    public static Set<Integer> ordering(GraphModel g, String s) {
         Map<Integer,Integer> vertexDegree = new HashMap<>();
         for(Vertex v : g) {
             vertexDegree.put(v.getId(),g.getDegree(v));
@@ -54,6 +54,7 @@ public class HeuristicColoring {
 //
 //       // vertexDegree=sortByComparator(vertexDegree, false);
         //for(int id : order) {
+        g.getVertex(0).setColor(0);
         for(int id =0;id<g.numOfVertices();id++){
             if(incidentToReqEdge(g,g.getVertex(id))) {
                 int col = minPossibleColorRestricted(g, g.getVertex(id));

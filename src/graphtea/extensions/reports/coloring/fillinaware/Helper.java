@@ -15,36 +15,36 @@ public class Helper {
 
     public static Vertex getMinDegVertex(GraphModel g) {
         Vertex ret = g.getAVertex();
-        for(Vertex v:g) {
-            if(g.getDegree(v) < g.getDegree(ret)) ret = v;
+        for (Vertex v : g) {
+            if (g.getDegree(v) < g.getDegree(ret)) ret = v;
         }
         return ret;
     }
 
     public static Vertex getMaxDegVertex(GraphModel g) {
         Vertex ret = g.getAVertex();
-        for(Vertex v:g) {
-            if(g.getDegree(v) > g.getDegree(ret)) ret = v;
+        for (Vertex v : g) {
+            if (g.getDegree(v) > g.getDegree(ret)) ret = v;
         }
         return ret;
     }
 
     public static int minPossibleColor(GraphModel g, Vertex given) {
         Vector<Integer> forbiddenCols = new Vector<>();
-        for(int i=0;i<100;i++) forbiddenCols.add(0);
-        for(Vertex v : g.getNeighbors(given)) {
-            forbiddenCols.set(v.getColor(),-1);
+        for (int i = 0; i < 100; i++) forbiddenCols.add(0);
+        for (Vertex v : g.getNeighbors(given)) {
+            forbiddenCols.set(v.getColor(), -1);
         }
-        for(int i=0;i<forbiddenCols.size();i++) {
-            if(forbiddenCols.get(i) != -1 ) return i;
+        for (int i = 0; i < forbiddenCols.size(); i++) {
+            if (forbiddenCols.get(i) != -1) return i;
         }
         return 0;
     }
 
     public static int numberOfColors(GraphModel g) {
         int max = 0;
-        for(Vertex v:g) {
-            if(v.getColor()>max) max = v.getColor();
+        for (Vertex v : g) {
+            if (v.getColor() > max) max = v.getColor();
         }
         return max;
     }
@@ -53,16 +53,16 @@ public class Helper {
         int rows = mm.getRowDimension();
         int cols = mm.getColumnDimension();
         //directed graph for ILU
-        GraphModel gOfILU =new GraphModel(true);
-        for(int i=0;i<cols;i++) {
+        GraphModel gOfILU = new GraphModel(true);
+        for (int i = 0; i < cols; i++) {
             gOfILU.addVertex(new Vertex());
         }
-        for(int i=0;i<rows;i++) {
-            for(int j=0;j<cols;j++) {
-                if(mm.get(i,j) != 0)
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (mm.get(i, j) != 0)
                     gOfILU.addEdge(new Edge(
-                        gOfILU.getVertex(i),gOfILU.getVertex(j)
-                ));
+                            gOfILU.getVertex(i), gOfILU.getVertex(j)
+                    ));
             }
         }
         return gOfILU;
@@ -75,56 +75,56 @@ public class Helper {
         //undirected graph for one sided coloring
         GraphModel gOfCol = new GraphModel(false);
 
-        for(int i=0;i<rows;i++) {
+        for (int i = 0; i < rows; i++) {
             Vertex v = new Vertex();
-            v.setColor(0);
+            v.setColor(-1);
             gOfCol.addVertex(v);
         }
 
-        for(int i=0;i<rows;i++) {
-            for(int j=0;j<rows;j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < rows; j++) {
                 boolean isEdge = false;
-                for(int k=0;k<cols;k++) {
-                    if(mm.get(i,k) != 0 && mm.get(j,k) !=0) {
-                        isEdge=true;
+                for (int k = 0; k < cols; k++) {
+                    if (mm.get(i, k) != 0 && mm.get(j, k) != 0) {
+                        isEdge = true;
                         break;
                     }
                 }
-                if(isEdge) gOfCol.addEdge(new Edge(
-                        gOfCol.getVertex(i),gOfCol.getVertex(j)));
+                if (isEdge) gOfCol.addEdge(new Edge(
+                        gOfCol.getVertex(i), gOfCol.getVertex(j)));
             }
         }
 
         return gOfCol;
     }
 
-    public static GraphModel getGraphOfColoringRestricted(Matrix mm,Matrix mmRes) {
+    public static GraphModel getGraphOfColoringRestricted(Matrix mm, Matrix mmRes) {
         int rows = mm.getRowDimension();
         int cols = mm.getColumnDimension();
 
         //undirected graph for one sided coloring
         GraphModel gOfCol = new GraphModel(false);
-        for(int i=0;i<rows;i++) {
+        for (int i = 0; i < rows; i++) {
             Vertex v = new Vertex();
             v.setColor(0);
             gOfCol.addVertex(v);
         }
 
-        for(int i=0;i<rows;i++) {
-            for(int j=0;j<rows;j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < rows; j++) {
                 boolean isEdge = false;
                 boolean isReq = false;
-                for(int k=0;k<cols;k++) {
-                    if(mm.get(i,k) != 0 && mm.get(j,k) !=0) {
-                        isEdge=true;
-                        if(mmRes.get(i,k)!=0 || mmRes.get(j,k)!=0) isReq = true;
+                for (int k = 0; k < cols; k++) {
+                    if (mm.get(i, k) != 0 && mm.get(j, k) != 0) {
+                        isEdge = true;
+                        if (mmRes.get(i, k) != 0 || mmRes.get(j, k) != 0) isReq = true;
                         //break;
                     }
                 }
-                if(isEdge) {
+                if (isEdge) {
                     Edge e = new Edge(gOfCol.getVertex(i), gOfCol.getVertex(j));
-                    if(isReq) e.setWeight(1);
-                    else      e.setWeight(0);
+                    if (isReq) e.setWeight(1);
+                    else e.setWeight(0);
                     gOfCol.addEdge(e);
                 }
 
@@ -135,26 +135,26 @@ public class Helper {
     }
 
     public static int ILUOneStep(GraphModel g, Vertex selected, int el) {
-        Vector<Vertex> inVer=new Vector<>();
-        Vector<Vertex> outVer=new Vector<>();
-        int fillin=0;
-        for(Vertex v:g) {
-            if(g.isEdge(v,selected)) inVer.add(v);
-            if(g.isEdge(selected,v)) outVer.add(v);
+        Vector<Vertex> inVer = new Vector<>();
+        Vector<Vertex> outVer = new Vector<>();
+        int fillin = 0;
+        for (Vertex v : g) {
+            if (g.isEdge(v, selected)) inVer.add(v);
+            if (g.isEdge(selected, v)) outVer.add(v);
         }
 
         for (Vertex anInVer : inVer) {
             for (Vertex anOutVer : outVer) {
                 if (anInVer.getId() != anOutVer.getId()) {
-                    if(selected.getId()<anInVer.getId() &&
-                            selected.getId()<anOutVer.getId()) {
+                    if (selected.getId() < anInVer.getId() &&
+                            selected.getId() < anOutVer.getId()) {
                         if (!g.isEdge(anInVer, anOutVer)) {
                             Edge e = new Edge(anInVer, anOutVer);
-                            Edge e1 = g.getEdge(anInVer,selected);
-                            Edge e2 = g.getEdge(selected,anOutVer);
+                            Edge e1 = g.getEdge(anInVer, selected);
+                            Edge e2 = g.getEdge(selected, anOutVer);
 
-                            e.setWeight(e1.getWeight()+e2.getWeight()+1);
-                            if(e1.getWeight()+e2.getWeight()+1 <= el) {
+                            e.setWeight(e1.getWeight() + e2.getWeight() + 1);
+                            if (e1.getWeight() + e2.getWeight() + 1 <= el) {
                                 g.addEdge(e);
                                 fillin++;
                             }
@@ -172,11 +172,34 @@ public class Helper {
 //            Vertex v = Helper.getMinDegVertex(g);
 //            fillin+=Helper.ILUOneStep(g, v);
 //        }
-        for(Edge e : g.edges()) e.setWeight(0);
-        for(int i=0;i<g.numOfVertices();i++) {
-            fillin+=Helper.ILUOneStep(g,g.getVertex(i), el);
+        for (Edge e : g.edges()) e.setWeight(0);
+        for (int i = 0; i < g.numOfVertices(); i++) {
+            fillin += Helper.ILUOneStep(g, g.getVertex(i), el);
         }
         return fillin;
     }
 
+    //the input graph should be already computed
+    //P is the number of potentially required edges
+    //mR=block matrix
+    public static int getPotReqEdges(GraphModel g, Matrix m, Matrix mR) {
+        int P = 0;
+        for (int i = 0; i < m.getRowDimension(); i++) {
+            for (int j = 0; j < m.getColumnDimension(); j++) {
+                if (m.get(i, j) != 0 && mR.get(i, j) == 0) {
+                    boolean isPot = true;
+                    for (int k = 0; k < m.getRowDimension(); k++) {
+                        if (k != i && m.get(k, j) != 0 && mR.get(k, j) == 0) {
+                            if (g.getVertex(i).getColor() == g.getVertex(k).getColor()) {
+                                isPot = false;
+                                break;
+                            }
+                        }
+                    }
+                    if (isPot) P++;
+                }
+            }
+        }
+        return P;
+    }
 }
