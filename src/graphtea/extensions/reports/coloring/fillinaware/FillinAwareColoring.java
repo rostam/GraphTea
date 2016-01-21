@@ -1,6 +1,5 @@
 package graphtea.extensions.reports.coloring.fillinaware;
 
-import Jama.Matrix;
 import graphtea.extensions.reports.coloring.MM;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -14,7 +13,7 @@ import java.util.Vector;
 public class FillinAwareColoring implements GraphReportExtension,Parametrizable {
   //  @Parameter(name = "Matrix File", description = "")
 //  public String file = "abb313.mtx";
-  @Parameter(name="k from ILU(k)")
+  @Parameter(name = "k from ILU(k)")
   public int el = 2;
 
   public static String getPathOfMats() {
@@ -25,8 +24,8 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
       e.printStackTrace();
     }
 
-    if(System.getProperty("os.name").contains("Win")) {
-      cur =cur + "\\matrices\\";
+    if (System.getProperty("os.name").contains("Win")) {
+      cur = cur + "\\matrices\\";
     } else {
       cur = cur + "/matrices/";
     }
@@ -46,19 +45,20 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     //C = the number of colors in one sided restricted coloring
     //k blocking size
     //P Potentially Required Edges
-    titles.add(" NNZ+F+C+P k=1 ");
-    titles.add(" NNZ+F+C+P k=10 ");
-    titles.add(" NNZ+F+C+P k=n/32 ");
-    titles.add(" NNZ+F+C+P k=n/8 ");
+    titles.add(" NNZ+F+C+P+A k=1 ");
+    titles.add(" NNZ+F+C+P+A k=10 ");
+    titles.add(" NNZ+F+C+P+A k=n/32 ");
+    titles.add(" NNZ+F+C+P+A k=n/8 ");
     ret.setTitles(titles);
     File dir = new File(getPathOfMats());
     File[] directoryListing = dir.listFiles();
     if (directoryListing != null) {
       for (File f : directoryListing) {
         try {
-          System.out.println("file:"+f.getAbsolutePath());
-          Matrix mm= MM.loadMatrixFromSPARSE(f);
-          ret.add(computeForOneMatrix(f.getName(),mm));
+          System.out.println("file:" + f.getAbsolutePath());
+          MyMat mm = new MyMat(MM.loadMatrixFromSPARSE(f));
+          ret.add(computeForOneMatrix(f.getName(), mm, "Normal"));
+          ret.add(computeForOneMatrix(f.getName(), mm, "MaxDegree"));
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -68,13 +68,12 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     return ret;
   }
 
-  public Vector<Object> computeForOneMatrix(String fileName, Matrix mm) {
-
+  public Vector<Object> computeForOneMatrix(String fileName, MyMat mm, String order) {
     Vector<Object> results = new Vector<>();
-    Matrix mm1=Sparsify.sparsify(mm, 1);
-    Matrix mm10=Sparsify.sparsify(mm, 10);
-    Matrix mmDiv32=Sparsify.sparsify(mm, (int) Math.floor(mm.getColumnDimension() / 32));
-    Matrix mmDiv8=Sparsify.sparsify(mm, (int) Math.floor(mm.getColumnDimension() / 8));
+    MyMat mm1 = mm.sparsify(1);
+    MyMat mm10 = mm.sparsify(10);
+    MyMat mmDiv32 = mm.sparsify((int) Math.floor(mm.getColumnDimension() / 32));
+    MyMat mmDiv8 = mm.sparsify((int) Math.floor(mm.getColumnDimension() / 8));
 
     //int fillin   =0;//Helper.getFillinMinDeg(Helper.getGraphOfILU(mm),el);
     GraphModel gILU1 = Helper.getGraphOfILU(mm1);
@@ -82,38 +81,49 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     GraphModel gILUDiv32 = Helper.getGraphOfILU(mmDiv32);
     GraphModel gILUDiv8 = Helper.getGraphOfILU(mmDiv8);
 
-    GraphModel gCol  = Helper.getGraphOfColoring(mm);
+    GraphModel gCol = Helper.getGraphOfColoring(mm);
     GraphModel gCol1 = Helper.getGraphOfColoringRestricted(mm, mm1);
-    GraphModel gCol10= Helper.getGraphOfColoringRestricted(mm, mm10);
-    GraphModel gColDiv32= Helper.getGraphOfColoringRestricted(mm, mmDiv32);
-    GraphModel gColDiv8= Helper.getGraphOfColoringRestricted(mm, mmDiv8);
+    GraphModel gCol10 = Helper.getGraphOfColoringRestricted(mm, mm10);
+    GraphModel gColDiv32 = Helper.getGraphOfColoringRestricted(mm, mmDiv32);
+    GraphModel gColDiv8 = Helper.getGraphOfColoringRestricted(mm, mmDiv8);
 
-    int fillin1  =Helper.getFillinMinDeg(gILU1, el);
-    int fillin10 =Helper.getFillinMinDeg(gILU10, el);
-    int fillinDivide32 =Helper.getFillinMinDeg(gILUDiv32, el);
-    int fillinDivide8 =Helper.getFillinMinDeg(gILUDiv8, el);
+    int F1        = Helper.getFillinMinDeg(gILU1, el, HCol.ordering(gCol, order),order);
+    int F10       = Helper.getFillinMinDeg(gILU10, el, HCol.ordering(gCol, order),order);
+    int FDiv32    = Helper.getFillinMinDeg(gILUDiv32, el, HCol.ordering(gCol, order),order);
+    int FDiv8     = Helper.getFillinMinDeg(gILUDiv8, el, HCol.ordering(gCol, order),order);
 
-    int col1 = HCol.colorRestricted(gCol1, HCol.ordering(gCol, "MaxDegree"));
-    int col10 = HCol.colorRestricted(gCol10, HCol.ordering(gCol, "MaxDegree"));
+    int col1     = HCol.colorRestricted(gCol1, HCol.ordering(gCol, "MaxDegree"));
+    int col10    = HCol.colorRestricted(gCol10, HCol.ordering(gCol, "MaxDegree"));
     int colDiv32 = HCol.colorRestricted(gColDiv32, HCol.ordering(gCol, "MaxDegree"));
-    int colDiv8 = HCol.colorRestricted(gColDiv8, HCol.ordering(gCol, "MaxDegree"));
+    int colDiv8  = HCol.colorRestricted(gColDiv8, HCol.ordering(gCol, "MaxDegree"));
 
-    int pot1 = Helper.getPotReqEdges(gCol1, mm, mm1);
-    int pot10 = Helper.getPotReqEdges(gCol10, mm, mm10);
-    int potDiv32 = Helper.getPotReqEdges(gColDiv32,mm,mmDiv32);
-    int potDiv8 = Helper.getPotReqEdges(gColDiv8,mm,mmDiv8);
+    MyMat mpot1     = Helper.getPotReqEdges(gCol1, mm, mm1);
+    MyMat mpot10    = Helper.getPotReqEdges(gCol10, mm, mm10);
+    MyMat mpotDiv32 = Helper.getPotReqEdges(gColDiv32, mm, mmDiv32);
+    MyMat mpotDiv8  = Helper.getPotReqEdges(gColDiv8, mm, mmDiv8);
 
-            results.add(fileName);
-    //results.add(Helper.numOfNonzeros(mm)  +"+"+fillin  +"+"
-    //        +HCol.colorRestricted(gCol, HCol.ordering(gCol,"MaxDegree")));
-    results.add(mm.getColumnDimension()*1.0);
-    results.add(MM.NNZ(mm1) +"+"+fillin1 +"+"+col1+"+"+pot1);
-    results.add(MM.NNZ(mm10)+"+"+fillin10+"+"+ col10+"+" +pot10);
-    results.add(MM.NNZ(mmDiv32)+"+"+fillinDivide32 +"+"+ colDiv32+"+"+potDiv32);
-    results.add(MM.NNZ(mmDiv8)+"+"+fillinDivide8+"+"+colDiv8+"+"+potDiv8);
+    int pot1     = mpot1.nnz();
+    int pot10    = mpot10.nnz();
+    int potDiv32 = mpotDiv32.nnz();
+    int potDiv8  = mpotDiv8.nnz();
 
+    MyMat madd1     = Helper.getAddReqEdges(gILU1, mm, mm1, mpot1, HCol.ordering(gCol, order));
+    MyMat madd10    = Helper.getAddReqEdges(gILU10, mm, mm10, mpot10, HCol.ordering(gCol, order));
+    MyMat maddDiv32 = Helper.getAddReqEdges(gILUDiv32, mm, mmDiv32, mpotDiv32, HCol.ordering(gCol, order));
+    MyMat maddDiv8  = Helper.getAddReqEdges(gILUDiv8, mm, mmDiv8, mpotDiv8, HCol.ordering(gCol, order));
+
+    int add1     = madd1.nnz();
+    int add10    = madd10.nnz();
+    int addDiv32 = maddDiv32.nnz();
+    int addDiv8  = maddDiv8.nnz();
+
+    results.add(fileName + ", order="+order);
+    results.add(mm.getColumnDimension() * 1.0);
+    results.add(mm1.nnz() + "+" + F1 + "+" + col1 + "+" + pot1 + "+" + add1);
+    results.add(mm10.nnz() + "+" + F10 + "+" + col10 + "+" + pot10 + "+" + add10);
+    results.add(mmDiv32.nnz() + "+" + FDiv32 + "+" + colDiv32 + "+" + potDiv32+ "+" + addDiv32);
+    results.add(mmDiv8.nnz() + "+" + FDiv8 + "+" + colDiv8 + "+" + potDiv8+ "+" + addDiv8);
     return results;
-
   }
 
   private void printArr(double[][] test) {

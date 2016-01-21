@@ -4,7 +4,9 @@ import Jama.Matrix;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
+import graphtea.library.util.Pair;
 
+import java.util.Set;
 import java.util.Vector;
 
 /**
@@ -166,24 +168,28 @@ public class Helper {
         return fillin;
     }
 
-    public static int getFillinMinDeg(GraphModel g, int el) {
+    public static int getFillinMinDeg(GraphModel g, int el, Set<Integer> order, String ord) {
         int fillin = 0;
-//        while(g.numOfVertices()!=1) {
-//            Vertex v = Helper.getMinDegVertex(g);
-//            fillin+=Helper.ILUOneStep(g, v);
-//        }
         for (Edge e : g.edges()) e.setWeight(0);
-        for (int i = 0; i < g.numOfVertices(); i++) {
-            fillin += Helper.ILUOneStep(g, g.getVertex(i), el);
+        //for (int i : order) {
+        if(ord.equals("Normal")) {
+            for (int i = 0; i < g.numOfVertices(); i++) {
+                fillin += Helper.ILUOneStep(g, g.getVertex(i), el);
+            }
+        } else {
+            for (int i : order) {
+                fillin += Helper.ILUOneStep(g, g.getVertex(i), el);
+            }
         }
+
         return fillin;
     }
 
     //the input graph should be already computed
     //P is the number of potentially required edges
     //mR=block matrix
-    public static int getPotReqEdges(GraphModel g, Matrix m, Matrix mR) {
-        int P = 0;
+    public static MyMat getPotReqEdges(GraphModel g, Matrix m, Matrix mR) {
+        MyMat potM = new MyMat(m.getRowDimension(), m.getColumnDimension());
         for (int i = 0; i < m.getRowDimension(); i++) {
             for (int j = 0; j < m.getColumnDimension(); j++) {
                 if (m.get(i, j) != 0 && mR.get(i, j) == 0) {
@@ -191,15 +197,52 @@ public class Helper {
                     for (int k = 0; k < m.getRowDimension(); k++) {
                         if (k != i && m.get(k, j) != 0 && mR.get(k, j) == 0) {
                             if (g.getVertex(i).getColor() == g.getVertex(k).getColor()) {
+                                potM.set(i, k, 1);
                                 isPot = false;
                                 break;
                             }
                         }
                     }
-                    if (isPot) P++;
+                    if (isPot) potM.set(i, j, 1);
                 }
             }
         }
-        return P;
+        return potM;
+    }
+
+    //the input graph should be already computed
+    //P is the number of potentially required edges
+    //mR=block matrix mP= pot req matrix
+    public static MyMat getAddReqEdges(GraphModel gILU, Matrix m, Matrix mR, Matrix mP,Set<Integer> order) {
+        MyMat addM = new MyMat(m.getRowDimension(), m.getColumnDimension());
+        //for (int i = 0; i < m.getRowDimension(); i++) {
+        //    for (int j = 0; j < m.getColumnDimension(); j++) {
+        for(int i : order) {
+            for(int j : order) {
+                if(mP.get(i, j) != 0) {
+                    boolean isAdd = true;
+                    if(i > j) {
+                        for (Vertex v : gILU.neighbors(gILU.getVertex(j))) {
+                            if (v.getId() > j) {
+                                isAdd = false;
+                                break;
+                            }
+                        }
+                    } else {
+                        for (Vertex v : gILU.neighbors(gILU.getVertex(i))) {
+                            if (v.getId() > i) {
+                                isAdd=false;
+                                break;
+                            }
+                        }
+                    }
+                    if(isAdd) {
+                        addM.set(i, j, 1);
+                        gILU.addEdge(new Edge(gILU.getVertex(i), gILU.getVertex(j)));
+                    }
+                }
+            }
+        }
+        return addM;
     }
 }

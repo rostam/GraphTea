@@ -38,16 +38,4 @@ public class MM {
         }
         return mm;
     }
-
-    public static int NNZ(Matrix mm) {
-        int rows = mm.getRowDimension();
-        int cols = mm.getColumnDimension();
-        int nnz=0;
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if(mm.get(i,j)!=0) nnz++;
-            }
-        }
-        return nnz;
-    }
 }
