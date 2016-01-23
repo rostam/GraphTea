@@ -40,12 +40,15 @@ public class HCol {
         if(s.equals("MaxDegree")) {
             vertexDegree=sortByComparator(vertexDegree, false);
             return vertexDegree.keySet();
+        } else if(s.equals("MinDegree")) {
+            vertexDegree=sortByComparator(vertexDegree,true);
+            return vertexDegree.keySet();
         }
 
         return vertexDegree.keySet();
     }
 
-    public static int colorRestricted(GraphModel g, Set<Integer> order) {
+    public static int colorRestricted(GraphModel g, Set<Integer> order, String ord) {
         //Map<Integer,Integer> vertexDegree = new HashMap<>();
 //        for(Vertex v : g) {
 //            vertexDegree.put(v.getId(),g.getDegree(v));
@@ -54,11 +57,23 @@ public class HCol {
 //
 //       // vertexDegree=sortByComparator(vertexDegree, false);
         //for(int id : order) {
-        g.getVertex(0).setColor(0);
-        for(int id =0;id<g.numOfVertices();id++){
-            if(incidentToReqEdge(g,g.getVertex(id))) {
-                int col = minPossibleColorRestricted(g, g.getVertex(id));
-                g.getVertex(id).setColor(col);
+        if (ord.equals("Normal")) {
+            g.getVertex(0).setColor(0);
+            for (int id = 0; id < g.numOfVertices(); id++) {
+                if (incidentToReqEdge(g, g.getVertex(id))) {
+                    int col = minPossibleColorRestricted(g, g.getVertex(id));
+                    g.getVertex(id).setColor(col);
+                }
+            }
+        } else {
+            Iterator it = order.iterator();
+            g.getVertex((Integer) it.next()).setColor(0);
+            while (it.hasNext()) {
+                int id = (int) it.next();
+                if (incidentToReqEdge(g, g.getVertex(id))) {
+                    int col = minPossibleColorRestricted(g, g.getVertex(id));
+                    g.getVertex(id).setColor(col);
+                }
             }
         }
         return Helper.numberOfColors(g);

@@ -1,10 +1,8 @@
 package graphtea.extensions.reports.coloring.fillinaware;
 
-import Jama.Matrix;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.library.util.Pair;
 
 import java.util.Set;
 import java.util.Vector;
@@ -51,17 +49,17 @@ public class Helper {
         return max;
     }
 
-    public static GraphModel getGraphOfILU(Matrix mm) {
-        int rows = mm.getRowDimension();
-        int cols = mm.getColumnDimension();
+    public static GraphModel getGraphOfILU(SpMat mm) {
+        int rows = mm.rows();
+        int cols = mm.cols();
         //directed graph for ILU
         GraphModel gOfILU = new GraphModel(true);
         for (int i = 0; i < cols; i++) {
             gOfILU.addVertex(new Vertex());
         }
+
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (mm.get(i, j) != 0)
+            for(int j : mm.get(i)) {
                     gOfILU.addEdge(new Edge(
                             gOfILU.getVertex(i), gOfILU.getVertex(j)
                     ));
@@ -70,9 +68,9 @@ public class Helper {
         return gOfILU;
     }
 
-    public static GraphModel getGraphOfColoring(Matrix mm) {
-        int rows = mm.getRowDimension();
-        int cols = mm.getColumnDimension();
+    public static GraphModel getGraphOfColoring(SpMat mm) {
+        int rows = mm.rows();
+        int cols = mm.cols();
 
         //undirected graph for one sided coloring
         GraphModel gOfCol = new GraphModel(false);
@@ -87,7 +85,7 @@ public class Helper {
             for (int j = 0; j < rows; j++) {
                 boolean isEdge = false;
                 for (int k = 0; k < cols; k++) {
-                    if (mm.get(i, k) != 0 && mm.get(j, k) != 0) {
+                    if (mm.contains(i, k) && mm.contains(j, k)) {
                         isEdge = true;
                         break;
                     }
@@ -100,9 +98,9 @@ public class Helper {
         return gOfCol;
     }
 
-    public static GraphModel getGraphOfColoringRestricted(Matrix mm, Matrix mmRes) {
-        int rows = mm.getRowDimension();
-        int cols = mm.getColumnDimension();
+    public static GraphModel getGraphOfColoringRestricted(SpMat mm, SpMat mmRes) {
+        int rows = mm.rows();
+        int cols = mm.cols();
 
         //undirected graph for one sided coloring
         GraphModel gOfCol = new GraphModel(false);
@@ -117,9 +115,9 @@ public class Helper {
                 boolean isEdge = false;
                 boolean isReq = false;
                 for (int k = 0; k < cols; k++) {
-                    if (mm.get(i, k) != 0 && mm.get(j, k) != 0) {
+                    if (mm.contains(i, k) && mm.contains(j, k)) {
                         isEdge = true;
-                        if (mmRes.get(i, k) != 0 || mmRes.get(j, k) != 0) isReq = true;
+                        if (mmRes.contains(i, k) || mmRes.contains(j, k)) isReq = true;
                         //break;
                     }
                 }
@@ -188,22 +186,22 @@ public class Helper {
     //the input graph should be already computed
     //P is the number of potentially required edges
     //mR=block matrix
-    public static MyMat getPotReqEdges(GraphModel g, Matrix m, Matrix mR) {
-        MyMat potM = new MyMat(m.getRowDimension(), m.getColumnDimension());
-        for (int i = 0; i < m.getRowDimension(); i++) {
-            for (int j = 0; j < m.getColumnDimension(); j++) {
-                if (m.get(i, j) != 0 && mR.get(i, j) == 0) {
+    public static  SpMat getPotReqEdges(GraphModel g, SpMat m, SpMat mR) {
+        SpMat potM = new SpMat(m.rows(),m.cols());
+        for (int i = 0; i < m.rows(); i++) {
+            for(int j : m.get(i)) {
+                if (!mR.contains(i, j)) {
                     boolean isPot = true;
-                    for (int k = 0; k < m.getRowDimension(); k++) {
-                        if (k != i && m.get(k, j) != 0 && mR.get(k, j) == 0) {
+                    for (int k = 0; k < m.rows(); k++) {
+                        if (k != i && m.contains(k, j) && !mR.contains(k, j)) {
                             if (g.getVertex(i).getColor() == g.getVertex(k).getColor()) {
-                                potM.set(i, k, 1);
+                                potM.set(i, k);
                                 isPot = false;
                                 break;
                             }
                         }
                     }
-                    if (isPot) potM.set(i, j, 1);
+                    if (isPot) potM.set(i, j);
                 }
             }
         }
@@ -213,13 +211,13 @@ public class Helper {
     //the input graph should be already computed
     //P is the number of potentially required edges
     //mR=block matrix mP= pot req matrix
-    public static MyMat getAddReqEdges(GraphModel gILU, Matrix m, Matrix mR, Matrix mP,Set<Integer> order) {
-        MyMat addM = new MyMat(m.getRowDimension(), m.getColumnDimension());
+    public static SpMat getAddReqEdges(GraphModel gILU, SpMat m, SpMat mR, SpMat mP,Set<Integer> order) {
+        SpMat addM = new SpMat(m.rows(),m.cols());
         //for (int i = 0; i < m.getRowDimension(); i++) {
         //    for (int j = 0; j < m.getColumnDimension(); j++) {
         for(int i : order) {
             for(int j : order) {
-                if(mP.get(i, j) != 0) {
+                if(mP.contains(i, j)) {
                     boolean isAdd = true;
                     if(i > j) {
                         for (Vertex v : gILU.neighbors(gILU.getVertex(j))) {
@@ -237,7 +235,7 @@ public class Helper {
                         }
                     }
                     if(isAdd) {
-                        addM.set(i, j, 1);
+                        addM.set(i, j);
                         gILU.addEdge(new Edge(gILU.getVertex(i), gILU.getVertex(j)));
                     }
                 }
