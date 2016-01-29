@@ -195,7 +195,6 @@ public class Helper {
                     for (int k = 0; k < m.rows(); k++) {
                         if (k != i && m.contains(k, j) && !mR.contains(k, j)) {
                             if (g.getVertex(i).getColor() == g.getVertex(k).getColor()) {
-                                potM.set(i, k);
                                 isPot = false;
                                 break;
                             }
