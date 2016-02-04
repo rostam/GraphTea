@@ -84,8 +84,8 @@ public class Helper {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < rows; j++) {
                 boolean isEdge = false;
-                for (int k = 0; k < cols; k++) {
-                    if (mm.contains(i, k) && mm.contains(j, k)) {
+                for(int k : mm.get(i)) {
+                    if (mm.contains(j, k)) {
                         isEdge = true;
                         break;
                     }
@@ -114,8 +114,8 @@ public class Helper {
             for (int j = 0; j < rows; j++) {
                 boolean isEdge = false;
                 boolean isReq = false;
-                for (int k = 0; k < cols; k++) {
-                    if (mm.contains(i, k) && mm.contains(j, k)) {
+                for(int k : mm.get(i)) {
+                    if (mm.contains(j, k)) {
                         isEdge = true;
                         if (mmRes.contains(i, k) || mmRes.contains(j, k)) isReq = true;
                         //break;

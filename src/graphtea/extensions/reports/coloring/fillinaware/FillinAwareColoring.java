@@ -84,7 +84,6 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     GraphModel gILUDiv32 = Helper.getGraphOfILU(mmDiv32);
     GraphModel gILUDiv8 = Helper.getGraphOfILU(mmDiv8);
 
-
     GraphModel gCol = Helper.getGraphOfColoring(mm);
     GraphModel gCol1 = Helper.getGraphOfColoringRestricted(mm, mm1);
     GraphModel gCol10 = Helper.getGraphOfColoringRestricted(mm, mm10);

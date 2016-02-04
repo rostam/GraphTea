@@ -13,9 +13,12 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
+import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import java.awt.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Vector;
 
 public class IterGraphs {
@@ -113,6 +116,7 @@ public class IterGraphs {
             Vector<String> tts = new Vector<>();
             tts.add("Index");
             tts.addAll(ret.getTitles());
+            tts.add("Degree Sequence");
             mpq.setTitles(tts);
         }
 
@@ -131,6 +135,9 @@ public class IterGraphs {
             }
         } else mpq.add(data);
 
+        ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
+        Collections.sort(al);
+        data.add(al.toString());
     }
 
     public void checkTypeOfBounds(Vector<Object> vo, int[] res, int i, String bound) {
