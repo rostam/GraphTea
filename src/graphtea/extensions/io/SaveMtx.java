@@ -5,6 +5,7 @@
 
 package graphtea.extensions.io;
 
+import graphtea.extensions.reports.coloring.MM;
 import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;
@@ -27,11 +28,7 @@ public class SaveMtx implements GraphWriterExtension {
     @Override
     public void write(File file, GraphModel graph) throws GraphIOException {
         try {
-            ObjectOutputStream out = new ObjectOutputStream(
-                    new FileOutputStream(file));
-            out.writeObject(new GraphSaveObject(graph));
-            out.close();
-
+            MM.saveMtxFormat(file,graph.getAdjacencyMatrix());
         } catch (IOException e) {
             e.printStackTrace();
         }
