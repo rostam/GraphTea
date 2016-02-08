@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.coloring.fillinaware;
 
+import Jama.Matrix;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -134,7 +135,7 @@ public class Helper {
         return gOfCol;
     }
 
-    public static int ILUOneStep(GraphModel g, Vertex selected, int el) {
+    public static int ILUOneStep(GraphModel g, Vertex selected, int el, SpMat F) {
         Vector<Vertex> inVer = new Vector<>();
         Vector<Vertex> outVer = new Vector<>();
         int fillin = 0;
@@ -142,7 +143,6 @@ public class Helper {
             if (g.isEdge(v, selected)) inVer.add(v);
             if (g.isEdge(selected, v)) outVer.add(v);
         }
-
         for (Vertex anInVer : inVer) {
             for (Vertex anOutVer : outVer) {
                 if (anInVer.getId() != anOutVer.getId()) {
@@ -152,10 +152,10 @@ public class Helper {
                             Edge e = new Edge(anInVer, anOutVer);
                             Edge e1 = g.getEdge(anInVer, selected);
                             Edge e2 = g.getEdge(selected, anOutVer);
-
                             e.setWeight(e1.getWeight() + e2.getWeight() + 1);
                             if (e1.getWeight() + e2.getWeight() + 1 <= el) {
                                 g.addEdge(e);
+                                F.get(e.source.getId()).add(e.target.getId());
                                 fillin++;
                             }
                         }
@@ -166,21 +166,20 @@ public class Helper {
         return fillin;
     }
 
-    public static int getFillinMinDeg(GraphModel g, int el, Set<Integer> order, String ord) {
+    public static SpMat getFillinMinDeg(GraphModel g, int el, Set<Integer> order, String ord, SpMat blockA) {
+        SpMat F = blockA.copy();
         int fillin = 0;
         for (Edge e : g.edges()) e.setWeight(0);
-        //for (int i : order) {
         if(ord.equals("Normal")) {
             for (int i = 0; i < g.numOfVertices(); i++) {
-                fillin += Helper.ILUOneStep(g, g.getVertex(i), el);
+                fillin += Helper.ILUOneStep(g, g.getVertex(i), el, F);
             }
         } else {
             for (int i : order) {
-                fillin += Helper.ILUOneStep(g, g.getVertex(i), el);
+                fillin += Helper.ILUOneStep(g, g.getVertex(i), el,F);
             }
         }
-
-        return fillin;
+        return F;
     }
 
     //the input graph should be already computed
@@ -242,4 +241,28 @@ public class Helper {
         }
         return addM;
     }
+//
+//    public static Matrix ILUR(Matrix m, SpMat m10,SpMat F) {
+//        System.out.println("man " + F.nnz());
+//        Matrix ret = new Matrix(m.getRowDimension(),m.getColumnDimension());
+//        for(int i=0;i<m10.rows();i++) {
+//            for(int j : m10.get(i)) {
+//                ret.set(i,j,m.get(i,j));
+//            }
+//        }
+//        for(int i=0;i<ret.getColumnDimension();i++) {
+//            for(int k=0;k<i-1;k++) {
+//                if(F.get(i).contains(k)) {
+//                    ret.set(i,k,ret.get(i,k)/ret.get(k,k));
+//                    for(int j=k;j<ret.getColumnDimension();j++) {
+//                        if(F.get(i).contains(j)&&F.get(k).contains(j)) {
+//                            double tmp = ret.get(i,j)-ret.get(i,k)*ret.get(k,j);
+//                            ret.set(i, j, tmp);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return ret;
+//    }
 }

@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.coloring.fillinaware;
 
+import Jama.Matrix;
 import graphtea.extensions.reports.coloring.MM;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -56,11 +57,12 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
       for (File f : directoryListing) {
         try {
           System.out.println("file:" + f.getAbsolutePath());
-          SpMat sm = new SpMat(MM.loadMatrixFromSPARSE(f));
-          ret.add(computeForOneMatrix(f.getName(), sm, "Normal", "Normal"));
-          ret.add(computeForOneMatrix(f.getName(), sm, "Normal", "MaxDegree"));
-          ret.add(computeForOneMatrix(f.getName(), sm, "MaxDegree", "MaxDegree"));
-          ret.add(computeForOneMatrix(f.getName(), sm, "MinDegree", "MinDegree"));
+          Matrix m = MM.loadMatrixFromSPARSE(f);
+          SpMat sm = new SpMat(m);
+          ret.add(computeForOneMatrix(f.getName(), sm, "Normal", "Normal",m));
+//          ret.add(computeForOneMatrix(f.getName(), sm, "Normal", "MaxDegree",m));
+//          ret.add(computeForOneMatrix(f.getName(), sm, "MaxDegree", "MaxDegree",m));
+//          ret.add(computeForOneMatrix(f.getName(), sm, "MinDegree", "MinDegree",m));
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -71,7 +73,7 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
   }
 
   public Vector<Object> computeForOneMatrix(String fileName, SpMat mm,
-                                            String orderILU,String orderCol) {
+                                            String orderILU,String orderCol,Matrix m) {
     Vector<Object> results = new Vector<>();
     SpMat mm1 = mm.sparsify(1);
     SpMat mm10 = mm.sparsify(10);
@@ -91,11 +93,15 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     GraphModel gColDiv8 = Helper.getGraphOfColoringRestricted(mm, mmDiv8);
 
 
-    int F1        = Helper.getFillinMinDeg(gILU1, el, HCol.ordering(gCol, orderILU),orderILU);
-    int F10       = Helper.getFillinMinDeg(gILU10, el, HCol.ordering(gCol, orderILU),orderILU);
-    int FDiv32    = Helper.getFillinMinDeg(gILUDiv32, el, HCol.ordering(gCol, orderILU),orderILU);
-    int FDiv8     = Helper.getFillinMinDeg(gILUDiv8, el, HCol.ordering(gCol, orderILU),orderILU);
+    SpMat matF1        = Helper.getFillinMinDeg(gILU1, el, HCol.ordering(gCol, orderILU), orderILU, mm1);
+    SpMat matF10       = Helper.getFillinMinDeg(gILU10, el, HCol.ordering(gCol, orderILU),orderILU,mm10);
+    SpMat matFDiv32    = Helper.getFillinMinDeg(gILUDiv32, el, HCol.ordering(gCol, orderILU),orderILU,mmDiv32);
+    SpMat matFDiv8     = Helper.getFillinMinDeg(gILUDiv8, el, HCol.ordering(gCol, orderILU),orderILU,mmDiv8);
 
+    int F1=matF1.nnz()-mm1.nnz();
+    int F10=matF10.nnz()-mm10.nnz();;
+    int FDiv32=matFDiv32.nnz()-mmDiv32.nnz();;
+    int FDiv8=matFDiv8.nnz()-mmDiv8.nnz();;
 
     int col1     = HCol.colorRestricted(gCol1, HCol.ordering(gCol, orderCol),orderCol);
     int col10    = HCol.colorRestricted(gCol10, HCol.ordering(gCol, orderCol),orderCol);
@@ -128,7 +134,23 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     results.add(mm1.nnz() + "+" + F1 + "+" + col1 + "+" + pot1 + "+" + add1);
     results.add(mm10.nnz() + "+" + F10 + "+" + col10 + "+" + pot10 + "+" + add10);
     results.add(mmDiv32.nnz() + "+" + FDiv32 + "+" + colDiv32 + "+" + potDiv32+ "+" + addDiv32);
-    results.add(mmDiv8.nnz() + "+" + FDiv8 + "+" + colDiv8 + "+" + potDiv8+ "+" + addDiv8);
+    results.add(mmDiv8.nnz() + "+" + FDiv8 + "+" + colDiv8 + "+" + potDiv8 + "+" + addDiv8);
+
+    try {
+      MM.saveMtxFormat(new File("mats/m10.mtx"), mm10);
+//      Matrix Fmat=Helper.ILUR(m, mm10, matF10);
+//      int cnt = 0;
+//      for(int i=0;i<Fmat.getRowDimension();i++) {
+//        for(int j=0;j<Fmat.getColumnDimension();j++) {
+//          if(Fmat.get(i,j) != 0) cnt++;
+//        }
+//      }
+//      System.out.println("bargashte " + cnt) ;
+      MM.saveMtxFormat(new File("mats/F10.mtx"),matF10);
+      MM.saveMtxFormat(new File("mats/add10.mtx"),madd10);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     return results;
   }
 

@@ -27,7 +27,7 @@ public class SpMat extends Vector<HashSet<Integer>>{
         }
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if(m.get(i, j) == 1) {
+                if(m.get(i, j) != 0) {
                     this.get(i).add(j);
                 }
             }
@@ -40,6 +40,17 @@ public class SpMat extends Vector<HashSet<Integer>>{
 
     public int cols() {
         return cols;
+    }
+
+    public SpMat copy() {
+        SpMat cp = new SpMat(rows,cols);
+        for(int i=0;i<rows;i++) {
+            cp.add(new HashSet<Integer>());
+            for(int j : this.get(i)) {
+                cp.get(i).add(j);
+            }
+        }
+        return cp;
     }
 
     public int nnz() {

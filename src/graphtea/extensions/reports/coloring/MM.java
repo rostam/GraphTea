@@ -4,7 +4,6 @@ import Jama.Matrix;
 import graphtea.extensions.reports.coloring.fillinaware.SpMat;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.util.Scanner;
 
 /**
@@ -79,13 +78,13 @@ public class MM {
         while(sc.hasNextLine()) {
             line = sc.nextLine();
             Scanner sc3 = new Scanner(line);
-            mm.set(sc3.nextInt()-1,sc3.nextInt()-1,1);
+            mm.set(sc3.nextInt()-1,sc3.nextInt()-1,sc3.nextDouble());
         }
 
         if(isSymmetric) {
             for(int i=0;i<rows;i++) {
                 for(int j=0;j<cols;j++) {
-                    if(mm.get(i,j)== 1) if(mm.get(j,i)!=1) mm.set(j,i,1);
+                    if(mm.get(i,j)!= 0) if(mm.get(j,i)==0) mm.set(j,i,mm.get(i,j));
                 }
             }
         }
