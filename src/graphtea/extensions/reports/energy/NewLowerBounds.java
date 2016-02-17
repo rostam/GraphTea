@@ -46,6 +46,7 @@ public class NewLowerBounds implements GraphReportExtension{
         titles.add(" 1.5 ");
         titles.add(" 1.6 ");
         titles.add(" 1.7 ");
+        titles.add(" Eigenvalues ");
         ret.setTitles(titles);
 
         Matrix A = g.getWeightedAdjacencyMatrix();
@@ -118,12 +119,43 @@ public class NewLowerBounds implements GraphReportExtension{
         double down=4*(prv[0] + prv[prv.length-1]);
         v.add(Math.sqrt(2*m*n) - (up/down));
 
+        //eigenvalues
+        v.add(getEigenValues(g));
+
         ret.add(v);
         return ret;
     }
 
+    public static String getEigenValues(GraphModel g) {
+        Matrix A = g.getWeightedAdjacencyMatrix();
+        EigenvalueDecomposition ed = A.eig();
+        double rv[] = ed.getRealEigenvalues();
+        double iv[] = ed.getImagEigenvalues();
+        String res = "";
+        for (int i = 0; i < rv.length; i++) {
+            if (iv[i] != 0)
+                res +="" + round(rv[i], 3) + " + " + round(iv[i], 3) + "i";
+            else
+                res += "" + round(rv[i], 3);
+            if(i!=rv.length-1) {
+                res += ",";
+            }
+        }
+        return res;
+    }
+
+    static double round(double value, int decimalPlace) {
+        double power_of_ten = 1;
+        while (decimalPlace-- > 0)
+            power_of_ten *= 10.0;
+        return Math.round(value * power_of_ten)
+                / power_of_ten;
+    }
+
+
+
     @Override
-	public String getCategory() {
-		return "Graph Energy";
-	}
+    public String getCategory() {
+        return "Graph Energy";
+    }
 }

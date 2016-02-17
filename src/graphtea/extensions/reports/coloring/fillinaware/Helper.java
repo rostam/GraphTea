@@ -1,10 +1,15 @@
 package graphtea.extensions.reports.coloring.fillinaware;
 
-import Jama.Matrix;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.Vector;
 
@@ -166,6 +171,15 @@ public class Helper {
         return fillin;
     }
 
+    public static SpMat SILU(GraphModel g, int el, Vector<Integer> order, SpMat blockA) {
+        SpMat F = blockA.copy();
+        for (Edge e : g.edges()) e.setWeight(0);
+        for (int i : order) {
+            Helper.ILUOneStep(g, g.getVertex(i), el, F);
+        }
+        return F;
+    }
+
     public static SpMat getFillinMinDeg(GraphModel g, int el, Set<Integer> order, String ord, SpMat blockA) {
         SpMat F = blockA.copy();
         int fillin = 0;
@@ -209,7 +223,7 @@ public class Helper {
     //the input graph should be already computed
     //P is the number of potentially required edges
     //mR=block matrix mP= pot req matrix
-    public static SpMat getAddReqEdges(GraphModel gILU, SpMat m, SpMat mR, SpMat mP,Set<Integer> order) {
+    public static SpMat getAddReqEdges(GraphModel gILU, SpMat m, SpMat mR, SpMat mP,Vector<Integer> order) {
         SpMat addM = new SpMat(m.rows(),m.cols());
         //for (int i = 0; i < m.getRowDimension(); i++) {
         //    for (int j = 0; j < m.getColumnDimension(); j++) {
@@ -241,7 +255,7 @@ public class Helper {
         }
         return addM;
     }
-//
+
 //    public static Matrix ILUR(Matrix m, SpMat m10,SpMat F) {
 //        System.out.println("man " + F.nnz());
 //        Matrix ret = new Matrix(m.getRowDimension(),m.getColumnDimension());

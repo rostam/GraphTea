@@ -1,6 +1,6 @@
 package graphtea.extensions.reports.coloring.fillinaware;
 
-import graphtea.graph.graph.Edge;
+import graphtea.extensions.reports.coloring.fillinaware.metis.NDMetis;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 
@@ -29,53 +29,41 @@ public class HCol {
 //        return Helper.numberOfColors(g);
 //    }
 
-    //required edges are specifed by weights equal 1
-    public static Set<Integer> ordering(GraphModel g, String s) {
-        Map<Integer,Integer> vertexDegree = new HashMap<>();
-        for(Vertex v : g) {
-            vertexDegree.put(v.getId(),g.getDegree(v));
-            v.setColor(0);
-        }
 
-        if(s.equals("MaxDegree")) {
-            vertexDegree=sortByComparator(vertexDegree, false);
-            return vertexDegree.keySet();
-        } else if(s.equals("MinDegree")) {
-            vertexDegree=sortByComparator(vertexDegree,true);
-            return vertexDegree.keySet();
+    public static Vector<Integer> ordering(GraphModel g, String s,SpMat mm) {
+        for (Vertex v : g) v.setColor(0);
+        Vector<Integer> ret = new Vector<>();
+        switch (s) {
+            case "Nat":
+                for (int i = 0; i < g.numOfVertices(); i++) ret.add(i);
+                break;
+            case "MaxDeg":
+            case "MinDeg":
+                Map<Integer, Integer> vertexDegree = new HashMap<>();
+                for (Vertex v : g) vertexDegree.put(v.getId(), g.getDegree(v));
+                if (s.equals("MaxDeg")) vertexDegree = sortByComparator(vertexDegree, false);
+                else if (s.equals("MinDeg")) vertexDegree = sortByComparator(vertexDegree, true);
+                for (int i : vertexDegree.keySet()) ret.add(i);
+                break;
+            case "Metis":
+                NDMetis nd = new NDMetis("MetisGraph",g);
+                ret = nd.getOrder();
+                break;
         }
-
-        return vertexDegree.keySet();
+        return ret;
     }
 
-    public static int colorRestricted(GraphModel g, Set<Integer> order, String ord) {
-        //Map<Integer,Integer> vertexDegree = new HashMap<>();
-//        for(Vertex v : g) {
-//            vertexDegree.put(v.getId(),g.getDegree(v));
-//            v.setColor(0);
-//        }
-//
-//       // vertexDegree=sortByComparator(vertexDegree, false);
-        //for(int id : order) {
-        if (ord.equals("Normal")) {
-            g.getVertex(0).setColor(0);
-            for (int id = 0; id < g.numOfVertices(); id++) {
-                if (incidentToReqEdge(g, g.getVertex(id))) {
-                    int col = minPossibleColorRestricted(g, g.getVertex(id));
-                    g.getVertex(id).setColor(col);
-                }
-            }
-        } else {
-            Iterator it = order.iterator();
-            g.getVertex((Integer) it.next()).setColor(0);
-            while (it.hasNext()) {
-                int id = (int) it.next();
-                if (incidentToReqEdge(g, g.getVertex(id))) {
-                    int col = minPossibleColorRestricted(g, g.getVertex(id));
-                    g.getVertex(id).setColor(col);
-                }
+    public static int colorRest(GraphModel g, Vector<Integer> order) {
+        Iterator it = order.iterator();
+        g.getVertex((Integer) it.next()).setColor(0);
+        while (it.hasNext()) {
+            int id = (int) it.next();
+            if (incidentToReqEdge(g, g.getVertex(id))) {
+                int col = minPossibleColorRestricted(g, g.getVertex(id));
+                g.getVertex(id).setColor(col);
             }
         }
+
         return Helper.numberOfColors(g);
     }
 
@@ -84,7 +72,7 @@ public class HCol {
     //public static boolean DESC = false;
     private static Map<Integer, Integer> sortByComparator(Map<Integer, Integer> unsortMap, final boolean order)
     {
-        List<Map.Entry<Integer, Integer>> list = new LinkedList<Map.Entry<Integer, Integer>>(unsortMap.entrySet());
+        List<Map.Entry<Integer, Integer>> list = new LinkedList<>(unsortMap.entrySet());
 
         // Sorting the list based on values
         Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>()
@@ -105,7 +93,7 @@ public class HCol {
         });
 
         // Maintaining insertion order with the help of LinkedList
-        Map<Integer, Integer> sortedMap = new LinkedHashMap<Integer, Integer>();
+        Map<Integer, Integer> sortedMap = new LinkedHashMap<>();
         for (Map.Entry<Integer, Integer> entry : list)
         {
             sortedMap.put(entry.getKey(), entry.getValue());
