@@ -47,7 +47,7 @@ public class RandomMatching implements GraphReportExtension {
 
         for(Vertex v1 : rvarr) {
             if(vv.size() > limit) break;
-            for(Vertex v2 : g.getNeighbors(v1)) {
+            for(Vertex v2 : g.directNeighbors(v1)) {
                 if(vi.contains(v1.getId()) && vi.contains(v2.getId())) {
                     vv.put(v1,v2);
 

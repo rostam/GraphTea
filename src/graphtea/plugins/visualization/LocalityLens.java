@@ -93,7 +93,7 @@ class MouseEventListener implements Listener {
                 Vertex v = getEnteredVertex(ge.mousePos);
                 if (v != null) {
                     for(Edge e : g.getEdges()) e.setColor(-921360);
-                    for(Vertex n : g.neighbors(v)) g.getEdge(n,v).setColor(3);
+                    for(Vertex n : g.directNeighbors(v)) g.getEdge(n,v).setColor(3);
                 }
                 else{
                     for(Edge e : g.getEdges()) e.setColor(0);

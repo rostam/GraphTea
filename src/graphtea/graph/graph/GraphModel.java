@@ -18,10 +18,7 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.*;
 
 
 /**
@@ -593,5 +590,23 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 		g.setDirected(false);
 
 		return g;
+	}
+
+	public Vector<Vertex> directNeighbors(Vertex v) {
+		Iterator<Edge> eit = this.edgeIterator();
+		Vector<Vertex> vs = new Vector<>();
+		while (eit.hasNext()) {
+			Edge e = eit.next();
+			if (e.source.getId() == v.getId()) {
+				if(!vs.contains(e.target)) {
+					vs.add(e.target);
+				}
+			} else if (e.target.getId() == v.getId()) {
+				if(!vs.contains(e.source)) {
+					vs.add(e.source);
+				}
+			}
+		}
+		return vs;
 	}
 }

@@ -26,7 +26,7 @@ public class CholeskyFactorizationExtension extends GraphAlgorithm implements Al
             Vertex v1 = requestVertex(g, "select a vertex");
             step("Clique on neighbours");
             Vector<Vertex> vs = new Vector<Vertex>();
-            for(Vertex vit1 : g.getNeighbors(v1))
+            for(Vertex vit1 : g.directNeighbors(v1))
                 vs.add(vit1);
 
             for(Vertex vv1 : vs)

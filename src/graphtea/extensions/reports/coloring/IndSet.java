@@ -82,7 +82,7 @@ public class IndSet {
         IS.add(v_r);
 
         //Get distance-1 neighbors
-        for (Vertex n_1 : g.getNeighbors(g.getVertex(v_r))) {
+        for (Vertex n_1 : g.directNeighbors(g.getVertex(v_r))) {
           boolean is_deleted = false;
 
           erasedE = new Vector<>();
@@ -120,7 +120,7 @@ public class IndSet {
         IS.add(v_c);
 
         //Get distance-1 neighbors
-        for (Vertex n_1 : g.getNeighbors(g.getVertex(v_c))) {
+        for (Vertex n_1 : g.directNeighbors(g.getVertex(v_c))) {
           boolean is_deleted = false;
 
           //E_1 -> E_2

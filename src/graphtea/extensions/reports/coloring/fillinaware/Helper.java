@@ -38,7 +38,7 @@ public class Helper {
     public static int minPossibleColor(GraphModel g, Vertex given) {
         Vector<Integer> forbiddenCols = new Vector<>();
         for (int i = 0; i < 100; i++) forbiddenCols.add(0);
-        for (Vertex v : g.getNeighbors(given)) {
+        for (Vertex v : g.directNeighbors(given)) {
             forbiddenCols.set(v.getColor(), -1);
         }
         for (int i = 0; i < forbiddenCols.size(); i++) {
@@ -232,14 +232,14 @@ public class Helper {
                 if(mP.contains(i, j)) {
                     boolean isAdd = true;
                     if(i > j) {
-                        for (Vertex v : gILU.neighbors(gILU.getVertex(j))) {
+                        for (Vertex v : gILU.directNeighbors(gILU.getVertex(j))) {
                             if (v.getId() > j) {
                                 isAdd = false;
                                 break;
                             }
                         }
                     } else {
-                        for (Vertex v : gILU.neighbors(gILU.getVertex(i))) {
+                        for (Vertex v : gILU.directNeighbors(gILU.getVertex(i))) {
                             if (v.getId() > i) {
                                 isAdd=false;
                                 break;

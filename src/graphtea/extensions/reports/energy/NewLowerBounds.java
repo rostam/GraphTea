@@ -125,7 +125,7 @@ public class NewLowerBounds implements GraphReportExtension{
         v.add(getEigenValues(g));
 
         //2-degree sum
-        v.add(Utils.getDegreeSum(g,2));
+        v.add(Utils.getDegreeSum(g,1));
 
         ret.add(v);
         return ret;

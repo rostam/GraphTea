@@ -29,7 +29,7 @@ public class Utils {
     //get 2-degree sum of graph
     public static double getDegreeSumOfVertex(GraphModel g, double alpha, Vertex v) {
         double sum = 0;
-        for(Vertex u : g.getNeighbors(v)) {
+        for(Vertex u : g.directNeighbors(v)) {
             sum+=Math.pow(g.getDegree(u),alpha);
         }
         return sum;

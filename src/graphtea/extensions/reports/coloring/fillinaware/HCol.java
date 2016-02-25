@@ -115,13 +115,13 @@ public class HCol {
     }
 
     public static boolean incidentToReqEdge(GraphModel g, Vertex v) {
-        for(Vertex neigh : g.getNeighbors(v)) if (g.getEdge(v, neigh).getWeight() == 1) return true;
+        for(Vertex neigh : g.directNeighbors(v)) if (g.getEdge(v, neigh).getWeight() == 1) return true;
         return false;
     }
 
     public static Vector<Vertex> requiredNeighbours(GraphModel g, Vertex v) {
         Vector<Vertex> ns = new Vector<>();
-        for(Vertex neigh : g.neighbors(v)) {
+        for(Vertex neigh : g.directNeighbors(v)) {
             if(g.getEdge(v,neigh).getWeight()==1) {
                 ns.add(neigh);
             }
