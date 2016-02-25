@@ -6,6 +6,7 @@ package graphtea.extensions.reports.energy;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.zagreb.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -47,6 +48,7 @@ public class NewLowerBounds implements GraphReportExtension{
         titles.add(" 1.6 ");
         titles.add(" 1.7 ");
         titles.add(" Eigenvalues ");
+        titles.add(" 2-degree sum ");
         ret.setTitles(titles);
 
         Matrix A = g.getWeightedAdjacencyMatrix();
@@ -121,6 +123,9 @@ public class NewLowerBounds implements GraphReportExtension{
 
         //eigenvalues
         v.add(getEigenValues(g));
+
+        //2-degree sum
+        v.add(Utils.getDegreeSum(g,2));
 
         ret.add(v);
         return ret;

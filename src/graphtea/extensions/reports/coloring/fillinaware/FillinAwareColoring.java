@@ -54,9 +54,16 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
           System.out.println("file:" + f.getAbsolutePath());
           Matrix m = MM.loadMatrixFromSPARSE(f);
           SpMat sm = new SpMat(m);
-          generateResults(ret, f, sm, "Nat", "Nat", 10);
-          generateResults(ret, f, sm, "MinDeg", "MinDeg", 10);
-          generateResults(ret, f, sm, "Metis","Metis",10);
+          //int sizes[] = {1,10,sm.rows()/32,sm.rows()/8};
+          int sizes[] = {10,sm.rows()/32,sm.rows()/8};
+          for(int i=0;i<sizes.length;i++) {
+            generateResults(ret, f, sm, "Nat", "Nat", sizes[i]);
+            generateResults(ret, f, sm, "MinDeg", "MinDeg", sizes[i]);
+            generateResults(ret, f, sm, "Metis", "Metis", sizes[i]);
+            generateResults(ret, f, sm, "Nat", "Nat", sizes[i]);
+            generateResults(ret, f, sm, "Metis", "MaxDeg", sizes[i]);
+            generateResults(ret, f, sm, "Nat", "MaxDeg", sizes[i]);
+          }
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -70,7 +77,7 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
                                String ordILU, String ordCol,int k) {
     ColInf cinf = computeOneMatrix(sm,ordILU,ordCol,k);
     Vector<Object> results = new Vector<>();
-    results.add(f.getName()+","+ordILU+","+ordCol);
+    results.add(f.getName()+","+ordILU+","+ordCol+",k="+k);
     results.add(cinf.F*1.0);
     results.addAll(cinf.getVec());
     ret.add(results);
@@ -89,7 +96,7 @@ public class FillinAwareColoring implements GraphReportExtension,Parametrizable 
     int P = Pmat.nnz();
     SpMat addM = Helper.getAddReqEdges(gILU, mm, block, Pmat, orderILU);
     int add = addM.nnz();
-    saveMatriices(block,Fmat,addM,ordILU,ordCol);
+    //saveMatriices(block,Fmat,addM,ordILU,ordCol);
     return new ColInf(block.rows(),block.nnz(),F,C,P,add);
   }
 
