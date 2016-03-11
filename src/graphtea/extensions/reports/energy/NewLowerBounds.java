@@ -15,6 +15,8 @@ import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -49,6 +51,7 @@ public class NewLowerBounds implements GraphReportExtension{
         titles.add(" 1.7 ");
         titles.add(" Eigenvalues ");
         titles.add(" 2-degree sum ");
+        titles.add("new query");
         ret.setTitles(titles);
 
         Matrix A = g.getWeightedAdjacencyMatrix();
@@ -61,6 +64,7 @@ public class NewLowerBounds implements GraphReportExtension{
         Double[] prv = new Double[rv.length];
         for(int i=0;i<rv.length;i++) {
             prv[i] = Math.abs(rv[i]);
+            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
             sum += prv[i];
         }
 
@@ -126,6 +130,17 @@ public class NewLowerBounds implements GraphReportExtension{
 
         //2-degree sum
         v.add(Utils.getDegreeSum(g,1));
+
+        // new query
+        double eigenVal_k=prv[prv.length-1];
+        int cnt = prv.length-1;
+
+        if(eigenVal_k==0) {
+            while(eigenVal_k==0) {
+                eigenVal_k=prv[--cnt];
+            }
+        }
+        v.add(eigenVal_k);
 
         ret.add(v);
         return ret;
