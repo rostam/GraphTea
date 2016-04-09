@@ -15,8 +15,6 @@ import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -131,7 +129,7 @@ public class NewLowerBounds implements GraphReportExtension{
         //2-degree sum
         v.add(Utils.getDegreeSum(g,1));
 
-        // new query
+         // new query
         double eigenVal_k=prv[prv.length-1];
         int cnt = prv.length-1;
 
@@ -140,7 +138,18 @@ public class NewLowerBounds implements GraphReportExtension{
                 eigenVal_k=prv[--cnt];
             }
         }
-        v.add(eigenVal_k);
+
+        int numOfNZEigenValue = 0;
+        for(int i=0;i<prv.length;i++) {
+            if(prv[i] != 0) numOfNZEigenValue++;
+        }
+
+        double alpha_k=numOfNZEigenValue*Math.floor(numOfNZEigenValue/2)
+                *(1-(1/numOfNZEigenValue)*Math.floor(numOfNZEigenValue/2));
+        System.out.println(alpha_k + "  " + numOfNZEigenValue);
+        System.out.println(prv[0] + "  " + eigenVal_k);
+        v.add(Math.sqrt(2*m*numOfNZEigenValue
+                - (Math.pow((prv[0]-eigenVal_k),2)*alpha_k)));
 
         ret.add(v);
         return ret;
