@@ -3,6 +3,7 @@ package graphtea.extensions.reports.coloring;
 import Jama.Matrix;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.ArrayX;
 import graphtea.platform.parameter.Parameter;
@@ -16,7 +17,7 @@ import java.util.Vector;
 public class Coloring implements GraphReportExtension,Parametrizable {
 
   //bls block size
-  public int color() {
+  public RenderTable color() {
     int blockSize = 100;
     int Mode2=0;
 
@@ -206,11 +207,6 @@ public class Coloring implements GraphReportExtension,Parametrizable {
       }
     }
     int num_colors=0;
-
-    System.out.println("test" + V_r.size() + " " + V_c.size());
-
-    //Coloring of the vertices
-    System.out.println("ras "+Coloring);
     switch (Coloring) {
       case 1:
         System.out.println("PartialD2ColoringCols");
@@ -254,7 +250,24 @@ public class Coloring implements GraphReportExtension,Parametrizable {
         break;
     }
 
-    return num_colors;
+    RenderTable rt = new RenderTable();
+    Vector<String> names = new Vector<>();
+    Vector<Object> results = new Vector<>();
+    names.add("Matrix");
+    results.add(file);
+    names.add("Size");
+    results.add(V_r.size() + "*" + V_c.size());
+    names.add("Algorithm");
+    results.add(colorings.getValue());
+    names.add("Ordering");
+    results.add(ord.getValue());
+    names.add("Block Size");
+    results.add(bls+"");
+    names.add("Num Of Colors");
+    results.add(num_colors+"");
+    rt.setTitles(names);
+    rt.add(results);
+    return rt;
   }
 
   public int Coloring = 1;
@@ -287,7 +300,7 @@ public class Coloring implements GraphReportExtension,Parametrizable {
   public ArrayX<String> pat= new ArrayX<>("Diagonal","Full","BlockDiagonal");
   //public int RequiredPattern=1;
   @Parameter(name = "Matrix File", description = "")
-  public String file = "abb313.mtx";
+  public String file = "hor_131.mtx";
   @Parameter(name = "rho", description = "")
   public int rho = 1;
   @Parameter(name = "Block Size", description = "")
@@ -314,8 +327,7 @@ public class Coloring implements GraphReportExtension,Parametrizable {
     if(colorings.getValue().equals("StarBicoloringSchemeDynamicOrderingRestricted")) Coloring=9;
     if(colorings.getValue().equals("StarBicoloringSchemeCombinedVertexCoverColoringRestricted")) Coloring=10;
 
-    int res = color();
-    return res;
+    return color();
   }
 
   @Override
