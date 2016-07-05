@@ -68,15 +68,15 @@ public class Coloring implements GraphReportExtension,Parametrizable {
     }
 
     System.out.println("Number of vertics: "+g.numOfVertices());
+    int count = 0;
     for(int i=0;i<rows;i++) {
-      for(int j=0;j<cols;j++) {
-        if(mm.get(i,j)==1) {
+      for (int j = 0; j < cols; j++) {
+        if (mm.get(i, j) != 0) {
           g.addEdge(new Edge(g.getVertex(i), g.getVertex(rows + j)));
+          count++;
         }
       }
     }
-
-    //new GraphData(Application.getBlackBoard()).core.showGraph(g);
 
     //Initialize required pattern
     int entries_pattern = 0;
