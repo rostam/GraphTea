@@ -2,6 +2,8 @@ package graphtea.extensions.reports.coloring.fillinaware;
 
 import Jama.Matrix;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Vector;
 
@@ -75,7 +77,28 @@ public class SpMat extends Vector<HashSet<Integer>> {
 
     public SpMat sparsify(int k) {
         SpMat newMM = new SpMat(this.rows, this.cols);
-        if(rows % k != 0) {
+        if(rows%k == 0) {
+            for (int d = 0; d < ((rows / k) - 2) * k; d = d + k) {
+                for (int ii = 0; ii < k; ii++) {
+                    for (int jj = 0; jj < k; jj++) {
+                        if ((d + ii) < rows && (d + jj) < cols) {
+                            if (this.contains(d + ii, d + jj)) {
+                                newMM.set(d + ii, d + jj);
+                            }
+                        }
+                    }
+                }
+            }
+
+            int d1 = ((rows / k) - 2) * k;
+            for (int cnt1 = d1; cnt1 < rows; cnt1++) {
+                for (int cnt2 = d1; cnt2 < cols; cnt2++) {
+                    if (this.contains(cnt1, cnt2)) {
+                        newMM.set(cnt1, cnt2);
+                    }
+                }
+            }
+        } else {
             for (int d = 0; d < ((rows / k) - 1) * k; d = d + k) {
                 for (int ii = 0; ii < k; ii++) {
                     for (int jj = 0; jj < k; jj++) {
@@ -96,20 +119,20 @@ public class SpMat extends Vector<HashSet<Integer>> {
                     }
                 }
             }
-        } else {
-            for (int d = 0; d < rows; d = d + k) {
-                for (int ii = 0; ii <= k; ii++) {
-                    for (int jj = 0; jj <= k; jj++) {
-                        if ((d + ii) < rows && (d + jj) < cols) {
-                            if (this.contains(d + ii, d + jj)) {
-                                newMM.set(d + ii, d + jj);
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         return newMM;
+    }
+
+
+    public void writeToFile(String fileName) throws IOException {
+        FileWriter fw = new FileWriter(fileName);
+        for (int i = 0; i < this.size(); i++) {
+            for (int j : this.get(i)) {
+                fw.write(j + " ");
+            }
+            fw.write("\n");
+        }
+        fw.close();
     }
 }

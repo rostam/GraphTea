@@ -80,7 +80,6 @@ public class Helper {
 
         //undirected graph for one sided coloring
         GraphModel gOfCol = new GraphModel(false);
-
         for (int i = 0; i < rows; i++) {
             Vertex v = new Vertex();
             v.setColor(-1);
@@ -89,15 +88,17 @@ public class Helper {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < rows; j++) {
-                boolean isEdge = false;
-                for(int k : mm.get(i)) {
-                    if (mm.contains(j, k)) {
-                        isEdge = true;
-                        break;
+                if (i != j) {
+                    boolean isEdge = false;
+                    for (int k : mm.get(i)) {
+                        if (mm.contains(j, k)) {
+                            isEdge = true;
+                            break;
+                        }
                     }
+                    if (isEdge)
+                        gOfCol.addEdge(new Edge(gOfCol.getVertex(i), gOfCol.getVertex(j)));
                 }
-                if (isEdge) gOfCol.addEdge(new Edge(
-                        gOfCol.getVertex(i), gOfCol.getVertex(j)));
             }
         }
 
@@ -118,23 +119,31 @@ public class Helper {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < rows; j++) {
-                boolean isEdge = false;
-                boolean isReq = false;
-                for(int k : mm.get(i)) {
-                    if (mm.contains(j, k)) {
-                        isEdge = true;
-                        if (mmRes.contains(i, k) || mmRes.contains(j, k)) isReq = true;
-                        //break;
+                if(i!=j) {
+                    boolean isEdge = false;
+                    boolean isReq = false;
+                    for (int k : mm.get(i)) {
+                        if (mm.contains(j, k)) {
+                            isEdge = true;
+                            if (mmRes.contains(i, k) || mmRes.contains(j, k)) {
+                                isReq = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (isEdge) {
+                        Edge e = new Edge(gOfCol.getVertex(i), gOfCol.getVertex(j));
+                        if (isReq) e.setWeight(1);
+                        else e.setWeight(0);
+                        gOfCol.addEdge(e);
                     }
                 }
-                if (isEdge) {
-                    Edge e = new Edge(gOfCol.getVertex(i), gOfCol.getVertex(j));
-                    if (isReq) e.setWeight(1);
-                    else e.setWeight(0);
-                    gOfCol.addEdge(e);
-                }
-
             }
+        }
+
+        int cnt = 0;
+        for(Edge e : gOfCol.edges()) {
+            if(e.getWeight() == 1) cnt++;
         }
 
         return gOfCol;
@@ -200,14 +209,27 @@ public class Helper {
     //P is the number of potentially required edges
     //mR=block matrix
     public static  SpMat getPotReqEdges(GraphModel g, SpMat m, SpMat mR) {
-        SpMat potM = new SpMat(m.rows(),m.cols());
+        SpMat potM = new SpMat(m.rows(), m.cols());
+//        for(Vertex v : g) {
+//            for (Vertex u : g.directNeighbors(v)) {
+//                if (g.getEdge(v, u).getWeight() != 1) {
+//                    if(v.getColor() != u.getColor()) {
+//                        g.getEdge(v,u).setWeight(1);
+//                        potM.set(v.getId(),u.getId());
+//                    }
+//                }
+//            }
+//        }
+
         for (int i = 0; i < m.rows(); i++) {
-            for(int j : m.get(i)) {
+            if (g.getVertex(i).getColor() == 0) System.out.println(i + " test");
+            for (int j : m.get(i)) {
                 if (!mR.contains(i, j)) {
                     boolean isPot = true;
                     for (int k = 0; k < m.rows(); k++) {
-                        if (k != i && m.contains(k, j) && !mR.contains(k, j)) {
+                        if (k != i && m.contains(k, j) /*&& !mR.contains(k, j)*/) {
                             if (g.getVertex(i).getColor() == g.getVertex(k).getColor()) {
+                                System.out.println("bara " + i + " " + k);
                                 isPot = false;
                                 break;
                             }

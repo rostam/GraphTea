@@ -63,7 +63,6 @@ public class HCol {
                 g.getVertex(id).setColor(col);
             }
         }
-
         return Helper.numberOfColors(g);
     }
 
