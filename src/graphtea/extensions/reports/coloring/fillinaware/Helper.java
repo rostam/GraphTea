@@ -3,13 +3,6 @@ package graphtea.extensions.reports.coloring.fillinaware;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.Vector;
 
@@ -227,9 +220,8 @@ public class Helper {
                 if (!mR.contains(i, j)) {
                     boolean isPot = true;
                     for (int k = 0; k < m.rows(); k++) {
-                        if (k != i && m.contains(k, j) /*&& !mR.contains(k, j)*/) {
+                        if (k != i && m.contains(k, j) && !mR.contains(k, j)) {
                             if (g.getVertex(i).getColor() == g.getVertex(k).getColor()) {
-                                System.out.println("bara " + i + " " + k);
                                 isPot = false;
                                 break;
                             }

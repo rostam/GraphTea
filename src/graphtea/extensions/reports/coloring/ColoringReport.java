@@ -15,16 +15,18 @@ import java.util.Vector;
 
 public class ColoringReport implements GraphReportExtension, Parametrizable {
     @Parameter(name = "Matrix")
-    String matrix = "mats/nos3.mtx";
+    public String matrix = "mats/nos3.mtx";
     @Parameter(name = "Coloring Algorithm")
-    String algorithm = "PartialD2RestrictedColumns";
+    public String algorithm = "PartialD2RestrictedColumns";
     @Parameter(name = "Ordering")
-    String ord = "LFO";
+    public String ord = "LFO";
+    @Parameter(name="Block Size")
+    public String blockSize = "10";
 
   @Override
   public Object calculate(GraphModel g) {
       ProcessBuilder process = new ProcessBuilder("./Coloring", algorithm,
-              ord, "Best", "1.0", "BlockDiagonal", "4", matrix);
+              ord, "Best", "1.0", "BlockDiagonal", blockSize, matrix);
       System.out.println(process.command());
       Process p = null;
       try {
@@ -46,11 +48,13 @@ public class ColoringReport implements GraphReportExtension, Parametrizable {
           while ((line = bri.readLine()) != null) {
               out+=line+"\n";
               System.out.println(line);
-              if(line.contains("Colors") || line.contains("Rows")) {
+              if(line.contains("Colors")
+                      || line.contains("Rows")
+                      || line.contains("Required")) {
                   titles.add(line.substring(0, line.indexOf(":")));
                   values.add(line.substring(line.indexOf(":") + 2));
               }
-              if(line.contains("Colors:")) break;
+              if(line.contains("Additionally Required:")) break;
           }
       } catch (IOException e) {
           e.printStackTrace();
@@ -58,6 +62,8 @@ public class ColoringReport implements GraphReportExtension, Parametrizable {
       RenderTable rt = new RenderTable();
       rt.setTitles(titles);
       rt.add(values);
+
+
       return rt;
   }
 
