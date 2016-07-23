@@ -150,6 +150,7 @@ public class Helper {
             if (g.isEdge(v, selected)) inVer.add(v);
             if (g.isEdge(selected, v)) outVer.add(v);
         }
+
         for (Vertex anInVer : inVer) {
             for (Vertex anOutVer : outVer) {
                 if (anInVer.getId() != anOutVer.getId()) {
@@ -174,6 +175,7 @@ public class Helper {
     }
 
     public static SpMat SILU(GraphModel g, int el, Vector<Integer> order, SpMat blockA) {
+        System.out.println("size " + g.getEdgesCount());
         SpMat F = blockA.copy();
         for (Edge e : g.edges()) e.setWeight(0);
         for (int i : order) {
