@@ -416,8 +416,8 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	}
 
 	public void insertEdges(Iterable<Edge> edges) {
-		for (Edge _ : edges)
-			insertEdge(_);
+		for (Edge edge : edges)
+			insertEdge(edge);
 	}
 
 	/**

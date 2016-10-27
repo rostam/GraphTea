@@ -92,9 +92,9 @@ public class ProEditor2NotifiableAttributeSetConnector implements AttributeListe
     }
 
     private void load(AttributeSetView xatr) {
-        String[] _ = xatr.getNames();
+        String[] names = xatr.getNames();
         int i = 0;
-        for (String key : _) {
+        for (String key : names) {
             if (xatr.isVisible(key)) {
                 iChangedTheAtr = true;
                 keyByRow.put(i++, key);

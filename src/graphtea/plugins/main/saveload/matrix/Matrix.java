@@ -50,8 +50,8 @@ public class Matrix {
         Object[][] ret = new Object[n][n];
         HashMap<Integer, vt> m = new HashMap<Integer, vt>();
         int i = 0;
-        for (vt _ : g) {
-            m.put(i++, _);
+        for (vt vv : g) {
+            m.put(i++, vv);
         }
         for (i = 0; i < n; i++)
         	ret[i][i] = g.getInDegree(m.get(i));
@@ -64,8 +64,8 @@ public class Matrix {
         Object[][] ret = new Object[n][n];
         HashMap<Integer, vt> m = new HashMap<Integer, vt>();
         int i = 0;
-        for (vt _ : g) {
-            m.put(i++, _);
+        for (vt vv : g) {
+            m.put(i++, vv);
         }
         for (i = 0; i < n; i++)
         	ret[i][i] = g.getOutDegree(m.get(i));

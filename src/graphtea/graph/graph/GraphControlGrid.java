@@ -206,11 +206,11 @@ public class GraphControlGrid implements GraphModelListener {
             }
         }
         if (!found) {      //there were no fake edges so make the array larger
-            Edge _[] = new Edge[s.length + 2];
-            System.arraycopy(s, 0, _, 0, s.length);
-            _[s.length] = e;
-            _[s.length + 1] = fakeEdge;         //make it a little more larger for better performance, similar to Vectors
-            edgesGrid[ix][iy] = _;
+            Edge edges[] = new Edge[s.length + 2];
+            System.arraycopy(s, 0, edges, 0, s.length);
+            edges[s.length] = e;
+            edges[s.length + 1] = fakeEdge;         //make it a little more larger for better performance, similar to Vectors
+            edgesGrid[ix][iy] = edges;
         }
     }
 
@@ -227,11 +227,11 @@ public class GraphControlGrid implements GraphModelListener {
             }
         }
         if (!found) {      //there were no fake edges so make the array larger
-            Vertex[] _ = new Vertex[s.length + 2];
-            System.arraycopy(s, 0, _, 0, s.length);
-            _[s.length] = v;
-            _[s.length + 1] = fakeVertex;         //make it a little more larger for better performance, similar to Vectors
-            verticesGrid[ix][iy] = _;
+            Vertex[] vertices = new Vertex[s.length + 2];
+            System.arraycopy(s, 0, vertices, 0, s.length);
+            vertices[s.length] = v;
+            vertices[s.length + 1] = fakeVertex;         //make it a little more larger for better performance, similar to Vectors
+            verticesGrid[ix][iy] = vertices;
         }
     }
 

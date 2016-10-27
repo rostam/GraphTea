@@ -68,8 +68,8 @@ public class GBody extends JPanel {
         JPanel cur = sp;
         Iterator<Pair<Component, String>> it = showingSideBars.iterator();
         while (it.hasNext()) {
-            Pair<Component, String> _ = it.next();
-            GSideBarPanel sbp = new GSideBarPanel(this, _.first, _.second);
+            Pair<Component, String> stringPair = it.next();
+            GSideBarPanel sbp = new GSideBarPanel(this, stringPair.first, stringPair.second);
             if (it.hasNext()) {
                 cur.add(new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, sbp, cur = new JPanel()));
                 makeJPanelFlat(cur);

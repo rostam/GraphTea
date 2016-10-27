@@ -143,9 +143,9 @@ public class GMenuBar extends javax.swing.JMenuBar {
                     for (int i = 0; i < mnu.getMenuComponentCount(); i++) {
                         Component menuComponent = mnu.getMenuComponent(i);
                         if (menuComponent instanceof JMenu) {
-                            JMenu _ = (JMenu) menuComponent;
-                            if (_.getText().equals(ss)) {
-                                _mnu = _;
+                            JMenu menu = (JMenu) menuComponent;
+                            if (menu.getText().equals(ss)) {
+                                _mnu = menu;
                                 break;  //:D it is found
                             }
                         }

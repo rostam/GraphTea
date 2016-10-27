@@ -61,9 +61,9 @@ public class GStroke implements Serializable,  FromStringProvider<GStroke> {
     }
 
     public GStroke fromString(String data) {
-        for (GStroke _ : strokes)
-            if (_.name.equals(data)) {
-                return _;
+        for (GStroke stroke : strokes)
+            if (stroke.name.equals(data)) {
+                return stroke;
             }
         return null;
     }

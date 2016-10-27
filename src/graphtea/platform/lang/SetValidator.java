@@ -15,8 +15,8 @@ public class SetValidator<t> implements Validator<t> {
     HashSet<t> vals = new HashSet<t>();
 
     public void addValidValues(t[] o) {
-        for (t _ : o) {
-            vals.add(_);
+        for (t var : o) {
+            vals.add(var);
         }
     }
 

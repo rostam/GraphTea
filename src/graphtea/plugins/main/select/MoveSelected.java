@@ -52,8 +52,8 @@ public class MoveSelected extends AbstractAction {
             {
                 if (vdd.eventType == VertexEvent.DRAGGING_STARTED) {
                     verticesPositionsBackUp = new GraphPoint[gd.getGraph().getVerticesCount()];
-                    for (Vertex _ : gd.getGraph()) {
-                        verticesPositionsBackUp[_.getId()] = _.getLocation();
+                    for (Vertex vertex : gd.getGraph()) {
+                        verticesPositionsBackUp[vertex.getId()] = vertex.getLocation();
                     }
                     startx = vdd.v.getLocation().x;
                     starty = vdd.v.getLocation().y;
@@ -63,8 +63,8 @@ public class MoveSelected extends AbstractAction {
                     drop();
                     //add undo data
                     GraphPoint[] newPos = new GraphPoint[gd.getGraph().getVerticesCount()];
-                    for (Vertex _ : gd.getGraph()) {
-                        newPos[_.getId()] = _.getLocation();
+                    for (Vertex ver : gd.getGraph()) {
+                        newPos[ver.getId()] = ver.getLocation();
                     }
 
                     blackboard.setData(SELECTION_MOVED, new GraphPoint(vdd.v.getLocation().x - startx, vdd.v.getLocation().y - starty));

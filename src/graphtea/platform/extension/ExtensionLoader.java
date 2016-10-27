@@ -124,8 +124,8 @@ public class ExtensionLoader implements StorableOnExit {
      * @param unknownFile
      */
     public static Extension loadUnknownExtension(File unknownFile, BlackBoard blackboard) {
-        for (UnknownExtensionLoader _ : registeredUnknownExtensionLoaders) {
-            Extension extension = _.load(unknownFile, blackboard);
+        for (UnknownExtensionLoader loader : registeredUnknownExtensionLoaders) {
+            Extension extension = loader.load(unknownFile, blackboard);
             if (extension != null)
                 return extension;
         }

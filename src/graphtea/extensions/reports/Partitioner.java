@@ -37,8 +37,8 @@ public class Partitioner {
         color = new int[vertices.length];
 
         ArrayDeque<BaseVertex> v = new ArrayDeque<BaseVertex>();
-        for (BaseVertex _ : g.getVertexArray()) {
-            v.add(_);
+        for (BaseVertex baseVertex : g.getVertexArray()) {
+            v.add(baseVertex);
         }
 
         return findAllSubsetsRecursively(1, listener, v, new ArrayDeque<BaseVertex>(), new ArrayDeque<BaseVertex>());
@@ -50,8 +50,8 @@ public class Partitioner {
         v = new ArrayDeque<BaseVertex>();
         set = new boolean[g.getVerticesCount()];
         int i = 0;
-        for (BaseVertex _ : g.getVertexArray()) {
-            v.add(_);
+        for (BaseVertex baseVertx : g.getVertexArray()) {
+            v.add(baseVertx);
             set[i++] = false;
         }
         maxSet = Integer.MIN_VALUE;
@@ -164,8 +164,8 @@ public class Partitioner {
         color = new int[vertices.length];
 
         ArrayDeque<BaseVertex> v = new ArrayDeque<BaseVertex>();
-        for (BaseVertex _ : g.getVertexArray()) {
-            v.add(_);
+        for (BaseVertex baseVertex : g.getVertexArray()) {
+            v.add(baseVertex);
         }
         if (findAllPartitioningsRecursively(t, new ColoringListener() {
             public boolean coloringFound(final int t) {
@@ -204,8 +204,8 @@ public class Partitioner {
     private boolean findAllSubsetsRecursively(final int t, SubSetListener listener, ArrayDeque<BaseVertex> v, ArrayDeque<BaseVertex> set, ArrayDeque<BaseVertex> complement) {
         if (t == 0 || v.size() == 0) {
             //all colorings of valid and checked before except the remaining vertices which all have color 0
-            for (BaseVertex _v : v) {
-                for (int i : edgeArray[_v.getId()])
+            for (BaseVertex baseVertex : v) {
+                for (int i : edgeArray[baseVertex.getId()])
                     if (color[i] == 0)
                         return false;
             }
@@ -213,27 +213,27 @@ public class Partitioner {
             if (listener.subsetFound(t, complement, set)) return true;
             return false;
         }
-        BaseVertex _ = v.removeFirst();
+        BaseVertex baseVertex = v.removeFirst();
 
         boolean canColoredT = true;
-        for (int i : edgeArray[_.getId()]) {
+        for (int i : edgeArray[baseVertex.getId()]) {
             if (color[i] == t) {
                 canColoredT = false;
                 break;
             }
         }
         if (canColoredT) {
-            color[_.getId()] = t;
-            set.add(_);
+            color[baseVertex.getId()] = t;
+            set.add(baseVertex);
             if (findAllSubsetsRecursively(t, listener, v, set, complement)) return true;
-            set.remove(_);
+            set.remove(baseVertex);
         }
 
-        color[_.getId()] = 0;
-        complement.add(_);
+        color[baseVertex.getId()] = 0;
+        complement.add(baseVertex);
         if (findAllSubsetsRecursively(t, listener, v, set, complement)) return true;
-        complement.remove(_);
-        v.addFirst(_);
+        complement.remove(baseVertex);
+        v.addFirst(baseVertex);
         return false;
     }
 

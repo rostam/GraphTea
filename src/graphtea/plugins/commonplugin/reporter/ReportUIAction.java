@@ -24,8 +24,8 @@ public class ReportUIAction implements UIActionExtension {
         if (exceptionData != null) {
             StackTraceElement[] ee = exceptionData.e.getStackTrace();
             s = exceptionData.e.toString() + "\n";
-            for (StackTraceElement _ : ee) {
-                s += "\tat " + _.toString() + "\n";
+            for (StackTraceElement element : ee) {
+                s += "\tat " + element.toString() + "\n";
             }
         }
         return s;

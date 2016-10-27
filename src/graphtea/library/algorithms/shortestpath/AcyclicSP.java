@@ -41,10 +41,10 @@ public class AcyclicSP<VertexType extends BaseVertex,
         Queue<VertexType> Q = new LinkedList<VertexType>();
         HashMap<VertexType, VertexType> gcopy2g = new HashMap<VertexType, VertexType>();
         HashMap<Integer, VertexType> t = new HashMap<Integer, VertexType>();
-        for (VertexType _ : gcopy)
-            t.put(_.getId(), _);
-        for (VertexType _ : g)
-            gcopy2g.put(t.get(_.getId()), _);
+        for (VertexType type : gcopy)
+            t.put(type.getId(), type);
+        for (VertexType type : g)
+            gcopy2g.put(t.get(type.getId()), type);
         for (int i = 0; i < dist.length; i++)
             dist[i] = Integer.MAX_VALUE;
 

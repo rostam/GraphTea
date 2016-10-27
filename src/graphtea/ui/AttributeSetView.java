@@ -168,9 +168,9 @@ public class AttributeSetView {
 //        int n = s.size()- descriptions[visible].size();
         String[] _ss = new String[s.size()];
         int i = 0;
-        for (String _ : s) {
-            if (_ != null && isVisible(_))
-                _ss[i++] = _;
+        for (String s1 : s) {
+            if (s1 != null && isVisible(s1))
+                _ss[i++] = s1;
         }
         int n = i;
         String[] ss = new String[n];

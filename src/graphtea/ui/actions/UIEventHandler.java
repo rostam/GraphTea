@@ -47,11 +47,11 @@ public class UIEventHandler extends AbstractAction {
     }
 
     public void performAction(String eventName, Object value) {
-        UIEventData _ = blackboard.getData(UIEventData.name(""));
-        String id = _.action;
+        UIEventData data = blackboard.getData(UIEventData.name(""));
+        String id = data.action;
         if (id != null) {
             enableAction(id);
-            sendEventToAction(id, _);
+            sendEventToAction(id, data);
         }
     }
 

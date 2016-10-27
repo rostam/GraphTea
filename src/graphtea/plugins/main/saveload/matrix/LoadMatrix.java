@@ -57,8 +57,8 @@ public class LoadMatrix implements GraphReaderExtension {
 		
 		FileReader in = new FileReader(selectedFile);
 		BufferedReader br = new BufferedReader(in);
-		String _, s = "";
-		while ((_ = br.readLine()) != null) s += _ + "\n";
+		String s1, s = "";
+		while ((s1 = br.readLine()) != null) s += s1 + "\n";
 		Matrix.Matrix2Graph(Matrix.String2Matrix(s), g);
 		return g;
 	}
@@ -67,8 +67,8 @@ public class LoadMatrix implements GraphReaderExtension {
 		GraphModel g = new GraphModel(isDirected);
 		FileReader in = new FileReader(selectedFile);
 		BufferedReader br = new BufferedReader(in);
-		String _, s = "";
-		while ((_ = br.readLine()) != null) s += _ + "\n";
+		String s1, s = "";
+		while ((s1 = br.readLine()) != null) s += s1 + "\n";
 		Matrix.Matrix2Graph(Matrix.String2Matrix(s), g);
 		return g;
 	}

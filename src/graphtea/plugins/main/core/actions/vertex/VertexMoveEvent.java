@@ -50,11 +50,11 @@ public class VertexMoveEvent extends AbstractAction {
 
     private void dragging() {
         VertexEvent vmd = blackboard.getData(VertexEvent.EVENT_KEY);
-        GraphPoint _ = new GraphPoint(vmd.mousePos);
+        GraphPoint point = new GraphPoint(vmd.mousePos);
         GraphPoint loc = vmd.v.getLocation();
-        _.x += loc.x - x1;
-        _.y += loc.y - y1;
-        vmd.v.setLocation(_);
+        point.x += loc.x - x1;
+        point.y += loc.y - y1;
+        vmd.v.setLocation(point);
         //System.out.println(vmd.me.getX()  - x1);
     }
 
@@ -63,11 +63,11 @@ public class VertexMoveEvent extends AbstractAction {
     private void drop() {
         VertexMoveData vmd = new VertexMoveData();
         vmd.v = vdd.v;
-        GraphPoint _ = new GraphPoint(vdrod.mousePos);
+        GraphPoint point = new GraphPoint(vdrod.mousePos);
         GraphPoint loc = vmd.v.getLocation();
-        _.x += vdrod.mousePos.x + loc.x - x1;
-        _.y += vdrod.mousePos.y + loc.y - y1;
-        vmd.newPosition = _;
+        point.x += vdrod.mousePos.x + loc.x - x1;
+        point.y += vdrod.mousePos.y + loc.y - y1;
+        vmd.newPosition = point;
         blackboard.setData(VertexMoveData.EVENT_KEY, vmd);
         //it negatives the status of the vertex so , it will be negatived cause a vertex click will be fired after and the selection status will be negatived again, it's just a hack!
         //todo: the hack may cause problems for some one working with selections

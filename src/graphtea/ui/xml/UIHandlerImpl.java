@@ -115,10 +115,10 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         String clazz = meta.getValue("class");
         String id = meta.getValue("id");
         System.out.println("Adding the Bar with id:" + id + " ,class:" + clazz);
-        Component _ = getComponent(clazz);
+        Component component = getComponent(clazz);
         //we put the component in the blackboad and later (in Actions) we can fetch it if we like, i guess that it is the only way to do the loading of side bar and actions dynamically
-        UIUtils.setComponent(blackboard, id, _);
-        statusbar.addComponent(_);
+        UIUtils.setComponent(blackboard, id, component);
+        statusbar.addComponent(component);
     }
 
     //*****************menu handling------------------------
@@ -281,8 +281,8 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
                 id = id.replaceFirst(UIEventData.name(""), "");
             }
             if (x instanceof UIActionExtensionAction) {
-                UIActionExtensionAction _ = (UIActionExtensionAction) x;
-                _.setUIEvent(id);
+                UIActionExtensionAction action = (UIActionExtensionAction) x;
+                action.setUIEvent(id);
             }
             addAction(id, x, group);
 //            }
@@ -352,8 +352,8 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
                 Object[] o = {blackboard};
                 try {
                     Constructor c = t.getConstructor(BlackBoard.class);
-                    Object _ = c.newInstance(o);
-                    return (graphtea.platform.core.AbstractAction) _;
+                    Object o1 = c.newInstance(o);
+                    return (graphtea.platform.core.AbstractAction) o1;
                 }
                 catch (Exception e) {
 //                    System.err.println("Error while loading " + clazz);
@@ -386,10 +386,10 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
             }
             //if it had a constructor(blackboard)
             try {
-                Object _ = c.newInstance(o);
-                if (_ instanceof GComponentInterface) {
+                Object o1 = c.newInstance(o);
+                if (o1 instanceof GComponentInterface) {
                     //load was successfull
-                    return ((GComponentInterface) _).getComponent(blackboard);
+                    return ((GComponentInterface) o1).getComponent(blackboard);
                 } else {
                     System.err.println("the class " + clazz + " doesn't implement the interface GComponentInterface, so it can't be put on the UI.");
                 }

@@ -56,9 +56,9 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
     }
 
     public Event animateEvent(Event ae) {
-        for (AtomAnimator _ : animators)
-            if (_.isAnimatable(ae)) {
-                return _.animate(ae, blackboard);
+        for (AtomAnimator animator : animators)
+            if (animator.isAnimatable(ae)) {
+                return animator.animate(ae, blackboard);
             }
         return ae;
     }

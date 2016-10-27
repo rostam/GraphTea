@@ -211,8 +211,8 @@ public class AlgorithmUtils {
      */
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     void clearVertexMarks(BaseGraph<VertexType, EdgeType> g) {
-        for (VertexType _ : g) {
-            _.setMark(false);
+        for (VertexType type : g) {
+            type.setMark(false);
         }
     }
 
@@ -229,8 +229,8 @@ public class AlgorithmUtils {
         clearVertexMarks(tree);
 
 //close the path to tree root
-        for (Vertex _ : pathToRoot) {
-            _.setMark(true);
+        for (Vertex vertex : pathToRoot) {
+            vertex.setMark(true);
         }
         ArrayList<Vertex> ret = BFS(tree, subTreeRoot, null);
         LibraryUtils.setVertexMarks(tree, vertexMarksBackup);
@@ -302,14 +302,14 @@ public class AlgorithmUtils {
         treeRoot.getProp().obj = 0;
         while (!q.isEmpty()) {
             Vertex v = q.remove(0);
-            for (Vertex _ : unRootedTree.getNeighbors(v)) {
-                if (!_.getMark()) {
-                    q.add(_);
-                    ret.add(_);
-                    _.setMark(true);
-                    _.getProp().obj = ((Integer) v.getProp().obj) + 1;  //set the distance
+            for (Vertex vertex : unRootedTree.getNeighbors(v)) {
+                if (!vertex.getMark()) {
+                    q.add(vertex);
+                    ret.add(vertex);
+                    vertex.setMark(true);
+                    vertex.getProp().obj = ((Integer) v.getProp().obj) + 1;  //set the distance
                     if (listener != null)
-                        listener.visit(_, v);
+                        listener.visit(vertex, v);
                 }
             }
         }
@@ -351,9 +351,9 @@ public class AlgorithmUtils {
         ArrayList<Vertex> componentVertices = BFSOrder(g, v);
         Vertex rootCandidate = v;
 
-        for (Vertex _ : componentVertices) {
-            if (_.getId() < v.getId()) {
-                rootCandidate = _;
+        for (Vertex vertex : componentVertices) {
+            if (vertex.getId() < v.getId()) {
+                rootCandidate = vertex;
             }
 
         }
