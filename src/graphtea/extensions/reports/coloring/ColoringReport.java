@@ -74,7 +74,7 @@ public class ColoringReport implements GraphReportExtension, Parametrizable {
 
   @Override
   public String getName() {
-    return "Coloring Based on C";
+    return "PreCol 1.0";
   }
 
   @Override

@@ -29,8 +29,8 @@ public class Matrix {
         Object[][] ret = new Object[n][n];
         HashMap<Integer, vt> m = new HashMap<Integer, vt>();
         int i = 0;
-        for (vt _ : g) {
-            m.put(i++, _);
+        for (vt tmp : g) {
+            m.put(i++, tmp);
         }
         int[] res;
         for (i = 0; i < n; i++)

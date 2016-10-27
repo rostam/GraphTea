@@ -166,15 +166,15 @@ public class AlgorithmUtils {
         while (!q.isEmpty() && !found) {
             VertexType v = q.remove(0);
 
-            for (VertexType _ : getNeighbors(g, v)) {
-                if (_ == dest) {
+            for (VertexType neigh : getNeighbors(g, v)) {
+                if (neigh == dest) {
                     found = true;
 //                    break;
                 }
-                if (!_.getMark()) {
-                    q.add(_);
-                    _.setMark(true);
-                    parents[_.getId()] = v;
+                if (!neigh.getMark()) {
+                    q.add(neigh);
+                    neigh.setMark(true);
+                    parents[neigh.getId()] = v;
                 }
             }
         }
@@ -186,15 +186,13 @@ public class AlgorithmUtils {
         //extract the path
         Path<VertexType> ret = new Path<VertexType>();
 
-        int _ = dest.getId();
+        int did = dest.getId();
         ret.insert(dest);
-        while (_ != source.getId()) {
-//            System.out.println("_=" + _);
-
-            ret.insert((VertexType) parents[_]);
-            if (parents[_] == null)
+        while (did != source.getId()) {
+            ret.insert((VertexType) parents[did]);
+            if (parents[did] == null)
                 return null;
-            _ = parents[_].getId();
+            did = parents[did].getId();
         }
         LibraryUtils.setVertexMarks(g, vertexMarksBackup);
         return ret;

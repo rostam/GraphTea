@@ -106,14 +106,14 @@ class BlackBoardDebug extends BlackBoard {
     }
 
     private Vertex getLogVertex(String name) {
-        Vertex _ = knownLogs.get(name);
-        if (_ == null || !g.containsVertex(_)) {
-            _ = addVertex();
-            _.setLabel(name);
-            _.setColor(2);
-            knownLogs.put(name, _);
+        Vertex vn = knownLogs.get(name);
+        if (vn == null || !g.containsVertex(vn)) {
+            vn = addVertex();
+            vn.setLabel(name);
+            vn.setColor(2);
+            knownLogs.put(name, vn);
         }
-        return _;
+        return vn;
     }
 
     private Vertex addVertex() {
