@@ -20,15 +20,15 @@ public class Filters {
 
     public static ArrayX<String> getFilterNames() {
         return new ArrayX<>(
+                Filters.Unicyclic,
+                Filters.Bicyclic,
+                Filters.Tricyclic,
                 Filters.NoFilter,
                 Filters.Integral,
                 Filters.LaplacianIntegral,
                 Filters.QIntegral,
                 Filters.ChemTree,
-                Filters.MinDeg2,
-                Filters.Unicyclic,
-                Filters.Bicyclic,
-                Filters.Tricyclic
+                Filters.MinDeg2
                 );
     }
 

@@ -21,7 +21,8 @@ import javax.swing.*;
 
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
     public ConjectureChecking() {
-        graphFilters = Filters.getFilterNames();
+        graphfilters = Filters.getFilterNames();
+        System.out.println("salam " + graphfilters);
         boundType = Bounds.getBoundNames();
         generators = GeneratorFilters.getGenFilters();
         PostP = new ArrayX<>("No postprocessing");
@@ -41,7 +42,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
 //    @Parameter(name = "Up to", description = "")
 //    public boolean upto = false;
     @Parameter(name = "Filter", description = "")
-    public ArrayX<String> graphFilters;
+    public ArrayX<String> graphfilters;
     @Parameter(name = "Graph Generators", description = "")
     public ArrayX<String> generators;
     @Parameter(name = "Bound Type", description = "The tyoe of bound.")
@@ -84,7 +85,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
 
         GraphReportExtensionAction.ig=new IterGraphs(conjCheck,iterative,currentType,
                 size,boundType.getValue(),generators.getValue(),part, PostP.getValue(),
-                Filters.getCorrectFilter(graphFilters));
+                Filters.getCorrectFilter(graphfilters));
 
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";
