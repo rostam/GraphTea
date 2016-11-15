@@ -15,10 +15,7 @@ import graphtea.library.algorithms.util.LibraryUtils;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * Just some methods helping you to write Graph Algorithms easier,
@@ -54,8 +51,9 @@ public class AlgorithmUtils {
     boolean isConnected(BaseGraph<VertexType, EdgeType> g) {
         ArrayList vs = new ArrayList();
         int[] parent = new int[g.getVerticesCount()];
+        parent[0] = -1;parent[1] = -1;parent[2] = -1;
         dfs(g, 0, vs, parent);
-        return vs.size() == g.getVerticesCount();
+        return Arrays.stream(vs.toArray()).distinct().toArray().length == g.getVerticesCount();
     }
 
     /**
@@ -316,9 +314,9 @@ public class AlgorithmUtils {
         return ret;
     }
 
-
     /**
      * runs a dfs and fills visit and parent, visit is the visiting order of vertices and parent[i] is the id of i'th vertex parent
+     * the parent array should be initialized by -1
      */
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     void dfs(BaseGraph<VertexType, EdgeType> g,
