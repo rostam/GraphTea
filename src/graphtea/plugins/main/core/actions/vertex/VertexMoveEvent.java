@@ -28,6 +28,9 @@ public class VertexMoveEvent extends AbstractAction {
     double x1;
     double y1;
     GraphModel g;
+    
+    
+    public void track(){}
 
     public void performAction(String eventName, Object value) {
         g = blackboard.getData(GraphAttrSet.name);

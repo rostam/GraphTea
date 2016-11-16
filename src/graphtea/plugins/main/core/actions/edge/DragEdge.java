@@ -46,7 +46,7 @@ public class DragEdge extends AbstractAction implements PaintHandler {
     private GraphPoint lastPos, firstPos, cpfirstPos;
     private GraphPoint clickPos;
 
-
+    public void track(){}
     public void performAction(String eventName, Object value) {
         g = blackboard.getData(GraphAttrSet.name);
         if (!g.isEdgesCurved())

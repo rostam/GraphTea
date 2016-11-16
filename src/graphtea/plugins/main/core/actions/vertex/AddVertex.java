@@ -58,6 +58,7 @@ public class AddVertex extends AbstractAction {
 
     protected SubGraph sd;
     boolean disable = false;
+    public void track(){}
 
     public void performAction(String key, Object value) {
         sd = Select.getSelection(blackboard);
@@ -73,6 +74,7 @@ public class AddVertex extends AbstractAction {
             }
             GraphModel graph = gpd.graph;
             doJob(graph, gpd.mousePos);
+            super.track();
         }
         blackboard.setData(ClearSelection.lastTimeGraphWasClear, true);
 

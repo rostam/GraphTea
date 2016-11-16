@@ -45,6 +45,7 @@ public class Select extends AbstractAction {
             }
         });
     }
+    public void track(){}
 
     public void performAction(String eventName, Object value) {
         if (eventName == VertexSelectData.EVENT_KEY) {

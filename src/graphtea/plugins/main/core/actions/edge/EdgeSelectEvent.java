@@ -19,6 +19,7 @@ public class EdgeSelectEvent extends AbstractAction {
         listen4Event(EdgeEvent.EVENT_KEY);
     }
 
+    public void track(){}
     public void performAction(String eventName, Object value) {
         EdgeSelectData d = new EdgeSelectData();
         EdgeEvent evd = blackboard.getData(EdgeEvent.EVENT_KEY);

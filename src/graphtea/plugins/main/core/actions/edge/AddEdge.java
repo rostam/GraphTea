@@ -56,6 +56,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
      */
     boolean exitedFromV1;
 
+    public void track(){}
     public void performAction(String eventName, Object value) {
 // our old lovely Add Edge
 //        if (name == VertexSelectData.name) {
@@ -102,6 +103,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
                     if (v2 != null && isDrag)   //!it was released on empty space
                         if (!v1.equals(v2) || exitedFromV1) {
                             doJob(g, v1, v2);
+                            super.track();
                         }
 //            unListenEvent(VertexMouseDraggingData.event);
                 }

@@ -45,6 +45,7 @@ public class UIEventHandler extends AbstractAction {
         super(bb);
         listen4Event(UIUtils.getUIEventKey(""));
     }
+    public void track(){}
 
     public void performAction(String eventName, Object value) {
         UIEventData data = blackboard.getData(UIEventData.name(""));

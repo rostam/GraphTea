@@ -18,6 +18,7 @@ public class VertexSelectEvent extends AbstractAction {
         super(bb);
         listen4Event(VertexEvent.EVENT_KEY);
     }
+    public void track(){}
 
     public void performAction(String eventName, Object value) {
         VertexSelectData d = new VertexSelectData();

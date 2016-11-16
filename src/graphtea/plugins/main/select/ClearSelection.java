@@ -34,6 +34,7 @@ public class ClearSelection extends AbstractAction {
         listen4Event(GraphEvent.EVENT_KEY);
         blackboard.setData(lastTimeGraphWasClear, false);
     }
+    public void track(){}
 
     SubGraph sd;
 
@@ -47,6 +48,7 @@ public class ClearSelection extends AbstractAction {
         if (sd.vertices.size() != 0 || sd.edges.size() != 0) {
             blackboard.setData(lastTimeGraphWasClear, false);
             clearSelected(blackboard);
+            super.track();
         } else
             blackboard.setData(lastTimeGraphWasClear, true);
 

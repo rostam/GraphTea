@@ -35,7 +35,7 @@ public class RectangularSelect extends AbstractAction {
         }
     };
     static BlackBoard gb;
-
+    public void track(){}
     /**
      * constructor
      *

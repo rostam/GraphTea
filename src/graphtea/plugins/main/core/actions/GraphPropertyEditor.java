@@ -391,6 +391,8 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
         return target;
     }
 
+    public void track(){}
+    
     private void setTarget(TimeLimitedNotifiableAttrSet target) {
         if (this.target != null) {
             this.target.stop();

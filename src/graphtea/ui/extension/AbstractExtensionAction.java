@@ -7,7 +7,7 @@ package graphtea.ui.extension;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.core.AbstractAction;
-import graphtea.platform.core.BlackBoard;
+import graphtea.platform.core.*;
 import graphtea.platform.extension.Extension;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
@@ -327,10 +327,14 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
     public abstract String getParentMenuName();
 
     public final void performAction(String eventKey, Object value) {
-        Init.track(getParentMenuName(), target.getName());
         if (testAndSetParameters(target))
             performExtension();
     }
+
+    public void track(){
+        blackboard.setData("ATrack", new AEvent().category(getParentMenuName()).action(target.getName()));
+    }
+
 
     /**
      * occurs whenever extraButton pressed
@@ -338,7 +342,6 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
      * =
      */
     public void actionPerformed(ActionEvent e) {
-        Init.track(getParentMenuName(), target.getName());
         parentMenu.setSelected(false);
         if (testAndSetParameters(target))
             performExtension();

@@ -24,6 +24,7 @@ public class VertexHighlightAction extends AbstractAction {
         listen4Event(VertexEvent.EVENT_KEY);
     }
 
+    public void track(){}
     public void performAction(String eventName, Object value) {
 //        if (name.equals(VertexMouseEnteredExitedData.name)) {
         //highlighting is disabled for simplicity reasons

@@ -39,6 +39,7 @@ public class PopupMenuHandler extends AbstractAction {
 //        vertexMnu.add(gpv.getPropertyEditor().getTable());
 //        edgeMnu.add(gpe.getPropertyEditor().getTable());
     }
+    public void track(){}
 
     public void performAction(String eventName, Object value) {
 //        if (eventName ==VertexEvent.name)) {
@@ -66,6 +67,7 @@ public class PopupMenuHandler extends AbstractAction {
                 if (ge.mouseBtn == MouseEvent.BUTTON3) {
                     AbstractGraphRenderer gv = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
                     graphMnu.show(gv, (int) ge.mousePos.x, (int) ge.mousePos.y);
+                    super.track();
                 }
             }
         }

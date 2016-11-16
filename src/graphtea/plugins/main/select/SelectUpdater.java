@@ -30,6 +30,7 @@ public class SelectUpdater extends AbstractAction {
     }
 
     SubGraph last = new SubGraph();
+    public void track(){}
 
     public void performAction(String eventName, Object value) {
         SubGraph sd = Select.getSelection(blackboard);

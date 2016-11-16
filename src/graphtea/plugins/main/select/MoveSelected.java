@@ -34,6 +34,9 @@ public class MoveSelected extends AbstractAction {
         gd = new GraphData(blackboard);
     }
 
+    public void track(){}
+    
+
     GraphData gd;
     private GraphPoint[] verticesPositionsBackUp;
 

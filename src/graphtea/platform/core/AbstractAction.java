@@ -4,6 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform.core;
 
+import graphtea.plugins.main.Init;
+
 /**
  * AbstractAction itself is a wrapper for the interface Action.
  * As you see in the source, it contains only two methods to implement. The first one is the action that must be done by this action, performAction() gets the event(key) that has caused this action to be run. This helps if an action is result of multiple events or when event handling must be coped with in the implementation itself.
@@ -57,13 +59,12 @@ public abstract class AbstractAction implements Action, Listener {
     public void keyChanged(String key, Object value) {
         if (enabled) {
             if (this.trackUndos()) {
-//                System.out.println("AbstractAction ->  UNDO POINT");
                 blackboard.setData("undo point", null);
             }
+            track();
             performAction(key, value);
         }
     }
-
 
     /**
      * unlisten the event, see:listen4Event
@@ -112,6 +113,10 @@ public abstract class AbstractAction implements Action, Listener {
         if (!enabled) {
             enabled = true;
         }
+    }
+
+    public void track(){
+        blackboard.setData("ATrack", new AEvent().category("action").action(this.getClass().getSimpleName()));
     }
 
     /**

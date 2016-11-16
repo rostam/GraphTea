@@ -19,6 +19,9 @@ public class MoveVertex extends AbstractAction {
     }
 
     Vertex v;
+    
+    
+    public void track(){}
 
     public void performAction(String eventName, Object value) {
         VertexMoveData vmd = blackboard.getData(VertexMoveData.EVENT_KEY);

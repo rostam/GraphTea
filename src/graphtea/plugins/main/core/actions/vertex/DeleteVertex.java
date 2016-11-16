@@ -18,6 +18,8 @@ public class DeleteVertex extends AbstractAction {
         super(bb);
         this.listen4Event(VertexSelectData.EVENT_KEY);
     }
+    public void track(){}
+    
 
     public void performAction(String eventName, Object value) {
         VertexSelectData vsd = blackboard.getData(VertexSelectData.EVENT_KEY);

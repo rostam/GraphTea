@@ -18,7 +18,7 @@ public class DeleteEdge extends AbstractAction {
         super(bb);
         listen4Event(EdgeSelectData.EVENT_KEY);
     }
-
+    
     public void performAction(String eventName, Object value) {
         EdgeSelectData esd = blackboard.getData(EdgeSelectData.EVENT_KEY);
         GraphModel g = blackboard.getData(GraphAttrSet.name);

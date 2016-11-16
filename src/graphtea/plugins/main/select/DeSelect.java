@@ -28,6 +28,7 @@ public class DeSelect extends AbstractAction {
         listen4Event(EdgeSelectData.EVENT_KEY);
         blackboard.setData(Select.EVENT_KEY, new SubGraph());
     }
+    public void track(){}
 
     public void performAction(String eventName, Object value) {
         if (eventName == VertexSelectData.EVENT_KEY)
