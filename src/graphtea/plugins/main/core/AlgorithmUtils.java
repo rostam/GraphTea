@@ -51,7 +51,7 @@ public class AlgorithmUtils {
     boolean isConnected(BaseGraph<VertexType, EdgeType> g) {
         ArrayList vs = new ArrayList();
         int[] parent = new int[g.getVerticesCount()];
-        parent[0] = -1;parent[1] = -1;parent[2] = -1;
+        for(int i=0;i < g.getVerticesCount();i++) parent[i] = -1;
         dfs(g, 0, vs, parent);
         return Arrays.stream(vs.toArray()).distinct().toArray().length == g.getVerticesCount();
     }
