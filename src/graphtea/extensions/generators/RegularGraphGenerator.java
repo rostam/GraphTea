@@ -16,6 +16,9 @@ import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
 /**
  * User: root
@@ -57,6 +60,7 @@ public class RegularGraphGenerator implements GraphGeneratorExtension, Parametri
     public Edge[] getEdges() {
         Edge[] ret = new Edge[(n*deg) / 2];
         int t = 0;
+        Vector<String> cach = new Vector<>();
         if(deg%2 == 0) {
             for (int i = 0; i < n; i++) {
                 for (int j = i + 1; j < i+(deg / 2) + 1; j++) {
@@ -66,15 +70,23 @@ public class RegularGraphGenerator implements GraphGeneratorExtension, Parametri
                 }
             }
         } else {
-            for (int i = 0; i < n; i=i+2) {
-                for (int j = i + 1; j < i + ((deg - 1) / 2) + 1; j++) {
-                    Edge e = new Edge(v[i], v[j % n]);
-                    ret[t++] = e;
+            for (int i = 0; i < n; i=i+1) {
+                for (int j = i + 1; j < i + ((deg - 1) / 2) + 1 ; j++) {
+                    if(!cach.contains(i+","+j%n)) {
+                        Edge e = new Edge(v[i], v[j % n]);
+                        ret[t++] = e;
+                        cach.add(i+","+j%n);
+                        cach.add(j%n+","+i);
+                    }
                 }
 
                 for (int j = i - 1; j > i - ((deg - 1) / 2) - 1; j--) {
-                    Edge e = new Edge(v[i], v[(j + n) % n]);
-                    ret[t++] = e;
+                    if(!cach.contains(i+","+(j + n) % n)) {
+                        Edge e = new Edge(v[i], v[(j + n) % n]);
+                        ret[t++] = e;
+                        cach.add(i+","+(j + n) % n);
+                        cach.add((j + n) % n+","+i);
+                    }
                 }
             }
 

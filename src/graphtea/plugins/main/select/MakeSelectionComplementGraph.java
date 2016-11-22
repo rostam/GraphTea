@@ -40,7 +40,7 @@ public class MakeSelectionComplementGraph implements GraphActionExtension {
 
     protected void doEdgeOperation(GraphModel g, HashSet<Vertex> v) {
         boolean directed = g.isDirected();
-
+        
         for (Vertex v1 : v) {
             for (Vertex v2 : v) {
                 if (!directed)
