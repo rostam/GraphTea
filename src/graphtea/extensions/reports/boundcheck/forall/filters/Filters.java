@@ -16,13 +16,16 @@ public class Filters {
     public final static String MinDeg2 = "Minimum Degree 2";
     public final static String Unicyclic = "Unicyclic Graphs";
     public final static String Bicyclic = "Bicyclic Graphs";
-    public final static String Tricyclic = "Tricyclic Graphs";
+    public final static String Pentacyclic = "Tricyclic Graphs";
+    public final static String Tricyclic = "Pentacyclic Graphs";
+
 
     public static ArrayX<String> getFilterNames() {
         return new ArrayX<>(
                 Filters.Unicyclic,
                 Filters.Bicyclic,
                 Filters.Tricyclic,
+                Filters.Pentacyclic,
                 Filters.NoFilter,
                 Filters.Integral,
                 Filters.LaplacianIntegral,
@@ -50,6 +53,8 @@ public class Filters {
             gf = new BicyclicGraph();
         } else if (filter.getValue().equals(Filters.Tricyclic)) {
             gf = new TricyclicGraph();
+        } else if (filter.getValue().equals(Filters.Pentacyclic)) {
+            gf = new PentacyclicGraph();
         }
         return gf;
     }

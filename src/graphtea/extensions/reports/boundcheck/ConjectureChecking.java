@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.reports.boundcheck;
+import graphtea.extensions.io.g6format.SaveGraph6Format;
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
 import graphtea.extensions.reports.boundcheck.forall.Sizes;
 import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;
@@ -14,15 +15,18 @@ import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.ArrayX;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
+import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.plugins.reports.extension.GraphReportExtensionAction;
 
 import javax.swing.*;
+import java.io.File;
+import java.util.Vector;
 
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
     public ConjectureChecking() {
-        graphfilters = Filters.getFilterNames();
-        System.out.println("salam " + graphfilters);
+        gfilters = Filters.getFilterNames();
+        System.out.println("salam " + gfilters);
         boundType = Bounds.getBoundNames();
         generators = GeneratorFilters.getGenFilters();
         PostP = new ArrayX<>("No postprocessing");
@@ -42,10 +46,10 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
 //    @Parameter(name = "Up to", description = "")
 //    public boolean upto = false;
     @Parameter(name = "Filter", description = "")
-    public ArrayX<String> graphfilters;
+    public ArrayX<String> gfilters;
     @Parameter(name = "Graph Generators", description = "")
     public ArrayX<String> generators;
-    @Parameter(name = "Bound Type", description = "The tyoe of bound.")
+    @Parameter(name = "Bound Type", description = "The type of bound.")
     public ArrayX<String> boundType;
     @Parameter(name="Iterative", description = "")
     public boolean iterative = false;
@@ -69,10 +73,6 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     }
 
     public Object calculate(GraphModel g) {
-        if(!conjCheck) {
-            GraphReportExtensionAction.ig=null;
-            return "Conjecture Checkign is disabled.";
-        }
         if(PostP.getValue().equals("No postprocessing")) RenderTable.noFilter=true;
         if(GraphType.getValue().equals("custom")) {
             currentType=JOptionPane.showInputDialog("Please enter the cutom graph6 format file:");
@@ -83,9 +83,30 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
             size=  Sizes.sizes.get(currentType);
         }
 
+        if(!conjCheck) {
+            GraphReportExtensionAction.ig=null;
+            IterGraphs itg=new IterGraphs(conjCheck,iterative,currentType,
+                    size,boundType.getValue(),generators.getValue(),part, PostP.getValue(),
+                    Filters.getCorrectFilter(gfilters));
+            Vector<GraphModel> gs = itg.wrapper_generate();
+            String nameOfFile = JOptionPane.showInputDialog("Please enter tthe name of a file in which the " +
+                    "graphs will be saved.:");
+            SaveGraph6Format sgf = new SaveGraph6Format();
+            File f = new File(nameOfFile);
+            for(GraphModel gg : gs) {
+                try {
+                    sgf.write(f, gg);
+                } catch (GraphIOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return "The bound check is disabled. " +
+                    "The graphs are generated and saved in the file " + nameOfFile;
+        }
+
         GraphReportExtensionAction.ig=new IterGraphs(conjCheck,iterative,currentType,
                 size,boundType.getValue(),generators.getValue(),part, PostP.getValue(),
-                Filters.getCorrectFilter(graphfilters));
+                Filters.getCorrectFilter(gfilters));
 
         if(conjCheck) return "Conjecture Checking is enabled.";
         return "Conjecture Checkign is disabled.";

@@ -6,14 +6,14 @@ import graphtea.graph.graph.GraphModel;
 /**
  * Created by rostam on 30.09.15.
  */
-public class TricyclicGraph implements GraphFilter {
+public class PentacyclicGraph implements GraphFilter {
     @Override
     public boolean filter(GraphModel g) {
-        return g.getEdgesCount()  == (g.numOfVertices() + 2);
+        return g.getEdgesCount()  == (g.numOfVertices() + 4);
     }
 
     @Override
     public String getName() {
-        return "tricyclic";
+        return "pentacyclic";
     }
 }

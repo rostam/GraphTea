@@ -46,6 +46,25 @@ public class IterGraphs {
         this.gf=gf;
     }
 
+    public Vector<GraphModel> wrapper_generate() {
+        GraphModelIterator it;
+        if (!gens.equals(GeneratorFilters.NoGenerator)) {
+            it = new GraphGeneratorIterator(gens);
+        } else {
+            it = new AllGraphIterator(type,size,part);
+        }
+
+        Vector<GraphModel> results = new Vector<>();
+        while (it.hasNext()) {
+            GraphModel g = it.next();
+            if(gf!=null) if(!gf.filter(g)) continue;
+            if(results.size() < 100000)
+                results.add(g);
+        }
+
+        return results;
+    }
+
     public RenderTable wrapper(final GraphReportExtension mr) {
         GraphModelIterator it;
         if (!gens.equals(GeneratorFilters.NoGenerator)) {

@@ -9,7 +9,7 @@ import graphtea.graph.graph.GraphModel;
 public class BicyclicGraph implements GraphFilter {
     @Override
     public boolean filter(GraphModel g) {
-        return g.numOfVertices()  == g.getEdgesCount() + 1;
+        return g.getEdgesCount()  == g.numOfVertices() + 1;
     }
 
     @Override
