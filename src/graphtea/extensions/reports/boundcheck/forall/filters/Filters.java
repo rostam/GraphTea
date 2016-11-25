@@ -16,9 +16,8 @@ public class Filters {
     public final static String MinDeg2 = "Minimum Degree 2";
     public final static String Unicyclic = "Unicyclic Graphs";
     public final static String Bicyclic = "Bicyclic Graphs";
-    public final static String Pentacyclic = "Tricyclic Graphs";
-    public final static String Tricyclic = "Pentacyclic Graphs";
-
+    public final static String Pentacyclic = "Pentacyclic Graphs";
+    public final static String Tricyclic = "Tricyclic Graphs";
 
     public static ArrayX<String> getFilterNames() {
         return new ArrayX<>(
