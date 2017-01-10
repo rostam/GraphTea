@@ -19,6 +19,8 @@ import graphtea.ui.components.gpropertyeditor.GCellRenderer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -69,72 +71,43 @@ public class LoadSpecialjson implements GraphReaderExtension {
             g.addVertex(new Vertex());
             while (sc.hasNext()) {
                 String line = sc.nextLine();
-                if (line.contains("status")) {
+                if (line.contains("region")) {
                     i++;
-                    g.addVertex(new Vertex());
-                    if(i==12) System.out.println(line);
-                    if (line.contains("old")) {
-                        line = sc.nextLine();
-                        if(i==12) System.out.println(line);
-                        if (!line.contains("lat")) continue;
-                        line = between(line, ':', ',');
-                        line = between(line, '\"', '\"');
-                        double lat = Double.parseDouble(line);
-                        line = sc.nextLine();
-                        line = between(line, ':', ',');
-                        line = between(line, '\"', '\"');
-                        double lon = Double.parseDouble(line);
-                        line = sc.nextLine();
-                        String id = line.substring(line.indexOf(":") + 3, line.length() - 2).trim();
-                        //g.getVertex(i).setLabel(id.substring(0, id.indexOf("_")));
-                        if(i==12) System.out.println("what " + id);
-                        g.getVertex(i).setLabel(id);
-                        // convert to radian
-                        GraphPoint gp = convertLatLonToXY(lat, lon);
-                        //gp.multiply(10);
-                        //gp.add(400,2000);
-                        g.getVertex(i).setLocation(gp);
-
-                        line = sc.nextLine();
-                        line = line.substring(line.indexOf(":") + 1);
-                        String region = line.substring(1, line.length() - 1);
-                        if(regionVertices.keySet().contains(region)) {
-                            regionVertices.get(region).add(i);
-                        } else {
-                            regionVertices.put(region, new Vector<>());
-                            regionVertices.get(region).add(i);
-                        }
-                        verticesRegion.put(i,region);
-                        if (!regions.contains(region)) regions.add(region);
-                        g.getVertex(i).setColor(regions.indexOf(region));
+                    String region = extract_value_from_line(line);
+                    if (region.contains(",")) region = region.substring(0, region.indexOf(","));
+                    String str_lat = extract_value_from_line(sc.nextLine());
+                    String str_lng = extract_value_from_line(sc.nextLine());
+                    sc.nextLine();
+                    double lat = 0, lng = 0;
+                    line = sc.nextLine();
+                    String id = extract_value_from_line(line);
+                    if (!str_lat.contains("nul")) {
+                        lat = Double.parseDouble(str_lat);
+                        lng = Double.parseDouble(str_lng);
                     } else {
-                        sc.nextLine();
-                        sc.nextLine();
-                        line = sc.nextLine();
-                        String id = line.substring(line.indexOf(":") + 3, line.length() - 2).trim();
                         sttlWithoutCoordinates.add(id);
-                        labelVertex.put(id,i);
-                        g.getVertex(i).setLabel(id);
-                        //System.out.println(id);
                         Vector<Object> vs = new Vector<>();
                         vs.add(id);
                         vs.add((double) i);
                         vs.add("No");
                         rt.add(vs);
-                        line = sc.nextLine();
-                        line = line.substring(line.indexOf(":") + 1);
-                        String region = line.substring(1, line.length() - 1);
-                        if(region.contains(",")) region=region.substring(0,region.indexOf(","));
-                        if(regionVertices.keySet().contains(region)) {
-                            regionVertices.get(region).add(i);
-                        } else {
-                            regionVertices.put(region, new Vector<>());
-                            regionVertices.get(region).add(i);
-                        }
-                        verticesRegion.put(i,region);
-                        if (!regions.contains(region)) regions.add(region);
-                        g.getVertex(i).setColor(regions.indexOf(region));
+
                     }
+                    labelVertex.put(id, i);
+                    Vertex v = new Vertex();
+                    v.setLabel(id);
+                    v.setLocation(convertLatLonToXY(lat, lng));
+                    g.addVertex(v);
+                    if (regionVertices.keySet().contains(region)) {
+                        regionVertices.get(region).add(i);
+                    } else {
+                        regionVertices.put(region, new Vector<>());
+                        regionVertices.get(region).add(i);
+                    }
+                    verticesRegion.put(i, region);
+                    if (!regions.contains(region)) regions.add(region);
+                    g.getVertex(i).setColor(regions.indexOf(region) + 2);
+
                 }
             }
 
@@ -152,9 +125,9 @@ public class LoadSpecialjson implements GraphReaderExtension {
                     if (len == -1) continue;
                     if (sttlWithoutCoordinates.contains(g.getVertex(src).getLabel()) ||
                             sttlWithoutCoordinates.contains(g.getVertex(tgt).getLabel())) {
-                        Edge e = new Edge(g.getVertex(src), g.getVertex(tgt));
-                        e.setWeight(len);
-                        g.addEdge(e);
+//                        Edge e = new Edge(g.getVertex(src), g.getVertex(tgt));
+//                        e.setWeight(len);
+//                        g.addEdge(e);
                     }
                 }
             }
@@ -166,29 +139,47 @@ public class LoadSpecialjson implements GraphReaderExtension {
             Component rendererComponent = GCellRenderer.getRendererFor(rt);
             rendererComponent.setEnabled(true);
             jd.add(rendererComponent, BorderLayout.CENTER);
+            Button bt = new Button("Show settlements without coordinates");
+            bt.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    int i = 0;
+                    for(Vertex v : g) {
+                        if(sttlWithoutCoordinates.contains(v.getLabel())) {
+                            System.out.println(v.getLocation());
+//                            v.setColor(3);
+                            //v.setLocation(new GraphPoint(200,200 + i*20));
+                            i++;
+                        } else {
+                            v.setLocation(new GraphPoint(100,100));
+                            v.setColor(0);
+                        }
+                    }
+                    System.out.println(i);
+                }
+            });
+            bt.setSize(new Dimension(200,50));
+            jd.add(bt, BorderLayout.SOUTH);
             jd.pack();
             jd.setVisible(true);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
+//
         for(String s : sttlWithoutCoordinates) {
-            GraphPoint gp = new GraphPoint(0,0);
+            GraphPoint gp = new GraphPoint(0, 0);
             int num = 0;
-            for(int ver : regionVertices.get(verticesRegion.get(g.getVertex(labelVertex.get(s)).getId()))) {
+            for (int ver : regionVertices.get(verticesRegion.get(g.getVertex(labelVertex.get(s)).getId()))) {
+                if (g.getVertex(ver).getLocation().getX() == 100) continue;
                 num++;
                 gp.add(g.getVertex(ver).getLocation());
             }
-            gp.multiply(1.0/num);
-            //System.out.println(s + "  " + gp);
+            gp.multiply(1.0 / num);
+//            System.out.println(s + "  " + gp);
             g.getVertex(labelVertex.get(s)).setLocation(gp);
-            g.getVertex(labelVertex.get(s)).setColor(50);
+//            g.getVertex(labelVertex.get(s)).setColor(50);
         }
-
-//        for(Vertex v: g) {
-//            System.out.println(v.getLabel() + " " + v.getId());
-//        }
-
+//
 //        for(String s : sttlWithoutCoordinates) {
 //            Vector<GraphPoint> vs = new Vector<>();
 //            for(Vertex n : g.getNeighbors(g.getVertex(labelVertex.get(s)))) {
@@ -197,15 +188,9 @@ public class LoadSpecialjson implements GraphReaderExtension {
 //                }
 //            }
 //            if(vs.size()>2) {
-//                System.out.println(vs.get(0) + " " + vs.get(1));
 //                vs.get(0).add(vs.get(1));
-//                System.out.println(vs.get(0));
 //                vs.get(0).multiply(0.5);
-//                System.out.println(vs.get(0));
-//                System.out.println();
 //                g.getVertex(labelVertex.get(s)).setLocation(vs.get(0));
-//                g.getVertex(labelVertex.get(s)).setShape(GShape.NICESTAR);
-//                g.getVertex(labelVertex.get(s)).setSize(new GraphPoint(20,20));
 //            }
 //        }
 
@@ -230,6 +215,13 @@ public class LoadSpecialjson implements GraphReaderExtension {
         double mercN = Math.log(Math.tan((Math.PI / 4) + (latRad / 2)));
         double y = (mapHeight / 2) - (mapWidth * mercN / (2 * Math.PI));
         return new GraphPoint(x, y);
+    }
+
+    String extract_value_from_line(String line) {
+        if(line.charAt(line.length()-1) == ',') line = line.substring(0,line.length()-1);
+        line = line.substring(line.indexOf(":")+1).trim();
+        line = line.substring(1,line.length()-1).trim();
+        return line;
     }
 
     public String getDescription() {
