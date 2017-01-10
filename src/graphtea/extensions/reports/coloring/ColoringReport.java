@@ -4,13 +4,11 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
-import graphtea.plugins.main.ui.TableRenderer;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Objects;
 import java.util.Vector;
 
 public class ColoringReport implements GraphReportExtension, Parametrizable {
