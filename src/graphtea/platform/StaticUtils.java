@@ -32,11 +32,8 @@ public class StaticUtils {
     /**
      * The linear Operation AX+B
      *
-     * @param a
-     * @param b
-     * @param x
-     * @return
-     * @throws Exception
+     * @return ax+b
+     * @throws Exception problem in dimensions
      */
     public Double[] linearOperation(Double[] a, Double[] b, Double[] x)
             throws Exception {
@@ -46,7 +43,7 @@ public class StaticUtils {
         int n = a.length;
         Double[] result = new Double[n];
         for (int i = 0; i < n; i++)
-            result[i] = (double) (a[i] * x[i] + b[i]);
+            result[i] = a[i] * x[i] + b[i];
         return result;
     }
 
@@ -84,19 +81,18 @@ public class StaticUtils {
 
     public static void copyStream(InputStream is, OutputStream out) throws Exception {
         byte[] buf = new byte[1024];
-        int i = 0;
+        int i;
         while ((i = is.read(buf)) != -1) {
             out.write(buf, 0, i);
         }
     }
 
     /**
-     * @param classname
-     * @param data
+     * @param classname The class name
+     * @param data The actual data
      * @return the actual object which is a 'classname' object and have toString: 'data'
      */
     public static Object fromString(String classname, String data) {
-        Object o = data;
         if ("null".equalsIgnoreCase(data)
                 && !(String.class.getName().equals(classname)))
             return null;
@@ -109,13 +105,13 @@ public class StaticUtils {
 
         if (Double.class.getName().equals(classname)) return new Double(data);
 
-        if (Character.class.getName().equals(classname)) return new Character(data.charAt(0));
+        if (Character.class.getName().equals(classname)) return data.charAt(0);
 
         if (Color.class.getName().equals(classname)) return color(data);
 
         if (BigDecimal.class.getName().equals(classname)) return new BigDecimal(data);
 
-        if (Boolean.class.getName().equals(classname)) return new Boolean(data);
+        if (Boolean.class.getName().equals(classname)) return Boolean.valueOf(data);
 
         if (classname.equals(Font.class.getName())) return str2Font(data);
 
@@ -134,7 +130,7 @@ public class StaticUtils {
     /**
      * Adds a new FromStringProvider to current ones.
      *
-     * @param className
+     * @param className The given of a class
      * @param pro
      */
     public static void setFromStringProvider(String className, FromStringProvider pro) {
@@ -223,8 +219,7 @@ public class StaticUtils {
     /**
      * loads(includes its automatically generated menues, ...) a single extension into application
      *
-     * @param s
-     * @param blackboard
+     * @param s The class to be loaded
      */
     public static void loadSingleExtension(Class s) {
         Object extension = ExtensionLoader.loadExtension(s);
@@ -237,8 +232,8 @@ public class StaticUtils {
     /**
      * return the Application Instance which created b during initialization
      *
-     * @param blackboard
-     * @return
+     * @param blackboard The main blackboard
+     * @return The Application Instance
      */
     public static Application getApplicationInstance(BlackBoard blackboard) {
         return blackboard.getData(Application.APPLICATION_INSTANCE);
@@ -272,25 +267,22 @@ public class StaticUtils {
 }
 
 class BareBonesBrowserLaunch {
-
-    static final String[] browsers = {"google-chrome", "firefox", "opera",
+    private static final String[] browsers = {"google-chrome", "firefox", "opera",
             "epiphany", "konqueror", "conkeror", "midori", "kazehakase", "mozilla"};
     static final String errMsg = "Error attempting to launch web browser";
 
-    public static void openURL(String url) {
+    static void openURL(String url) {
         try {  //attempt to use Desktop library from JDK 1.6+
             Class<?> d = Class.forName("java.awt.Desktop");
             d.getDeclaredMethod("browse", new Class[]{java.net.URI.class}).invoke(
-                    d.getDeclaredMethod("getDesktop").invoke(null),
-                    new Object[]{java.net.URI.create(url)});
+                    d.getDeclaredMethod("getDesktop").invoke(null), java.net.URI.create(url));
             //above code mimicks:  java.awt.Desktop.getDesktop().browse()
         } catch (Exception ignore) {  //library not available or failed
             String osName = System.getProperty("os.name");
             try {
                 if (osName.startsWith("Mac OS")) {
                     Class.forName("com.apple.eio.FileManager").getDeclaredMethod(
-                            "openURL", new Class[]{String.class}).invoke(null,
-                            new Object[]{url});
+                            "openURL", new Class[]{String.class}).invoke(null, url);
                 } else if (osName.startsWith("Windows"))
                     Runtime.getRuntime().exec(
                             "rundll32 url.dll,FileProtocolHandler " + url);

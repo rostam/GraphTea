@@ -22,14 +22,11 @@ import java.util.prefs.InvalidPreferencesFormatException;
  * @author Rouzbeh Ebrahimi
  */
 public class LastSettings implements AttributeListener {
-    private boolean defaultsAreSet = false;
-    private HashSet<String> keys = new HashSet<String>();
-    private HashSet<Object> registeredObjects = new HashSet<Object>();
+    private HashSet<Object> registeredObjects = new HashSet<>();
     private java.util.prefs.Preferences builtInPrefs = java.util.prefs.Preferences.userRoot();
     private java.util.prefs.Preferences graphPrefs = builtInPrefs.node("graph");
-    private HashSet<Class> registeredClasses = new HashSet<Class>();
+    private HashSet<Class> registeredClasses = new HashSet<>();
     private File file = new File("prefs");
-
     {
         file.mkdir();
     }
@@ -41,21 +38,16 @@ public class LastSettings implements AttributeListener {
             graphPrefs.importPreferences(is);
             is.close();
 
-        } catch (IOException e) {
-            ExceptionHandler.catchException(e);
-        } catch (InvalidPreferencesFormatException e) {
+        } catch (IOException | InvalidPreferencesFormatException e) {
             ExceptionHandler.catchException(e);
         }
     }
 
     public void registerSetting(Object o) {
-
         if (!registeredClasses.contains(o.getClass())) {
             registeredClasses.add(o.getClass());
             registeredObjects.add(o);
             loadSettings(o);
-
-        } else {
         }
     }
 
@@ -64,7 +56,6 @@ public class LastSettings implements AttributeListener {
             String key = f.getName();
             Object value = f.get(o);
             t.put(key, value.toString());
-
         } catch (IllegalAccessException e) {
             ExceptionHandler.catchException(e);
         }
@@ -115,12 +106,10 @@ public class LastSettings implements AttributeListener {
             }
 //            return GAttrFrame.showEditDialog(p, true).getReturnStatus();
 //            performLoadJob();
-            return;
         }
         catch (Exception e) {
             ExceptionHandler.catchException(e);
         }
-        return;
     }
 
     private NotifiableAttributeSetImpl refactorSerializables(NotifiableAttributeSetImpl x) {
@@ -140,10 +129,8 @@ public class LastSettings implements AttributeListener {
     public void attributeUpdated(String name, Object oldVal, Object newVal) {
         try {
             oldVal.getClass().getDeclaredField(name).set(oldVal, newVal);
-        } catch (IllegalAccessException e) {
-//            ExceptionHandler.catchException(e);  //To change body of catch statement use File | Settings | File Templates.
-        } catch (NoSuchFieldException e) {
-//            ExceptionHandler.catchException(e);  //To change body of catch statement use File | Settings | File Templates.
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+//            ExceptionHandler.catchException(e);
         }
     }
 
@@ -169,10 +156,7 @@ public class LastSettings implements AttributeListener {
         try {
             graphPrefs.exportSubtree(new FileOutputStream(new File(file, "graph.xml")));
 //            graphPrefs.exportNode(new FileOutputStream(new File("/graph.xml")));
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        } catch (BackingStoreException e) {
+        } catch (IOException | BackingStoreException e) {
             e.printStackTrace();
         }
 

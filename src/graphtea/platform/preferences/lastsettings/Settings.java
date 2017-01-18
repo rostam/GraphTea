@@ -61,14 +61,9 @@ public class Settings implements AttributeListener {
         }
     }
 
-    public void registerExtensionSettings(Extension e, String category) {
-
-    }
-
     private void saveField(Field f, java.util.prefs.Preferences t, Object o) {
         String key = f.getName();
 //            Object value=o.getClass().getDeclaredField(f.getName()).get(o);
-//        System.err.println("::::" + o);
         Object value = null;
         try {
             value = f.get(o);
@@ -140,7 +135,6 @@ public class Settings implements AttributeListener {
                     loadField(f, t, o);
                 }
             }
-            return;
         }
         catch (Exception e) {
             ExceptionHandler.catchException(e);
@@ -164,10 +158,8 @@ public class Settings implements AttributeListener {
     public void attributeUpdated(String name, Object oldVal, Object newVal) {
         try {
             oldVal.getClass().getDeclaredField(name).set(oldVal, newVal);
-        } catch (IllegalAccessException e) {
-//            ExceptionHandler.catchException(e);  //To change body of catch statement use File | Settings | File Templates.
-        } catch (NoSuchFieldException e) {
-//            ExceptionHandler.catchException(e);  //To change body of catch statement use File | Settings | File Templates.
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+//            ExceptionHandler.catchException(e);
         }
     }
 
@@ -188,13 +180,9 @@ public class Settings implements AttributeListener {
         }
         try {
             java.util.prefs.Preferences.userRoot().flush();
-
             graphPrefs.exportSubtree(new FileOutputStream(new File(file, "graph.xml")));
             graphPrefs.exportNode(new FileOutputStream(new File("sgraph.xml")));
-        } catch (IOException e) {
-
-            ExceptionHandler.catchException(e);
-        } catch (BackingStoreException e) {
+        } catch (IOException | BackingStoreException e) {
             ExceptionHandler.catchException(e);
         }
 

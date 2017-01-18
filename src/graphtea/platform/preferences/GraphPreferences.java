@@ -23,7 +23,7 @@ public class GraphPreferences extends AbstractPreference implements AttributeLis
 
     public GraphPreferences(String name, Object oneInstance, String category) {
         super(name, pref, category);
-        oneInstances = new HashSet<Object>();
+        oneInstances = new HashSet<>();
         this.oneInstance = oneInstance;
         oneInstances.add(oneInstance);
         defineListeners(this);

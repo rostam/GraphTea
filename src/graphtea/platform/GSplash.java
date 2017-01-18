@@ -31,15 +31,15 @@ public class GSplash extends javax.swing.JFrame {
      */
     private static final long serialVersionUID = 7023272493672748876L;
     public PrintWriter pp;
-    BufferedReader br;
+    private BufferedReader br;
     private boolean show;
-    PrintStream defaultOut;
+    private PrintStream defaultOut;
     private PrintStream out;
 
     /**
      * Creates new form Splash
      */
-    public GSplash() {
+    GSplash() {
         initComponents();
 //        pack();
         PipedOutputStream src = new PipedOutputStream();
@@ -60,39 +60,30 @@ public class GSplash extends javax.swing.JFrame {
         return pp;
     }
 
-    public void showMessages() {
+    void showMessages() {
         show = true;
         setVisible(true);
         System.setErr(out);
-        new Thread() {
-            public void run() {
-                String s = "";
-                boolean firstTime = true;
-                long time = System.currentTimeMillis();
-                while (show) {
-                    try {
-//                        Thread.sleep(100);
-//                        if (br.ready()) {
-                        String l = br.readLine();
-                        s = l + "\n" + s;
-//                        defaultOut.println(l);
-                        text.setText(s);
-                        defaultOut.println(l);
-                        if (time + 4000 > System.currentTimeMillis())
-                            toFront();
-                        firstTime = false;
-//                        }
-                    } catch (Exception e) {
-//                        ExceptionHandler.catchException(e);
-                        System.err.println("err?");
-                        show = false;
-                    }
+        new Thread(() -> {
+            String s = "";
+            long time = System.currentTimeMillis();
+            while (show) {
+                try {
+                    String l = br.readLine();
+                    s = l + "\n" + s;
+                    text.setText(s);
+                    defaultOut.println(l);
+                    if (time + 4000 > System.currentTimeMillis())
+                        toFront();
+                } catch (Exception e) {
+                    System.err.println("err?");
+                    show = false;
                 }
             }
-        }.start();
+        }).start();
     }
 
-    public void stopShowing() {
+    void stopShowing() {
         show = false;
         System.setErr(defaultOut);
     }
@@ -103,7 +94,7 @@ public class GSplash extends javax.swing.JFrame {
      */
     private void initComponents() {
         text = new javax.swing.JTextArea();
-        bg = new javax.swing.JLabel();
+        JLabel bg = new JLabel();
 
         getContentPane().setLayout(null);
 
@@ -141,8 +132,6 @@ public class GSplash extends javax.swing.JFrame {
         setLocation((sz.width - s.width) / 2, (sz.height - s.height) / 2);
     }
 
-    // Variables declaration - do not modify
-    private javax.swing.JLabel bg;
     private javax.swing.JTextArea text;
     // End of variables declaration
 

@@ -23,13 +23,13 @@ public class Preferences implements StorableOnExit {
     public static final String NAME = "__Prefferences";
 
     static {
-        categories = new HashMap<Object, String>();
+        categories = new HashMap<>();
     }
 
     public static HashMap<Object, String> categories;
 
-    public HashSet<NotifiableAttributeSetImpl> setOfAttributes = new HashSet<NotifiableAttributeSetImpl>();
-    public HashSet<AbstractPreference> set = new HashSet<AbstractPreference>();
+    public HashSet<NotifiableAttributeSetImpl> setOfAttributes = new HashSet<>();
+    public HashSet<AbstractPreference> set = new HashSet<>();
 
     public void putNewSetOfAttributes(AbstractPreference ap) {
         setOfAttributes.add(ap.attributeSet);
@@ -44,12 +44,12 @@ public class Preferences implements StorableOnExit {
 
     public void retrieveEveryItem() {
         HashSet<Object> objects = SETTINGS.getRegisteredObjects();
-        HashMap<String, GraphPreferences> gPrefs = new HashMap<String, GraphPreferences>();
+        HashMap<String, GraphPreferences> gPrefs = new HashMap<>();
         for (Object o : objects) {
             if (o instanceof UserDefinedEligiblity) {
                 UserDefinedEligiblity um = (UserDefinedEligiblity) o;
                 GraphPreferences gp = um.GraphPrefFactory();
-                gp.defineAttributes(um.defineEligibleValuesForSettings(new HashMap<Object, ArrayX>()));
+                gp.defineAttributes(um.defineEligibleValuesForSettings(new HashMap<>()));
             } else {
                 String key = Preferences.categories.get(o);
                 if (!gPrefs.containsKey(key)) {
@@ -68,8 +68,8 @@ public class Preferences implements StorableOnExit {
     }
 
     private HashMap<Object, Object> detectEligibleValues(HashMap<String, GraphPreferences> gprefs, Object o) {
-        HashMap<Object, Object> eligiblesValues = new HashMap<Object, Object>();
-        HashMap<Object, Object> exceptionalEligiblesValues = new HashMap<Object, Object>();
+        HashMap<Object, Object> eligiblesValues = new HashMap<>();
+        HashMap<Object, Object> exceptionalEligiblesValues = new HashMap<>();
         for (Field f : o.getClass().getFields()) {
             UserModifiableProperty anot = f.getAnnotation(UserModifiableProperty.class);
             if (anot != null) {
