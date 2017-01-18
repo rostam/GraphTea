@@ -19,9 +19,9 @@ import java.util.zip.ZipFile;
 
  */
 public class ExtensionClassLoader extends ClassLoader {
-    public Map<String, byte[]> classesData = new HashMap<String, byte[]>();
-    Map<String, Class> classes = new HashMap<String, Class>();
-    Vector<File> unknownFiles = new Vector<File>();
+    public Map<String, byte[]> classesData = new HashMap<>();
+    Map<String, Class> classes = new HashMap<>();
+    Vector<File> unknownFiles = new Vector<>();
     public static URLClassLoader classLoader;
     public static ClassLoader cl;
 
@@ -41,7 +41,7 @@ public class ExtensionClassLoader extends ClassLoader {
     Vector<URL> urls;
 
     private void loadClassFiles(String dir, String pack) {
-        urls = new Vector<URL>();
+        urls = new Vector<>();
         File file = new File(dir);
         if (!file.exists())
             return;
@@ -68,12 +68,7 @@ public class ExtensionClassLoader extends ClassLoader {
                     fis.read(data);
                     classesData.put(name, data);
                     urls.add(file1.toURL());
-                }
-                catch (FileNotFoundException e) {
-                    ExceptionHandler.catchException(e);
-//                    ExceptionHandler.handleException(e);
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     ExceptionHandler.catchException(e);
 //                    ExceptionHandler.handleException(e);
                 }
@@ -93,7 +88,7 @@ public class ExtensionClassLoader extends ClassLoader {
         if (!classesData.containsKey(name))
             ret = getParent().loadClass(name);
         if (ret == null && !classes.containsKey(name)) {
-            byte data[] = (byte[]) classesData.get(name);
+            byte data[] = classesData.get(name);
             Class c = defineClass(name, data, 0, data.length);
             classes.put(name, c);
         }
@@ -107,7 +102,7 @@ public class ExtensionClassLoader extends ClassLoader {
     public Collection getClassesImplementing(Class cl) {
         Collection col = new Vector();
         for (Map.Entry<String, Class> entry1 : classes.entrySet()) {
-            Map.Entry entry = (Map.Entry) entry1;
+            Map.Entry entry = entry1;
             Class c = (Class) entry.getValue();
             if (StaticUtils.isImplementing(c, cl))
                 col.add(c);
@@ -132,7 +127,7 @@ public class ExtensionClassLoader extends ClassLoader {
 
     /**
      * this part of code has get from: http://www.devx.com/getHelpOn/10MinuteSolution/20447
-     * @param zipFileName
+     * @param zipFileName The given zipped file name
      */
     public static void unZip(String zipFileName, String destDir) {
         System.out.println(zipFileName);
@@ -164,7 +159,6 @@ public class ExtensionClassLoader extends ClassLoader {
       } catch (IOException ioe) {
         System.err.println("Unhandled exception:");
         ioe.printStackTrace();
-        return;
       }
     }
 

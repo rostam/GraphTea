@@ -24,13 +24,13 @@ import java.util.Vector;
  * @author Azin Azadi
  */
 public class ExtensionLoader implements StorableOnExit {
-    private static HashSet<ExtensionHandler> registeredExtensionHandlers = new HashSet<ExtensionHandler>();
-    private static HashSet<UnknownExtensionLoader> registeredUnknownExtensionLoaders = new HashSet<UnknownExtensionLoader>();
+    private static HashSet<ExtensionHandler> registeredExtensionHandlers = new HashSet<>();
+    private static HashSet<UnknownExtensionLoader> registeredUnknownExtensionLoaders = new HashSet<>();
     // categorises the known extensions on their type. The type (eg report, generator, ...) is identified
     // by the respective ExtensionHandler
     public static HashMap<Class<? extends ExtensionHandler>, Vector> extensionsList = new HashMap<>();
     // maps an extension class (eg GeneratePath), to the loaded AbstractAction
-    public static HashMap<String, AbstractAction> loadedInstances = new HashMap<String, AbstractAction>();
+    public static HashMap<String, AbstractAction> loadedInstances = new HashMap<>();
 
     /**
      * Registers extHandler as an extension handler, so after this new extension that are loaded
@@ -38,7 +38,7 @@ public class ExtensionLoader implements StorableOnExit {
      * <p/>
      * calling this method will not affect previously loaded extensions.
      *
-     * @param extHandler
+     * @param extHandler The extension handler
      */
     public static void registerExtensionHandler(ExtensionHandler extHandler) {
         registeredExtensionHandlers.add(extHandler);
@@ -121,7 +121,7 @@ public class ExtensionLoader implements StorableOnExit {
     /**
      * returns an instance of extensionClsas if the given extensionClass implements Extension, otherwise it returns null
      *
-     * @param unknownFile
+     * @param unknownFile The given unknown extension
      */
     public static Extension loadUnknownExtension(File unknownFile, BlackBoard blackboard) {
         for (UnknownExtensionLoader loader : registeredUnknownExtensionLoaders) {

@@ -45,13 +45,13 @@ public class Plugger {
     public final String postfix = ".Init";
     public final String handler_postfix = ".HandlerInit";
     public static final String PLUGGER_INSTANCE = "main.Plugger";
-    public HashMap<String, Long> versions = new HashMap<String, Long>();
-    public HashMap<String, File> files = new HashMap<String, File>();
-    public HashMap<String, Integer> mark = new HashMap<String, Integer>();
-    public HashMap<String, String> initializer = new HashMap<String, String>();
-    public HashMap<String, String> configxml = new HashMap<String, String>();
-    public HashMap<String, ArrayList<Object[]>> depends = new HashMap<String, ArrayList<Object[]>>();
-    public HashMap<String, ArrayList<String>> childs = new HashMap<String, ArrayList<String>>();
+    public HashMap<String, Long> versions = new HashMap<>();
+    public HashMap<String, File> files = new HashMap<>();
+    public HashMap<String, Integer> mark = new HashMap<>();
+    public HashMap<String, String> initializer = new HashMap<>();
+    public HashMap<String, String> configxml = new HashMap<>();
+    public HashMap<String, ArrayList<Object[]>> depends = new HashMap<>();
+    public HashMap<String, ArrayList<String>> childs = new HashMap<>();
     public URLClassLoader classLoader = null;
     public int activePlugins = 0;
 
@@ -90,7 +90,7 @@ public class Plugger {
             if (first != null) {
                 int libCount = 0;
                 File libf = new File(directory, "lib");
-                ArrayList<URL> libURLs = new ArrayList<URL>();
+                ArrayList<URL> libURLs = new ArrayList<>();
                 if (libf.isDirectory() && libf.canRead()) {
                     for (File ff : libf.listFiles()) {
                         if (ff.isFile() && "jar".equalsIgnoreCase(getExtension(ff))) {
@@ -159,7 +159,7 @@ public class Plugger {
                 if (!"plugin-name".equals(s.getKey()) && !"plugin-version".equals(s.getKey()))
                     System.out.println(s.getKey() + " : " + s.getValue());
             }
-            ArrayList<Object[]> dependsArray = new ArrayList<Object[]>();
+            ArrayList<Object[]> dependsArray = new ArrayList<>();
             if (dependsStr != null) {
                 StringTokenizer st = new StringTokenizer(dependsStr);
                 while (st.hasMoreElements()) {
@@ -172,7 +172,7 @@ public class Plugger {
             versions.put(name, ver);
             mark.put(name, -1);
             files.put(name, ff);
-            childs.put(name, new ArrayList<String>());
+            childs.put(name, new ArrayList<>());
             depends.put(name, dependsArray);
             initializer.put(name, jf.getManifest().getMainAttributes().getValue("plugin-initializer"));
             configxml.put(name, jf.getManifest().getMainAttributes().getValue("plugin-configxml"));
@@ -246,7 +246,7 @@ public class Plugger {
         mark.put(name, 3);
         for (String chstr : childs.get(name)) {
             if (mark.get(chstr) == 0)
-                dfs((String) chstr);
+                dfs(chstr);
         }
     }
 

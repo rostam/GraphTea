@@ -33,7 +33,7 @@ constructs a message
                 System.out.println();
 
                 try {
-                        if(1 == 1) throw new Msg("Msg.demo","test of user-defined exception");
+                        throw new Msg("Msg.demo","test of user-defined exception");
                 }
                 catch(Msg msg) {
                         System.err.println(msg+"\n");

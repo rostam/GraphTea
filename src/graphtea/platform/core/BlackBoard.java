@@ -8,7 +8,6 @@ import graphtea.platform.StaticUtils;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Stack;
 import java.util.Vector;
 
 /**
@@ -51,15 +50,14 @@ import java.util.Vector;
  *
  */
 public class BlackBoard {
-    private HashMap<String, Object> data = new HashMap<String, Object>();
-    private HashMap<String, HashSet<Listener>> listeners = new HashMap<String, HashSet<Listener>>();
-    private HashMap<String, Vector<Couple<Boolean, Listener>>> addRemoveAfterFiring = new HashMap<String, Vector<Couple<Boolean, Listener>>>();
+    private HashMap<String, Object> data = new HashMap<>();
+    private HashMap<String, HashSet<Listener>> listeners = new HashMap<>();
+    private HashMap<String, Vector<Couple<Boolean, Listener>>> addRemoveAfterFiring = new HashMap<>();
     private HashMap<String, Integer> firingNames = new HashMap<>();
 
     /**
-     * @param eventName
-     * @param value
-     * @see BlackBoard#setEvent(graphtea.platform.core.Event,Object)
+     * @param key The key
+     * @see BlackBoard#getData(String)
      */
     public <T> T getData(String key) {
         return (T) data.get(key);
@@ -67,8 +65,8 @@ public class BlackBoard {
 
 
     /**
-     * @param key
-     * @param value
+     * @param key The key
+     * @param value The value
      */
     public void setData(String key, Object value) {
         data.put(key, value);
@@ -82,8 +80,8 @@ public class BlackBoard {
     /**
      * adds a listener to the Data , which when the data changed, will be notified
      *
-     * @param key
-     * @param listener
+     * @param key The key
+     * @param listener The listener to be added by a key
      */
     public void addListener(String key, Listener listener) {
         if (firingCount(key) == 0) {
@@ -94,27 +92,19 @@ public class BlackBoard {
     }
 
     private void putEvent(HashMap<String, HashSet<Listener>> _map, String key, Listener listener) {
-        HashSet<Listener> notifiables = _map.get(key);
-        if (notifiables == null) {
-            notifiables = new HashSet<Listener>();
-            _map.put(key, notifiables);
-        }
+        HashSet<Listener> notifiables = _map.computeIfAbsent(key, k -> new HashSet<>());
         notifiables.add(listener);
     }
 
     private void putEventAfter(String key, Listener listener, boolean isAdded) {
-        Vector<Couple<Boolean, Listener>> couples = addRemoveAfterFiring.get(key);
-        if (couples == null) {
-            couples = new Vector<Couple<Boolean, Listener>>();
-            addRemoveAfterFiring.put(key, couples);
-        }
-        couples.add(new Couple<Boolean, Listener>(isAdded, listener));
+        Vector<Couple<Boolean, Listener>> couples = addRemoveAfterFiring.computeIfAbsent(key, k -> new Vector<>());
+        couples.add(new Couple<>(isAdded, listener));
     }
 
     /**
      * see addAttributeListener
      *
-     * @param listener
+     * @param listener The listener to be removed
      */
     public void removeListener(String key, Listener listener) {
         if (firingCount(key) == 0) {
@@ -131,7 +121,7 @@ public class BlackBoard {
     }
 
     /**
-     * @param key
+     * @param key The key
      */
     protected void fireListeners(String key, Object newValue) {
         int fi = firingCount(key);
@@ -187,7 +177,7 @@ public class BlackBoard {
         public A a;
         public B b;
 
-        public Couple(A a, B b) {
+        Couple(A a, B b) {
             this.a = a;
             this.b = b;
         }
