@@ -28,19 +28,19 @@ public class Application implements StorableOnExit {
     public static final String VERSION_NAME = "newrooz";
     public static final String WELCOME_URL = "http://graphtheorysoftware.com/v/"+VERSION_NAME;
 
-    public static String USER_ID;
+    //public static String USER_ID;
 
     public static final String APPLICATION_INSTANCE = "GraphTea.main";
     public Plugger plugger = null;
     public static final String POST_INIT_EVENT = "Post Initialization";
 
     /**
-     * @param blackboard
+     * @param blackboard The main blackboard
      * @see graphtea.platform.Application#main(String[])
      */
     public void run(BlackBoard blackboard) {
         try {
-            Preferences p = new Preferences(blackboard);
+            new Preferences(blackboard);
             GSplash gs = new GSplash();
             gs.showMessages();
             loadPlugins();
@@ -69,7 +69,7 @@ public class Application implements StorableOnExit {
     }
 
     /**
-     * @return
+     * @return The main blackboard
      * @see graphtea.platform.Application#main(String[])
      */
     public BlackBoard init() {
@@ -87,9 +87,9 @@ public class Application implements StorableOnExit {
     /**
      * load all extensions from /extensions directory
      *
-     * @param blackboard
+     * @param blackboard The main blackboard
      */
-    public void loadExtensions(BlackBoard blackboard) {
+    private void loadExtensions(BlackBoard blackboard) {
         ExtensionClassLoader.cl = getExtensionsClassLoader();
         String path = null;
         try {
@@ -119,7 +119,7 @@ public class Application implements StorableOnExit {
         }
     }
 
-    protected URLClassLoader getExtensionsClassLoader() {
+    private URLClassLoader getExtensionsClassLoader() {
         return plugger.classLoader;
     }
 
@@ -132,7 +132,7 @@ public class Application implements StorableOnExit {
      * 4- fires a <code>Application#POST_INIT_EVENT</code> on blackboard<br>
      * 5- hides the splash screen<br>
      *
-     * @param args
+     * @param args The main function arguments
      */
     public static void main(String[] args) {
         new Application().init();
