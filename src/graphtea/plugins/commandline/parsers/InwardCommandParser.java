@@ -24,7 +24,7 @@ import java.util.Vector;
 
 /**
  * @author Mohammad Ali Rostatmi
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 public class InwardCommandParser {
     public HashMap<String, Method> commands = new HashMap<String, Method>();

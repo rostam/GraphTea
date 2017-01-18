@@ -34,16 +34,14 @@ public class KConnected implements GraphReportExtension {
         for (Vertex v : g.vertices())
             now = Math.max(now, g.getDegree(v));
 
-        if (kdisconn(g, now - 1) == null) nowconn = true;
-        else nowconn = false;
+        nowconn = kdisconn(g, now - 1) == null;
 
         do {
             preconn = nowconn;
             pre = now;
             if (preconn) now = pre + 1;
             else now = pre - 1;
-            if (kdisconn(g, now - 1) == null) nowconn = true;
-            else nowconn = false;
+            nowconn = kdisconn(g, now - 1) == null;
         } while (!((preconn && !nowconn && pre == now - 1) || (!preconn
                 && nowconn && pre == now + 1)));
 

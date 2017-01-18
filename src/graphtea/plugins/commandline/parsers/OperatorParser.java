@@ -11,7 +11,7 @@ import graphtea.plugins.commandline.Shell;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 
 //overload_multiply(a1,a2)

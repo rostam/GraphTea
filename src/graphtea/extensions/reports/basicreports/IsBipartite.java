@@ -4,8 +4,6 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.library.algorithms.util.BipartiteChecker;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-
-
 /**
  * Description here.
  *
@@ -25,8 +23,8 @@ public class IsBipartite implements GraphReportExtension  {
 
 	public Object calculate(GraphModel g) {
 		if(g.numOfVertices()==0)
-			return new String("Graph empty");
-		return new String(BipartiteChecker.isBipartite(g)+"");
+			return "Graph empty";
+		return BipartiteChecker.isBipartite(g) + "";
 
 	}
 

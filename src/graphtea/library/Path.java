@@ -17,7 +17,7 @@ import java.util.Iterator;
  * @param <VertexType>
  */
 public class Path<VertexType extends BaseVertex> implements Iterable<VertexType> {
-    private ArrayList<BaseVertex> vertices = new ArrayList<BaseVertex>();
+    private ArrayList<BaseVertex> vertices = new ArrayList<>();
 
     public void insert(VertexType vertex) {
         if (vertices.contains(vertex))

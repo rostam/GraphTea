@@ -9,7 +9,7 @@ import java.io.File;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 public class BSHFile extends File {
     public BSHFile(String pathname) {

@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 public class EdgeInduced {
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>

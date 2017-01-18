@@ -13,7 +13,7 @@ import java.util.HashSet;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 
 public class DefaultParser implements ExtParser {

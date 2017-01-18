@@ -32,7 +32,7 @@ public class MaxAndMinDegree implements GraphReportExtension {
             if (d < minDegree) minDegree = d;
         }
         if (minDegree == AlgorithmUtils.Max_Int) minDegree = 0;
-        ArrayList<Integer> ret = new ArrayList<Integer>();
+        ArrayList<Integer> ret = new ArrayList<>();
         ret.add(maxDegree);
         ret.add(minDegree);
         return ret;

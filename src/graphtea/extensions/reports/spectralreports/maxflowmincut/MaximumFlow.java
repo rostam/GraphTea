@@ -19,19 +19,16 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 	BlackBoard b;
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "Connectivity";
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
 		return "Max Flow";
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return "Max Flow";
 	}
 

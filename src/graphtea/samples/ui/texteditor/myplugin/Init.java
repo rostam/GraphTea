@@ -30,7 +30,7 @@ public class Init implements PluginInterface {
 
         //load xml file
         BlackBoard blackBoard = new BlackBoard();
-        UI u = new UI(blackBoard, true);
+        UI u = new UI(blackBoard);
         try {
             u.loadXML("/myui.xml", u.getClass());
         } catch (IOException e) {

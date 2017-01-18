@@ -99,7 +99,7 @@ public class BaseVertex {
 
     void informNewSubgraph() {
         if (subgraphIds == null)
-            subgraphIds = new ArrayList<Integer>();
+            subgraphIds = new ArrayList<>();
         subgraphIds.add(0);
     }
 

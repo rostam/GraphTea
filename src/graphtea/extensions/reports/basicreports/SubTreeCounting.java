@@ -11,9 +11,8 @@ import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.math.BigInteger;
 import java.util.Vector;
+import static graphtea.extensions.reports.Utils.choose;
 
 /**
  * @author Mohammad Ali Rostami
@@ -50,7 +49,7 @@ public class SubTreeCounting implements GraphReportExtension {
         return ret;
     }
 
-    public static int countSubtrees(GraphModel g, int i, int j) {
+    private static int countSubtrees(GraphModel g, int i, int j) {
         int sum = 0;
         for(Edge e : g.getEdges()) {
             if (i == j) {
@@ -65,21 +64,6 @@ public class SubTreeCounting implements GraphReportExtension {
         }
         return sum;
     }
-
-    public static BigInteger choose(int x, int y) {
-        if (y < 0 || y > x) return BigInteger.ZERO;
-        if (y == 0 || y == x) return BigInteger.ONE;
-
-        BigInteger answer = BigInteger.ONE;
-        for (int i = x - y + 1; i <= x; i++) {
-            answer = answer.multiply(BigInteger.valueOf(i));
-        }
-        for (int j = 1; j <= y; j++) {
-            answer = answer.divide(BigInteger.valueOf(j));
-        }
-        return answer;
-    }
-
 
     public String getName() {
         return "Number of Subtrees";

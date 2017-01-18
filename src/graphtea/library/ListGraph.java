@@ -68,11 +68,11 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
      */
     public ListGraph(boolean directed, int expectedNumberOfVertices) {
         this.directed = directed;
-        list = new ArrayList<LinkedList<Pair<EdgeType, VertexType>>>(expectedNumberOfVertices);
-        inverseList = new ArrayList<LinkedList<Pair<EdgeType, VertexType>>>(expectedNumberOfVertices);
-        vertices = new ArrayList<VertexType>(expectedNumberOfVertices);
-        outDegree = new ArrayList<Integer>(expectedNumberOfVertices);
-        inDegree = new ArrayList<Integer>(expectedNumberOfVertices);
+        list = new ArrayList<>(expectedNumberOfVertices);
+        inverseList = new ArrayList<>(expectedNumberOfVertices);
+        vertices = new ArrayList<>(expectedNumberOfVertices);
+        outDegree = new ArrayList<>(expectedNumberOfVertices);
+        inDegree = new ArrayList<>(expectedNumberOfVertices);
     }
 
     /**
@@ -81,11 +81,11 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
      */
     public ListGraph() {
         this.directed = false;
-        list = new ArrayList<LinkedList<Pair<EdgeType, VertexType>>>();
-        inverseList = new ArrayList<LinkedList<Pair<EdgeType, VertexType>>>();
-        vertices = new ArrayList<VertexType>();
-        outDegree = new ArrayList<Integer>();
-        inDegree = new ArrayList<Integer>();
+        list = new ArrayList<>();
+        inverseList = new ArrayList<>();
+        vertices = new ArrayList<>();
+        outDegree = new ArrayList<>();
+        inDegree = new ArrayList<>();
     }
 
 
@@ -96,7 +96,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
      *
      * @param <ImportVertexType> The type of vertex object which the input graph contain.
      * @param <ImportEdgeType>   The type of edge object which the input graph contain.
-     * @param graph
+     * @param graph              The given graph
      * @param converter          A GraphConverter object which is responsible for duplicating/converting graph
      *                           elements.
      * @throws InvalidGraphException Throws when the input graph is an invalid graph object.
@@ -135,9 +135,8 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
      * A wrapper for setting vertex Id's which supports multiple vertex owners.
      *
      * @param v Vertex which the caller intends to set its Id.
-     * @return The Id.
      */
-    protected void setId(VertexType v, int id) {
+    private void setId(VertexType v, int id) {
         if (subgraphIndex != 0) {
             v.setSubgraphId(subgraphIndex, id);
             return;
@@ -162,10 +161,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
      * @return True if the vertex is out of range.
      */
     private boolean vertexIdOutOfRange(int id) {
-        if (id < 0 || id >= vertices.size())
-            return true;
-
-        return false;
+        return id < 0 || id >= vertices.size();
     }
 
 
@@ -193,7 +189,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
          */
         public EdgeIterator() {
             ++edgeIterationIndex;
-            ArrayList<EdgeType> edges = new ArrayList<EdgeType>();
+            ArrayList<EdgeType> edges = new ArrayList<>();
 
             Iterator<VertexType> it = iterator();
 
@@ -226,7 +222,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
             ++edgeIterationIndex;
             checkVertex(v);
 
-            ArrayList<EdgeType> edges = new ArrayList<EdgeType>();
+            ArrayList<EdgeType> edges = new ArrayList<>();
 
             Iterator<EdgeType> it = new EdgeIterator(v, true);
             while (it.hasNext())
@@ -264,7 +260,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
                 throws InvalidVertexException {
             checkVertex(v);
 
-            ArrayList<EdgeType> edges = new ArrayList<EdgeType>();
+            ArrayList<EdgeType> edges = new ArrayList<>();
 
             if (source) {
                 for (Pair<EdgeType, VertexType> pev : list.get(getId(v)))
@@ -531,8 +527,8 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
     /**
      * in a directed graph this method returns edges whose targets are v
      *
-     * @param v
-     * @return
+     * @param v the given vertex
+     * @return an iterator over edges with the target v
      */
     public Iterator<EdgeType> lightBackEdgeIterator(VertexType v) {
         return new LightEdgeIterator(v, false);
@@ -567,13 +563,13 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
 
         guard = true;
 
-        list.get(source).add(new Pair<EdgeType, VertexType>(newEdge, newEdge.target));
+        list.get(source).add(new Pair<>(newEdge, newEdge.target));
         if (!directed)
-            list.get(target).add(new Pair<EdgeType, VertexType>(newEdge, newEdge.source));
+            list.get(target).add(new Pair<>(newEdge, newEdge.source));
 
-        inverseList.get(target).add(new Pair<EdgeType, VertexType>(newEdge, newEdge.source));
+        inverseList.get(target).add(new Pair<>(newEdge, newEdge.source));
         if (!directed)
-            inverseList.get(source).add(new Pair<EdgeType, VertexType>(newEdge, newEdge.target));
+            inverseList.get(source).add(new Pair<>(newEdge, newEdge.target));
 
 
         outDegree.set(source, outDegree.get(source) + 1);
@@ -595,8 +591,8 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
         if (!vertices.contains(newVertex)) {
             guard = true;
             vertices.add(newVertex);
-            list.add(new LinkedList<Pair<EdgeType, VertexType>>());
-            inverseList.add(new LinkedList<Pair<EdgeType, VertexType>>());
+            list.add(new LinkedList<>());
+            inverseList.add(new LinkedList<>());
             setId(newVertex, vertices.size() - 1);
             inDegree.add(0);
             outDegree.add(0);
@@ -777,7 +773,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
         checkVertex(source);
         checkVertex(target);
 
-        ArrayList<EdgeType> arr = new ArrayList<EdgeType>();
+        ArrayList<EdgeType> arr = new ArrayList<>();
         for (Pair<EdgeType, VertexType> pev : list.get(getId(source))) {
             if (pev.second == target)
                 arr.add(pev.first);
@@ -849,9 +845,9 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
     public BaseGraph<VertexType, EdgeType>
            copy(EdgeVertexCopier<VertexType, EdgeType> gc)
             throws InvalidGraphException {
-        ListGraph<VertexType, EdgeType> oGraph = new ListGraph<VertexType, EdgeType>(directed, getVerticesCount());
+        ListGraph<VertexType, EdgeType> oGraph = new ListGraph<>(directed, getVerticesCount());
 
-        ArrayList<VertexType> alvt = new ArrayList<VertexType>(getVerticesCount());
+        ArrayList<VertexType> alvt = new ArrayList<>(getVerticesCount());
         VertexType tempVertex;
         for (VertexType v : this) {
             tempVertex = gc.convert(v);
@@ -950,7 +946,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
       */
     @Override
     public ListGraph<VertexType, EdgeType> createEmptyGraph() {
-        return new ListGraph<VertexType, EdgeType>(directed, 0);
+        return new ListGraph<>(directed, 0);
     }
 
     /* (non-Javadoc)
@@ -967,8 +963,8 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
             Iterator<EdgeType> iet = edgeIterator();
             while (iet.hasNext()) {
                 EdgeType edge = iet.next();
-                list.get(getId(edge.target)).add(new Pair<EdgeType, VertexType>(edge, edge.source));
-                inverseList.get(getId(edge.source)).add(new Pair<EdgeType, VertexType>(edge, edge.target));
+                list.get(getId(edge.target)).add(new Pair<>(edge, edge.source));
+                inverseList.get(getId(edge.source)).add(new Pair<>(edge, edge.target));
             }
 
             for (int i = 0; i < getVerticesCount(); ++i) {
@@ -1039,11 +1035,11 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
       */
     @Override
     public void clear() {
-        list = new ArrayList<LinkedList<Pair<EdgeType, VertexType>>>();
-        inverseList = new ArrayList<LinkedList<Pair<EdgeType, VertexType>>>();
-        vertices = new ArrayList<VertexType>();
-        outDegree = new ArrayList<Integer>();
-        inDegree = new ArrayList<Integer>();
+        list = new ArrayList<>();
+        inverseList = new ArrayList<>();
+        vertices = new ArrayList<>();
+        outDegree = new ArrayList<>();
+        inDegree = new ArrayList<>();
         edgeIterationIndex = 0;
         guard = false;
     }

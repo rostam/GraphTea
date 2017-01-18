@@ -5,14 +5,13 @@
 
 package graphtea.extensions.reports.basicreports;
 
+import graphtea.extensions.reports.Utils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.math.BigInteger;
 
 /**
  * @author Mohammad Ali Rostami
@@ -21,31 +20,17 @@ import java.math.BigInteger;
 @CommandAttitude(name = "num_of_stars", abbreviation = "_noss")
 public class NumOfStars implements GraphReportExtension, Parametrizable {
 
-    @Parameter(name = "k", description = "")
+    @Parameter(name = "k", description = "The size of star")
     public Integer k = 1;
 
     public Integer calculate(GraphModel g) {
         int sum = 0;
         for(Vertex v : g) {
             int deg = g.getDegree(v);
-            sum += choose(deg,k).intValue();
+            sum += Utils.choose(deg,k).intValue();
         }
 
         return sum;
-    }
-
-    public static BigInteger choose(int x, int y) {
-        if (y < 0 || y > x) return BigInteger.ZERO;
-        if (y == 0 || y == x) return BigInteger.ONE;
-
-        BigInteger answer = BigInteger.ONE;
-        for (int i = x - y + 1; i <= x; i++) {
-            answer = answer.multiply(BigInteger.valueOf(i));
-        }
-        for (int j = 1; j <= y; j++) {
-            answer = answer.divide(BigInteger.valueOf(j));
-        }
-        return answer;
     }
 
 

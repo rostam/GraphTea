@@ -26,10 +26,11 @@ public class BarycentricSubdivisionGraph implements GraphActionExtension, Parame
     public int k = 2;
 
     public void action(GraphData graphData) {
+        graphData.core.showGraph(createBarycentricGraph(graphData.getGraph(),k));
+    }
 
-        GraphModel g1 = graphData.getGraph();
-        GraphModel g2 = new GraphModel(false);//
-
+    public static GraphModel createBarycentricGraph(GraphModel g1, int k) {
+        GraphModel g2 = new GraphModel(false);
         for(Vertex v : g1.getVertexArray()) {
             Vertex tmp = new Vertex();
             tmp.setLocation(v.getLocation());
@@ -63,9 +64,7 @@ public class BarycentricSubdivisionGraph implements GraphActionExtension, Parame
                     g2.getVertex(e.target.getId())
             ));
         }
-
-       graphData.core.showGraph(g2);
-
+        return g2;
     }
 
     public String getName() {

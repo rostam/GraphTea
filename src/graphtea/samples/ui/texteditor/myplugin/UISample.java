@@ -30,7 +30,7 @@ public class UISample {
 
         //load xml file
         BlackBoard blackBoard = new BlackBoard();
-        UI u = new UI(blackBoard, true);
+        UI u = new UI(blackBoard);
         u.loadXML("myui.xml", UISample.class);
 
         //gets the component which is created when loading status bar.

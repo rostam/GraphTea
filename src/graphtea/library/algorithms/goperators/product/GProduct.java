@@ -15,7 +15,7 @@ import graphtea.library.util.Pair;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 public abstract class GProduct
         <VertexType extends BaseVertex,

@@ -48,10 +48,9 @@ public class
     /**
      * constructor
      *
-     * @param bb
-     * @param visible
+     * @param bb The blackboard
      */
-    public UI(BlackBoard bb, boolean visible) {
+    public UI(BlackBoard bb) {
         this.blackboard = bb;
         //add the UI to the blackboard so the plugins can get it from blackboard
         bb.setData(name, this);
@@ -61,7 +60,7 @@ public class
         frame.validate();
         // frame.pack();
 //        frame.setVisible(visible);
-        actions = new HashMap<String, AbstractAction>();
+        actions = new HashMap<>();
         blackboard.setData(UIEventHandler.ACTIONS_MAP, actions);
         //initialize the event handler to handle menu and toolbar events
         new UIEventHandler(blackboard);
@@ -72,8 +71,8 @@ public class
      * fek mikonam ke in add xml kare plugin ha ro rah bendaze, vali hala kheili
      * ghatiam, in tarif methoda ro ehtemalan taghir baies dad.
      *
-     * @param XMLFilePath
-     * @throws IOException
+     * @param XMLFilePath The file path of the XML document
+     * @throws IOException The input file is not there
      */
     public void addXML(String XMLFilePath, Class resClass) throws IOException, SAXException {
         loadXML(XMLFilePath, resClass);
@@ -93,8 +92,6 @@ public class
                 UIParser.parse(new InputSource(XMLFilePath), hi);
             else
                 UIParser.parse(resClass.getResource(XMLFilePath), hi);
-        } catch (SAXException e) {
-            throw e;
         } catch (ParserConfigurationException e) {
             ExceptionHandler.catchException(e);
         }

@@ -10,7 +10,6 @@ import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -30,7 +29,7 @@ public class MaxCliqueExtension implements GraphReportExtension {
     }
 
     public Object calculate(GraphModel g) {
-        Vector<SubGraph> ret = new Vector<SubGraph>();
+        Vector<SubGraph> ret = new Vector<>();
         MaxCliqueAlg mca = new MaxCliqueAlg(g);
         Cliques mcs = mca.allMaxCliques();
         for(Vector<Vertex> ss : mcs) {
@@ -68,9 +67,9 @@ class MaxCliqueAlg
     public Cliques allMaxCliques()
     {
         maxCliques = new Cliques();
-        List<Vertex> likelyC = new ArrayList<Vertex>();
-        List<Vertex> searchC = new ArrayList<Vertex>();
-        List<Vertex> found = new ArrayList<Vertex>();
+        List<Vertex> likelyC = new ArrayList<>();
+        List<Vertex> searchC = new ArrayList<>();
+        List<Vertex> found = new ArrayList<>();
         for(Vertex v : g) {searchC.add(v);}
         cliques(likelyC, searchC, found);
         return maxCliques;
@@ -100,11 +99,11 @@ class MaxCliqueAlg
             List<Vertex> C,
             List<Vertex> F)
     {
-        List<Vertex> candidates_array = new ArrayList<Vertex>(C);
+        List<Vertex> candidates_array = new ArrayList<>(C);
         if (!allEdgesSeen(C, F)) {
             for (Vertex candidate : candidates_array) {
-                List<Vertex> new_candidates = new ArrayList<Vertex>();
-                List<Vertex> new_already_found = new ArrayList<Vertex>();
+                List<Vertex> new_candidates = new ArrayList<>();
+                List<Vertex> new_already_found = new ArrayList<>();
 
                 likelyC.add(candidate);
                 C.remove(candidate);
@@ -121,7 +120,7 @@ class MaxCliqueAlg
                 }
 
                 if (new_candidates.isEmpty() && new_already_found.isEmpty()) {
-                    maxCliques.add(new Vector<Vertex>(likelyC));
+                    maxCliques.add(new Vector<>(likelyC));
                 }
                 else {
                     cliques(

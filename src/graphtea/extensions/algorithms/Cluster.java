@@ -11,7 +11,7 @@ public class Cluster // Represents a cluster of GraphPoints
 
 	public Cluster(GraphPoint c) {
 		center = c;
-		member = new ArrayList<GraphPoint>();
+		member = new ArrayList<>();
 	}
 
 	public GraphPoint getCenter() {

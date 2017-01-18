@@ -35,11 +35,8 @@ public abstract class MaxFlow {
 		return res;
 			
 	}
-	
-	
-	
+
 	protected abstract void doAlgorithm();
-	
 	protected void makeLabels()
 	{
 		for(Edge e : g.getEdges())

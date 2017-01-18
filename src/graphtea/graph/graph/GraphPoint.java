@@ -54,7 +54,7 @@ public class GraphPoint extends Point2D.Double implements Serializable, FromStri
     /**
      * multiplies x and y by p (x=x*p, y=y*p)
      *
-     * @param p
+     * @param p The coefficient
      */
     public void multiply(double p) {
         x = x * p;
@@ -64,7 +64,7 @@ public class GraphPoint extends Point2D.Double implements Serializable, FromStri
     /**
      * adds this with dp (x=x+dp.x, y=y+dp.y)
      *
-     * @param dp
+     * @param dp The graph point to be added
      */
     public void add(GraphPoint dp) {
         x = x + dp.x;

@@ -20,7 +20,7 @@ import java.awt.*;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 @CommandAttitude(name = "generate_gear", abbreviation = "_g_g"
         , description = "generate a n vertices gear graph")

@@ -61,7 +61,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
 
     public void mouseClicked(MouseEvent mouseEvent) {
         Pair<Vertex, Double> p = mindistv(g, mousePos(mouseEvent));
-        Vertex v = (Vertex) p.first;
+        Vertex v = p.first;
         if (v != null && isPointOnVertex(g, v, mousePos(mouseEvent))) {
             if (mouseEvent.getClickCount() > 1)
                 sendEventToBlackBoard(VertexEvent.doubleClicked(v, mousePos(mouseEvent, v), mouseEvent.getButton(), mouseEvent.getModifiersEx()));
@@ -71,8 +71,8 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
         }
         Pair<Edge, Double> pp;
         pp = mindiste(g, mousePos(mouseEvent));
-        Edge e = (Edge) pp.first;
-        double dist = (Double) pp.second;
+        Edge e = pp.first;
+        double dist = pp.second;
         if (g.isEdgesCurved()) {
             if (pp.second <= (EDGE_CURVE_CPNTROL_BOX_DIAMETER)) {
                 sendEventToBlackBoard(EdgeEvent.clicked(e, mousePos(mouseEvent, e), mouseEvent.getButton()));
@@ -103,9 +103,9 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
      * 0 1 2 3 4
      * 0 1 2 3 4
      *
-     * @param mouseEvent
-     * @param e
-     * @return
+     * @param mouseEvent The event of the mouse
+     * @param e The given edge
+     * @return The position of the mouse minus the edge e
      */
     private GraphPoint mousePos(MouseEvent mouseEvent, Edge e) {
         return new GraphPoint(mousePos(mouseEvent).x - e.source.getLocation().x, mousePos(mouseEvent).y - e.source.getLocation().y);

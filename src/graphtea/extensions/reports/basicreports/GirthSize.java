@@ -30,7 +30,7 @@ public class GirthSize implements GraphReportExtension {
 
         dist[start] = 0;
         baba[start] = -1;
-        List<Integer> ll = new ArrayList<Integer>();
+        List<Integer> ll = new ArrayList<>();
         ll.add(start);
         while (ll.size() > 0) {
             int currentNode = ll.remove(0);
@@ -50,13 +50,13 @@ public class GirthSize implements GraphReportExtension {
 
 
     public Object calculate(GraphModel g) {
-        return getgirthSize(g);
+        return getGirthSize(g);
     }
 
     /**
      * @return the girth size of the given graph
      */
-    public static int getgirthSize(GraphModel graph) {
+    private static int getGirthSize(GraphModel graph) {
         int size = graph.getVertexArray().length;
         double mat[][] = graph.getAdjacencyMatrix().getArray();
         int girth = AlgorithmUtils.Max_Int;

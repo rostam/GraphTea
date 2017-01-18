@@ -12,8 +12,7 @@ import graphtea.plugins.main.core.AlgorithmUtils;
 import java.util.Vector;
 
 /**
- * author: rostam
- * author: azin
+ * @author M. Ali Rostami, A. Azadi
  */
 public class SampleAlgorithm extends GraphAlgorithm implements AlgorithmExtension {
     public SampleAlgorithm(BlackBoard blackBoard) {
@@ -41,7 +40,7 @@ public class SampleAlgorithm extends GraphAlgorithm implements AlgorithmExtensio
             e.setColor(3);
         
         step("connect v2 to the neighbors of its neighbours");
-        Vector<Edge> toInsert = new Vector<Edge>();
+        Vector<Edge> toInsert = new Vector<>();
         for (Vertex v:g.neighbors(v2))
             for (Vertex vv:g.neighbors(v))
                 toInsert.add(new Edge(v2, vv));

@@ -7,7 +7,7 @@ package graphtea.plugins.commandline.commands;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 
 import graphtea.graph.graph.Edge;

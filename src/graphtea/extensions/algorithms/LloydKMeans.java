@@ -32,8 +32,7 @@ public class LloydKMeans {
 		// find an initial "fair" placement for the k clusters
 		// places them radialy around the centroid
 		GraphPoint point = new GraphPoint(0, 0);
-		for (int i = 0; i < p.length; i++)
-			point.add(p[i].x, p[i].y);
+		for (GraphPoint aP : p) point.add(aP.x, aP.y);
 		point.multiply(((double) 1) / p.length);
 
 		for (int i = 0; i < k; i++)
@@ -80,7 +79,7 @@ public class LloydKMeans {
 				center[i] = new GraphPoint((int) (sum[i].x / count[i]), (int) (sum[i].y / count[i]));
 		}
 
-		ArrayList<Cluster> ret = new ArrayList<Cluster>();
+		ArrayList<Cluster> ret = new ArrayList<>();
 		for (int i = 0; i < k; i++)
 			ret.add(new Cluster(center[i]));
 

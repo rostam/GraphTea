@@ -25,7 +25,7 @@ public class IsEulerian implements GraphReportExtension {
     /**
      * @return true if given graph is Eulerian
      */
-    public static boolean isEulerian(GraphModel graph) {
+    private static boolean isEulerian(GraphModel graph) {
         int cc = graph.getVerticesCount();
         if (cc == 0) return false;
         if (cc < 2)

@@ -43,7 +43,7 @@ public class Init implements graphtea.platform.plugin.PluginInterface, StorableO
             } catch (Exception e) {
                 ExceptionHandler.catchException(e);
             }
-            UI ui = new UI(blackboard, false);
+            UI ui = new UI(blackboard);
             blackboard.addListener(Application.POST_INIT_EVENT, new Listener() {
                 public void keyChanged(String key, Object value) {
                     GFrame frame = UIUtils.getGFrame(blackboard);

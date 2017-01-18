@@ -20,7 +20,7 @@ import java.awt.*;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 @CommandAttitude(name = "generate_wheel", abbreviation = "_g_w"
         , description = "generate a n vertices wheel graph")

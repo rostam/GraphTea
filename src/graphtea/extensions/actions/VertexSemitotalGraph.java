@@ -16,7 +16,7 @@ import graphtea.plugins.main.extension.GraphActionExtension;
 
 
 /**
- * Creates a line graph from the current graph and shows it in a new tab
+ * Creates a vertex semitotal graph from the current graph and shows it in a new tab
  *
  * @author Mohammad Ali Rostami
  * @author Azin Azadi

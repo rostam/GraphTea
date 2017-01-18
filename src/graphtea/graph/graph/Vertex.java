@@ -77,8 +77,8 @@ public class Vertex extends BaseVertex {
     /**
      * returns the specified user defined attribute, or null if it does not exists.
      *
-     * @param name
-     * @return
+     * @param name The name of attribute
+     * @return The user defined attribute with the given name
      */
     public <t> t getUserDefinedAttribute(String name) {
         if (userDefinedAttributes == null)
@@ -168,8 +168,6 @@ public class Vertex extends BaseVertex {
 
     public String toString() {
         Integer i = getId();
-        if (i==null)
-            i=-1;
         return label + " (" + i + ")";
     }
 

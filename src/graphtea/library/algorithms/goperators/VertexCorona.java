@@ -19,7 +19,7 @@ import java.util.Iterator;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 
 public class VertexCorona

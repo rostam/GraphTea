@@ -45,20 +45,20 @@ public class PushRelabel extends MaxFlow{
 
 
 		// a map between the vertex id and a linked-list of simple(undirected) neighbors".
-		neighborMap = new HashMap<Integer, LinkedList<Integer>>();
-		iterMap = new HashMap<Integer, Iterator<Integer>>();
+		neighborMap = new HashMap<>();
+		iterMap = new HashMap<>();
 
 		//initializing neighbor list
 		for(Vertex v: g)
 		{
-			LinkedHashSet<Integer> simpleNeihbors = new LinkedHashSet<Integer>();
+			LinkedHashSet<Integer> simpleNeihbors = new LinkedHashSet<>();
 			for (Vertex n: g.getNeighbors(v))
 				simpleNeihbors.add(n.getId());	
 
 			for (Vertex n: g.getBackNeighbours(v))
 				simpleNeihbors.add(n.getId());
 
-			LinkedList<Integer> neighbors = new LinkedList<Integer>(simpleNeihbors);
+			LinkedList<Integer> neighbors = new LinkedList<>(simpleNeihbors);
 			int id = v.getId();
 			neighborMap.put(id, neighbors);
 
@@ -133,7 +133,7 @@ public class PushRelabel extends MaxFlow{
 	}
 
 
-	int Cf(int u, int v)
+	private int Cf(int u, int v)
 	{
 		return (int)(C[u][v] - F[u][v] + F[v][u]);
 	}
@@ -166,7 +166,7 @@ public class PushRelabel extends MaxFlow{
 	private void relableToFront()
 	{
 		initializePreflow();
-		LinkedList<Integer> L = new LinkedList<Integer>();
+		LinkedList<Integer> L = new LinkedList<>();
 
 		for(Integer i=0 ; i < n ; i++)
 			if( i != s && i != t )

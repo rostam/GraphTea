@@ -20,7 +20,7 @@ public class GomoryHuTree implements GraphReportExtension  {
 		if(g.isDirected())
 		{
 			JOptionPane.showMessageDialog(null,"Directed Graphs may not have Gomory-Hu tree");
-		return null;
+			return null;
 		}
 		
 		try {
@@ -30,7 +30,6 @@ public class GomoryHuTree implements GraphReportExtension  {
 	    	//gtgp.addGraph(GGHT.GHTree);
 	    	//GGHT.perform();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -12,7 +12,7 @@ import java.awt.*;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 public class ShellSideBar implements GComponentInterface {
     public Component getComponent(BlackBoard b) {

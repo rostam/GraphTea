@@ -75,7 +75,7 @@ public class Edge extends BaseEdge<Vertex> {
      */
     public void setUserDefinedAttribute(String name, Object value) {
         if (userDefinedAttributes == null) {
-            userDefinedAttributes = new HashMap<String, Object>();
+            userDefinedAttributes = new HashMap<>();
         }
         userDefinedAttributes.put(name, value);
     }
@@ -83,8 +83,8 @@ public class Edge extends BaseEdge<Vertex> {
     /**
      * returns the specified user defined attribute, or null if it does not exists.
      *
-     * @param name
-     * @return
+     * @param name The name of attribute
+     * @return The attribute with the given name
      */
     public <t> t getUserDefinedAttribute(String name) {
         if (userDefinedAttributes == null)
@@ -95,7 +95,7 @@ public class Edge extends BaseEdge<Vertex> {
     /**
      * removes the given attribute from the list of user defined attributes
      *
-     * @param name
+     * @param name The name of attribute
      */
     public void removeUserDefinedAttribute(String name) {
         userDefinedAttributes.remove(name);
@@ -119,7 +119,7 @@ public class Edge extends BaseEdge<Vertex> {
      */
     public static void addGlobalUserDefinedAttribute(String name, Object defaultvalue) {
         if (globalUserDefinedAttributes == null) {
-            globalUserDefinedAttributes = new HashMap<String, Object>();
+            globalUserDefinedAttributes = new HashMap<>();
         }
         globalUserDefinedAttributes.put(name, defaultvalue);
     }
@@ -136,7 +136,7 @@ public class Edge extends BaseEdge<Vertex> {
     {
         //default constructor
         if (globalUserDefinedAttributes != null) {
-            userDefinedAttributes = new HashMap<String, Object>();
+            userDefinedAttributes = new HashMap<>();
             userDefinedAttributes.putAll(globalUserDefinedAttributes);
         }
     }
@@ -144,9 +144,9 @@ public class Edge extends BaseEdge<Vertex> {
     /**
      * This is the copy constructor method for the Edge Model
      *
-     * @param vm1
-     * @param vm2
-     * @return
+     * @param vm1 The source vertex
+     * @param vm2 The target vertex
+     * @return The constructed edge
      */
     public Edge getCopy(Vertex vm1, Vertex vm2) {
         return new Edge(this, vm1, vm2);
@@ -158,7 +158,7 @@ public class Edge extends BaseEdge<Vertex> {
      * the source and target of edge will be source and target parameters
      * other properties of edge will be copied from edge parameter
      *
-     * @param edge
+     * @param edge The given edge
      */
     public Edge(Edge edge, Vertex source, Vertex target) {
         super(source, target);
@@ -301,7 +301,7 @@ public class Edge extends BaseEdge<Vertex> {
 
     /**
      * returns absolute center point of a loop based on its loopWidth
-     * @return
+     * @return The graph point
      */
     public GraphPoint getLoopCenter(){
         double cx = getCurveControlPoint().x,

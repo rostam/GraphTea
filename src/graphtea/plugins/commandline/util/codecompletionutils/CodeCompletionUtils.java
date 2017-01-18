@@ -17,7 +17,7 @@ import java.util.Vector;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 public class CodeCompletionUtils {
     public static Vector<String> complete(HashMap<String, String> abbrs, String part) {

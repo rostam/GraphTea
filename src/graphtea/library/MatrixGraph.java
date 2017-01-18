@@ -72,19 +72,19 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
     public MatrixGraph(boolean directed, int expectedNumberOfVertices) {
         this.directed = directed;
 
-        adjacencyMatrix = new ArrayList<ArrayList<ArrayList<EdgeType>>>(expectedNumberOfVertices);
+        adjacencyMatrix = new ArrayList<>(expectedNumberOfVertices);
         for (int rowCount = 0; rowCount < expectedNumberOfVertices; rowCount++) {
-            ArrayList<ArrayList<EdgeType>> columns = new ArrayList<ArrayList<EdgeType>>(expectedNumberOfVertices);
+            ArrayList<ArrayList<EdgeType>> columns = new ArrayList<>(expectedNumberOfVertices);
             adjacencyMatrix.add(columns);
         }
-        vertices = new ArrayList<VertexType>(expectedNumberOfVertices);
+        vertices = new ArrayList<>(expectedNumberOfVertices);
 
-        inDegree = new ArrayList<Integer>(expectedNumberOfVertices);
+        inDegree = new ArrayList<>(expectedNumberOfVertices);
 
         if (!directed)
             outDegree = inDegree;
         else
-            outDegree = new ArrayList<Integer>(expectedNumberOfVertices);
+            outDegree = new ArrayList<>(expectedNumberOfVertices);
     }
 
     /**
@@ -111,8 +111,8 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
      *
      * @param <ImportVertexType> The type of vertex object which the input graph contain.
      * @param <ImportEdgeType>   The type of edge object which the input graph contain.
-     * @param graph
-     * @param converter          A GraphConverter object which is responsible for duplicating/converting graph
+     * @param graph              The given graph
+     * @param gc          A GraphConverter object which is responsible for duplicating/converting graph
      *                           elements.
      * @throws InvalidGraphException Throws when the input graph is an invalid graph object.
      */
@@ -128,7 +128,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
                         ImportGraphType,
                         MatrixGraph<VertexType, EdgeType>> gc)
             throws InvalidGraphException {
-        ArrayList<VertexType> tempAL = new ArrayList<VertexType>(getVerticesCount());
+        ArrayList<VertexType> tempAL = new ArrayList<>(getVerticesCount());
 
         for (ImportVertexType v : graph) {
             insertVertex(gc.convert(v));
@@ -215,7 +215,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
         ArrayList<EdgeType> edges;
 
         if (adjacencyMatrix.get(source).get(target) == null) {
-            edges = new ArrayList<EdgeType>(5);
+            edges = new ArrayList<>(5);
             adjacencyMatrix.get(source).set(target, edges);
         } else {
             edges = adjacencyMatrix.get(source).get(target);
@@ -258,8 +258,8 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
     /**
      * Returns all edges between two vertices.
      *
-     * @param from Index of the edges' start point.
-     * @param to   Index of the edges' end point.
+     * @param source Index of the edges' start point.
+     * @param target   Index of the edges' end point.
      * @return An ArrayList of <I>EdgeType</I> containing all edges between <I>from</I> and <I>to</I>.
      * @throws graphtea.library.exceptions.InvalidVertexException
      *          Thrown when two supplied indexes of vertices are invalid.
@@ -287,7 +287,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
 
         if (adjacencyMatrix.size() < size) {
             adjacencyMatrix.ensureCapacity(size * 2);
-            adjacencyMatrix.add(new ArrayList<ArrayList<EdgeType>>());
+            adjacencyMatrix.add(new ArrayList<>());
         }
 
         int newSize = adjacencyMatrix.size();
@@ -315,11 +315,11 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
      * @param handler A reference to a PreWorkPostWorkHandler that contains implementation
      *                of pre-work and post-work operations that depends on the application of DFS.
      * @return Whether the traversal has stopped at the middle by the handler.
-     * @throws InvalidVertexException
+     * @throws InvalidVertexException the vertex is invalid
      */
 
     public boolean depthFirstSearch(VertexType vertex, PreWorkPostWorkHandler<VertexType> handler) throws InvalidVertexException {
-        return new graphtea.library.algorithms.traversal.DepthFirstSearch<VertexType, EdgeType>(this)
+        return new graphtea.library.algorithms.traversal.DepthFirstSearch<>(this)
                 .doSearch(vertex, handler);
     }
 
@@ -333,10 +333,10 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
      * @param handler A reference to a PreWorkHandler that contains implementation
      *                of pre-work operation that depends on the application of DFS.
      * @return Whether the traversal has stopped at the middle by the handler.
-     * @throws InvalidVertexException
+     * @throws InvalidVertexException the vertex is invalid
      */
     public boolean breadthFirstSearch(VertexType vertex, PreWorkHandler<VertexType> handler) throws InvalidVertexException {
-        return new graphtea.library.algorithms.traversal.BreadthFirstSearch<VertexType, EdgeType>(this)
+        return new graphtea.library.algorithms.traversal.BreadthFirstSearch<>(this)
                 .doSearch(vertex, handler);
 
     }
@@ -434,7 +434,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
          * after construction of this object, the edge would be included in the iteration.
          */
         public EdgeIterator() {
-            ArrayList<EdgeType> edges = new ArrayList<EdgeType>();
+            ArrayList<EdgeType> edges = new ArrayList<>();
             if (directed) {
                 for (ArrayList<ArrayList<EdgeType>> aae : adjacencyMatrix)
                     for (ArrayList<EdgeType> ae : aae)
@@ -486,7 +486,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
             if (!directed)
                 ++edgeIterationIndex;
 
-            ArrayList<EdgeType> edges = new ArrayList<EdgeType>();
+            ArrayList<EdgeType> edges = new ArrayList<>();
 
             ArrayList<ArrayList<EdgeType>> row = adjacencyMatrix.get(v.getId());
 
@@ -537,7 +537,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
             if (!directed)
                 ++edgeIterationIndex;
 
-            ArrayList<EdgeType> edges = new ArrayList<EdgeType>();
+            ArrayList<EdgeType> edges = new ArrayList<>();
 
             ArrayList<ArrayList<EdgeType>> row = adjacencyMatrix.get(v.getId());
 
@@ -795,9 +795,9 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
     public BaseGraph<VertexType, EdgeType>
            copy(EdgeVertexCopier<VertexType, EdgeType> gc)
             throws InvalidGraphException {
-        MatrixGraph<VertexType, EdgeType> oGraph = new MatrixGraph<VertexType, EdgeType>(directed, getVerticesCount());
+        MatrixGraph<VertexType, EdgeType> oGraph = new MatrixGraph<>(directed, getVerticesCount());
 
-        ArrayList<VertexType> tempAL = new ArrayList<VertexType>(getVerticesCount());
+        ArrayList<VertexType> tempAL = new ArrayList<>(getVerticesCount());
 
         VertexType tempVertex;
         for (VertexType v : this) {
@@ -852,7 +852,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
 
 //    @Override
     public MatrixGraph<VertexType, EdgeType> dcreateEmptyGraph() {
-        return new MatrixGraph<VertexType, EdgeType>(directed, 0);
+        return new MatrixGraph<>(directed, 0);
     }
 
     @Override
@@ -888,7 +888,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
         for (ArrayList<ArrayList<EdgeType>> ll : adjacencyMatrix) {
             j = 0;
 
-            ArrayList<Integer> temp = new ArrayList<Integer>();
+            ArrayList<Integer> temp = new ArrayList<>();
 
             for (ArrayList<EdgeType> alet : ll) {
                 if (alet != null && alet.size() != 0)
@@ -935,19 +935,19 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
     @Override
     public void clear() {
         int expectedNumberOfVertices = 0;
-        adjacencyMatrix = new ArrayList<ArrayList<ArrayList<EdgeType>>>(expectedNumberOfVertices);
+        adjacencyMatrix = new ArrayList<>(expectedNumberOfVertices);
         for (int rowCount = 0; rowCount < expectedNumberOfVertices; rowCount++) {
-            ArrayList<ArrayList<EdgeType>> columns = new ArrayList<ArrayList<EdgeType>>(expectedNumberOfVertices);
+            ArrayList<ArrayList<EdgeType>> columns = new ArrayList<>(expectedNumberOfVertices);
             adjacencyMatrix.add(columns);
         }
-        vertices = new ArrayList<VertexType>(expectedNumberOfVertices);
+        vertices = new ArrayList<>(expectedNumberOfVertices);
 
-        inDegree = new ArrayList<Integer>(expectedNumberOfVertices);
+        inDegree = new ArrayList<>(expectedNumberOfVertices);
 
         if (!directed)
             outDegree = inDegree;
         else
-            outDegree = new ArrayList<Integer>(expectedNumberOfVertices);
+            outDegree = new ArrayList<>(expectedNumberOfVertices);
 
         edgeCount = 0;
     }

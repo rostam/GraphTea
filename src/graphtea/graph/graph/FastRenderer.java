@@ -2,10 +2,6 @@
 // Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
-/**
- * @author Hooman Mohajeri Moghaddam - added image load capability.
- *         Mohsen Mansouryar > added Loop support
- */
 package graphtea.graph.graph;
 
 import graphtea.graph.event.*;
@@ -25,7 +21,10 @@ import java.awt.geom.QuadCurve2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
-
+/**
+ * @author Hooman Mohajeri Moghaddam - added image load capability.
+ *         Mohsen Mansouryar > added Loop support
+ */
 public class FastRenderer extends AbstractGraphRenderer implements VertexListener, EdgeListener, GraphControlListener, StorableOnExit {
     {
         SETTINGS.registerSetting(this, "Graph Drawings");
@@ -220,7 +219,6 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
                 String s = v.getLabel();
                 if (s == null)
                     s = "";
-                int dl = s.length() * 4;
                 int labelLength = 0;
                 for(int i=0;i < s.length();i++) {
                     labelLength += gg.getFontMetrics().charWidth(s.charAt(i));
@@ -577,7 +575,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
     boolean isUpdated = false;
 
     private void doUpdateGraphBounds() {
-        String s = ((String) blackboard.getData("MoveSelected.moving"));
+        String s = blackboard.getData("MoveSelected.moving");
         if (s != null && s.equals("yes")) {
             return;
         }
@@ -669,10 +667,6 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
         if (bounds.x >= 0 && bounds.y >= 0) {
             b.width += Math.abs(b.x);
             b.height += Math.abs(b.y);
-        } else {
-            if (bounds.x < 0 && bounds.y >= 0) {
-
-            }
         }
     }
 

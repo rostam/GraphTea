@@ -3,15 +3,13 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.zagreb;
-
-import graphtea.extensions.actions.LineGraph;
+import graphtea.extensions.reports.Utils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
@@ -34,7 +32,7 @@ public class EM2UpperBound implements GraphReportExtension{
     public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(
-                LineGraph.createLineGraph(g)
+                Utils.createLineGraph(g)
         );
 
         RenderTable ret = new RenderTable();

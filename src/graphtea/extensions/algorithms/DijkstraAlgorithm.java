@@ -12,6 +12,7 @@ import java.util.*;
 
 /**
  * Created by rostam on 06.03.15.
+ * @author M. Ali Rostami
  */
 public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtension {
     public DijkstraAlgorithm(BlackBoard blackBoard) {
@@ -33,9 +34,9 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
 
         final Integer dist[] = new Integer[graph.getVerticesCount()];
         //the edge connected to i'th vertex
-        final HashMap<Vertex, Edge> edges = new HashMap<Vertex, Edge>();
+        final HashMap<Vertex, Edge> edges = new HashMap<>();
 
-        HashMap<Vertex, Vertex> prev = new HashMap<Vertex, Vertex>();
+        HashMap<Vertex, Vertex> prev = new HashMap<>();
 
         for (int i = 0; i < dist.length; i++)
             dist[i] = Integer.MAX_VALUE;
@@ -56,9 +57,9 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
         VertexComparator vComp = new VertexComparator();
 
         //selected vertices
-        HashSet<Vertex> selectedVertices = new HashSet<Vertex>();
+        HashSet<Vertex> selectedVertices = new HashSet<>();
 
-        PriorityQueue<Vertex> Q = new PriorityQueue<Vertex>(1, vComp);
+        PriorityQueue<Vertex> Q = new PriorityQueue<>(1, vComp);
 
         Q.add(startVertex);
         startVertex.setMark(true);
@@ -85,15 +86,14 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
             while ((iet.hasNext())) {
                 Edge edge = iet.next();
                 Vertex target = vMin == edge.source ? edge.target : edge.source;
-                Vertex source = vMin;
-                int tmp = dist[source.getId()] + edge.getWeight();
+                int tmp = dist[vMin.getId()] + edge.getWeight();
                 if (!selectedVertices.contains(target)) {
                     gu.setMessage("Currently computed distnace:"
                                     + tmp,
                             graphData.getBlackboard(), true);
                     step("<br/>");
-                    if (dist[target.getId()] > dist[source.getId()] + edge.getWeight()) {
-                        dist[target.getId()] = dist[source.getId()] + edge.getWeight();
+                    if (dist[target.getId()] > dist[vMin.getId()] + edge.getWeight()) {
+                        dist[target.getId()] = dist[vMin.getId()] + edge.getWeight();
                         edge.setMark(true);
                         edge.setColor(3);
                         if(prev.containsKey(target))

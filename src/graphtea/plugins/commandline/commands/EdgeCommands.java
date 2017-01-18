@@ -17,7 +17,7 @@ import graphtea.plugins.main.core.actions.edge.AddEdge;
 
 /**
  * @author amir khosrowshahi , Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 public class EdgeCommands {
 

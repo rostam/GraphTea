@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 /**
  * @author Mohammad Ai Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 
 public class GraphComplement {

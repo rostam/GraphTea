@@ -119,8 +119,8 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	/**
 	 * returns the specified user defined attribute, or null if it does not exists.
 	 *
-	 * @param name
-	 * @return
+	 * @param name The name of the attribute
+	 * @return The specific user defined attribute
 	 */
 	public <t> t getUserDefinedAttribute(String name) {
 		if (userDefinedAttributes == null)
@@ -131,7 +131,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	/**
 	 * removes the given attribute from the list of user defined attributes
 	 *
-	 * @param name
+	 * @param name The name of the attribute
 	 */
 	public void removeUserDefinedAttribute(String name) {
 		userDefinedAttributes.remove(name);
@@ -208,9 +208,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	}
 
 	public void insertVertices(Collection<Vertex> vertices) {
-		for (Vertex v : vertices) {
-			insertVertex(v);
-		}
+		vertices.forEach(this::insertVertex);
 	}
 
 	public void removeAllEdges(Vertex source, Vertex target) throws InvalidVertexException {
@@ -256,7 +254,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	/**
 	 * adds new edge only if it doesn't exist in graph
 	 *
-	 * @param newedge
+	 * @param newedge The new edge
 	 */
 	public void insertEdge(Edge newedge) {
         if (!isAllowLoops() && newedge.source == newedge.target)
@@ -506,7 +504,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	/**
 	 * set the edges of this graph to be curves or lines
 	 *
-	 * @param isCurve
+	 * @param isCurve Sets if the the edge is curved
 	 */
 	public void setIsEdgesCurved(boolean isCurve) {
 		this.isEdgesCurved = isCurve;

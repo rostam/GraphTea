@@ -13,6 +13,7 @@ import java.util.*;
 
 /**
  * Created by rostam on 06.03.15.
+ * @author M. Ali Rostami
  */
 public class PrimAlgorithm extends GraphAlgorithm implements AlgorithmExtension {
     public PrimAlgorithm(BlackBoard blackBoard) {

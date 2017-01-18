@@ -67,8 +67,8 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
 
     /**
      *
-     * @param newEdge
-     * @throws InvalidVertexException
+     * @param newEdge the new edge to be added
+     * @throws InvalidVertexException the vertex is invalid
      * @see BaseGraph#insertEdge(EdgeType)
      */
     public void addEdge(EdgeType newEdge)
@@ -99,8 +99,8 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      * Returns a collection of all edges which connects two vertices supplied as first and second arguments of
      * this method.
      *
-     * @param Source of the desired edges.
-     * @param Target of the desired edges.
+     * @param source of the desired edges.
+     * @param target of the desired edges.
      * @return Returns a collection of all edges which connects two vertices supplied as first and second arguments of
      *         this method.
      * @throws InvalidVertexException if supplied source or target are invalid.
@@ -112,7 +112,8 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      * Returns true if there is an edge between specified vertices (direction considered for directed graphs).
      * * @param Source of the edge for existance check.
      *
-     * @param Target of the edge for existance check.
+     * @param source of the desired edges.
+     * @param target of the edge for existance check.
      * @return true if there is an edge between specified vertices (direction considered for directed graphs).
      * @throws InvalidVertexException if supplied source or target are invalid.
      */
@@ -124,8 +125,8 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      * Gets the weight of the edge between two vertices(if an edge exists).\
      * Note that it currently supports only one edge between two vertices!!!!
      * However the return type is an array to support hyper-graphs.
-     * @param Source of the edge to check.
-     * @param Target of the edge to check.
+     * @param source of the edge to check.
+     * @param target of the edge to check.
      * @return the weight of the edge if it exists, null otherwise (direction considered for directed graphs).
      * @throws InvalidVertexException if supplied source or target are invalid.
      */
@@ -141,7 +142,7 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
 
     /**
      *
-     * @param newVertex
+     * @param newVertex the new vertex
      * @see BaseGraph#insertVertex(VertexType)
      */
     public void addVertex(VertexType newVertex){
@@ -150,7 +151,7 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
     /**
      * Removes a vertex and all it's connected edges.
      *
-     * @param Vertex to be removed.
+     * @param v the vertex to be removed.
      */
     public abstract void removeVertex(VertexType v)
             throws InvalidVertexException;
@@ -167,7 +168,7 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      * their target goes to the specified vertex.
      *
      * @return in-degree of vertex <I>vertexId</I>.
-     * @throws InvalidVertexException
+     * @throws InvalidVertexException the vertex is invalid
      * @see graphtea.library.BaseGraph#getDegree(BaseVertex)
      */
     public abstract int getInDegree(VertexType v)
@@ -178,7 +179,7 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      * their source is attached to the specified vertex.
      *
      * @return out-degree of vertex <I>vertexId</I>.
-     * @throws InvalidVertexException
+     * @throws InvalidVertexException the vertex is invalid
      * @see graphtea.library.BaseGraph#getDegree(BaseVertex)
      */
     public abstract int getOutDegree(VertexType v)
@@ -324,8 +325,8 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
     /**
      * in a directed graph this method returns edges whose targets are v
      *
-     * @param v
-     * @return
+     * @param v The given vertex
+     * @return An iterator over the edges with the target v
      */
     public abstract Iterator<EdgeType> lightBackEdgeIterator(VertexType v)
             throws InvalidVertexException;
@@ -341,19 +342,18 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      * If zero, indicates that the graph is not a subgraph. If greater than zero,
      * it indicates that it's a subgraph with Id <code>subgraphId</code>.
      */
-    protected int subgraphIndex = 0;
+    int subgraphIndex = 0;
 
     /**
      * Whether the graph is a subgraph. Then it shares it's contents.
      */
-    protected boolean isSubgraph = false;
-    protected int lastSubgraphIndex = 0;
-    protected BaseGraph<VertexType, EdgeType> superGraph = null;
+    private boolean isSubgraph = false;
+    private BaseGraph<VertexType, EdgeType> superGraph = null;
 
     /**
      * Sets the graph as a subgraph.
      *
-     * @param b
+     * @param superGraph The supergraph
      */
     public void registerSubgraph(BaseGraph<VertexType, EdgeType> superGraph) {
         isSubgraph = true;
@@ -374,11 +374,11 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
     /**
      * Get new id for a new subgraph;
      *
-     * @param b
      */
     public int getNewSubgraphIndex() {
         if (isSubgraph)
             return superGraph.getNewSubgraphIndex();
+        int lastSubgraphIndex = 0;
         return lastSubgraphIndex + 1;
     }
 
@@ -386,7 +386,6 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      * Set's the subgraph index.
      *
      * @param i the subgraph index.
-     * @return
      */
     public void setSubGraphIndex(int i) {
         subgraphIndex = i;
@@ -437,14 +436,14 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
     /**
      * Returns degree of vertex, the number of edges which their target or source is the specified vertex.
      *
-     * @param vertex
+     * @param vertex The given vertex
      */
     public int getDegree(VertexType vertex) {
         return isDirected() ? getInDegree(vertex) + getOutDegree(vertex) : getInDegree(vertex);
     }
 
     /**
-     * @param vertex
+     * @param vertex The given vertex
      * @return an Iterable object which can be iterated trough all neighbours of the given vertex using lightEdgeIterator(vertex)
      * @see graphtea.library.BaseGraph#lightEdgeIterator(BaseVertex)
      */
@@ -498,7 +497,6 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      */
     public Iterable<VertexType> getBackNeighbours(final VertexType vertex) {
         return new Iterable<VertexType>() {
-
             public Iterator<VertexType> iterator() {
                 final Iterator<EdgeType> ei = lightBackEdgeIterator(vertex);
                 return new Iterator<VertexType>() {

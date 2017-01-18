@@ -27,7 +27,7 @@ import java.util.HashMap;
  * when the shell is called, current blackboard object is passed and class' constructor assigns it to the
  * bb parameter
  * @author Mohamad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 
 public class Shell {

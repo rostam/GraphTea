@@ -7,7 +7,7 @@ package graphtea.plugins.commandline.parsers;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 
 public interface ExtParser {

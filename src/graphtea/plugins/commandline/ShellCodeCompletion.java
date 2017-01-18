@@ -16,7 +16,7 @@ import java.util.Vector;
 
 /**
  * @author Mohammad Ali Rostami
- * @email ma.rostami@yahoo.com
+ * @email rostamiev@gmail.com
  */
 
 public class ShellCodeCompletion implements NameCompletion {

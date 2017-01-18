@@ -3,8 +3,6 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.zagreb;
-
-import graphtea.extensions.actions.LineGraph;
 import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.graph.graph.GraphModel;
@@ -35,7 +33,7 @@ public class HyperCheck implements GraphReportExtension{
 
     public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(LineGraph.createLineGraph(g));
+        ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(Utils.createLineGraph(g));
 
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
