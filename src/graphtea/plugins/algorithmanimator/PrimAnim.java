@@ -9,8 +9,7 @@ import graphtea.library.BaseVertex;
 import graphtea.library.algorithms.spanningtree.Prim;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
-public class PrimAnim
-        extends Prim<BaseVertex, BaseEdge<BaseVertex>>
+public class PrimAnim extends Prim<BaseVertex, BaseEdge<BaseVertex>>
         implements AlgorithmExtension {
 
     public PrimAnim() {

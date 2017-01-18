@@ -20,11 +20,6 @@ import java.awt.geom.Rectangle2D;
 
 
 public class circular extends AbstractAction implements Parametrizable {
-    GraphModel g;
-    String event = UIUtils.getUIEventKey("circular");
-    private int n;
-    Vertex[] v;
-
     /**
      * constructor
      *
@@ -32,6 +27,7 @@ public class circular extends AbstractAction implements Parametrizable {
      */
     public circular(BlackBoard bb) {
         super(bb);
+        String event = UIUtils.getUIEventKey("circular");
         listen4Event(event);
 
     }
@@ -39,16 +35,16 @@ public class circular extends AbstractAction implements Parametrizable {
     /**
      * like Action
      *
-     * @param eventName
-     * @param value
+     * @param eventName The event name
+     * @param value The value
      */
     public void performAction(String eventName, Object value) {
-        g = blackboard.getData(GraphAttrSet.name);
+        GraphModel g = blackboard.getData(GraphAttrSet.name);
         circularVisualize(g);
 
     }
 
-    public static void circularVisualize(GraphModel g) {
+    private static void circularVisualize(GraphModel g) {
         Rectangle2D.Double b = g.getAbsBounds();
         int w = (int) b.width;
         int h = (int) b.height;
@@ -59,7 +55,7 @@ public class circular extends AbstractAction implements Parametrizable {
         circularVisualize(w, h, g);
     }
 
-    public static void circularVisualize(int w, int h, GraphModel g) {
+    private static void circularVisualize(int w, int h, GraphModel g) {
         int n = g.getVerticesCount();
         Vertex[] v = new Vertex[n];
         int i = 0;

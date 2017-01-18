@@ -18,7 +18,7 @@ public class GraphEvent<VertexType extends BaseVertex, EdgeType extends BaseEdge
     public final BaseGraph<VertexType, EdgeType> graph;
     public final EventType eventType;
 
-    public static enum EventType {
+    public enum EventType {
         NEW_GRAPH
     }
 

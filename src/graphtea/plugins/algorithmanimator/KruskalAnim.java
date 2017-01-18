@@ -7,8 +7,7 @@ package graphtea.plugins.algorithmanimator;
 import graphtea.library.algorithms.spanningtree.Kruskal;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
-public class KruskalAnim
-        extends Kruskal
+public class KruskalAnim extends Kruskal
         implements AlgorithmExtension {
 
     public String getName() {

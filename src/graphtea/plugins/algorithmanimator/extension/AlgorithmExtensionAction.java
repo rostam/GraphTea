@@ -26,15 +26,13 @@ public class AlgorithmExtensionAction
     @Override
     public void performExtension() {
 
-        new Thread() {
-            public void run() {
-                AlgorithmAnimator algorithmAnimator = new AlgorithmAnimator(blackboard);
-                target.acceptEventDispatcher(algorithmAnimator);
-                GTabbedGraphPane.showTimeNotificationMessage(target.getName() + " Algorithm started", blackboard, 2000, true);
-                algorithmAnimator.createControlDialog(target.getName());
-                target.doAlgorithm();
-                GTabbedGraphPane.showTimeNotificationMessage(target.getName() + " Algorithm finished", blackboard, 3000, true);
-            }
-        }.start();
+        new Thread(() -> {
+            AlgorithmAnimator algorithmAnimator = new AlgorithmAnimator(blackboard);
+            target.acceptEventDispatcher(algorithmAnimator);
+            GTabbedGraphPane.showTimeNotificationMessage(target.getName() + " Algorithm started", blackboard, 2000, true);
+            algorithmAnimator.createControlDialog(target.getName());
+            target.doAlgorithm();
+            GTabbedGraphPane.showTimeNotificationMessage(target.getName() + " Algorithm finished", blackboard, 3000, true);
+        }).start();
     }
 }

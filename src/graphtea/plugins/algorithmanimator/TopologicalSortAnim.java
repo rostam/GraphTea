@@ -8,8 +8,7 @@ package graphtea.plugins.algorithmanimator;
 import graphtea.library.algorithms.DAG;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
-public class TopologicalSortAnim
-        extends DAG
+public class TopologicalSortAnim extends DAG
         implements AlgorithmExtension {
 
     public String getName() {

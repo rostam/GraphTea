@@ -19,8 +19,7 @@ import java.awt.geom.Rectangle2D;
  * @author houshmand hasannia
  */
 public class Random extends AbstractAction {
-    String event = UIUtils.getUIEventKey("Random");
-    GraphModel g;
+    private GraphModel g;
 
     /**
      * constructor
@@ -29,14 +28,15 @@ public class Random extends AbstractAction {
      */
     public Random(BlackBoard bb) {
         super(bb);
+        String event = UIUtils.getUIEventKey("Random");
         listen4Event(event);
     }
 
     /**
      * like Action
      *
-     * @param eventName
-     * @param value
+     * @param eventName The event name
+     * @param value The value
      */
     public void performAction(String eventName, Object value) {
         g = blackboard.getData(GraphAttrSet.name);
@@ -65,6 +65,6 @@ public class Random extends AbstractAction {
         return ret;
     }
 
-    int n;
+    private int n;
 }
 

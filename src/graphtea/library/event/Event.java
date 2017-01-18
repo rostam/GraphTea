@@ -12,13 +12,13 @@ package graphtea.library.event;
  * @author Omid Aladini
  */
 public interface Event {
-    public String getID();
+    String getID();
 
-    public String getDescription();
+    String getDescription();
 
     /**
      * @return a message if the algorithm want to send any of them. this message will be loged and shown to the user
      */
-    public String getMessage();
+    String getMessage();
 
 }

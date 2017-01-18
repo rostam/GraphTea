@@ -53,14 +53,13 @@ public class LocalSF extends AbstractAction {
         });
     }
 
-    JButton stopbtn;
-    animatorLSF a;
+    private JButton stopbtn;
 
     /**
      * like Action
      *
-     * @param eventName
-     * @param value
+     * @param eventName The event name
+     * @param value The value
      */
     public void performAction(String eventName, Object value) {
         LSFUI l = new LSFUI();
@@ -87,7 +86,7 @@ public class LocalSF extends AbstractAction {
 
     }
 
-    AbstractGraphRenderer gv;
+    private AbstractGraphRenderer gv;
 
     void start() {
         g = blackboard.getData(GraphAttrSet.name);
@@ -97,7 +96,7 @@ public class LocalSF extends AbstractAction {
 //            fgv.forceQuickPaint = true;
 //        }
         if (!g2a.containsKey(g)) {
-            a = new animatorLSF(blackboard, g, gv);
+            animatorLSF a = new animatorLSF(blackboard, g, gv);
             g2a.put(g, a);
             a.start();
         }
@@ -108,8 +107,8 @@ public class LocalSF extends AbstractAction {
         return g2a.get(g);
     }
 
-    HashMap<GraphModel, animatorLSF> g2a = new HashMap<GraphModel, animatorLSF>();
-    GraphModel g;
+    private HashMap<GraphModel, animatorLSF> g2a = new HashMap<>();
+    private GraphModel g;
 }
 
 

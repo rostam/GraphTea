@@ -8,8 +8,7 @@ package graphtea.plugins.algorithmanimator;
 import graphtea.library.algorithms.coloring.SampleColoring;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
-public class SampleColoringExtension
-        extends SampleColoring
+public class SampleColoringExtension extends SampleColoring
         implements AlgorithmExtension {
 
     public String getName() {

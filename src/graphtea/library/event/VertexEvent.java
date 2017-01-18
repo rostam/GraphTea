@@ -25,7 +25,7 @@ public class VertexEvent<VertexType extends BaseVertex, EdgeType extends BaseEdg
     public final BaseGraph<VertexType, EdgeType> graph;
     public final EventType eventType;
 
-    public static enum EventType {
+    public enum EventType {
         COLOR_CHANGE,
         NEW_VERTEX,
         MARK

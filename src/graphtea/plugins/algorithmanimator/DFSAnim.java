@@ -10,8 +10,7 @@ import graphtea.graph.graph.Vertex;
 import graphtea.library.algorithms.traversal.DepthFirstSearch;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
-public class DFSAnim
-        extends DepthFirstSearch<Vertex, Edge>
+public class DFSAnim extends DepthFirstSearch<Vertex, Edge>
         implements AlgorithmExtension {
 
     public String getName() {

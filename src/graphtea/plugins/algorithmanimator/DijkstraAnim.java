@@ -9,8 +9,7 @@ import graphtea.graph.graph.Vertex;
 import graphtea.library.algorithms.shortestpath.Dijkstra;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
-public class DijkstraAnim
-        extends Dijkstra<Vertex, Edge>
+public class DijkstraAnim extends Dijkstra<Vertex, Edge>
         implements AlgorithmExtension {
 
     public String getName() {

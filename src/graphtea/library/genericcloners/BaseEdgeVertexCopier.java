@@ -19,9 +19,9 @@ public class BaseEdgeVertexCopier implements
 
     public BaseEdge<BaseVertex> convert(BaseEdge<BaseVertex> e, BaseVertex newSource, BaseVertex newTarget) {
         if (e != null)
-            return new BaseEdge<BaseVertex>(newSource, newTarget, new BaseEdgeProperties(e.getProp()));
+            return new BaseEdge<>(newSource, newTarget, new BaseEdgeProperties(e.getProp()));
         else
-            return new BaseEdge<BaseVertex>(newSource, newTarget);
+            return new BaseEdge<>(newSource, newTarget);
     }
 
     public BaseVertex convert(BaseVertex e) {
