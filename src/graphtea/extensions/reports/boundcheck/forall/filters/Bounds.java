@@ -4,6 +4,7 @@ import graphtea.platform.lang.ArrayX;
 
 /**
  * Created by rostam on 14.10.15.
+ * @author M. Ali Rostami
  */
 public class Bounds {
     public static final String Upper = "Upper";

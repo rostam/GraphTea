@@ -33,13 +33,11 @@ public class GeneratorFilters {
 
     public static ArrayX<String> getGenFilters() {
         ArrayX ax = new ArrayX(NoGenerator);
-        for (String s : hm.keySet()) {
-            if (s.contains("graphtea.extensions.generators.")) {
-                Extension ext = ((AbstractExtensionAction) hm.get(s)).getTarget();
-                ax.addValidValue(ext.getName());
-                nameToClass.put(ext.getName(),s);
-            }
-        }
+        hm.keySet().stream().filter(s -> s.contains("graphtea.extensions.generators.")).forEach(s -> {
+            Extension ext = ((AbstractExtensionAction) hm.get(s)).getTarget();
+            ax.addValidValue(ext.getName());
+            nameToClass.put(ext.getName(), s);
+        });
         return ax;
     }
 
@@ -47,7 +45,6 @@ public class GeneratorFilters {
         RenderTable retForm = new RenderTable();
         Extension ext = ((AbstractExtensionAction) hm.get(
                 nameToClass.get(name))).getTarget();
-        //ForAllParameterShower ps = new ForAllParameterShower((Parametrizable) ext);
         Vector<JTextField> v = new Vector<>();
         JPanel myPanel = new JPanel();
         Parametrizable o = (Parametrizable) ext;
@@ -76,9 +73,7 @@ public class GeneratorFilters {
                     res.add(new Pair<>(
                             Integer.parseInt(sc.next()),
                             Integer.parseInt(sc.next())));
-                } else {
                 }
-
             }
             int from = res.get(0).first;
             int to = res.get(0).second;
@@ -87,7 +82,7 @@ public class GeneratorFilters {
             for (int i = from; i <= to; i++) {
                 try {
                     o.getClass().getDeclaredField(names.get(0)).set(o, i);
-                    GraphModel g = null;
+                    GraphModel g;
                     if(ext instanceof SimpleGeneratorInterface)
                       g = GraphGenerator.getGraph(false, (SimpleGeneratorInterface) ext);
                     else
@@ -105,9 +100,7 @@ public class GeneratorFilters {
                     results.add(i);
                     results.addAll(ret.poll());
                     retForm.add(results);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (NoSuchFieldException e) {
+                } catch (IllegalAccessException | NoSuchFieldException e) {
                     e.printStackTrace();
                 }
             }

@@ -7,6 +7,7 @@ import graphtea.library.util.Pair;
 
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 
 public class ColorAlgs {
@@ -913,11 +914,8 @@ public class ColorAlgs {
 
                   }
                 }
-                System.out.println("3.2");
-
               } else { //Color[w]>0
                 for (Vertex x : g.getNeighbors(w)) {
-                  System.out.println("3.3");
                   if (x.getColor() > 0) {
                     if (g.getEdge(w, x).getWeight() == 1) {
                       for (Vertex y : g.getNeighbors(x)) {
@@ -932,30 +930,24 @@ public class ColorAlgs {
                 }
               }
             }
-            System.out.println("3.5");
 
             //Find first color which can be assigned to v_c
-            for (int i = 0; i < forbiddenColors.size(); i++) {
-              if (forbiddenColors.get(i) != v) {
-                g.getVertex(v).setColor(forbiddenColors.get(i));
+            for (Integer forbiddenColor : forbiddenColors) {
+              if (forbiddenColor != v) {
+                g.getVertex(v).setColor(forbiddenColor);
                 break;
               }
             }
           }
         }
-        System.out.println("4");
         Degree_V_c_aux.removeAll(removedEdges);
       }
     }
-    for (Pair<Integer, Integer> di : Degree_V_r_aux) {
-      IS.add(di.first);
-    }
-    for (Pair<Integer, Integer> di : Degree_V_c_aux) {
-      IS.add(di.first);
-    }
+    IS.addAll(Degree_V_r_aux.stream().map(di -> di.first).collect(Collectors.toList()));
+    IS.addAll(Degree_V_c_aux.stream().map(di -> di.first).collect(Collectors.toList()));
 
-    for (int i = 0; i < IS.size(); i++) {
-      g.getVertex(IS.get(i)).setColor(0);
+    for (Integer I : IS) {
+      g.getVertex(I).setColor(0);
     }
 
 

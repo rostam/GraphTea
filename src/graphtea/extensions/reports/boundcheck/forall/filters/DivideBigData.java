@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 /**
  * Created by rostam on 20.11.15.
+ * @author M. Ali Rostami
  */
 public class DivideBigData extends JFrame {
     public static void main(String[] args) throws IOException {

@@ -2,6 +2,7 @@ package graphtea.extensions.reports.boundcheck.forall;
 
 /**
  * Created by rostam on 30.09.15.
+ * @author M. Ali Rostami
  */
 public class Utils {
     public static double round(double value, int decimalPlace) {
@@ -13,10 +14,9 @@ public class Utils {
     }
 
     public static double[] round(double[] array, int prec) {
-        double[] res = array;
         for (int i = 0; i < array.length; i++)
-            res[i] = round(res[i], prec);
-        return res;
+            array[i] = round(array[i], prec);
+        return array;
 
     }
 }

@@ -5,8 +5,9 @@ import graphtea.graph.graph.GraphModel;
 
 /**
  * Created by rostam on 30.09.15.
+ * @author M. Ali Rostami
  */
-public class BicyclicGraph implements GraphFilter {
+class BicyclicGraph implements GraphFilter {
     @Override
     public boolean filter(GraphModel g) {
         return g.getEdgesCount()  == g.numOfVertices() + 1;

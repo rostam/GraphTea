@@ -8,12 +8,10 @@ import graphtea.graph.graph.GraphModel;
 
 /**
  * Created by rostam on 30.09.15.
+ * @author M. Ali Rostami
  */
 public class QIntegralFilter implements GraphFilter {
     private Matrix getSignlessLaplacian(Matrix A) {
-        //double[][] res=new double[g.numOfVertices()][g.numOfVertices()];
-
-
         int n = A.getArray().length;
         double[][] ATemp = A.getArray();
 
@@ -31,7 +29,7 @@ public class QIntegralFilter implements GraphFilter {
         return D.plus(A);
     }
 
-    public boolean isQIntegral(GraphModel g) {
+    private boolean isQIntegral(GraphModel g) {
         Matrix B = g.getWeightedAdjacencyMatrix();
         Matrix A = getSignlessLaplacian(B);
         EigenvalueDecomposition ed = A.eig();

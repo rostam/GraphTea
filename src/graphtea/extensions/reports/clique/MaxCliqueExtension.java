@@ -14,6 +14,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 /**
  * @author Ali Rostami
@@ -35,9 +36,7 @@ public class MaxCliqueExtension implements GraphReportExtension {
         Cliques mcs = mca.allMaxCliques();
         for(Vector<Vertex> ss : mcs) {
             SubGraph sg = new SubGraph(g);
-            for(Vertex v : ss) {
-                sg.vertices.add(v);
-            }
+            sg.vertices.addAll(ss);
             ret.add(sg);
         }
         return ret;
@@ -105,21 +104,10 @@ class MaxCliqueAlg
             for (Vertex candidate : candidates_array) {
                 List<Vertex> new_candidates = new ArrayList<>();
                 List<Vertex> new_already_found = new ArrayList<>();
-
                 likelyC.add(candidate);
                 C.remove(candidate);
-                for (Vertex new_candidate : C) {
-                    if(g.isEdge(candidate,new_candidate)) {
-                        new_candidates.add(new_candidate);
-                    }
-                }
-
-                for (Vertex new_found : F) {
-                    if (g.isEdge(candidate, new_found)) {
-                        new_already_found.add(new_found);
-                    }
-                }
-
+                new_candidates.addAll(C.stream().filter(new_candidate -> g.isEdge(candidate, new_candidate)).collect(Collectors.toList()));
+                new_already_found.addAll(F.stream().filter(new_found -> g.isEdge(candidate, new_found)).collect(Collectors.toList()));
                 if (new_candidates.isEmpty() && new_already_found.isEmpty()) {
                     maxCliques.add(new Vector<>(likelyC));
                 }

@@ -4,6 +4,7 @@ import javax.swing.*;
 
 /**
  * Created by rostam on 30.09.15.
+ * @author M. Ali Rostami
  */
 public class IterProgressBar extends JFrame {
     JProgressBar pb;

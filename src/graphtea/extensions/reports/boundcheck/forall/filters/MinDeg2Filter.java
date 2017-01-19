@@ -6,15 +6,15 @@ import graphtea.graph.graph.Vertex;
 
 /**
  * Created by rostam on 30.09.15.
+ * @author M. Ali Rostami
  */
 public class MinDeg2Filter implements GraphFilter {
-    public boolean isChemTree(GraphModel g) {
+    private boolean isChemTree(GraphModel g) {
         int minDeg = g.numOfVertices();
         for(Vertex v : g) {
             if(g.getDegree(v) < minDeg) minDeg=g.getDegree(v);
         }
-        if(minDeg < 2) return false;
-        return true;
+        return minDeg >= 2;
     }
 
     @Override

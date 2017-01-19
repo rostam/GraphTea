@@ -8,6 +8,7 @@ import graphtea.graph.graph.GraphModel;
 
 /**
  * Created by rostam on 30.09.15.
+ * @author M. Ali Rostami
  */
 public class IntegralFilter implements GraphFilter {
     public boolean isIntegral(GraphModel g) {
@@ -15,8 +16,8 @@ public class IntegralFilter implements GraphFilter {
         EigenvalueDecomposition ed = A.eig();
         double rrv[] = ed.getRealEigenvalues();
         double rv[] = Utils.round(rrv, 3);
-        for (int i = 0; i < rv.length; i++) {
-            if (Math.floor(rv[i]) != rv[i]) return false;
+        for (double aRv : rv) {
+            if (Math.floor(aRv) != aRv) return false;
         }
 
         return true;

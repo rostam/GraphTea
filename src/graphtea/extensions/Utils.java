@@ -118,4 +118,15 @@ public class Utils {
         }
         return ret;
     }
+
+    public static int[][] getBinaryPattern(double[][] mat, int n) {
+        int[][] binmat = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (mat[i][j] == 0) binmat[i][j] = 0;
+                else binmat[i][j] = 1;
+            }
+        }
+        return binmat;
+    }
 }

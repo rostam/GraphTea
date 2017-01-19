@@ -5,7 +5,8 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 
 /**
- * Created by rostam on 30.09.15.
+ * Created by rostam on 30.09.15.\
+ * @author M. Ali Rostami
  */
 public class ChemTreeFilter implements GraphFilter {
     public boolean isChemTree(GraphModel g) {

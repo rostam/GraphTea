@@ -22,9 +22,6 @@ import java.util.Vector;
 
 @CommandAttitude(name = "maxium_matching", abbreviation = "_max_match")
 public class MaxMatchingExtension implements GraphReportExtension {
-    class EdgeInt extends HashMap<Integer,Integer> {
-    }
-
     public String getName() {
         return "Maximum Matching";
     }
@@ -60,7 +57,7 @@ public class MaxMatchingExtension implements GraphReportExtension {
                         gg.getVertex(match[i])));
         }
 
-        Vector ret = new Vector();
+        Vector<Object> ret = new Vector<>();
         ret.add("Number of Matching:" + sg.edges.size());
         ret.add(sg);
 

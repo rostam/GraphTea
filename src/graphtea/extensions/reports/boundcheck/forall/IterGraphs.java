@@ -74,17 +74,10 @@ public class IterGraphs {
             it = new AllGraphIterator(type,size,part);
         }
 
-        ToCall f = new ToCall() {
-            @Override
-            public Object f(GraphModel g) {
-                return mr.calculate(g);
-            }
-        };
+        ToCall f = mr::calculate;
         int[] res = null;
-        int fl = 0;
         RenderTable pq = new RenderTable();
         while (it.hasNext()) {
-            fl++;
             GraphModel g = it.next();
             if(gf!=null) if(!gf.filter(g)) continue;
             if (iterative) {
@@ -146,11 +139,11 @@ public class IterGraphs {
             data.add(o);
         }
         if (ConjectureChecking.PostP.getValue().equals("Equality Filter")) {
-            Double toBeTruncated = (Double) ((Double)data.get(1)).doubleValue();
+            Double toBeTruncated = (Double) data.get(1);
             Double o = new BigDecimal(toBeTruncated).
                     setScale(8, BigDecimal.ROUND_HALF_UP).doubleValue();
 
-            if (Double.parseDouble(ConjectureChecking.ppvalue) == o.doubleValue()) {
+            if (Double.parseDouble(ConjectureChecking.ppvalue) == o) {
                 mpq.add(data);
             }
         } else mpq.add(data);

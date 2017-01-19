@@ -6,8 +6,8 @@ import java.util.List;
 /**
  * Algorithm of Edmonds
  */
-public class MaximumMatching {
-   static void marking(int[] match, int[] base, boolean[] blossom, int[] p, int v, int b, int children) {
+class MaximumMatching {
+   private static void marking(int[] match, int[] base, boolean[] blossom, int[] p, int v, int b, int children) {
         for (; base[v] != b; v = p[match[v]]) {
             blossom[base[v]] = blossom[base[match[v]]] = true;
             p[v] = children;
@@ -15,7 +15,7 @@ public class MaximumMatching {
         }
     }
 
-    static int edmond_path(List<Integer>[] graph, int[] match, int[] p, int root) {
+    private static int edmond_path(List<Integer>[] graph, int[] match, int[] p, int root) {
         int n = graph.length;
         boolean[] used = new boolean[n];
         Arrays.fill(p, -1);
@@ -60,7 +60,7 @@ public class MaximumMatching {
     }
 
     static int[] match;
-    public static int maxMatching(List<Integer>[] graph) {
+    static int maxMatching(List<Integer>[] graph) {
         int n = graph.length;
         match = new int[n];
         Arrays.fill(match, -1);
@@ -85,7 +85,7 @@ public class MaximumMatching {
         return matches / 2;
     }
 
-    static int helperCheck(int[] match, int[] base, int[] p, int a, int b) {
+    private static int helperCheck(int[] match, int[] base, int[] p, int a, int b) {
         boolean[] used = new boolean[match.length];
         while (true) {
             a = base[a];

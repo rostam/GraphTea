@@ -8,6 +8,7 @@ import graphtea.graph.graph.GraphModel;
 
 /**
  * Created by rostam on 30.09.15.
+ * @author M. Ali Rostami
  */
 public class LaplacianIntegralFilter implements GraphFilter {
     public boolean isLaplacianIntegral(GraphModel g) {
