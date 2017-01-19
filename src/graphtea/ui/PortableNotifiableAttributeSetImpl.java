@@ -70,30 +70,7 @@ public class PortableNotifiableAttributeSetImpl implements NotifiableAttributeSe
         model.put(name, value);
     }
 
-//    /**
-//     * puts an attribute in the model
-//     *
-//     * @param name
-//     * @param atr
-//     */
-//    public void put(String name, Object atr) {
-//        model.getAttributes().put(name, atr);
-//    }
-
     public Object get(String name) {
         return model.get(name);
     }
-
-//    public boolean contains(String name) {
-//        return model.contains(name);
-//    }
-
-//    /**
-//     * gets an attribute from model
-//     *
-//     * @param name
-//     */
-//    public <t>t get(String name) {
-//        return (t) model.getAttributes().get(name);
-//    }
 }

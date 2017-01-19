@@ -17,12 +17,13 @@ import java.util.HashSet;
  * @author Azin Azadi
  */
 public class ScaleOutSelection implements GraphActionExtension {
+    static double scale = 3.0;
     public String getName() {
         return "Scale Out Selection";
     }
 
     public String getDescription() {
-        return "Shrinks the selection";
+        return "Shrinks the selection. HotKey:(Alt+Control+P)";
     }
 
     public void action(GraphData gd) {
@@ -33,14 +34,13 @@ public class ScaleOutSelection implements GraphActionExtension {
         GraphPoint center = AlgorithmUtils.getCenter(V);
         for (Vertex v : V) {
             GraphPoint loc = v.getLocation();
-            double x = loc.x - center.x;
-            double y = loc.y - center.y;
-            setNewLocation(v, loc, x, y);
+            GraphPoint gp = AlgorithmUtils.normalize(GraphPoint.sub(loc,center));
+            setNewLocation(v, loc, gp.x, gp.y);
         }
     }
 
     protected void setNewLocation(Vertex v, GraphPoint loc, double x, double y) {
-        v.setLocation(new GraphPoint(loc.x - x / 1.25, loc.y - y / 1.25));
+        v.setLocation(new GraphPoint(loc.x - x * scale, loc.y - y * scale));
     }
 
     @Override

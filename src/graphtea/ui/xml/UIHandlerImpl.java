@@ -30,6 +30,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
+/**
+ * @author Azin Azadi, M. Ali Rostami
+ */
 
 public class UIHandlerImpl implements UIHandler, StorableOnExit {
 
@@ -183,18 +186,27 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         graphtea.platform.core.AbstractAction targetAction = actions.get(action);
         if (targetAction instanceof AbstractExtensionAction) {
             AbstractExtensionAction targetExt = (AbstractExtensionAction) targetAction;
-//            targetExt.removeCreatedUIComponents();
-//            targetExt.listen4Event(UI.getUIEvent(action));
             item = targetExt.menuItem;
             /**
              * set the label properties according to XML
              */
-//            if (accel != null && !accel.equals(""))
-//                item.setAccelerator(accel);
-//                if (label != null && !label.equals(""))
             item.setText(label);
             //todo: BUG the mnemotic doesn't set
-            item.setMnemonic(index);
+            System.out.println(item + " " + index);
+            KeyBoardShortCut shortcut = null;
+            String desc =targetExt.getTarget().getDescription();
+            if(desc.contains("HotKey:(")) {
+                String tmp = desc.substring(desc.indexOf("HotKey:(") + 1);
+                tmp = tmp.substring(0,tmp.indexOf(")"));
+                shortcut = KeyBoardShortCutProvider.registerKeyBoardShortcut(tmp, label, index);
+            }
+
+            if(shortcut != null) {
+                item.setAccelerator(KeyStroke.getKeyStroke(shortcut.getKeyEvent(), shortcut.getKeyModifiers()));
+                item.setDisplayedMnemonicIndex(shortcut.getKeyWordIndex());
+                item.setMnemonic(shortcut.getKeyMnemonic());
+            }
+
         } else {
             item = new GMenuItem(label, action, blackboard, accel, index);
         }

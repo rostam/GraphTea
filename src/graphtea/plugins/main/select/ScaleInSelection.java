@@ -17,11 +17,11 @@ public class ScaleInSelection extends ScaleOutSelection {
     }
 
     public String getDescription() {
-        return "Expands the selection";
+        return "Expands the selection. HotKey:(Control+P)";
     }
 
     protected void setNewLocation(Vertex v, GraphPoint loc, double x, double y) {
-        v.setLocation(new GraphPoint(loc.x + x * 1.25, loc.y + y * 1.25));
+        v.setLocation(new GraphPoint(loc.x + x * scale, loc.y + y * scale));
     }
 
     @Override

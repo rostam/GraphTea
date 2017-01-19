@@ -25,7 +25,6 @@ public class SelectAll extends AbstractAction {
         super(bb);
         listen4Event(event);
         blackboard.setData(Select.EVENT_KEY, new SubGraph());
-
     }
 
     public void performAction(String eventName, Object value) {
