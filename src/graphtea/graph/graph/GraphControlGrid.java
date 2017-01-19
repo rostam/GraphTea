@@ -54,12 +54,12 @@ public class GraphControlGrid implements GraphModelListener {
         refresh = true;
         fakeVertex = new Vertex();
         Vertex _fakeVertex = new Vertex();
-        fakeVertex.setLocation(new GraphPoint(Double.MAX_VALUE, Double.MAX_VALUE));
-        _fakeVertex.setLocation(new GraphPoint(Double.MAX_VALUE, Double.MAX_VALUE));
+        fakeVertex.setLocation(new GPoint(Double.MAX_VALUE, Double.MAX_VALUE));
+        _fakeVertex.setLocation(new GPoint(Double.MAX_VALUE, Double.MAX_VALUE));
         fakeEdge = new Edge(fakeVertex, _fakeVertex);
     }
 
-    public Pair mindiste(GraphModel g, GraphPoint p) {
+    public Pair mindiste(GraphModel g, GPoint p) {
         if (refresh) {
             refresh();
             refresh = false;
@@ -92,7 +92,7 @@ public class GraphControlGrid implements GraphModelListener {
         return new Pair<>(mine, min);
     }
 
-    public Pair<Vertex, Double> mindistv(GraphPoint p) {
+    public Pair<Vertex, Double> mindistv(GPoint p) {
         if (refresh) {
             refresh();
             refresh = false;
@@ -149,14 +149,14 @@ public class GraphControlGrid implements GraphModelListener {
 
 
     private void addVertexToGrid(Vertex v) {
-        GraphPoint loc = v.getLocation();
+        GPoint loc = v.getLocation();
         int ix = (int) ((loc.x - gbounds.x) / gbounds.width * planeDivisions);
         int iy = (int) ((loc.y - gbounds.y) / gbounds.height * planeDivisions);
         addVertexToGrid(ix, iy, v);
     }
 
     private void removeVertexFromGrid(Vertex v) {
-        GraphPoint loc = v.getLocation();
+        GPoint loc = v.getLocation();
         int ix = (int) ((loc.x - gbounds.x) / gbounds.width * planeDivisions);
         int iy = (int) ((loc.y - gbounds.y) / gbounds.height * planeDivisions);
         Vertex[] s = verticesGrid[ix][iy];
@@ -169,8 +169,8 @@ public class GraphControlGrid implements GraphModelListener {
     }
 
     private void addEdgeToGrid(Edge e) {
-        GraphPoint loc1 = e.source.getLocation();
-        GraphPoint loc2 = e.source.getLocation();
+        GPoint loc1 = e.source.getLocation();
+        GPoint loc2 = e.source.getLocation();
         int ix1 = (int) ((loc1.x - gbounds.x) / gbounds.width * planeDivisions);
         int iy1 = (int) ((loc1.y - gbounds.y) / gbounds.height * planeDivisions);
         int ix2 = (int) ((loc2.x - gbounds.x) / gbounds.width * planeDivisions);
@@ -236,8 +236,8 @@ public class GraphControlGrid implements GraphModelListener {
     }
 
     private void removeEdgeFromGrid(Edge e) {
-        GraphPoint loc1 = e.source.getLocation();
-        GraphPoint loc2 = e.source.getLocation();
+        GPoint loc1 = e.source.getLocation();
+        GPoint loc2 = e.source.getLocation();
         int ix1 = (int) ((loc1.x - gbounds.x) / gbounds.width * planeDivisions);
         int iy1 = (int) ((loc1.y - gbounds.y) / gbounds.height * planeDivisions);
         int ix2 = (int) ((loc2.x - gbounds.x) / gbounds.width * planeDivisions);

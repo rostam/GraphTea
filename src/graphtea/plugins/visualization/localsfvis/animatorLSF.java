@@ -5,8 +5,8 @@
 package graphtea.plugins.visualization.localsfvis;
 
 import graphtea.graph.graph.AbstractGraphRenderer;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.exceptions.InvalidVertexException;
 import graphtea.platform.core.BlackBoard;
@@ -37,9 +37,9 @@ class animatorLSF extends Thread {
     private AbstractGraphRenderer gv;
     private Vertex[] v;
     private Rectangle[] vRects;  //represents the rectangle arround each vertex
-    private GraphPoint[] verPos; //fresh generated vertex positions!
+    private GPoint[] verPos; //fresh generated vertex positions!
     private Point[] velocity;
-    private GraphPoint[] prevVerPos; //refferes to previous state of vertex positions, for finding vertices that moved by anything else
+    private GPoint[] prevVerPos; //refferes to previous state of vertex positions, for finding vertices that moved by anything else
     //    private final double neighborRadius = 300;
     private double stres = 10;
     private double maxF = 1000;
@@ -71,7 +71,7 @@ class animatorLSF extends Thread {
 //        gv.ignoreUpdates = true;
         int stablep = 0;
 
-        final GraphPoint centerPoint = calculateGraphCenterPoint();     //calculating the center of graph to pin its center
+        final GPoint centerPoint = calculateGraphCenterPoint();     //calculating the center of graph to pin its center
         final Rectangle2D.Double bounds = g.getAbsBounds();     //calculating the bounds of graph to pin its center
 
         while (!stop) {
@@ -112,7 +112,7 @@ class animatorLSF extends Thread {
                 try {
                     gv.ignoreRepaints(new Runnable() {
                         public void run() {
-                            GraphPoint newCenterPoint = calculateGraphCenterPoint();
+                            GPoint newCenterPoint = calculateGraphCenterPoint();
                             Rectangle2D.Double newBounds = calculateGraphAbsBoundsPoint();
                             //todo: to preserve graph bounds
                             double dx = centerPoint.x - newCenterPoint.x;
@@ -123,7 +123,7 @@ class animatorLSF extends Thread {
 //                                x=x+dx+ ((x-newCenterPoint.x)/newBounds.width)*bounds.width;
                                 x += dx;
                                 y += dy;
-                                GraphPoint p = v[i].getLocation();
+                                GPoint p = v[i].getLocation();
 //                    if (p.distance(verPos[i])<2)
 //                        stableVertex[i] = true;
 
@@ -170,9 +170,9 @@ class animatorLSF extends Thread {
         gv.repaint();
     }
 
-    private GraphPoint calculateGraphCenterPoint() {
-        GraphPoint centerPoint = new GraphPoint();
-        for (GraphPoint p : verPos) {
+    private GPoint calculateGraphCenterPoint() {
+        GPoint centerPoint = new GPoint();
+        for (GPoint p : verPos) {
             centerPoint.add(p.x, p.y);
         }
         centerPoint.x /= n;
@@ -182,7 +182,7 @@ class animatorLSF extends Thread {
     private Rectangle2D.Double calculateGraphAbsBoundsPoint() {
 
         Rectangle2D.Double ret = new Rectangle2D.Double();
-        for (GraphPoint p : verPos) {
+        for (GPoint p : verPos) {
             ret.add(p.x, p.y);
         }
         return ret;
@@ -292,9 +292,9 @@ class animatorLSF extends Thread {
         int _n = g.getVerticesCount();
         if (_n != n) {
             n = _n;
-            verPos = new GraphPoint[n];
+            verPos = new GPoint[n];
             velocity = new Point[n];
-            prevVerPos = new GraphPoint[n];
+            prevVerPos = new GPoint[n];
             dists = new pair[Math.max(n - 1, 0)];
             neighbors = new HashSet[n];
             for (int i = 0; i < n; i++) {
@@ -311,7 +311,7 @@ class animatorLSF extends Thread {
             verPos[i] = vm.getLocation();
             velocity[i] = new Point();
             vRects[i] = vm.getBounds().getBounds();
-            prevVerPos[i] = new GraphPoint(verPos[i]);
+            prevVerPos[i] = new GPoint(verPos[i]);
             i++;
         }
     }

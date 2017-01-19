@@ -5,7 +5,7 @@
 
 package graphtea.plugins.main.select;
 
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -30,16 +30,16 @@ public class ScaleOutSelection implements GraphActionExtension {
         if (gd.select.isSelectionEmpty())
             return;
         HashSet<Vertex> V = gd.select.getSelectedVertices();
-        GraphPoint center = AlgorithmUtils.getCenter(V);
+        GPoint center = AlgorithmUtils.getCenter(V);
         for (Vertex v : V) {
-            GraphPoint loc = v.getLocation();
-            GraphPoint gp = GraphPoint.sub(loc,center);
+            GPoint loc = v.getLocation();
+            GPoint gp = GPoint.sub(loc,center);
             setNewLocation(v, loc, gp.x, gp.y);
         }
     }
 
-    protected void setNewLocation(Vertex v, GraphPoint loc, double x, double y) {
-        v.setLocation(new GraphPoint(loc.x - x * scale, loc.y - y * scale));
+    protected void setNewLocation(Vertex v, GPoint loc, double x, double y) {
+        v.setLocation(new GPoint(loc.x - x * scale, loc.y - y * scale));
     }
 
     @Override

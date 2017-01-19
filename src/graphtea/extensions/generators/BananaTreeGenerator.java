@@ -3,8 +3,8 @@
 package graphtea.extensions.generators;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.StaticUtils;
 import graphtea.platform.lang.CommandAttitude;
@@ -49,7 +49,7 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
         GraphModel g = new GraphModel(false);
         Vertex root = new Vertex();
         g.insertVertex(root);
-        root.setLocation(new GraphPoint(0, 0));
+        root.setLocation(new GPoint(0, 0));
         Vertex curv;
         //generating edges and setting positions
         Point[] fR = PositionGenerators.circle(3000, 0, 0, n);
@@ -84,7 +84,7 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
     }
 
     private static void setloc(Vertex vv, Point gp) {
-        vv.setLocation(new GraphPoint(gp.x, gp.y));
+        vv.setLocation(new GPoint(gp.x, gp.y));
     }
 
 

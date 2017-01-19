@@ -30,7 +30,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
     private GraphControlListener listener;
     private Vertex lastVertexPressed = null;
     private Edge lastEdgePressed = null;
-    GraphPoint p = new GraphPoint();
+    GPoint p = new GPoint();
 //    boolean edgesCurved;
 
     public static final int EDGE_CURVE_CPNTROL_BOX_DIAMETER = 10;
@@ -107,12 +107,12 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
      * @param e The given edge
      * @return The position of the mouse minus the edge e
      */
-    private GraphPoint mousePos(MouseEvent mouseEvent, Edge e) {
-        return new GraphPoint(mousePos(mouseEvent).x - e.source.getLocation().x, mousePos(mouseEvent).y - e.source.getLocation().y);
+    private GPoint mousePos(MouseEvent mouseEvent, Edge e) {
+        return new GPoint(mousePos(mouseEvent).x - e.source.getLocation().x, mousePos(mouseEvent).y - e.source.getLocation().y);
     }
 
-    private GraphPoint mousePos(MouseEvent mouseEvent, Vertex v) {
-        return new GraphPoint(mousePos(mouseEvent).x - v.getLocation().x, mousePos(mouseEvent).y - v.getLocation().y);
+    private GPoint mousePos(MouseEvent mouseEvent, Vertex v) {
+        return new GPoint(mousePos(mouseEvent).x - v.getLocation().x, mousePos(mouseEvent).y - v.getLocation().y);
     }
 
     /**
@@ -120,9 +120,9 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
      */
     double zf;
 
-    private GraphPoint mousePos(MouseEvent mouseEvent) {
+    private GPoint mousePos(MouseEvent mouseEvent) {
         zf = g.getZoomFactor();
-        GraphPoint p = new GraphPoint(mouseEvent.getX() / zf, mouseEvent.getY() / zf);
+        GPoint p = new GPoint(mouseEvent.getX() / zf, mouseEvent.getY() / zf);
         //the graphics moves automatically to solve the swing JScrollPane negative positions problem, Im not sure
 
         if (minx < 0)
@@ -145,7 +145,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
         lastVertexPressed = null;
 
         gv.requestFocusInWindow();
-        GraphPoint mousePos = mousePos(mouseEvent);
+        GPoint mousePos = mousePos(mouseEvent);
         Pair p = mindistv(g, mousePos);
         Vertex v = (Vertex) p.first;
         int mbuton = mouseEvent.getModifiersEx();
@@ -223,10 +223,10 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
     }
 
     /**
-     * @return the minimum distanse edge and its distance to the given GraphPoint,
+     * @return the minimum distanse edge and its distance to the given GPoint,
      *         If edges are curved the distance will be calculated to Curve Control Points
      */
-    public static Pair<Edge, Double> mindiste(GraphModel g, GraphPoint p) {
+    public static Pair<Edge, Double> mindiste(GraphModel g, GPoint p) {
         double min = 100000;
         boolean loopDetected = false;
         Edge mine = null;
@@ -234,13 +234,13 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
         if (g.isEdgesCurved()) {
             for (; ei.hasNext();) {
                 Edge e = ei.next();
-                GraphPoint cnp = e.getCurveControlPoint();
-                GraphPoint s = e.source.getLocation();
-                GraphPoint t = e.target.getLocation();
-                GraphPoint cp = new GraphPoint((s.x + t.x) / 2.0 + cnp.x, (s.y + t.y) / 2.0 + cnp.y);
+                GPoint cnp = e.getCurveControlPoint();
+                GPoint s = e.source.getLocation();
+                GPoint t = e.target.getLocation();
+                GPoint cp = new GPoint((s.x + t.x) / 2.0 + cnp.x, (s.y + t.y) / 2.0 + cnp.y);
                 if (e.isLoop())
-                    cp = new GraphPoint(s.x + cnp.x, s.y + cnp.y);
-                double dist = GraphPoint.distance(cp.x, cp.y, p.x, p.y);
+                    cp = new GPoint(s.x + cnp.x, s.y + cnp.y);
+                double dist = GPoint.distance(cp.x, cp.y, p.x, p.y);
                 if (min > dist) {
                     min = dist;
                     mine = e;
@@ -254,9 +254,9 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
                 Edge e = ei.next();
                 if (!isInBounds(e, p) && !e.isLoop())
                     continue;
-                GraphPoint sloc = e.source.getLocation();
-                GraphPoint tloc = e.target.getLocation();
-                GraphPoint cnp = e.getCurveControlPoint();
+                GPoint sloc = e.source.getLocation();
+                GPoint tloc = e.target.getLocation();
+                GPoint cnp = e.getCurveControlPoint();
                 Line2D.Double l = new Line2D.Double(sloc.x, sloc.y, tloc.x, tloc.y);
                 double dist = l.ptLineDistSq(p);
 
@@ -287,7 +287,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
 //                        loopDetected = true;
 //                    }
                     //Distance of p from the center of the loop
-                    double cdist = GraphPoint.distance(p.x,
+                    double cdist = GPoint.distance(p.x,
                             p.y,
                             e.getLoopCenter().x,
                             e.getLoopCenter().y);
@@ -308,16 +308,16 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
         return new Pair<>(mine, min);
     }
 
-    private static boolean isInBounds(Edge e, GraphPoint p) {
-        GraphPoint l1 = e.source.getLocation();
-        GraphPoint l2 = e.target.getLocation();
+    private static boolean isInBounds(Edge e, GPoint p) {
+        GPoint l1 = e.source.getLocation();
+        GPoint l2 = e.target.getLocation();
         return Math.min(l1.x, l2.x) <= p.x + 5 && Math.max(l1.x, l2.x) >= p.x - 5 && Math.min(l1.y, l2.y) <= p.y + 5 && Math.max(l1.y, l2.y) >= p.y - 5;
     }
 
     /**
      * @return the minimum distance vertex to the given location, and its distanse square(^2).
      */
-    public static Pair<Vertex, Double> mindistv(GraphModel g, GraphPoint p) {
+    public static Pair<Vertex, Double> mindistv(GraphModel g, GPoint p) {
         double min = 100000;
         Vertex minv = null;
         for (Vertex v : g) {
@@ -333,10 +333,10 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
     /**
      * @return True if the given point in on the given vertex
      */
-    public static boolean isPointOnVertex(GraphModel g, Vertex v, GraphPoint p) {
+    public static boolean isPointOnVertex(GraphModel g, Vertex v, GPoint p) {
         double zf = g.getZoomFactor();
-        GraphPoint l = v.getLocation();
-        GraphPoint s = v.getSize();
+        GPoint l = v.getLocation();
+        GPoint s = v.getSize();
         double sx = s.x / zf;
         double sy = s.y / zf;
         return l.x - sx / 2 <= p.x && l.x + sx / 2 >= p.x && l.y - sy / 2 <= p.y && l.y + sy / 2 >= p.y;

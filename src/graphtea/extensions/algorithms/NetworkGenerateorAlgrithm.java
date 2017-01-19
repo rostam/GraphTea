@@ -1,8 +1,8 @@
 package graphtea.extensions.algorithms;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.graph.old.GStroke;
 import graphtea.library.BaseVertexProperties;
@@ -53,12 +53,12 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
         int cnt = 0;
         int maxNumNodesInLevel = 30;
         Vector<Integer> forbiddenIndex = null;
-        GraphPoint center = new GraphPoint(500,300);
+        GPoint center = new GPoint(500,300);
         Vertex cent = new Vertex();
         cent.setLocation(center);
         cent.setColor(0);
-        cent.setSize(new GraphPoint(0, 0));
-        cent.setLabelLocation(new GraphPoint(0,-1));
+        cent.setSize(new GPoint(0, 0));
+        cent.setLabelLocation(new GPoint(0,-1));
         g.addVertex(cent);
         forbiddenIndex = new Vector<Integer>();
         while(fread.hasNextLine()) {
@@ -84,11 +84,11 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
                 forbiddenIndex.add(randInd);
                 if(forbiddenIndex.size() > (maxNumNodesInLevel * 2/3)) forbiddenIndex =  new Vector<Integer>();
                 v.setColor(1);
-                v.setLocation(new GraphPoint(ps[randInd].x, ps[randInd].y));
+                v.setLocation(new GPoint(ps[randInd].x, ps[randInd].y));
                 v.setShapeStroke(GStroke.empty);
-                v.setSize(new GraphPoint(15,15));
-                v.setLabelLocation(new GraphPoint(0,-2));
-                //v.setSize(new GraphPoint(0, 0));
+                v.setSize(new GPoint(15,15));
+                v.setLabelLocation(new GPoint(0,-2));
+                //v.setSize(new GPoint(0, 0));
                 switch (scNum) {
                     case 1:
                         v.setLabel(String.valueOf((char)(0x25CB)));

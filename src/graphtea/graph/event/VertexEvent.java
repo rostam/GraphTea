@@ -5,7 +5,7 @@
 
 package graphtea.graph.event;
 
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 
 /**
@@ -44,31 +44,31 @@ public class VertexEvent {
      */
     public int modifiers;
 
-    public static VertexEvent clicked(Vertex v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static VertexEvent clicked(Vertex v, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new VertexEvent(CLICKED, v, mousePos, mouseBtn, false, false, modifiersEx);
     }
 
-    public static VertexEvent doubleClicked(Vertex v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static VertexEvent doubleClicked(Vertex v, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new VertexEvent(DOUBLECLICKED, v, mousePos, mouseBtn, false, false, modifiersEx);
     }
 
-    public static VertexEvent released(Vertex v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static VertexEvent released(Vertex v, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new VertexEvent(RELEASED, v, mousePos, mouseBtn, false, false, modifiersEx);
     }
 
-    public static VertexEvent dropped(Vertex v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static VertexEvent dropped(Vertex v, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new VertexEvent(DROPPED, v, mousePos, mouseBtn, false, false, modifiersEx);
     }
 
-    public static VertexEvent draggingStarted(Vertex v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static VertexEvent draggingStarted(Vertex v, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new VertexEvent(DRAGGING_STARTED, v, mousePos, mouseBtn, false, false, modifiersEx);
     }
 
-    public static VertexEvent dragging(Vertex v, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static VertexEvent dragging(Vertex v, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new VertexEvent(DRAGGING, v, mousePos, mouseBtn, false, false, modifiersEx);
     }
 
-    public VertexEvent(int eventType, Vertex v, GraphPoint mousePos, int mouseBtn, boolean isNotified, boolean isMouseEntered, int modifiersEx) {
+    public VertexEvent(int eventType, Vertex v, GPoint mousePos, int mouseBtn, boolean isNotified, boolean isMouseEntered, int modifiersEx) {
         this.eventType = eventType;
         this.v = v;
         this.mousePos = mousePos;
@@ -77,14 +77,14 @@ public class VertexEvent {
         this.modifiers = modifiersEx;
     }
 
-    public GraphPoint posOnGraph() {
-        GraphPoint ret = new GraphPoint(mousePos);
+    public GPoint posOnGraph() {
+        GPoint ret = new GPoint(mousePos);
         ret.add(v.getLocation());
         return ret;
     }
 
     //position of mouse according to top left point of vertex
-    public GraphPoint mousePos;
+    public GPoint mousePos;
     public int mouseBtn;
 
     /**

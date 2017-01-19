@@ -46,7 +46,7 @@ public class PopupMenuHandler extends AbstractAction {
 //            VertexEvent vcd = blackboard.get(VertexEvent.name);
 //            if (vcd.eventType == VertexEvent.CLICKED) {
 //                if (vcd.mouseBtn == MouseEvent.BUTTON3) {
-//                    Point vp = GraphPoint.createViewPoint(g, vcd.mousePos);
+//                    Point vp = GPoint.createViewPoint(g, vcd.mousePos);
 //                    vertexMnu.show((Component) vcd.v.view, vp.x, vp.y);
 //                }
 //            }
@@ -55,7 +55,7 @@ public class PopupMenuHandler extends AbstractAction {
 //            EdgeEvent ecd = blackboard.get(EdgeEvent.name);
 //            if (ecd.eventType == EdgeEvent.CLICKED) {
 //                if (ecd.mouseBtn == MouseEvent.BUTTON3) {
-//                    Point ep = GraphPoint.createViewPoint(g, ecd.mousePos);
+//                    Point ep = GPoint.createViewPoint(g, ecd.mousePos);
 //                    edgeMnu.show((Component) ecd.e.view, ep.x, ep.y);
 //                }
 //            }

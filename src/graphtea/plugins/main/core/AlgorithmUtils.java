@@ -5,7 +5,7 @@
 
 package graphtea.plugins.main.core;
 
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseEdge;
 import graphtea.library.BaseGraph;
@@ -364,9 +364,9 @@ public class AlgorithmUtils {
      */
     public static double getAngle(Vertex root, Vertex v1, Vertex v2) {
 
-        GraphPoint rootp = root.getLocation();
-        GraphPoint v1p = v1.getLocation();
-        GraphPoint v2p = v2.getLocation();
+        GPoint rootp = root.getLocation();
+        GPoint v1p = v1.getLocation();
+        GPoint v2p = v2.getLocation();
 
         return getAngle(rootp, v1p, v2p);
     }
@@ -374,7 +374,7 @@ public class AlgorithmUtils {
     /**
      * returns the angle between 3 points
      */
-    public static double getAngle(GraphPoint rootp, GraphPoint v1p, GraphPoint v2p) {
+    public static double getAngle(GPoint rootp, GPoint v1p, GPoint v2p) {
         double px = v1p.x - rootp.x;
         double py = v1p.y - rootp.y;
         double qx = v2p.x - rootp.x;
@@ -407,30 +407,30 @@ public class AlgorithmUtils {
      * moves the vertex relative to its current position
      */
     public static void move(Vertex v, double dx, double dy) {
-        GraphPoint loc = v.getLocation();
-        v.setLocation(new GraphPoint(loc.x + dx, loc.y + dy));
+        GPoint loc = v.getLocation();
+        v.setLocation(new GPoint(loc.x + dx, loc.y + dy));
     }
 
     /**
      * returns the distance between two vertices in pixels, (in graphics not the path length between them)
      */
     public static double getDistance(Vertex v1, Vertex v2) {
-        return GraphPoint.distance(v1.getLocation().x, v1.getLocation().y, v2.getLocation().x, v2.getLocation().y);
+        return GPoint.distance(v1.getLocation().x, v1.getLocation().y, v2.getLocation().x, v2.getLocation().y);
 
     }
 
     /**
      * returns the distance between two points
      */
-    public static double getDistance(GraphPoint p1, GraphPoint p2) {
-        return GraphPoint.distance(p1.x, p1.y, p2.x, p2.y);
+    public static double getDistance(GPoint p1, GPoint p2) {
+        return GPoint.distance(p1.x, p1.y, p2.x, p2.y);
 
     }
 
     /**
      * @return the angle between vector p2-p1 and X-Axis
      */
-    public static double getAngle(GraphPoint p1, GraphPoint p2) {
+    public static double getAngle(GPoint p1, GPoint p2) {
         double angle = Math.atan2(p1.y - p2.y,
                 p1.x - p2.x);
         if (angle < 0) {
@@ -444,8 +444,8 @@ public class AlgorithmUtils {
     /**
      * locations v in a r-teta cordination
      */
-    public static void setLocation(Vertex v, GraphPoint center, double radius, double ang) {
-        v.setLocation(new GraphPoint(center.x + radius * Math.cos(ang), center.y + radius * Math.sin(ang)));
+    public static void setLocation(Vertex v, GPoint center, double radius, double ang) {
+        v.setLocation(new GPoint(center.x + radius * Math.cos(ang), center.y + radius * Math.sin(ang)));
     }
 
     /**
@@ -455,7 +455,7 @@ public class AlgorithmUtils {
         Rectangle2D.Double ret = new Rectangle2D.Double();
         boolean first = true;
         for (Vertex v : vertices) {
-            GraphPoint p = v.getLocation();
+            GPoint p = v.getLocation();
             if (first) {
                 ret = new Rectangle2D.Double(p.x, p.y, 0, 0);
                 first = false;
@@ -465,10 +465,10 @@ public class AlgorithmUtils {
         return ret;
     }
 
-    public static GraphPoint getCenter(Collection<Vertex> V) {
-        GraphPoint center = new GraphPoint(0, 0);
+    public static GPoint getCenter(Collection<Vertex> V) {
+        GPoint center = new GPoint(0, 0);
         for (Vertex v : V) {
-            GraphPoint loc = v.getLocation();
+            GPoint loc = v.getLocation();
             center.x += loc.x;
             center.y += loc.y;
         }
@@ -498,13 +498,13 @@ public class AlgorithmUtils {
      * @param p2 The second point
      * @return a point whose x and y are average of the given graph points.
      */
-    public static GraphPoint getMiddlePoint(GraphPoint p1, GraphPoint p2) {
-        return new GraphPoint((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
+    public static GPoint getMiddlePoint(GPoint p1, GPoint p2) {
+        return new GPoint((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
     }
 
-    public static GraphPoint normalize(GraphPoint vector) {
+    public static GPoint normalize(GPoint vector) {
         double size = Math.sqrt(Math.pow(vector.x, 2) + Math.pow(vector.y, 2));
-        GraphPoint ret = new GraphPoint(vector);
+        GPoint ret = new GPoint(vector);
         if (size != 0)
             ret.multiply(1 / size);
         return ret;

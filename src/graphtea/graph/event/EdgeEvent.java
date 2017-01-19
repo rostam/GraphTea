@@ -5,7 +5,7 @@
 package graphtea.graph.event;
 
 import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 
 /**
  * An event which indicates that a Edge action occurred.
@@ -28,7 +28,7 @@ public class EdgeEvent {
     public Edge e;
 
     //position of mouse according to top left point of edge
-    public GraphPoint mousePos;
+    public GPoint mousePos;
     public int mouseBtn;
 
     /**
@@ -39,7 +39,7 @@ public class EdgeEvent {
     public boolean isMouseEntered;
 
 
-    public EdgeEvent(int eventType, Edge e, GraphPoint mousePos, int mouseBtn, boolean isNotified, boolean isMouseEntered) {
+    public EdgeEvent(int eventType, Edge e, GPoint mousePos, int mouseBtn, boolean isNotified, boolean isMouseEntered) {
         this.eventType = eventType;
         this.e = e;
         this.mousePos = mousePos;
@@ -47,28 +47,28 @@ public class EdgeEvent {
         this.isMouseEntered = isMouseEntered;
     }
 
-    public static EdgeEvent clicked(Edge e, GraphPoint mousePos, int mouseBtn) {
+    public static EdgeEvent clicked(Edge e, GPoint mousePos, int mouseBtn) {
         return new EdgeEvent(CLICKED, e, mousePos, mouseBtn, false, false);
     }
 
-    public static EdgeEvent released(Edge e, GraphPoint mousePos, int mouseBtn) {
+    public static EdgeEvent released(Edge e, GPoint mousePos, int mouseBtn) {
         return new EdgeEvent(RELEASED, e, mousePos, mouseBtn, false, false);
     }
 
-    public static EdgeEvent draggingStarted(Edge e, GraphPoint mousePos, int mouseBtn) {
+    public static EdgeEvent draggingStarted(Edge e, GPoint mousePos, int mouseBtn) {
         return new EdgeEvent(DRAGGING_STARTED, e, mousePos, mouseBtn, false, false);
     }
 
-//    public static EdgeEvent dropped(Edge e, GraphPoint mousePos, int mouseBtn) {
+//    public static EdgeEvent dropped(Edge e, GPoint mousePos, int mouseBtn) {
 //        return new EdgeEvent(DROPPED, e, mousePos, mouseBtn, false, false);
 //    }
 
-    public static EdgeEvent dragging(Edge e, GraphPoint mousePos, int mouseBtn) {
+    public static EdgeEvent dragging(Edge e, GPoint mousePos, int mouseBtn) {
         return new EdgeEvent(DRAGGING, e, mousePos, mouseBtn, false, false);
     }
 
-    public GraphPoint posOnGraph() {
-        GraphPoint ret = new GraphPoint(mousePos);
+    public GPoint posOnGraph() {
+        GPoint ret = new GPoint(mousePos);
         ret.add(e.source.getLocation());
         return ret;
     }

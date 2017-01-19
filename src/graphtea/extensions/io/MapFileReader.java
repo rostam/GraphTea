@@ -1,8 +1,8 @@
 package graphtea.extensions.io;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -36,7 +36,7 @@ public class MapFileReader {
 			    GraphModel g2 = new GraphModel(false);
 			    g2.setAllowLoops(true);
 			    Vertex root = new Vertex();
-			    root.setLocation(new GraphPoint(0,0));
+			    root.setLocation(new GPoint(0,0));
 			    g2.addVertex(root);
 			    for (int temp = 0; temp < nList.getLength(); temp++) {
 			    	 
@@ -50,7 +50,7 @@ public class MapFileReader {
 						int y =  Integer.parseInt(eElement.getElementsByTagName("y").item(0).getTextContent());
 						int value;
 						Vertex newVertex = new Vertex();
-						newVertex.setLocation(new GraphPoint(x, y));
+						newVertex.setLocation(new GPoint(x, y));
 						newVertex.setLabel(id);
 						
 						if(!isRoot){

@@ -104,7 +104,7 @@ public class RightClickAction implements BasicExtension, Listener {
         }
     }
 
-    public void showPopup(GraphPoint p) {
+    public void showPopup(GPoint p) {
         AbstractGraphRenderer gv = b.getData(AbstractGraphRenderer.EVENT_KEY);
         Point vp = GraphUtils.createViewPoint(gd.getGraph(), p);
         popup.show(gv, vp.x, vp.y);

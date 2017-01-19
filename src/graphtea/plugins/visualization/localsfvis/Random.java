@@ -6,7 +6,7 @@ package graphtea.plugins.visualization.localsfvis;
 
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
@@ -52,7 +52,7 @@ public class Random extends AbstractAction {
         for (int i = 0; i < n; i++) {
             double x = Math.random() * w;
             double y = Math.random() * h;
-            v[i].setLocation(new GraphPoint(x, y));
+            v[i].setLocation(new GPoint(x, y));
         }
     }
 

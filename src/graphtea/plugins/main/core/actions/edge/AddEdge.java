@@ -27,7 +27,7 @@ import java.awt.event.MouseEvent;
 public class AddEdge extends AbstractAction implements PaintHandler {
     //    private double lasty;
     //    private double lastx;
-    private GraphPoint lastPos;
+    private GPoint lastPos;
     private SelectPluginMethods selMethods;
 
     /**
@@ -112,7 +112,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
 
             if (ve.eventType == VertexEvent.DRAGGING) {
                 lastPos = ve.mousePos;
-                GraphPoint absPosOnGraph = GraphUtils.createGraphPoint(g, x1, y1);
+                GPoint absPosOnGraph = GraphUtils.createGraphPoint(g, x1, y1);
                 absPosOnGraph.add(lastPos);
                 if (g.getVerticesCount() < 300) {
                     Pair<Vertex, Double> p = GraphControl.mindistv(g, absPosOnGraph);
@@ -148,7 +148,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
     }
 
     protected void startPainting() {
-        GraphPoint location = v1.getLocation();
+        GPoint location = v1.getLocation();
         Point viewPoint = GraphUtils.createViewPoint(g, location);
         cx = v1.getCenter().x / 2;
         x1 = viewPoint.x;
@@ -198,7 +198,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
             } 
             else {
                 gg.setStroke(GStroke.strong.stroke);
-                GraphPoint loc = curVertexUnderMouse.getLocation();
+                GPoint loc = curVertexUnderMouse.getLocation();
                 viewPoint = GraphUtils.createViewPoint(this.g, loc);
                 gg.drawLine(x1, y1, viewPoint.x, viewPoint.y);
             }

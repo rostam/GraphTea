@@ -1,28 +1,28 @@
 package graphtea.extensions.algorithms;
 
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 
 import java.util.ArrayList;
 
 public class Cluster // Represents a cluster of GraphPoints
 {
-	private ArrayList<GraphPoint> member;
-	private GraphPoint center;
+	private ArrayList<GPoint> member;
+	private GPoint center;
 
-	public Cluster(GraphPoint c) {
+	public Cluster(GPoint c) {
 		center = c;
 		member = new ArrayList<>();
 	}
 
-	public GraphPoint getCenter() {
+	public GPoint getCenter() {
 		return center;
 	}
 	
-	public ArrayList<GraphPoint> getMembers(){
+	public ArrayList<GPoint> getMembers(){
 		return member;
 	}
 	
-	public void addMember(GraphPoint p){
+	public void addMember(GPoint p){
 		member.add(p);
 	}
 }

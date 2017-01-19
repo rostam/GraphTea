@@ -4,8 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.graph.event;
 
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 
 import java.awt.event.MouseWheelEvent;
 
@@ -52,7 +52,7 @@ public class GraphEvent {
     /**
      * position of mouse according to top left point of graph
      */
-    public GraphPoint mousePos;
+    public GPoint mousePos;
 
     /**
      * the amount which mouse wheel is scrolled, positive or negative
@@ -87,7 +87,7 @@ public class GraphEvent {
     private boolean isDragged;
 
 
-    public GraphEvent(int eventType, GraphModel e, GraphPoint mousePos, int mouseBtn_or_mouseWheelMoveAmount, boolean isNotified, boolean isMouseEntered, boolean isDragged, int modifiersEx) {
+    public GraphEvent(int eventType, GraphModel e, GPoint mousePos, int mouseBtn_or_mouseWheelMoveAmount, boolean isNotified, boolean isMouseEntered, boolean isDragged, int modifiersEx) {
         this.eventType = eventType;
         this.graph = e;
         this.mousePos = mousePos;
@@ -100,31 +100,31 @@ public class GraphEvent {
             this.mouseWheelMoveAmount = mouseBtn_or_mouseWheelMoveAmount;
     }
 
-    public static GraphEvent mouseClicked(GraphModel g, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static GraphEvent mouseClicked(GraphModel g, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new GraphEvent(CLICKED, g, mousePos, mouseBtn, false, false, false, modifiersEx);
     }
 
-    public static GraphEvent mouseEntered(GraphModel g, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static GraphEvent mouseEntered(GraphModel g, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new GraphEvent(MOUSE_ENTERED_EXITED, g, mousePos, mouseBtn, false, true, false, modifiersEx);
     }
 
-    public static GraphEvent mouseExited(GraphModel g, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static GraphEvent mouseExited(GraphModel g, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new GraphEvent(MOUSE_ENTERED_EXITED, g, mousePos, mouseBtn, false, false, false, modifiersEx);
     }
 
-    public static GraphEvent mouseDraggingStarted(GraphModel g, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static GraphEvent mouseDraggingStarted(GraphModel g, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new GraphEvent(DRAGGING_STARTED, g, mousePos, mouseBtn, false, false, true, modifiersEx);
     }
 
-    public static GraphEvent dragging(GraphModel g, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static GraphEvent dragging(GraphModel g, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new GraphEvent(DRAGGING, g, mousePos, mouseBtn, false, false, true, modifiersEx);
     }
 
-    public static GraphEvent mouseDropped(GraphModel g, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static GraphEvent mouseDropped(GraphModel g, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new GraphEvent(DROPPED, g, mousePos, mouseBtn, false, false, false, modifiersEx);
     }
 
-    public static GraphEvent mouseMoved(GraphModel g, GraphPoint mousePos, int mouseBtn, int modifiersEx) {
+    public static GraphEvent mouseMoved(GraphModel g, GPoint mousePos, int mouseBtn, int modifiersEx) {
         return new GraphEvent(MOUSE_MOVED, g, mousePos, mouseBtn, false, false, false, modifiersEx);
     }
 
@@ -136,7 +136,7 @@ public class GraphEvent {
         return new GraphEvent(NOTIFIED, g, null, 0, false, false, false, modifiersEx);
     }
 
-    public static GraphEvent mouseWheelMoved(GraphModel g, GraphPoint mousePos, int mouseWheelMoveAmount, int modifiersEx) {
+    public static GraphEvent mouseWheelMoved(GraphModel g, GPoint mousePos, int mouseWheelMoveAmount, int modifiersEx) {
         return new GraphEvent(MOUSE_WHEEL_MOVED, g, mousePos, mouseWheelMoveAmount, false, false, false, modifiersEx);
     }
 

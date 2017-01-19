@@ -4,7 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.main.core.actions.vertex;
 
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 
 /**
@@ -15,6 +15,6 @@ public class VertexMoveData {
     public Vertex v;
     //    public double newX;
     //    public double newY;
-    public GraphPoint newPosition;
+    public GPoint newPosition;
 
 }

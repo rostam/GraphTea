@@ -98,7 +98,7 @@ public class GeneralAnimator implements Runnable {
             Point2D movement = m.next();
             Point2D initial = i.next();
             //                vertex.setLabel(initial.getY()+"");
-            vertex.setLocation(new GraphPoint(initial.getX() + j * movement.getX() / k, initial.getY() + j * movement.getY() / k));
+            vertex.setLocation(new GPoint(initial.getX() + j * movement.getX() / k, initial.getY() + j * movement.getY() / k));
 
         }
         try {

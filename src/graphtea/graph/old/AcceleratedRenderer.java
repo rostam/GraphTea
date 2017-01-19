@@ -104,7 +104,7 @@ public class AcceleratedRenderer extends FastRenderer {
     }
 
     public void repaint(Vertex src, Graphics gg) {
-        GraphPoint l = src.getLocation();
+        GPoint l = src.getLocation();
         gg.setColor(GraphModel.getColor(src.getColor()));
         if (src.isSelected())
             gg.setColor(Color.black);
@@ -119,7 +119,7 @@ public class AcceleratedRenderer extends FastRenderer {
     }
 
     public void repaint(Edge src, Graphics gg) {
-        GraphPoint l, r;
+        GPoint l, r;
         l = src.source.getLocation();
         r = src.target.getLocation();
 

@@ -210,7 +210,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 
         try {
             for (Vertex v : getGraph()) {
-                GraphPoint l = v.getLocation();
+                GPoint l = v.getLocation();
                 gg.setColor(GraphModel.getColor(v.getColor()));
                 String s = v.getLabel();
                 if (s == null)
@@ -247,7 +247,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
         try {
             while (ie.hasNext()) {
                 Edge e = ie.next();
-                GraphPoint l, r;
+                GPoint l, r;
                 l = e.source.getLocation();
                 r = e.target.getLocation();
                 int ci = e.getColor();
@@ -279,7 +279,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 
                     double t = Math.atan2(vertexRadius * Math.sin(angle), vertexRadius * Math.cos(angle));
 
-                    GraphPoint loc = e.target.getLocation();
+                    GPoint loc = e.target.getLocation();
                     int x2 = (int) (loc.x + (vertexRadius / 2) * Math.cos(t));
                     int y2 = (int) (loc.y + (vertexRadius / 2) * Math.sin(t));
 
@@ -307,7 +307,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 
         try {
             for (Vertex v : getGraph()) {
-                GraphPoint l = v.getLocation();
+                GPoint l = v.getLocation();
                 int ci = v.getColor();
                 Color c;
                 if (ci == 0)
@@ -328,7 +328,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
                     if (s != null) {
                         int dl = (s.length() + 1 / 2) * 4;
                         gg.setColor(c.darker().darker());
-                        GraphPoint ll = v.getLabelLocation();
+                        GPoint ll = v.getLabelLocation();
                         gg.drawString(s, (int) ((l.x - dl + ll.x) * zoomFactor), (int) ((l.y + vertexRadius / 2 + ll.y) * zoomFactor));
                     }
                 }
@@ -348,8 +348,8 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
             else
                 color = GraphModel.getColor(model.getColor());
             BasicStroke stroke = model.getStroke().stroke;
-            GraphPoint src = model.source.getLocation();
-            GraphPoint trg = model.target.getLocation();
+            GPoint src = model.source.getLocation();
+            GPoint trg = model.target.getLocation();
 
             if (model.isSelected()) {
                 //            color = selectedColor;
@@ -367,7 +367,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
             double edgeLeft = Math.min(src.x, trg.x);
             double edgeTop = Math.min(src.y, trg.y);
             int d = GraphControl.EDGE_CURVE_CPNTROL_BOX_DIAMETER;
-            GraphPoint ctrlPnt = model.getCurveControlPoint();
+            GPoint ctrlPnt = model.getCurveControlPoint();
             double edgecenterx = (src.x + trg.x) / 2;
             int ctrlPntViewX = zm(edgecenterx + ctrlPnt.x);
             double edgecentery = (src.y + trg.y) / 2;
@@ -430,7 +430,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
                     g.setColor(c2);
                     //            int w = getWidth();
                     //            int h = getHeight();
-                    GraphPoint ll = model.getLabelLocation();
+                    GPoint ll = model.getLabelLocation();
                     if (isEdgesCurved)
                         g.drawString(model.text, ctrlPntViewX + zm(ll.x) + 2 * d, ctrlPntViewY + zm(ll.y) + 2 * d);
                     else
@@ -441,7 +441,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 
 
     public void paint(Graphics2D g, Vertex model, int x, int y, int labelx, int labely, Boolean drawExtras) {
-        GraphPoint size = model.getSize();
+        GPoint size = model.getSize();
         int w = (int) size.x;
         int h = (int) size.y;
         Color color;
@@ -475,7 +475,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 //                updateLabelSize();
 //            g.drawString(model.getLabel(), w / 2 - labelSize.width / 2, h / 2 + labelSize.height / 2);  //dirty formula
         if (drawVertexLabels) {
-            GraphPoint ll = model.getLabelLocation();
+            GPoint ll = model.getLabelLocation();
             String l = model.getLabel();
             if (l != null) {
                 g.drawString(l, (int) (labelx + ll.x), (int) (labely + ll.y));  //dirty formula
@@ -526,13 +526,13 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
         repaint();
     }
 
-    public void updateSize(Vertex src, GraphPoint newSize) {
+    public void updateSize(Vertex src, GPoint newSize) {
         updateGraphBounds();
         isGraphChanged = true;
         repaint();
     }
 
-    public void updateLocation(Vertex src, GraphPoint newLocation) {
+    public void updateLocation(Vertex src, GPoint newLocation) {
         updateGraphBounds();
         isGraphChanged = true;
         repaint();

@@ -6,8 +6,8 @@ package graphtea.plugins.main.core.actions.vertex;
 
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.event.GraphEvent;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.AbstractAction;
@@ -87,7 +87,7 @@ public class AddVertex extends AbstractAction {
     public static Vertex doJob(GraphModel g, int x, int y) {
         Vertex v = new Vertex();
         Point p = v.getCenter();
-        v.setLocation(new GraphPoint(x - p.x, y - p.y));
+        v.setLocation(new GPoint(x - p.x, y - p.y));
         g.insertVertex(v);
         return v;
     }
@@ -97,7 +97,7 @@ public class AddVertex extends AbstractAction {
      *
      * @return the added vertex
      */
-    public static Vertex doJob(GraphModel g, GraphPoint position) {
+    public static Vertex doJob(GraphModel g, GPoint position) {
         Vertex v = new Vertex();
         v.setLocation(position);
         g.insertVertex(v);

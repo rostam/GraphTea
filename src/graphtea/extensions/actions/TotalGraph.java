@@ -6,8 +6,8 @@
 package graphtea.extensions.actions;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
@@ -38,17 +38,17 @@ public class TotalGraph implements GraphActionExtension, Parametrizable {
         }
 
         for(Edge e : g1.getEdges()) {
-            GraphPoint v1 = e.source.getLocation();
-            GraphPoint v2 = e.target.getLocation();
+            GPoint v1 = e.source.getLocation();
+            GPoint v2 = e.target.getLocation();
             double dis = v1.distance(v2);
-            GraphPoint v3 = GraphPoint.sub(v2, v1);
-            v3 = GraphPoint.div(v3, k+1);
+            GPoint v3 = GPoint.sub(v2, v1);
+            v3 = GPoint.div(v3, k+1);
 
             Vertex src = g2.getVertex(e.source.getId());
             for (int i = 0; i < k; i++) {
                 Vertex tmp = new Vertex();
                 tmp.getProp().obj=e;
-                GraphPoint v4 = new GraphPoint(v3);
+                GPoint v4 = new GPoint(v3);
                 v4.multiply(i + 1);
                 v4.add(v1);
                 tmp.setLocation(v4);
@@ -59,10 +59,10 @@ public class TotalGraph implements GraphActionExtension, Parametrizable {
             g2.addEdge(new Edge(src, g2.getVertex(e.target.getId())));
             Edge ee = new Edge(g2.getVertex(e.source.getId()),
                     g2.getVertex(e.target.getId()));
-            GraphPoint vector = GraphPoint.sub(g2.getVertex(e.target.getId()).getLocation(),
+            GPoint vector = GPoint.sub(g2.getVertex(e.target.getId()).getLocation(),
                     g2.getVertex(e.source.getId()).getLocation());
-            vector=GraphPoint.div(vector,vector.norm());
-            GraphPoint ppVec = new GraphPoint(-vector.y,vector.x);
+            vector= GPoint.div(vector,vector.norm());
+            GPoint ppVec = new GPoint(-vector.y,vector.x);
             ppVec.multiply(30.0);
             ee.setCurveControlPoint(ppVec);
             g2.addEdge(ee);
@@ -77,10 +77,10 @@ public class TotalGraph implements GraphActionExtension, Parametrizable {
                         Edge e2 = (Edge) v2.getProp().obj;
                         if(edgeConnects(e1,e2)) {
                             Edge ee = new Edge(v1,v2);
-                            GraphPoint vector =
-                                    GraphPoint.sub(v1.getLocation(),v2.getLocation());
-                            vector=GraphPoint.div(vector,vector.norm());
-                            GraphPoint ppVec = new GraphPoint(-vector.y,vector.x);
+                            GPoint vector =
+                                    GPoint.sub(v1.getLocation(),v2.getLocation());
+                            vector= GPoint.div(vector,vector.norm());
+                            GPoint ppVec = new GPoint(-vector.y,vector.x);
                             ppVec.multiply(30.0);
                             ee.setCurveControlPoint(ppVec);
                             g2.addEdge(ee);

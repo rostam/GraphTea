@@ -5,7 +5,7 @@
 package graphtea.plugins.graphgenerator.core;
 
 
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 
 import java.awt.*;
 
@@ -91,7 +91,7 @@ public class PositionGenerators {
         return input;
     }
 
-    public static GraphPoint rotate(GraphPoint input, double degree) {
+    public static GPoint rotate(GPoint input, double degree) {
 
         double x =  (input.x * Math.cos(degree) - input.y * Math.sin(degree));
         double y =  (input.x * Math.sin(degree) + input.y * Math.cos(degree));

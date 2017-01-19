@@ -5,8 +5,8 @@ package graphtea.extensions.generators;
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
@@ -47,7 +47,7 @@ public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
         return "Prism Graph";
     }
 
-    public GraphPoint[] getVertexPositions() {
+    public GPoint[] getVertexPositions() {
         return computePrismCoords(n);
     }
 
@@ -72,13 +72,13 @@ public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
         g.insertEdges(e);
 
         //generating and setting vertex positions
-        GraphPoint[] pos = getVertexPositions();
+        GPoint[] pos = getVertexPositions();
         for (int i = 0; i < 2*n; i++)
             v[i].setLocation(pos[i]);
         return g;
     }
 
-    static GraphPoint[] computePrismCoords(int n) {
+    static GPoint[] computePrismCoords(int n) {
         Point[] r = new Point[2 * n];
         Point p1[] = PositionGenerators.circle(20000, 10000, 10000,  n);
         Point p2[] = PositionGenerators.circle(30000, 10000, 10000,  n);
@@ -88,9 +88,9 @@ public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
             r[n + i] = p2[i];
         }
 
-        GraphPoint ret[] = new GraphPoint[2 * n];
+        GPoint ret[] = new GPoint[2 * n];
         for (int i = 0; i < 2 * n; i++) {
-            ret[i] = new GraphPoint(r[i].x, r[i].y);
+            ret[i] = new GPoint(r[i].x, r[i].y);
         }
         return ret;
     }

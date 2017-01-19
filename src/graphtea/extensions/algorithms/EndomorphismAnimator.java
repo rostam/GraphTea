@@ -1,7 +1,7 @@
 package graphtea.extensions.algorithms;
 
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
@@ -28,15 +28,15 @@ public class EndomorphismAnimator extends GraphAlgorithm implements AlgorithmExt
                 "Homomorphism Size", 1);
         int mapSize = Integer.parseInt(str);
         Vertex[] vs = new Vertex[2*mapSize];
-        GraphPoint[] directions = new GraphPoint[mapSize];
+        GPoint[] directions = new GPoint[mapSize];
         for(int i=0;i<2*mapSize;i=i+2) {
             vs[i] =   requestVertex(g, "select the" + i + "th vertex.");
             vs[i+1] = requestVertex(g, "select the" + i + "th vertex.");
 
             if(g.isEdge(vs[i],vs[i+1])) {step("The vertices have edge together.");return;}
 
-            GraphPoint directionVector = GraphPoint.sub(vs[i].getLocation(), vs[i+1].getLocation());
-            directions[i/2] = GraphPoint.div(directionVector, directionVector.norm());
+            GPoint directionVector = GPoint.sub(vs[i].getLocation(), vs[i+1].getLocation());
+            directions[i/2] = GPoint.div(directionVector, directionVector.norm());
         }
 
 
@@ -49,7 +49,7 @@ public class EndomorphismAnimator extends GraphAlgorithm implements AlgorithmExt
 
             for(int i=0;i<2*mapSize;i=i+2) {
                 if(isThere[i/2]) continue;
-                vs[i].setLocation(new GraphPoint(
+                vs[i].setLocation(new GPoint(
                         vs[i].getLocation().getX()-directions[i/2].getX() * 10,
                         vs[i].getLocation().getY()+directions[i/2].getY() * 10));
 

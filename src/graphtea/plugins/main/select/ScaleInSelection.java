@@ -5,7 +5,7 @@
 
 package graphtea.plugins.main.select;
 
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 
 /**
@@ -20,8 +20,8 @@ public class ScaleInSelection extends ScaleOutSelection {
         return "Expands the selection. HotKey:(Control+P)";
     }
 
-    protected void setNewLocation(Vertex v, GraphPoint loc, double x, double y) {
-        v.setLocation(new GraphPoint(loc.x + x * scale, loc.y + y * scale));
+    protected void setNewLocation(Vertex v, GPoint loc, double x, double y) {
+        v.setLocation(new GPoint(loc.x + x * scale, loc.y + y * scale));
     }
 
     @Override

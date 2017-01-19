@@ -9,7 +9,7 @@ package graphtea.plugins.algorithmanimator.core.atoms;
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseEdge;
 import graphtea.library.BaseVertex;
@@ -52,7 +52,7 @@ public class NewGraph implements AtomAnimator<BaseGraphEvent> {
             map.put(v, vv);
             //vv.setModel((Vertex) v);
             g.insertVertex(vv);
-            vv.setLocation(new GraphPoint(Math.random() * 200, Math.random() * 200));
+            vv.setLocation(new GPoint(Math.random() * 200, Math.random() * 200));
         }
         Iterator<BaseEdge<BaseVertex>> ie = event.graph.edgeIterator();
         while (ie.hasNext()) {

@@ -17,26 +17,26 @@ package graphtea.extensions.algorithms;
   *          usually runs very fast.
   */
 
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LloydKMeans {
 
-	public static Cluster[] cluster(GraphPoint[] p, int k) {
-		GraphPoint[] center = new GraphPoint[k];
+	public static Cluster[] cluster(GPoint[] p, int k) {
+		GPoint[] center = new GPoint[k];
 		int[] parent = new int[p.length];
 		Arrays.fill(parent, -1);
 
 		// find an initial "fair" placement for the k clusters
 		// places them radialy around the centroid
-		GraphPoint point = new GraphPoint(0, 0);
-		for (GraphPoint aP : p) point.add(aP.x, aP.y);
+		GPoint point = new GPoint(0, 0);
+		for (GPoint aP : p) point.add(aP.x, aP.y);
 		point.multiply(((double) 1) / p.length);
 
 		for (int i = 0; i < k; i++)
-			center[i] = new GraphPoint((int) (point.x + 100 * Math.random()), (int) (point.y + 100 * Math.random()));
+			center[i] = new GPoint((int) (point.x + 100 * Math.random()), (int) (point.y + 100 * Math.random()));
 
 		while (true) { // improve on those centers with each iteration
 			boolean improved = false;
@@ -56,16 +56,16 @@ public class LloydKMeans {
 				if (parent[x] != inx)
 					improved = true; // something was altered
 
-				parent[x] = inx; // add GraphPoint to the proper cluster
+				parent[x] = inx; // add GPoint to the proper cluster
 			}
 
 			if (!improved)
 				break;
 
 			// now improve by updating the center of the clusters
-			GraphPoint[] sum = new GraphPoint[k];
+			GPoint[] sum = new GPoint[k];
 			for (int i = 0; i < sum.length; i++)
-				sum[i] = new GraphPoint(0, 0);
+				sum[i] = new GPoint(0, 0);
 
 			int[] count = new int[k];
 
@@ -76,7 +76,7 @@ public class LloydKMeans {
 			}
 
 			for (int i = 0; i < k; i++)
-				center[i] = new GraphPoint((int) (sum[i].x / count[i]), (int) (sum[i].y / count[i]));
+				center[i] = new GPoint((int) (sum[i].x / count[i]), (int) (sum[i].y / count[i]));
 		}
 
 		ArrayList<Cluster> ret = new ArrayList<>();

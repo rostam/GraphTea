@@ -5,7 +5,7 @@
 
 package graphtea.graph.event;
 
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 
 /**
@@ -23,8 +23,8 @@ public interface VertexListener {
 
     public void repaint(Vertex src);
 
-    public void updateSize(Vertex src, GraphPoint newSize);
+    public void updateSize(Vertex src, GPoint newSize);
 
-    public void updateLocation(Vertex src, GraphPoint newLocation);
+    public void updateLocation(Vertex src, GPoint newLocation);
 
 }

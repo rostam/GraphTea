@@ -9,8 +9,8 @@ import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.event.EdgeEvent;
 import graphtea.graph.event.GraphEvent;
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.PaintHandler;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
@@ -43,8 +43,8 @@ public class DragEdge extends AbstractAction implements PaintHandler {
     //    protected int y1;
     //    protected int cx;
     //    protected int cy;
-    private GraphPoint lastPos, firstPos, cpfirstPos;
-    private GraphPoint clickPos;
+    private GPoint lastPos, firstPos, cpfirstPos;
+    private GPoint clickPos;
 
     public void track(){}
     public void performAction(String eventName, Object value) {
@@ -72,22 +72,22 @@ public class DragEdge extends AbstractAction implements PaintHandler {
 
 
             } else if (ee.eventType == EdgeEvent.DRAGGING) {
-                GraphPoint ctrlPnt = edge.getCurveControlPoint();
+                GPoint ctrlPnt = edge.getCurveControlPoint();
                 if (!edge.isLoop()) {
                     edge.setCurveControlPoint(
-                            new GraphPoint(ctrlPnt.x - lastPos.x + ee.mousePos.x,
+                            new GPoint(ctrlPnt.x - lastPos.x + ee.mousePos.x,
                                     ctrlPnt.y - lastPos.y + ee.mousePos.y));
                 } else {
-                    edge.setCurveControlPoint(new GraphPoint(ee.mousePos.x,  ee.mousePos.y));
+                    edge.setCurveControlPoint(new GPoint(ee.mousePos.x,  ee.mousePos.y));
                 }
                 lastPos = ee.mousePos;
 //                gv.repaint();
 //                isDrag = true;
 //                isClick = false;
             } else if (ee.eventType == EdgeEvent.RELEASED) {
-                GraphPoint ctrlPnt = edge.getCurveControlPoint();
+                GPoint ctrlPnt = edge.getCurveControlPoint();
                 lastPos = ee.mousePos;
-                GraphPoint newpos = new GraphPoint(ctrlPnt.x + lastPos.x - ee.mousePos.x,
+                GPoint newpos = new GPoint(ctrlPnt.x + lastPos.x - ee.mousePos.x,
                         ctrlPnt.y + lastPos.y - ee.mousePos.y);
                 edge.setCurveControlPoint(
                         newpos);
@@ -109,8 +109,8 @@ public class DragEdge extends AbstractAction implements PaintHandler {
 
     protected void startPainting(Edge e) {
 //
-//        GraphPoint location = new GraphPoint(e.curve.getCtrlX(), e.curve.getCtrlY());
-//        Point viewPoint = GraphPoint.createViewPoint(g, location);
+//        GPoint location = new GPoint(e.curve.getCtrlX(), e.curve.getCtrlY());
+//        Point viewPoint = GPoint.createViewPoint(g, location);
 //        x1 = viewPoint.x;
 //        y1 = viewPoint.y;
 ////        listen4Event(VertexMouseDraggingData.event);
@@ -123,8 +123,8 @@ public class DragEdge extends AbstractAction implements PaintHandler {
 //            if (isDrag) {
 ////                double yDiff = (lastPos.getY() - firstPos.getY());
 ////                double xDiff = (lastPos.getX() - firstPos.getX());
-////                GraphPoint difference=new GraphPoint(xDiff, yDiff);
-//                Point viewPoint = GraphPoint.createViewPoint(this.g, lastPos);
+////                GPoint difference=new GPoint(xDiff, yDiff);
+//                Point viewPoint = GPoint.createViewPoint(this.g, lastPos);
 //                Point2D p1 = e1.curve.getP1();
 //                Point2D p2 = e1.curve.getP2();
 //                Point2D pMouse = viewPoint;
@@ -132,7 +132,7 @@ public class DragEdge extends AbstractAction implements PaintHandler {
 //                Point2D newCtrlP = new Point2D.Double((Math.signum(pMouse.getX()) * Math.pow(pMouse.getX(), 1) + ctrP.getX()) / 2, (Math.signum(pMouse.getY()) * Math.pow(pMouse.getY(), 1) + ctrP.getY()) / 2);
 //                e1.curve.setCurve(p1, newCtrlP, p2);
 //            } else if (isClick) {
-//                Point viewPoint = GraphPoint.createViewPoint(this.g, clickPos);
+//                Point viewPoint = GPoint.createViewPoint(this.g, clickPos);
 //                Point2D p1 = e1.curve.getP1();
 //                Point2D p2 = e1.curve.getP2();
 //                int ctrlX1 = (int) (p1.getX() + viewPoint.getX()) / 2 + 30;

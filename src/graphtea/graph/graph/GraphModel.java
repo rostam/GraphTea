@@ -325,9 +325,9 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 		Rectangle2D.Double ret = new Rectangle2D.Double();
 		boolean first = true;
 		for (Vertex v : this) {
-			GraphPoint location = v.getLocation();
+			GPoint location = v.getLocation();
 			Point center = v.getCenter();
-			GraphPoint shapeSize = v.getSize();
+			GPoint shapeSize = v.getSize();
 			Rectangle2D.Double p = new Rectangle2D.Double(location.x * zoomFactor - center.x, location.y * zoomFactor - center.y, shapeSize.x, shapeSize.y);
 			if (first) {
 				ret = new Rectangle2D.Double(p.x, p.y, 0, 0);
@@ -345,9 +345,9 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 		Rectangle2D.Double ret = new Rectangle2D.Double();
 		boolean first = true;
 		for (Vertex v : this) {
-			GraphPoint location = v.getLocation();
+			GPoint location = v.getLocation();
 			Point center = v.getCenter();
-			GraphPoint shapeSize = v.getSize();
+			GPoint shapeSize = v.getSize();
 			Rectangle2D.Double p = new Rectangle2D.Double(location.x * zoomFactor - center.x, location.y * zoomFactor - center.y, shapeSize.x, shapeSize.y);
 
 			if (first) {
@@ -430,9 +430,9 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 		double kx = rect.width / bounds1.getWidth();
 		double ky = rect.height / bounds1.getHeight();
 		for (Vertex vm : graph) {
-			GraphPoint p = vm.getLocation();
+			GPoint p = vm.getLocation();
 			insertVertex(vm);
-			vm.setLocation(new GraphPoint(((p.x - bounds1.x) * kx + rect.x), (int) ((p.y - bounds1.y) * ky + rect.y)));
+			vm.setLocation(new GPoint(((p.x - bounds1.x) * kx + rect.x), (int) ((p.y - bounds1.y) * ky + rect.y)));
 		}
 		Iterator<Edge> eiter = graph.lightEdgeIterator();
 		for (; eiter.hasNext();) {

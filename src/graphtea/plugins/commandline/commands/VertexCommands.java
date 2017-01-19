@@ -7,7 +7,7 @@ package graphtea.plugins.commandline.commands;
 
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
@@ -70,7 +70,7 @@ public class VertexCommands {
         if (y == 0) {
             y = (int) v.getLocation().y;
         }
-        v.setLocation(new GraphPoint(x, y));
+        v.setLocation(new GPoint(x, y));
     }
 
     @CommandAttitude(name = "add_vertex", abbreviation = "_av", description = "adds a vertex")

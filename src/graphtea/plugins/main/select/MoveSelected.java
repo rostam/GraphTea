@@ -7,7 +7,7 @@ package graphtea.plugins.main.select;
 import graphtea.graph.event.GraphEvent;
 import graphtea.graph.event.VertexEvent;
 import graphtea.graph.graph.AbstractGraphRenderer;
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.exceptions.InvalidVertexException;
@@ -40,7 +40,7 @@ public class MoveSelected extends AbstractAction {
     
 
     GraphData gd;
-    private GraphPoint[] verticesPositionsBackUp;
+    private GPoint[] verticesPositionsBackUp;
 
     public void performAction(String eventName, Object value) {
         gv = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
@@ -56,7 +56,7 @@ public class MoveSelected extends AbstractAction {
             if (sd.vertices.contains(vdd.v))   //start if the vertex selected
             {
                 if (vdd.eventType == VertexEvent.DRAGGING_STARTED) {
-                    verticesPositionsBackUp = new GraphPoint[gd.getGraph().getVerticesCount()];
+                    verticesPositionsBackUp = new GPoint[gd.getGraph().getVerticesCount()];
                     for (Vertex vertex : gd.getGraph()) {
                         verticesPositionsBackUp[vertex.getId()] = vertex.getLocation();
                     }
@@ -67,12 +67,12 @@ public class MoveSelected extends AbstractAction {
                 if (vdd.eventType == VertexEvent.RELEASED || vdd.eventType == VertexEvent.DROPPED) {
                     drop();
                     //add undo data
-                    GraphPoint[] newPos = new GraphPoint[gd.getGraph().getVerticesCount()];
+                    GPoint[] newPos = new GPoint[gd.getGraph().getVerticesCount()];
                     for (Vertex ver : gd.getGraph()) {
                         newPos[ver.getId()] = ver.getLocation();
                     }
 
-                    blackboard.setData(SELECTION_MOVED, new GraphPoint(vdd.v.getLocation().x - startx, vdd.v.getLocation().y - starty));
+                    blackboard.setData(SELECTION_MOVED, new GPoint(vdd.v.getLocation().x - startx, vdd.v.getLocation().y - starty));
 
                 }
                 if (vdd.eventType == VertexEvent.DRAGGING) {
@@ -104,12 +104,12 @@ public class MoveSelected extends AbstractAction {
         AbstractGraphRenderer ren = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
         ren.ignoreRepaints(() -> {
             for (Vertex v1 : selection.vertices) {
-                GraphPoint loc = v1.getLocation();
-                v1.setLocation(new GraphPoint(loc.x + dx, loc.y + dy));
+                GPoint loc = v1.getLocation();
+                v1.setLocation(new GPoint(loc.x + dx, loc.y + dy));
             }
         });
-        blackboard.setData(SELECTION_MOVING, new GraphPoint(dx, dy));
-//        blackboard.setData(SELECTION_MOVING, new GraphPoint(vdd.v.getLocation().x - startx, vdd.v.getLocation().y - starty));
+        blackboard.setData(SELECTION_MOVING, new GPoint(dx, dy));
+//        blackboard.setData(SELECTION_MOVING, new GPoint(vdd.v.getLocation().x - startx, vdd.v.getLocation().y - starty));
     }
 
     private double x,y,startx,starty,xx,yy;
@@ -139,7 +139,7 @@ public class MoveSelected extends AbstractAction {
             SubGraph selection = Select.getSelection(blackboard);
             for (Vertex v1 : selection.vertices) {
                 try {
-                    v1.setLocation(new GraphPoint(v1.getLocation().x + dx, v1.getLocation().y + dy));
+                    v1.setLocation(new GPoint(v1.getLocation().x + dx, v1.getLocation().y + dy));
                 } catch (InvalidVertexException e) {
                     selection.vertices.remove(v1);     //as in java any thing is references, there is no need to update the log in the blackboard :D:D
                     //exception occurs whenever a selected vertex, or edge was deleted by user

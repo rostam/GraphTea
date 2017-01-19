@@ -5,7 +5,7 @@ package graphtea.samples.extensions;// GraphTea Project: http://github.com/graph
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.BoundedInteger;
 import graphtea.platform.parameter.Parameter;
@@ -39,7 +39,7 @@ public class BinaryTreeGenerator implements GraphGeneratorExtension, Parametriza
         return "generates a binary tree";
     }
 
-    public GraphPoint[] getVertexPositions() {
+    public GPoint[] getVertexPositions() {
         Point[] r = new Point[n];
         r[0] = new Point(0, 0);
         int last = 1;
@@ -49,9 +49,9 @@ public class BinaryTreeGenerator implements GraphGeneratorExtension, Parametriza
             System.arraycopy(p, 0, r, last, nh);
             last += nh;
         }
-        GraphPoint ret[] = new GraphPoint[n];
+        GPoint ret[] = new GPoint[n];
         for (int i = 0; i < n; i++) {
-            ret[i] = new GraphPoint(r[i].x, r[i].y);
+            ret[i] = new GPoint(r[i].x, r[i].y);
         }
         return ret;
     }
@@ -71,7 +71,7 @@ public class BinaryTreeGenerator implements GraphGeneratorExtension, Parametriza
         g.insertEdges(e);
 
         //generating and setting vertex positions
-        GraphPoint[] pos = getVertexPositions();
+        GPoint[] pos = getVertexPositions();
         for (int i = 0; i < n; i++)
             v[i].setLocation(pos[i]);
         return g;

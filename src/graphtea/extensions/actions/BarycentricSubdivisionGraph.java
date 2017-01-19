@@ -7,7 +7,7 @@ package graphtea.extensions.actions;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
@@ -38,16 +38,16 @@ public class BarycentricSubdivisionGraph implements GraphActionExtension, Parame
         }
 
         for(Edge e : g1.getEdges()) {
-            GraphPoint v1 = e.source.getLocation();
-            GraphPoint v2 = e.target.getLocation();
+            GPoint v1 = e.source.getLocation();
+            GPoint v2 = e.target.getLocation();
             double dis = v1.distance(v2);
-            GraphPoint v3 = GraphPoint.sub(v2, v1);
-            v3 = GraphPoint.div(v3, k+1);
+            GPoint v3 = GPoint.sub(v2, v1);
+            v3 = GPoint.div(v3, k+1);
 
             Vertex src = g2.getVertex(e.source.getId());
             for (int i = 0; i < k; i++) {
                 Vertex tmp = new Vertex();
-                GraphPoint v4 = new GraphPoint(v3);
+                GPoint v4 = new GPoint(v3);
                 v4.multiply(i + 1);
                 v4.add(v1);
                 tmp.setLocation(v4);

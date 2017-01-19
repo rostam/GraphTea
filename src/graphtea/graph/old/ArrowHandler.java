@@ -5,8 +5,8 @@
 package graphtea.graph.old;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.ArrayX;
 import graphtea.platform.lang.FromStringProvider;
@@ -41,15 +41,15 @@ public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, From
         if (!gr.isEdgesCurved())
             angle = e.getAngle();
         else {
-            GraphPoint src = e.source.getLocation();    // it is the center of the vertex
-            GraphPoint trg = e.target.getLocation();
-            GraphPoint ctrlPnt = e.getCurveControlPoint();
+            GPoint src = e.source.getLocation();    // it is the center of the vertex
+            GPoint trg = e.target.getLocation();
+            GPoint ctrlPnt = e.getCurveControlPoint();
             double edgecenterx = (src.x + trg.x) / 2;
             int ctrlPntViewX = (int) (edgecenterx + ctrlPnt.x);
             double edgecentery = (src.y + trg.y) / 2;
             int ctrlPntViewY = (int) (edgecentery + ctrlPnt.y);
 
-            GraphPoint targetLoc = e.target.getLocation();
+            GPoint targetLoc = e.target.getLocation();
             angle = Math.atan2((4 * ctrlPntViewY - src.y - trg.y) / 2 - targetLoc.y,
                     (4 * ctrlPntViewX - src.x - trg.x) / 2 - targetLoc.x);
             if (angle < 0) {
@@ -59,11 +59,11 @@ public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, From
             }
         }
         Vertex v2 = e.target;
-        GraphPoint v2ShapeSize = v2.getSize();
+        GPoint v2ShapeSize = v2.getSize();
         int w = (int) v2ShapeSize.getX();
         int h = (int) v2ShapeSize.getY();
         double t = Math.atan2(w * Math.sin(angle), h * Math.cos(angle));
-        GraphPoint loc = e.target.getLocation();
+        GPoint loc = e.target.getLocation();
         int x2 = (int) ((zoomFactor * loc.x) + ((w / 2) * Math.cos(t)));
         int y2 = (int) ((zoomFactor * loc.y) + ((h / 2) * Math.sin(t)));
 //        g.drawLine((int)loc.x-30, (int)loc.y-30, (int)loc.x+30, (int)loc.y+30);

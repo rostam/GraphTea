@@ -1,7 +1,7 @@
 package graphtea.extensions.actions.art;
 
 import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
@@ -46,10 +46,10 @@ public class GraphArtActionExtendTree
 
     private void addChildren(GraphData graphData, Vertex p, Vertex v, double degree) {
         AlgorithmUtils.getDistance(v, p);
-        GraphPoint gv = GraphPoint.sub(p.getLocation(),v.getLocation());
+        GPoint gv = GPoint.sub(p.getLocation(),v.getLocation());
         gv = PositionGenerators.rotate(gv, degree);
-        gv = GraphPoint.div(gv,1.7);
-        gv = GraphPoint.add(gv, v.getLocation());
+        gv = GPoint.div(gv,1.7);
+        gv = GPoint.add(gv, v.getLocation());
         Vertex vv = new Vertex();
         vv.setLocation(gv);
 

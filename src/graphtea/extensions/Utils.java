@@ -2,7 +2,7 @@ package graphtea.extensions;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.main.core.AlgorithmUtils;
 
@@ -80,7 +80,7 @@ public class Utils {
         for (Edge e : g1.getEdges()) {
             Vertex v = new Vertex();
             v.setLabel(e.getLabel());
-            GraphPoint loc = new GraphPoint(e.source.getLocation());
+            GPoint loc = new GPoint(e.source.getLocation());
             loc.add(e.target.getLocation());
             loc.multiply(0.5);
             loc.add(e.getCurveControlPoint());

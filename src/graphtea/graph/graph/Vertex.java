@@ -35,18 +35,18 @@ public class Vertex extends BaseVertex {
     public boolean isSelected = false;
     String label = null;
     private Point center = new Point();
-    //    private static GraphPoint dp=new GraphPoint(100,100);
+    //    private static GPoint dp=new GPoint(100,100);
     //represents the location of the vertex on the graph, this location will not changed by zooming and similar operations, the location only change by moving the vertex
-    private GraphPoint location = new GraphPoint(100, 100);
+    private GPoint location = new GPoint(100, 100);
 
     //    @UserModifiableProperty(name="defaultShapeDimension")
-    private GraphPoint shapeSize = new GraphPoint(FastRenderer.defaultShapeDimension.getHeight(), FastRenderer.defaultShapeDimension.getWidth());
+    private GPoint shapeSize = new GPoint(FastRenderer.defaultShapeDimension.getHeight(), FastRenderer.defaultShapeDimension.getWidth());
 
     /**
      * the location of the lable relative to the center of the edge
      */
 
-    private GraphPoint labelLocation = new GraphPoint(0, 4);
+    private GPoint labelLocation = new GPoint(0, 4);
 
     //________________________   Userdefined Attributes    _________________________________
     /**
@@ -202,10 +202,10 @@ public class Vertex extends BaseVertex {
     }
 
     public void setLocation(Point p) {
-        setLocation(new GraphPoint(p.x, p.y));
+        setLocation(new GPoint(p.x, p.y));
     }
 
-    public void setLocation(GraphPoint p) {
+    public void setLocation(GPoint p) {
         this.location = p;
         if (view != null)
             view.updateLocation(this, location);
@@ -214,7 +214,7 @@ public class Vertex extends BaseVertex {
     /**
      * @return the location of the vertex. it is the center of vertex
      */
-    public GraphPoint getLocation() {
+    public GPoint getLocation() {
         return location;
     }
 
@@ -245,14 +245,14 @@ public class Vertex extends BaseVertex {
         return shapeStroke;
     }
 
-    public void setSize(GraphPoint size) {
+    public void setSize(GPoint size) {
         this.shapeSize = size;
         if (view != null)
             view.updateSize(this, size);
         fireModelListenerChanged();
     }
 
-    public GraphPoint getSize() {
+    public GPoint getSize() {
         return shapeSize;
     }
 
@@ -274,13 +274,13 @@ public class Vertex extends BaseVertex {
         view.repaint(this);
     }
 
-    public void setLabelLocation(GraphPoint graphPoint) {
+    public void setLabelLocation(GPoint graphPoint) {
         this.labelLocation = graphPoint;
         if (view != null)
             repaint();
     }
 
-    public GraphPoint getLabelLocation() {
+    public GPoint getLabelLocation() {
         return labelLocation;
     }
 

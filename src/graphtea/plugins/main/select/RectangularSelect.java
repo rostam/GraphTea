@@ -94,7 +94,7 @@ public class RectangularSelect extends AbstractAction {
     public static SubGraph calculateSelected(GraphModel g, Rectangle bounds) {
         SubGraph sd = new SubGraph();
         for (Vertex vm : g) {
-            GraphPoint loc = vm.getLocation();
+            GPoint loc = vm.getLocation();
             Point cent = vm.getCenter();
             if (bounds.contains(loc.x, loc.y)) {
                 sd.vertices.add(vm);
@@ -122,12 +122,12 @@ public class RectangularSelect extends AbstractAction {
     }
 
     public static boolean isVertexInRect(Vertex v, GraphModel g, Rectangle viewBounds) {
-        GraphPoint shapeSize = v.getSize();
+        GPoint shapeSize = v.getSize();
         int w = (int) shapeSize.getX();
         int h = (int) shapeSize.getY();
 
         Rectangle2D.Double selBounds = new Rectangle2D.Double(viewBounds.getX(), viewBounds.getY(), viewBounds.width, viewBounds.height);
-        GraphPoint loc = v.getLocation();
+        GPoint loc = v.getLocation();
         Rectangle2D.Double verBounds = new Rectangle2D.Double(loc.x, loc.y, w, h);
         return selBounds.contains(verBounds);
     }

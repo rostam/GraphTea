@@ -58,23 +58,23 @@ public class GraphUtils {
 
     //______________________     GraphControl     ______________________
     /**
-     * @see graphtea.graph.graph.GraphControl#isPointOnVertex(graphtea.graph.graph.GraphModel, graphtea.graph.graph.Vertex,graphtea.graph.graph.GraphPoint)
+     * @see graphtea.graph.graph.GraphControl#isPointOnVertex(graphtea.graph.graph.GraphModel, graphtea.graph.graph.Vertex, GPoint)
      */
-    public static boolean isPointOnVertex(GraphModel g, Vertex v, GraphPoint p) {
+    public static boolean isPointOnVertex(GraphModel g, Vertex v, GPoint p) {
         return GraphControl.isPointOnVertex(g, v, p);
     }
 
     /**
-     * @see graphtea.graph.graph.GraphControl#mindistv(graphtea.graph.graph.GraphModel,graphtea.graph.graph.GraphPoint)
+     * @see graphtea.graph.graph.GraphControl#mindistv(graphtea.graph.graph.GraphModel, GPoint)
      */
-    public static Pair<Vertex, Double> mindistv(GraphModel g, GraphPoint p) {
+    public static Pair<Vertex, Double> mindistv(GraphModel g, GPoint p) {
         return GraphControl.mindistv(g, p);
     }
 
     /**
-     * @see graphtea.graph.graph.GraphControl#mindiste(graphtea.graph.graph.GraphModel,graphtea.graph.graph.GraphPoint)
+     * @see graphtea.graph.graph.GraphControl#mindiste(graphtea.graph.graph.GraphModel, GPoint)
      */
-    public static Pair<Edge, Double> mindiste(GraphModel g, GraphPoint p) {
+    public static Pair<Edge, Double> mindiste(GraphModel g, GPoint p) {
         return GraphControl.mindiste(g, p);
     }
 
@@ -133,25 +133,25 @@ public class GraphUtils {
         Edge.removeGlobalUserDefinedAttribute(name);
     }
 
-    //______________________     GraphPoint     ______________________
+    //______________________     GPoint     ______________________
 
     /**
      * creates a new graph point from the given point according too graph zoom,
      * The input x and y are typically are directly from view,
-     * notice that inside the GraphTea everything are GraphPoint, so they are independent of zoom
+     * notice that inside the GraphTea everything are GPoint, so they are independent of zoom
      * use this method only if you want to convert a view point to graph point!
      *
      * @param g     the graph that zoom and center values are used from.
      * @param viewx initial x potition
      * @param viewy initial y position
-     * @return a0 GraphPoint object which have x and y acording to zoom and center
+     * @return a0 GPoint object which have x and y acording to zoom and center
      */
-    public static GraphPoint createGraphPoint(GraphModel g, int viewx, int viewy) {
+    public static GPoint createGraphPoint(GraphModel g, int viewx, int viewy) {
         double factor = g.getZoomFactor();
-        return new GraphPoint(viewx / factor, viewy / factor);
+        return new GPoint(viewx / factor, viewy / factor);
     }
 
-    public static Point createViewPoint(GraphModel g, GraphPoint p) {
+    public static Point createViewPoint(GraphModel g, GPoint p) {
         double factor = g.getZoomFactor();
         return new Point((int) (p.x * factor), (int) (p.y * factor));
     }

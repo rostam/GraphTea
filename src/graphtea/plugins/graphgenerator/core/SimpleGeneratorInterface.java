@@ -23,6 +23,6 @@ public interface SimpleGeneratorInterface {
 
     Edge[] getEdges();
 
-    //todo: make it return GraphPoint
+    //todo: make it return GPoint
     Point[] getVertexPositions();
 }

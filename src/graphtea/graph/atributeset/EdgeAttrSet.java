@@ -6,7 +6,7 @@
 package graphtea.graph.atributeset;
 
 import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.old.Arrow;
 import graphtea.graph.old.GStroke;
 import graphtea.platform.attribute.AttributeSet;
@@ -58,11 +58,11 @@ public class EdgeAttrSet implements AttributeSet {
         } else if (atrName.equals(STROKE)) {
             e.setStroke((GStroke) val);
         } else if (atrName.equals(LABEL_LOCATION)) {
-            e.setLabelLocation((GraphPoint) val);
+            e.setLabelLocation((GPoint) val);
         } else if (atrName.equals(ARROW)) {
             e.setArrow((Arrow) val);
         } else if (atrName.equals(CURVE_CONTROL_POINT)) {
-            e.setCurveControlPoint((GraphPoint) val);
+            e.setCurveControlPoint((GPoint) val);
         } else {
             e.setUserDefinedAttribute(atrName, val);
         }

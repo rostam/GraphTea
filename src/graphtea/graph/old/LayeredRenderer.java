@@ -6,8 +6,8 @@
 package graphtea.graph.old;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
 
@@ -93,12 +93,12 @@ public class LayeredRenderer extends AcceleratedRenderer {
         repaint();
     }
 
-    public void updateSize(Vertex src, GraphPoint newSize) {
+    public void updateSize(Vertex src, GPoint newSize) {
         repaintVLayer();
         repaint();
     }
 
-    public void updateLocation(Vertex src, GraphPoint newLocation) {
+    public void updateLocation(Vertex src, GPoint newLocation) {
         repaintVLayer();
         repaint();
     }

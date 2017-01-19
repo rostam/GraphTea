@@ -10,43 +10,43 @@ import graphtea.platform.lang.FromStringProvider;
 import java.awt.geom.Point2D;
 import java.io.Serializable;
 
-public class GraphPoint extends Point2D.Double implements Serializable, FromStringProvider {
+public class GPoint extends Point2D.Double implements Serializable, FromStringProvider {
     static {
-        StaticUtils.setFromStringProvider(GraphPoint.class.getName(), new GraphPoint());
+        StaticUtils.setFromStringProvider(GPoint.class.getName(), new GPoint());
     }
 
     private static final long serialVersionUID = -1000000001L;
 
-    public static GraphPoint add(GraphPoint p1, GraphPoint p2) {
-        return new GraphPoint(p1.getX() + p2.getX(), p1.getY() + p2.getY());
+    public static GPoint add(GPoint p1, GPoint p2) {
+        return new GPoint(p1.getX() + p2.getX(), p1.getY() + p2.getY());
     }
 
-    public static GraphPoint sub(GraphPoint p1, GraphPoint p2) {
-        return new GraphPoint(p1.getX() - p2.getX(), p1.getY() - p2.getY());
+    public static GPoint sub(GPoint p1, GPoint p2) {
+        return new GPoint(p1.getX() - p2.getX(), p1.getY() - p2.getY());
     }
 
-    public static GraphPoint div(GraphPoint gp, double scalar) {
-        return new GraphPoint(gp.getX()/scalar, gp.getY()/scalar);
+    public static GPoint div(GPoint gp, double scalar) {
+        return new GPoint(gp.getX()/scalar, gp.getY()/scalar);
     }
 
-    public static GraphPoint mul(GraphPoint gp, double scalar) {
-        return new GraphPoint(gp.getX()*scalar, gp.getY()*scalar);
+    public static GPoint mul(GPoint gp, double scalar) {
+        return new GPoint(gp.getX()*scalar, gp.getY()*scalar);
     }
 
-    public static GraphPoint normalise(GraphPoint gp) {
-        return GraphPoint.div(gp, gp.norm());
+    public static GPoint normalise(GPoint gp) {
+        return GPoint.div(gp, gp.norm());
     }
 
-    public GraphPoint() {
+    public GPoint() {
         super();
     }
 
-    public GraphPoint(GraphPoint p) {
+    public GPoint(GPoint p) {
         this.x = p.x;
         this.y = p.y;
     }
 
-    public GraphPoint(double x, double y) {
+    public GPoint(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -66,7 +66,7 @@ public class GraphPoint extends Point2D.Double implements Serializable, FromStri
      *
      * @param dp The graph point to be added
      */
-    public void add(GraphPoint dp) {
+    public void add(GPoint dp) {
         x = x + dp.x;
         y = y + dp.y;
     }
@@ -76,7 +76,7 @@ public class GraphPoint extends Point2D.Double implements Serializable, FromStri
      *
      * @return this
      */
-    public GraphPoint add(double dx, double dy) {
+    public GPoint add(double dx, double dy) {
         x = x + dx;
         y = y + dy;
         return this;
@@ -91,16 +91,16 @@ public class GraphPoint extends Point2D.Double implements Serializable, FromStri
         return x + " , " + y;
     }
 
-    public double distance(GraphPoint pt) {
+    public double distance(GPoint pt) {
         double PX = pt.getX() - this.getX();
         double PY = pt.getY() - this.getY();
         return Math.sqrt(PX * PX + PY * PY);
     }
 
-    public GraphPoint fromString(String data) {
+    public GPoint fromString(String data) {
         String s1 = data.substring(0,data.indexOf(",")-1);
         String s2= data.substring(data.indexOf(",")+1);
-        return new GraphPoint(java.lang.Double.parseDouble(s1),
+        return new GPoint(java.lang.Double.parseDouble(s1),
                 java.lang.Double.parseDouble(s2));
     }
 }

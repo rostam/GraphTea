@@ -35,7 +35,7 @@ public class GraphArt implements GraphActionExtension {
         g2.setLabel("TreeG0");
 
         for(Vertex v : g2)
-            v.setSize(new GraphPoint(15,15));
+            v.setSize(new GPoint(15,15));
         for(Edge e : g2.getEdges()) {
             e.setStroke(GStroke.dashed_dotted);
             e.setColor(8);
@@ -102,13 +102,13 @@ class Painter implements PaintHandler {
                     if (v2 == null || v2.getColor() != 0) continue;
 
                     //generate the curve between v1, v2 and v3
-                    GraphPoint p1 = v.getLocation();
-                    GraphPoint p2 = v1.getLocation();
-                    GraphPoint p3 = v2.getLocation();
+                    GPoint p1 = v.getLocation();
+                    GPoint p2 = v1.getLocation();
+                    GPoint p3 = v2.getLocation();
 
-                    GraphPoint m1 = AlgorithmUtils.getMiddlePoint(p1, p2);
-                    GraphPoint m2 = AlgorithmUtils.getMiddlePoint(p2, p3);
-                    GraphPoint cp = p2;
+                    GPoint m1 = AlgorithmUtils.getMiddlePoint(p1, p2);
+                    GPoint m2 = AlgorithmUtils.getMiddlePoint(p2, p3);
+                    GPoint cp = p2;
 
 //                        Integer w1 = numChild[v.getId()]/2;
                     Integer w1 = v.getUserDefinedAttribute(GraphArt.CURVE_WIDTH);

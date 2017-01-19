@@ -7,7 +7,7 @@ package graphtea.extensions.io;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.StaticUtils;
 import graphtea.plugins.main.saveload.SaveLoadPluginMethods;
@@ -95,15 +95,15 @@ public class LoadSimpleGraph implements GraphReaderExtension {
                 String s1 = sc.next();
                 int i = parseInt(s1.substring(0, s1.length() - 1));
                 Vertex curv = new Vertex();
-                final GraphPoint gp = new GraphPoint(0, 0);
+                final GPoint gp = new GPoint(0, 0);
                 sc.next();
                 curv.setLabel(sc.next());
                 sc.next();
-                curv.setLocation((GraphPoint) StaticUtils.fromString(GraphPoint.class.getName(), sc.nextLine()));
+                curv.setLocation((GPoint) StaticUtils.fromString(GPoint.class.getName(), sc.nextLine()));
                 sc.next();
                 curv.setColor(parseInt(sc.next()));
                 sc.next();
-                curv.setLabelLocation(new GraphPoint(
+                curv.setLabelLocation(new GPoint(
                         Double.parseDouble(sc.next()),
                         Double.parseDouble(sc.next())
                 ));

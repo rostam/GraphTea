@@ -5,8 +5,8 @@ package graphtea.extensions.generators;
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
@@ -44,7 +44,7 @@ public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
         return "Antiprism Graph";
     }
 
-    public GraphPoint[] getVertexPositions() {
+    public GPoint[] getVertexPositions() {
        return PrismGraph.computePrismCoords(n);
     }
 
@@ -78,7 +78,7 @@ public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
         g.insertEdges(e);
 
         //generating and setting vertex positions
-        GraphPoint[] pos = getVertexPositions();
+        GPoint[] pos = getVertexPositions();
         for (int i = 0; i < 2*n; i++)
             v[i].setLocation(pos[i]);
         return g;

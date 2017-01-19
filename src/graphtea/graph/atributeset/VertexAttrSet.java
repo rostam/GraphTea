@@ -5,7 +5,7 @@
 
 package graphtea.graph.atributeset;
 
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.graph.old.GShape;
 import graphtea.graph.old.GStroke;
@@ -58,9 +58,9 @@ public class VertexAttrSet implements AttributeSet {
         } else if (atrName.equals(BORDER)) {
             v.setShapeStroke((GStroke) val);
         } else if (atrName.equals(LOCATION)) {
-            v.setLocation((GraphPoint) val);
+            v.setLocation((GPoint) val);
         } else if (atrName.equals(SIZE)) {
-            v.setSize((GraphPoint) val);
+            v.setSize((GPoint) val);
         } else if (atrName.equals(MARK)) {
             v.setMark((Boolean) val);
         } else if (atrName.equals(SELECTED)) {
@@ -68,7 +68,7 @@ public class VertexAttrSet implements AttributeSet {
         } else if (atrName.equals(COLOR)) {
             v.setColor((Integer) val);
         } else if (atrName.equals(LABEL_LOCATION)) {
-            v.setLabelLocation((GraphPoint) val);
+            v.setLabelLocation((GPoint) val);
         } else {
             v.setUserDefinedAttribute(atrName, val);
         }

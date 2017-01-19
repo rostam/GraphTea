@@ -5,8 +5,8 @@
 package graphtea.plugins.visualization.localsfvis;
 
 import graphtea.graph.atributeset.GraphAttrSet;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.AbstractAction;
@@ -63,7 +63,7 @@ public class circular extends AbstractAction implements Parametrizable {
             v[i++] = vm;
         Point[] p = PositionGenerators.circle(25, 25, w + 25, h + 25, n);
         for (i = 0; i < n; i++) {
-            v[i].setLocation(new GraphPoint(p[i].x, p[i].y));
+            v[i].setLocation(new GPoint(p[i].x, p[i].y));
         }
     }
 
@@ -75,7 +75,7 @@ public class circular extends AbstractAction implements Parametrizable {
             v[i++] = vm;
         Point[] p = PositionGenerators.circle(r, x, y, n);
         for (i = 0; i < n; i++) {
-            v[i].setLocation(new GraphPoint(p[i].x, p[i].y));
+            v[i].setLocation(new GPoint(p[i].x, p[i].y));
         }
     }
 

@@ -105,7 +105,7 @@ public class GraphGenerator implements PluginMethods {
             ret.insertVertex(v);
 
         for (int i = 0; i < vertices.length; i++) {
-            vertices[i].setLocation(new GraphPoint(pos[i].x, pos[i].y));
+            vertices[i].setLocation(new GPoint(pos[i].x, pos[i].y));
         }
 
         for (Edge e : edges) {

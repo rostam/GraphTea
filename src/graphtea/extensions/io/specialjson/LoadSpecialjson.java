@@ -146,10 +146,10 @@ public class LoadSpecialjson implements GraphReaderExtension {
                     for(Vertex v : g) {
                         if(sttlWithoutCoordinates.contains(v.getLabel())) {
 //                            v.setColor(3);
-                            //v.setLocation(new GraphPoint(200,200 + i*20));
+                            //v.setLocation(new GPoint(200,200 + i*20));
                             i++;
                         } else {
-                            v.setLocation(new GraphPoint(100,100));
+                            v.setLocation(new GPoint(100,100));
                             v.setColor(0);
                         }
                     }
@@ -164,7 +164,7 @@ public class LoadSpecialjson implements GraphReaderExtension {
         }
 //
         for(String s : sttlWithoutCoordinates) {
-            GraphPoint gp = new GraphPoint(0, 0);
+            GPoint gp = new GPoint(0, 0);
             int num = 0;
             for (int ver : regionVertices.get(verticesRegion.get(g.getVertex(labelVertex.get(s)).getId()))) {
                 if (g.getVertex(ver).getLocation().getX() == 100) continue;
@@ -178,7 +178,7 @@ public class LoadSpecialjson implements GraphReaderExtension {
         }
 //
 //        for(String s : sttlWithoutCoordinates) {
-//            Vector<GraphPoint> vs = new Vector<>();
+//            Vector<GPoint> vs = new Vector<>();
 //            for(Vertex n : g.getNeighbors(g.getVertex(labelVertex.get(s)))) {
 //                if(!sttlWithoutCoordinates.contains(n.getLabel())) {
 //                    vs.add(n.getLocation());
@@ -196,7 +196,7 @@ public class LoadSpecialjson implements GraphReaderExtension {
         return g;
     }
 
-    GraphPoint convertLatLonToXY(double lat, double lon) {
+    GPoint convertLatLonToXY(double lat, double lon) {
 //        lat    = 41.145556; // (φ)
 //        lon   = -73.995;   // (λ)
         double mapWidth = 2000;
@@ -211,7 +211,7 @@ public class LoadSpecialjson implements GraphReaderExtension {
 // get y value
         double mercN = Math.log(Math.tan((Math.PI / 4) + (latRad / 2)));
         double y = (mapHeight / 2) - (mapWidth * mercN / (2 * Math.PI));
-        return new GraphPoint(x, y);
+        return new GPoint(x, y);
     }
 
     String extract_value_from_line(String line) {

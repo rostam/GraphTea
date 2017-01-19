@@ -5,8 +5,8 @@
 package graphtea.plugins.main.saveload.matrix;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseEdge;
 import graphtea.library.BaseEdgeProperties;
@@ -84,7 +84,7 @@ public class Matrix {
             Vertex v = new Vertex();
             v.setLabel((i+1)+"");
             g.insertVertex(v);
-            v.setLocation(new GraphPoint(Math.random() * 500, Math.random() * 500));
+            v.setLocation(new GPoint(Math.random() * 500, Math.random() * 500));
             vertices[i] = v;
         }
         for (int i = 0; i < n; i++) {

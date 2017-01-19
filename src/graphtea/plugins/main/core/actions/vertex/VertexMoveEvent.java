@@ -6,8 +6,8 @@ package graphtea.plugins.main.core.actions.vertex;
 
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.event.VertexEvent;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.SubGraph;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
@@ -24,7 +24,7 @@ public class VertexMoveEvent extends AbstractAction {
         listen4Event(VertexEvent.EVENT_KEY);
     }
 
-    GraphPoint oldPos;
+    GPoint oldPos;
     double x1;
     double y1;
     GraphModel g;
@@ -53,8 +53,8 @@ public class VertexMoveEvent extends AbstractAction {
 
     private void dragging() {
         VertexEvent vmd = blackboard.getData(VertexEvent.EVENT_KEY);
-        GraphPoint point = new GraphPoint(vmd.mousePos);
-        GraphPoint loc = vmd.v.getLocation();
+        GPoint point = new GPoint(vmd.mousePos);
+        GPoint loc = vmd.v.getLocation();
         point.x += loc.x - x1;
         point.y += loc.y - y1;
         vmd.v.setLocation(point);
@@ -66,8 +66,8 @@ public class VertexMoveEvent extends AbstractAction {
     private void drop() {
         VertexMoveData vmd = new VertexMoveData();
         vmd.v = vdd.v;
-        GraphPoint point = new GraphPoint(vdrod.mousePos);
-        GraphPoint loc = vmd.v.getLocation();
+        GPoint point = new GPoint(vdrod.mousePos);
+        GPoint loc = vmd.v.getLocation();
         point.x += vdrod.mousePos.x + loc.x - x1;
         point.y += vdrod.mousePos.y + loc.y - y1;
         vmd.newPosition = point;

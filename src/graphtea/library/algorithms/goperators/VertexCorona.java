@@ -5,8 +5,8 @@
 
 package graphtea.library.algorithms.goperators;
 
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseEdge;
 import graphtea.library.BaseGraph;
@@ -76,10 +76,10 @@ public class VertexCorona
             for(int j=0;j<g2.getVerticesCount();j++) {
                 int index=g1.getVerticesCount()+g2.getVerticesCount()*k + j;
                 varr[index].setLabel(g2.getLabel().substring(1)+"_"+varr[index].getLabel()+"_"+k);
-                GraphPoint gp1 = varr[index].getLocation();
-                GraphPoint gp2 = varr[k].getLocation();
-                GraphPoint gp3 = GraphPoint.sub(gp2,gp1);
-                gp3= GraphPoint.div(gp3,2);
+                GPoint gp1 = varr[index].getLocation();
+                GPoint gp2 = varr[k].getLocation();
+                GPoint gp3 = GPoint.sub(gp2,gp1);
+                gp3= GPoint.div(gp3,2);
                 gp3.add(gp1);
                 g.getVertex(varr[index].getId()).setLocation(gp3);
             }

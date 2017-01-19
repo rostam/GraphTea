@@ -7,7 +7,7 @@ package graphtea.extensions.io;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;
@@ -102,7 +102,7 @@ public class LatexWriter implements GraphWriterExtension{
             Iterator<Edge> em = graph.edgeIterator();
             while (em.hasNext()) {
                 Edge e = em.next();
-                final GraphPoint sx = e.source.getLocation();
+                final GPoint sx = e.source.getLocation();
                 if (!graph.isEdgesCurved()) {
                     edges += "%Edge Label:" + e.getLabel() + "\n";
                     edges += "\\emline{" +

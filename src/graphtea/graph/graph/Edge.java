@@ -35,14 +35,14 @@ public class Edge extends BaseEdge<Vertex> {
     /**
      * the location of the lable relative to the center of the edge
      */
-    private GraphPoint labelLocation = new GraphPoint(0, 0);
+    private GPoint labelLocation = new GPoint(0, 0);
 
     /**
      * it's a straight line between source and target vertices
      */
     public Line2D.Double line = new Line2D.Double();
 
-    public GraphPoint curveControlPoint;
+    public GPoint curveControlPoint;
 
     /**
      * the text that is showing as the label of the edge on screen
@@ -248,8 +248,8 @@ public class Edge extends BaseEdge<Vertex> {
         // Subtract y coordinates in reverse order from normal
         // as the screen coordinate system is flipped along the
         // x-axis from the Cartesian coordinate system.
-        GraphPoint sourceLoc = source.getLocation();
-        GraphPoint targetLoc = target.getLocation();
+        GPoint sourceLoc = source.getLocation();
+        GPoint targetLoc = target.getLocation();
         double angle = Math.atan2(sourceLoc.y  - targetLoc.y ,
                 sourceLoc.x  - targetLoc.x );
         if (angle < 0) {
@@ -285,12 +285,12 @@ public class Edge extends BaseEdge<Vertex> {
      *         the abstract position for regular edges can be give by: (src.x + trg.x) / 2 + ctrlPnt.x  , also for y
      *         and for loops is src.x + minLoopWidth * sqrt(2), src.y + minLoopWidth * sqrt(2)
      */
-    public GraphPoint getCurveControlPoint() {
+    public GPoint getCurveControlPoint() {
         if (curveControlPoint == null) {
             if (!isLoop()) {
-                curveControlPoint = new GraphPoint(0, 0);
+                curveControlPoint = new GPoint(0, 0);
             } else {
-                setCurveControlPoint(new GraphPoint(MIN_LOOP_WIDTH, MIN_LOOP_WIDTH));
+                setCurveControlPoint(new GPoint(MIN_LOOP_WIDTH, MIN_LOOP_WIDTH));
             }
         }
         return curveControlPoint;
@@ -301,23 +301,23 @@ public class Edge extends BaseEdge<Vertex> {
      * returns absolute center point of a loop based on its loopWidth
      * @return The graph point
      */
-    public GraphPoint getLoopCenter(){
+    public GPoint getLoopCenter(){
         double cx = getCurveControlPoint().x,
                cy = getCurveControlPoint().y,
                sx = source.getLocation().x,
                sy = source.getLocation().y;
-        return new GraphPoint(sx + cx/2f, sy + cy/2f);
+        return new GPoint(sx + cx/2f, sy + cy/2f);
     }
 
     public double getLoopWidth() {
         return loopWidth;
     }
 
-    public void setCurveControlPoint(GraphPoint controlPoint) {
+    public void setCurveControlPoint(GPoint controlPoint) {
         
         boolean allowed = false;
         if (isLoop()) {
-            double value = GraphPoint.distance(0, 0, controlPoint.x, controlPoint.y);
+            double value = GPoint.distance(0, 0, controlPoint.x, controlPoint.y);
             if (value > MIN_LOOP_WIDTH) {
                 loopWidth = value;
                 allowed = true;
@@ -367,12 +367,12 @@ public class Edge extends BaseEdge<Vertex> {
         repaintView();
     }
 
-    public void setLabelLocation(GraphPoint graphPoint) {
+    public void setLabelLocation(GPoint graphPoint) {
         this.labelLocation = graphPoint;
         repaintView();
     }
 
-    public GraphPoint getLabelLocation() {
+    public GPoint getLabelLocation() {
         return labelLocation;
     }
 

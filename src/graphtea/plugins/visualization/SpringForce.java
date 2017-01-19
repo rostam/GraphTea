@@ -68,7 +68,7 @@ package graphtea.plugins.visualization;
 //class animatorSF extends Thread {
 //    private GraphModel g;
 //    Vertex[] v;
-//    GraphPoint[] verPos;
+//    GPoint[] verPos;
 //    private int E = 10;
 //    private double springK = 1;
 //    private double q1q2k = 200000;
@@ -79,7 +79,7 @@ package graphtea.plugins.visualization;
 //    public animatorSF(GraphModel g) {
 //        this.g = gv;
 //        n = g.getVerticesCount();
-//        verPos = new GraphPoint[n];
+//        verPos = new GPoint[n];
 //        getVertices();
 //    }
 //
@@ -116,7 +116,7 @@ package graphtea.plugins.visualization;
 //        return v = ret;
 //    }
 //
-//    private Point[] refreshPositioning(GraphPoint[] lPosition) {
+//    private Point[] refreshPositioning(GPoint[] lPosition) {
 //        Point[] f = new Point[n];
 //        Point[] ret = new Point[n];
 //        for (int i = 0; i < n; i++) {
