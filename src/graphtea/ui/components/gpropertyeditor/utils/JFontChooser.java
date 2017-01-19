@@ -32,9 +32,6 @@ public class JFontChooser extends JComponent {
 
         fontList = new JList(GraphicsEnvironment.getLocalGraphicsEnvironment().
                 getAvailableFontFamilyNames()) {
-            /**
-             *
-             */
             private static final long serialVersionUID = 2307765155498619149L;
 
             public Dimension getPreferredScrollableViewportSize() {
@@ -45,9 +42,6 @@ public class JFontChooser extends JComponent {
 
 
         sizeList = new JList(sizes) {
-            /**
-             *
-             */
             private static final long serialVersionUID = -2474666139561694389L;
 
             public Dimension getPreferredScrollableViewportSize() {
@@ -85,21 +79,13 @@ public class JFontChooser extends JComponent {
 
         // add the listeners
 
-        ListSelectionListener listListener = new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
-                txtSample.setFont(getCurrentFont());
-            }
-        };
+        ListSelectionListener listListener = e -> txtSample.setFont(getCurrentFont());
 
         fontList.addListSelectionListener(listListener);
         sizeList.addListSelectionListener(listListener);
 
 
-        ActionListener cbListener = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                txtSample.setFont(getCurrentFont());
-            }
-        };
+        ActionListener cbListener = e -> txtSample.setFont(getCurrentFont());
 
         cbBold.addActionListener(cbListener);
         cbItalic.addActionListener(cbListener);

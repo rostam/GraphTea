@@ -14,7 +14,7 @@ import static graphtea.graph.old.GStroke.*;
  */
 public class GStrokeEditor extends GComboEditor {
     public Object[] getValues() {
-        GStroke a[] = new GStroke[]{
+        return new GStroke[]{
                 simple,
                 solid,
                 strong,
@@ -24,6 +24,5 @@ public class GStrokeEditor extends GComboEditor {
                 dashed_dotted_dotted,
                 dashed_dashed_dotted
         };
-        return a;
     }
 }

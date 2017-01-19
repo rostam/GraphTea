@@ -15,6 +15,8 @@ import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
 
+import java.util.Objects;
+
 /**
  * @author azin azadi
  */
@@ -45,7 +47,7 @@ public class MoveSelected extends AbstractAction {
         //while resizing the vertex it shouldn't move it
 //resize
 //        if (b == null || !b) {
-        if (eventName == VertexEvent.EVENT_KEY) {
+        if (Objects.equals(eventName, VertexEvent.EVENT_KEY)) {
 
             VertexEvent vdd = blackboard.getData(VertexEvent.EVENT_KEY);
 
@@ -100,22 +102,17 @@ public class MoveSelected extends AbstractAction {
         final double dy = yy - y;
 //        System.out.println(xx + ", " + x + ", " + dx);
         AbstractGraphRenderer ren = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
-        ren.ignoreRepaints(new Runnable() {
-            public void run() {
-                for (Vertex v : selection.vertices) {
-                    GraphPoint loc = v.getLocation();
-                    v.setLocation(new GraphPoint(loc.x + dx, loc.y + dy));
-                }
+        ren.ignoreRepaints(() -> {
+            for (Vertex v1 : selection.vertices) {
+                GraphPoint loc = v1.getLocation();
+                v1.setLocation(new GraphPoint(loc.x + dx, loc.y + dy));
             }
         });
         blackboard.setData(SELECTION_MOVING, new GraphPoint(dx, dy));
 //        blackboard.setData(SELECTION_MOVING, new GraphPoint(vdd.v.getLocation().x - startx, vdd.v.getLocation().y - starty));
     }
 
-    double x;
-    double startx;
-    double y;
-    double starty;
+    private double x,y,startx,starty,xx,yy;
     AbstractGraphRenderer gv;
     Vertex v;
 
@@ -131,34 +128,29 @@ public class MoveSelected extends AbstractAction {
         blackboard.setData("MoveSelected.moving", "no");
 
         AbstractGraphRenderer ren = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
-        ren.ignoreRepaints(new Runnable() {
-            public void run() {
-                VertexEvent ve = blackboard.getData(VertexEvent.EVENT_KEY);
-                int _x = (int) ve.mousePos.getX();
-                int _y = (int) ve.mousePos.getY();
-                int dx = (int) (_x - x);
-                int dy = (int) (_y - y);
-                x = x + dx;
-                y = y + dy;
-                SubGraph selection = Select.getSelection(blackboard);
-                for (Vertex v : selection.vertices) {
-                    try {
-                        v.setLocation(new GraphPoint(v.getLocation().x + dx, v.getLocation().y + dy));
-                    } catch (InvalidVertexException e) {
-                        selection.vertices.remove(v);     //as in java any thing is references, there is no need to update the log in the blackboard :D:D
-                        //exception occurs whenever a selected vertex, or edge was deleted by user
+        ren.ignoreRepaints(() -> {
+            VertexEvent ve = blackboard.getData(VertexEvent.EVENT_KEY);
+            int _x = (int) ve.mousePos.getX();
+            int _y = (int) ve.mousePos.getY();
+            int dx = (int) (_x - x);
+            int dy = (int) (_y - y);
+            x = x + dx;
+            y = y + dy;
+            SubGraph selection = Select.getSelection(blackboard);
+            for (Vertex v1 : selection.vertices) {
+                try {
+                    v1.setLocation(new GraphPoint(v1.getLocation().x + dx, v1.getLocation().y + dy));
+                } catch (InvalidVertexException e) {
+                    selection.vertices.remove(v1);     //as in java any thing is references, there is no need to update the log in the blackboard :D:D
+                    //exception occurs whenever a selected vertex, or edge was deleted by user
 //                ExceptionHandler.catchException(e);
-                    }
                 }
-
             }
+
         });
 
 
     }
-
-    double xx;
-    double yy;
 
     @Override
     public boolean trackUndos() {

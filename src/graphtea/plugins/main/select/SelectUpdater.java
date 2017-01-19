@@ -41,7 +41,7 @@ public class SelectUpdater extends AbstractAction {
                 select(v);
                 last.vertices.add(v);
             }
-        Vector<Vertex> rm = new Vector<Vertex>();
+        Vector<Vertex> rm = new Vector<>();
         for (Vertex v : last.vertices)
             if (!sd.vertices.contains(v)) {
                 deselect(v);
@@ -53,7 +53,7 @@ public class SelectUpdater extends AbstractAction {
                 select(e);
                 last.edges.add(e);
             }
-        Vector<Edge> rme = new Vector<Edge>();
+        Vector<Edge> rme = new Vector<>();
         for (Edge e : last.edges)
             if (!sd.edges.contains(e)) {
                 deselect(e);

@@ -26,8 +26,8 @@ import java.util.Map;
 public class GraphColoringRenderer implements GBasicCellRenderer<GraphColoring> {
     public Component getRendererComponent(GraphColoring coloring) {
         final GraphColoring myColoring = new GraphColoring(coloring.graph);
-        myColoring.vertexColors = new HashMap<Vertex, Integer>(coloring.vertexColors);
-        myColoring.edgeColors = new HashMap<Edge, Integer>(coloring.edgeColors);
+        myColoring.vertexColors = new HashMap<>(coloring.vertexColors);
+        myColoring.edgeColors = new HashMap<>(coloring.edgeColors);
         myColoring.label = coloring.label;
         String txt = "";
         txt = "<HTML><BODY>";

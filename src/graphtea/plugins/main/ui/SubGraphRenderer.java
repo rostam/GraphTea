@@ -27,10 +27,10 @@ public class SubGraphRenderer implements GBasicCellRenderer<SubGraph> {
     public Component getRendererComponent(SubGraph sd) {
         sgbck=sd;
         final SubGraph mysd = new SubGraph(sd.graph);
-        mysd.vertices = new HashSet<Vertex>(sd.vertices);
-        mysd.edges = new HashSet<Edge>(sd.edges);
+        mysd.vertices = new HashSet<>(sd.vertices);
+        mysd.edges = new HashSet<>(sd.edges);
         mysd.label = sd.label;
-        String txt = "";
+        String txt;
         txt = "<HTML><BODY>";
         if (mysd.label != null && !mysd.label.equals("")) {
             txt += "<B>" + mysd.label + ": </B><BR>";

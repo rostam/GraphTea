@@ -46,16 +46,14 @@ public class RectangularSelect extends AbstractAction {
         gb = bb;
         listen4Event(GraphEvent.EVENT_KEY);
         graphRectRegionSelector.startSelectingRegion();
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventPostProcessor(new KeyEventPostProcessor() {
-            public boolean postProcessKeyEvent(KeyEvent e) {
-                deleteOlderSelections = true;
-                invertOlderSelections = false;
-                if (e.isControlDown())
-                    deleteOlderSelections = false;
-                if (e.isShiftDown())
-                    invertOlderSelections = true; //not yet implemented //todo: implement
-                return false;
-            }
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventPostProcessor(e -> {
+            deleteOlderSelections = true;
+            invertOlderSelections = false;
+            if (e.isControlDown())
+                deleteOlderSelections = false;
+            if (e.isShiftDown())
+                invertOlderSelections = true; //not yet implemented //todo: implement
+            return false;
         });
     }
 

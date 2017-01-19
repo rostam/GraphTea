@@ -11,11 +11,11 @@ import java.awt.*;
  * Email :
  */
 public interface GBasicCellEditor<t> {
-    public void setEditingFinishedListener(EditingFinishedListener listener);
+    void setEditingFinishedListener(EditingFinishedListener listener);
 
-    public Component getEditorComponent(t value);
+    Component getEditorComponent(t value);
 
-    public void cancelEditing();
+    void cancelEditing();
 
-    public Object getEditorValue();
+    Object getEditorValue();
 }

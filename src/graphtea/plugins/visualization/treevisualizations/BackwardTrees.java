@@ -25,12 +25,12 @@ import java.util.Vector;
  */
 public class BackwardTrees implements VisualizationExtension {
     String event = UIUtils.getUIEventKey("BackwardTrees");
-    public Vector<Vertex> visitedVertices = new Vector<Vertex>();
-    public Vector<Vertex> upperLevelVertices = new Vector<Vertex>();
+    public Vector<Vertex> visitedVertices = new Vector<>();
+    public Vector<Vertex> upperLevelVertices = new Vector<>();
 
-    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<Vertex, Point2D>();
-    public Vector<Vertex> children = new Vector<Vertex>();
-    public HashMap<Vertex, Double> comingFrom = new HashMap<Vertex, Double>();
+    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<>();
+    public Vector<Vertex> children = new Vector<>();
+    public HashMap<Vertex, Double> comingFrom = new HashMap<>();
     Vertex root;
 
 
@@ -39,14 +39,14 @@ public class BackwardTrees implements VisualizationExtension {
      * @param eventName
      * @param value
      */
-    public HashSet<Vertex> placedVertices = new HashSet<Vertex>();
+    public HashSet<Vertex> placedVertices = new HashSet<>();
     @UserModifiableProperty(displayName = "BackWard Tree Visualization Radius", obeysAncestorCategory = false
             , category = "Visualization Options")
     public static Integer radius = 60;
 
     private Vertex findHigherVertex(Vertex v1, Vertex v2) {
-        Vector<Vertex> t1 = new Vector<Vertex>();
-        Vector<Vertex> t2 = new Vector<Vertex>();
+        Vector<Vertex> t1 = new Vector<>();
+        Vector<Vertex> t2 = new Vector<>();
         t1.add(v1);
         t2.add(v2);
         if (BFS(t1, 0) > BFS(t2, 0)) {
@@ -67,7 +67,7 @@ public class BackwardTrees implements VisualizationExtension {
     }
 
     private int BFS(Vector<Vertex> currentLevel, int maxLevel) {
-        Vector<Vertex> nextLevel = new Vector<Vertex>();
+        Vector<Vertex> nextLevel = new Vector<>();
         for (Vertex v : currentLevel) {
             v.setMark(true);
             Iterator<Edge> em = g.edgeIterator(v);
@@ -89,7 +89,7 @@ public class BackwardTrees implements VisualizationExtension {
     }
 
     public Vector<Vertex> findNextLevelChildren(Vector<Vertex> currentLevelVertices) {
-        Vector<Vertex> newChildren = new Vector<Vertex>();
+        Vector<Vertex> newChildren = new Vector<>();
         if (currentLevelVertices.size() != 0) {
             for (Vertex v : currentLevelVertices) {
                 Iterator<Edge> e = g.edgeIterator(v);
@@ -232,17 +232,17 @@ public class BackwardTrees implements VisualizationExtension {
     }
 
     public HashMap<Vertex, Point2D> getNewVertexPlaces() {
-        visitedVertices = new Vector<Vertex>();
-        vertexPlaces = new HashMap<Vertex, Point2D>();
-        children = new Vector<Vertex>();
-        placedVertices = new HashSet<Vertex>();
+        visitedVertices = new Vector<>();
+        vertexPlaces = new HashMap<>();
+        children = new Vector<>();
+        placedVertices = new HashSet<>();
         try {
             root = findAppropriateRoot(g);
             visitedVertices.add(root);
             unMarkVertices();
 //            locateAll(visitedVertices, 600, 50, 1,200);
             BaseVertexProperties properties = new BaseVertexProperties(root.getColor(), root.getMark());
-            properties.obj = new Double(2 * Math.PI);
+            properties.obj = 2 * Math.PI;
             root.setProp(properties);
 
             locateAllSubTrees(root, radius, 0);

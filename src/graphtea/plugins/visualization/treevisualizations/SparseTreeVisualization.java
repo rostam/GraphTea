@@ -21,7 +21,7 @@ import java.util.Vector;
  */
 public class SparseTreeVisualization implements VisualizationExtension {
     String event = UIUtils.getUIEventKey("SparseTreeVisualization");
-    public Vector<Vertex> visitedVertices = new Vector<Vertex>();
+    public Vector<Vertex> visitedVertices = new Vector<>();
     public HashMap<Vertex, Point2D> vertexPlaces;
     public Vector<Vertex> children;
 
@@ -43,8 +43,8 @@ public class SparseTreeVisualization implements VisualizationExtension {
     }
 
     private Vertex findHigherVertex(Vertex v1, Vertex v2) {
-        Vector<Vertex> t1 = new Vector<Vertex>();
-        Vector<Vertex> t2 = new Vector<Vertex>();
+        Vector<Vertex> t1 = new Vector<>();
+        Vector<Vertex> t2 = new Vector<>();
         t1.add(v1);
         t2.add(v2);
         if (BFS(t1, 0) > BFS(t2, 0)) {
@@ -55,7 +55,7 @@ public class SparseTreeVisualization implements VisualizationExtension {
     }
 
     private int BFS(Vector<Vertex> currentLevel, int maxLevel) {
-        Vector<Vertex> nextLevel = new Vector<Vertex>();
+        Vector<Vertex> nextLevel = new Vector<>();
         for (Vertex v : currentLevel) {
             v.setMark(true);
             Iterator<Edge> em = graph.edgeIterator(v);
@@ -79,9 +79,9 @@ public class SparseTreeVisualization implements VisualizationExtension {
     static GraphModel graph;
 
     public void performJob(String eventName, Object value) {
-        visitedVertices = new Vector<Vertex>();
-        vertexPlaces = new HashMap<Vertex, Point2D>();
-        children = new Vector<Vertex>();
+        visitedVertices = new Vector<>();
+        vertexPlaces = new HashMap<>();
+        children = new Vector<>();
         try {
             Vertex root = findAppropriateRoot(graph);
             visitedVertices.add(root);
@@ -96,7 +96,7 @@ public class SparseTreeVisualization implements VisualizationExtension {
 
 
     public Vector<Vertex> findNextLevelChildren(Vector<Vertex> currentLevelVertices) {
-        Vector<Vertex> newChildren = new Vector<Vertex>();
+        Vector<Vertex> newChildren = new Vector<>();
         for (Vertex v : currentLevelVertices) {
             Iterator<Edge> e = graph.edgeIterator(v);
             for (; e.hasNext();) {
@@ -163,9 +163,9 @@ public class SparseTreeVisualization implements VisualizationExtension {
     public static Integer eachLevelHeigh = 50;
 
     public HashMap<Vertex, Point2D> getNewVertexPlaces() {
-        visitedVertices = new Vector<Vertex>();
-        vertexPlaces = new HashMap<Vertex, Point2D>();
-        children = new Vector<Vertex>();
+        visitedVertices = new Vector<>();
+        vertexPlaces = new HashMap<>();
+        children = new Vector<>();
         try {
             Vertex root = findAppropriateRoot(graph);
             visitedVertices.add(root);

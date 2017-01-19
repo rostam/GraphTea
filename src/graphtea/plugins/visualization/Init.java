@@ -24,7 +24,7 @@ public class Init implements PluginInterface {
     }
 
     public void init(BlackBoard blackboard) {
-        UI ui = (UI) blackboard.getData(UI.name);
+        UI ui = blackboard.getData(UI.name);
         try {
             ui.addXML("/graphtea/plugins/visualization/VisualizationUI.xml", getClass());
         } catch (IOException e) {

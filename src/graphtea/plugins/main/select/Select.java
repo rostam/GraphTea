@@ -33,16 +33,14 @@ public class Select extends AbstractAction {
         listen4Event(VertexSelectData.EVENT_KEY);
         listen4Event(EdgeSelectData.EVENT_KEY);
         blackboard.setData(EVENT_KEY, new SubGraph());
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventPostProcessor(new KeyEventPostProcessor() {
-            public boolean postProcessKeyEvent(KeyEvent e) {
-                deSelectOlderSelections = true;
-                invertOlderSelections = false;
-                if (e.isControlDown())
-                    deSelectOlderSelections = false;
-                if (e.isShiftDown())
-                    invertOlderSelections = true; //not yet implemented //todo: implement
-                return false;
-            }
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventPostProcessor(e -> {
+            deSelectOlderSelections = true;
+            invertOlderSelections = false;
+            if (e.isControlDown())
+                deSelectOlderSelections = false;
+            if (e.isShiftDown())
+                invertOlderSelections = true; //not yet implemented //todo: implement
+            return false;
         });
     }
     public void track(){}

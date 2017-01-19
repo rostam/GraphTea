@@ -8,5 +8,5 @@ package graphtea.ui.components.gpropertyeditor;
  * User: root
  */
 public interface EditingFinishedListener {
-    public void editingFinished(Object editorValue);
+    void editingFinished(Object editorValue);
 }

@@ -23,12 +23,12 @@ import java.util.Vector;
  */
 public class CircularTreeVisualization implements VisualizationExtension {
     String event = UIUtils.getUIEventKey("CircularTreeVisualization");
-    public Vector<Vertex> visitedVertices = new Vector<Vertex>();
-    public HashSet<Vertex> placedVertices = new HashSet<Vertex>();
-    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<Vertex, Point2D>();
+    public Vector<Vertex> visitedVertices = new Vector<>();
+    public HashSet<Vertex> placedVertices = new HashSet<>();
+    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<>();
     Vertex root;
-    public Vector<Vertex> children = new Vector<Vertex>();
-    public HashMap<Vertex, Integer> vertexHeights = new HashMap<Vertex, Integer>();
+    public Vector<Vertex> children = new Vector<>();
+    public HashMap<Vertex, Integer> vertexHeights = new HashMap<>();
     @UserModifiableProperty(displayName = "Circular Tree Visualization Radius", obeysAncestorCategory = false
             , category = "Visualization Options")
     public static Integer radius = 80;
@@ -44,8 +44,8 @@ public class CircularTreeVisualization implements VisualizationExtension {
     }
 
     private Vertex findHigherVertex(Vertex v1, Vertex v2) {
-        Vector<Vertex> t1 = new Vector<Vertex>();
-        Vector<Vertex> t2 = new Vector<Vertex>();
+        Vector<Vertex> t1 = new Vector<>();
+        Vector<Vertex> t2 = new Vector<>();
         t1.add(v1);
         t2.add(v2);
         int i = maxHeight(t1, 0);
@@ -61,7 +61,7 @@ public class CircularTreeVisualization implements VisualizationExtension {
 
     private int maxHeight(Vector<Vertex> currentLevel, int maxLevel) {
 
-        Vector<Vertex> nextLevel = new Vector<Vertex>();
+        Vector<Vertex> nextLevel = new Vector<>();
         for (Vertex v : currentLevel) {
             v.setMark(true);
             Iterator<Edge> em = g.edgeIterator(v);
@@ -124,7 +124,6 @@ try {
                 Vertex v1 = e.source.equals(v) ? e.target : e.source;
                 if (!placedVertices.contains(v1)) {
                     sum += g.getOutDegree(v1);
-                } else {
                 }
             }
             iter = g.edgeIterator(v);
@@ -139,16 +138,13 @@ try {
                     vertexPlaces.put(v1, newPoint);
                     placedVertices.add(v1);
                     BaseVertexProperties properties = new BaseVertexProperties(v1.getColor(), v1.getMark());
-                    properties.obj = new Double((angularSpan / sum) * (g.getOutDegree(v)));
+                    properties.obj = (angularSpan / sum) * (g.getOutDegree(v));
                     v1.setProp(properties);
                     locateAllSubTrees(v1, 2 * radius, newOffset);
                     j++;
 
-                } else {
                 }
-
             }
-            return;
         } else {
             double x = 350;
             double y = 350;
@@ -167,7 +163,7 @@ try {
 
 
     public Vector<Vertex> findNextLevelChildren(Vector<Vertex> currentLevelVertices) {
-        Vector<Vertex> newChildren = new Vector<Vertex>();
+        Vector<Vertex> newChildren = new Vector<>();
         for (Vertex v : currentLevelVertices) {
             Iterator<Edge> e = g.edgeIterator(v);
             for (; e.hasNext();) {
@@ -226,10 +222,10 @@ try {
     }
 
     public HashMap<Vertex, Point2D> getNewVertexPlaces() {
-        visitedVertices = new Vector<Vertex>();
-        vertexPlaces = new HashMap<Vertex, Point2D>();
-        children = new Vector<Vertex>();
-        placedVertices = new HashSet<Vertex>();
+        visitedVertices = new Vector<>();
+        vertexPlaces = new HashMap<>();
+        children = new Vector<>();
+        placedVertices = new HashSet<>();
 
         try {
             root = findAppropriateRoot(g);

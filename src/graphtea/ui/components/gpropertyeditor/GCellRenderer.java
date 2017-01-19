@@ -75,7 +75,7 @@ public class GCellRenderer implements TableCellRenderer, ListCellRenderer {
 
         //try to find the best renderer for value
         GBasicCellRenderer renderer = null;
-        Class<? extends Object> valueClass = value.getClass();
+        Class<?> valueClass = value.getClass();
         Class c = valueClass;
         //search super classes
         while (renderer == null && c != Object.class) {

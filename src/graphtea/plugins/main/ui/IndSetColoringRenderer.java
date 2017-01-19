@@ -27,7 +27,7 @@ public class IndSetColoringRenderer implements GBasicCellRenderer<IndSubGraphs> 
 //        backupColoring();
  //   }
     public Component getRendererComponent(final IndSubGraphs res) {
-        String txt = "";
+        String txt;
         GraphData gd = new GraphData(Application.getBlackBoard());
         boolean hasAllVSet = true;
 
@@ -87,14 +87,14 @@ public class IndSetColoringRenderer implements GBasicCellRenderer<IndSubGraphs> 
         }
     }
 
-    HashMap<Vertex, Integer> vertexColors;
+    private HashMap<Vertex, Integer> vertexColors;
 
     /**
      * resets and stores all colorings of g
      */
     public void backupColoring() {
         GraphData gd = new GraphData(Application.getBlackBoard());
-        vertexColors = new HashMap<Vertex, Integer>();
+        vertexColors = new HashMap<>();
         for (Vertex v : gd.getGraph()) {
             vertexColors.put(v, v.getColor());
         }

@@ -40,28 +40,28 @@ public class SelectPluginMethods implements PluginMethods {
 
     public void setSelected(Collection<Vertex> selectedVertices, Collection<Edge> selectedEdges) {
         SubGraph sd = new SubGraph();
-        sd.vertices = new HashSet<Vertex>(selectedVertices);
-        sd.edges = new HashSet<Edge>(selectedEdges);
+        sd.vertices = new HashSet<>(selectedVertices);
+        sd.edges = new HashSet<>(selectedEdges);
         b.setData(Select.EVENT_KEY, sd);
     }
 
     public void setSelected(Vertex[] selectedVertices, Edge[] selectedEdges) {
         SubGraph sd = new SubGraph();
-        sd.vertices = new HashSet<Vertex>(Arrays.asList(selectedVertices));
-        sd.edges = new HashSet<Edge>(Arrays.asList(selectedEdges));
+        sd.vertices = new HashSet<>(Arrays.asList(selectedVertices));
+        sd.edges = new HashSet<>(Arrays.asList(selectedEdges));
         b.setData(Select.EVENT_KEY, sd);
     }
 
     public HashSet<Vertex> getSelectedVertices() {
         SubGraph selected = getSelected();
         if (selected == null)
-            return new HashSet<Vertex>();
+            return new HashSet<>();
         return selected.vertices;
     }
 
     public void setSelectedVertices(Collection<Vertex> selectedVertices) {
         SubGraph sd = new SubGraph();
-        sd.vertices = new HashSet<Vertex>(selectedVertices);
+        sd.vertices = new HashSet<>(selectedVertices);
         b.setData(Select.EVENT_KEY, sd);
     }
 
@@ -71,7 +71,7 @@ public class SelectPluginMethods implements PluginMethods {
 
     public void setSelectedEdges(Collection<Edge> selectedEdges) {
         SubGraph sd = new SubGraph();
-        sd.edges = new HashSet<Edge>(selectedEdges);
+        sd.edges = new HashSet<>(selectedEdges);
         b.setData(Select.EVENT_KEY, sd);
     }
 
@@ -99,12 +99,12 @@ public class SelectPluginMethods implements PluginMethods {
     /**
      * adds any vertex in graph which is adjacent to at list one vertex in selected vertices
      *
-     * @param g
+     * @param g The Graph
      */
     public void expandSelection() {
         GraphModel g = b.getData(GraphAttrSet.name);
         HashSet<Vertex> sV = getSelectedVertices();
-        Vector<Vertex> toSelect = new Vector<Vertex>();
+        Vector<Vertex> toSelect = new Vector<>();
 
         for (Vertex v : sV) {
             for (Vertex nv : g.getNeighbors(v))

@@ -16,7 +16,7 @@ import java.io.IOException;
 public class SaveAction implements UIActionExtension {
 
     public void actionPerformed(BlackBoard blackBoard) {
-        String path = (String) blackBoard.getData("last file");
+        String path = blackBoard.getData("last file");
 
         if (path == null || path.equals("")) {
             JFileChooser jfc = new JFileChooser();
