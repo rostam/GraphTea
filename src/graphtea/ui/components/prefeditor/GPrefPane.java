@@ -12,8 +12,6 @@ import graphtea.ui.components.gpropertyeditor.GPropertyEditor;
 import graphtea.ui.components.utils.GFrameLocationProvider;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Vector;

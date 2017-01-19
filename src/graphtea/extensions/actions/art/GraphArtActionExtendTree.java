@@ -3,7 +3,6 @@ package graphtea.extensions.actions.art;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
-import graphtea.library.BaseVertex;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
@@ -33,15 +32,7 @@ public class GraphArtActionExtendTree
         public void action(GraphData graphData) {
             final Vertex parent[] = new Vertex[graphData.getGraph().getVerticesCount()];
             //consider the hole structure as a tree
-            AlgorithmUtils.BFSrun(graphData.getGraph(),
-                    graphData.getGraph().getVertex(0),
-                    new AlgorithmUtils.BFSListener() {
-                @Override
-                public void visit(BaseVertex v, BaseVertex p) {
-                    parent[v.getId()] = (Vertex) p;
-                }
-            });
-
+            AlgorithmUtils.BFSrun(graphData.getGraph(), graphData.getGraph().getVertex(0), (v, p) -> parent[v.getId()] = p);
             for (Vertex v : graphData.select.getSelectedVertices()) {
                 if(graphData.getGraph().getDegree(v)==1) {
                     if(v.getId()==0) continue;

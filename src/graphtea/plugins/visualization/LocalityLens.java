@@ -28,7 +28,7 @@ import java.awt.image.BufferedImage;
 
 public class LocalityLens implements GraphActionExtension, Parametrizable {
 
-    @Parameter(name = "Locality Lenses", description = "")
+    @Parameter(name = "Locality Lenses", description = "locality lenses")
     public boolean active = false;
 
     public String getName() {
@@ -40,7 +40,6 @@ public class LocalityLens implements GraphActionExtension, Parametrizable {
     }
 
     public void action(GraphData graphData) {
-
         if (active) {
             int x = (int) graphData.getGraph().getVertex(0).getSize().getX() + 20;
             int y = (int) graphData.getGraph().getVertex(0).getSize().getY() + 20;

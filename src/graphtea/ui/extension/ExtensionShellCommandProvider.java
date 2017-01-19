@@ -6,7 +6,6 @@
 package graphtea.ui.extension;
 
 import graphtea.platform.extension.Extension;
-import graphtea.platform.lang.CommandAttitude;
 
 import java.util.HashMap;
 import java.util.Vector;

@@ -12,7 +12,6 @@ import graphtea.ui.components.GComponentInterface;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * with using of this class you can have a message in status bar of the program, by just putting a bar in the XML file as following

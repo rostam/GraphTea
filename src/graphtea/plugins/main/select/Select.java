@@ -13,7 +13,6 @@ import graphtea.plugins.main.core.actions.edge.EdgeSelectData;
 import graphtea.plugins.main.core.actions.vertex.VertexSelectData;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 /**
  * Author: Azin Azadi

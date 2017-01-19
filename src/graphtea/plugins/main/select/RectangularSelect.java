@@ -14,7 +14,6 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.ui.UIUtils;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 
 /**

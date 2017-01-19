@@ -15,7 +15,6 @@ import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-import javax.rmi.CORBA.Util;
 import java.awt.*;
 
 /**

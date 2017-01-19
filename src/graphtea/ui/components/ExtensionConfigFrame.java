@@ -8,8 +8,6 @@ import graphtea.platform.extension.Extension;
 import graphtea.platform.extension.ExtensionExternalData;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * this is a frame fo showing the confiurations before running an Extension
