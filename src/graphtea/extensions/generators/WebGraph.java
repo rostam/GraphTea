@@ -84,7 +84,6 @@ public class WebGraph implements GraphGeneratorExtension, Parametrizable, Simple
             ecnt++;
         }
 
-        System.out.println("size "+ ecnt);
         return result;
     }
 

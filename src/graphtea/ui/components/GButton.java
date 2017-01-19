@@ -36,7 +36,6 @@ public class GButton extends JButton implements ActionListener {
         ImageIcon icon = null;
         if (iconURL != null)
             icon = new ImageIcon(iconURL);
-        System.out.println(iconURL + "");
         setLabelAndIcon(label, icon);
         addActionListener(this);
         //-------------

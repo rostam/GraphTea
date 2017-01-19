@@ -227,7 +227,6 @@ public class ColorAlgs {
     Vector<Integer> IS = new Vector<>();
 
     //Compute independent set
-    System.out.println("Mode "+ Mode);
     if (Mode == 1) {
       IS = IndSet.ISetRestricted(g, V_r, V_c, Mode2); //ISet = IS_Coleman(G_b,V_r,V_c);
     } else if (Mode == 2) {
@@ -283,7 +282,6 @@ public class ColorAlgs {
             }
           } else {
             for (Vertex x : g.getNeighbors(w)) {
-              System.out.println(" jez " + g.getEdge(x,w).getWeight());
               if(g.getEdge(x,w).getWeight()==1) {
                 if (x.getColor() > 0) {
                   for (Vertex y : g.getNeighbors(x)) {
@@ -799,7 +797,6 @@ public class ColorAlgs {
           max_degree_V_r_aux = degree_v_r;
         }
       }
-      System.out.println("1");
 
       int max_degree_V_c_aux = 0;
       for (Pair<Integer, Integer> di : Degree_V_c_aux) {
@@ -809,7 +806,6 @@ public class ColorAlgs {
           max_degree_V_c_aux = degree_v_c;
         }
       }
-      System.out.println("2");
 
       if (max_degree_V_r_aux > ratio * max_degree_V_c_aux) {
         Vector<Pair<Integer, Integer>> removedEdges = new Vector<>();
@@ -829,12 +825,9 @@ public class ColorAlgs {
                 break;
               }
             }
-            System.out.println("33");
 
             IndSet.clearVertex(gaux.getVertex(di.first),gaux);
             removedEdges.add(di);
-
-            System.out.println("44");
             forbiddenColors.set(0, v);
             for (Vertex w : g.getNeighbors(g.getVertex(v))) {
               if (w.getColor() <= 0) {
@@ -861,10 +854,7 @@ public class ColorAlgs {
                   }
                 }
               }
-              System.out.println("45s");
             }
-            System.out.printf("456");
-
 
             //Find first color which can be assigned to v_c
             for (int i = 0; i < forbiddenColors.size(); i++) {
@@ -873,7 +863,6 @@ public class ColorAlgs {
                 break;
               }
             }
-            System.out.println("500");
           }
         }
         Degree_V_r_aux.removeAll(removedEdges);
@@ -899,11 +888,8 @@ public class ColorAlgs {
             IndSet.clearVertex(gaux.getVertex(di.first),gaux);
             removedEdges.add(di);
 
-            System.out.println("3");
             forbiddenColors.set(0, v);
-            System.out.println("3.0q" + v);
             for (Vertex w : g.getNeighbors(g.getVertex(v))) {
-              System.out.println("3.1");
               if (w.getColor() <= 0) {
                 for (Vertex x : g.getNeighbors(w)) {
                   if (x.getColor() > 0) {

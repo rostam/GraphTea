@@ -104,9 +104,7 @@ public class Partitioner {
             if (curSet > maxSet) {
                 maxSet = curSet;
                 found++;
-                System.out.println("A" + maxSet);
             }
-//            }
             return;
         }
 

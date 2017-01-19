@@ -43,7 +43,6 @@ public class Coloring implements GraphReportExtension,Parametrizable {
     Matrix mm = new Matrix(5,5);
     try {
       File f = new File("matrices/"+file);
-      System.out.println("file"+f.getAbsolutePath());
       mm=MM.loadMatrixFromSPARSE(f);
     } catch (IOException e) {
       e.printStackTrace();
@@ -67,7 +66,6 @@ public class Coloring implements GraphReportExtension,Parametrizable {
       V_c.add(v.getId());
     }
 
-    System.out.println("Number of vertics: "+g.numOfVertices());
     int count = 0;
     for(int i=0;i<rows;i++) {
       for (int j = 0; j < cols; j++) {

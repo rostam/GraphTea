@@ -44,7 +44,6 @@ public class GraphArtActionExtendTree
 
             for (Vertex v : graphData.select.getSelectedVertices()) {
                 if(graphData.getGraph().getDegree(v)==1) {
-                    System.out.println("paretnt : " + v + " " + parent[v.getId()]);
                     if(v.getId()==0) continue;
                     addChildren(graphData, parent[v.getId()], v, 1.7);
                     addChildren(graphData, parent[v.getId()], v, 0);

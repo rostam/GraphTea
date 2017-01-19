@@ -31,10 +31,8 @@ public class ExtractSubGraph implements GraphActionExtension {
 
         SubGraph sg = SubGraphRenderer.sgbck;
         HashMap<Integer,Integer> idid=new HashMap<Integer, Integer>();
-        System.out.println("cho sjpd"+sg.vertices.size());
         if(sg.vertices.size()!=0) {
             for(Vertex v : sg.vertices) {
-                System.out.println("chashm " + v.getId());
                 Vertex tmp = new Vertex();
                 tmp.setLabel(v.getLabel());
                 tmp.setLocation(v.getLocation());

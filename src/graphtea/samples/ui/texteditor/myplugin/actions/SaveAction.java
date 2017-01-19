@@ -34,8 +34,6 @@ public class SaveAction implements UIActionExtension {
         JTextArea editor = Utils.getMainEditor(blackBoard);
 
         try {
-            System.out.println(path);
-
             File f = new File(path);
             if (!f.exists()) {
                 f.createNewFile();

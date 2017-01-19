@@ -49,10 +49,6 @@ public class KruskalAlgorithm extends GraphAlgorithm implements AlgorithmExtensi
             return 1;
         });
 
-        for (Edge e : edges)
-            System.out.print(e.getWeight() + " ");
-        System.out.println();
-
         for (Edge e : edges) {
             int set1 = findSet(sets, e.source);
             int set2 = findSet(sets, e.target);

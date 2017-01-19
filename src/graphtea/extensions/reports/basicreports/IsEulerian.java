@@ -30,7 +30,6 @@ public class IsEulerian implements GraphReportExtension {
         if (cc == 0) return false;
         if (cc < 2)
             return true;
-        System.out.println("nadid " + AlgorithmUtils.isConnected(graph));
         if (!AlgorithmUtils.isConnected(graph))
             return false;
         ArrayList<Integer> degrees = AlgorithmUtils.getDegreesList(graph);

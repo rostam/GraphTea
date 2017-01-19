@@ -26,7 +26,6 @@ import java.util.Vector;
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
     public ConjectureChecking() {
         gfilters = Filters.getFilterNames();
-        System.out.println("salam " + gfilters);
         boundType = Bounds.getBoundNames();
         generators = GeneratorFilters.getGenFilters();
         PostP = new ArrayX<>("No postprocessing");

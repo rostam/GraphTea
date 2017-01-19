@@ -42,8 +42,6 @@ public class ParameterShower implements AttributeListener {
                 String name = m.getName();
                 if (name.startsWith("set")) {
                     name = name.substring(3);
-                    System.out.println(m.getName() + "," + name);
-
                     Method getter = null;
                     try {
                         getter = o.getClass().getMethod("get" + name, new Class[0]);

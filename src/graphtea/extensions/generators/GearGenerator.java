@@ -69,7 +69,6 @@ public class GearGenerator implements GraphGeneratorExtension, Parametrizable, S
             ecnt++;
         }
 
-        System.out.println("gear" + ecnt);
         return ret;
     }
 

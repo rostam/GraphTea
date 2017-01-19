@@ -48,7 +48,6 @@ public class GeneratorFilters {
         Vector<JTextField> v = new Vector<>();
         JPanel myPanel = new JPanel();
         Parametrizable o = (Parametrizable) ext;
-        System.out.println("The name of class is "+o.getClass().getName());
         Vector<String> names = new Vector<>();
         String fieldName = "";
         for (Field ff : o.getClass().getFields()) {

@@ -145,7 +145,6 @@ public class LoadSpecialjson implements GraphReaderExtension {
                     int i = 0;
                     for(Vertex v : g) {
                         if(sttlWithoutCoordinates.contains(v.getLabel())) {
-                            System.out.println(v.getLocation());
 //                            v.setColor(3);
                             //v.setLocation(new GraphPoint(200,200 + i*20));
                             i++;
@@ -154,7 +153,6 @@ public class LoadSpecialjson implements GraphReaderExtension {
                             v.setColor(0);
                         }
                     }
-                    System.out.println(i);
                 }
             });
             bt.setSize(new Dimension(200,50));

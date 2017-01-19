@@ -53,7 +53,6 @@ public class EndomorphismAnimator extends GraphAlgorithm implements AlgorithmExt
                         vs[i].getLocation().getX()-directions[i/2].getX() * 10,
                         vs[i].getLocation().getY()+directions[i/2].getY() * 10));
 
-                System.out.println(vs[i].getLocation().distance(vs[i+1].getLocation()));
                 if(vs[i].getLocation().distance(vs[i+1].getLocation()) < 10) {
                     isThere[i/2] = true;
                     numOfThere++;
