@@ -26,7 +26,7 @@ public class EigenValues implements GraphReportExtension,Parametrizable {
     @Parameter(name = "power:", description = "The power of the eigen values")
     public double power = 2;
 
-    double round(double value, int decimalPlace) {
+    private double round(double value, int decimalPlace) {
         double power_of_ten = 1;
         while (decimalPlace-- > 0)
             power_of_ten *= 10.0;
