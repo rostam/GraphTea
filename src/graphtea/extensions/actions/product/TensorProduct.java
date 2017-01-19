@@ -10,6 +10,7 @@ import graphtea.plugins.main.extension.GraphActionExtension;
 
 /**
  * Created by rostam on 10.07.15.
+ * @author M. Ali Rostami
  */
 public class TensorProduct implements GraphActionExtension, Parametrizable {
     @Parameter(description = "First Graph")

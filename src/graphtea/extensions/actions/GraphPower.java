@@ -25,8 +25,8 @@ public class GraphPower implements GraphActionExtension, Parametrizable {
     @Parameter
     public int k = 2;
 
-    Vector<Edge> toInsert = new Vector<Edge>();
-    Vector<Vertex> subtree = new Vector<Vertex>();
+    Vector<Edge> toInsert = new Vector<>();
+    Vector<Vertex> subtree = new Vector<>();
 
     public String getName() {
         return "Create Power Graph";
@@ -66,8 +66,8 @@ public class GraphPower implements GraphActionExtension, Parametrizable {
     }
 
     public String checkParameters() {
-        toInsert = new Vector<Edge>();
-        subtree = new Vector<Vertex>();
+        toInsert = new Vector<>();
+        subtree = new Vector<>();
         return (k < 2 ? "K must be larger than 1" : null);
     }
 

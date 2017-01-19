@@ -10,6 +10,7 @@ import graphtea.plugins.main.extension.GraphActionExtension;
 
 /**
  * Created by rostam on 10.07.15.
+ * @author M. Ali Rostami
  */
 public class Sum implements GraphActionExtension, Parametrizable {
     @Parameter(name = "First Graph",description = "First Graph")
@@ -30,7 +31,6 @@ public class Sum implements GraphActionExtension, Parametrizable {
     @Override
     public void action(GraphData graphData) {
         GTabbedGraphPane gtp = graphData.getBlackboard().getData(GTabbedGraphPane.NAME);
-        GraphSum prod = new GraphSum();
         GraphModel g1 = gtp.getGraphs().get(fG);
         GraphModel g2 = gtp.getGraphs().get(sG);
         GraphModel g= (GraphModel) GraphSum.sum(g1,g2);
