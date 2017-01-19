@@ -17,7 +17,7 @@ import java.util.HashSet;
  * @author Azin Azadi
  */
 public class ScaleOutSelection implements GraphActionExtension {
-    static double scale = 3.0;
+    static double scale = 1.1;
     public String getName() {
         return "Scale Out Selection";
     }
@@ -34,7 +34,7 @@ public class ScaleOutSelection implements GraphActionExtension {
         GraphPoint center = AlgorithmUtils.getCenter(V);
         for (Vertex v : V) {
             GraphPoint loc = v.getLocation();
-            GraphPoint gp = AlgorithmUtils.normalize(GraphPoint.sub(loc,center));
+            GraphPoint gp = GraphPoint.sub(loc,center);
             setNewLocation(v, loc, gp.x, gp.y);
         }
     }
