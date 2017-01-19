@@ -38,7 +38,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	public static boolean vertexLabelsEnabled = true;
 	private boolean drawVertexLabels = vertexLabelsEnabled;
 	private boolean drawEdgeLabels = showEdgeWeights;
-	private ArrayX<String> zoom = new ArrayX<String>("100%", "10%", "25%", "50%", "75%", "100%", "150%", "200%", "400%");
+	private ArrayX<String> zoom = new ArrayX<>("100%", "10%", "25%", "50%", "75%", "100%", "150%", "200%", "400%");
 	private File backgroundImageFile=new File("");
 	private BufferedImage backgroundImage;
 
@@ -111,7 +111,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	 */
 	public void setUserDefinedAttribute(String name, Object value) {
 		if (userDefinedAttributes == null) {
-			userDefinedAttributes = new HashMap<String, Object>();
+			userDefinedAttributes = new HashMap<>();
 		}
 		userDefinedAttributes.put(name, value);
 	}
@@ -155,7 +155,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	 */
 	public static void addGlobalUserDefinedAttribute(String name, Object defaultvalue) {
 		if (globalUserDefinedAttributes == null) {
-			globalUserDefinedAttributes = new HashMap<String, Object>();
+			globalUserDefinedAttributes = new HashMap<>();
 		}
 		globalUserDefinedAttributes.put(name, defaultvalue);
 	}
@@ -172,7 +172,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	{
 		//default constructor
 		if (globalUserDefinedAttributes != null) {
-			userDefinedAttributes = new HashMap<String, Object>();
+			userDefinedAttributes = new HashMap<>();
 			userDefinedAttributes.putAll(globalUserDefinedAttributes);
 		}
 	}
@@ -282,7 +282,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 
 	//                         Listener
 
-	HashSet<GraphModelListener> glisteners = new HashSet<GraphModelListener>();
+	HashSet<GraphModelListener> glisteners = new HashSet<>();
 
 	public void addGraphListener(GraphModelListener listener) {
 		glisteners.add(listener);
@@ -421,8 +421,8 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	/**
 	 * adds graph to this graph and place it in the given rectangle
 	 *
-	 * @param graph
-	 * @param _rect
+	 * @param graph The given graph
+	 * @param _rect The bounds of selection for the subgraph
 	 */
 	public void addSubGraph(GraphModel graph, Rectangle _rect) {
 		Rectangle2D.Double bounds1 = graph.getZoomedBounds();
@@ -451,7 +451,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	 * @return an RGB color which is representing the given integer Color in GraphTea
 	 */
 	public static Color getColor(Integer i) {
-		Color c = null;
+		Color c;
 		if (i == null)
 			i = 0;
 		if (i < 20 && i >= 0) {

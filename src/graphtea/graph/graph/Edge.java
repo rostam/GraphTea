@@ -70,8 +70,8 @@ public class Edge extends BaseEdge<Vertex> {
      * in the standard attributes. your attributes will be editable in property editor part of GUI.
      * Use this method carefully. user defined attributes are stored in HashMap and bad use of them will cause memory leak in large graphs
      *
-     * @param name
-     * @param value
+     * @param name The name of user defined attribute
+     * @param value The value of user defined attribute
      */
     public void setUserDefinedAttribute(String name, Object value) {
         if (userDefinedAttributes == null) {
@@ -185,8 +185,6 @@ public class Edge extends BaseEdge<Vertex> {
         showWeight = GraphModel.showEdgeWeights;
         stroke = FastRenderer.defaultStroke;
     }
-    
-    GStroke last;
 
     public void setMark(boolean m) {
         super.setMark(m);
@@ -366,10 +364,6 @@ public class Edge extends BaseEdge<Vertex> {
     public void setShowWeight(boolean showWeight) {
         this.showWeight = showWeight;
         updateText();
-        repaintView();
-    }
-
-    public void updateBounds() {
         repaintView();
     }
 

@@ -19,8 +19,8 @@ public class SubGraph {
         this.graph = graph;
     }
 
-    public HashSet<Vertex> vertices = new HashSet<Vertex>();
-    public HashSet<Edge> edges = new HashSet<Edge>();
+    public HashSet<Vertex> vertices = new HashSet<>();
+    public HashSet<Edge> edges = new HashSet<>();
     public String label = "";
 
 
@@ -32,7 +32,7 @@ public class SubGraph {
     }
 
     public ArrayList<Vertex> getNeighbors(Vertex v) {
-        ArrayList<Vertex> ret = new ArrayList<Vertex>();
+        ArrayList<Vertex> ret = new ArrayList<>();
         for (Vertex nv : graph.getNeighbors(v)) {
             if (vertices.contains(nv))
                 ret.add(nv);

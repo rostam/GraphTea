@@ -89,7 +89,6 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
         updateGraphBounds();
     }
 
-    boolean qpbc = true;
     public boolean forceQuickPaint = false;
 
     public void render(Graphics2D gg, Boolean drawExtras) {
@@ -100,12 +99,9 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
         /*this is for , if we want to the graph has a transparency over it's background image (if it has any one).
         // Get and install an AlphaComposite to do transparent drawing
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
-
         g.fillRect(100, 100, 100, 100);               // Start drawing with it
-
         */
-//        if (qpbc != quickPaint) {
-//            qpbc = quickPaint;
+
         if (quickPaint) {
             gg.setRenderingHint(RenderingHints.KEY_RENDERING,
                     RenderingHints.VALUE_RENDER_SPEED);
@@ -579,35 +575,17 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
         if (s != null && s.equals("yes")) {
             return;
         }
-//        if (!updateBounds)
-//            return;
-//        updateBounds = false;
         Rectangle2D.Double prvb = bounds;
         bounds = getGraph().getZoomedBounds();
-//        control.graphBounds = bounds;
-//        if (!bounds.equals(prvb)) {
-
         int dx = 0;
         int dy = 0;
         if (bounds.x < 0) {
             if (bounds.x < prvb.x)
-
-//                            System.out.println("x<0");
-//                if (prvb.x >= 0) {
-//                    dx = (int) -bounds.x;
-//                } else {
                 dx = (int) (prvb.x - bounds.x);
-//                }
         }
         if (bounds.y < 0) {
             if (bounds.y < prvb.y)
-
-//                            System.out.println("y<0");
-//                if (prvb.y >= 0) {
-//                    dy = (int) -bounds.y;
-//                } else {
                 dy = (int) (prvb.y - bounds.y);
-//                }
         }
 
         int dw = 0, dh = 0;
@@ -641,11 +619,6 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 
         ignoreRapaints = false;
         setIgnoreRepaint(false);
-//                System.out.println("size: " + vvr);
-//                System.out.println("rect: " + vrect);
-//                System.out.println("bounds: " + bounds);
-//            System.out.println("1");
-
 //commented for debugging purposes
 //        } else {
 //            if (!(bounds.x < 0 || bounds.y < 0)) {

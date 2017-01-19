@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class GraphColoring {
     public GraphModel graph;
-    public HashMap<Vertex, Integer> vertexColors = new HashMap<Vertex, Integer>();
-    public HashMap<Edge, Integer> edgeColors = new HashMap<Edge, Integer>();
+    public HashMap<Vertex, Integer> vertexColors = new HashMap<>();
+    public HashMap<Edge, Integer> edgeColors = new HashMap<>();
     public String label = "";
 
     public GraphColoring(GraphModel graph) {
@@ -68,11 +68,11 @@ public class GraphColoring {
      * resets and stores all colorings of g
      */
     public void backupColoring() {
-        vertexColors = new HashMap<Vertex, Integer>();
+        vertexColors = new HashMap<>();
         for (Vertex v : graph) {
             vertexColors.put(v, v.getColor());
         }
-        edgeColors = new HashMap<Edge, Integer>();
+        edgeColors = new HashMap<>();
         for (Iterator<Edge> ite = graph.edgeIterator(); ite.hasNext();) {
             Edge e = ite.next();
             edgeColors.put(e, e.getColor());

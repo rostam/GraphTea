@@ -10,5 +10,5 @@ import java.awt.*;
  * User: Shabn
  */
 public interface PaintHandler<dest> {
-    public void paint(Graphics g, Object destinationComponent, Boolean drawExtras);
+    void paint(Graphics g, Object destinationComponent, Boolean drawExtras);
 }

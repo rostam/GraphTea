@@ -89,7 +89,7 @@ public class GraphControlGrid implements GraphModelListener {
                 mine = e;
             }
         }
-        return new Pair(mine, min);
+        return new Pair<>(mine, min);
     }
 
     public Pair<Vertex, Double> mindistv(GraphPoint p) {
@@ -124,7 +124,7 @@ public class GraphControlGrid implements GraphModelListener {
             System.out.println("minv: null");
         else
             System.out.println("minv: " + minv.toString());
-        return new Pair<Vertex, Double>(minv, min);
+        return new Pair<>(minv, min);
     }
 
     private void refresh() {

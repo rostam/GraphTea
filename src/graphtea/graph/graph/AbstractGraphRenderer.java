@@ -19,12 +19,12 @@ import java.util.HashSet;
  */
 public abstract class AbstractGraphRenderer extends JPanel implements GraphModelListener, AttributeListener {
     public static final String EVENT_KEY = "Graph View";
-    HashSet<PaintHandler> postPaintHandlers = new HashSet<PaintHandler>();
+    HashSet<PaintHandler> postPaintHandlers = new HashSet<>();
     private GraphModel graph;
     boolean ignoreRapaints;
     int minx, miny;
     boolean isGraphChanged = true;
-    private HashSet<PaintHandler<AbstractGraphRenderer>> prePaintHandlers = new HashSet<PaintHandler<AbstractGraphRenderer>>();
+    private HashSet<PaintHandler<AbstractGraphRenderer>> prePaintHandlers = new HashSet<>();
 
     public static AbstractGraphRenderer getCurrentGraphRenderer(BlackBoard b) {
         return b.getData(EVENT_KEY);
@@ -48,7 +48,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
     /**
      * adds ph to Post Paint Handlers which means that ph.paint will be called after each rendering of graph
      *
-     * @param ph
+     * @param ph The paint handler
      */
     public void addPostPaintHandler(PaintHandler<AbstractGraphRenderer> ph) {
         postPaintHandlers.add(ph);
@@ -57,7 +57,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
     /**
      * adds ph to Pre Paint Handlers which means that ph.paint will be called before each rendering of graph
      *
-     * @param ph
+     * @param ph The paint handler
      */
     public void addPrePaintHandler(PaintHandler<AbstractGraphRenderer> ph) {
         prePaintHandlers.add(ph);
@@ -66,7 +66,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
     /**
      * removes ph from both pre and post paint handlers and then repaints the graph
      *
-     * @param ph
+     * @param ph The paint handler
      */
     public void removePaintHandler(PaintHandler ph) {
         postPaintHandlers.remove(ph);
@@ -93,11 +93,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
     /**
      * paint the graph on gg
      *
-     * @param mainG
-     * @param e
-     * @param graph
-     * @param y
-     * @param labelx
+     * @param mainG The main graphic object
      * @param drawExtras specifies wheter to draw extra things such as Curved Edges Control Points, on graph or not,
      */
     final public void paint(Graphics mainG, Boolean drawExtras) {
@@ -118,8 +114,6 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
                     lastWidth = w;
                     lastHeight = h;
                 }
-
-//            showTime(21);
                 Graphics bufferedG = bi.getGraphics();
                 doRender(bufferedG, w, h, mainG, drawExtras);
 

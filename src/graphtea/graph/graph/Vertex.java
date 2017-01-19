@@ -28,13 +28,13 @@ public class Vertex extends BaseVertex {
     public VertexListener view;// = emptyListener;
 
     //todo(bug): Vertex is dependent on Fast Renderer!
-    public GShape shape = FastRenderer.defaultVertexShape;
+    GShape shape = FastRenderer.defaultVertexShape;
 
     GStroke shapeStroke = FastRenderer.defaultBorderStroke;
 
     public boolean isSelected = false;
     String label = null;
-    Point center = new Point();
+    private Point center = new Point();
     //    private static GraphPoint dp=new GraphPoint(100,100);
     //represents the location of the vertex on the graph, this location will not changed by zooming and similar operations, the location only change by moving the vertex
     private GraphPoint location = new GraphPoint(100, 100);
@@ -69,7 +69,7 @@ public class Vertex extends BaseVertex {
      */
     public void setUserDefinedAttribute(String name, Object value) {
         if (userDefinedAttributes == null) {
-            userDefinedAttributes = new HashMap<String, Object>();
+            userDefinedAttributes = new HashMap<>();
         }
         userDefinedAttributes.put(name, value);
     }
@@ -89,7 +89,7 @@ public class Vertex extends BaseVertex {
     /**
      * removes the given attribute from the list of user defined attributes
      *
-     * @param name
+     * @param name The name of user defined attribute
      */
     public void removeUserDefinedAttribute(String name) {
         userDefinedAttributes.remove(name);
@@ -113,7 +113,7 @@ public class Vertex extends BaseVertex {
      */
     public static void addGlobalUserDefinedAttribute(String name, Object defaultvalue) {
         if (globalUserDefinedAttributes == null) {
-            globalUserDefinedAttributes = new HashMap<String, Object>();
+            globalUserDefinedAttributes = new HashMap<>();
         }
         globalUserDefinedAttributes.put(name, defaultvalue);
     }
@@ -130,7 +130,7 @@ public class Vertex extends BaseVertex {
     {
         //default constructor
         if (globalUserDefinedAttributes != null) {
-            userDefinedAttributes = new HashMap<String, Object>();
+            userDefinedAttributes = new HashMap<>();
             userDefinedAttributes.putAll(globalUserDefinedAttributes);
         }
     }
@@ -139,7 +139,7 @@ public class Vertex extends BaseVertex {
      * copy constructor
      * creates a copy (clone) of v
      *
-     * @param v
+     * @param v The given vertex
      */
     public Vertex(Vertex v) {
         super();

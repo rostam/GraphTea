@@ -305,7 +305,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
                 }
             }
         }
-        return new Pair(mine, min);
+        return new Pair<>(mine, min);
     }
 
     private static boolean isInBounds(Edge e, GraphPoint p) {
@@ -327,7 +327,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
                 minv = v;
             }
         }
-        return new Pair(minv, min);
+        return new Pair<>(minv, min);
     }
 
     /**
