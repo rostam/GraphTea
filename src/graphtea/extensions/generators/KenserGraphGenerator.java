@@ -45,7 +45,7 @@ public class KenserGraphGenerator implements GraphGeneratorExtension, Parametriz
     }
 
     public Edge[] getEdges() {
-        Vector<Edge> ret = new Vector<Edge>();
+        Vector<Edge> ret = new Vector<>();
         for (int i = 0; i < n; i++) {
             for (int j = i; j < (Math.min(n, i + d)); j++) {
                 ret.add(new Edge(v[i], v[j]));

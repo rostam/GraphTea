@@ -80,9 +80,7 @@ public class FlowerGraph implements GraphGeneratorExtension, Parametrizable, Sim
 		int w = 1000;
 		double mw = ((double)w)/2.0, qw = ((double)w)/4.0;
 		Point result[] = new Point[2*n+1];
-		result[2*n] = new Point((int)(w/2), (int)(w/2));
-		double r1 = mw;
-		double r2 = qw;
+		result[2*n] = new Point(w/2, w/2);
 		double ang = Math.PI*2.0/n;
 		double offset = 0.0;
 		if ((n % 2) == 0)
@@ -91,8 +89,8 @@ public class FlowerGraph implements GraphGeneratorExtension, Parametrizable, Sim
 		{
 			double angle = offset + i * ang;
             double angle2 = angle + ang/6;
-			result[i] = new Point((int)(mw + Math.sin(angle2)*r1), (int)(mw - Math.cos(angle2)*r1));
-			result[n+i] = new Point((int)(mw + Math.sin(angle)*r2), (int)(mw - Math.cos(angle)*r2));
+			result[i] = new Point((int)(mw + Math.sin(angle2)* mw), (int)(mw - Math.cos(angle2)* mw));
+			result[n+i] = new Point((int)(mw + Math.sin(angle)* qw), (int)(mw - Math.cos(angle)* qw));
 		}
 		return result;
 	}

@@ -48,20 +48,7 @@ public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
     }
 
     public GraphPoint[] getVertexPositions() {
-        Point[] r = new Point[2 * n];
-        Point p1[] = PositionGenerators.circle(20000, 10000, 10000,  n);
-        Point p2[] = PositionGenerators.circle(30000, 10000, 10000,  n);
-
-        for (int i = 0; i < n; i++) {
-            r[i] = p1[i];
-            r[n + i] = p2[i];
-        }
-
-        GraphPoint ret[] = new GraphPoint[2 * n];
-        for (int i = 0; i < 2 * n; i++) {
-            ret[i] = new GraphPoint(r[i].x, r[i].y);
-        }
-        return ret;
+        return computePrismCoords(n);
     }
 
     public GraphModel generateGraph() {
@@ -90,6 +77,24 @@ public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
             v[i].setLocation(pos[i]);
         return g;
     }
+
+    static GraphPoint[] computePrismCoords(int n) {
+        Point[] r = new Point[2 * n];
+        Point p1[] = PositionGenerators.circle(20000, 10000, 10000,  n);
+        Point p2[] = PositionGenerators.circle(30000, 10000, 10000,  n);
+
+        for (int i = 0; i < n; i++) {
+            r[i] = p1[i];
+            r[n + i] = p2[i];
+        }
+
+        GraphPoint ret[] = new GraphPoint[2 * n];
+        for (int i = 0; i < 2 * n; i++) {
+            ret[i] = new GraphPoint(r[i].x, r[i].y);
+        }
+        return ret;
+    }
+
 
     @Override
     public String getCategory() {

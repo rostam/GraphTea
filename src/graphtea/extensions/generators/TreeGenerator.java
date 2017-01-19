@@ -29,7 +29,7 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
     public static Integer degree = 3;
     @Parameter(name = "Positioning Method")
     public static ArrayX<String> m =
-            new ArrayX<String>("Circular", "Backward", "UpDown");
+            new ArrayX<>("Circular", "Backward", "UpDown");
 
 //    String positioning;
 
@@ -116,7 +116,6 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
         Point[] ret = new Point[n];
         double vwidth = 200;
         double vheight = 200;
-        int r = 10;
         double yratio = vheight / depth;
         for (int i = depth; i >= 0; i--) {
             int vertexnInRow = (int) Math.pow(degree, i);

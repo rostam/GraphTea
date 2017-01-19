@@ -44,14 +44,13 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
         return generateBananaTree(n, k);
     }
 
-    public static GraphModel generateBananaTree(int n, int k) {
+    private static GraphModel generateBananaTree(int n, int k) {
         //num of tree vertices
-        int t = (n * k) + 1;
         GraphModel g = new GraphModel(false);
         Vertex root = new Vertex();
         g.insertVertex(root);
         root.setLocation(new GraphPoint(0, 0));
-        Vertex curv = null;
+        Vertex curv;
         //generating edges and setting positions
         Point[] fR = PositionGenerators.circle(3000, 0, 0, n);
         Vertex[] firstDepth = new Vertex[n];
@@ -71,7 +70,7 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
             Point center = fR[i];
             Vertex centerv = firstDepth[i];
 
-            Point[] sR = null;
+            Point[] sR;
             sR = PositionGenerators.circle(1000, center.x, center.y, k);
             for (int j = 0; j < k; j++) {
                 if(j == (i + k/2)%n) continue;

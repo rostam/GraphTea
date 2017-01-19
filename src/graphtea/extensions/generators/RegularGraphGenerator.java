@@ -116,12 +116,4 @@ public class RegularGraphGenerator implements GraphGeneratorExtension, Parametri
     public String getCategory() {
         return "Regular Graphs";
     }
-
-    /**
-     * generates a Km,n Graph with given parameters
-     */
-//    public static GraphModel generateReg(int n, int deg) {
-//        GraphModel g = CompleteGraphGenerator.generateCompleteGraph(n);
-//    }
-
 }

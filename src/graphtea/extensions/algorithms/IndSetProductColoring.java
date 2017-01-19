@@ -35,10 +35,8 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
         Partitioner p = new Partitioner(graph);
         AllIndSetSubSetListener l = new AllIndSetSubSetListener();
         p.findAllSubsets(l);
-        Vector<ArrayDeque<BaseVertex>> ret = new Vector<ArrayDeque<BaseVertex>>();
-        for (ArrayDeque<BaseVertex> set : l.maxsets) {
-            ret.add(set);
-        }
+        Vector<ArrayDeque<BaseVertex>> ret = new Vector<>();
+        ret.addAll(l.maxsets);
         return ret;
     }
 
@@ -73,20 +71,20 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
 
         GraphModel g = graphData.getGraph();
         Vector<ArrayDeque<BaseVertex>> maxsets = getAllIndependentSets(g);
-        Vector<SubGraph> ret = new Vector<SubGraph>();
+        Vector<SubGraph> ret = new Vector<>();
         for (ArrayDeque<BaseVertex> maxset : maxsets) {
             SubGraph sd = new SubGraph(g);
-            sd.vertices = new HashSet<Vertex>();
+            sd.vertices = new HashSet<>();
             for (BaseVertex v : maxset) {
                 sd.vertices.add((Vertex) v);
             }
             ret.add(sd);
         }
 
-        Vector<Vector<Integer>> ind_sets=new Vector<Vector<Integer>>();
+        Vector<Vector<Integer>> ind_sets= new Vector<>();
         for(int i=0;i<ret.size();i++) {
             HashSet<Vertex> ind_set = ret.get(i).vertices;
-            Vector<Integer> indset = new Vector<Integer>();
+            Vector<Integer> indset = new Vector<>();
             for(Vertex vid:ind_set)
                 indset.add(vid.getId());
             ind_sets.add(indset);
@@ -97,7 +95,7 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
         step("<BR>Now, the nth power of I is computed in each step, until " +
                 "all vertices of G are seen.");
 
-        Vector<Vector<Integer>> ind_sets2= new Vector<Vector<Integer>>(ind_sets);
+        Vector<Vector<Integer>> ind_sets2= new Vector<>(ind_sets);
         for(int i=0;i<3;i++) {
             ind_sets2=setproduct(ind_sets2,ind_sets,i+1);
             IndSetsDialog isd = new IndSetsDialog(ind_sets2,"I^"+(i+2),"");
@@ -123,21 +121,20 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
     }
 
     public Vector<Vector<Integer>> setproduct(Vector<Vector<Integer>> set1,Vector<Vector<Integer>> set2,int minuscount) {
-        Vector<Vector<Integer>> ret = new Vector<Vector<Integer>>();
+        Vector<Vector<Integer>> ret = new Vector<>();
         for(int i=0;i<set1.size();i++) {
             Vector<Integer> tt  = set1.get(i);
-
             for(int j=0;j<set2.size();j++) {
-                Vector<Integer> tmp = new Vector<Integer>();
+                Vector<Integer> tmp = new Vector<>();
                 for(int k=0;k<set1.get(i).size();k++) {
                     tmp.add(tt.get(k));
                 }
                 Vector<Integer> tt2 = set2.get(j);
                 boolean sameItem = false;
 
-                for(int l=0;l<tt2.size();l++) {
-                    int tmpInt = tt2.get(l);
-                    if(tmpInt != -1 && tmp.contains(tmpInt)) {
+                for (Integer aTt2 : tt2) {
+                    int tmpInt = aTt2;
+                    if (tmpInt != -1 && tmp.contains(tmpInt)) {
                         sameItem = true;
                     }
                 }
@@ -170,11 +167,9 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
 }
 
 class AllIndSetSubSetListener implements SubSetListener {
-    Vector<ArrayDeque<BaseVertex>> maxsets = new Vector<ArrayDeque<BaseVertex>>();
-    int max = -1;
-
+    Vector<ArrayDeque<BaseVertex>> maxsets = new Vector<>();
     public boolean subsetFound(int t, ArrayDeque<BaseVertex> complement, ArrayDeque<BaseVertex> set) {
-        maxsets.add(new ArrayDeque<BaseVertex>(set));
+        maxsets.add(new ArrayDeque<>(set));
         return false;
     }
 }
@@ -187,10 +182,10 @@ class IndSetsDialog extends JDialog {
         this.setSize(new Dimension(200,400));
         //jdd.setLayout(new BorderLayout(3, 3));
         this.add(new JLabel(description), BorderLayout.NORTH);
-        Vector<IndSubGraphs> isg = new Vector<IndSubGraphs>();
-        for(int i=0;i < ind_sets.size();i++) {
+        Vector<IndSubGraphs> isg = new Vector<>();
+        for (Vector<Integer> ind_set : ind_sets) {
             IndSubGraphs isgs = new IndSubGraphs();
-            isgs.addAll(ind_sets.get(i));
+            isgs.addAll(ind_set);
             isg.add(isgs);
         }
         // isg.addAll(ind_sets2);

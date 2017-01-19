@@ -9,11 +9,11 @@ import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 import graphtea.plugins.main.core.actions.ResetGraph;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Iterator;
 
 /**
  * Created by rostam on 06.03.15.
+ * @author M. Ali Rostami
  */
 public class KruskalAlgorithm extends GraphAlgorithm implements AlgorithmExtension {
     public KruskalAlgorithm(BlackBoard blackBoard) {
@@ -25,30 +25,28 @@ public class KruskalAlgorithm extends GraphAlgorithm implements AlgorithmExtensi
         step("Start of the algorithm.") ;
         ResetGraph.resetGraph(graphData.getGraph());
 
-        ArrayList<Edge> outputEdges = new ArrayList<Edge>();
-        ArrayList<ArrayList<Vertex>> sets = new ArrayList<ArrayList<Vertex>>();
+        ArrayList<Edge> outputEdges = new ArrayList<>();
+        ArrayList<ArrayList<Vertex>> sets = new ArrayList<>();
 
         GraphModel graph = graphData.getGraph();
         for (Vertex v : graph) {
-            ArrayList<Vertex> set = new ArrayList<Vertex>();
+            ArrayList<Vertex> set = new ArrayList<>();
             set.add(v);
             sets.add(set);
         }
 
-        ArrayList<Edge> edges = new ArrayList<Edge>(graph.getEdgesCount());
+        ArrayList<Edge> edges = new ArrayList<>(graph.getEdgesCount());
 
         Iterator<Edge> eit = graph.edgeIterator();
         while (eit.hasNext())
             edges.add(eit.next());
 
-        java.util.Collections.sort(edges, new Comparator<Edge>() {
-            public int compare(Edge o1, Edge o2) {
-                if (o1.getWeight() < o2.getWeight())
-                    return -1;
-                else if (o1.getWeight() == o2.getWeight())
-                    return 0;
-                return 1;
-            }
+        java.util.Collections.sort(edges, (o1, o2) -> {
+            if (o1.getWeight() < o2.getWeight())
+                return -1;
+            else if (o1.getWeight() == o2.getWeight())
+                return 0;
+            return 1;
         });
 
         for (Edge e : edges)

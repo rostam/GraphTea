@@ -5,7 +5,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.reports.DijkstraNonNegative;
-import graphtea.extensions.reports.Utils;
+import graphtea.extensions.Utils;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;

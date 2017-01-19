@@ -1,4 +1,4 @@
-package graphtea.extensions.reports;
+package graphtea.extensions;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -6,6 +6,7 @@ import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.main.core.AlgorithmUtils;
 
+import java.awt.*;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -106,4 +107,15 @@ public class Utils {
         return g2;
     }
 
+    public static Point[] computeRandomPositions(int numOfVertices) {
+        Point[] ret = new Point[numOfVertices];
+        int w = 100;
+        int h = 100;
+        for (int i = 0; i < numOfVertices; i++) {
+            int x = (int) (Math.random() * w);
+            int y = (int) (Math.random() * h);
+            ret[i] = new Point(x, y);
+        }
+        return ret;
+    }
 }

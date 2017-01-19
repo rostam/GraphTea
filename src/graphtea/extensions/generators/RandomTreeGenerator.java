@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.generators;
 
+import graphtea.extensions.Utils;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -14,6 +15,7 @@ import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
+import javax.rmi.CORBA.Util;
 import java.awt.*;
 
 /**
@@ -63,15 +65,7 @@ public class RandomTreeGenerator implements GraphGeneratorExtension, Parametriza
     }
 
     public Point[] getVertexPositions() {
-        Point[] ret = new Point[n];
-        int w = 100;
-        int h = 100;
-        for (int i = 0; i < n; i++) {
-            int x = (int) (Math.random() * w);
-            int y = (int) (Math.random() * h);
-            ret[i] = new Point(x, y);
-        }
-        return ret;
+        return Utils.computeRandomPositions(n);
     }
 
     public String getName() {

@@ -73,10 +73,7 @@ public class TadpoleGenerator implements GraphGeneratorExtension, Parametrizable
     public Point[] getVertexPositions() {
         Point[] ret = new Point[n+k];
         Point[] circ = PositionGenerators.circle(5, 5, 100, 100, n);
-        for(int i=0;i<n;i++) {
-            ret[i] = circ[i];
-        }
-
+        System.arraycopy(circ, 0, ret, 0, n);
         for(int i=n;i<n+k;i++) {
             ret[i] = new Point(ret[n-1].x+(i-n+1)*60+100,ret[n-1].y);
         }

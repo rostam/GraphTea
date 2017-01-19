@@ -71,9 +71,7 @@ public class PmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
         int w = 20000;
         int h = 20000;
         Point ret[] = new Point[m * n];
-        int yoffset = h - 30 * n;
         for (int i = 0; i < n; i++) {
-            yoffset += 50;
             Point p[] = PositionGenerators.line(5, h * (i + 1) / (n + 1), w, 0, m);
             System.arraycopy(p, 0, ret, i * m, m);
 

@@ -11,10 +11,7 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
-import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
-
-import java.awt.*;
 
 @CommandAttitude(name = "generate_helmn", abbreviation = "_g_prism", description = "generates a Prism graph of order n")
 public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
@@ -48,21 +45,9 @@ public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
     }
 
     public GraphPoint[] getVertexPositions() {
-        Point[] r = new Point[2 * n];
-        Point p1[] = PositionGenerators.circle(20000, 10000, 10000,  n);
-        Point p2[] = PositionGenerators.circle(30000, 10000, 10000,  n);
-
-        for (int i = 0; i < n; i++) {
-            r[i] = p1[i];
-            r[n + i] = p2[i];
-        }
-
-        GraphPoint ret[] = new GraphPoint[2 * n];
-        for (int i = 0; i < 2 * n; i++) {
-            ret[i] = new GraphPoint(r[i].x, r[i].y);
-        }
-        return ret;
+       return PrismGraph.computePrismCoords(n);
     }
+
 
     public GraphModel generateGraph() {
         GraphModel g = new GraphModel(false);

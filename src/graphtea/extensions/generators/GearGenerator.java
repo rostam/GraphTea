@@ -77,9 +77,7 @@ public class GearGenerator implements GraphGeneratorExtension, Parametrizable, S
         Point p[] = new Point[2*n+1];
         Point p1[] = PositionGenerators.circle(50000, 200, 200, 2*n);
         p[0] = new Point(200, 200);
-        for(int i=1;i<=2*n;i++) {
-            p[i] = p1[i-1];
-        }
+        System.arraycopy(p1, 0, p, 1, 2 * n);
         return p;
     }
 

@@ -79,8 +79,6 @@ public class CrownGraph implements GraphGeneratorExtension, Parametrizable, Simp
 		double mw = ((double)w)/2.0, qw = ((double)w)/4.0;
 		Point result[] = new Point[2*n];
 		//result[2*n] = new Point((int)(w/2), (int)(w/2));
-		double r1 = mw;
-		double r2 = qw;
 		double ang = Math.PI*2.0/n;
 		double offset = 0.0;
 		if ((n % 2) == 0)
@@ -88,8 +86,8 @@ public class CrownGraph implements GraphGeneratorExtension, Parametrizable, Simp
 		for ( int i = 0 ; i < n ; i++ )
 		{
 			double angle = offset + i * ang;
-			result[i] = new Point((int)(mw + Math.sin(angle)*r1), (int)(mw - Math.cos(angle)*r1));
-			result[n+i] = new Point((int)(mw + Math.sin(angle)*r2), (int)(mw - Math.cos(angle)*r2));
+			result[i] = new Point((int)(mw + Math.sin(angle)* mw), (int)(mw - Math.cos(angle)* mw));
+			result[n+i] = new Point((int)(mw + Math.sin(angle)* qw), (int)(mw - Math.cos(angle)* qw));
 		}
 		return result;
 	}

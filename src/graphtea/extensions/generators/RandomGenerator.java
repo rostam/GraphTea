@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.generators;
 
+import graphtea.extensions.Utils;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -25,7 +26,7 @@ public class RandomGenerator implements GraphGeneratorExtension, Parametrizable,
     @Parameter(name = "Vertices", description = "Num of Vertices")
     public static Integer numOfVertices = 30;
     @Parameter(name = "Edges", description = "Num of Edges")
-    public static Integer numOfEdges = 80;
+    private static Integer numOfEdges = 80;
 
     public void setWorkingGraph(GraphModel g) {
         this.g = g;
@@ -70,19 +71,11 @@ public class RandomGenerator implements GraphGeneratorExtension, Parametrizable,
     }
 
     public Point[] getVertexPositions() {
-        Point[] ret = new Point[numOfVertices];
-        int w = 100;
-        int h = 100;
-        for (int i = 0; i < numOfVertices; i++) {
-            int x = (int) (Math.random() * w);
-            int y = (int) (Math.random() * h);
-            ret[i] = new Point(x, y);
-        }
-        return ret;
+        return Utils.computeRandomPositions(numOfVertices);
     }
 
     public String checkParameters() {
-    	if( numOfEdges<0 || numOfVertices<0)return "Both Edges & Vertices must be positive!";
+    	if( numOfEdges<0 || numOfVertices<0) return "Both Edges & Vertices must be positive!";
     	else
     		return null;
     }
