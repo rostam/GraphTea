@@ -15,6 +15,7 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
+
 import java.awt.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;

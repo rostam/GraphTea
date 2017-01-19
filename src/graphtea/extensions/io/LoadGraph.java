@@ -5,21 +5,15 @@
 
 package graphtea.extensions.io;
 
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
-import graphtea.graph.graph.Vertex;
-import graphtea.platform.StaticUtils;
 import graphtea.plugins.main.saveload.SaveLoadPluginMethods;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphReaderExtension;
 
-import java.awt.*;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import static java.lang.Integer.parseInt;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 /**
  * @author Ali ROstami
@@ -44,9 +38,7 @@ public class LoadGraph implements GraphReaderExtension {
                     new FileInputStream(file));
             GraphSaveObject gso = (GraphSaveObject) in.readObject();
             return gso.getG();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;

@@ -28,7 +28,7 @@ public class GBody extends JPanel {
     //is side bar hidden
     private boolean hidden = false;
 
-    private ArrayList<Pair<Component, String>> showingSideBars = new ArrayList<Pair<Component, String>>();
+    private ArrayList<Pair<Component, String>> showingSideBars = new ArrayList<>();
 
     public void setBodyPane(Component bodyPane) {
         this.bodyPane = bodyPane;
@@ -40,7 +40,7 @@ public class GBody extends JPanel {
 
     public void showSideBarPane(Component leftPanel, String label) {
 //        int _ = splitPane.getDividerLocation();
-        Pair<Component, String> p = new Pair<Component, String>(leftPanel, label);
+        Pair<Component, String> p = new Pair<>(leftPanel, label);
         if (showingSideBars.contains(p)) {
             return;
         }
@@ -86,7 +86,7 @@ public class GBody extends JPanel {
     }
 
     public void hideSideBar(Component c, String label) {
-        showingSideBars.remove(new Pair<Component, String>(c, label));
+        showingSideBars.remove(new Pair<>(c, label));
         if (showingSideBars.isEmpty()) {
             hideSideBar();
         } else {

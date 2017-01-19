@@ -14,6 +14,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 /**
  * @author Ali Rostami
@@ -29,20 +30,20 @@ public class RandomMatching implements GraphReportExtension {
         return "Random Matching";
     }
 
-    Random r = new Random();
-    Random r2 = new Random(10);
+    private Random r = new Random();
+    private Random r2 = new Random(10);
     public Object calculate(GraphModel g) {
         SubGraph sg = new SubGraph();
         int limit=r2.nextInt(g.getEdgesCount());
 
-        Vector<Integer> vi = new Vector<Integer>();
-        HashMap<Vertex,Vertex> vv= new HashMap<Vertex, Vertex>();
+        Vector<Integer> vi = new Vector<>();
+        HashMap<Vertex,Vertex> vv= new HashMap<>();
         for(int i=0;i<g.getVerticesCount();i++) {
             vi.add(i);
         }
 
         Vertex[] varr = g.getVertexArray();
-        Vertex[] rvarr = (Vertex[]) rotate(varr,r.nextInt(g.getVerticesCount()-2));
+        Vertex[] rvarr = rotate(varr,r.nextInt(g.getVerticesCount()-2));
 
 
         for(Vertex v1 : rvarr) {
@@ -63,11 +64,9 @@ public class RandomMatching implements GraphReportExtension {
             sg.vertices.add(vv.get(v));
         }
 
-        for(Vertex v : vv.keySet()) {
-            sg.edges.add(g.getEdge(v,vv.get(v)));
-        }
+        sg.edges.addAll(vv.keySet().stream().map(v -> g.getEdge(v, vv.get(v))).collect(Collectors.toList()));
 
-        Vector ret = new Vector();
+        Vector<Object> ret = new Vector<>();
         ret.add("Number of Matching:" + sg.edges.size());
         ret.add(sg);
 
@@ -80,7 +79,7 @@ public class RandomMatching implements GraphReportExtension {
 		return "General";
 	}
 
-    Vertex[] rotate(final Vertex[] unOrderedArr, final int orderToRotate) {
+    private Vertex[] rotate(final Vertex[] unOrderedArr, final int orderToRotate) {
         final int length = unOrderedArr.length;
         final Vertex[] rotated = new Vertex[length];
         for (int i = 0; i < length; i++) {

@@ -1,9 +1,6 @@
 package graphtea.extensions.reports.coloring.fillinaware.metis;
 
-import graphtea.extensions.reports.coloring.fillinaware.SpMat;
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.Vertex;
 
 import java.io.File;
 import java.io.FileNotFoundException;

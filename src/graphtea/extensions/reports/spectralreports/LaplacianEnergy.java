@@ -10,11 +10,7 @@ import Jama.Matrix;
 import graphtea.graph.graph.GraphModel;
 import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.platform.parameter.Parameter;
-import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.util.ArrayList;
 
 /**
  * @author M. Ali Rostami

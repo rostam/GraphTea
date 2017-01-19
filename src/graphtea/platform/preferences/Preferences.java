@@ -7,7 +7,6 @@ package graphtea.platform.preferences;
 import graphtea.platform.attribute.NotifiableAttributeSetImpl;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
-import graphtea.platform.lang.ArrayX;
 import graphtea.platform.preferences.lastsettings.StorableOnExit;
 import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 

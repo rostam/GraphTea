@@ -16,7 +16,6 @@ import graphtea.plugins.main.saveload.core.extension.GraphReaderExtension;
 
 import java.awt.*;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -66,8 +65,6 @@ public class LoadSimpleGraph implements GraphReaderExtension {
 
     public GraphModel read(File file) throws GraphIOException {
         try {
-            FileReader in = new FileReader(file);
-//            BufferedReader sc = new BufferedReader(in);
             Scanner sc = new Scanner(file);
             String l = sc.nextLine();
             if (!l.equals("graph:"))
@@ -84,61 +81,66 @@ public class LoadSimpleGraph implements GraphReaderExtension {
             sc.next();
             String fontName = sc.next();
             int style = Integer.parseInt(sc.next());
-            int size  = Integer.parseInt(sc.next());
-            Font f = new Font(sc.next(), style, size );
+            int size = Integer.parseInt(sc.next());
+            Font f = new Font(sc.next(), style, size);
             g.setFont(f);
 
             //Read Vertices
             sc.nextLine();
 
             l = sc.next();
-            ArrayList<Vertex> V = new ArrayList<Vertex>();
+            ArrayList<Vertex> V = new ArrayList<>();
 
             while (!l.equals("begin")) {    //begin edges
-                    String s1 = sc.next();
-                    int i = parseInt(s1.substring(0, s1.length() - 1));
-                    Vertex curv = new Vertex();
-                    final GraphPoint gp = new GraphPoint(0, 0);
-                    sc.next();
-                    curv.setLabel(sc.next());
-                    sc.next();
-                    curv.setLocation((GraphPoint) StaticUtils.fromString(GraphPoint.class.getName(), sc.nextLine()));
-                    sc.next();
-                    curv.setColor(parseInt(sc.next()));
-                    sc.next();
-                    curv.setLabelLocation(new GraphPoint(
-                            Double.parseDouble(sc.next()),
-                            Double.parseDouble(sc.next())
-                    ));
-                    V.add(curv);
-                    l = sc.next();
+                String s1 = sc.next();
+                int i = parseInt(s1.substring(0, s1.length() - 1));
+                Vertex curv = new Vertex();
+                final GraphPoint gp = new GraphPoint(0, 0);
+                sc.next();
+                curv.setLabel(sc.next());
+                sc.next();
+                curv.setLocation((GraphPoint) StaticUtils.fromString(GraphPoint.class.getName(), sc.nextLine()));
+                sc.next();
+                curv.setColor(parseInt(sc.next()));
+                sc.next();
+                curv.setLabelLocation(new GraphPoint(
+                        Double.parseDouble(sc.next()),
+                        Double.parseDouble(sc.next())
+                ));
+                V.add(curv);
+                l = sc.next();
             }
 
             g.insertVertices(V);
             //Read Edges
-            if(sc.hasNextLine())
+            if (sc.hasNextLine())
                 sc.nextLine();
             Vertex v1 = null;
-            if(sc.hasNext())
+            if (sc.hasNext())
                 v1 = V.get(parseInt(sc.next()));
             else return g;
             sc.next();
             Vertex v2 = V.get(parseInt(sc.next()));
-            ArrayList<Edge> E = new ArrayList<Edge>();
+            ArrayList<Edge> E = new ArrayList<>();
             Edge cure = new Edge(v1, v2);
             E.add(cure);
             while (sc.hasNext()) {
                 l = sc.next();
-                if (l.equals("label")) {
-                    cure.setLabel(sc.nextLine());
-                } else if (l.equals("color")) {
-                    cure.setColor(parseInt(sc.next()));
-                } else if (l.equals("weight")) {
-                    cure.setWeight(parseInt(sc.next()));
-                } else {
-                    sc.next();
-                    cure = new Edge(V.get(parseInt(l)), V.get(parseInt(sc.next())));
-                    E.add(cure);
+                switch (l) {
+                    case "label":
+                        cure.setLabel(sc.nextLine());
+                        break;
+                    case "color":
+                        cure.setColor(parseInt(sc.next()));
+                        break;
+                    case "weight":
+                        cure.setWeight(parseInt(sc.next()));
+                        break;
+                    default:
+                        sc.next();
+                        cure = new Edge(V.get(parseInt(l)), V.get(parseInt(sc.next())));
+                        E.add(cure);
+                        break;
                 }
             }
 

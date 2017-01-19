@@ -48,9 +48,7 @@ public class MapFileReader {
 						String id = eElement.getAttribute("id");
 						int x =  Integer.parseInt(eElement.getElementsByTagName("x").item(0).getTextContent());
 						int y =  Integer.parseInt(eElement.getElementsByTagName("y").item(0).getTextContent());
-						int value=0;
-						
-						
+						int value;
 						Vertex newVertex = new Vertex();
 						newVertex.setLocation(new GraphPoint(x, y));
 						newVertex.setLabel(id);
@@ -87,7 +85,6 @@ public class MapFileReader {
 	}
 
 	public String getBackground() {
-		// TODO Auto-generated method stub
 		return background;
 	}
 

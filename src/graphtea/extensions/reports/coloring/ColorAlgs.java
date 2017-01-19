@@ -4,7 +4,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.util.Pair;
-import graphtea.plugins.main.GraphData;
 
 import java.util.Iterator;
 import java.util.Vector;

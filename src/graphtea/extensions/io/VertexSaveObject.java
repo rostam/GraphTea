@@ -1,10 +1,7 @@
 package graphtea.extensions.io;
 
 import graphtea.graph.atributeset.VertexAttrSet;
-import graphtea.graph.graph.GraphPoint;
 import graphtea.graph.graph.Vertex;
-import graphtea.graph.old.GShape;
-import graphtea.graph.old.StrokeSaveObject;
 
 import java.io.Serializable;
 

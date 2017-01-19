@@ -30,7 +30,7 @@ public class ColoringReport implements GraphReportExtension, ColoringListener, P
 
     public Object calculate(GraphModel g) {
         p = new Partitioner(g);
-        colorings = new Vector<GraphColoring>(1);
+        colorings = new Vector<>(1);
         int ct = lowerBound;
         found = false;
         while (!found) {

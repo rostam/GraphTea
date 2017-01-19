@@ -4,8 +4,6 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform.core;
 
-import graphtea.plugins.main.Init;
-
 /**
  * AbstractAction itself is a wrapper for the interface Action.
  * As you see in the source, it contains only two methods to implement. The first one is the action that must be done by this action, performAction() gets the event(key) that has caused this action to be run. This helps if an action is result of multiple events or when event handling must be coped with in the implementation itself.

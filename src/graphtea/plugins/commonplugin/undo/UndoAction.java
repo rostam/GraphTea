@@ -12,7 +12,6 @@ import graphtea.platform.core.Listener;
 import graphtea.plugins.main.GraphData;
 import graphtea.ui.UIUtils;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Stack;
 

@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 /**
  * Created by rostam on 18.12.15.
+ * @author M. Ali Rostami
  */
 public class EdgeSaveObject implements Serializable {
     int source, target;
@@ -16,8 +17,7 @@ public class EdgeSaveObject implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (! (obj instanceof EdgeSaveObject) )  return false;
-        return attrs.equals(((EdgeSaveObject) obj).attrs);
+        return obj instanceof EdgeSaveObject && attrs.equals(((EdgeSaveObject) obj).attrs);
     }
 
 

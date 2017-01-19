@@ -5,8 +5,6 @@
 package graphtea.plugins.reports.extension;
 
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
-import graphtea.extensions.reports.boundcheck.forall.iterators.AllGraphIterator;
-import graphtea.graph.graph.RenderTable;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
 import graphtea.ui.UIUtils;
@@ -21,8 +19,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Iterator;
-import java.util.Vector;
 
 /**
  * @author M. Ali Rostami - Conjecture check

@@ -11,7 +11,7 @@ public interface ColoringListener {
      * Fires whenever a coloring is found
      *
      * @param t the maximum color, so the set of colors will be {1, 2, ..., t}
-     * @return
+     * @return whenever a coloring is found
      */
-    public boolean coloringFound(final int t);
+    boolean coloringFound(final int t);
 }

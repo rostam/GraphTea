@@ -5,17 +5,14 @@
 
 package graphtea.extensions.io;
 
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
-import graphtea.graph.graph.Vertex;
-import graphtea.platform.StaticUtils;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;
 
-import java.awt.*;
-import java.io.*;
-import java.util.Iterator;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class SaveGraph implements GraphWriterExtension {
 

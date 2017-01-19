@@ -6,7 +6,10 @@
 package graphtea.plugins.visualization;
 
 import graphtea.graph.event.GraphEvent;
-import graphtea.graph.graph.*;
+import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.GraphPoint;
+import graphtea.graph.graph.Vertex;
 import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.Listener;

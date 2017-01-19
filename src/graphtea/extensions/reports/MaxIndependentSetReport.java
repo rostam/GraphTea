@@ -15,6 +15,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 /**
  * @author Azin Azadi
@@ -39,12 +40,11 @@ public class MaxIndependentSetReport implements GraphReportExtension {
 
 
     public Object calculate(GraphModel g) {
-        GraphModel graph = g;
-        Vector<ArrayDeque<BaseVertex>> maxsets = getMaxIndependentSet(graph);
-        Vector<SubGraph> ret = new Vector<SubGraph>();
+        Vector<ArrayDeque<BaseVertex>> maxsets = getMaxIndependentSet(g);
+        Vector<SubGraph> ret = new Vector<>();
         for (ArrayDeque<BaseVertex> maxset : maxsets) {
-            SubGraph sd = new SubGraph(graph);
-            sd.vertices = new HashSet<Vertex>();
+            SubGraph sd = new SubGraph(g);
+            sd.vertices = new HashSet<>();
             for (BaseVertex v : maxset) {
                 sd.vertices.add((Vertex) v);
             }
@@ -57,19 +57,11 @@ public class MaxIndependentSetReport implements GraphReportExtension {
         Partitioner p = new Partitioner(graph);
         MaxIndSetSubSetListener l = new MaxIndSetSubSetListener();
         p.findAllSubsets(l);
-        Vector<ArrayDeque<BaseVertex>> ret = new Vector<ArrayDeque<BaseVertex>>();
-        for (ArrayDeque<BaseVertex> set : l.maxsets) {
-            if (set.size() == l.max) {
-                ret.add(set);
-            }
-        }
-        return ret;
+        return l.maxsets.stream().filter(set -> set.size() == l.max).collect(Collectors.toCollection(Vector::new));
     }
 
     public static int getMaxIndependentSetSize(GraphModel graph, boolean putFirstVertexInSet) {
         Partitioner p = new Partitioner(graph);
-//        max = -1;
-//        MaxIndSetSubSetSizeListener l = new MaxIndSetSubSetSizeListener();
         return p.findMaxIndSet(putFirstVertexInSet);
     }
 
@@ -82,25 +74,23 @@ public class MaxIndependentSetReport implements GraphReportExtension {
 }
 
 class MaxIndSetSubSetListener implements SubSetListener {
-    Vector<ArrayDeque<BaseVertex>> maxsets = new Vector<ArrayDeque<BaseVertex>>();
+    Vector<ArrayDeque<BaseVertex>> maxsets = new Vector<>();
     //    ArrayDeque<BaseVertex> maxset = new ArrayDeque<BaseVertex>();
     int max = -1;
 
     public boolean subsetFound(int t, ArrayDeque<BaseVertex> complement, ArrayDeque<BaseVertex> set) {
         if (max <= set.size()) {
             max = set.size();
-            maxsets.add(new ArrayDeque<BaseVertex>(set));
+            maxsets.add(new ArrayDeque<>(set));
         }
         return false;
     }
 }
 
 class MaxIndSetSubSetSizeListener implements SubSetListener {
-    int max = -1;
-    int nn = 0;
+    private int max = -1;
 
     public boolean subsetFound(int t, ArrayDeque<BaseVertex> complement, ArrayDeque<BaseVertex> set) {
-        nn++;
         if (max < set.size()) {
             max = set.size();
         }

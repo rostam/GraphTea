@@ -6,14 +6,14 @@
 package graphtea.ui.extension;
 
 import graphtea.graph.graph.GraphModel;
+import graphtea.platform.core.AEvent;
 import graphtea.platform.core.AbstractAction;
-import graphtea.platform.core.*;
+import graphtea.platform.core.BlackBoard;
 import graphtea.platform.extension.Extension;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
-import graphtea.plugins.main.Init;
 import graphtea.plugins.main.extension.GraphActionExtension;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.ui.ParameterShower;

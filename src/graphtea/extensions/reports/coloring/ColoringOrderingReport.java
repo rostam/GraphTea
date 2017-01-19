@@ -7,10 +7,8 @@ import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Vector;
 
 public class ColoringOrderingReport implements GraphReportExtension {

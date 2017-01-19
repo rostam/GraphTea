@@ -4,7 +4,6 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.main.core.actions.vertex;
 
-import graphtea.extensions.io.GraphSaveObject;
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.event.GraphEvent;
 import graphtea.graph.graph.GraphModel;

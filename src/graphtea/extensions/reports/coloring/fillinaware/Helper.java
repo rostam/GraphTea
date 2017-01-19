@@ -3,6 +3,7 @@ package graphtea.extensions.reports.coloring.fillinaware;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
+
 import java.util.Set;
 import java.util.Vector;
 

@@ -10,5 +10,5 @@ import graphtea.platform.attribute.NotifiableAttributeSet;
  * @author azin azadi
  */
 public interface NotifiableAttributeSetView extends NotifiableAttributeSet {
-    public AttributeSetView getView();
+    AttributeSetView getView();
 }

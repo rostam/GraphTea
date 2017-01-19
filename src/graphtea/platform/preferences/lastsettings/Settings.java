@@ -8,7 +8,6 @@ import graphtea.platform.StaticUtils;
 import graphtea.platform.attribute.AttributeListener;
 import graphtea.platform.attribute.NotifiableAttributeSetImpl;
 import graphtea.platform.core.exception.ExceptionHandler;
-import graphtea.platform.extension.Extension;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.preferences.Preferences;
 

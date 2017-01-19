@@ -3,6 +3,7 @@ package graphtea.extensions.reports.boundcheck.forall;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
+
 import java.io.*;
 import java.util.Scanner;
 

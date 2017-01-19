@@ -7,7 +7,6 @@ package graphtea.ui.components.gmenu;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -22,7 +21,7 @@ public class GMenuBar extends javax.swing.JMenuBar {
      *
      */
     private static final long serialVersionUID = 2020939077780205134L;
-    private HashMap<String, JMenu> menues = new HashMap<String, JMenu>();
+    private HashMap<String, JMenu> menues = new HashMap<>();
 
     public GMenuBar() {
 //        setBackground(new Color(245,245,255));
@@ -32,7 +31,7 @@ public class GMenuBar extends javax.swing.JMenuBar {
     /**
      * stores the places given for components
      */
-    private static HashMap<Component, Integer> componentPlaces = new HashMap<Component, Integer>();
+    private static HashMap<Component, Integer> componentPlaces = new HashMap<>();
 
     /**
      * inserts the child to parent with the given places,
@@ -83,13 +82,11 @@ public class GMenuBar extends javax.swing.JMenuBar {
     }
 
     private static void sortPlacedComponents(Component[] items) {
-        Arrays.sort(items, new Comparator<Component>() {
-            public int compare(Component o1, Component o2) {
-                if (componentPlaces.containsKey(o1) && componentPlaces.containsKey(o2)) {
-                    return componentPlaces.get(o1) - componentPlaces.get(o2);
-                }
-                return 1;
+        Arrays.sort(items, (o1, o2) -> {
+            if (componentPlaces.containsKey(o1) && componentPlaces.containsKey(o2)) {
+                return componentPlaces.get(o1) - componentPlaces.get(o2);
             }
+            return 1;
         });
     }
 

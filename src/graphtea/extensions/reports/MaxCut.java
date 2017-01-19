@@ -31,7 +31,6 @@ public class MaxCut implements GraphReportExtension {
 
 
     private int getMaxCut(GraphModel graph){
-
          permution(graph);
          Vertex v[]=graph.getVertexArray();
          for(int i=0;i<graph.getVerticesCount();i++)
@@ -39,11 +38,9 @@ public class MaxCut implements GraphReportExtension {
          if(getVertexInnerWeight(graph,v[i])>getVertexOuterWeight(graph,v[i]))
             {
                 v[i].setColor(v[i].getColor() == 2 ? 3 : 2);
-                continue;
             }
         }
          return getCutWeight(graph);
-
     }
 
 
@@ -62,15 +59,14 @@ public class MaxCut implements GraphReportExtension {
          int VertexCount=graph.getVerticesCount();
          Vertex v[]=graph.getVertexArray();
          Random rnd=new Random();
-         for(int i=0;i<VertexCount;i++)
-         {
+         for(int i=0;i<VertexCount;i++) {
             if(rnd.nextBoolean())
             {
-                ((Vertex)v[i]).setColor(2);
+                v[i].setColor(2);
             }
             else
             {
-                ((Vertex)v[i]).setColor(3);
+                v[i].setColor(3);
             }
          }
         }

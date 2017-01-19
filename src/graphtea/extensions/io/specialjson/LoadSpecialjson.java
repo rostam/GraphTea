@@ -10,7 +10,6 @@
 package graphtea.extensions.io.specialjson;
 
 import graphtea.graph.graph.*;
-import graphtea.graph.old.GShape;
 import graphtea.plugins.main.saveload.SaveLoadPluginMethods;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphReaderExtension;
@@ -21,10 +20,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.StringJoiner;
 import java.util.Vector;
 
 import static graphtea.platform.Application.blackboard;

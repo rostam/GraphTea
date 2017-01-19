@@ -16,5 +16,5 @@ import javax.swing.*;
  */
 public interface GBodyPane {
     //todo: return a component
-    public JPanel getPanel();
+    JPanel getPanel();
 }

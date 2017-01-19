@@ -11,8 +11,8 @@ import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;
 
 import java.util.ArrayDeque;
+import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedList;
 
 /**
  * generates all partitionings of the given graph with t or less partitions
@@ -22,7 +22,7 @@ import java.util.LinkedList;
  */
 public class Partitioner {
     public BaseVertex[] vertices;
-    public int[][] edgeArray;
+    private int[][] edgeArray;
     public int[] color;
     private BaseGraph g;
 
@@ -35,19 +35,15 @@ public class Partitioner {
 
     public boolean findAllSubsets(SubSetListener listener) {
         color = new int[vertices.length];
-
-        ArrayDeque<BaseVertex> v = new ArrayDeque<BaseVertex>();
-        for (BaseVertex baseVertex : g.getVertexArray()) {
-            v.add(baseVertex);
-        }
-
-        return findAllSubsetsRecursively(1, listener, v, new ArrayDeque<BaseVertex>(), new ArrayDeque<BaseVertex>());
+        ArrayDeque<BaseVertex> v = new ArrayDeque<>();
+        Collections.addAll(v, g.getVertexArray());
+        return findAllSubsetsRecursively(1, listener, v, new ArrayDeque<>(), new ArrayDeque<>());
     }
 
     public int findMaxIndSet(boolean putFirstVertexInSet) {
         color = new int[vertices.length];
 
-        v = new ArrayDeque<BaseVertex>();
+        v = new ArrayDeque<>();
         set = new boolean[g.getVerticesCount()];
         int i = 0;
         for (BaseVertex baseVertx : g.getVertexArray()) {
@@ -55,13 +51,7 @@ public class Partitioner {
             set[i++] = false;
         }
         maxSet = Integer.MIN_VALUE;
-
-//        curRejectedFromSet = 0;
-//        minRejectedFromSet = Integer.MAX_VALUE;
-
         curSet = 0;
-        int start = 0;
-//        putFirstVertexInSet = false;
         if (putFirstVertexInSet) {
             curSet = 1;
             set[0] = true;
@@ -163,18 +153,16 @@ public class Partitioner {
     public boolean findAllPartitionings(final int t, final ColoringListener listener) {
         color = new int[vertices.length];
 
-        ArrayDeque<BaseVertex> v = new ArrayDeque<BaseVertex>();
+        ArrayDeque<BaseVertex> v = new ArrayDeque<>();
         for (BaseVertex baseVertex : g.getVertexArray()) {
             v.add(baseVertex);
         }
-        if (findAllPartitioningsRecursively(t, new ColoringListener() {
-            public boolean coloringFound(final int t) {
-                if (checkColoring(g)) {
-                    boolean b = listener.coloringFound(t);
-                    return b;
-                }
-                return false;
+        if (findAllPartitioningsRecursively(t, t1 -> {
+            if (checkColoring(g)) {
+                boolean b = listener.coloringFound(t1);
+                return b;
             }
+            return false;
         }, v)) return true;
         return false;
     }
@@ -185,17 +173,9 @@ public class Partitioner {
         }
         BaseVertex fv = v.removeFirst();
         color[fv.getId()] = tt;
-
-//inkedList<BaseVertex> _v = new LinkedList<BaseVertex>(v);
-        ArrayDeque<BaseVertex> compl = new ArrayDeque<BaseVertex>();
-        if (findAllSubsetsRecursively(tt, new SubSetListener() {
-            LinkedList<BaseVertex> vert = new LinkedList<BaseVertex>();
-
-            public boolean subsetFound(final int t, ArrayDeque<BaseVertex> complement, ArrayDeque<BaseVertex> set) {
-                return findAllPartitioningsRecursively(tt - 1, listener, complement);
-            }
-        }
-                , v, new ArrayDeque<BaseVertex>(), compl)) return true;
+        ArrayDeque<BaseVertex> compl = new ArrayDeque<>();
+        if (findAllSubsetsRecursively(tt, (t, complement, set1) -> findAllPartitioningsRecursively(tt - 1, listener, complement)
+                , v, new ArrayDeque<>(), compl)) return true;
         color[fv.getId()] = 0;
         v.addFirst(fv);
         return false;
@@ -210,8 +190,7 @@ public class Partitioner {
                         return false;
             }
             //so it is a valid partitioning (coloring)
-            if (listener.subsetFound(t, complement, set)) return true;
-            return false;
+            return listener.subsetFound(t, complement, set);
         }
         BaseVertex baseVertex = v.removeFirst();
 
@@ -238,7 +217,7 @@ public class Partitioner {
     }
 
     /**
-     * @param g
+     * @param g The given graph
      * @return true if the coloring of g is a valid vertex coloring
      */
     public boolean checkColoring(BaseGraph g) {

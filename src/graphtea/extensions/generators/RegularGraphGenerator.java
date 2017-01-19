@@ -16,8 +16,6 @@ import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 
 /**

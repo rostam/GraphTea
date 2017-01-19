@@ -6,7 +6,6 @@ import graphtea.graph.graph.Vertex;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.*;
-import java.util.Arrays;
 import java.util.Vector;
 
 /**

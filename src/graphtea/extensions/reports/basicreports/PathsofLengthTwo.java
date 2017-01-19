@@ -5,14 +5,9 @@
 package graphtea.extensions.reports.basicreports;
 
 import graphtea.extensions.reports.Utils;
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GraphPoint;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.util.Iterator;
 
 /**
  * @author Ali Rostami

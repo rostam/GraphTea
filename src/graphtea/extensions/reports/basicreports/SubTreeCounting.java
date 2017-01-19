@@ -11,7 +11,9 @@ import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
+
 import java.util.Vector;
+
 import static graphtea.extensions.reports.Utils.choose;
 
 /**

@@ -70,7 +70,7 @@ public class UIEventHandler extends AbstractAction {
     /**
      * fetches the target action from blackboard
      *
-     * @param id
+     * @param id The id of the action
      */
     private AbstractAction getAction(String id) {
         //the action map is put in the blackboard in UIHandlerImpl class, at endActions() method.
@@ -88,8 +88,8 @@ public class UIEventHandler extends AbstractAction {
      * registered by UIEventData.name(id) in blackboard?)
      * and if the answer is true it sends the event to log.
      *
-     * @param id
-     * @param uiEventData
+     * @param id The action id
+     * @param uiEventData The corresponding event data
      */
     private void sendEventToAction(String id, UIEventData uiEventData) {
 //        if (blackboard.contains(UIEventData.name(id)))

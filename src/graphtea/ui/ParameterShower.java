@@ -31,7 +31,7 @@ public class ParameterShower implements AttributeListener {
      * show all the fields of the object which have setter and getter in a property editor in runtime
      * so you can change them easily
      *
-     * @param o
+     * @param o The object to be shown
      */
     public void show(Object o) {
         try {

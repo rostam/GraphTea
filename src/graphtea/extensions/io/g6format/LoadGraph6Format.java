@@ -18,7 +18,10 @@ import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphReaderExtension;
 
 import java.awt.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class LoadGraph6Format implements GraphReaderExtension {
@@ -39,7 +42,6 @@ public class LoadGraph6Format implements GraphReaderExtension {
     @Override
     public GraphModel read(File file) throws GraphIOException {
         BufferedReader br = showG(file);
-        int cnt = 0;
         GraphModel g = next(br);
         Point pp[] = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
@@ -102,8 +104,7 @@ public class LoadGraph6Format implements GraphReaderExtension {
         try {
             ProcessBuilder process = getShowGProcess(file.getAbsolutePath());
             Process p = process.start();
-            BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            return bri;
+            return new BufferedReader(new InputStreamReader(p.getInputStream()));
         } catch (IOException e) {
             e.printStackTrace();
         }

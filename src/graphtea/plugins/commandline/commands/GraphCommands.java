@@ -17,17 +17,12 @@ import graphtea.library.algorithms.goperators.VertexInduced;
 import graphtea.library.algorithms.goperators.product.*;
 import graphtea.library.util.Pair;
 import graphtea.platform.core.BlackBoard;
-import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashSet;
 
 /**

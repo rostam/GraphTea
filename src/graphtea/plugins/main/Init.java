@@ -10,7 +10,7 @@ import graphtea.graph.graph.Vertex;
 import graphtea.graph.ui.GHTMLPageComponent;
 import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.platform.Application;
-import graphtea.platform.StaticUtils;
+import graphtea.platform.core.AEvent;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.Listener;
 import graphtea.platform.core.exception.ExceptionOccuredData;
@@ -18,15 +18,7 @@ import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.plugin.PluginInterface;
 import graphtea.platform.preferences.lastsettings.StorableOnExit;
 import graphtea.plugins.main.extension.GraphActionExtensionHandler;
-import graphtea.platform.core.AEvent;
 
-import java.net.URLEncoder;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.LinkedList;
-import java.net.*;
-import java.io.*;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -34,8 +26,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.net.URLEncoder;
+import java.util.LinkedList;
 
 import static graphtea.platform.StaticUtils.addExceptionLog;
 

@@ -79,7 +79,6 @@ public class ColoringBlockSizeReport implements GraphReportExtension {
     //new GraphData(Application.getBlackBoard()).core.showGraph(g);
 
     //Initialize required pattern
-    int entries_pattern = 0;
     //If edge e \in E_S then edge_property edge_weight=1 else
     switch (RequiredPattern) {
       case 0:
@@ -88,7 +87,6 @@ public class ColoringBlockSizeReport implements GraphReportExtension {
         for(Edge e : g.getEdges()) {
           if(Math.abs(e.source.getId()-e.target.getId())==rows) {
             e.setWeight(1);
-            entries_pattern++;
           }
         }
 
@@ -96,7 +94,6 @@ public class ColoringBlockSizeReport implements GraphReportExtension {
       case 2:
         for(Edge e:g.getEdges()) {
           e.setWeight(1);
-          entries_pattern++;
         }
         break;
       case 3:
@@ -108,7 +105,6 @@ public class ColoringBlockSizeReport implements GraphReportExtension {
           int ColumnBlock = ColumnCoordinate / blockSize;
           if ((RelativeDistance < blockSize) && (RelativeDistance > -blockSize) && (RowBlock == ColumnBlock)) {
             e.setWeight(1);
-            entries_pattern++;
           }
         }
         break;

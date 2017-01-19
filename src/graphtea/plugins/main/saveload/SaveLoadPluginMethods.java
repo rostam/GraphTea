@@ -15,9 +15,7 @@ import graphtea.plugins.main.saveload.matrix.CopyAsMatrix;
 import graphtea.plugins.main.saveload.matrix.LoadMatrix;
 import graphtea.plugins.main.saveload.matrix.Matrix;
 import graphtea.plugins.main.saveload.matrix.SaveMatrix;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 
