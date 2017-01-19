@@ -3,17 +3,19 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.graph.graph;
-
 import graphtea.platform.StaticUtils;
 import graphtea.platform.lang.FromStringProvider;
-
-import java.awt.geom.Point2D;
 import java.io.Serializable;
 
-public class GPoint extends Point2D.Double implements Serializable, FromStringProvider {
+public class GPoint implements Serializable, FromStringProvider {
     static {
         StaticUtils.setFromStringProvider(GPoint.class.getName(), new GPoint());
     }
+
+    public double x,y;
+
+    public double getX() {return x;}
+    public double getY() {return y;}
 
     private static final long serialVersionUID = -1000000001L;
 
@@ -94,6 +96,16 @@ public class GPoint extends Point2D.Double implements Serializable, FromStringPr
     public double distance(GPoint pt) {
         double PX = pt.getX() - this.getX();
         double PY = pt.getY() - this.getY();
+        return Math.sqrt(PX * PX + PY * PY);
+    }
+
+    public static double distance(double x1, double y1, double x2, double y2) {
+        return distance(new GPoint(x1,y1),new GPoint(x2,y2));
+    }
+
+    public static double distance(GPoint p1, GPoint p2) {
+        double PX = p1.getX() - p2.getX();
+        double PY = p1.getY() - p2.getY();
         return Math.sqrt(PX * PX + PY * PY);
     }
 
