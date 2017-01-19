@@ -18,9 +18,9 @@ public class GSideBarPanel extends javax.swing.JPanel {
     /**
      * Creates new form GSideBarPanel
      *
-     * @param gBody
-     * @param leftPanel
-     * @param label
+     * @param gBody The body
+     * @param leftPanel The left panel
+     * @param label The label
      */
     public GSideBarPanel(GBody gBody, Component leftPanel, String label) {
         initComponents();
@@ -54,11 +54,7 @@ public class GSideBarPanel extends javax.swing.JPanel {
         jButton1.setContentAreaFilled(false);
         jButton1.setIconTextGap(1);
         jButton1.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.addActionListener(this::jButton1ActionPerformed);
         jButton1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jButton1MouseDragged(evt);

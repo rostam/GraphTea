@@ -34,27 +34,23 @@ public class ExtensionConfigFrame extends javax.swing.JFrame {
             helpBtn.setEnabled(false);
         } else {
             if (data.helpURL() != null) {
-                helpBtn.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
+                helpBtn.addActionListener(e1 -> {
 //                        try {
 //                            Browser.browse(new URL(data.helpURL()));
 //                        } catch (MalformedURLException e1) {
 //                            e1.printStackTrace();
 //                        }
 
-                    }
                 });
             }
             if (data.sourceCodeURL() != null) {
-                helpBtn.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
+                helpBtn.addActionListener(e12 -> {
 //                        try {
 //                            Browser.browse(new URL(data.sourceCodeURL()));
 //                        } catch (MalformedURLException e1) {
 //                            e1.printStackTrace();
 //                        }
 
-                    }
                 });
             }
 

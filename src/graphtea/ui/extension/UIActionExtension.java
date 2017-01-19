@@ -9,5 +9,5 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.platform.extension.BasicExtension;
 
 public interface UIActionExtension extends BasicExtension {
-    public void actionPerformed(BlackBoard blackBoard);
+    void actionPerformed(BlackBoard blackBoard);
 }

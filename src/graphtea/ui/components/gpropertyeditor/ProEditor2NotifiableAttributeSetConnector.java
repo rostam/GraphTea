@@ -67,7 +67,7 @@ public class ProEditor2NotifiableAttributeSetConnector implements AttributeListe
         iChangedTheAtr = false;
     }
 
-    HashMap<Integer, String> keyByRow = new HashMap<Integer, String>();
+    HashMap<Integer, String> keyByRow = new HashMap<>();
 
     public void load(NotifiableAttributeSet x) {
         if (x instanceof NotifiableAttributeSetView)

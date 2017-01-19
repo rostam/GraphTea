@@ -47,11 +47,10 @@ public class GMenuBar extends javax.swing.JMenuBar {
         items[items.length - 1] = child;
         sortPlacedComponents(items);
         parent.removeAll();
-        for (int i = 0; i < items.length; i++) {
-            parent.add(items[i], -1);
+        for (Component item : items) {
+            parent.add(item, -1);
         }
         return child;
-//        return
     }
 
     private static Component insert(JMenuBar parent, Component child, int place) {
@@ -63,11 +62,10 @@ public class GMenuBar extends javax.swing.JMenuBar {
         items[items.length - 1] = child;
         sortPlacedComponents(items);
         parent.removeAll();
-        for (int i = 0; i < items.length; i++) {
-            parent.add(items[i], -1);
+        for (Component item : items) {
+            parent.add(item, -1);
         }
         return child;
-//        return
     }
 
     private static int checkPlaceValue(int place, Component child) {

@@ -38,16 +38,16 @@ public class KeyBoardShortCutProvider {
 
     static int extractModifiers(String Acc) {
         Acc = Acc.toLowerCase();
-        boolean isControl = Acc.indexOf("control") != -1;
-        boolean isShift = Acc.indexOf("shift") != -1;
-        boolean isAlt = Acc.indexOf("alt") != -1;
+        boolean isControl = Acc.contains("control");
+        boolean isShift = Acc.contains("shift");
+        boolean isAlt = Acc.contains("alt");
         int control = (isControl ? InputEvent.CTRL_MASK : 0);
         int shift = (isShift ? InputEvent.SHIFT_MASK : 0);
         int alt = (isAlt ? InputEvent.ALT_MASK : 0);
         return control + alt + shift;
     }
 
-    static int extractMnemonics(String priLabel, int index) {
+    private static int extractMnemonics(String priLabel, int index) {
         return priLabel.charAt(index);
     }
 
@@ -58,13 +58,6 @@ public class KeyBoardShortCutProvider {
             return accelerator.charAt(i);
         } else
             return KeyEvent.VK_PLUS;
-    }
-
-    static int extractindex(String index) {
-        if (index != null) {
-            return Integer.parseInt(index);
-        }
-        return 0;
     }
 }
 

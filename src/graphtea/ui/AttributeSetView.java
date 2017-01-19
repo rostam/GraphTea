@@ -20,14 +20,14 @@ import java.util.Set;
  * @author Azin Azadi
  */
 public class AttributeSetView {
-    HashMap<String, Boolean> editable = new HashMap<String, Boolean>();
-    HashMap<String, GBasicCellEditor> editors = new HashMap<String, GBasicCellEditor>();
+    HashMap<String, Boolean> editable = new HashMap<>();
+    HashMap<String, GBasicCellEditor> editors = new HashMap<>();
     final int dlen = 8;
     HashMap[] descriptions = new HashMap[dlen];
     private AttributeSet a = new AttributeSetImpl();
 
     static int dname = 2, desc = 3, cat = 4, index = 5, visible = 6, valid = 7, EDITOR = 8;
-    private HashMap<String, GBasicCellRenderer> renderers = new HashMap<String, GBasicCellRenderer>();
+    private HashMap<String, GBasicCellRenderer> renderers = new HashMap<>();
 
     public AttributeSetView() {
         for (int i = 0; i < dlen; i++) {
@@ -134,7 +134,7 @@ public class AttributeSetView {
     }
 
 
-    HashMap<String, Integer> indices = new HashMap<String, Integer>();
+    HashMap<String, Integer> indices = new HashMap<>();
 
     /**
      * set the index of the attribute, the lower index attributes are put before, in the getNames()

@@ -54,16 +54,8 @@ public class GAttrFrame extends javax.swing.JDialog {
                 closeDialog();
             }
         });
-        okButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                finished(true);
-            }
-        });
-        cancelButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                finished(false);
-            }
-        });
+        okButton.addActionListener(evt -> finished(true));
+        cancelButton.addActionListener(evt -> finished(false));
 
         okButton.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {

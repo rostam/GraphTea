@@ -40,7 +40,7 @@ public class ScaleOutSelection implements GraphActionExtension {
     }
 
     protected void setNewLocation(Vertex v, GraphPoint loc, double x, double y) {
-        v.setLocation(new GraphPoint(loc.x - x * scale, loc.y - y * scale));
+        v.setLocation(new GraphPoint(loc.x - x / scale, loc.y - y / scale));
     }
 
     @Override

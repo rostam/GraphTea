@@ -16,13 +16,12 @@ import java.util.Vector;
 public class ExtensionShellCommandProvider {
     public AbstractExtensionAction ths;
     public Extension trgClass;
-    public CommandAttitude comati;
     public String abrv;
     public String command;
     public String desc;
     public String help;
-    public static HashMap<String, ExtensionShellCommandProvider> commandsDict = new HashMap<String, ExtensionShellCommandProvider>();
-    public static Vector<ExtensionShellCommandProvider> commands = new Vector<ExtensionShellCommandProvider>();
+    public static HashMap<String, ExtensionShellCommandProvider> commandsDict = new HashMap<>();
+    public static Vector<ExtensionShellCommandProvider> commands = new Vector<>();
     public String name;
 
     public ExtensionShellCommandProvider(AbstractExtensionAction ths, Extension trgClass, String name, String abrv, String command, String desc, String help) {
@@ -37,13 +36,13 @@ public class ExtensionShellCommandProvider {
 
     /**
      *
-     * @param ths
-     * @param trg
-     * @param name
-     * @param abrv
-     * @param command
-     * @param desc
-     * @param help
+     * @param ths The corresponding extension action
+     * @param trg The corresponding extension
+     * @param name The name of command
+     * @param abrv The abbreviated form
+     * @param command The command
+     * @param desc The description
+     * @param help The help
      */
     public static void addCommand(AbstractExtensionAction ths, Extension trg, String name, String abrv, String command, String desc, String help) {
         ExtensionShellCommandProvider c = new ExtensionShellCommandProvider(ths, trg, name, abrv, command, desc, help);

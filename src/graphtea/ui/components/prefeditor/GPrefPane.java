@@ -15,7 +15,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 /**
  * @author Rouzbeh Ebrahimi
@@ -45,19 +47,10 @@ public class GPrefPane extends GFrame {
         scrollPane = new javax.swing.JScrollPane();
         list = new JList();
         ok = new JButton("Ok");
-        ok.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                finished(true);
-
-            }
-        });
+        ok.addActionListener(e -> finished(true));
 
         cancel = new JButton("Cancel");
-        cancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                closeDialog();
-            }
-        });
+        cancel.addActionListener(e -> closeDialog());
         apply = new JButton("Apply");
         label = new JLabel("Preferences:");
 
@@ -65,12 +58,7 @@ public class GPrefPane extends GFrame {
 
 //        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTab();
-        Vector<String> refined = new Vector<String>();
-        for (String s : items.keySet()) {
-            if (s != "Only Storable") {
-                refined.add(s);
-            }
-        }
+        Vector<String> refined = items.keySet().stream().filter(s -> !Objects.equals(s, "Only Storable")).collect(Collectors.toCollection(Vector::new));
         final String[] strs = refined.toArray(new String[refined.size()]);
 
         list.setModel(new javax.swing.AbstractListModel() {
@@ -84,11 +72,7 @@ public class GPrefPane extends GFrame {
                 return strings[i];
             }
         });
-        list.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList1ValueChanged(evt);
-            }
-        });
+        list.addListSelectionListener(this::jList1ValueChanged);
 
         scrollPane.setViewportView(list);
 
@@ -203,10 +187,6 @@ public class GPrefPane extends GFrame {
 
         setTab();
     }
-
-    /**
-     * @param args the command line arguments
-     */
 
     private boolean status = false;
     private boolean finished = false;

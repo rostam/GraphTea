@@ -26,7 +26,7 @@ public class GToolbar extends JComponent {
 
     private JToolBar lastToolbar;
 
-    Vector<pair> indices = new Vector<pair>();
+    Vector<pair> indices = new Vector<>();
 
     public Component addIndexed(JToolBar comp, int index) {
         pair o = new pair(comp, index);

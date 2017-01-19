@@ -18,9 +18,6 @@ import java.util.Map;
 
 /**
  * 1- inplace editing and outplace editing
- */
-
-/**
  * @see graphtea.ui.components.gpropertyeditor.GPropertyEditor
  *
  * @author  Azin Azadi

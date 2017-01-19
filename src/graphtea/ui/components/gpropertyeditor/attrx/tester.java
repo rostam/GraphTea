@@ -4,7 +4,6 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.ui.components.gpropertyeditor.attrx;
 
-import graphtea.platform.attribute.AttributeListener;
 import graphtea.platform.lang.ArrayX;
 import graphtea.platform.lang.BoundedInteger;
 import graphtea.ui.AttributeSetView;
@@ -22,11 +21,7 @@ import java.util.Vector;
 public class tester {
     public static void main(String[] args) {
         PortableNotifiableAttributeSetImpl x = new PortableNotifiableAttributeSetImpl();
-        x.addAttributeListener(new AttributeListener() {
-            public void attributeUpdated(String name, Object oldVal, Object newVal) {
-                System.out.println(name + ":" + newVal);
-            }
-        });
+        x.addAttributeListener((name, oldVal, newVal) -> System.out.println(name + ":" + newVal));
         x.put("azin", "azadi");
         x.put("file", new File("c:\\a.txt"));
         Vector a = new Vector();
