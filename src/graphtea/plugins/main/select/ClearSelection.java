@@ -36,7 +36,7 @@ public class ClearSelection extends AbstractAction {
     }
     public void track(){}
 
-    SubGraph sd;
+    private SubGraph sd;
 
     public void performAction(String eventName, Object value) {
         GraphEvent gpd = (GraphEvent) value;

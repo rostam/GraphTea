@@ -26,10 +26,10 @@ public class UndoAction extends AbstractAction {
 
         GraphSaveObject gso = new GraphSaveObject(g);
 
-        redoers.put(g,new Stack<GraphSaveObject>());  //reset redo for this graph
+        redoers.put(g, new Stack<>());  //reset redo for this graph
 
         if(undoers.get(g) == null || undoers.get(g).size() == 0) {
-            undoers.put(g,new Stack<GraphSaveObject>());
+            undoers.put(g, new Stack<>());
             undoers.get(g).push(gso);
             return;
         }
@@ -59,9 +59,7 @@ public class UndoAction extends AbstractAction {
         if(undoers.get(label)== null) return null;
         if(undoers.get(label).size()==0) return null;
         GraphSaveObject temp = undoers.get(label).pop();
-        if(redoers.get(label)== null) {
-            redoers.put(label, new Stack<GraphSaveObject>());
-        }
+        redoers.putIfAbsent(label, new Stack<>());
         redoers.get(label).push(temp);
         return temp;
     }

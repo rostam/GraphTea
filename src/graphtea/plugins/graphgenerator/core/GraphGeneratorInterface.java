@@ -11,5 +11,5 @@ import graphtea.graph.graph.GraphModel;
  * @author Azin Azadi
  */
 public interface GraphGeneratorInterface {
-    public GraphModel generateGraph();
+    GraphModel generateGraph();
 }

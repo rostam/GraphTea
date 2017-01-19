@@ -76,8 +76,8 @@ class BlackBoardDebug extends BlackBoard {
     }
 
     //    HashMap<String, Vertex> knownPlaces=new HashMap<String, Vertex>();
-    HashMap<String, Vertex> knownLogs = new HashMap<String, Vertex>();
-    HashMap<StackTraceElement, Vertex> knownTraces = new HashMap<StackTraceElement, Vertex>();
+    HashMap<String, Vertex> knownLogs = new HashMap<>();
+    HashMap<StackTraceElement, Vertex> knownTraces = new HashMap<>();
 //    public Log getLog(String name) {
 //        addEdge(getCallingMethod(),name);
 //        return super.getLog(name);
@@ -120,16 +120,15 @@ class BlackBoardDebug extends BlackBoard {
         return AddVertex.addVertexToRandomPosition(g);
     }
 
-    HashMap<Vertex, Vertex> methodOwners = new HashMap<Vertex, Vertex>();
-    HashMap<String, Vertex> classes = new HashMap<String, Vertex>();
-    HashMap<String, HashMap<String, Vertex>> methods = new HashMap<String, HashMap<String, Vertex>>();
+    HashMap<Vertex, Vertex> methodOwners = new HashMap<>();
+    HashMap<String, Vertex> classes = new HashMap<>();
+    HashMap<String, HashMap<String, Vertex>> methods = new HashMap<>();
 
     private Vertex getClassVertex(StackTraceElement ste) {
         String clazz = ste.getClassName();
         String method = ste.getMethodName();
         Vertex _class = classes.get(clazz);
-        if (methods.get(clazz) == null)
-            methods.put(clazz, new HashMap<String, Vertex>());
+        methods.putIfAbsent(clazz, new HashMap<>());
         Vertex _method = methods.get(clazz).get(method);
         Vertex _methodParent = methodOwners.get(_method);
         if (_class == null || !g.containsVertex(_class)) {
@@ -153,7 +152,7 @@ class BlackBoardDebug extends BlackBoard {
     private Edge addEdge(StackTraceElement ste, String logName, boolean set, boolean listener) {
         g.setShowChangesOnView(true);
         
-        Edge e = null;
+        Edge e;
         if (set)
             e= AddEdge.doJob(g, getClassVertex(ste), getLogVertex(logName));
         else

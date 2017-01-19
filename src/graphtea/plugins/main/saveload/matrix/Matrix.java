@@ -27,7 +27,7 @@ public class Matrix {
     Object[][] graph2Matrix(BaseGraph<vt, et> g) {
         int n = g.getVerticesCount();
         Object[][] ret = new Object[n][n];
-        HashMap<Integer, vt> m = new HashMap<Integer, vt>();
+        HashMap<Integer, vt> m = new HashMap<>();
         int i = 0;
         for (vt tmp : g) {
             m.put(i++, tmp);
@@ -48,7 +48,7 @@ public class Matrix {
     Object[][] InDegree2Matrix(BaseGraph<vt, et> g) {
         int n = g.getVerticesCount();
         Object[][] ret = new Object[n][n];
-        HashMap<Integer, vt> m = new HashMap<Integer, vt>();
+        HashMap<Integer, vt> m = new HashMap<>();
         int i = 0;
         for (vt vv : g) {
             m.put(i++, vv);
@@ -62,7 +62,7 @@ public class Matrix {
     Object[][] OutDegree2Matrix(BaseGraph<vt, et> g) {
         int n = g.getVerticesCount();
         Object[][] ret = new Object[n][n];
-        HashMap<Integer, vt> m = new HashMap<Integer, vt>();
+        HashMap<Integer, vt> m = new HashMap<>();
         int i = 0;
         for (vt vv : g) {
             m.put(i++, vv);

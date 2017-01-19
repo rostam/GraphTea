@@ -31,18 +31,16 @@ public class DeleteSelected implements GraphActionExtension {
      */
     public DeleteSelected(BlackBoard bb) {
         this.blackboard = bb;
-        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventPostProcessor(new KeyEventPostProcessor() {
-            public boolean postProcessKeyEvent(KeyEvent e) {
-                AbstractGraphRenderer gv = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
-                Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
-                if (gv == focusOwner) {
-                    if (e.getKeyCode() == KeyEvent.VK_DELETE) {
-                        action(new GraphData(blackboard));
-                        return true;
-                    }
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventPostProcessor(e -> {
+            AbstractGraphRenderer gv = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
+            Component focusOwner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+            if (gv == focusOwner) {
+                if (e.getKeyCode() == KeyEvent.VK_DELETE) {
+                    action(new GraphData(blackboard));
+                    return true;
                 }
-                return false;
             }
+            return false;
         });
 
     }
@@ -64,18 +62,12 @@ public class DeleteSelected implements GraphActionExtension {
         if (selection.edges.isEmpty() && selection.vertices.isEmpty())
             return;
 
-        HashSet<Edge> edges = new HashSet<Edge>();
-        for (Edge e : selection.edges) {
-            edges.add(e);
-        }
-        HashSet<Vertex> vertices = new HashSet<Vertex>();
-        for (Vertex v : selection.vertices) {
-            vertices.add(v);
-        }
-
-        for (Edge e : selection.edges)
-            g.removeEdge(e);
-        Vector<Edge> ed = new Vector<Edge>();
+        HashSet<Edge> edges = new HashSet<>();
+        edges.addAll(selection.edges);
+        HashSet<Vertex> vertices = new HashSet<>();
+        vertices.addAll(selection.vertices);
+        selection.edges.forEach(g::removeEdge);
+        Vector<Edge> ed = new Vector<>();
         for (Vertex v : selection.vertices) {
             Iterator<Edge> ie = g.edgeIterator(v);
             while (ie.hasNext()) {

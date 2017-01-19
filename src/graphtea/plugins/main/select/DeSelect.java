@@ -12,6 +12,8 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.core.actions.edge.EdgeSelectData;
 import graphtea.plugins.main.core.actions.vertex.VertexSelectData;
 
+import java.util.Objects;
+
 /**
  * Author: Azin Azadi
  */
@@ -31,9 +33,9 @@ public class DeSelect extends AbstractAction {
     public void track(){}
 
     public void performAction(String eventName, Object value) {
-        if (eventName == VertexSelectData.EVENT_KEY)
+        if (Objects.equals(eventName, VertexSelectData.EVENT_KEY))
             selectVertex();
-        if (eventName == EdgeSelectData.EVENT_KEY)
+        if (Objects.equals(eventName, EdgeSelectData.EVENT_KEY))
             selectEdge();
     }
 

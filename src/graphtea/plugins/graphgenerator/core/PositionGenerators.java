@@ -72,7 +72,7 @@ public class PositionGenerators {
         return ret;
     }
 
-    public static Point[] shift(Point[] input, int xOffset, int yOffset) {
+    private static Point[] shift(Point[] input, int xOffset, int yOffset) {
         for (Point p : input) {
             p.x += xOffset;
             p.y += yOffset;

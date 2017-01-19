@@ -17,12 +17,12 @@ import java.awt.*;
 
  */
 public interface SimpleGeneratorInterface {
-    public void setWorkingGraph(GraphModel g);
+    void setWorkingGraph(GraphModel g);
 
-    public Vertex[] getVertices();
+    Vertex[] getVertices();
 
-    public Edge[] getEdges();
+    Edge[] getEdges();
 
     //todo: make it return GraphPoint
-    public Point[] getVertexPositions();
+    Point[] getVertexPositions();
 }

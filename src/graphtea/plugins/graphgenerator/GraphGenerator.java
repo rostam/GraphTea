@@ -27,11 +27,10 @@ public class GraphGenerator implements PluginMethods {
     /**
      * first request a GUI rectangular region from user and then generates and adds a graph from gen to current working graph
      *
-     * @param gen
-     * @param blackboard
+     * @param gen The generator interface
+     * @param blackboard The blackboard
      */
     public static void generateInRectangularBounds(final GraphGeneratorInterface gen, final BlackBoard blackboard) {
-//        long
         blackboard.setData(AddVertex.DISABLE, true);
 
         //select a region and then generate the graph
@@ -60,8 +59,8 @@ public class GraphGenerator implements PluginMethods {
     /**
      * generates and adds a graph from gen to current working graph
      *
-     * @param gen
-     * @param blackboard
+     * @param gen The generator interface
+     * @param blackboard The blackboard
      */
     public static void generateGraph(final GraphGeneratorInterface gen, final BlackBoard blackboard, final Rectangle rect) {
         //                            g.view.ignoreUpdates = true;
@@ -73,11 +72,9 @@ public class GraphGenerator implements PluginMethods {
             rect.height = 550;
         new Thread() {
             public void run() {
-                ren.ignoreRepaints(new Runnable() {
-                    public void run() {
-                        generateGraphInRect(blackboard, gen, rect);
-                        blackboard.setData(AddVertex.DISABLE, false);
-                    }
+                ren.ignoreRepaints(() -> {
+                    generateGraphInRect(blackboard, gen, rect);
+                    blackboard.setData(AddVertex.DISABLE, false);
                 });
 
             }
@@ -177,7 +174,7 @@ public class GraphGenerator implements PluginMethods {
     }
 
     /**
-     * @see graphtea.extensions.generators.RandomGenerator#generateRandomGraph(int)
+     * @see graphtea.extensions.generators.RandomGenerator#generateRandomGraph(int,int)
      */
     public static GraphModel generateRandomGraph(int n, int e) {
         return RandomGenerator.generateRandomGraph(n, e);

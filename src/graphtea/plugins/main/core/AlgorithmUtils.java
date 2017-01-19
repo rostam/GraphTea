@@ -76,10 +76,10 @@ public class AlgorithmUtils {
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     ArrayList<ArrayList<Integer>> getAdjList(BaseGraph<VertexType, EdgeType> g) {
         double[][] mat = g.getAdjacencyMatrix().getArray();
-        ArrayList<ArrayList<Integer>> alist = new ArrayList();
+        ArrayList<ArrayList<Integer>> alist = new ArrayList<>();
         int vCount = mat.length;
         for (int i = 0; i < vCount; i++) {
-            ArrayList<Integer> adjacencyList = new ArrayList();
+            ArrayList<Integer> adjacencyList = new ArrayList<>();
             for (int j = 0; j < vCount; j++)
                 if (mat[i][j] == 1)
                     adjacencyList.add(j);
@@ -116,7 +116,7 @@ public class AlgorithmUtils {
      */
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     ArrayList<VertexType> getNeighbors(BaseGraph<VertexType, EdgeType> g, VertexType source) {
-        ArrayList<VertexType> ret = new ArrayList<VertexType>();
+        ArrayList<VertexType> ret = new ArrayList<>();
         Iterator<EdgeType> ie = g.edgeIterator(source);
         while (ie.hasNext()) {
             EdgeType e = ie.next();
@@ -135,7 +135,7 @@ public class AlgorithmUtils {
      */
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     ArrayList<VertexType> getNeighbors2(BaseGraph<VertexType, EdgeType> g, VertexType source) {
-        ArrayList<VertexType> ret = new ArrayList<VertexType>();
+        ArrayList<VertexType> ret = new ArrayList<>();
         Iterator<EdgeType> ie = g.edgeIterator(source);
         while (ie.hasNext()) {
             EdgeType e = ie.next();
@@ -155,7 +155,7 @@ public class AlgorithmUtils {
     Path<VertexType> getPath(BaseGraph<VertexType, EdgeType> g, VertexType source, VertexType dest) {
         boolean vertexMarksBackup[] = LibraryUtils.getVertexMarks(g);
         clearVertexMarks(g);
-        Vector<VertexType> q = new Vector<VertexType>();
+        Vector<VertexType> q = new Vector<>();
         q.add(source);
         source.setMark(true);
 
@@ -182,7 +182,7 @@ public class AlgorithmUtils {
         }
 
         //extract the path
-        Path<VertexType> ret = new Path<VertexType>();
+        Path<VertexType> ret = new Path<>();
 
         int did = dest.getId();
         ret.insert(dest);
@@ -264,9 +264,8 @@ public class AlgorithmUtils {
      * performs a full BFS on graph, it selects the vertices with minimum degrees as the
      * roots of the resulting forest
      *
-     * @param unRootedTree
-     * @param listener
-     * @return
+     * @param unRootedTree An unrooted tree
+     * @param listener The listener
      */
     public static <Vertex extends BaseVertex, Edge extends BaseEdge<Vertex>>
     void BFS(BaseGraph<Vertex, Edge> unRootedTree, BFSListener<Vertex> listener) {
@@ -284,16 +283,16 @@ public class AlgorithmUtils {
      * performs a bfs on the given root,
      * this method changes vertex marks, and also marked vertices will not be traversed
      *
-     * @param unRootedTree
-     * @param treeRoot
-     * @param listener
-     * @return
+     * @param unRootedTree An unrooted tree
+     * @param treeRoot The tree root
+     * @param listener The listener
+     * @return The results of the BFS algorithm
      */
     public static <Vertex extends BaseVertex, Edge extends BaseEdge<Vertex>>
     ArrayList<Vertex> BFS(BaseGraph<Vertex, Edge> unRootedTree, Vertex treeRoot, BFSListener<Vertex> listener) {
         //do a bfs on the subTreeRoot
-        ArrayList<Vertex> q = new ArrayList<Vertex>();
-        ArrayList<Vertex> ret = new ArrayList<Vertex>();
+        ArrayList<Vertex> q = new ArrayList<>();
+        ArrayList<Vertex> ret = new ArrayList<>();
         q.add(treeRoot);
         ret.add(treeRoot);
         treeRoot.setMark(true);
@@ -483,7 +482,7 @@ public class AlgorithmUtils {
      */
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     ArrayList<Integer> getDegreesList(BaseGraph<VertexType, EdgeType> g) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
+        ArrayList<Integer> result = new ArrayList<>();
         int vCount = g.getVertexArray().length;
         for (int i = 0; i < vCount; i++)
             result.add(getDegree(g, i));
@@ -491,12 +490,12 @@ public class AlgorithmUtils {
     }
 
     public interface BFSListener<Vertex extends BaseVertex> {
-        public void visit(Vertex v, Vertex parent);
+        void visit(Vertex v, Vertex parent);
     }
 
     /**
-     * @param p1
-     * @param p2
+     * @param p1 The first point
+     * @param p2 The second point
      * @return a point whose x and y are average of the given graph points.
      */
     public static GraphPoint getMiddlePoint(GraphPoint p1, GraphPoint p2) {

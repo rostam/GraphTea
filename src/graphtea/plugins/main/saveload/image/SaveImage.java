@@ -22,7 +22,7 @@ import java.io.File;
  */
 public class SaveImage implements GraphWriterExtension, Parametrizable {
     @UserModifiableProperty(displayName = "Default Image Extension")
-    @Parameter(name = "File Extension", description = "")
+    @Parameter(name = "File Extension", description = "The file extension for the output.")
     public static String extension = "png";
 
     /**

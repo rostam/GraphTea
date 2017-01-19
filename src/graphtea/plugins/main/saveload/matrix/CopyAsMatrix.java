@@ -35,7 +35,7 @@ public class CopyAsMatrix extends AbstractAction {
 
     public void performAction(String eventName, Object value) {
         SubGraph sd = Select.getSelection(blackboard);
-        copyAsMatrix(((GraphModel) blackboard.getData(GraphAttrSet.name)), sd);
+        copyAsMatrix(blackboard.getData(GraphAttrSet.name), sd);
     }
 
     /**
@@ -44,9 +44,9 @@ public class CopyAsMatrix extends AbstractAction {
     public static void copyAsMatrix(GraphModel gg, SubGraph sd) {
         GraphModel g = new GraphModel(gg.isDirected());
         moveToGraph(sd, g);
-        Object[][] m = WeightedMatrix.graph2Matrix(g);
+        Object[][] m = Matrix.graph2Matrix(g);
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-        String data = WeightedMatrix.Matrix2String(m);
+        String data = Matrix.Matrix2String(m);
         StringSelection string = new StringSelection(data);
         cb.setContents(string, string);
 //        moveToGraph(sd, gg);

@@ -20,9 +20,6 @@ import java.io.IOException;
  * @author Azin Azadi
  */
 public class Image {
-//    public static void SaveGraph2Image(GraphModel g){
-    //
-    //    }
     static boolean debug = false;
 
     public static BufferedImage Graph2Image(AbstractGraphRenderer gv, GraphModel gm) {
@@ -36,7 +33,7 @@ public class Image {
         gr.translate(-r.x, -r.y);
 //        if (gv.getMiny() < 0)
         gr.translate(gv.getMinx(), gv.getMiny());
-        gv.paint((Graphics) gr);
+        gv.paint(gr);
         if (debug) System.out.println("bi painted");
         gr.translate(r.x, r.y);
         return bi;

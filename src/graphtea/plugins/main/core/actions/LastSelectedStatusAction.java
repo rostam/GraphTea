@@ -54,8 +54,8 @@ public class LastSelectedStatusAction extends graphtea.platform.core.AbstractAct
     /**
      * like Action
      *
-     * @param eventName
-     * @param value
+     * @param eventName The event name
+     * @param value The value
      */
     public void performAction(String eventName, Object value) {
         l = label();

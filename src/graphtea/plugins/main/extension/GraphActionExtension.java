@@ -11,5 +11,5 @@ import graphtea.platform.extension.Extension;
 
  */
 public interface GraphActionExtension extends Extension, GraphActionInterface {
-    public String getCategory();
+    String getCategory();
 }

@@ -63,7 +63,7 @@ public class SaveLoadPluginMethods implements PluginMethods {
      */
     public void saveAsImage(File file, String format) {
         format = format.replaceAll(".", "");
-        Image.save(Image.Graph2Image((AbstractGraphRenderer) blackboard.getData(AbstractGraphRenderer.EVENT_KEY), getGraph()), file, format);
+        Image.save(Image.Graph2Image(blackboard.getData(AbstractGraphRenderer.EVENT_KEY), getGraph()), file, format);
 
     }
 
@@ -89,7 +89,7 @@ public class SaveLoadPluginMethods implements PluginMethods {
     /**
      * copies the Vertices and Edges as a graph to clipboard
      *
-     * @param sd
+     * @param sd The given selected subgraph
      */
     //todo: move this to ccp (Rousbeh)
     public void copySelectedAsMatrix(SubGraph sd) {
@@ -97,8 +97,7 @@ public class SaveLoadPluginMethods implements PluginMethods {
     }
 
     private GraphModel getGraph() {
-        GraphModel g = blackboard.getData(GraphAttrSet.name);
-        return g;
+        return blackboard.getData(GraphAttrSet.name);
     }
 
     /**

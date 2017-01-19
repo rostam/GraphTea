@@ -58,9 +58,9 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
 
     AttributeSetView selectView = new AttributeSetView();
 
-    HashSet<String> hiddenVertexAttributes = new HashSet<String>();
+    HashSet<String> hiddenVertexAttributes = new HashSet<>();
 
-    HashSet<String> hiddenEdgeAttributes = new HashSet<String>();
+    HashSet<String> hiddenEdgeAttributes = new HashSet<>();
 
     PortableNotifiableAttributeSetImpl xx = new PortableNotifiableAttributeSetImpl();
 

@@ -29,7 +29,7 @@ public class InvertSelection extends AbstractAction {
     }
 
     public void performAction(String eventName, Object value) {
-        GraphModel g = ((GraphModel) (blackboard.getData(GraphAttrSet.name)));
+        GraphModel g = blackboard.getData(GraphAttrSet.name);
         SubGraph sd = getSelection();
         Iterator<Vertex> vertices = g.iterator();
         Iterator<Edge> edges = g.lightEdgeIterator();

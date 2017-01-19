@@ -28,22 +28,22 @@ public interface GraphReaderInterface {
      *
      * @return the Name
      */
-    public String getName();
+    String getName();
 
     /**
      * Retrieves the file extension for the file type. Example: "xml", "gr".
      *
      * @return the Extension
      */
-    public String getExtension();
+    String getExtension();
 
     /**
      * Reads the file and enters the data in the graph. The method gets an empty graph,
      * and initializes it with the data from the file.
      *
-     * @param file
+     * @param file The input file
      * @throws GraphIOException In the case of the reader error.
      * @throws IOException      - In the case of the IO error.
      */
-    public GraphModel read(File file) throws GraphIOException;
+    GraphModel read(File file) throws GraphIOException;
 }

@@ -22,7 +22,7 @@ public class SaveWeightedMatrix implements GraphWriterExtension {
      */
     public static void saveMatrix(GraphModel g, File file) throws IOException {
         FileWriter output = new FileWriter(file);
-        output.write(WeightedMatrix.Matrix2String(WeightedMatrix.graph2Matrix(g)));
+        output.write(Matrix.Matrix2String(Matrix.graph2Matrix(g)));
         output.close();
     }
 

@@ -20,7 +20,7 @@ import java.util.HashMap;
 public class GraphmlHandlerImpl implements GraphmlHandler {
 
     public static final boolean DEBUG = false;
-    public HashMap<String, Vertex> vByID = new HashMap<String, Vertex>();
+    public HashMap<String, Vertex> vByID = new HashMap<>();
 
 
     public GraphModel g;
@@ -56,9 +56,9 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
         return g;
     }
 
-    public static HashMap<String, String> graphMLGraphKeys = new HashMap<String, String>();
-    public static HashMap<String, String> graphMLVertexKeys = new HashMap<String, String>();
-    public static HashMap<String, String> graphMLEdgeKeys = new HashMap<String, String>();
+    public static HashMap<String, String> graphMLGraphKeys = new HashMap<>();
+    public static HashMap<String, String> graphMLVertexKeys = new HashMap<>();
+    public static HashMap<String, String> graphMLEdgeKeys = new HashMap<>();
 
     public void handle_key(final java.lang.String data, final Attributes meta) throws SAXException {
         String s = meta.getValue("for");
@@ -119,12 +119,8 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
 
     public void start_node(final Attributes meta) throws SAXException {
         String id = meta.getValue("id");
-        Integer iid = Integer.parseInt(id);
         Vertex v = new Vertex();
-//        v.putAtr(Vertex.ID, iid);
-
-
-        vByID.put("" + id, v);
+        vByID.put(id, v);
         curv = v;
         curvAS = new VertexAttrSet(curv);
         if (DEBUG)

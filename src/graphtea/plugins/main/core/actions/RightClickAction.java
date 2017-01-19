@@ -34,7 +34,7 @@ public class RightClickAction implements BasicExtension, Listener {
     BlackBoard b;
     GraphData gd;
     private JPopupMenu popup = new JPopupMenu();
-    public HashMap<String, GraphActionInterface> menus = new HashMap<String, GraphActionInterface>();
+    public HashMap<String, GraphActionInterface> menus = new HashMap<>();
 
     public RightClickAction(BlackBoard b) {
         this.b = b;

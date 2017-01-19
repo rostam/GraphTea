@@ -19,14 +19,14 @@ public interface GraphWriterInterface {
      *
      * @return the Name
      */
-    public String getName();
+    String getName();
 
     /**
      * Retrieves the file extension for the file type. Example: "xml", "gr".
      *
      * @return the Extension
      */
-    public String getExtension();
+    String getExtension();
 
     /**
      * Writes the graph to the file.
@@ -35,5 +35,5 @@ public interface GraphWriterInterface {
      * @param graph the graph
      * @throws GraphIOException In the case of the writer error.
      */
-    public void write(File file, GraphModel graph) throws GraphIOException;
+    void write(File file, GraphModel graph) throws GraphIOException;
 }

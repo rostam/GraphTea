@@ -43,11 +43,9 @@ public class StatusBarMessage extends AbstractAction implements GComponentInterf
      */
     public static void showQuickMessage(final BlackBoard b, String message) {
         setLabelMessage(b, message);
-        t = new Timer(3000, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                t.stop();
-                setLabelMessage(b, "");
-            }
+        t = new Timer(3000, e -> {
+            t.stop();
+            setLabelMessage(b, "");
         });
         t.start();
     }

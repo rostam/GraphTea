@@ -12,5 +12,5 @@ import graphtea.plugins.main.GraphData;
 
  */
 public interface GraphActionInterface {
-    public void action(GraphData graphData);
+    void action(GraphData graphData);
 }

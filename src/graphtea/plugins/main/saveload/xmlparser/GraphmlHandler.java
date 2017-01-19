@@ -15,26 +15,26 @@ public interface GraphmlHandler {
      * @param data value or null
      * @param meta attributes
      */
-    public void handle_key(final java.lang.String data, final Attributes meta) throws SAXException;
+    void handle_key(final java.lang.String data, final Attributes meta) throws SAXException;
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    public void start_edge(final Attributes meta) throws SAXException;
+    void start_edge(final Attributes meta) throws SAXException;
 
     /**
      * A container element end event handling method.
      */
-    public void end_edge() throws SAXException;
+    void end_edge() throws SAXException;
 
     /**
      * An empty element event handling method.
      *
-     * @param data value or null
+     * @param meta value or null
      */
-    public void handle_locator(final Attributes meta) throws SAXException;
+    void handle_locator(final Attributes meta) throws SAXException;
 
     /**
      * A data element event handling method.
@@ -42,79 +42,79 @@ public interface GraphmlHandler {
      * @param data value or null
      * @param meta attributes
      */
-    public void handle_data(final java.lang.String data, final Attributes meta) throws SAXException;
+    void handle_data(final java.lang.String data, final Attributes meta) throws SAXException;
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    public void start_node(final Attributes meta) throws SAXException;
+    void start_node(final Attributes meta) throws SAXException;
 
     /**
      * A container element end event handling method.
      */
-    public void end_node() throws SAXException;
+    void end_node() throws SAXException;
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    public void start_graph(final Attributes meta) throws SAXException;
+    void start_graph(final Attributes meta) throws SAXException;
 
     /**
      * A container element end event handling method.
      */
-    public void end_graph() throws SAXException;
+    void end_graph() throws SAXException;
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    public void start_endpoint(final Attributes meta) throws SAXException;
+    void start_endpoint(final Attributes meta) throws SAXException;
 
     /**
      * A container element end event handling method.
      */
-    public void end_endpoint() throws SAXException;
+    void end_endpoint() throws SAXException;
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    public void start_graphml(final Attributes meta) throws SAXException;
+    void start_graphml(final Attributes meta) throws SAXException;
 
     /**
      * A container element end event handling method.
      */
-    public void end_graphml() throws SAXException;
+    void end_graphml() throws SAXException;
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    public void start_hyperedge(final Attributes meta) throws SAXException;
+    void start_hyperedge(final Attributes meta) throws SAXException;
 
     /**
      * A container element end event handling method.
      */
-    public void end_hyperedge() throws SAXException;
+    void end_hyperedge() throws SAXException;
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    public void start_port(final Attributes meta) throws SAXException;
+    void start_port(final Attributes meta) throws SAXException;
 
     /**
      * A container element end event handling method.
      */
-    public void end_port() throws SAXException;
+    void end_port() throws SAXException;
 
     /**
      * A data element event handling method.
@@ -122,5 +122,5 @@ public interface GraphmlHandler {
      * @param data value or null
      * @param meta attributes
      */
-    public void handle_desc(final java.lang.String data, final Attributes meta) throws SAXException;
+    void handle_desc(final java.lang.String data, final Attributes meta) throws SAXException;
 }

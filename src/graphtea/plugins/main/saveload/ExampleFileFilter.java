@@ -101,9 +101,9 @@ public class ExampleFileFilter extends FileFilter {
      */
     public ExampleFileFilter(String[] filters, String description) {
         this();
-        for (int i = 0; i < filters.length; i++) {
+        for (String filter : filters) {
             // add filters one by one
-            addExtension(filters[i]);
+            addExtension(filter);
         }
         if (description != null) setDescription(description);
     }
@@ -115,7 +115,7 @@ public class ExampleFileFilter extends FileFilter {
      * Files that begin with "." are ignored.
      *
      * @see graphtea.plugins.main.saveload.SaveLoadPluginMethods#getExtension
-     * @see FileFilter#accepts
+     * @see FileFilter#accept
      */
     public boolean accept(File f) {
         if (f != null) {
@@ -126,7 +126,6 @@ public class ExampleFileFilter extends FileFilter {
             if (extension != null && filters.get(SaveLoadPluginMethods.getExtension(f)) != null) {
                 return true;
             }
-            ;
         }
         return false;
     }
