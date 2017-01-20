@@ -28,7 +28,6 @@ public class IterableRenderer implements GBasicCellRenderer<Iterable> {
         int h = 0;
 //        final JPanel p = new JPanel(layout);
         Vector v = new Vector();
-        Component ren = null;
         for (Object o : value) {
             v.add(o);
             n++;

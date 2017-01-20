@@ -34,18 +34,14 @@ public class MemoryUsageStatusAction extends graphtea.platform.core.AbstractActi
     /**
      * called when the variable bname is changed
      *
-     * @param eventName
-     * @param value
+     * @param eventName The event name
+     * @param value The value
      */
     public void performAction(String eventName, Object value) {
         button = blackboard.getData(bname);
         button.setToolTipText("Press to free the memory");
         button.setBorder(new EmptyBorder(0, 0, 0, 0));
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.gc();
-            }
-        });
+        button.addActionListener(e -> System.gc());
     }
 
     /**

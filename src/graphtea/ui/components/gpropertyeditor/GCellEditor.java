@@ -137,7 +137,7 @@ class ObjectEditor extends GStringEditor {
     public Object getEditorValue() {
         String s = super.getEditorValue() + "";
 
-        Object o = null;
+        Object o;
         try {
             o = StaticUtils.fromString(clazz.getName(), s);
         } catch (Exception e) {

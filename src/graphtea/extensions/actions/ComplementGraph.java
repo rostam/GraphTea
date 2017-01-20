@@ -11,7 +11,6 @@ import graphtea.graph.graph.Vertex;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
-
 /**
  * Creates a line graph from the current graph and shows it in a new tab
  *

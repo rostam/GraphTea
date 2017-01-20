@@ -24,7 +24,6 @@ public class ShowAboutDialog extends graphtea.platform.core.AbstractAction {
         listen4Event(UIUtils.getUIEventKey("show about"));
     }
 
-
     public void performAction(String eventName, Object value) {
         StaticUtils.browse("http://graphtheorysoftware.com");
     }

@@ -15,7 +15,6 @@ import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.*;

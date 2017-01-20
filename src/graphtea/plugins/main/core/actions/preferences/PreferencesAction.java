@@ -39,7 +39,7 @@ public class PreferencesAction extends AbstractAction implements StorableOnExit 
 
 
     private void managePrefUI() {
-        HashMap<String, AbstractPreference> tabs = new HashMap<String, AbstractPreference>();
+        HashMap<String, AbstractPreference> tabs = new HashMap<>();
         Iterator<AbstractPreference> iterator = pref.set.iterator();
 
         for (; iterator.hasNext();) {

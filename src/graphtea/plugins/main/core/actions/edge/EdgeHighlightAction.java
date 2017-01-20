@@ -6,7 +6,6 @@ package graphtea.plugins.main.core.actions.edge;
 
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
-
 /**
  * User: Shabn
  */
