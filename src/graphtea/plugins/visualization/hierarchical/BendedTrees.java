@@ -6,14 +6,13 @@ package graphtea.plugins.visualization.hierarchical;
 
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.visualization.corebasics.animator.GeneralAnimator;
 import graphtea.ui.UIUtils;
-
-import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
@@ -24,8 +23,8 @@ import java.util.Vector;
 public class BendedTrees extends AbstractAction {
     String event = UIUtils.getUIEventKey("BendedTrees");
     public Vector<Vertex> visitedVertices = new Vector<>();
-    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<>();
-    public HashMap<Edge, Vector<Point2D>> edgeBendPoints = new HashMap<>();
+    public HashMap<Vertex, GPoint> vertexPlaces = new HashMap<>();
+    public HashMap<Edge, Vector<GPoint>> edgeBendPoints = new HashMap<>();
     public Vector<Vertex> children = new Vector<>();
     public GraphModel graph;
 
@@ -125,11 +124,11 @@ public class BendedTrees extends AbstractAction {
         Iterator<Edge> ei = graph.edgeIterator();
         for (; ei.hasNext();) {
             Edge e = ei.next();
-            Point2D d1 = vertexPlaces.get(e.target);
-            Point2D d2 = vertexPlaces.get(e.source);
-            Vector<Point2D> bendPoints = new Vector<>();
-            bendPoints.add(new Point2D.Double(d1.getX(), d1.getY() - 15));
-            bendPoints.add(new Point2D.Double(d2.getX(), d2.getY() + 15));
+            GPoint d1 = vertexPlaces.get(e.target);
+            GPoint d2 = vertexPlaces.get(e.source);
+            Vector<GPoint> bendPoints = new Vector<>();
+            bendPoints.add(new GPoint(d1.getX(), d1.getY() - 15));
+            bendPoints.add(new GPoint(d2.getX(), d2.getY() + 15));
             edgeBendPoints.put(e, bendPoints);
         }
     }
@@ -145,11 +144,11 @@ public class BendedTrees extends AbstractAction {
 
         for (Vertex v : currentLevelVertices) {
             if (nextLevelCount != 0) {
-                Point2D.Double newPoint = new Point2D.Double(horizontalDist * (i + 1) + width / (nextLevelCount + currentLevelCount), currentLevelHeight);
+                GPoint newPoint = new GPoint(horizontalDist * (i + 1) + width / (nextLevelCount + currentLevelCount), currentLevelHeight);
                 vertexPlaces.put(v, newPoint);
                 i += g.getInDegree(v);
             } else {
-                Point2D.Double newPoint = new Point2D.Double(horizontalDist * (i) + width / (currentLevelCount), currentLevelHeight);
+                GPoint newPoint = new GPoint(horizontalDist * (i) + width / (currentLevelCount), currentLevelHeight);
                 vertexPlaces.put(v, newPoint);
                 i++;
             }

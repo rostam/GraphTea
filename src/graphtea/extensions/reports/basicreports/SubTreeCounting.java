@@ -23,7 +23,8 @@ import static graphtea.extensions.Utils.choose;
 @CommandAttitude(name = "num_of_stars", abbreviation = "_noss")
 public class SubTreeCounting implements GraphReportExtension {
     public Object calculate(GraphModel g) {
-        RenderTable ret = new RenderTable();
+        RenderTable ret = new RenderTable(2);
+        Vector<String> titles = new Vector<>();
         Vector<Object> elem = new Vector<>();
 
         double maxDeg = 0;
@@ -32,11 +33,12 @@ public class SubTreeCounting implements GraphReportExtension {
                 maxDeg = g.getDegree(v);
         }
 
-        elem.add("D(i,j)");
+        titles.add("D(i,j)");
+        ret.setTitles(titles);
         for(int i=1;i<=maxDeg;i++) {
-            elem.add("" + i);
+            titles.add("" + i);
         }
-        ret.add(elem);
+        ret.setTitles(titles);
 
         for(int i=1;i<=maxDeg;i++) {
             Vector<Object> tmp = new Vector<>();
@@ -77,7 +79,6 @@ public class SubTreeCounting implements GraphReportExtension {
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "Subtree Counting ";
 	}
 

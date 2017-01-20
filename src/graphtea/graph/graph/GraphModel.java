@@ -321,16 +321,16 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	/**
 	 * @return the smallest rectangle that fits arround graph without considering the ZOOM
 	 */
-	public Rectangle2D.Double getAbsBounds() {
-		Rectangle2D.Double ret = new Rectangle2D.Double();
+	public GRect getAbsBounds() {
+		GRect ret = new GRect();
 		boolean first = true;
 		for (Vertex v : this) {
 			GPoint location = v.getLocation();
 			Point center = v.getCenter();
 			GPoint shapeSize = v.getSize();
-			Rectangle2D.Double p = new Rectangle2D.Double(location.x * zoomFactor - center.x, location.y * zoomFactor - center.y, shapeSize.x, shapeSize.y);
+			GRect p = new GRect(location.x * zoomFactor - center.x, location.y * zoomFactor - center.y, shapeSize.x, shapeSize.y);
 			if (first) {
-				ret = new Rectangle2D.Double(p.x, p.y, 0, 0);
+				ret = new GRect(p.x, p.y, 0, 0);
 				first = false;
 			}
 			ret.add(p);
@@ -339,16 +339,16 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	}
 
 	/**
-	 * @return the smallest rectangle that fits arround graph with considering zoom
+	 * @return the smallest rectangle that fits around graph with considering zoom
 	 */
-	public Rectangle2D.Double getZoomedBounds() {
-		Rectangle2D.Double ret = new Rectangle2D.Double();
+	public GRect getZoomedBounds() {
+		GRect ret = new GRect();
 		boolean first = true;
 		for (Vertex v : this) {
 			GPoint location = v.getLocation();
 			Point center = v.getCenter();
 			GPoint shapeSize = v.getSize();
-			Rectangle2D.Double p = new Rectangle2D.Double(location.x * zoomFactor - center.x, location.y * zoomFactor - center.y, shapeSize.x, shapeSize.y);
+			GRect p = new GRect(location.x * zoomFactor - center.x, location.y * zoomFactor - center.y, shapeSize.x, shapeSize.y);
 
 			if (first) {
 				ret = p;
@@ -425,10 +425,10 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	 * @param _rect The bounds of selection for the subgraph
 	 */
 	public void addSubGraph(GraphModel graph, Rectangle _rect) {
-		Rectangle2D.Double bounds1 = graph.getZoomedBounds();
-		Rectangle2D.Double rect = new Rectangle2D.Double(_rect.getX(), _rect.getY(), _rect.getWidth(), _rect.getHeight());
-		double kx = rect.width / bounds1.getWidth();
-		double ky = rect.height / bounds1.getHeight();
+		GRect bounds1 = graph.getZoomedBounds();
+		GRect rect = new GRect(_rect.getX(), _rect.getY(), _rect.getWidth(), _rect.getHeight());
+		double kx = rect.w / bounds1.getWidth();
+		double ky = rect.h / bounds1.getHeight();
 		for (Vertex vm : graph) {
 			GPoint p = vm.getLocation();
 			insertVertex(vm);

@@ -7,9 +7,6 @@ package graphtea.graph.graph;
 
 import graphtea.graph.event.GraphModelListener;
 import graphtea.library.util.Pair;
-
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
 //todo: it can not handle the cas hat vertex positions are changed. unusable
@@ -45,7 +42,7 @@ public class GraphControlGrid implements GraphModelListener {
 
     int planeDivisions = 10;
 
-    Rectangle2D.Double gbounds;
+    GRect gbounds;
 
 
     public GraphControlGrid(GraphModel g) {
@@ -64,25 +61,25 @@ public class GraphControlGrid implements GraphModelListener {
             refresh();
             refresh = false;
         }
-        if (p.x < gbounds.x || p.y < gbounds.y || p.x > gbounds.x + gbounds.width || p.y > gbounds.y + gbounds.height)
+        if (p.x < gbounds.x || p.y < gbounds.y || p.x > gbounds.x + gbounds.w || p.y > gbounds.y + gbounds.h)
             return new Pair<Edge, Double>(null, 100000d);
-        int ix = (int) ((p.x - gbounds.x) / gbounds.width * planeDivisions);
-        int iy = (int) ((p.y - gbounds.y) / gbounds.height * planeDivisions);
+        int ix = (int) ((p.x - gbounds.x) / gbounds.w * planeDivisions);
+        int iy = (int) ((p.y - gbounds.y) / gbounds.h * planeDivisions);
 
         if (p.x < gbounds.x)
             ix = 0;
         if (p.y < gbounds.y)
             iy = 0;
-        if (p.x > gbounds.x + gbounds.width)
+        if (p.x > gbounds.x + gbounds.w)
             ix = planeDivisions - 1;
-        if (p.y > gbounds.y + gbounds.height)
+        if (p.y > gbounds.y + gbounds.h)
             iy = planeDivisions - 1;
 
         double min = 100000;
         Edge mine = null;
         Edge[] ei = edgesGrid[ix][iy];
         for (Edge e : ei) {
-            Line2D.Double l = new Line2D.Double(e.source.getLocation().x, e.source.getLocation().y, e.target.getLocation().x, e.target.getLocation().y);
+            GLine l = new GLine(e.source.getLocation().x, e.source.getLocation().y, e.target.getLocation().x, e.target.getLocation().y);
             double dist = l.ptLineDistSq(p);
             if (min > dist) {
                 min = dist;
@@ -98,16 +95,16 @@ public class GraphControlGrid implements GraphModelListener {
             refresh = false;
         }
 
-        int ix = (int) ((p.x - gbounds.x) / gbounds.width * planeDivisions);
-        int iy = (int) ((p.y - gbounds.y) / gbounds.height * planeDivisions);
+        int ix = (int) ((p.x - gbounds.x) / gbounds.w * planeDivisions);
+        int iy = (int) ((p.y - gbounds.y) / gbounds.h * planeDivisions);
 
         if (p.x < gbounds.x)
             ix = 0;
         if (p.y < gbounds.y)
             iy = 0;
-        if (p.x > gbounds.x + gbounds.width)
+        if (p.x > gbounds.x + gbounds.w)
             ix = planeDivisions - 1;
-        if (p.y > gbounds.y + gbounds.height)
+        if (p.y > gbounds.y + gbounds.h)
             iy = planeDivisions - 1;
 
         double min = 100000;
@@ -130,10 +127,10 @@ public class GraphControlGrid implements GraphModelListener {
     private void refresh() {
         verticesGrid = new Vertex[planeDivisions][planeDivisions][0];
         gbounds = g.getZoomedBounds();
-        if (gbounds.width == 0)
-            gbounds.width = 1;
-        if (gbounds.height == 0)
-            gbounds.height = 1;
+        if (gbounds.w == 0)
+            gbounds.w = 1;
+        if (gbounds.h == 0)
+            gbounds.h = 1;
         for (Vertex v : g) {
             addVertexToGrid(v);
         }
@@ -150,15 +147,15 @@ public class GraphControlGrid implements GraphModelListener {
 
     private void addVertexToGrid(Vertex v) {
         GPoint loc = v.getLocation();
-        int ix = (int) ((loc.x - gbounds.x) / gbounds.width * planeDivisions);
-        int iy = (int) ((loc.y - gbounds.y) / gbounds.height * planeDivisions);
+        int ix = (int) ((loc.x - gbounds.x) / gbounds.w * planeDivisions);
+        int iy = (int) ((loc.y - gbounds.y) / gbounds.h * planeDivisions);
         addVertexToGrid(ix, iy, v);
     }
 
     private void removeVertexFromGrid(Vertex v) {
         GPoint loc = v.getLocation();
-        int ix = (int) ((loc.x - gbounds.x) / gbounds.width * planeDivisions);
-        int iy = (int) ((loc.y - gbounds.y) / gbounds.height * planeDivisions);
+        int ix = (int) ((loc.x - gbounds.x) / gbounds.w * planeDivisions);
+        int iy = (int) ((loc.y - gbounds.y) / gbounds.h * planeDivisions);
         Vertex[] s = verticesGrid[ix][iy];
         for (int i = 0; i < s.length; i++) {
             if (s[i] == v) {
@@ -171,10 +168,10 @@ public class GraphControlGrid implements GraphModelListener {
     private void addEdgeToGrid(Edge e) {
         GPoint loc1 = e.source.getLocation();
         GPoint loc2 = e.source.getLocation();
-        int ix1 = (int) ((loc1.x - gbounds.x) / gbounds.width * planeDivisions);
-        int iy1 = (int) ((loc1.y - gbounds.y) / gbounds.height * planeDivisions);
-        int ix2 = (int) ((loc2.x - gbounds.x) / gbounds.width * planeDivisions);
-        int iy2 = (int) ((loc2.y - gbounds.y) / gbounds.height * planeDivisions);
+        int ix1 = (int) ((loc1.x - gbounds.x) / gbounds.w * planeDivisions);
+        int iy1 = (int) ((loc1.y - gbounds.y) / gbounds.h * planeDivisions);
+        int ix2 = (int) ((loc2.x - gbounds.x) / gbounds.w * planeDivisions);
+        int iy2 = (int) ((loc2.y - gbounds.y) / gbounds.h * planeDivisions);
 
         int dy = iy2 - iy1;
         int dx = ix2 - ix1;
@@ -238,10 +235,10 @@ public class GraphControlGrid implements GraphModelListener {
     private void removeEdgeFromGrid(Edge e) {
         GPoint loc1 = e.source.getLocation();
         GPoint loc2 = e.source.getLocation();
-        int ix1 = (int) ((loc1.x - gbounds.x) / gbounds.width * planeDivisions);
-        int iy1 = (int) ((loc1.y - gbounds.y) / gbounds.height * planeDivisions);
-        int ix2 = (int) ((loc2.x - gbounds.x) / gbounds.width * planeDivisions);
-        int iy2 = (int) ((loc2.y - gbounds.y) / gbounds.height * planeDivisions);
+        int ix1 = (int) ((loc1.x - gbounds.x) / gbounds.w * planeDivisions);
+        int iy1 = (int) ((loc1.y - gbounds.y) / gbounds.h * planeDivisions);
+        int ix2 = (int) ((loc2.x - gbounds.x) / gbounds.w * planeDivisions);
+        int iy2 = (int) ((loc2.y - gbounds.y) / gbounds.h * planeDivisions);
 
         int dy = iy2 - iy1;
         int dx = ix2 - ix1;
@@ -272,8 +269,8 @@ public class GraphControlGrid implements GraphModelListener {
 
 
     public void vertexAdded(Vertex v) {
-        Rectangle2D.Double tbounds = g.getZoomedBounds();
-        if (tbounds.x < gbounds.x || tbounds.y < gbounds.y || tbounds.width > gbounds.width || tbounds.height > gbounds.height)
+        GRect tbounds = g.getZoomedBounds();
+        if (tbounds.x < gbounds.x || tbounds.y < gbounds.y || tbounds.w > gbounds.w || tbounds.h > gbounds.h)
             refresh = true;
         else {
             addVertexToGrid(v);
@@ -286,8 +283,8 @@ public class GraphControlGrid implements GraphModelListener {
     }
 
     public void edgeAdded(Edge e) {
-        Rectangle2D.Double tbounds = g.getZoomedBounds();
-        if (tbounds.x < gbounds.x || tbounds.y < gbounds.y || tbounds.width > gbounds.width || tbounds.height > gbounds.height)
+        GRect tbounds = g.getZoomedBounds();
+        if (tbounds.x < gbounds.x || tbounds.y < gbounds.y || tbounds.w > gbounds.w || tbounds.h > gbounds.h)
             refresh = true;
         else {
             addEdgeToGrid(e);

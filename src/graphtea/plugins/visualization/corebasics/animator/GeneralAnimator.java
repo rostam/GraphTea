@@ -7,8 +7,6 @@ package graphtea.plugins.visualization.corebasics.animator;
 import graphtea.graph.graph.*;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
-
-import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
@@ -18,8 +16,8 @@ import java.util.Vector;
  */
 public class GeneralAnimator implements Runnable {
 
-    public HashMap<Vertex, Point2D> vertexDestinations = new HashMap<Vertex, Point2D>();
-    public HashMap<Edge, Vector<Point2D>> edgeBendPoints = new HashMap<Edge, Vector<Point2D>>();
+    public HashMap<Vertex, GPoint> vertexDestinations = new HashMap<Vertex, GPoint>();
+    public HashMap<Edge, Vector<GPoint>> edgeBendPoints = new HashMap<Edge, Vector<GPoint>>();
     public boolean supportBendedEdge;
 
     GraphModel g;
@@ -27,13 +25,13 @@ public class GeneralAnimator implements Runnable {
     public Thread animate;
     private BlackBoard blackboard;
 
-    public GeneralAnimator(HashMap<Vertex, Point2D> vertexDestinations, GraphModel g, BlackBoard blackboard) {
+    public GeneralAnimator(HashMap<Vertex, GPoint> vertexDestinations, GraphModel g, BlackBoard blackboard) {
         this.vertexDestinations = vertexDestinations;
         this.g = g;
         this.blackboard = blackboard;
     }
 
-    public GeneralAnimator(HashMap<Vertex, Point2D> vertexDestinations, HashMap<Edge, Vector<Point2D>> edgeBendPoints, GraphModel g, BlackBoard blackboard) {
+    public GeneralAnimator(HashMap<Vertex, GPoint> vertexDestinations, HashMap<Edge, Vector<GPoint>> edgeBendPoints, GraphModel g, BlackBoard blackboard) {
         this.vertexDestinations = vertexDestinations;
         this.edgeBendPoints = edgeBendPoints;
         this.g = g;
@@ -55,21 +53,21 @@ public class GeneralAnimator implements Runnable {
     public void run() {
         final Thread current = Thread.currentThread();
         Iterator<Vertex> v = vertexDestinations.keySet().iterator();
-        final Vector<Point2D> movements = new Vector<Point2D>();
-        final Vector<Point2D> initials = new Vector<Point2D>();
+        final Vector<GPoint> movements = new Vector<GPoint>();
+        final Vector<GPoint> initials = new Vector<GPoint>();
         for (; v.hasNext();) {
             Vertex vertex = v.next();
             double initalX = vertex.getLocation().getX();
-            Point2D point2D = vertexDestinations.get(vertex);
-            double totalXMovement = (point2D.getX() - initalX);
+            GPoint GPoint = vertexDestinations.get(vertex);
+            double totalXMovement = (GPoint.getX() - initalX);
             double initialY = vertex.getLocation().getY();
-            double totalYMovement = (point2D.getY() - initialY);
-            initials.add(new Point2D.Double(initalX, initialY));
-            movements.add(new Point2D.Double(totalXMovement, totalYMovement));
+            double totalYMovement = (GPoint.getY() - initialY);
+            initials.add(new GPoint(initalX, initialY));
+            movements.add(new GPoint(totalXMovement, totalYMovement));
         }
 
-        Iterator<Point2D> m;
-        Iterator<Point2D> i;
+        Iterator<GPoint> m;
+        Iterator<GPoint> i;
         final int k = 21;
         for (int j = 1; j != k; j++) {
             AbstractGraphRenderer ren = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
@@ -85,18 +83,18 @@ public class GeneralAnimator implements Runnable {
         }
     }
 
-    private void doAnimateStep(Vector<Point2D> movements, Vector<Point2D> initials, int j, int k, Thread current) {
+    private void doAnimateStep(Vector<GPoint> movements, Vector<GPoint> initials, int j, int k, Thread current) {
         Iterator<Vertex> v;
-        Iterator<Point2D> m;
-        Iterator<Point2D> i;
+        Iterator<GPoint> m;
+        Iterator<GPoint> i;
         v = vertexDestinations.keySet().iterator();
 
         m = movements.iterator();
         i = initials.iterator();
         for (; v.hasNext();) {
             Vertex vertex = v.next();
-            Point2D movement = m.next();
-            Point2D initial = i.next();
+            GPoint movement = m.next();
+            GPoint initial = i.next();
             //                vertex.setLabel(initial.getY()+"");
             vertex.setLocation(new GPoint(initial.getX() + j * movement.getX() / k, initial.getY() + j * movement.getY() / k));
 

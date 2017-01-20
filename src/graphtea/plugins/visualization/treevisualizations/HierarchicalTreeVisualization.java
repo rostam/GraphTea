@@ -5,13 +5,12 @@
 package graphtea.plugins.visualization.treevisualizations;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 import graphtea.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphtea.ui.UIUtils;
-
-import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
@@ -22,7 +21,7 @@ import java.util.Vector;
 public class HierarchicalTreeVisualization implements VisualizationExtension {
     public static final String event = UIUtils.getUIEventKey("HierarchicalTreeVisualization");
     public Vector<Vertex> visitedVertices = new Vector<>();
-    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<>();
+    public HashMap<Vertex, GPoint> vertexPlaces = new HashMap<>();
     public Vector<Vertex> children = new Vector<>();
 
     private void unMarkVertices() {
@@ -123,7 +122,7 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
         Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
 
         for (Vertex v : currentLevelVertices) {
-            Point2D.Double newPoint = new Point2D.Double(horizontalDist * i + width / (currentLevelCount + 1), currentLevelHeight);
+            GPoint newPoint = new GPoint(horizontalDist * i + width / (currentLevelCount + 1), currentLevelHeight);
             vertexPlaces.put(v, newPoint);
             i++;
         }
@@ -157,7 +156,7 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
             , category = "Visualization Options")
     public static Integer eachLevelHeigh = 50;
 
-    public HashMap<Vertex, Point2D> getNewVertexPlaces() {
+    public HashMap<Vertex, GPoint> getNewVertexPlaces() {
         visitedVertices = new Vector<>();
         vertexPlaces = new HashMap<>();
         children = new Vector<>();
@@ -173,7 +172,7 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
         return vertexPlaces;
     }
 
-    public HashMap<Edge, Point2D> getNewEdgeCurveControlPoints() {
+    public HashMap<Edge, GPoint> getNewEdgeCurveControlPoints() {
         return null;
     }
 }

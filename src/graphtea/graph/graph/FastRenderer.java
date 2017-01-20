@@ -18,7 +18,6 @@ import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.QuadCurve2D;
-import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
 /**
@@ -62,7 +61,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
     double zoomFactor;
 
     GraphControl control;
-    private Rectangle2D.Double bounds = new Rectangle2D.Double(0, 0, 0, 0);
+    private GRect bounds = new GRect(0, 0, 0, 0);
 
     public void setGraph(GraphModel g) {
         super.setGraph(g);
@@ -575,7 +574,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
         if (s != null && s.equals("yes")) {
             return;
         }
-        Rectangle2D.Double prvb = bounds;
+        GRect prvb = bounds;
         bounds = getGraph().getZoomedBounds();
         int dx = 0;
         int dy = 0;
@@ -590,11 +589,11 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 
         int dw = 0, dh = 0;
         Dimension vvr = getSize();
-        if (bounds.x + bounds.width > vvr.width) {
-            dw = (int) (prvb.x + prvb.width - bounds.x + bounds.width);
+        if (bounds.x + bounds.w > vvr.width) {
+            dw = (int) (prvb.x + prvb.w - bounds.x + bounds.w);
         }
-        if (bounds.y + bounds.height > vvr.height) {
-            dh = (int) (prvb.y + prvb.height - bounds.y + bounds.height);
+        if (bounds.y + bounds.h > vvr.height) {
+            dh = (int) (prvb.y + prvb.h - bounds.y + bounds.h);
         }
         minx -= dx;
         miny -= dy;
@@ -636,10 +635,10 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
     }
 
     public void calculateSize() {
-        Rectangle b = bounds.getBounds();
+        GRect b = bounds.getBounds();
         if (bounds.x >= 0 && bounds.y >= 0) {
-            b.width += Math.abs(b.x);
-            b.height += Math.abs(b.y);
+            b.w += Math.abs(b.x);
+            b.h += Math.abs(b.y);
         }
     }
 

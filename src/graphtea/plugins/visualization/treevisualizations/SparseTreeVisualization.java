@@ -5,13 +5,12 @@
 package graphtea.plugins.visualization.treevisualizations;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 import graphtea.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphtea.ui.UIUtils;
-
-import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
@@ -22,7 +21,7 @@ import java.util.Vector;
 public class SparseTreeVisualization implements VisualizationExtension {
     String event = UIUtils.getUIEventKey("SparseTreeVisualization");
     public Vector<Vertex> visitedVertices = new Vector<>();
-    public HashMap<Vertex, Point2D> vertexPlaces;
+    public HashMap<Vertex, GPoint> vertexPlaces;
     public Vector<Vertex> children;
 
     private void unMarkVertices() {
@@ -123,11 +122,11 @@ public class SparseTreeVisualization implements VisualizationExtension {
         }
         for (Vertex v : currentLevelVertices) {
             if (nextLevelCount != 0) {
-                Point2D.Double newPoint = new Point2D.Double(horizontalDist * (i + 1) + width / (nextLevelCount + currentLevelCount), LevelHeight);
+                GPoint newPoint = new GPoint(horizontalDist * (i + 1) + width / (nextLevelCount + currentLevelCount), LevelHeight);
                 vertexPlaces.put(v, newPoint);
                 i += graph.getOutDegree(v);
             } else {
-                Point2D.Double newPoint = new Point2D.Double(horizontalDist * (i) + width / (currentLevelCount), LevelHeight);
+                GPoint newPoint = new GPoint(horizontalDist * (i) + width / (currentLevelCount), LevelHeight);
                 vertexPlaces.put(v, newPoint);
                 i++;
             }
@@ -162,7 +161,7 @@ public class SparseTreeVisualization implements VisualizationExtension {
             , category = "Visualization Options")
     public static Integer eachLevelHeigh = 50;
 
-    public HashMap<Vertex, Point2D> getNewVertexPlaces() {
+    public HashMap<Vertex, GPoint> getNewVertexPlaces() {
         visitedVertices = new Vector<>();
         vertexPlaces = new HashMap<>();
         children = new Vector<>();
@@ -178,7 +177,7 @@ public class SparseTreeVisualization implements VisualizationExtension {
         return vertexPlaces;
     }
 
-    public HashMap<Edge, Point2D> getNewEdgeCurveControlPoints() {
+    public HashMap<Edge, GPoint> getNewEdgeCurveControlPoints() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

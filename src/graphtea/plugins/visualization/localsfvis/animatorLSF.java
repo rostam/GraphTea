@@ -4,16 +4,10 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.visualization.localsfvis;
 
-import graphtea.graph.graph.AbstractGraphRenderer;
-import graphtea.graph.graph.GPoint;
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.Vertex;
+import graphtea.graph.graph.*;
 import graphtea.library.exceptions.InvalidVertexException;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
-
-import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -36,9 +30,9 @@ class animatorLSF extends Thread {
     private GraphModel g;
     private AbstractGraphRenderer gv;
     private Vertex[] v;
-    private Rectangle[] vRects;  //represents the rectangle arround each vertex
+    private GRect[] vRects;  //represents the rectangle arround each vertex
     private GPoint[] verPos; //fresh generated vertex positions!
-    private Point[] velocity;
+    private GPoint[] velocity;
     private GPoint[] prevVerPos; //refferes to previous state of vertex positions, for finding vertices that moved by anything else
     //    private final double neighborRadius = 300;
     private double stres = 10;
@@ -72,7 +66,7 @@ class animatorLSF extends Thread {
         int stablep = 0;
 
         final GPoint centerPoint = calculateGraphCenterPoint();     //calculating the center of graph to pin its center
-        final Rectangle2D.Double bounds = g.getAbsBounds();     //calculating the bounds of graph to pin its center
+        //final GRect bounds = g.getAbsBounds();     //calculating the bounds of graph to pin its center
 
         while (!stop) {
             if (counter3++ == 150) {
@@ -113,7 +107,7 @@ class animatorLSF extends Thread {
                     gv.ignoreRepaints(new Runnable() {
                         public void run() {
                             GPoint newCenterPoint = calculateGraphCenterPoint();
-                            Rectangle2D.Double newBounds = calculateGraphAbsBoundsPoint();
+                            GRect newBounds = calculateGraphAbsBoundsPoint();
                             //todo: to preserve graph bounds
                             double dx = centerPoint.x - newCenterPoint.x;
                             double dy = centerPoint.y - newCenterPoint.y;
@@ -179,9 +173,9 @@ class animatorLSF extends Thread {
         centerPoint.y /= n;
         return centerPoint;
     }
-    private Rectangle2D.Double calculateGraphAbsBoundsPoint() {
+    private GRect calculateGraphAbsBoundsPoint() {
 
-        Rectangle2D.Double ret = new Rectangle2D.Double();
+        GRect ret = new GRect();
         for (GPoint p : verPos) {
             ret.add(p.x, p.y);
         }
@@ -227,7 +221,8 @@ class animatorLSF extends Thread {
     private void updateKs() {
         int i = 0;
         for (Vertex vm : g) {
-            vRects[i] = vm.getBounds().getBounds();
+            vRects[i] = new GRect(vm.getBounds().getBounds().x,vm.getBounds().getBounds().y,
+                    vm.getBounds().getBounds().width,vm.getBounds().getBounds().height);
             i++;
         }
 
@@ -247,7 +242,7 @@ class animatorLSF extends Thread {
                 float distance = Math.abs((float) (verPos[i].x - verPos[j].x)) + Math.abs((float) (verPos[i].y - verPos[j].y));
 //                maxDistance = Math.max(maxDistance, distance);
                 minDistance = Math.min(minDistance, distance);
-                if (vRects[j].contains(verPos[i])) {
+                if (vRects[j].inside(verPos[i])) {
                     strongerK = true;
                 }
             }
@@ -255,8 +250,9 @@ class animatorLSF extends Thread {
         }
 //        Rectangle r = new Rectangle();
 //        r.
-        Rectangle gBounds = g.getAbsBounds().getBounds();
-        maxDistance = (gBounds.width + gBounds.height) / 2;
+
+        GRect gBounds = g.getAbsBounds().getBounds();
+        maxDistance = (float) ((gBounds.w + gBounds.h) / 2);
 //        System.out.println("min getDistance:" + minDistance);
 //        System.out.println("max getDistance:" + maxDistance);
         if (strongerK && maxDistance < MAX_DISTANCE) {
@@ -293,7 +289,7 @@ class animatorLSF extends Thread {
         if (_n != n) {
             n = _n;
             verPos = new GPoint[n];
-            velocity = new Point[n];
+            velocity = new GPoint[n];
             prevVerPos = new GPoint[n];
             dists = new pair[Math.max(n - 1, 0)];
             neighbors = new HashSet[n];
@@ -302,22 +298,23 @@ class animatorLSF extends Thread {
                 if (i != 0) dists[i - 1] = new pair(0, 0);  //the len of dists should be n-1
             }
             v = new Vertex[n];
-            vRects = new Rectangle[n];
+            vRects = new GRect[n];
             stableVertex = new boolean[n];
         }
         int i = 0;
         for (Vertex vm : g) {
             v[i] = vm;
             verPos[i] = vm.getLocation();
-            velocity[i] = new Point();
-            vRects[i] = vm.getBounds().getBounds();
+            velocity[i] = new GPoint();
+            vRects[i] = new GRect(vm.getBounds().getBounds().x,vm.getBounds().getBounds().y,
+                    vm.getBounds().getBounds().width,vm.getBounds().getBounds().height);
             prevVerPos[i] = new GPoint(verPos[i]);
             i++;
         }
     }
 
-    Point f = new Point();
-    Point fs = new Point(0, 0);
+    GPoint f = new GPoint();
+    GPoint fs = new GPoint(0, 0);
     double fex = 0;
     double fey = 0;
     double fsx = 0;

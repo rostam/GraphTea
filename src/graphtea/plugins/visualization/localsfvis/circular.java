@@ -5,19 +5,13 @@
 package graphtea.plugins.visualization.localsfvis;
 
 import graphtea.graph.atributeset.GraphAttrSet;
-import graphtea.graph.graph.GPoint;
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.SubGraph;
-import graphtea.graph.graph.Vertex;
+import graphtea.graph.graph.*;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.ui.UIUtils;
-
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
-
 
 public class circular extends AbstractAction implements Parametrizable {
     /**
@@ -45,9 +39,9 @@ public class circular extends AbstractAction implements Parametrizable {
     }
 
     private static void circularVisualize(GraphModel g) {
-        Rectangle2D.Double b = g.getAbsBounds();
-        int w = (int) b.width;
-        int h = (int) b.height;
+        GRect b = g.getAbsBounds();
+        int w = (int) b.w;
+        int h = (int) b.h;
         if (w < 50)
             w = 300;
         if (h < 50)

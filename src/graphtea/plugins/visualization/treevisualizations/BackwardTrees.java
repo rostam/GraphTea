@@ -5,6 +5,7 @@
 package graphtea.plugins.visualization.treevisualizations;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseVertexProperties;
@@ -13,8 +14,6 @@ import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphtea.ui.UIUtils;
-
-import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -28,7 +27,7 @@ public class BackwardTrees implements VisualizationExtension {
     public Vector<Vertex> visitedVertices = new Vector<>();
     public Vector<Vertex> upperLevelVertices = new Vector<>();
 
-    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<>();
+    public HashMap<Vertex, GPoint> vertexPlaces = new HashMap<>();
     public Vector<Vertex> children = new Vector<>();
     public HashMap<Vertex, Double> comingFrom = new HashMap<>();
     Vertex root;
@@ -113,7 +112,7 @@ public class BackwardTrees implements VisualizationExtension {
         int i = 0;
         Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
         if (currentLevelCount == 1 && currentLevelVertices.elementAt(0).equals(root)) {
-            Point2D.Double newPoint = new Point2D.Double(200, 200);
+            GPoint newPoint = new GPoint(200, 200);
             vertexPlaces.put(root, newPoint);
             comingFrom.put(root, 0.0);
         } else {
@@ -125,7 +124,8 @@ public class BackwardTrees implements VisualizationExtension {
 
                 double phase;
                 phase = 360 / (degree);
-                Point2D[] circle = PositionGenerators.circle((int) v.getLocation().getX(), (int) v.getLocation().getY(), radius, radius, degree);
+                GPoint[] circle = PositionGenerators.convert(PositionGenerators.circle((int) v.getLocation().getX(), (int) v.getLocation().getY(), radius, radius, degree));
+
                 int t = 0;
                 for (; ei.hasNext();) {
                     Vertex ver = ei.next().source;
@@ -136,7 +136,7 @@ public class BackwardTrees implements VisualizationExtension {
 //                    double yPhase = Math.sin(((j * phase)+p ) * Math.PI / 180);
 //                    y = vertexPlaces.get(v).getY() + radius * yPhase;
                     comingFrom.put(ver, (j * phase) + p);
-//                     Point2D.Double newPoint = new Point2D.Double(x, y);
+//                     GPoint newPoint = new GPoint(x, y);
                     vertexPlaces.put(ver, circle[t]);
                     j++;
                     t++;
@@ -145,7 +145,7 @@ public class BackwardTrees implements VisualizationExtension {
             }
 
 //        for (Vertex v : currentLevelVertices) {
-//            Point2D.Double newPoint = new Point2D.Double(horizontalDist * i + width / (currentLevelCount + 1), currentLevelHeight);
+//            GPoint newPoint = new GPoint(horizontalDist * i + width / (currentLevelCount + 1), currentLevelHeight);
 //            vertexPlaces.put(v,newPoint);
 //            i++;
 //        }
@@ -193,7 +193,7 @@ public class BackwardTrees implements VisualizationExtension {
                     double x = 350 + radius * Math.cos((angularSpan * j / (numberOfDivides) + offSet));
                     double y = 350 + radius * Math.sin((angularSpan * j / (numberOfDivides) + offSet));
                     double newOffset = (angularSpan * j / numberOfDivides + offSet);
-                    Point2D.Double newPoint = new Point2D.Double(x, y);
+                    GPoint newPoint = new GPoint(x, y);
                     vertexPlaces.put(v1, newPoint);
                     placedVertices.add(v1);
                     BaseVertexProperties properties = new BaseVertexProperties(v1.getColor(), v1.getMark());
@@ -210,7 +210,7 @@ public class BackwardTrees implements VisualizationExtension {
         } else {
             double x = 350;
             double y = 350;
-            Point2D.Double newPoint = new Point2D.Double(x, y);
+            GPoint newPoint = new GPoint(x, y);
             placedVertices.add(v);
             vertexPlaces.put(v, newPoint);
             locateAllSubTrees(v, radius, offSet);
@@ -231,7 +231,7 @@ public class BackwardTrees implements VisualizationExtension {
         this.g = g;
     }
 
-    public HashMap<Vertex, Point2D> getNewVertexPlaces() {
+    public HashMap<Vertex, GPoint> getNewVertexPlaces() {
         visitedVertices = new Vector<>();
         vertexPlaces = new HashMap<>();
         children = new Vector<>();
@@ -255,7 +255,7 @@ public class BackwardTrees implements VisualizationExtension {
         return vertexPlaces;
     }
 
-    public HashMap<Edge, Point2D> getNewEdgeCurveControlPoints() {
+    public HashMap<Edge, GPoint> getNewEdgeCurveControlPoints() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

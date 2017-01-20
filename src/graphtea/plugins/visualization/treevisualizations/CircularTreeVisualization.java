@@ -5,14 +5,13 @@
 package graphtea.plugins.visualization.treevisualizations;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseVertexProperties;
 import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 import graphtea.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphtea.ui.UIUtils;
-
-import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -25,7 +24,7 @@ public class CircularTreeVisualization implements VisualizationExtension {
     String event = UIUtils.getUIEventKey("CircularTreeVisualization");
     public Vector<Vertex> visitedVertices = new Vector<>();
     public HashSet<Vertex> placedVertices = new HashSet<>();
-    public HashMap<Vertex, Point2D> vertexPlaces = new HashMap<>();
+    public HashMap<Vertex, GPoint> vertexPlaces = new HashMap<>();
     Vertex root;
     public Vector<Vertex> children = new Vector<>();
     public HashMap<Vertex, Integer> vertexHeights = new HashMap<>();
@@ -86,7 +85,7 @@ public class CircularTreeVisualization implements VisualizationExtension {
 
     /* public void performJob(Event eventName, Object value) {
 visitedVertices = new Vector<Vertex>();
-vertexPlaces = new HashMap<Vertex, Point2D>();
+vertexPlaces = new HashMap<Vertex, GPoint>();
 children = new Vector<Vertex>();
 placedVertices = new HashSet<Vertex>();
 
@@ -134,7 +133,7 @@ try {
                     double x = 350 + radius * Math.cos((angularSpan * j / (numberOfDivides + 1) + offSet));
                     double y = 350 + radius * Math.sin((angularSpan * j / (numberOfDivides + 1) + offSet));
                     double newOffset = (angularSpan * j / numberOfDivides + offSet);
-                    Point2D.Double newPoint = new Point2D.Double(x, y);
+                    GPoint newPoint = new GPoint(x, y);
                     vertexPlaces.put(v1, newPoint);
                     placedVertices.add(v1);
                     BaseVertexProperties properties = new BaseVertexProperties(v1.getColor(), v1.getMark());
@@ -148,7 +147,7 @@ try {
         } else {
             double x = 350;
             double y = 350;
-            Point2D.Double newPoint = new Point2D.Double(x, y);
+            GPoint newPoint = new GPoint(x, y);
             placedVertices.add(v);
             vertexPlaces.put(v, newPoint);
             locateAllSubTrees(v, radius, offSet);
@@ -185,14 +184,14 @@ try {
         double degree = 360 / currentLevelCount;
         int j = 0;
         if (currentLevelCount == 1 && currentLevelVertices.elementAt(0).equals(root)) {
-            Point2D.Double newPoint = new Point2D.Double(350, 350);
+            GPoint newPoint = new GPoint(350, 350);
             vertexPlaces.put(root, newPoint);
 
         } else {
             for (Vertex v : currentLevelVertices) {
                 double x = 350 + radius * Math.cos((Math.PI / 180) * (j * degree));
                 double y = 350 + radius * Math.sin((Math.PI / 180) * (j * degree));
-                Point2D.Double newPoint = new Point2D.Double(x, y);
+                GPoint newPoint = new GPoint(x, y);
                 vertexPlaces.put(v, newPoint);
                 j++;
 
@@ -221,7 +220,7 @@ try {
         this.g = g;
     }
 
-    public HashMap<Vertex, Point2D> getNewVertexPlaces() {
+    public HashMap<Vertex, GPoint> getNewVertexPlaces() {
         visitedVertices = new Vector<>();
         vertexPlaces = new HashMap<>();
         children = new Vector<>();
@@ -244,7 +243,7 @@ try {
         return vertexPlaces;
     }
 
-    public HashMap<Edge, Point2D> getNewEdgeCurveControlPoints() {
+    public HashMap<Edge, GPoint> getNewEdgeCurveControlPoints() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

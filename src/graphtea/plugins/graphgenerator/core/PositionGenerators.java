@@ -23,6 +23,14 @@ public class PositionGenerators {
         return ret;
     }
 
+    public static GPoint[] convert(Point[] ps) {
+        GPoint[] ret = new GPoint[ps.length];
+        for(int i=0;i<ps.length;i++) {
+            ret[i] = new GPoint(ps[i].x,ps[i].y);
+        }
+        return ret;
+    }
+
     public static Point[] circle(int xOffset, int yOffset, int w, int h, int n) {
         Point[] ret = new Point[n];
         w = w / 2;

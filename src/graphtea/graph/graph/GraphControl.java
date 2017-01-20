@@ -16,7 +16,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelListener;
-import java.awt.geom.Line2D;
 import java.util.Iterator;
 
 /**
@@ -257,7 +256,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
                 GPoint sloc = e.source.getLocation();
                 GPoint tloc = e.target.getLocation();
                 GPoint cnp = e.getCurveControlPoint();
-                Line2D.Double l = new Line2D.Double(sloc.x, sloc.y, tloc.x, tloc.y);
+                GLine l = new GLine(sloc.x, sloc.y, tloc.x, tloc.y);
                 double dist = l.ptLineDistSq(p);
 
                 if (e.isLoop()) {

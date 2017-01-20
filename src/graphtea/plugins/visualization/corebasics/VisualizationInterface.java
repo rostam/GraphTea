@@ -6,10 +6,9 @@
 package graphtea.plugins.visualization.corebasics;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-
-import java.awt.geom.Point2D;
 import java.util.HashMap;
 
 /**
@@ -20,9 +19,9 @@ public interface VisualizationInterface {
     /*
       @param g
      */
-    public void setWorkingGraph(GraphModel g);
+    void setWorkingGraph(GraphModel g);
 
-    public abstract HashMap<Vertex, Point2D> getNewVertexPlaces();
+    HashMap<Vertex, GPoint> getNewVertexPlaces();
 
-    public abstract HashMap<Edge, Point2D> getNewEdgeCurveControlPoints();
+    HashMap<Edge, GPoint> getNewEdgeCurveControlPoints();
 }

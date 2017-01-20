@@ -5,14 +5,9 @@
 
 package graphtea.extensions.io;
 
-import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GPoint;
-import graphtea.graph.graph.Vertex;
+import graphtea.graph.graph.*;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;
-
-import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,10 +29,10 @@ public class LatexWriter implements GraphWriterExtension{
 
 
     public void write(File file, GraphModel graph) throws GraphIOException {
-        FileWriter output = null;
+        FileWriter output;
         try {
             output = new FileWriter(file);
-            Rectangle2D r = graph.getAbsBounds();
+            GRect r = graph.getAbsBounds();
             output.write(
                     "\\documentclass[12pt,bezier]{article}\n" +
                             "\\textwidth = 15 cm\n" +

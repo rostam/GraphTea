@@ -5,15 +5,13 @@
 package graphtea.plugins.visualization.localsfvis;
 
 import graphtea.graph.atributeset.GraphAttrSet;
-import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GPoint;
+import graphtea.graph.graph.GRect;
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.ui.UIUtils;
-
-import java.awt.geom.Rectangle2D;
-
 
 /**
  * @author houshmand hasannia
@@ -42,9 +40,9 @@ public class Random extends AbstractAction {
         g = blackboard.getData(GraphAttrSet.name);
         n = g.getVerticesCount();
         Vertex[] v = getVertices();
-        Rectangle2D.Double b = g.getZoomedBounds();
-        int w = (int) b.width;
-        int h = (int) b.height;
+        GRect b = g.getZoomedBounds();
+        int w = (int) b.w;
+        int h = (int) b.h;
         if (w < 5)
             w = 150;
         if (h < 5)

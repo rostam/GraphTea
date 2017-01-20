@@ -6,15 +6,13 @@
 package graphtea.plugins.main.core;
 
 import graphtea.graph.graph.GPoint;
+import graphtea.graph.graph.GRect;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseEdge;
 import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;
 import graphtea.library.Path;
 import graphtea.library.algorithms.util.LibraryUtils;
-
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.*;
 
 /**
@@ -400,7 +398,7 @@ public class AlgorithmUtils {
      * returns the length of the given vector
      */
     public static double getLength(double dx, double dy) {
-        return Point2D.Double.distance(0, 0, dx, dy);
+        return GPoint.distance(0,0,dx,dy);
     }
 
     /**
@@ -451,13 +449,13 @@ public class AlgorithmUtils {
     /**
      * @return the bounding rectangle arround vertices
      */
-    public static Rectangle2D.Double getBoundingRegion(Collection<Vertex> vertices) {
-        Rectangle2D.Double ret = new Rectangle2D.Double();
+    public static GRect getBoundingRegion(Collection<Vertex> vertices) {
+        GRect ret = new GRect();
         boolean first = true;
         for (Vertex v : vertices) {
             GPoint p = v.getLocation();
             if (first) {
-                ret = new Rectangle2D.Double(p.x, p.y, 0, 0);
+                ret = new GRect(p.x, p.y, 0, 0);
                 first = false;
             }
             ret.add(p);

@@ -13,7 +13,7 @@ public class RenderTable extends PriorityQueue<Vector<Object>> {
     int maxSize = 5000;
     public static boolean noFilter = false;
 
-    Vector<String> titles = new Vector<>();
+    private Vector<String> titles = new Vector<>();
 
     public void setTitles(Vector<String> tts) {
         titles=tts;
@@ -53,25 +53,35 @@ public class RenderTable extends PriorityQueue<Vector<Object>> {
 }
 
 class RenderTableMaxComparator implements Comparator<Vector<Object>> {
-    int which=0;
+    int which = 0;
+
     public RenderTableMaxComparator(int which) {
-        this.which=which;
+        this.which = which;
     }
+
     @Override
     public int compare(Vector<Object> first, Vector<Object> second) {
-        return (Double)first.get(which)
-                > (Double)second.get(which) ? 1 : -1;
+        if (first.get(which) instanceof Double)
+            return (Double) first.get(which)
+                    > (Double) second.get(which) ? 1 : -1;
+        else
+            return (Integer) first.get(which)
+                    > (Integer) second.get(which) ? 1 : -1;
     }
 }
 
 class RenderTableMinComparator implements Comparator<Vector<Object>> {
-    int which=0;
+    private int which=0;
     public RenderTableMinComparator(int which) {
         this.which=which;
     }
     @Override
     public int compare(Vector<Object> first, Vector<Object> second) {
-        return (Double)first.get(which)
-                < (Double)second.get(which) ? 1 : -1;
+        if (first.get(which) instanceof Double)
+            return (Double) first.get(which)
+                    < (Double) second.get(which) ? 1 : -1;
+        else
+            return (Integer) first.get(which)
+                    < (Integer) second.get(which) ? 1 : -1;
     }
 }

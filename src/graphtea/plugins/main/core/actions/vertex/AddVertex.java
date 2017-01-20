@@ -6,10 +6,7 @@ package graphtea.plugins.main.core.actions.vertex;
 
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.event.GraphEvent;
-import graphtea.graph.graph.GPoint;
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.SubGraph;
-import graphtea.graph.graph.Vertex;
+import graphtea.graph.graph.*;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.Listener;
@@ -34,7 +31,7 @@ public class AddVertex extends AbstractAction {
         listen4Event(GraphEvent.EVENT_KEY);
         blackboard.addListener(DISABLE, new Listener() {
             public void performJob(String name) {
-                disable = (Boolean) blackboard.getData(DISABLE);
+                disable = blackboard.getData(DISABLE);
                 if (disable)
                     disable();
                 else
@@ -42,7 +39,7 @@ public class AddVertex extends AbstractAction {
             }
 
             public void keyChanged(String key, Object value) {
-                disable = (Boolean) blackboard.getData(DISABLE);
+                disable = blackboard.getData(DISABLE);
                 if (disable)
                     disable();
                 else
@@ -65,7 +62,7 @@ public class AddVertex extends AbstractAction {
         Boolean aBoolean = blackboard.getData(ClearSelection.lastTimeGraphWasClear);
         if (aBoolean == null)
             return;
-        boolean b = (Boolean) aBoolean;
+        boolean b = aBoolean;
         if (b && (sd == null || (sd.vertices.size() == 0 && sd.edges.size() == 0))) {
             GraphEvent gpd = blackboard.getData(GraphEvent.EVENT_KEY);
             if (gpd.eventType != GraphEvent.CLICKED || gpd.mouseBtn != MouseEvent.BUTTON1) {
@@ -109,7 +106,7 @@ public class AddVertex extends AbstractAction {
      * return the added vertex
      */
     public static Vertex addVertexToRandomPosition(GraphModel g) {
-        Rectangle2D.Double b = g.getZoomedBounds();
+        GRect b = g.getZoomedBounds();
         return doJob(g, (int) (b.getWidth() * Math.random()), (int) (b.getHeight() * Math.random()));
     }
 }
