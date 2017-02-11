@@ -17,7 +17,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class LaplacianEnergy implements GraphReportExtension {
+public class KirchhoffIndex implements GraphReportExtension {
 
     double round(double value, int decimalPlace) {
         double power_of_ten = 1;
@@ -44,7 +44,8 @@ public class LaplacianEnergy implements GraphReportExtension {
             double sum = 0;
             double sum_i = 0;
             for(int i=0;i < rv.length;i++)
-                sum += Math.pow(Math.abs(rv[i]),power);
+                if(Math.abs(rv[i]) != 0)
+                    sum += 1/Math.abs(rv[i]);
             for(int i=0;i < iv.length;i++)
                 sum_i +=  Math.abs(iv[i]);
 
@@ -72,11 +73,11 @@ public class LaplacianEnergy implements GraphReportExtension {
     }
 
     public String getName() {
-        return "Laplacian Energy";
+        return "Kirchhoff Index";
     }
 
     public String getDescription() {
-        return "Laplacian Energy";
+        return "Kirchhoff Index";
     }
 
     @Override
