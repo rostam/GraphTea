@@ -5,7 +5,6 @@
 
 package graphtea.extensions.io;
 
-import graphtea.extensions.reports.coloring.MM;
 import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;

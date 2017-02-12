@@ -6,7 +6,6 @@
 package graphtea.extensions.io;
 
 import Jama.Matrix;
-import graphtea.extensions.reports.coloring.MM;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
