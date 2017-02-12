@@ -5,10 +5,19 @@
 
 package graphtea.plugins.main.ui;
 
+import graphtea.extensions.G6Format;
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
+import graphtea.graph.graph.Vertex;
+import graphtea.platform.Application;
+import graphtea.platform.core.BlackBoard;
+import graphtea.plugins.graphgenerator.core.PositionGenerators;
+import graphtea.plugins.main.GraphData;
 import graphtea.ui.components.gpropertyeditor.GBasicCellRenderer;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.math.BigDecimal;
 import java.util.Vector;
@@ -45,6 +54,22 @@ public class TableRenderer implements GBasicCellRenderer<RenderTable> {
         }
 
         table = new JTable(data,names);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.getSelectionModel().addListSelectionListener(event -> {
+            if (sd.getTitles().get(sd.getTitles().size() - 1).equals("G6"))
+                if (event.getValueIsAdjusting()) {
+                    GraphModel g = G6Format.stringToGraphModel(table.getValueAt(table.getSelectedRow(),
+                            sd.getTitles().size() - 1).toString());
+                    Point pp[] = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
+
+                    int tmpcnt = 0;
+                    for (Vertex v : g) {
+                        v.setLocation(pp[tmpcnt]);
+                        tmpcnt++;
+                    }
+                    new GraphData(Application.getBlackBoard()).core.showGraph(g);
+                }
+        });
         return new JScrollPane(table);
     }
 }
