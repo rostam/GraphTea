@@ -92,9 +92,7 @@ public class WebGraph implements GraphGeneratorExtension, Parametrizable, Simple
 
         for(int i=t; i >=0 ;i--) {
             Point p[] = PositionGenerators.circle((t-(i-1))*10000, 10000, 10000, n);
-            for(int j=0;j < n;j++) {
-                r[(i*n)+j] = p[j];
-            }
+            System.arraycopy(p, 0, r, (i * n), n);
         }
         r[(t+1)*n] = new Point(10000,10000);
 

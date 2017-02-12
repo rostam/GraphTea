@@ -71,7 +71,7 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
             }
             else {
                 Vertex v = new Vertex();
-                int randInd = 0 + (int)(Math.random()*maxNumNodesInLevel);
+                int randInd = (int) (Math.random() * maxNumNodesInLevel);
                 cnt++;
                 int distance = 0;
                 if(cnt < 10 )
@@ -79,7 +79,7 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
                 else distance = Integer.parseInt(command.substring(10, command.lastIndexOf('m')));
                 Point[] ps = PositionGenerators.circle(distance*3,(int)center.x,(int)center.y,maxNumNodesInLevel);
                 while(forbiddenIndex.contains(randInd)) {
-                    randInd = 0 + (int)(Math.random()*maxNumNodesInLevel);
+                    randInd = (int) (Math.random() * maxNumNodesInLevel);
                 }
                 forbiddenIndex.add(randInd);
                 if(forbiddenIndex.size() > (maxNumNodesInLevel * 2/3)) forbiddenIndex = new Vector<>();

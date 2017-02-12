@@ -85,7 +85,7 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 
 		double[][] Lap = getLaplacian(A).getArray();
 
-		result.add(new String("Laplacian Matrix:"));
+		result.add("Laplacian Matrix:");
 		for(double[] k : Lap)
 		{
 			result.add( Arrays.toString(k));
@@ -102,7 +102,7 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 	private ArrayList<String> getEigenValuesAndVectors(Matrix matrix)
 	{
 		ArrayList<String> result = new ArrayList<>();
-		result.add(new String("Eigen Value Decomposition:"));
+		result.add("Eigen Value Decomposition:");
 		EigenvalueDecomposition ed = getLaplacian(matrix).eig();
 		double rv[] = ed.getRealEigenvalues();
 		double iv[] = ed.getImagEigenvalues();

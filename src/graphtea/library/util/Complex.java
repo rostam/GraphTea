@@ -336,8 +336,8 @@ latitude.
 */
   public String toString() {
     String info;
-    info = new String("["+re()+(im() < 0.0 ? " - " : " + ")+
-      Math.abs(im())+" * j]");
+    info = "[" + re() + (im() < 0.0 ? " - " : " + ") +
+            Math.abs(im()) + " * j]";
     return info;
   }
 /**

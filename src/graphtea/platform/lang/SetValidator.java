@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform.lang;
 
+import java.util.Collections;
 import java.util.HashSet;
 
 /**
@@ -15,9 +16,7 @@ public class SetValidator<t> implements Validator<t> {
     HashSet<t> vals = new HashSet<>();
 
     public void addValidValues(t[] o) {
-        for (t var : o) {
-            vals.add(var);
-        }
+        Collections.addAll(vals, o);
     }
 
     public void addValidValue(t x) {

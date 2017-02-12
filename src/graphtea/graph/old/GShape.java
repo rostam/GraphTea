@@ -344,12 +344,12 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
     private static int[][] provideTrapezoidPoints(int h, int w, boolean t) {
 //        h = h < w ? h : w;
         if (t) {
-            int[] xPoints = new int[]{(w - 1) * 2 / 3, (w - 1) * 1 / 3, 0, (w - 1)};
+            int[] xPoints = new int[]{(w - 1) * 2 / 3, (w - 1) / 3, 0, (w - 1)};
             int[] yPoints = new int[]{h - 1, h - 1, 0, 0};
             int[][] points = new int[][]{xPoints, yPoints};
             return points;
         } else {
-            int[] xPoints = new int[]{(w - 1) * 2 / 3, (w - 1) * 1 / 3, 0, (w - 1)};
+            int[] xPoints = new int[]{(w - 1) * 2 / 3, (w - 1) / 3, 0, (w - 1)};
             int[] yPoints = new int[]{0, 0, h - 1, h - 1};
             int[][] points = new int[][]{xPoints, yPoints};
             return points;
@@ -359,13 +359,13 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
     private static int[][] provideParallelogramPoints(int h, int w, boolean t) {
 //        h = h < w ? h : w;
         if (t) {
-            int[] xPoints = new int[]{(w - 1), (w - 1) * 1 / 2, 0, (w - 1) / 2};
-            int[] yPoints = new int[]{(h - 1) * 3 / 4, (h - 1) * 3 / 4, (h - 1) * 1 / 4, (h - 1) * 1 / 4};
+            int[] xPoints = new int[]{(w - 1), (w - 1) / 2, 0, (w - 1) / 2};
+            int[] yPoints = new int[]{(h - 1) * 3 / 4, (h - 1) * 3 / 4, (h - 1) / 4, (h - 1) / 4};
             int[][] points = new int[][]{xPoints, yPoints};
             return points;
         } else {
-            int[] xPoints = new int[]{(w - 1), (w - 1) * 1 / 2, 0, (w - 1) / 2};
-            int[] yPoints = new int[]{(h - 1) * 1 / 4, (h - 1) * 1 / 4, (h - 1) * 3 / 4, (h - 1) * 3 / 4};
+            int[] xPoints = new int[]{(w - 1), (w - 1) / 2, 0, (w - 1) / 2};
+            int[] yPoints = new int[]{(h - 1) / 4, (h - 1) / 4, (h - 1) * 3 / 4, (h - 1) * 3 / 4};
             int[][] points = new int[][]{xPoints, yPoints};
             return points;
         }

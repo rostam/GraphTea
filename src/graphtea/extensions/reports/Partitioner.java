@@ -152,17 +152,14 @@ public class Partitioner {
         color = new int[vertices.length];
 
         ArrayDeque<BaseVertex> v = new ArrayDeque<>();
-        for (BaseVertex baseVertex : g.getVertexArray()) {
-            v.add(baseVertex);
-        }
-        if (findAllPartitioningsRecursively(t, t1 -> {
+        Collections.addAll(v, g.getVertexArray());
+        return findAllPartitioningsRecursively(t, t1 -> {
             if (checkColoring(g)) {
                 boolean b = listener.coloringFound(t1);
                 return b;
             }
             return false;
-        }, v)) return true;
-        return false;
+        }, v);
     }
 
     public boolean findAllPartitioningsRecursively(final int tt, final ColoringListener listener, final ArrayDeque<BaseVertex> v) {
