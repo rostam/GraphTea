@@ -12,5 +12,5 @@ package graphtea.platform.lang;
  * @author azin azadi
  */
 public interface Validator<T> {
-    public boolean isValid(T x);
+    boolean isValid(T x);
 }

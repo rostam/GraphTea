@@ -11,11 +11,11 @@ import java.io.Serializable;
  * @author Azin Azadi
  */
 public interface Arrow extends Serializable {
-    public static String ARROW = "ARROW";
+    String ARROW = "ARROW";
 
-    public String getName();
+    String getName();
 
-    public void paintArrow(Graphics g, int w, int h);
+    void paintArrow(Graphics g, int w, int h);
 
-    public Rectangle getBounds();
+    Rectangle getBounds();
 }

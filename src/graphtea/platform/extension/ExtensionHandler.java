@@ -35,5 +35,5 @@ public interface ExtensionHandler {
      *         is done without creating any actions(in some cases)
      * @see graphtea.ui.extension.AbstractExtensionAction
      */
-    public AbstractAction handle(BlackBoard b, Object extension);
+    AbstractAction handle(BlackBoard b, Object extension);
 }

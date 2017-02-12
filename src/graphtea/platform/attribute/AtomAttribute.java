@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author Azin Azadi
  */
 public interface AtomAttribute<T> extends Validator<T>, Serializable {
-    public boolean setValue(T value);
+    boolean setValue(T value);
 
-    public T getValue();
+    T getValue();
 }

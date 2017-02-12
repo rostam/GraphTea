@@ -17,9 +17,9 @@ package graphtea.platform.extension;
 
  */
 public interface Extension extends BasicExtension {
-    abstract String getName();
+    String getName();
 
-    abstract String getDescription();
+    String getDescription();
 
 
 }

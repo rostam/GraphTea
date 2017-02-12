@@ -12,5 +12,5 @@ package graphtea.platform.lang;
  * This is GraphTea's standard way of loading objects from strings.
  */
 public interface FromStringProvider<t> {
-    public t fromString(String toString);
+    t fromString(String toString);
 }

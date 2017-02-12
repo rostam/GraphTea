@@ -15,5 +15,5 @@ public interface EdgeConverter<ImportVertexType extends BaseVertex,
         ExportVertexType extends BaseVertex,
         ImportEdgeType extends BaseEdge<ImportVertexType>,
         ExportEdgeType extends BaseEdge<ExportVertexType>> {
-    public ExportEdgeType convert(ImportEdgeType e, ExportVertexType newSource, ExportVertexType newTarget);
+    ExportEdgeType convert(ImportEdgeType e, ExportVertexType newSource, ExportVertexType newTarget);
 }

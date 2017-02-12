@@ -11,5 +11,5 @@ import graphtea.plugins.reports.GraphReportInterface;
  * @author azin azadi
  */
 public interface GraphReportExtension<t> extends Extension, GraphReportInterface<t> {
-	public String getCategory();
+	String getCategory();
 }

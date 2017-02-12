@@ -12,6 +12,6 @@ import graphtea.library.BaseVertex;
  */
 public interface VertexConverter<ImportVertexType extends BaseVertex,
         ExportVertexType extends BaseVertex> {
-    public ExportVertexType convert(ImportVertexType v);
+    ExportVertexType convert(ImportVertexType v);
 
 }

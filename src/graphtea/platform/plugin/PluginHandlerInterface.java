@@ -24,5 +24,5 @@ public interface PluginHandlerInterface {
      * @param blackboard blackboard of GraphTea instance
      * @see PluginInterface#init(graphtea.platform.core.BlackBoard)
      */
-    public void init(String path, BlackBoard blackboard);
+    void init(String path, BlackBoard blackboard);
 }

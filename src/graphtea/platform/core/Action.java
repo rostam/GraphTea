@@ -15,13 +15,13 @@ public interface Action extends Listener {
      * @param eventName
      * @param value
      */
-    public void performAction(String key, Object value);
+    void performAction(String key, Object value);
 
     /**
      * each action have a black board which can interact with the world! by it.
      *
      * @param t
      */
-    public void setBlackBoard(BlackBoard t);
+    void setBlackBoard(BlackBoard t);
 
 }

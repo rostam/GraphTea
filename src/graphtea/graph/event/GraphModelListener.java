@@ -13,15 +13,15 @@ import graphtea.graph.graph.Vertex;
  * @author Azin Azadi
  */
 public interface GraphModelListener {
-    public void vertexAdded(Vertex v);
+    void vertexAdded(Vertex v);
 
-    public void vertexRemoved(Vertex v);
+    void vertexRemoved(Vertex v);
 
-    public void edgeAdded(Edge e);
+    void edgeAdded(Edge e);
 
-    public void edgeRemoved(Edge e);
+    void edgeRemoved(Edge e);
 
-    public void graphCleared();
+    void graphCleared();
 
-    public void repaintGraph();
+    void repaintGraph();
 }

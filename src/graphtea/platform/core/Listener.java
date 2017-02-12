@@ -16,7 +16,7 @@ public interface Listener<T> {
      *
      * @param key
      */
-    public void keyChanged(String key, T value);
+    void keyChanged(String key, T value);
 
 
 }

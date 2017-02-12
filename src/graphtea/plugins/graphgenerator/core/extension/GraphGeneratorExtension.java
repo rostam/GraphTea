@@ -16,5 +16,5 @@ import graphtea.plugins.graphgenerator.core.GraphGeneratorInterface;
 
  */
 public interface GraphGeneratorExtension extends Extension, GraphGeneratorInterface {
-    public String getCategory();
+    String getCategory();
 }

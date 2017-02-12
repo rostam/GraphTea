@@ -14,5 +14,5 @@ import java.net.URL;
  * @see graphtea.graph.ui.GHTMLPageComponent
  */
 public interface HyperlinkHandler {
-    public void handle(String url, BlackBoard b, URL currentURL);
+    void handle(String url, BlackBoard b, URL currentURL);
 }

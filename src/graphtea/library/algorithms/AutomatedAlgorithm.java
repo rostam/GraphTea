@@ -11,5 +11,5 @@ package graphtea.library.algorithms;
  * @author Azin Azadi
  */
 public interface AutomatedAlgorithm extends AlgorithmInterface {
-    public void doAlgorithm();
+    void doAlgorithm();
 }

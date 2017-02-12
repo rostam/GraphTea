@@ -11,10 +11,10 @@ import graphtea.graph.graph.GraphModel;
 
  */
 public interface GraphReportInterface<t> {
-    public t calculate(GraphModel g);
+    t calculate(GraphModel g);
 
     /**
     * return the category of report like: connectivity, general, coloring, ...
     **/
-    public String getCategory();
+    String getCategory();
 }

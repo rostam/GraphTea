@@ -25,5 +25,5 @@ public interface PluginInterface {
      *
      * @param blackboard blackboard of GraphTea instance
      */
-    public void init(BlackBoard blackboard);
+    void init(BlackBoard blackboard);
 }

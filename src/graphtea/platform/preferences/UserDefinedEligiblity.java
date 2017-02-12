@@ -12,7 +12,7 @@ import java.util.HashMap;
  * @author Rouzbeh Ebrahimi
  */
 public interface UserDefinedEligiblity {
-    public GraphPreferences GraphPrefFactory();
+    GraphPreferences GraphPrefFactory();
 
-    public HashMap<Object, ArrayX> defineEligibleValuesForSettings(HashMap<Object, ArrayX> objectValues);
+    HashMap<Object, ArrayX> defineEligibleValuesForSettings(HashMap<Object, ArrayX> objectValues);
 }

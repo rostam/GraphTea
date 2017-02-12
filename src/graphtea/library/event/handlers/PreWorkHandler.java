@@ -28,5 +28,5 @@ public interface PreWorkHandler<VertexType extends BaseVertex> {
      * @param toVertex   Reference to the vertex which prework will apply on.
      * @return whether the traversal should stop at this point.
      */
-    public boolean doPreWork(VertexType fromVertex, VertexType toVertex);
+    boolean doPreWork(VertexType fromVertex, VertexType toVertex);
 }

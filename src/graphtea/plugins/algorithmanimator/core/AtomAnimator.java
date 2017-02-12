@@ -14,10 +14,10 @@ public interface AtomAnimator<EventType extends Event> {
     /**
      * @return true if the event is animatable by this animator
      */
-    public boolean isAnimatable(Event event);
+    boolean isAnimatable(Event event);
 
     /**
      * animates event on the given blackboard as the world...
      */
-    public EventType animate(EventType event, BlackBoard b);
+    EventType animate(EventType event, BlackBoard b);
 }

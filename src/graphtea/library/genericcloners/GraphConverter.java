@@ -30,6 +30,6 @@ public interface GraphConverter
         extends EdgeConverter<ImportVertexType, ExportVertexType, ImportEdgeType, ExportEdgeType>,
         VertexConverter<ImportVertexType, ExportVertexType> {
 
-    public ExportGraphType convert(ImportGraphType g);
+    ExportGraphType convert(ImportGraphType g);
 
 }

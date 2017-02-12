@@ -10,5 +10,5 @@ package graphtea.platform.attribute;
  */
 public interface AttributeListener {
 
-    public void attributeUpdated(String name, Object oldVal, Object newVal);
+    void attributeUpdated(String name, Object oldVal, Object newVal);
 }

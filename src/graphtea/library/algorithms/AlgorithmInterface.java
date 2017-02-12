@@ -11,5 +11,5 @@ import graphtea.library.event.EventDispatcher;
  * @author Azin Azadi
  */
 public interface AlgorithmInterface {
-    public void acceptEventDispatcher(EventDispatcher e);
+    void acceptEventDispatcher(EventDispatcher e);
 }

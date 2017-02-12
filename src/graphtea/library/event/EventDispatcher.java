@@ -20,5 +20,5 @@ public interface EventDispatcher {
      *
      * @param ae Event object.
      */
-    public Event dispatchEvent(Event ae);
+    Event dispatchEvent(Event ae);
 }

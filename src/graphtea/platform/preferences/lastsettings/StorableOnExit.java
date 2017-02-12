@@ -9,5 +9,5 @@ package graphtea.platform.preferences.lastsettings;
  */
 
 public interface StorableOnExit {
-    public Settings SETTINGS = new Settings();
+    Settings SETTINGS = new Settings();
 }

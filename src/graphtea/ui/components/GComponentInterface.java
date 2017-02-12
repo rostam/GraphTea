@@ -18,5 +18,5 @@ import java.awt.*;
  * @author azin azadi
  */
 public interface GComponentInterface {
-    public Component getComponent(BlackBoard b);
+    Component getComponent(BlackBoard b);
 }

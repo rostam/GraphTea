@@ -21,10 +21,10 @@ import graphtea.graph.graph.Vertex;
 
 public interface VertexListener {
 
-    public void repaint(Vertex src);
+    void repaint(Vertex src);
 
-    public void updateSize(Vertex src, GPoint newSize);
+    void updateSize(Vertex src, GPoint newSize);
 
-    public void updateLocation(Vertex src, GPoint newLocation);
+    void updateLocation(Vertex src, GPoint newLocation);
 
 }

@@ -12,7 +12,7 @@ public final class Ellipsoid {
 /**
 shortcuts for pre-defined ellipsoids of revolution.
 */
-        public static enum ELL { BESSEL, HAYFORD, WGS84 }
+        public enum ELL { BESSEL, HAYFORD, WGS84 }
         private static final String classname = "Ellipsoid";
 
 /** parameters of Bessel ellipsoid */

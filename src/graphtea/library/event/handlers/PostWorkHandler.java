@@ -28,5 +28,5 @@ public interface PostWorkHandler<VertexType extends BaseVertex> {
      * @param returnTo   Id of the vertex traversing back to.
      * @return whether the traversal should stop at this point.
      */
-    public boolean doPostWork(VertexType returnFrom, VertexType returnTo);
+    boolean doPostWork(VertexType returnFrom, VertexType returnTo);
 }

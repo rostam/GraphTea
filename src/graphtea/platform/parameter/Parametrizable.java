@@ -19,5 +19,5 @@ public interface Parametrizable {
      * also if some other fields should be set after setting the parameters
      * you can do it in this method
      */
-    public String checkParameters();
+    String checkParameters();
 }

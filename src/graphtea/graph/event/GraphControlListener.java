@@ -10,9 +10,9 @@ package graphtea.graph.event;
  * @author Azin Azadi
  */
 public interface GraphControlListener {
-    public void ActionPerformed(GraphEvent event);
+    void ActionPerformed(GraphEvent event);
 
-    public void ActionPerformed(VertexEvent event);
+    void ActionPerformed(VertexEvent event);
 
-    public void ActionPerformed(EdgeEvent event);
+    void ActionPerformed(EdgeEvent event);
 }

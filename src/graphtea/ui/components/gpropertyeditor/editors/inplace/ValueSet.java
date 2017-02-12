@@ -8,5 +8,5 @@ package graphtea.ui.components.gpropertyeditor.editors.inplace;
  * User: root
  */
 public interface ValueSet {
-    public Object[] getValues();
+    Object[] getValues();
 }

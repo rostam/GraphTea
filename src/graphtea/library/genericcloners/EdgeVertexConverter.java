@@ -21,7 +21,7 @@ public interface EdgeVertexConverter
         VertexConverter<ImportVertexType, ExportVertexType>,
         EdgeConverter<ImportVertexType, ExportVertexType, ImportEdgeType, ExportEdgeType> {
 
-    public ExportEdgeType convert(ImportEdgeType e, ExportVertexType newSource, ExportVertexType newTarget);
+    ExportEdgeType convert(ImportEdgeType e, ExportVertexType newSource, ExportVertexType newTarget);
 
-    public ExportVertexType convert(ImportVertexType e);
+    ExportVertexType convert(ImportVertexType e);
 }
