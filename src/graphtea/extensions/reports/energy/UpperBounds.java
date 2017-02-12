@@ -130,9 +130,9 @@ public class UpperBounds implements GraphReportExtension {
 
      //   v.add(sum);
      //   v.add((2*m/n) + ((2/(n-1))*(Math.sqrt(((n-1)*((2*m) + M21)) - (4*m*m) ) )) );
-        
+
      //   v.add(Math.sqrt((2/(n-1))*(((n-1)*((2*m) + M21)) - (4*m*m) ) )  );
-        
+
        // v.add((2*m/n) + ((2/(n-1))*(Math.sqrt( (2*m*((n*(n-1) - (2*m)) )) / n ) )) );
         v.add(al.toString());
         ret.add(v);

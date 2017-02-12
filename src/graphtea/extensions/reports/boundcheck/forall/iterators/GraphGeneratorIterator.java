@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.boundcheck.forall.iterators;
 
+import graphtea.extensions.G6Format;
 import graphtea.extensions.reports.boundcheck.forall.IterProgressBar;
 import graphtea.extensions.reports.boundcheck.forall.filters.GeneratorFilters;
 import graphtea.graph.graph.GraphModel;
@@ -37,6 +38,7 @@ public class GraphGeneratorIterator extends GraphModelIterator {
     Vector<String> names;
     IterProgressBar pb;
     Vector<Object> others = new Vector<>();
+    GraphModel curGraph;
 
     public GraphGeneratorIterator(String name) {
         ext = ((AbstractExtensionAction) hm.get(
@@ -99,6 +101,11 @@ public class GraphGeneratorIterator extends GraphModelIterator {
     }
 
     @Override
+    public String getG6() {
+        return G6Format.graphToG6(curGraph);
+    }
+
+    @Override
     public boolean hasNext() {
         return cnt <= to;
     }
@@ -123,6 +130,7 @@ public class GraphGeneratorIterator extends GraphModelIterator {
         pb.setValue(cnt);
         pb.validate();
         if (cnt == to - 2) pb.setVisible(false);
+        curGraph = g;
         return g;
     }
 

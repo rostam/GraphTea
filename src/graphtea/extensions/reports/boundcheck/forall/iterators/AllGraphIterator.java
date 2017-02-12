@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.boundcheck.forall.iterators;
 
+import graphtea.extensions.G6Format;
 import graphtea.extensions.reports.boundcheck.forall.IterProgressBar;
 import graphtea.extensions.reports.boundcheck.forall.ShowG;
 import graphtea.extensions.reports.boundcheck.forall.Sizes;
@@ -7,6 +8,8 @@ import graphtea.graph.graph.GraphModel;
 
 import javax.swing.*;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -15,41 +18,28 @@ import java.util.Scanner;
  * This is a iterator on all graphs with the number of vertices size
  */
 public class AllGraphIterator extends GraphModelIterator {
-    BufferedReader bri;
+    //BufferedReader bri;
     int cnt;
     IterProgressBar pb;
-    int size,from,to;
+    int size;
+    Scanner g_iters;
+    String g6;
 
     public AllGraphIterator(String fileSize, int size, boolean part) {
-        from = 1;
-        to = size;
-        if(part) {
-            String out = JOptionPane.showInputDialog(
-                    "Please enter a bound for the graphs that you want to check.\n" +
-                            "If the value is in the format of a:b, a bound would be considered.\n" +
-                            "The value of b must be limited up to " + Sizes.sizes.get(fileSize) + ".\n" +
-                            "Entering a single integer results in a bound like a:a.");
-            if(out.contains(":")) {
-                Scanner sc = new Scanner(out);
-                sc.useDelimiter(":");
-                from = sc.nextInt();
-                to = sc.nextInt();
-            } else {
-                from = Integer.parseInt(out);
-                to = from;
-            }
+        try {
+            g_iters = new Scanner(new File("graphs/"+fileSize+".g6"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        bri = ShowG.showG(fileSize,from,to);
-        pb = new IterProgressBar(to-from+1);
-        if(to-from+1 > 100) {
-            pb.setVisible(true);
-        }
+        //bri = ShowG.showG(fileSize,from,to);
+        pb = new IterProgressBar(size);
         this.size=size;
-        cnt = from;
+        cnt = 0;
+        if(size > 1000) pb.setVisible(true);
     }
 
     public int size() {
-        return to - from + 1;
+        return size;
     }
 
     @Override
@@ -58,37 +48,24 @@ public class AllGraphIterator extends GraphModelIterator {
     }
 
     @Override
+    public String getG6() {
+        return g6;
+    }
+
+    @Override
     public boolean hasNext() {
-        return cnt <= to;
+        return g_iters.hasNext();
     }
 
     @Override
     public GraphModel next() {
         cnt++;
-        String g = "";
-        try {
-            bri.readLine();
-            g=bri.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String tmp = g.substring(g.indexOf("order"));
-        tmp = tmp.substring(tmp.indexOf(" "),tmp.length()-1);
-        int numOfVertices = Integer.parseInt(tmp.trim());
-        g+= "\n";
-        for (int i = 0; i < numOfVertices; i++) {
-            try {
-                g += bri.readLine() + "\n";
-            } catch (IOException e) {
-                e.printStackTrace();
-                return new GraphModel();
-            }
-        }
-        pb.setValue(cnt - from + 1);
-        if(cnt > to-2) {
+        g6 = g_iters.nextLine();
+        pb.setValue(cnt);
+        if(cnt > size - 2) {
             pb.setVisible(false);
         }
-        return ShowG.parseGraph(new Scanner(g));
+        return G6Format.stringToGraphModel(g6);
     }
 
     @Override

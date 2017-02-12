@@ -15,8 +15,6 @@ import graphtea.ui.extension.AbstractExtensionAction;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 
@@ -29,7 +27,6 @@ import java.io.FileWriter;
 public class GraphReportExtensionAction extends AbstractExtensionAction {
 	protected GraphReportExtension mr;
 	public static IterGraphs ig=null;
-	JButton cont = new JButton("Continue");
 
 	public GraphReportExtensionAction(BlackBoard bb, GraphReportExtension gg) {
 		super(bb, gg);
@@ -54,11 +51,8 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 			Object result = new Object();
 			public void run() {
 				if (ig!=null&&ig.activeConjCheck && !mr.getName().equals("Bound Check")) {
-					if(ig.gens.equals("No Generator")) cont.setEnabled(true);
-					else cont.setEnabled(false);
 					result=ig.wrapper(mr);
 				} else {
-					cont.setEnabled(false);
 					result = mr.calculate(new GraphData(blackboard).getGraph());
 				}
 				if (result == null)
@@ -74,83 +68,72 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 				JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 				JButton recalc = new JButton("Recalculate");
 				panel.add(recalc, BorderLayout.SOUTH);
-				panel.add(cont, BorderLayout.SOUTH);
-				recalc.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent actionEvent) {
-						Object result = mr.calculate(new GraphData(blackboard).getGraph());
-						jd.remove(rendererComponent);
-						rendererComponent = GCellRenderer.getRendererFor(result);
-						rendererComponent.setEnabled(true);
-						jd.add(rendererComponent, BorderLayout.CENTER);
-						jd.pack();
-						jd.repaint();
+				recalc.addActionListener(actionEvent -> {
+                    Object result = mr.calculate(new GraphData(blackboard).getGraph());
+                    jd.remove(rendererComponent);
+                    rendererComponent = GCellRenderer.getRendererFor(result);
+                    rendererComponent.setEnabled(true);
+                    jd.add(rendererComponent, BorderLayout.CENTER);
+                    jd.pack();
+                    jd.repaint();
 
-					}
-				});
-
-				cont.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent actionEvent) {
-						ig.showWrapper(blackboard);
-					}
-				});
+                });
 
 				fileChooser = new JFileChooser();
 				JButton save = new JButton("Save");
 				panel.add(save);
-				save.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent actionEvent) {
+				save.addActionListener(actionEvent -> {
 
-						fileChooser.addChoosableFileFilter(new FileFilter() {
+                    fileChooser.addChoosableFileFilter(new FileFilter() {
 
-							@Override
-							public String getDescription() {
-								return "*.txt";
-							}
+                        @Override
+                        public String getDescription() {
+                            return "*.txt";
+                        }
 
-							@Override
-							public boolean accept(File arg0) {
-								if (arg0.isDirectory())
-									return true;
-								else {
-									String path = arg0.getAbsolutePath().toLowerCase();
-									if ((path.endsWith("txt") && (path.charAt(path.length() - 4)) == '.'))
-										return true;
-								}
-								return false;
-							}
-						});
-						fileChooser.setDialogTitle("Choose a file");
-						fileChooser.showSaveDialog(jd);
-						try {
-							File curFile = fileChooser.getSelectedFile();
-							FileWriter fw = new FileWriter(curFile);
-							JViewport viewp = ((JScrollPane) rendererComponent).getViewport();
-							if(viewp.getView() instanceof JTable) {
-								JTable table = (JTable) viewp.getView();
-								for (int row = 0; row < table.getRowCount(); row++) {
-									for (int col = 0; col < table.getColumnCount(); col++) {
-										if (col != table.getColumnCount() - 1) {
-											fw.write(table.getValueAt(row, col) + ",");
-										} else {
-											fw.write(table.getValueAt(row, col).toString());
-										}
-									}
-									fw.write("\n");
-								}
-								fw.close();
-							} else {
-								JList list = (JList) viewp.getView();
-								fw.write(list.toString());
-								fw.close();
-							}
-							JOptionPane.showMessageDialog(jd, "Saved to file successfuly.");
+                        @Override
+                        public boolean accept(File arg0) {
+                            if (arg0.isDirectory())
+                                return true;
+                            else {
+                                String path = arg0.getAbsolutePath().toLowerCase();
+                                if ((path.endsWith("txt") && (path.charAt(path.length() - 4)) == '.'))
+                                    return true;
+                            }
+                            return false;
+                        }
+                    });
+                    fileChooser.setDialogTitle("Choose a file");
+                    fileChooser.showSaveDialog(jd);
+                    try {
+                        File curFile = fileChooser.getSelectedFile();
+                        FileWriter fw = new FileWriter(curFile);
+                        JViewport viewp = ((JScrollPane) rendererComponent).getViewport();
+                        if(viewp.getView() instanceof JTable) {
+                            JTable table = (JTable) viewp.getView();
+                            for (int row = 0; row < table.getRowCount(); row++) {
+                                for (int col = 0; col < table.getColumnCount(); col++) {
+                                    if (col != table.getColumnCount() - 1) {
+                                        fw.write(table.getValueAt(row, col) + ",");
+                                    } else {
+                                        fw.write(table.getValueAt(row, col).toString());
+                                    }
+                                }
+                                fw.write("\n");
+                            }
+                            fw.close();
+                        } else {
+                            JList list = (JList) viewp.getView();
+                            fw.write(list.toString());
+                            fw.close();
+                        }
+                        JOptionPane.showMessageDialog(jd, "Saved to file successfuly.");
 
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
-					}
-				});
+                });
 
 				jd.add(panel, BorderLayout.SOUTH);
 				jd.setLocation(GFrameLocationProvider.getPopUpLocation());

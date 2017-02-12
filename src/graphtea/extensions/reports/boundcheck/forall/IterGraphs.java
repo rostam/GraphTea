@@ -81,7 +81,7 @@ public class IterGraphs {
             GraphModel g = it.next();
             if(gf!=null) if(!gf.filter(g)) continue;
             if (iterative) {
-                    getResIterLimited(f, g, it.getCount(), pq);
+                    getResIterLimited(f, g, it.getCount(), pq, it.getG6());
             } else {
                 RenderTable ret = (RenderTable) f.f(g);
                 Vector<Object> vo = ret.poll();
@@ -123,13 +123,14 @@ public class IterGraphs {
         new GraphData(blackboard).core.showGraph(g);
     }
 
-    private void getResIterLimited(ToCall f, GraphModel g, int count, RenderTable mpq) {
+    private void getResIterLimited(ToCall f, GraphModel g, int count, RenderTable mpq, String g6) {
         RenderTable ret = (RenderTable) f.f(g);
         if (mpq.getTitles().size() == 0) {
             Vector<String> tts = new Vector<>();
             tts.add("Index");
             tts.addAll(ret.getTitles());
             tts.add("Degree Sequence");
+            tts.add("G6");
             mpq.setTitles(tts);
         }
 
@@ -151,6 +152,7 @@ public class IterGraphs {
         ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);
         data.add(al.toString());
+        data.add(g6);
     }
 
     public void checkTypeOfBounds(Vector<Object> vo, int[] res, int i, String bound) {

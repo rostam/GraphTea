@@ -11,4 +11,5 @@ import java.util.Iterator;
 public abstract  class GraphModelIterator implements Iterator<GraphModel> {
     public abstract int size();
     public abstract int getCount();
+    public abstract String getG6();
 }

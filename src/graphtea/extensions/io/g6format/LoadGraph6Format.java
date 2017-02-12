@@ -9,6 +9,7 @@
 
 package graphtea.extensions.io.g6format;
 
+import graphtea.extensions.G6Format;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -18,10 +19,7 @@ import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphReaderExtension;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Scanner;
 
 public class LoadGraph6Format implements GraphReaderExtension {
@@ -41,8 +39,15 @@ public class LoadGraph6Format implements GraphReaderExtension {
 
     @Override
     public GraphModel read(File file) throws GraphIOException {
-        BufferedReader br = showG(file);
-        GraphModel g = next(br);
+        String g6 = "";
+        try {
+            Scanner sc = new Scanner(file);
+            g6 = sc.nextLine();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        GraphModel g = G6Format.stringToGraphModel(g6);
         Point pp[] = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
         int tmpcnt = 0;
