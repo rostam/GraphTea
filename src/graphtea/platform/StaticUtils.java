@@ -203,14 +203,20 @@ public class StaticUtils {
 //            strStyle = isItalic() ? "italic" : "plain";
 //        }
 
-        if (_style.equals("bolditalic"))
-            style = Font.BOLD | Font.ITALIC;
-        else if (_style.equals("italic"))
-            style = Font.ITALIC;
-        else if (_style.equals("bold"))
-            style = Font.BOLD;
-        else
-            style = Font.PLAIN;
+        switch (_style) {
+            case "bolditalic":
+                style = Font.BOLD | Font.ITALIC;
+                break;
+            case "italic":
+                style = Font.ITALIC;
+                break;
+            case "bold":
+                style = Font.BOLD;
+                break;
+            default:
+                style = Font.PLAIN;
+                break;
+        }
         Font f = new Font(name, style, size);
         return f;
     }

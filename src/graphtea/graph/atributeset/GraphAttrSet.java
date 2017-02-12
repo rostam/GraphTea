@@ -77,50 +77,71 @@ public class GraphAttrSet implements AttributeSet {
     }
 
     public void put(String atrName, Object val) {
-        if (atrName.equals(LABEL)) {
-            g.setLabel((String) val);
-        } else if (atrName.equals(ZOOM)) {
-            g.setZoom((ArrayX<String>) val);
-        } else if (atrName.equals(FONT)) {
-            g.setFont((Font) val);
-        } else if (atrName.equals(DRAW_VERTEX_LABELS)) {
-            g.setDrawVertexLabels((Boolean) val);
-        } else if (atrName.equals(IS_EDGES_CURVED)) {
-            g.setIsEdgesCurved((Boolean) val);
-        } else if (atrName.equals(BACKGROUND_IMAGE)) {
-            g.setBackgroundImageFile((File) val);
-        } else if (atrName.equals(Allow_Loops)) {
-            g.setAllowLoops((Boolean) val);
-        } else if (atrName.equals(DRAW_EDGE_LABELS)) {
-            g.setDrawEdgeLabels((Boolean) val);
-        } else {
-            g.setUserDefinedAttribute(atrName, val);
+        switch (atrName) {
+            case LABEL:
+                g.setLabel((String) val);
+                break;
+            case ZOOM:
+                g.setZoom((ArrayX<String>) val);
+                break;
+            case FONT:
+                g.setFont((Font) val);
+                break;
+            case DRAW_VERTEX_LABELS:
+                g.setDrawVertexLabels((Boolean) val);
+                break;
+            case IS_EDGES_CURVED:
+                g.setIsEdgesCurved((Boolean) val);
+                break;
+            case BACKGROUND_IMAGE:
+                g.setBackgroundImageFile((File) val);
+                break;
+            case Allow_Loops:
+                g.setAllowLoops((Boolean) val);
+                break;
+            case DRAW_EDGE_LABELS:
+                g.setDrawEdgeLabels((Boolean) val);
+                break;
+            default:
+                g.setUserDefinedAttribute(atrName, val);
+                break;
         }
 
     }
 
     public Object get(String atrName) {
         Object ret = null;
-        if (atrName.equals(LABEL)) {
-            ret = g.getLabel();
-        } else if (atrName.equals(DIRECTED)) {
-            ret = g.isDirected();
-        } else if (atrName.equals(ZOOM)) {
-            ret = g.getZoom();
-        } else if (atrName.equals(FONT)) {
-            ret = g.getFont();
-        } else if (atrName.equals(DRAW_VERTEX_LABELS)) {
-            ret = g.isDrawVertexLabels();
-        } else if (atrName.equals(IS_EDGES_CURVED)) {
-            ret = g.isEdgesCurved();
-        } else if (atrName.equals(BACKGROUND_IMAGE)) {
-            ret = g.getBackgroundImageFile();
-        } else if (atrName.equals(DRAW_EDGE_LABELS)) {
-            ret = g.isDrawEdgeLabels();
-        } else if (atrName.equals(Allow_Loops)) {
-            ret = g.isAllowLoops();
-        } else {
-            ret = g.getUserDefinedAttribute(atrName);
+        switch (atrName) {
+            case LABEL:
+                ret = g.getLabel();
+                break;
+            case DIRECTED:
+                ret = g.isDirected();
+                break;
+            case ZOOM:
+                ret = g.getZoom();
+                break;
+            case FONT:
+                ret = g.getFont();
+                break;
+            case DRAW_VERTEX_LABELS:
+                ret = g.isDrawVertexLabels();
+                break;
+            case IS_EDGES_CURVED:
+                ret = g.isEdgesCurved();
+                break;
+            case BACKGROUND_IMAGE:
+                ret = g.getBackgroundImageFile();
+                break;
+            case DRAW_EDGE_LABELS:
+                ret = g.isDrawEdgeLabels();
+                break;
+            case Allow_Loops:
+                ret = g.isAllowLoops();
+                break;
+            default:
+                ret = g.getUserDefinedAttribute(atrName);
+                break;
         }
         return ret;
     }

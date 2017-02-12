@@ -51,51 +51,73 @@ public class VertexAttrSet implements AttributeSet {
     }
 
     public void put(String atrName, Object val) {
-        if (atrName.equals(LABEL)) {
-            v.setLabel((String) val);
-        } else if (atrName.equals(SHAPE)) {
-            v.setShape((GShape) val);
-        } else if (atrName.equals(BORDER)) {
-            v.setShapeStroke((GStroke) val);
-        } else if (atrName.equals(LOCATION)) {
-            v.setLocation((GPoint) val);
-        } else if (atrName.equals(SIZE)) {
-            v.setSize((GPoint) val);
-        } else if (atrName.equals(MARK)) {
-            v.setMark((Boolean) val);
-        } else if (atrName.equals(SELECTED)) {
-            v.setSelected((Boolean) val);
-        } else if (atrName.equals(COLOR)) {
-            v.setColor((Integer) val);
-        } else if (atrName.equals(LABEL_LOCATION)) {
-            v.setLabelLocation((GPoint) val);
-        } else {
-            v.setUserDefinedAttribute(atrName, val);
+        switch (atrName) {
+            case LABEL:
+                v.setLabel((String) val);
+                break;
+            case SHAPE:
+                v.setShape((GShape) val);
+                break;
+            case BORDER:
+                v.setShapeStroke((GStroke) val);
+                break;
+            case LOCATION:
+                v.setLocation((GPoint) val);
+                break;
+            case SIZE:
+                v.setSize((GPoint) val);
+                break;
+            case MARK:
+                v.setMark((Boolean) val);
+                break;
+            case SELECTED:
+                v.setSelected((Boolean) val);
+                break;
+            case COLOR:
+                v.setColor((Integer) val);
+                break;
+            case LABEL_LOCATION:
+                v.setLabelLocation((GPoint) val);
+                break;
+            default:
+                v.setUserDefinedAttribute(atrName, val);
+                break;
         }
     }
 
     public Object get(String atrName) {
         Object ret = null;
-        if (atrName.equals(LABEL)) {
-            ret = v.getLabel();
-        } else if (atrName.equals(SHAPE)) {
-            ret = v.getShape();
-        } else if (atrName.equals(BORDER)) {
-            ret = v.getShapeStroke();
-        } else if (atrName.equals(LOCATION)) {
-            ret = v.getLocation();
-        } else if (atrName.equals(SIZE)) {
-            ret = v.getSize();
-        } else if (atrName.equals(MARK)) {
-            ret = v.getMark();
-        } else if (atrName.equals(SELECTED)) {
-            ret = v.isSelected;
-        } else if (atrName.equals(COLOR)) {
-            ret = v.getColor();
-        } else if (atrName.equals(LABEL_LOCATION)) {
-            ret = v.getLabelLocation();
-        } else {
-            ret = v.getUserDefinedAttribute(atrName);
+        switch (atrName) {
+            case LABEL:
+                ret = v.getLabel();
+                break;
+            case SHAPE:
+                ret = v.getShape();
+                break;
+            case BORDER:
+                ret = v.getShapeStroke();
+                break;
+            case LOCATION:
+                ret = v.getLocation();
+                break;
+            case SIZE:
+                ret = v.getSize();
+                break;
+            case MARK:
+                ret = v.getMark();
+                break;
+            case SELECTED:
+                ret = v.isSelected;
+                break;
+            case COLOR:
+                ret = v.getColor();
+                break;
+            case LABEL_LOCATION:
+                ret = v.getLabelLocation();
+                break;
+            default:
+                ret = v.getUserDefinedAttribute(atrName);
+                break;
         }
         return ret;
     }

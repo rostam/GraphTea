@@ -43,58 +43,78 @@ public class EdgeAttrSet implements AttributeSet {
     public static final String CURVE_CONTROL_POINT = "Curve Control Point";
 
     public void put(String atrName, Object val) {
-        if (atrName.equals(LABEL)) {
-            e.setLabel((String) val);
-        } else if (atrName.equals(WEIGHT)) {
-            e.setWeight((Integer) val);
-        } else if (atrName.equals(SHOW_WEIGHT)) {
-            e.setShowWeight((Boolean) val);
-        } else if (atrName.equals(COLOR)) {
-            e.setColor((Integer) val);
-        } else if (atrName.equals(MARK)) {
-            e.setMark((Boolean) val);
-        } else if (atrName.equals(COLOR)) {
-            e.setColor((Integer) val);
-        } else if (atrName.equals(STROKE)) {
-            e.setStroke((GStroke) val);
-        } else if (atrName.equals(LABEL_LOCATION)) {
-            e.setLabelLocation((GPoint) val);
-        } else if (atrName.equals(ARROW)) {
-            e.setArrow((Arrow) val);
-        } else if (atrName.equals(CURVE_CONTROL_POINT)) {
-            e.setCurveControlPoint((GPoint) val);
-        } else {
-            e.setUserDefinedAttribute(atrName, val);
+        switch (atrName) {
+            case LABEL:
+                e.setLabel((String) val);
+                break;
+            case WEIGHT:
+                e.setWeight((Integer) val);
+                break;
+            case SHOW_WEIGHT:
+                e.setShowWeight((Boolean) val);
+                break;
+            case COLOR:
+                e.setColor((Integer) val);
+                break;
+            case MARK:
+                e.setMark((Boolean) val);
+                break;
+            case STROKE:
+                e.setStroke((GStroke) val);
+                break;
+            case LABEL_LOCATION:
+                e.setLabelLocation((GPoint) val);
+                break;
+            case ARROW:
+                e.setArrow((Arrow) val);
+                break;
+            case CURVE_CONTROL_POINT:
+                e.setCurveControlPoint((GPoint) val);
+                break;
+            default:
+                e.setUserDefinedAttribute(atrName, val);
+                break;
         }
     }
 
 
     public Object get(String atrName) {
         Object ret = null;
-        if (atrName.equals(LABEL)) {
-            ret = e.getLabel();
-        } else if (atrName.equals(STROKE)) {
-            ret = e.getStroke();
-        } else if (atrName.equals(COLOR)) {
-            ret = e.getColor();
-        } else if (atrName.equals(MARK)) {
-            ret = e.getMark();
-        } else if (atrName.equals(WEIGHT)) {
-            ret = e.getWeight();
-        } else if (atrName.equals(SHOW_WEIGHT)) {
-            ret = e.isShowWeight();
-        } else if (atrName.equals(LABEL_LOCATION)) {
-            ret = e.getLabelLocation();
-        } else if (atrName.equals(ARROW)) {
-            ret = e.getArrow();
+        switch (atrName) {
+            case LABEL:
+                ret = e.getLabel();
+                break;
+            case STROKE:
+                ret = e.getStroke();
+                break;
+            case COLOR:
+                ret = e.getColor();
+                break;
+            case MARK:
+                ret = e.getMark();
+                break;
+            case WEIGHT:
+                ret = e.getWeight();
+                break;
+            case SHOW_WEIGHT:
+                ret = e.isShowWeight();
+                break;
+            case LABEL_LOCATION:
+                ret = e.getLabelLocation();
+                break;
+            case ARROW:
+                ret = e.getArrow();
 //        } else if (atrName.equals(HEAD)) {
 //            ret = e.source;
 //        } else if (atrName.equals(TAIL)) {
 //            ret = e.target;
-        } else if (atrName.equals(CURVE_CONTROL_POINT)) {
-            ret = e.getCurveControlPoint();
-        } else {
-            ret = e.getUserDefinedAttribute(atrName);
+                break;
+            case CURVE_CONTROL_POINT:
+                ret = e.getCurveControlPoint();
+                break;
+            default:
+                ret = e.getUserDefinedAttribute(atrName);
+                break;
         }
         return ret;
     }
