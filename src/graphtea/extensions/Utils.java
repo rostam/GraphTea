@@ -1,5 +1,6 @@
 package graphtea.extensions;
 
+import Jama.Matrix;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GPoint;
@@ -128,5 +129,30 @@ public class Utils {
             }
         }
         return binmat;
+    }
+
+    /**
+     * Undirected Laplacian.
+     *
+     * @param A the Adjacency matrix of the graph
+     * @return Laplacian of the graph
+     */
+    public static Matrix getLaplacian(Matrix A) {
+        //double[][] res=new double[g.numOfVertices()][g.numOfVertices()];
+        int n = A.getArray().length;
+        double[][] ATemp = A.getArray();
+
+        Matrix D = new Matrix(n, n);
+        double[][] DTemp = D.getArray();
+        int sum;
+        for (int i = 0; i < n; i++) {
+            sum = 0;
+            for (int j = 0; j < n; j++) {
+                sum += ATemp[j][i];
+            }
+            DTemp[i][i] = sum;
+        }
+
+        return D.minus(A);
     }
 }

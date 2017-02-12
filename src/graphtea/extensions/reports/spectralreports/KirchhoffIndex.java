@@ -7,6 +7,7 @@ package graphtea.extensions.reports.spectralreports;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.Utils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
@@ -30,7 +31,8 @@ public class KirchhoffIndex implements GraphReportExtension {
     public Object calculate(GraphModel g) {
         double power = 1;
         try {
-            Matrix A = g.getWeightedAdjacencyMatrix();
+            Matrix B = g.getWeightedAdjacencyMatrix();
+            Matrix A = Utils.getLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
             double rv[] = ed.getRealEigenvalues();
             double iv[] = ed.getImagEigenvalues();
@@ -44,8 +46,10 @@ public class KirchhoffIndex implements GraphReportExtension {
             double sum = 0;
             double sum_i = 0;
             for(int i=0;i < rv.length;i++)
-                if(Math.abs(rv[i]) != 0)
-                    sum += 1/Math.abs(rv[i]);
+                if(Math.abs(round(rv[i],6)) != 0) {
+                    sum += 1 / Math.abs(rv[i]);
+                }
+            sum *= g.numOfVertices();
             for(int i=0;i < iv.length;i++)
                 sum_i +=  Math.abs(iv[i]);
 

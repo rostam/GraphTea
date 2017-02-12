@@ -42,15 +42,6 @@ public class UpperBounds implements GraphReportExtension {
         titles.add(" Laplacian Energy ");
     titles.add("m ");
     titles.add("n ");
-    //    titles.add(" 1.2 ");
-    //    titles.add(" 1.3 ");
-    //    titles.add(" 1.4 ");
-     //   titles.add(" 1.5 ");
-    //    titles.add(" 1.6 ");
-
-                titles.add(" degree ");
-     //   titles.add("new");
-      //  titles.add("new1");
         ret.setTitles(titles);
 
         Matrix A = g.getWeightedAdjacencyMatrix();
@@ -134,7 +125,6 @@ public class UpperBounds implements GraphReportExtension {
      //   v.add(Math.sqrt((2/(n-1))*(((n-1)*((2*m) + M21)) - (4*m*m) ) )  );
 
        // v.add((2*m/n) + ((2/(n-1))*(Math.sqrt( (2*m*((n*(n-1) - (2*m)) )) / n ) )) );
-        v.add(al.toString());
         ret.add(v);
 
         return ret;
