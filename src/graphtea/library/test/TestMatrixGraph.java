@@ -59,7 +59,7 @@ public class TestMatrixGraph {
 
     public static void main(String args[]) {
         try {
-            MatrixGraph<BaseVertex, BaseEdge<BaseVertex>> myList = new MatrixGraph<BaseVertex, BaseEdge<BaseVertex>>();
+            MatrixGraph<BaseVertex, BaseEdge<BaseVertex>> myList = new MatrixGraph<>();
             BaseVertex v0 = new BaseVertex();
             BaseVertex v1 = new BaseVertex();
             BaseVertex v2 = new BaseVertex();
@@ -68,16 +68,16 @@ public class TestMatrixGraph {
             myList.insertVertex(v1);
             myList.insertVertex(v2);
 
-            myList.insertEdge(new BaseEdge<BaseVertex>(v0, v1, new BaseEdgeProperties(0, 5, false)));
-            myList.insertEdge(new BaseEdge<BaseVertex>(v1, v2, new BaseEdgeProperties(0, 1, false)));
-            myList.insertEdge(new BaseEdge<BaseVertex>(v2, v0, new BaseEdgeProperties(0, 2, false)));
+            myList.insertEdge(new BaseEdge<>(v0, v1, new BaseEdgeProperties(0, 5, false)));
+            myList.insertEdge(new BaseEdge<>(v1, v2, new BaseEdgeProperties(0, 1, false)));
+            myList.insertEdge(new BaseEdge<>(v2, v0, new BaseEdgeProperties(0, 2, false)));
             myList.dump();
 
             BaseVertex v3 = new BaseVertex();
 
             myList.insertVertex(v3);
-            myList.insertEdge(new BaseEdge<BaseVertex>(v2, v3, new BaseEdgeProperties(0, 1, false)));
-            myList.insertEdge(new BaseEdge<BaseVertex>(v0, v1, new BaseEdgeProperties(0, 20, false)));
+            myList.insertEdge(new BaseEdge<>(v2, v3, new BaseEdgeProperties(0, 1, false)));
+            myList.insertEdge(new BaseEdge<>(v0, v1, new BaseEdgeProperties(0, 20, false)));
             System.out.println("||---");
             myList.dump();
             System.out.println("||---");
@@ -104,8 +104,8 @@ public class TestMatrixGraph {
             //myList.removeVertex(v);
 
             System.out.println("\nBefore traversal");
-            new DepthFirstSearch<BaseVertex, BaseEdge<BaseVertex>>(myList).doSearch(v, new SampleTraversalHandler());
-            new BreadthFirstSearch<BaseVertex, BaseEdge<BaseVertex>>(myList).doSearch(v, new SampleTraversalHandler());
+            new DepthFirstSearch<>(myList).doSearch(v, new SampleTraversalHandler());
+            new BreadthFirstSearch<>(myList).doSearch(v, new SampleTraversalHandler());
 
         } catch (Exception e) {
             System.out.println("Noooooo:");

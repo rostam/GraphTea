@@ -139,8 +139,8 @@ public class Paste extends AbstractAction {
 //        else{
 //            p=new Point(200,200);
 //        }
-        HashSet<Vertex> toBeSelectedVertices = new HashSet<Vertex>();
-        HashSet<Edge> toBeSelectedEdges = new HashSet<Edge>();
+        HashSet<Vertex> toBeSelectedVertices = new HashSet<>();
+        HashSet<Edge> toBeSelectedEdges = new HashSet<>();
 
         for (Vertex vm : gg) {
             toBeSelectedVertices.add(vm);

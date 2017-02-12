@@ -12,7 +12,7 @@ import java.util.HashMap;
  * @author Rouzbeh Ebrahimi
  */
 public class KeyBoardShortCutProvider {
-    public static HashMap<String, KeyBoardShortCut> shortCuts = new HashMap<String, KeyBoardShortCut>();
+    public static HashMap<String, KeyBoardShortCut> shortCuts = new HashMap<>();
 
     public static KeyBoardShortCut registerKeyBoardShortcut(String accelerator, String label, int index) {
         if (label == null) return null;

@@ -15,7 +15,7 @@ public class Path {
     ArrayList<Vertex> pathVertices;
 
     public Path() {
-        pathVertices = new ArrayList<Vertex>();
+        pathVertices = new ArrayList<>();
     }
 
     public boolean add(Vertex v) {

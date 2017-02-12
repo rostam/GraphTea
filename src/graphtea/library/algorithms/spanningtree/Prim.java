@@ -124,12 +124,12 @@ public class Prim<VertexType extends BaseVertex,
         BaseGraph<VertexType, EdgeType> gCopy = graph.copy(gc);
         gCopy = graph;
 
-        Vector<VertexType> oVertices = new Vector<VertexType>();
-        Vector<EdgeType> oEdges = new Vector<EdgeType>();
+        Vector<VertexType> oVertices = new Vector<>();
+        Vector<EdgeType> oEdges = new Vector<>();
 
         //dispatchEvent(new GraphEvent<VertexType,EdgeType>(oGraph));
 
-        pq = new PriorityQueue<EdgeType>(1, ec);
+        pq = new PriorityQueue<>(1, ec);
 
         {    //lovely block
             Iterator<EdgeType> edgeList = gCopy.edgeIterator();
@@ -162,13 +162,13 @@ public class Prim<VertexType extends BaseVertex,
             }
         }
 
-        return new Pair<Vector<VertexType>, Vector<EdgeType>>(oVertices, oEdges);
+        return new Pair<>(oVertices, oEdges);
     }
 
 
     private Pair<EdgeType, VertexType>
     getNewEdgeForSpanningTree(Vector<VertexType> vertices, Vector<EdgeType> edges) {
-        ArrayList<EdgeType> tempEdgeArray = new ArrayList<EdgeType>();
+        ArrayList<EdgeType> tempEdgeArray = new ArrayList<>();
 
         try {
             while (true) {
@@ -178,12 +178,12 @@ public class Prim<VertexType extends BaseVertex,
 
                 if (!vertices.contains(edge.target) &&
                         vertices.contains(edge.source))
-                    return new Pair<EdgeType, VertexType>(edge, edge.target);
+                    return new Pair<>(edge, edge.target);
 
                 if (!graph.isDirected() &&
                         vertices.contains(edge.target) &&
                         !vertices.contains(edge.source))
-                    return new Pair<EdgeType, VertexType>(edge, edge.source);
+                    return new Pair<>(edge, edge.source);
 
                 tempEdgeArray.add(edge);
 
@@ -204,7 +204,7 @@ public class Prim<VertexType extends BaseVertex,
         BaseVertexRequest vr = new BaseVertexRequest(graph);
         dispatchEvent(vr);
 
-        Prim<BaseVertex, BaseEdge<BaseVertex>> prim = new Prim<BaseVertex, BaseEdge<BaseVertex>>(graph, new BaseEdgeVertexCopier());
+        Prim<BaseVertex, BaseEdge<BaseVertex>> prim = new Prim<>(graph, new BaseEdgeVertexCopier());
         prim.acceptEventDispatcher(getDispatcher());
 
         //BaseGraph<BaseVertex,BaseEdge<BaseVertex>> output =

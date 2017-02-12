@@ -18,8 +18,8 @@ import java.util.Vector;
  */
 public class ShortestPaths<VertexType extends BaseVertex,
         EdgeType extends BaseEdge<VertexType>> {
-    final static HashMap<BaseGraph, Vector> referencePath = new HashMap<BaseGraph, Vector>();
-    final static HashMap<BaseGraph, Boolean> hasReferenceComputed = new HashMap<BaseGraph, Boolean>();
+    final static HashMap<BaseGraph, Vector> referencePath = new HashMap<>();
+    final static HashMap<BaseGraph, Boolean> hasReferenceComputed = new HashMap<>();
 
 
 }

@@ -34,7 +34,7 @@ public class GTabbedGraphPane extends GTabbedPane {
         return b.getData(GTabbedGraphPane.NAME);
     }
 
-    private HashMap<String, GraphModel> graphs = new HashMap<String, GraphModel>();
+    private HashMap<String, GraphModel> graphs = new HashMap<>();
 
     public GTabbedGraphPane(BlackBoard b) {
         super(b);

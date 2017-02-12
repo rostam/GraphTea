@@ -61,7 +61,7 @@ public class GraphAttrSet implements AttributeSet {
     public static final String name = "Graph.GraphModel";
 
     public Map<String, Object> getAttrs() {
-        Map<String, Object> ret = new HashMap<String, Object>();
+        Map<String, Object> ret = new HashMap<>();
         ret.put(DRAW_VERTEX_LABELS, g.isDrawVertexLabels());
         ret.put(DRAW_EDGE_LABELS, g.isDrawEdgeLabels());
         ret.put(IS_EDGES_CURVED, g.isEdgesCurved());

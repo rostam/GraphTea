@@ -27,8 +27,8 @@ import java.util.Vector;
  * @email rostamiev@gmail.com
  */
 public class InwardCommandParser {
-    public HashMap<String, Method> commands = new HashMap<String, Method>();
-    public HashMap<String, String> abbrs = new HashMap<String, String>();
+    public HashMap<String, Method> commands = new HashMap<>();
+    public HashMap<String, String> abbrs = new HashMap<>();
 
     private Interpreter interpreter;
     private Shell shell;
@@ -56,7 +56,7 @@ public class InwardCommandParser {
             evalError.printStackTrace();
         }
         String h = "";
-        Vector<String> hh = new Vector<String>();
+        Vector<String> hh = new Vector<>();
 
         for (String s : commands.keySet()) {
             hh.add(getHelpString(s));
@@ -131,7 +131,7 @@ public class InwardCommandParser {
     /**
      * the Objects that the methods should be invoked on.
      */
-    public HashMap<Method, Object> methodObjects = new HashMap<Method, Object>();
+    public HashMap<Method, Object> methodObjects = new HashMap<>();
 
     /**
      * imports all commands stored in annotated methods of o

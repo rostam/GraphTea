@@ -25,8 +25,8 @@ public class TopologicalSort extends Algorithm implements AutomatedAlgorithm {
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     AbstractList<VertexType>
     doSort(BaseGraph<VertexType, EdgeType> graph) {
-        ArrayList<VertexType> alv = new ArrayList<VertexType>();
-        ArrayList<VertexType> out = new ArrayList<VertexType>();
+        ArrayList<VertexType> alv = new ArrayList<>();
+        ArrayList<VertexType> out = new ArrayList<>();
 
         LibraryUtils.falsifyEdgeMarks(graph);
 

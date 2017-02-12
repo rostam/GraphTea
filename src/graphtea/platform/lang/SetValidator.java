@@ -12,7 +12,7 @@ import java.util.HashSet;
  * @author Azin Azadi
  */
 public class SetValidator<t> implements Validator<t> {
-    HashSet<t> vals = new HashSet<t>();
+    HashSet<t> vals = new HashSet<>();
 
     public void addValidValues(t[] o) {
         for (t var : o) {

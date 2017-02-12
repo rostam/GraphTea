@@ -25,7 +25,7 @@ public class ThirdZagrebIndex implements GraphReportExtension {
     }
 
     public Object calculate(GraphModel g) {
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         out.add("Third Zagreb Index : "+ zif.getThirdZagreb());
         return out;

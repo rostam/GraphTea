@@ -13,7 +13,7 @@ import java.util.Map;
  * @author azin azadi
  */
 public class AttributeSetImpl implements AttributeSet {
-    protected HashMap<String, Object> atr = new HashMap<String, Object>();
+    protected HashMap<String, Object> atr = new HashMap<>();
 
     public AttributeSetImpl() {
         //Nothing to do!
@@ -45,6 +45,6 @@ public class AttributeSetImpl implements AttributeSet {
      * clears all attributes in this set, this means that after calling this method the set of attributes will be empty
      */
     public void clear() {
-        atr = new HashMap<String, Object>();
+        atr = new HashMap<>();
     }
 }

@@ -60,7 +60,7 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
         cent.setSize(new GPoint(0, 0));
         cent.setLabelLocation(new GPoint(0,-1));
         g.addVertex(cent);
-        forbiddenIndex = new Vector<Integer>();
+        forbiddenIndex = new Vector<>();
         while(fread.hasNextLine()) {
             String command = fread.nextLine();
             step(command);
@@ -82,7 +82,7 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
                     randInd = 0 + (int)(Math.random()*maxNumNodesInLevel);
                 }
                 forbiddenIndex.add(randInd);
-                if(forbiddenIndex.size() > (maxNumNodesInLevel * 2/3)) forbiddenIndex =  new Vector<Integer>();
+                if(forbiddenIndex.size() > (maxNumNodesInLevel * 2/3)) forbiddenIndex = new Vector<>();
                 v.setColor(1);
                 v.setLocation(new GPoint(ps[randInd].x, ps[randInd].y));
                 v.setShapeStroke(GStroke.empty);

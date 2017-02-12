@@ -24,7 +24,7 @@ public class VertexInduced {
     BaseGraph<VertexType, EdgeType> induced(BaseGraph<VertexType, EdgeType> g, Collection<VertexType> S) {
 
         BaseGraph<VertexType, EdgeType> baseGraph = g.createEmptyGraph();
-        HashMap<VertexType, VertexType> hm = new HashMap<VertexType, VertexType>();
+        HashMap<VertexType, VertexType> hm = new HashMap<>();
         for (VertexType v : g) {
             VertexType t = (VertexType) v.getCopy();
             hm.put(v, t);

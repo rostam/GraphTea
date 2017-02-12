@@ -59,10 +59,10 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
     public t target;
 
 
-    static HashMap<String, JMenu> reportSubMenus = new HashMap<String, JMenu>();
-    static HashMap<String, JMenu> reportSubSubMenus = new HashMap<String, JMenu>();
-    static HashMap<String, JMenu> generateSubMenus = new HashMap<String, JMenu>();
-    static HashMap<String, JMenu> operatorsSubmenus = new HashMap<String, JMenu>();
+    static HashMap<String, JMenu> reportSubMenus = new HashMap<>();
+    static HashMap<String, JMenu> reportSubSubMenus = new HashMap<>();
+    static HashMap<String, JMenu> generateSubMenus = new HashMap<>();
+    static HashMap<String, JMenu> operatorsSubmenus = new HashMap<>();
 
     public AbstractExtensionAction(BlackBoard bb, t sp) {
         super(bb);

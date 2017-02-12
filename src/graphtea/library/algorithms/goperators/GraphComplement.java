@@ -23,7 +23,7 @@ public class GraphComplement {
     complement(BaseGraph<VertexType, EdgeType> g1) {
         {
             BaseGraph<VertexType, EdgeType> g = g1.createEmptyGraph();
-            HashMap<VertexType, VertexType> hm = new HashMap<VertexType, VertexType>();
+            HashMap<VertexType, VertexType> hm = new HashMap<>();
 
             for (VertexType v : g1) {
                 VertexType t = (VertexType) v.getCopy();

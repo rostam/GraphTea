@@ -50,8 +50,8 @@ public class BreadthFirstSearch<VertexType extends BaseVertex, EdgeType extends 
             v.setMark(false);
 
         vertex.setMark(true);
-        LinkedList<VertexType> queue = new LinkedList<VertexType>();
-        LinkedList<VertexType> roots = new LinkedList<VertexType>();
+        LinkedList<VertexType> queue = new LinkedList<>();
+        LinkedList<VertexType> roots = new LinkedList<>();
         queue.offer(vertex);
         roots.offer(vertex);
         try {
@@ -63,7 +63,7 @@ public class BreadthFirstSearch<VertexType extends BaseVertex, EdgeType extends 
                     if (handler.doPreWork(root, index))
                         return true;
 
-                dispatchEvent(new PreWorkEvent<VertexType, EdgeType>(root, index, graph));
+                dispatchEvent(new PreWorkEvent<>(root, index, graph));
                 EventUtils.algorithmStep(this, "explore: " + index.getId());
 
 
@@ -84,10 +84,10 @@ public class BreadthFirstSearch<VertexType extends BaseVertex, EdgeType extends 
     }
 
     public void doAlgorithm() {
-        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<VertexType, EdgeType>();
+        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<>();
         dispatchEvent(gr);
         this.graph = gr.getGraph();
-        VertexRequest<VertexType, EdgeType> vr = new VertexRequest<VertexType, EdgeType>(graph, "Please choose a vertex for the BFS algorithm.");
+        VertexRequest<VertexType, EdgeType> vr = new VertexRequest<>(graph, "Please choose a vertex for the BFS algorithm.");
         dispatchEvent(vr);
         this.doSearch(vr.getVertex(), null);
     }

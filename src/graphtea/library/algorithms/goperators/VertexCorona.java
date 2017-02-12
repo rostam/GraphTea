@@ -28,8 +28,8 @@ public class VertexCorona
             , EdgeType extends BaseEdge<VertexType>>
     BaseGraph<VertexType, EdgeType> corona(BaseGraph<VertexType, EdgeType> g1, BaseGraph<VertexType, EdgeType> g2) {
         BaseGraph<VertexType, EdgeType> g = g1.createEmptyGraph();
-        HashMap<VertexType, VertexType> temp1 = new HashMap<VertexType, VertexType>();
-        HashSet<EdgeType> E = new HashSet<EdgeType>();
+        HashMap<VertexType, VertexType> temp1 = new HashMap<>();
+        HashSet<EdgeType> E = new HashSet<>();
 
         for (VertexType v : g1) {
             VertexType vt = (VertexType) v.getCopy();
@@ -44,7 +44,7 @@ public class VertexCorona
         }
 
         for (VertexType v1 : g1) {
-            HashMap<VertexType, VertexType> temp2 = new HashMap<VertexType, VertexType>();
+            HashMap<VertexType, VertexType> temp2 = new HashMap<>();
             EdgeType ee = g1.getEdges().iterator().next();
             for (VertexType v : g2) {
                 VertexType nvt = (VertexType) v.getCopy();

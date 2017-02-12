@@ -28,7 +28,7 @@ public class GCellEditor extends AbstractCellEditor implements TableCellEditor, 
      *
      */
     private static final long serialVersionUID = -7943480654474872421L;
-    protected static HashMap<Class, GBasicCellEditor> knownEditors = new HashMap<Class, GBasicCellEditor>();
+    protected static HashMap<Class, GBasicCellEditor> knownEditors = new HashMap<>();
     //current editor!
     private GBasicCellEditor editor;
     protected AttributeSetView atr;

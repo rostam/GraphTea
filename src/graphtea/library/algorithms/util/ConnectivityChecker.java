@@ -33,7 +33,7 @@ public class ConnectivityChecker {
             if (!it.hasNext())
                 return true;
 
-            new BreadthFirstSearch<VertexType, EdgeType>(graph).doSearch(it.next(), null);
+            new BreadthFirstSearch<>(graph).doSearch(it.next(), null);
 
         } catch (InvalidVertexException e) {
             throw new InvalidGraphException();

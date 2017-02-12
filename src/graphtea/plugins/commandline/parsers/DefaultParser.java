@@ -17,7 +17,7 @@ import java.util.HashSet;
  */
 
 public class DefaultParser implements ExtParser {
-    HashMap<String, String> methods = new HashMap<String, String>();
+    HashMap<String, String> methods = new HashMap<>();
     boolean is_initialized = false;
     Shell shell;
 

@@ -22,7 +22,7 @@ public class TestInducedSubgraphs extends Algorithm implements AutomatedAlgorith
         dispatchEvent(gr);
         BaseGraph<BaseVertex, BaseEdge<BaseVertex>> graph = gr.getGraph(), induced;
 
-        ArrayList<BaseVertex> inducedVertices = new ArrayList<BaseVertex>();
+        ArrayList<BaseVertex> inducedVertices = new ArrayList<>();
 
         int i = 0;
         for (BaseVertex v : graph) {
@@ -32,7 +32,7 @@ public class TestInducedSubgraphs extends Algorithm implements AutomatedAlgorith
         }
 
         induced = InducedSubgraphs.getVertexInducedSubgraph(graph, inducedVertices);
-        dispatchEvent(new GraphEvent<BaseVertex, BaseEdge<BaseVertex>>(induced, GraphEvent.EventType.NEW_GRAPH));
+        dispatchEvent(new GraphEvent<>(induced, GraphEvent.EventType.NEW_GRAPH));
     }
 
     ;

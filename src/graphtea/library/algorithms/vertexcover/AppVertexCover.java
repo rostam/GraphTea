@@ -58,9 +58,9 @@ public class AppVertexCover<VertexType extends BaseVertex,
             throws InvalidGraphException, InvalidVertexException {
 
 //        BaseGraph<VertexType,EdgeType> gCopy = graph.copy(gc);
-        Vector<VertexType> C = new Vector<VertexType>();
-        Vector<VertexType> D = new Vector<VertexType>();
-        Vector<VertexType> marked = new Vector<VertexType>();
+        Vector<VertexType> C = new Vector<>();
+        Vector<VertexType> D = new Vector<>();
+        Vector<VertexType> marked = new Vector<>();
         Iterator<EdgeType> i;
         //cleat marks
         for (Iterator<EdgeType> ie = graph.edgeIterator(); ie.hasNext();)
@@ -119,7 +119,7 @@ public class AppVertexCover<VertexType extends BaseVertex,
 
         Vector<VertexType> appCover = vc.findAppCover();
         for (VertexType v : appCover) {
-            dispatchEvent(new VertexEvent<BaseVertex, BaseEdge<BaseVertex>>(graph, v, VertexEvent.EventType.MARK));
+            dispatchEvent(new VertexEvent<>(graph, v, VertexEvent.EventType.MARK));
         }
 //        BaseGraph<BaseVertex,BaseEdge<BaseVertex>> output =
 //            prim.findMinimumSpanningTree(vr.getVertex());

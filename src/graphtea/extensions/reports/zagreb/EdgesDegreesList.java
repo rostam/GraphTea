@@ -21,7 +21,7 @@ import java.util.Collections;
 @CommandAttitude(name = "edges_degree_list", abbreviation = "_edl")
 public class EdgesDegreesList implements GraphReportExtension {
     public Object calculate(GraphModel g) {
-        ArrayList<Integer> al = new ArrayList<Integer>();
+        ArrayList<Integer> al = new ArrayList<>();
         for(Edge e : g.getEdges()) {
                 int d = g.getDegree(e.source) +
                 g.getDegree(e.target) - 2;

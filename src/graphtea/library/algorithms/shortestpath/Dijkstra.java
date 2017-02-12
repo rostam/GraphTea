@@ -49,8 +49,8 @@ public class Dijkstra<VertexType extends BaseVertex,
 
         final Integer dist[] = new Integer[graph.getVerticesCount()];
         //the edge connected to i'th vertex
-        final HashMap<VertexType, EdgeType> edges = new HashMap<VertexType, EdgeType>();
-        Vector<VertexType> prev = new Vector<VertexType>();
+        final HashMap<VertexType, EdgeType> edges = new HashMap<>();
+        Vector<VertexType> prev = new Vector<>();
 
         for (int i = 0; i < dist.length; i++)
             dist[i] = Integer.MAX_VALUE;
@@ -71,9 +71,9 @@ public class Dijkstra<VertexType extends BaseVertex,
         VertexComparator vComp = new VertexComparator();
 
         //selected vertices
-        HashSet<VertexType> selectedVertices = new HashSet<VertexType>();
+        HashSet<VertexType> selectedVertices = new HashSet<>();
 
-        PriorityQueue<VertexType> Q = new PriorityQueue<VertexType>(1, vComp);
+        PriorityQueue<VertexType> Q = new PriorityQueue<>(1, vComp);
 
         Q.add(vertex);
         //dispatchEvent(new VertexEvent<VertexType, EdgeType>(graph, vertex, VertexEvent.EventType.MARK));
@@ -117,10 +117,10 @@ public class Dijkstra<VertexType extends BaseVertex,
 
 
     public void doAlgorithm() {
-        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<VertexType, EdgeType>();
+        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<>();
         dispatchEvent(gr);
         BaseGraph<VertexType, EdgeType> g = gr.getGraph();
-        VertexRequest<VertexType, EdgeType> vr = new VertexRequest<VertexType, EdgeType>(g, "Please choose a vertex for the Dijkstra algorithm.");
+        VertexRequest<VertexType, EdgeType> vr = new VertexRequest<>(g, "Please choose a vertex for the Dijkstra algorithm.");
         dispatchEvent(vr);
         VertexType v = vr.getVertex();
         System.out.println("Bah bah " + v.toString());

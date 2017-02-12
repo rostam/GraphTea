@@ -71,7 +71,7 @@ public class GTabbedPane {
         return component;
     }
 
-    public HashMap<Class, Class<? extends JComponent>> supportedType = new HashMap<Class, Class<? extends JComponent>>();
+    public HashMap<Class, Class<? extends JComponent>> supportedType = new HashMap<>();
 
     public void add(Object o, String label) {
         if (supportedType.containsKey(o.getClass())) {

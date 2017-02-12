@@ -47,7 +47,7 @@ public class BellmanFord<VertexType extends BaseVertex, EdgeType extends BaseEdg
 
         Integer[] dist;
         dist = new Integer[graph.getVerticesCount()];
-        Vector<VertexType> ret = new Vector<VertexType>();
+        Vector<VertexType> ret = new Vector<>();
 
         for (int i = 0; i < dist.length; i++)
             dist[i] = Integer.MAX_VALUE;
@@ -79,10 +79,10 @@ public class BellmanFord<VertexType extends BaseVertex, EdgeType extends BaseEdg
     }
 
     public void doAlgorithm() {
-        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<VertexType, EdgeType>();
+        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<>();
         dispatchEvent(gr);
         this.graph = gr.getGraph();
-        VertexRequest<VertexType, EdgeType> vr = new VertexRequest<VertexType, EdgeType>(graph, "Please choose a vertex for the BellmanFord algorithm.");
+        VertexRequest<VertexType, EdgeType> vr = new VertexRequest<>(graph, "Please choose a vertex for the BellmanFord algorithm.");
         dispatchEvent(vr);
         Vector<VertexType> vv = this.computePaths(graph, vr.getVertex());
         for (VertexType v : vv)

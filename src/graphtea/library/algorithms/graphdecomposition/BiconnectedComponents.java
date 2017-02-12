@@ -34,7 +34,7 @@ public class BiconnectedComponents
     Integer[] DFS_Number;
     Integer[] High;
     int[] parent;
-    Vector<Pair<Vector<VertexType>, Vector<EdgeType>>> BiC = new Vector<Pair<Vector<VertexType>, Vector<EdgeType>>>();
+    Vector<Pair<Vector<VertexType>, Vector<EdgeType>>> BiC = new Vector<>();
    Vector<HashSet<VertexType>> ret;
     int DFS_N;
     private VertexType root;
@@ -60,7 +60,7 @@ public class BiconnectedComponents
     }
 
     public void doAlgorithm() {
-        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<VertexType, EdgeType>();
+        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<>();
         dispatchEvent(gr);
         BaseGraph<VertexType, EdgeType> g = gr.getGraph();
         BC(g, root);
@@ -94,7 +94,7 @@ public class BiconnectedComponents
 
     int rootChilds = 0;
     int foundDecompositions;
-    Stack<VE> S = new Stack<VE>(); //stack is initially empty
+    Stack<VE> S = new Stack<>(); //stack is initially empty
 
     /**
      * This method is in fact dfs, with some preworks and postworks
@@ -151,8 +151,8 @@ public class BiconnectedComponents
         DFS_Number=new Integer[n];
         High=new Integer[n];
         parent=new int[n];
-        S = new Stack<VE>();
-        ret= new Vector<HashSet<VertexType>>();
+        S = new Stack<>();
+        ret= new Vector<>();
 
         for (VertexType scan : g)
             DFS_Number[scan.getId()] = 0;
@@ -180,7 +180,7 @@ public class BiconnectedComponents
                     Bicon(g,w);
                     if (High[w.getId()] <= DFS_Number[v.getId()]){
                         VE top=S.pop();
-                        HashSet<VertexType> comp=new HashSet<VertexType>();
+                        HashSet<VertexType> comp= new HashSet<>();
                         if (top.v!=null)
                             comp.add(top.v);
                         while (v!=top.v){

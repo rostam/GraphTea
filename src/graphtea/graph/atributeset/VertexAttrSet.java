@@ -35,7 +35,7 @@ public class VertexAttrSet implements AttributeSet {
     }
 
     public Map<String, Object> getAttrs() {
-        Map<String, Object> ret = new HashMap<String, Object>(15);
+        Map<String, Object> ret = new HashMap<>(15);
         ret.put(LABEL, v.getLabel());
         ret.put(COLOR, v.getColor());
         ret.put(SHAPE, v.getShape());

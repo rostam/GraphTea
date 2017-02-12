@@ -10,7 +10,7 @@ public class MinCut{
 	public double C[][]; 
 	public double F[][];
 	public Vertex source,sink;
-	public LinkedList<Integer> cut = new LinkedList<Integer>();
+	public LinkedList<Integer> cut = new LinkedList<>();
 	public boolean showResult;
 	
 	
@@ -75,7 +75,7 @@ public class MinCut{
 		// on the residual network
 		boolean[] seen = new boolean[n];
 		
-		LinkedList<Integer> queue = new LinkedList<Integer>();
+		LinkedList<Integer> queue = new LinkedList<>();
 			
 		int s = source.getId();
 		seen[s]=true;

@@ -30,7 +30,7 @@ public class ExtractSubGraph implements GraphActionExtension {
         GraphModel g2 = new GraphModel(false);
 
         SubGraph sg = SubGraphRenderer.sgbck;
-        HashMap<Integer,Integer> idid=new HashMap<Integer, Integer>();
+        HashMap<Integer,Integer> idid= new HashMap<>();
         if(sg.vertices.size()!=0) {
             for(Vertex v : sg.vertices) {
                 Vertex tmp = new Vertex();

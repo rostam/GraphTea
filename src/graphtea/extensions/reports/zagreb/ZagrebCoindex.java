@@ -32,7 +32,7 @@ public class ZagrebCoindex implements GraphReportExtension, Parametrizable {
     }
 
     public Object calculate(GraphModel g) {
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         out.add("First Zagreb Coindex : "+ zif.getFirstZagrebCoindex(alpha));
         out.add("Second Zagreb Coindex : "+ zif.getSecondZagrebCoindex(alpha));

@@ -24,7 +24,7 @@ public class Cycle {
     }
 
     public Cycle() {
-        cycleVertices = new ArrayList<Vertex>();
+        cycleVertices = new ArrayList<>();
         isCycleEnded = false;
     }
 

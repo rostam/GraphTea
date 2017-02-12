@@ -125,7 +125,7 @@ public class StaticUtils {
             return fromStringProvider.fromString(data);
     }
 
-    static HashMap<String, FromStringProvider> pr = new HashMap<String, FromStringProvider>();
+    static HashMap<String, FromStringProvider> pr = new HashMap<>();
 
     /**
      * Adds a new FromStringProvider to current ones.

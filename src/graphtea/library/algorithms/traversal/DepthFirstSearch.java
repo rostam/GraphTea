@@ -86,7 +86,7 @@ public class DepthFirstSearch<VertexType extends BaseVertex, EdgeType extends Ba
         if (handler != null)
             if (handler.doPreWork(fromVertex, vertex))
                 return true;
-        dispatchEvent(new PreWorkEvent<VertexType, EdgeType>(fromVertex, vertex, graph));
+        dispatchEvent(new PreWorkEvent<>(fromVertex, vertex, graph));
         EventUtils.algorithmStep(this, "visit: " + vertex.getId());
         VertexType lastInDepthVertex = vertex;
 
@@ -100,7 +100,7 @@ public class DepthFirstSearch<VertexType extends BaseVertex, EdgeType extends Ba
             }
         }
 
-        dispatchEvent(new PostWorkEvent<VertexType, EdgeType>(lastInDepthVertex, vertex, graph));
+        dispatchEvent(new PostWorkEvent<>(lastInDepthVertex, vertex, graph));
         EventUtils.algorithmStep(this, "leave: " + vertex.getId());
 
         if (handler != null)
@@ -112,10 +112,10 @@ public class DepthFirstSearch<VertexType extends BaseVertex, EdgeType extends Ba
 
 
     public void doAlgorithm() {
-        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<VertexType, EdgeType>();
+        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<>();
         dispatchEvent(gr);
         this.graph = gr.getGraph();
-        VertexRequest<VertexType, EdgeType> vr = new VertexRequest<VertexType, EdgeType>(graph, "Please choose a vertex for the DFS algorithm.");
+        VertexRequest<VertexType, EdgeType> vr = new VertexRequest<>(graph, "Please choose a vertex for the DFS algorithm.");
         dispatchEvent(vr);
         this.doSearch(vr.getVertex(), null);
     }

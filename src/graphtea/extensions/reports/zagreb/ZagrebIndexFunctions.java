@@ -126,7 +126,7 @@ public class ZagrebIndexFunctions {
 
     double getSecondReZagreb(double alpha) {
         double second_re_zagreb = 0;
-        ArrayList<Edge> eds = new ArrayList<Edge>();
+        ArrayList<Edge> eds = new ArrayList<>();
         for (Edge ee : g.getEdges()) {
             eds.add(ee);
         }
@@ -215,7 +215,7 @@ public class ZagrebIndexFunctions {
 
     double getSecondReZagrebSelectedEdges(double alpha) {
         double second_re_zagreb = 0;
-        ArrayList<Edge> eds = new ArrayList<Edge>();
+        ArrayList<Edge> eds = new ArrayList<>();
         for (Edge ee : g.getEdges()) {
             eds.add(ee);
         }

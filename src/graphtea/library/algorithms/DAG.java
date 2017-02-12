@@ -26,8 +26,8 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     AbstractList<VertexType>
     doSort(BaseGraph<VertexType, EdgeType> graph) {
-        ArrayList<VertexType> alv = new ArrayList<VertexType>();
-        ArrayList<VertexType> out = new ArrayList<VertexType>();
+        ArrayList<VertexType> alv = new ArrayList<>();
+        ArrayList<VertexType> out = new ArrayList<>();
 
         LibraryUtils.falsifyVertexMarks(graph);
 
@@ -97,9 +97,9 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
                 parent[id] = maxV;
             }
         }
-        AbstractList<Pair<Vertex, Integer>> ret = new ArrayList<Pair<Vertex, Integer>>(maxPath.length);
+        AbstractList<Pair<Vertex, Integer>> ret = new ArrayList<>(maxPath.length);
         for (int i = 0; i < maxPath.length; i++) {
-            ret.add(new Pair<Vertex, Integer>((Vertex) parent[i], maxPath[i]));
+            ret.add(new Pair<>((Vertex) parent[i], maxPath[i]));
         }
         return ret;
     }
@@ -112,8 +112,8 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
     List<Vertex>
     getTraversableSubGraph(BaseGraph<Vertex, Edge> graph, Vertex root){
         LibraryUtils.falsifyVertexMarks(graph);
-        List<Vertex> ret=new ArrayList<Vertex>();
-        Queue<Vertex> q = new LinkedList<Vertex>();
+        List<Vertex> ret= new ArrayList<>();
+        Queue<Vertex> q = new LinkedList<>();
         q.add(root);
         root.setMark(true);
         while (!q.isEmpty()){
@@ -145,8 +145,8 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
         LibraryUtils.falsifyVertexMarks(graph);
 
         //start from one vertex and go to  it's neighbours [BFS], continue until you meet a MARKed vertex
-        HashSet<Vertex> visitedVertices = new HashSet<Vertex>();
-        LinkedList<Vertex> bfsStack = new LinkedList<Vertex>();
+        HashSet<Vertex> visitedVertices = new HashSet<>();
+        LinkedList<Vertex> bfsStack = new LinkedList<>();
         Vertex cycleStart = null;
         Vertex cycleEnd = null;
 
@@ -188,7 +188,7 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
 
 
                 current = cycleEnd;
-                LinkedList<Vertex> ret = new LinkedList<Vertex>();
+                LinkedList<Vertex> ret = new LinkedList<>();
                 ret.addFirst(current);
                 while (current != null && current != cycleStart) {
                     current = (Vertex) parent[current.getId()];
@@ -240,8 +240,8 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
      */
     public static <Vertex extends BaseVertex, Edge extends BaseEdge<Vertex>>
     Vector<Stack<Vertex>> findAllPaths(BaseGraph<Vertex, Edge> dag, Vertex src, Vertex trg) {
-        Vector<Stack<Vertex>> ret = new Vector<Stack<Vertex>>();
-        findAllPathsRec(dag, src, trg, ret, new Stack<Vertex>());
+        Vector<Stack<Vertex>> ret = new Vector<>();
+        findAllPathsRec(dag, src, trg, ret, new Stack<>());
         return ret;
     }
 
@@ -264,8 +264,8 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
      */
     public static <Vertex extends BaseVertex, Edge extends BaseEdge<Vertex>>
     Vector<Vertex> findAllAncestors(BaseGraph<Vertex, Edge> dag, Vertex src) {
-        Vector<Vertex> ret = new Vector<Vertex>();
-        Queue<Vertex> q = new LinkedList<Vertex>();
+        Vector<Vertex> ret = new Vector<>();
+        Queue<Vertex> q = new LinkedList<>();
         q.add(src);
         while (!q.isEmpty()) {
             Vertex cur = q.poll();

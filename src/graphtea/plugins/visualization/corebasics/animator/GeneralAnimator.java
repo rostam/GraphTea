@@ -16,8 +16,8 @@ import java.util.Vector;
  */
 public class GeneralAnimator implements Runnable {
 
-    public HashMap<Vertex, GPoint> vertexDestinations = new HashMap<Vertex, GPoint>();
-    public HashMap<Edge, Vector<GPoint>> edgeBendPoints = new HashMap<Edge, Vector<GPoint>>();
+    public HashMap<Vertex, GPoint> vertexDestinations = new HashMap<>();
+    public HashMap<Edge, Vector<GPoint>> edgeBendPoints = new HashMap<>();
     public boolean supportBendedEdge;
 
     GraphModel g;
@@ -53,8 +53,8 @@ public class GeneralAnimator implements Runnable {
     public void run() {
         final Thread current = Thread.currentThread();
         Iterator<Vertex> v = vertexDestinations.keySet().iterator();
-        final Vector<GPoint> movements = new Vector<GPoint>();
-        final Vector<GPoint> initials = new Vector<GPoint>();
+        final Vector<GPoint> movements = new Vector<>();
+        final Vector<GPoint> initials = new Vector<>();
         for (; v.hasNext();) {
             Vertex vertex = v.next();
             double initalX = vertex.getLocation().getX();

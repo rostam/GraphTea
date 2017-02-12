@@ -41,7 +41,7 @@ import java.util.HashMap;
  */
 public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener {
     private BlackBoard blackboard;
-    private static HashMap<String, HyperlinkHandler> handlers = new HashMap<String, HyperlinkHandler>();
+    private static HashMap<String, HyperlinkHandler> handlers = new HashMap<>();
     JEditorPane jta;
 
     static {

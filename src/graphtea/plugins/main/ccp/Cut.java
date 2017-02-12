@@ -58,8 +58,8 @@ public class Cut extends AbstractAction {
     }
 
     public static void moveToGraph(GraphModel g, Collection<Edge> edges, Collection<Vertex> vertices, GraphModel previousGraph) {
-        HashSet<Edge> rightEdges = new HashSet<Edge>();
-        HashSet<Edge> wrongEdges = new HashSet<Edge>();
+        HashSet<Edge> rightEdges = new HashSet<>();
+        HashSet<Edge> wrongEdges = new HashSet<>();
         Iterator<Edge> iter = previousGraph.edgeIterator();
         removeInCompleteEdgesFromGraph(g, iter, vertices, wrongEdges);
         removeInCompleteEdgesFromSelection(previousGraph, edges, vertices, rightEdges);

@@ -32,7 +32,7 @@ import java.util.Vector;
 public class TestListGraph {
 
     static class SampleTraversalHandler implements PreWorkPostWorkHandler<BaseVertex> {
-        ArrayList<Integer> existanceSet = new ArrayList<Integer>();
+        ArrayList<Integer> existanceSet = new ArrayList<>();
 
         public boolean doPreWork(BaseVertex fromVertex, BaseVertex toVertex) {
             System.out.print("->" + toVertex.getId());
@@ -70,7 +70,7 @@ public class TestListGraph {
     }
 
     public static void mainCheckAcyclicChecker(String args[]) {
-        ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph = new ListGraph<BaseVertex, BaseEdge<BaseVertex>>(true, 0);
+        ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph = new ListGraph<>(true, 0);
         BaseVertex v1 = new BaseVertex();
         BaseVertex v2 = new BaseVertex();
         BaseVertex v3 = new BaseVertex();
@@ -80,10 +80,10 @@ public class TestListGraph {
         myListGraph.insertVertex(v3);
         myListGraph.insertVertex(v4);
 
-        myListGraph.insertEdge(new BaseEdge<BaseVertex>(v1, v2));
-        myListGraph.insertEdge(new BaseEdge<BaseVertex>(v2, v3));
-        myListGraph.insertEdge(new BaseEdge<BaseVertex>(v3, v4));
-        BaseEdge<BaseVertex> e = new BaseEdge<BaseVertex>(v4, v1);
+        myListGraph.insertEdge(new BaseEdge<>(v1, v2));
+        myListGraph.insertEdge(new BaseEdge<>(v2, v3));
+        myListGraph.insertEdge(new BaseEdge<>(v3, v4));
+        BaseEdge<BaseVertex> e = new BaseEdge<>(v4, v1);
         myListGraph.insertEdge(e);
         //myListGraph.removeEdge(e);
         System.out.println("Acyclic:" + (AcyclicChecker.isGraphAcyclic(myListGraph) ? "yes" : "no"));
@@ -124,7 +124,7 @@ public class TestListGraph {
 
         System.out.println("-------------DFS TEST-----------");
 
-        new DepthFirstSearch<BaseVertex, BaseEdge<BaseVertex>>(myListGraph)
+        new DepthFirstSearch<>(myListGraph)
                 .doSearch(myListGraph.getAVertex(), new SampleTraversalHandler());
 
         for (BaseVertex v : myListGraph)
@@ -133,7 +133,7 @@ public class TestListGraph {
 
         System.out.println("\n-------------BFS TEST-----------");
 
-        new BreadthFirstSearch<BaseVertex, BaseEdge<BaseVertex>>(myListGraph)
+        new BreadthFirstSearch<>(myListGraph)
                 .doSearch(myListGraph.getAVertex(), new SampleTraversalHandler());
 
 
@@ -146,9 +146,9 @@ public class TestListGraph {
     public static ListGraph<BaseVertex, BaseEdge<BaseVertex>>
     generateRandomListGraph(final int vertexCount, final int edgeCount) {
         ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph =
-                new ListGraph<BaseVertex, BaseEdge<BaseVertex>>();
+                new ListGraph<>();
 
-        Vector<BaseVertex> vbv = new Vector<BaseVertex>();
+        Vector<BaseVertex> vbv = new Vector<>();
 
         for (int i = 0; i < vertexCount; ++i)
             vbv.add(new BaseVertex());
@@ -161,7 +161,7 @@ public class TestListGraph {
         for (int i = 0; i < edgeCount; ++i) {
             int randV1 = Math.abs(r.nextInt()) % vertexCount;
             int randV2 = Math.abs(r.nextInt()) % vertexCount;
-            myListGraph.insertEdge(new BaseEdge<BaseVertex>(vbv.get(randV1), vbv.get(randV2), new BaseEdgeProperties(0, 0, false)));
+            myListGraph.insertEdge(new BaseEdge<>(vbv.get(randV1), vbv.get(randV2), new BaseEdgeProperties(0, 0, false)));
         }
         return myListGraph;
     }
@@ -180,7 +180,7 @@ public class TestListGraph {
         ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph = generateRandomListGraph(30, 100);
         myListGraph.dump();
 
-        ArrayList<BaseVertex> arr = new ArrayList<BaseVertex>();
+        ArrayList<BaseVertex> arr = new ArrayList<>();
 
         for (int i = 0; i < myListGraph.getVerticesCount(); i += 2)
             arr.add(myListGraph.getVertexArray()[i]);
@@ -195,7 +195,7 @@ public class TestListGraph {
         ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph = generateRandomListGraph(30, 100);
         myListGraph.dump();
 
-        ArrayList<BaseEdge<BaseVertex>> arr = new ArrayList<BaseEdge<BaseVertex>>();
+        ArrayList<BaseEdge<BaseVertex>> arr = new ArrayList<>();
 
         Iterator<BaseEdge<BaseVertex>> it = myListGraph.edgeIterator();
         for (int i = 0; i < myListGraph.getEdgesCount(); ++i) {
@@ -212,7 +212,7 @@ public class TestListGraph {
 
     public static void mainOld(String args[]) {
         try {
-            ListGraph<BaseVertex, BaseEdge<BaseVertex>> myList = new ListGraph<BaseVertex, BaseEdge<BaseVertex>>();
+            ListGraph<BaseVertex, BaseEdge<BaseVertex>> myList = new ListGraph<>();
             BaseVertex v0 = new BaseVertex();
             BaseVertex v1 = new BaseVertex();
             BaseVertex v2 = new BaseVertex();
@@ -221,16 +221,16 @@ public class TestListGraph {
             myList.insertVertex(v1);
             myList.insertVertex(v2);
 
-            myList.insertEdge(new BaseEdge<BaseVertex>(v0, v1, new BaseEdgeProperties(0, 5, false)));
-            myList.insertEdge(new BaseEdge<BaseVertex>(v1, v2, new BaseEdgeProperties(0, 10, false)));
-            myList.insertEdge(new BaseEdge<BaseVertex>(v2, v0, new BaseEdgeProperties(0, 2, false)));
+            myList.insertEdge(new BaseEdge<>(v0, v1, new BaseEdgeProperties(0, 5, false)));
+            myList.insertEdge(new BaseEdge<>(v1, v2, new BaseEdgeProperties(0, 10, false)));
+            myList.insertEdge(new BaseEdge<>(v2, v0, new BaseEdgeProperties(0, 2, false)));
             myList.dump();
 
             BaseVertex v3 = new BaseVertex();
 
             myList.insertVertex(v3);
-            myList.insertEdge(new BaseEdge<BaseVertex>(v2, v3, new BaseEdgeProperties(0, 1, false)));
-            myList.insertEdge(new BaseEdge<BaseVertex>(v0, v1, new BaseEdgeProperties(0, 20, false)));
+            myList.insertEdge(new BaseEdge<>(v2, v3, new BaseEdgeProperties(0, 1, false)));
+            myList.insertEdge(new BaseEdge<>(v0, v1, new BaseEdgeProperties(0, 20, false)));
             System.out.println("||---");
             myList.dump();
             System.out.println("||---");
@@ -257,8 +257,8 @@ public class TestListGraph {
             //myList.removeVertex(v);
 
             System.out.println("\nBefore traversal");
-            new DepthFirstSearch<BaseVertex, BaseEdge<BaseVertex>>(myList).doSearch(v, new SampleTraversalHandler());
-            new BreadthFirstSearch<BaseVertex, BaseEdge<BaseVertex>>(myList).doSearch(v, new SampleTraversalHandler());
+            new DepthFirstSearch<>(myList).doSearch(v, new SampleTraversalHandler());
+            new BreadthFirstSearch<>(myList).doSearch(v, new SampleTraversalHandler());
 
         } catch (Exception e) {
             System.out.println("Noooooo:");
@@ -267,7 +267,7 @@ public class TestListGraph {
     }
 
     public static void mainTestKruskal(String args[]) {
-        ListGraph<BaseVertex, BaseEdge<BaseVertex>> l = new ListGraph<BaseVertex, BaseEdge<BaseVertex>>();
+        ListGraph<BaseVertex, BaseEdge<BaseVertex>> l = new ListGraph<>();
         ListGraph<BaseVertex, BaseEdge<BaseVertex>> f = l.createEmptyGraph();
         final int iterations = 100;
         for (int i = 0; i < iterations; ++i) {
@@ -282,14 +282,14 @@ public class TestListGraph {
 
     public static void main/*TestLightEdgeIterator*/(String args[]) {
         ListGraph<BaseVertex, BaseEdge<BaseVertex>> g
-                = new ListGraph<BaseVertex, BaseEdge<BaseVertex>>(false, 3);
+                = new ListGraph<>(false, 3);
         BaseVertex v[] = new BaseVertex[3];
         for (int i = 0; i < 3; i++) {
             v[i] = new BaseVertex();
             g.insertVertex(v[i]);
         }
-        g.insertEdge(new BaseEdge<BaseVertex>(v[1], v[0]));
-        g.insertEdge(new BaseEdge<BaseVertex>(v[2], v[1]));
+        g.insertEdge(new BaseEdge<>(v[1], v[0]));
+        g.insertEdge(new BaseEdge<>(v[2], v[1]));
         Iterator<BaseEdge<BaseVertex>> ie = g.lightEdgeIterator(v[1]);
         while (ie.hasNext()) {
             System.out.println(ie.next());

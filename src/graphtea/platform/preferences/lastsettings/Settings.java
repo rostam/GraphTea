@@ -23,10 +23,10 @@ import java.util.prefs.InvalidPreferencesFormatException;
  * @author Rouzbeh Ebrahimi
  */
 public class Settings implements AttributeListener {
-    private HashSet<Object> registeredObjects = new HashSet<Object>();
+    private HashSet<Object> registeredObjects = new HashSet<>();
     private java.util.prefs.Preferences builtInPrefs = java.util.prefs.Preferences.userRoot();
     private java.util.prefs.Preferences graphPrefs = builtInPrefs.node("graph");
-    private HashSet<Class> registeredClasses = new HashSet<Class>();
+    private HashSet<Class> registeredClasses = new HashSet<>();
     private File file = new File("prefs");
 
     {

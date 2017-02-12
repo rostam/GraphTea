@@ -24,7 +24,7 @@ public abstract class AbstractPreference {
         this.category = category;
 
         pref.putNewSetOfAttributes(this);
-        defineAttributes(new HashMap<Object, ArrayX>());
+        defineAttributes(new HashMap<>());
 
     }
 

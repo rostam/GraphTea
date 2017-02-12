@@ -45,7 +45,7 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 	public int doAlgorithm() {
 		// TODO Auto-generated method stub
 		resetGraphTeaels();
-		GraphRequest<BaseVertex, BaseEdge<BaseVertex>> gr = new GraphRequest<BaseVertex, BaseEdge<BaseVertex>>();
+		GraphRequest<BaseVertex, BaseEdge<BaseVertex>> gr = new GraphRequest<>();
 		try{
 			dispatchEvent(gr);	
 		}
@@ -55,7 +55,7 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 
 		BaseGraph<BaseVertex, BaseEdge<BaseVertex>> graph  = gr.getGraph();
 
-		VertexRequest<BaseVertex, BaseEdge<BaseVertex>> sourceReq = new VertexRequest<BaseVertex, BaseEdge<BaseVertex>>(graph, "Please choose a vertex as source.");
+		VertexRequest<BaseVertex, BaseEdge<BaseVertex>> sourceReq = new VertexRequest<>(graph, "Please choose a vertex as source.");
 		try{
 			dispatchEvent(sourceReq);	
 		}
@@ -64,7 +64,7 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 		source.setColor(7);
 		source.setMark(true);
 
-		VertexRequest<BaseVertex, BaseEdge<BaseVertex>> sinkReq = new VertexRequest<BaseVertex, BaseEdge<BaseVertex>>(graph, "Please choose a vertex as sink.");
+		VertexRequest<BaseVertex, BaseEdge<BaseVertex>> sinkReq = new VertexRequest<>(graph, "Please choose a vertex as sink.");
 		try{
 			dispatchEvent(sinkReq);	
 		}

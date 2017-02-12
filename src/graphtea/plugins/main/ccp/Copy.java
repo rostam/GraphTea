@@ -59,7 +59,7 @@ public class Copy extends AbstractAction {
      * copies the sd to g
      */
     public static void copyGraph(SubGraph sd, GraphModel g) {
-        HashMap<Vertex, Vertex> map = new HashMap<Vertex, Vertex>();
+        HashMap<Vertex, Vertex> map = new HashMap<>();
         for (Vertex v1 : sd.vertices) {
             Vertex v = new Vertex(v1);
             map.put(v1, v);

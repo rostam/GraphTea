@@ -52,8 +52,8 @@ public class AcyclicChecker extends Algorithm implements AutomatedAlgorithm {
 
                 ++components;
 
-                new DepthFirstSearch<VertexType, EdgeType>(graph)
-                        .doSearch(v, new AcyclicCheckerHandler<VertexType, EdgeType>(graph), false);
+                new DepthFirstSearch<>(graph)
+                        .doSearch(v, new AcyclicCheckerHandler<>(graph), false);
             }
 
             return (n == m + components);

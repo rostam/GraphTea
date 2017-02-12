@@ -85,7 +85,7 @@ public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, From
         PolygonArrow ar4 = new PolygonArrow(new Polygon(new int[]{0, -15, -10, -15}, new int[]{0, -7, 0, 7}, 4), "Narrow");
         PolygonArrow ar2 = new PolygonArrow(new Polygon(new int[]{0, -15, -5, -15}, new int[]{0, -7, 0, 7}, 4), "Very Narrow");
         PolygonArrow ar3 = new PolygonArrow(new Polygon(new int[]{0, -15, -30, -15}, new int[]{0, -7, 0, 7}, 4), "Box");
-        knownArrows = new Vector<Arrow>();
+        knownArrows = new Vector<>();
         registerArrow(defaultArrow);
         registerArrow(ar1);
         registerArrow(ar2);

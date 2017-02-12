@@ -27,7 +27,7 @@ public class HarmonicIndex implements GraphReportExtension {
 
     public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
         out.add("Harmonic Index : "+zif.getHarmonicIndex());
         return out;
     }

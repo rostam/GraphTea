@@ -37,10 +37,10 @@ public class AcyclicSP<VertexType extends BaseVertex,
     public Vector<VertexType> acyclicSP(BaseGraph<VertexType, EdgeType> g, VertexType v) throws InvalidVertexException {
         BaseGraph<VertexType, EdgeType> gcopy = g.copy(gc);
         final Integer dist[] = new Integer[g.getVerticesCount()];
-        Vector<VertexType> prev = new Vector<VertexType>();
-        Queue<VertexType> Q = new LinkedList<VertexType>();
-        HashMap<VertexType, VertexType> gcopy2g = new HashMap<VertexType, VertexType>();
-        HashMap<Integer, VertexType> t = new HashMap<Integer, VertexType>();
+        Vector<VertexType> prev = new Vector<>();
+        Queue<VertexType> Q = new LinkedList<>();
+        HashMap<VertexType, VertexType> gcopy2g = new HashMap<>();
+        HashMap<Integer, VertexType> t = new HashMap<>();
         for (VertexType type : gcopy)
             t.put(type.getId(), type);
         for (VertexType type : g)
@@ -64,7 +64,7 @@ public class AcyclicSP<VertexType extends BaseVertex,
                 if ((dist[u.getId()] + e.getWeight()) < dist[e.target.getId()]) {
                     dist[e.target.getId()] = dist[u.getId()] + e.getWeight();
                     prev.add(e.target.getId(), u);
-                    dispatchEvent(new PreWorkEvent<VertexType, EdgeType>(gcopy2g.get(e.target), gcopy2g.get(u), gcopy));
+                    dispatchEvent(new PreWorkEvent<>(gcopy2g.get(e.target), gcopy2g.get(u), gcopy));
 //                    System.out.println(e.target.getId());
                 }
                 if (gcopy.getInDegree((VertexType) e.target) == 1)
@@ -76,10 +76,10 @@ public class AcyclicSP<VertexType extends BaseVertex,
     }
 
     public void doAlgorithm() {
-        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<VertexType, EdgeType>();
+        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<>();
         dispatchEvent(gr);
         BaseGraph<VertexType, EdgeType> g = gr.getGraph();
-        VertexRequest<VertexType, EdgeType> vr = new VertexRequest<VertexType, EdgeType>(g);
+        VertexRequest<VertexType, EdgeType> vr = new VertexRequest<>(g);
         dispatchEvent(vr);
         VertexType v = vr.getVertex();
         acyclicSP(g, v);

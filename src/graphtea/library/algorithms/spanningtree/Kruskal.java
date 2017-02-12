@@ -14,7 +14,6 @@ import graphtea.library.event.typedef.BaseGraphRequest;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Iterator;
 
 /**
@@ -24,29 +23,27 @@ public class Kruskal extends Algorithm implements AutomatedAlgorithm {
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     AbstractList<EdgeType>
     findMinimumSpanningTree(BaseGraph<VertexType, EdgeType> graph) {
-        ArrayList<EdgeType> outputEdges = new ArrayList<EdgeType>();
-        ArrayList<ArrayList<VertexType>> sets = new ArrayList<ArrayList<VertexType>>();
+        ArrayList<EdgeType> outputEdges = new ArrayList<>();
+        ArrayList<ArrayList<VertexType>> sets = new ArrayList<>();
 
         for (VertexType v : graph) {
-            ArrayList<VertexType> set = new ArrayList<VertexType>();
+            ArrayList<VertexType> set = new ArrayList<>();
             set.add(v);
             sets.add(set);
         }
 
-        ArrayList<EdgeType> edges = new ArrayList<EdgeType>(graph.getEdgesCount());
+        ArrayList<EdgeType> edges = new ArrayList<>(graph.getEdgesCount());
 
         Iterator<EdgeType> eit = graph.edgeIterator();
         while (eit.hasNext())
             edges.add(eit.next());
 
-        java.util.Collections.sort(edges, new Comparator<EdgeType>() {
-            public int compare(EdgeType o1, EdgeType o2) {
-                if (o1.getWeight() < o2.getWeight())
-                    return -1;
-                else if (o1.getWeight() == o2.getWeight())
-                    return 0;
-                return 1;
-            }
+        edges.sort((o1, o2) -> {
+            if (o1.getWeight() < o2.getWeight())
+                return -1;
+            else if (o1.getWeight() == o2.getWeight())
+                return 0;
+            return 1;
         });
 
         for (EdgeType e : edges)

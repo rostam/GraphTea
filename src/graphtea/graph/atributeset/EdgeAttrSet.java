@@ -120,7 +120,7 @@ public class EdgeAttrSet implements AttributeSet {
     }
 
     public Map<String, Object> getAttrs() {
-        Map<String, Object> ret = new HashMap<String, Object>();
+        Map<String, Object> ret = new HashMap<>();
         ret.put(WEIGHT, e.getWeight());
         ret.put(LABEL, e.getLabel());
         ret.put(SHOW_WEIGHT, e.isShowWeight());

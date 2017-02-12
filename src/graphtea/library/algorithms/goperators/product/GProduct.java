@@ -30,7 +30,7 @@ public abstract class GProduct
         for (VertexType v1 : g1) {
             for (VertexType v2 : g2) {
                 VertexType vnew = (VertexType) v1.getCopy();
-                vnew.getProp().obj = new Pair<VertexType, VertexType>(v1, v2);
+                vnew.getProp().obj = new Pair<>(v1, v2);
                 g.insertVertex(vnew);
             }
         }

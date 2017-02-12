@@ -26,7 +26,7 @@ public class HyperZagrebIndex implements GraphReportExtension {
     }
 
     public Object calculate(GraphModel g) {
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         out.add("Hyper Zagreb Index : " + zif.getGeneralSumConnectivityIndex(2));
         return out;

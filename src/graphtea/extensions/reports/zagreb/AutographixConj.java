@@ -28,7 +28,7 @@ public class AutographixConj implements GraphReportExtension {
     }
 
     public Object calculate(GraphModel g) {
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
 
         double first_zagreb = zif.getFirstZagreb(alpha);

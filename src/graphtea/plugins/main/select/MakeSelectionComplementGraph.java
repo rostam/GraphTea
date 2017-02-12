@@ -56,7 +56,7 @@ public class MakeSelectionComplementGraph implements GraphActionExtension {
     }
 
     public static Vector<Edge> fillUndoEdges(HashMap<String, Object> properties, GraphData gd, String lbl) {
-        Vector<Edge> edges = new Vector<Edge>();
+        Vector<Edge> edges = new Vector<>();
         HashSet<Vertex> V = gd.select.getSelectedVertices();
         GraphModel g = gd.getGraph();
         for (Vertex v : V) {

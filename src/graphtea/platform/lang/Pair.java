@@ -27,9 +27,7 @@ public class Pair<First, Second> {
         if (!(obj instanceof Pair))
             return false;
         Pair t = (Pair) obj;
-        if (first == null && t.first != null)
-            return false;
-        return !(second == null && t.second != null) && !(!first.equals(t.first) || !second.equals(t.second));
+        return !(first == null && t.first != null) && !(second == null && t.second != null) && !(!first.equals(t.first) || !second.equals(t.second));
     }
 
     public int hashCode() {

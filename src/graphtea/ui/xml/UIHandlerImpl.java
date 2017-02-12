@@ -132,12 +132,12 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
     public void start_menues(Attributes meta) throws SAXException {
     }
 
-    static HashMap<JMenuItem, Integer> places = new HashMap<JMenuItem, Integer>();
+    static HashMap<JMenuItem, Integer> places = new HashMap<>();
 
     private Pair<Integer, String> extractLabelInfo(String label) {
         int index = Math.max(label.indexOf(menueIndexChar), 0);
         label = label.replace(menueIndexChar + "", "");
-        return new Pair<Integer, String>(index, label);
+        return new Pair<>(index, label);
     }
 
     int lastMenuPlace;

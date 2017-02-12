@@ -27,7 +27,7 @@ import java.util.Vector;
  * @author Azin Azadi
  */
 public class AlgorithmAnimator implements EventDispatcher, ActionListener {
-    static Vector<AtomAnimator> animators = new Vector<AtomAnimator>();
+    static Vector<AtomAnimator> animators = new Vector<>();
     BlackBoard blackboard;
     private boolean paused = true;
     private JFrame f;

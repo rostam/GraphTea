@@ -39,12 +39,12 @@ public class SampleColoring
         for (VertexType v : graph) {
             v.setColor(graph.getInDegree(v));
             dispatchEvent(
-                    new VertexEvent<VertexType, EdgeType>(graph, v, VertexEvent.EventType.COLOR_CHANGE));
+                    new VertexEvent<>(graph, v, VertexEvent.EventType.COLOR_CHANGE));
         }
     }
 
     public void doAlgorithm() {
-        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<VertexType, EdgeType>();
+        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<>();
         dispatchEvent(gr);
         graph = gr.getGraph();
         doColoring();

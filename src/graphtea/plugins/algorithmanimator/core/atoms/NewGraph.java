@@ -46,7 +46,7 @@ public class NewGraph implements AtomAnimator<BaseGraphEvent> {
         GraphModel g = ((GraphModel) o);
         //hich vaght 2 chap nemishe, iani too khate bala moshkeli hast
 //        System.out.println("2");
-        HashMap<BaseVertex, Vertex> map = new HashMap<BaseVertex, Vertex>();
+        HashMap<BaseVertex, Vertex> map = new HashMap<>();
         for (BaseVertex v : event.graph) {
             Vertex vv = new Vertex();
             map.put(v, vv);

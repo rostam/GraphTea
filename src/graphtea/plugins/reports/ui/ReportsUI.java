@@ -59,7 +59,7 @@ public class ReportsUI {
             String category = report.getCategory();
             categories.add(category);
             if (!categoryLists.containsKey(category)){
-                categoryLists.put(category, new Vector<GraphReportExtension>());
+                categoryLists.put(category, new Vector<>());
             }
             categoryLists.get(category).add(report);
         }

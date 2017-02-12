@@ -294,7 +294,7 @@ class animatorLSF extends Thread {
             dists = new pair[Math.max(n - 1, 0)];
             neighbors = new HashSet[n];
             for (int i = 0; i < n; i++) {
-                neighbors[i] = new HashSet<Integer>();
+                neighbors[i] = new HashSet<>();
                 if (i != 0) dists[i - 1] = new pair(0, 0);  //the len of dists should be n-1
             }
             v = new Vertex[n];

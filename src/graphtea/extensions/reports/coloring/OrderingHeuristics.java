@@ -21,12 +21,7 @@ public class OrderingHeuristics {
 
     //Sort after degree
     //ge_degree because of compability with matlab alg, otherwise gt_degree
-    Collections.sort(VertexDegree, new Comparator<Pair<Integer, Integer>>() {
-      @Override
-      public int compare(Pair<Integer, Integer> t1, Pair<Integer, Integer> t2) {
-        return t1.second - t2.second;
-      }
-    });
+    VertexDegree.sort(Comparator.comparingInt(t -> t.second));
 
     for (Pair<Integer, Integer> p : VertexDegree) {
       Ordering.add(p.first);
@@ -45,12 +40,7 @@ public class OrderingHeuristics {
 
     //Sort after degree
     //ge_degree because of compability with matlab alg, otherwise gt_degree
-    Collections.sort(VertexDegree, new Comparator<Pair<Integer, Integer>>() {
-      @Override
-      public int compare(Pair<Integer, Integer> t1, Pair<Integer, Integer> t2) {
-        return t1.second - t2.second;
-      }
-    });
+    VertexDegree.sort(Comparator.comparingInt(t -> t.second));
 
     for (Pair<Integer, Integer> p : VertexDegree) {
       Ordering.add(p.first);

@@ -21,7 +21,7 @@ import java.util.Vector;
  */
 public class CodeCompletionUtils {
     public static Vector<String> complete(HashMap<String, String> abbrs, String part) {
-        Vector<String> ret = new Vector<String>();
+        Vector<String> ret = new Vector<>();
         if (abbrs.get(part) != null)
             ret.add(abbrs.get(part) + "(");
         else {
@@ -39,7 +39,7 @@ public class CodeCompletionUtils {
      */
     public static Vector<String> complete(String part, Interpreter interpreter) {
         int pointCount = 0;
-        Vector<String> ret = new Vector<String>();
+        Vector<String> ret = new Vector<>();
         for (int i = 0; i < part.length(); i++)
             if (part.charAt(i) == '.') pointCount++;
 
@@ -72,7 +72,7 @@ public class CodeCompletionUtils {
     public static Vector<String> complete(String part
             , Interpreter interpreter, HashMap<String, Method> commands
             , HashMap<String, Class> ext_commands) {
-        Vector<String> ret = new Vector<String>();
+        Vector<String> ret = new Vector<>();
         if (part.contains(".")) {
             Method[] ms = new Method[0];
             try {
@@ -123,7 +123,7 @@ public class CodeCompletionUtils {
                 }
 
             } else {
-                Vector<String> ret1 = new Vector<String>();
+                Vector<String> ret1 = new Vector<>();
                 for (String t : ext_commands.keySet()) {
                     String result = part;
 

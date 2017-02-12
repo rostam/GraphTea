@@ -44,12 +44,12 @@ public class PrimAlgorithm extends GraphAlgorithm implements AlgorithmExtension 
         }
 
 //               graph.checkVertex(v);
-        Vector<Vertex> oVertices = new Vector<Vertex>();
-        Vector<Edge> oEdges = new Vector<Edge>();
+        Vector<Vertex> oVertices = new Vector<>();
+        Vector<Edge> oEdges = new Vector<>();
 
         //dispatchEvent(new GraphEvent<VertexType,EdgeType>(oGraph));
 
-        pq = new PriorityQueue<Edge>(1, new DefaultEdgeComparator());
+        pq = new PriorityQueue<>(1, new DefaultEdgeComparator());
 
         {    //lovely block
             Iterator<Edge> edgeList = graph.edgeIterator();
@@ -93,7 +93,7 @@ public class PrimAlgorithm extends GraphAlgorithm implements AlgorithmExtension 
 
     private Pair<Edge, Vertex>
     getNewEdgeForSpanningTree(Vector<Vertex> vertices) {
-        ArrayList<Edge> tempEdgeArray = new ArrayList<Edge>();
+        ArrayList<Edge> tempEdgeArray = new ArrayList<>();
 
         try {
             while (true) {
@@ -103,12 +103,12 @@ public class PrimAlgorithm extends GraphAlgorithm implements AlgorithmExtension 
 
                 if (!vertices.contains(edge.target) &&
                         vertices.contains(edge.source))
-                    return new Pair<Edge, Vertex>(edge, edge.target);
+                    return new Pair<>(edge, edge.target);
 
                 if (!graph.isDirected() &&
                         vertices.contains(edge.target) &&
                         !vertices.contains(edge.source))
-                    return new Pair<Edge, Vertex>(edge, edge.source);
+                    return new Pair<>(edge, edge.source);
 
                 tempEdgeArray.add(edge);
 

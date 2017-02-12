@@ -87,7 +87,7 @@ public class VertexCommands {
     @CommandAttitude(name = "select_vertex", abbreviation = "_sv")
     public void selectVertex(@Parameter(name = "vertex label :")String label) throws ShellCommandException {
         Vertex v = getVertexByLabel(label);
-        Vector<Vertex> vertices = new Vector<Vertex>();
+        Vector<Vertex> vertices = new Vector<>();
         vertices.add(v);
 
         if (v != null) datas.select.setSelectedVertices(vertices);

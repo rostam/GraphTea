@@ -46,7 +46,7 @@ public class InducedSubgraphs {
         newGraph.registerSubgraph(graph);
         newGraph.setSubGraphIndex(graph.getNewSubgraphIndex());
 
-        TreeSet<VertexType> vertices = new TreeSet<VertexType>(
+        TreeSet<VertexType> vertices = new TreeSet<>(
                 new Comparator<VertexType>() {
                     public int compare(VertexType o1, VertexType o2) {
                         if (o1.getId() < o2.getId())

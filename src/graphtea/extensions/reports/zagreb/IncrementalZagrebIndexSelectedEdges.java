@@ -39,7 +39,7 @@ public class IncrementalZagrebIndexSelectedEdges implements GraphReportExtension
     }
 
     public Object calculate(GraphModel g) {
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add("Alpha");

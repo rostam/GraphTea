@@ -50,8 +50,8 @@ public class NativeCommands {
         Iterator<Edge> it1 = g1.edgeIterator();
         Iterator<Edge> it2 = g2.edgeIterator();
 
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        HashMap<Integer, Integer> nmap = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        HashMap<Integer, Integer> nmap = new HashMap<>();
         Iterator<Vertex> vm = g1.iterator();
         int counter = 0;
         while (vm.hasNext()) {
@@ -65,7 +65,7 @@ public class NativeCommands {
             graph1 += map.get(e.source.getId()) + " " + map.get(e.target.getId()) + "\n";
         }
 
-        map = new HashMap<Integer, Integer>();
+        map = new HashMap<>();
         vm = g2.iterator();
         counter = 0;
 

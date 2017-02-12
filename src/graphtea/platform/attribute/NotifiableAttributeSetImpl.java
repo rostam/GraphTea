@@ -15,7 +15,7 @@ import java.util.Vector;
  */
 public class NotifiableAttributeSetImpl extends AttributeSetImpl implements NotifiableAttributeSet {
 
-    Vector<AttributeListener> globalListeners = new Vector<AttributeListener>();
+    Vector<AttributeListener> globalListeners = new Vector<>();
 
 
     public void put(String name, Object value) {

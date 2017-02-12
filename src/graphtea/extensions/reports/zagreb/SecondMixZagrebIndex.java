@@ -35,7 +35,7 @@ public class SecondMixZagrebIndex implements GraphReportExtension, Parametrizabl
 
     public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
         out.add("Second Mix Zagreb Index : "+ zif.getSecondMixZagrebIndex(alpha,beta));
         return out;
     }

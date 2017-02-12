@@ -141,7 +141,7 @@ public class ParameterShower implements AttributeListener {
         }
     }
 
-    HashMap<String, String> names = new HashMap<String, String>();
+    HashMap<String, String> names = new HashMap<>();
 
     public void attributeUpdated(String name, Object oldVal, Object newVal) {
         try {

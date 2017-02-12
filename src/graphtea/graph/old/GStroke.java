@@ -25,7 +25,7 @@ public class GStroke implements Serializable,  FromStringProvider<GStroke> {
 
     private static final
     long serialVersionUID = 1699990527314740484L;
-    static Vector<GStroke> strokes = new Vector<GStroke>();
+    static Vector<GStroke> strokes = new Vector<>();
     public static GStroke empty = new GStroke("Empty", 0, new float[]{0, 100000000f});
     public static GStroke simple = new GStroke("simple", 1, new float[]{1, 0});
     public static GStroke solid = new GStroke("solid", new float[]{1, 0});

@@ -31,7 +31,7 @@ public class PathZagrebIndex implements GraphReportExtension, Parametrizable {
     }
 
     public Object calculate(GraphModel g) {
-        ArrayList<String> out = new ArrayList<String>();
+        ArrayList<String> out = new ArrayList<>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         out.add("First Path Zagreb Index : "+ zif.getFirstPathZagrebIndex(alpha));
         out.add("Second Path Zagreb Index : "+ zif.getSecondPathZagrebIndex(alpha));

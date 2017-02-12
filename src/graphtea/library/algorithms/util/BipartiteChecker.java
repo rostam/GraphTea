@@ -29,13 +29,13 @@ public class BipartiteChecker extends Algorithm implements AutomatedAlgorithm {
 		int i=0;
 		for (VertexType vm : graph)
 		{
-			CVArray[i] = new ColorableVertex<VertexType>(vm);
+			CVArray[i] = new ColorableVertex<>(vm);
 			i++;
 		}
 
 
 
-		LinkedList<ColorableVertex<VertexType>> queue = new LinkedList<ColorableVertex<VertexType>>();
+		LinkedList<ColorableVertex<VertexType>> queue = new LinkedList<>();
 		ColorableVertex<VertexType> cv = CVArray[0];
 
 		for (ColorableVertex<VertexType> v : CVArray)

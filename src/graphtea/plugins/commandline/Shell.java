@@ -40,7 +40,7 @@ public class Shell {
     BlackBoard bb;
     String evaluations;
     //it may be a HashMap containing all of the commands
-    public HashMap<String, Class> code_completion_dictionary = new HashMap<String, Class>();
+    public HashMap<String, Class> code_completion_dictionary = new HashMap<>();
     public InwardCommandParser parser;
 
     public Shell(BlackBoard blackBoard) {

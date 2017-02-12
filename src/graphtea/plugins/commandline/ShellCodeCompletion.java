@@ -36,7 +36,7 @@ public class ShellCodeCompletion implements NameCompletion {
     }
 
     public String[] completeName(String part) {
-        Vector<String> ret = new Vector<String>();
+        Vector<String> ret = new Vector<>();
         if (part.startsWith("_")) {
             ret = CodeCompletionUtils.complete(abbrs, part);
         } else if (part.endsWith("(")) {

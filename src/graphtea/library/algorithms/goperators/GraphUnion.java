@@ -26,8 +26,8 @@ public class GraphUnion
             , EdgeType extends BaseEdge<VertexType>>
     BaseGraph<VertexType, EdgeType> union(BaseGraph<VertexType, EdgeType> g1, BaseGraph<VertexType, EdgeType> g2) {
         BaseGraph<VertexType, EdgeType> g = g1.createEmptyGraph();
-        HashMap<VertexType, VertexType> temp = new HashMap<VertexType, VertexType>();
-        HashSet<EdgeType> E = new HashSet<EdgeType>();
+        HashMap<VertexType, VertexType> temp = new HashMap<>();
+        HashSet<EdgeType> E = new HashSet<>();
 
         for (VertexType v : g1) {
             VertexType vt = (VertexType) v.getCopy();
