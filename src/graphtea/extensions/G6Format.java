@@ -5,10 +5,7 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.Vector;
 
 /**

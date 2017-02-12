@@ -2,15 +2,10 @@ package graphtea.extensions.reports.boundcheck.forall.iterators;
 
 import graphtea.extensions.G6Format;
 import graphtea.extensions.reports.boundcheck.forall.IterProgressBar;
-import graphtea.extensions.reports.boundcheck.forall.ShowG;
-import graphtea.extensions.reports.boundcheck.forall.Sizes;
 import graphtea.graph.graph.GraphModel;
 
-import javax.swing.*;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
 /**

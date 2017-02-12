@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * Created by rostam on 18.12.15.
+ * @author M. Ali Rostami
  */
 public class StrokeSaveObject implements Serializable {
     String name;

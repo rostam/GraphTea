@@ -6,19 +6,16 @@
 package graphtea.extensions.actions;
 
 import graphtea.extensions.G6Format;
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
-import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
 import java.awt.*;
 import java.util.Scanner;
-import java.util.Vector;
 
 /**
  * @author Azin Azadi

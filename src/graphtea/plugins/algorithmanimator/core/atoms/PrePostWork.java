@@ -24,9 +24,7 @@ public class PrePostWork implements AtomAnimator<Event> {
     PreWorkEvent tt;
 
     public boolean isAnimatable(Event event) {
-        if (event instanceof PreWorkEvent)
-            return true;
-        return event instanceof PostWorkEvent;
+        return event instanceof PreWorkEvent || event instanceof PostWorkEvent;
     }
 
     public Event animate(Event event, BlackBoard b) {

@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * Created by rostam on 07.01.16.
+ * M. Ali Rostami
  */
 public class MatrixHeatMap extends JFrame {
     Matrix m;

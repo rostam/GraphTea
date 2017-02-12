@@ -9,7 +9,6 @@
 
 package graphtea.extensions.io.g6format;
 
-import Jama.Matrix;
 import graphtea.extensions.G6Format;
 import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.main.saveload.core.GraphIOException;

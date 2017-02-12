@@ -15,8 +15,7 @@ public class VertexSaveObject implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (! (obj instanceof VertexSaveObject) )  return false;
-        return attrs.equals(((VertexSaveObject) obj).attrs);
+        return obj instanceof VertexSaveObject && attrs.equals(((VertexSaveObject) obj).attrs);
     }
 
     public VertexSaveObject(Vertex v) {

@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 /**
  * Created by rostam on 17.08.15.
+ * @author M. Ali Rostami
  */
 public class GOpUtils {
     public static GPoint center(GraphModel g) {

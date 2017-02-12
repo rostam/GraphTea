@@ -15,7 +15,6 @@ import graphtea.plugins.main.select.Select;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Rectangle2D;
 
 /**
  * Adds a vertex to the graph: listens for "graph select point" & ...

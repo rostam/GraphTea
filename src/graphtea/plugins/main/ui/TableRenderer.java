@@ -10,14 +10,11 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.Application;
-import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
 import graphtea.ui.components.gpropertyeditor.GBasicCellRenderer;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.math.BigDecimal;
 import java.util.Vector;
