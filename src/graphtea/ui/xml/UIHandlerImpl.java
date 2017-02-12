@@ -405,10 +405,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
                 } else {
                     System.err.println("the class " + clazz + " doesn't implement the interface GComponentInterface, so it can't be put on the UI.");
                 }
-            } catch (InstantiationException e) {
-                System.err.println("There was an error while initializing the class" + clazz + "may be in it's constructor or in one of classes it instantiate in its constructor");
-                ExceptionHandler.catchException(e);
-            } catch (IllegalAccessException e) {
+            } catch (InstantiationException | IllegalAccessException e) {
                 System.err.println("There was an error while initializing the class" + clazz + "may be in it's constructor or in one of classes it instantiate in its constructor");
                 ExceptionHandler.catchException(e);
             } catch (InvocationTargetException e) {

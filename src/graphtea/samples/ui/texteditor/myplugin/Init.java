@@ -33,9 +33,7 @@ public class Init implements PluginInterface {
         UI u = new UI(blackBoard);
         try {
             u.loadXML("/myui.xml", u.getClass());
-        } catch (IOException e) {
-            ExceptionHandler.catchException(e);
-        } catch (SAXException e) {
+        } catch (IOException | SAXException e) {
             ExceptionHandler.catchException(e);
         }
 

@@ -37,11 +37,7 @@ public class ReadWriteTextFile {
                 contents.append(line);
                 contents.append(System.getProperty("line.separator"));
             }
-        }
-        catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
         finally {

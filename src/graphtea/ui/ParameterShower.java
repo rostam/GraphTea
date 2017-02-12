@@ -157,9 +157,7 @@ public class ParameterShower implements AttributeListener {
             } else {
                 o.getClass().getDeclaredField(name).set(o, newVal);
             }
-        } catch (IllegalAccessException e) {
-//            ExceptionHandler.catchException(e);
-        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException | NoSuchFieldException e) {
 //            ExceptionHandler.catchException(e);
         }
     }

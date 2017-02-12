@@ -201,11 +201,7 @@ public class InwardCommandParser {
 //                        in.eval("print_out(obj);");
 //                    }
                 }
-            } catch (IllegalAccessException e) {
-                ExceptionHandler.catchException(e);
-            } catch (InvocationTargetException e) {
-                ExceptionHandler.catchException(e);
-            } catch (NumberFormatException e) {
+            } catch (IllegalAccessException | NumberFormatException | InvocationTargetException e) {
                 ExceptionHandler.catchException(e);
             }
         } else {

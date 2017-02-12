@@ -43,9 +43,7 @@ public class Settings implements AttributeListener {
             graphPrefs.importPreferences(is);
             is.close();
 
-        } catch (IOException e) {
-            ExceptionHandler.catchException(e);
-        } catch (InvalidPreferencesFormatException e) {
+        } catch (IOException | InvalidPreferencesFormatException e) {
             ExceptionHandler.catchException(e);
         }
     }

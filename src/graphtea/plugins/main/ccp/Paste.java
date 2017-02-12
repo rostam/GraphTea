@@ -168,9 +168,7 @@ public class Paste extends AbstractAction {
             cb.setContents(string, string);
             try {
                 cb.getContents(this).getTransferData(DataFlavor.stringFlavor).toString();
-            } catch (UnsupportedFlavorException e) {
-                ExceptionHandler.catchException(e);
-            } catch (IOException e) {
+            } catch (UnsupportedFlavorException | IOException e) {
                 ExceptionHandler.catchException(e);
             }
         }
