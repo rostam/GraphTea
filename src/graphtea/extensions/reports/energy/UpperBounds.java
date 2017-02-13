@@ -20,6 +20,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Vector;
 
+import static graphtea.extensions.Utils.getLaplacian;
+
 /**
  * @author Ali Rostami
 
@@ -184,26 +186,5 @@ public class UpperBounds implements GraphReportExtension {
         } catch (Exception e) {
         }
         return null;
-    }
-
-    private Matrix getLaplacian(Matrix A) {
-        //double[][] res=new double[g.numOfVertices()][g.numOfVertices()];
-
-
-        int n = A.getArray().length;
-        double[][] ATemp = A.getArray();
-
-        Matrix D = new Matrix(n, n);
-        double[][] DTemp = D.getArray();
-        int sum;
-        for (int i = 0; i < n; i++) {
-            sum = 0;
-            for (int j = 0; j < n; j++) {
-                sum += ATemp[j][i];
-            }
-            DTemp[i][i] = sum;
-        }
-
-        return D.minus(A);
     }
 }

@@ -3,7 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
-package graphtea.extensions.actions;
+package graphtea.extensions.actions.G6;
 
 import graphtea.extensions.G6Format;
 import graphtea.graph.graph.GraphModel;
@@ -42,8 +42,7 @@ public class G6CSVStringLoader implements GraphActionExtension, Parametrizable {
         fileChooser.setDialogTitle("Choose a file");
         fileChooser.showOpenDialog(new JDialog());
         File curFile = fileChooser.getSelectedFile();
-        indices.trim();
-        Scanner sc = new Scanner(indices);
+        Scanner sc = new Scanner(indices.trim());
         sc.useDelimiter(",");
         while (sc.hasNext()) {
             Scanner file_scan = null;
@@ -55,7 +54,6 @@ public class G6CSVStringLoader implements GraphActionExtension, Parametrizable {
             }
 
             int given_id = sc.nextInt();
-            System.out.println(given_id);
             while(file_scan.hasNextLine()) {
                 String line = file_scan.nextLine();
                 int id = Integer.parseInt(line.substring(0, line.indexOf(",")).trim());
