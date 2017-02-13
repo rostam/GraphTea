@@ -15,10 +15,7 @@ import graphtea.plugins.algorithmanimator.core.AtomAnimator;
  */
 public class DelayEventHandler implements AtomAnimator<DelayEvent> {
     public boolean isAnimatable(Event event) {
-        if (event instanceof DelayEvent)
-            return true;
-        else
-            return false;
+        return event instanceof DelayEvent;
     }
 
     public DelayEvent animate(DelayEvent event, BlackBoard b) {

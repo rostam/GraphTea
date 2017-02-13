@@ -16,10 +16,7 @@ import graphtea.plugins.algorithmanimator.core.AtomAnimator;
  */
 public class ShowMessage implements AtomAnimator<MessageEvent> {
     public boolean isAnimatable(Event event) {
-        if (event instanceof MessageEvent)
-            return true;
-        else
-            return false;
+        return event instanceof MessageEvent;
     }
 
     public MessageEvent animate(MessageEvent event, BlackBoard b) {

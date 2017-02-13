@@ -91,8 +91,7 @@ public class GraphSaveObject implements Serializable {
         try {
             ObjectInputStream ois = new ObjectInputStream(
                     new ByteArrayInputStream(b));
-            GraphSaveObject gso = (GraphSaveObject) ois.readObject();
-            return gso;
+            return (GraphSaveObject) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

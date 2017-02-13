@@ -72,8 +72,7 @@ public class GMergedColorEditor implements GBasicCellEditor<Integer>, ActionList
             String val = (String) c.getSelectedItem();
             if (val.equals("Int Editor")) {
                 try {
-                    int v = Integer.parseInt(comp.getText());
-                    return v;
+                    return Integer.parseInt(comp.getText());
                 }
                 catch (Exception ee) { //it was not a number
                     return curVal;
@@ -160,14 +159,7 @@ public class GMergedColorEditor implements GBasicCellEditor<Integer>, ActionList
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         if (value instanceof String) {
             DefaultListCellRenderer d = new DefaultListCellRenderer();
-            Component c = d.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            return c;
-            //                    String v = (String) value;
-            //                    if (v.equals("Color Editor")) {
-            //
-            //                    } else if (v.equals("Int Editor")) {
-            //
-            //                    }
+            return d.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
         }
         if (!general)
             return new GMergedColorRenderer().getRendererComponent(value, isVertexColor);

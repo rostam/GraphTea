@@ -5,13 +5,10 @@
 package graphtea.plugins.main.saveload.core;
 
 import graphtea.graph.graph.GraphModel;
-
 import java.io.File;
-import java.io.IOException;
 
 /**
  * @author azin azadi
-
  */
 public interface GraphReaderInterface {
     /**

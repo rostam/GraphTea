@@ -35,8 +35,8 @@ public class AppVertexCover<VertexType extends BaseVertex,
     private EdgeVertexConverter<VertexType, VertexType, EdgeType, EdgeType> gc;
 
     /**
-     * @param graph
-     * @param gc
+     * @param graph The input graph
+     * @param gc The edge vertex converter
      */
     public AppVertexCover(BaseGraph<VertexType, EdgeType> graph,
                           EdgeVertexConverter<VertexType, VertexType, EdgeType, EdgeType> gc) {

@@ -14,8 +14,7 @@ public class ChemTreeFilter implements GraphFilter {
         for(Vertex v : g) {
             if(g.getDegree(v) > maxDeg) maxDeg=g.getDegree(v);
         }
-        if(maxDeg > 4) return false;
-        return true;
+        return maxDeg <= 4;
     }
 
     @Override

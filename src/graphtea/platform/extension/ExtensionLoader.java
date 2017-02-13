@@ -51,7 +51,7 @@ public class ExtensionLoader implements StorableOnExit {
     /**
      * register e as an unKnownExtensionLoader, which GraphTea will try to load "not .class files" with them
      *
-     * @param e
+     * @param e The extension loader
      */
     public static void registerUnknownExtensionLoader(UnknownExtensionLoader e) {
         registeredUnknownExtensionLoaders.add(e);

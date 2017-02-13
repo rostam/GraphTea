@@ -108,7 +108,7 @@ public class TestListGraph {
             ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph =
                     generateRandomListGraph(3, 2);
 
-            connected += ConnectivityChecker.isGraphConnected(myListGraph) == true ? 1 : 0;
+            connected += ConnectivityChecker.isGraphConnected(myListGraph) ? 1 : 0;
         }
 
         System.out.println("Graph connected: " + ((double) (connected)) / (iterations) * 100 + "% of times.");

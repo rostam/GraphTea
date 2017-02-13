@@ -34,7 +34,6 @@ public class GOpUtils {
         for(Integer gp : offsets.keySet()) {
             GPoint pos = center;
             pos.add(offsets.get(gp));
-            System.out.println("bb"+gp);
             g.getVertex(gp).setLocation(pos);
         }
     }

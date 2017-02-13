@@ -235,15 +235,14 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
         final CommandAttitude comati = trgClass.getClass().getAnnotation(CommandAttitude.class);
 
         String command = "";
-        CommandAttitude c = comati;
         String cname;
         String abrv;
         String desc;
-        if (c != null) {
+        if (comati != null) {
             //            Shell.set_variable("_" + target.getClass().getSimpleName(), target);
-            cname = c.name();
-            abrv = c.abbreviation();
-            desc = c.description();
+            cname = comati.name();
+            abrv = comati.abbreviation();
+            desc = comati.description();
             if (desc == null || desc.equals(""))
                 desc = target.getDescription();
         } else {

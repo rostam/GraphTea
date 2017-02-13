@@ -155,8 +155,7 @@ public class Partitioner {
         Collections.addAll(v, g.getVertexArray());
         return findAllPartitioningsRecursively(t, t1 -> {
             if (checkColoring(g)) {
-                boolean b = listener.coloringFound(t1);
-                return b;
+                return listener.coloringFound(t1);
             }
             return false;
         }, v);

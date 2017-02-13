@@ -217,8 +217,7 @@ public class StaticUtils {
                 style = Font.PLAIN;
                 break;
         }
-        Font f = new Font(name, style, size);
-        return f;
+        return new Font(name, style, size);
     }
 
 

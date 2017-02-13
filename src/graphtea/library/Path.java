@@ -32,8 +32,7 @@ public class Path<VertexType extends BaseVertex> implements Iterable<VertexType>
     }
 
     public Iterator<VertexType> iterator() {
-        Iterator<VertexType> iterator = (Iterator<VertexType>) vertices.iterator();
-        return iterator;
+        return (Iterator<VertexType>) vertices.iterator();
     }
 
     public VertexType get(int i) {
