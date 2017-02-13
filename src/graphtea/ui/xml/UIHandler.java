@@ -12,14 +12,14 @@ public interface UIHandler {
     /**
      * An empty element event handling method.
      *
-     * @param data value or null
+     * @param meta value or null
      */
     void handle_sidebar(final Attributes meta) throws SAXException;
 
     /**
      * An empty element event handling method.
      *
-     * @param data value or null
+     * @param meta value or null
      */
     void handle_action(final Attributes meta) throws SAXException;
 
@@ -38,7 +38,7 @@ public interface UIHandler {
     /**
      * An empty element event handling method.
      *
-     * @param data value or null
+     * @param meta value or null
      */
     void handle_bar(final Attributes meta) throws SAXException;
 
@@ -69,14 +69,14 @@ public interface UIHandler {
     /**
      * An empty element event handling method.
      *
-     * @param data value or null
+     * @param meta value or null
      */
     void handle_tool(final Attributes meta) throws SAXException;
 
     /**
      * An empty element event handling method.
      *
-     * @param data value or null
+     * @param meta value or null
      */
     void handle_menu(final Attributes meta) throws SAXException;
 
@@ -95,7 +95,7 @@ public interface UIHandler {
     /**
      * An empty element event handling method.
      *
-     * @param data value or null
+     * @param meta value or null
      */
     void handle_body(final Attributes meta) throws SAXException;
 }

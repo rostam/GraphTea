@@ -59,7 +59,7 @@ public abstract class GComboEditor implements GBasicCellEditor, ActionListener {
     /**
      * occurs when one item of combo list selected
      *
-     * @param e
+     * @param e The action event
      */
     public void actionPerformed(ActionEvent e) {
         listener.editingFinished(getSelectedItem());

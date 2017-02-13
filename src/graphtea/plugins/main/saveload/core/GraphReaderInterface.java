@@ -43,7 +43,6 @@ public interface GraphReaderInterface {
      *
      * @param file The input file
      * @throws GraphIOException In the case of the reader error.
-     * @throws IOException      - In the case of the IO error.
      */
     GraphModel read(File file) throws GraphIOException;
 }

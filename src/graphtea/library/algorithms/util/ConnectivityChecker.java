@@ -23,7 +23,7 @@ public class ConnectivityChecker {
      * Checks whether the current graph is a connected graph.
      *
      * @return True if graph is connected and false otherwise.
-     * @throws InvalidGraphException
+     * @throws InvalidGraphException The invalid graph
      */
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     boolean isGraphConnected(BaseGraph<VertexType, EdgeType> graph)

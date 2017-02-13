@@ -178,7 +178,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
 
 
         GMenuItem item;
-        /**
+        /*
          * extension handling part:
          * if the menu action was an extension removes the menu
          * that the extension created in UI and set it to this menu.
@@ -187,7 +187,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         if (targetAction instanceof AbstractExtensionAction) {
             AbstractExtensionAction targetExt = (AbstractExtensionAction) targetAction;
             item = targetExt.menuItem;
-            /**
+            /*
              * set the label properties according to XML
              */
             item.setText(label);
@@ -269,7 +269,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         boolean b = false;
         graphtea.platform.core.AbstractAction x = loadAbstractAction(clazz);
 
-/**
+/*
  * handling extensions here
  * they are not AbstractAction, but their handlers should
  * return an AbstractAction(if it support the extension)

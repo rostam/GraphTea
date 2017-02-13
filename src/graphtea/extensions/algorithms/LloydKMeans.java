@@ -1,26 +1,26 @@
 package graphtea.extensions.algorithms;
-/**
- * http://frodriguez.webs.com/Java%20Algo/kmeans.txt
- * 
-  * Lloyd's Algorithm - A greedy approximation to the kmeans clustering problem (NP-HARD), this is similar to
-  *                     finding the centers of the voronoi cells of a tessellation that has the input points
-  *                     distributed as evenly as possible throughout the cells.
-  *
-  * Steps:
-  * 		1) It guesses an initial location for the center of each cluster
-  * 		2) It assigns each input point to one cluster (the one with the closest center)
-  *			3) For each cluster, move its center to the centroid of all its assigned points.
-  *			4) Repeat steps 2-3 until no change occurs.
-  *
-  * Returns: An array of Clusters. If you need exactly k clusters you may have to run it several times since
-  *          some clusters may die out during the algorithm, this shouldn't be a problem because this function
-  *          usually runs very fast.
-  */
 
 import graphtea.graph.graph.GPoint;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+
+/**
+ * http://frodriguez.webs.com/Java%20Algo/kmeans.txt
+ *
+ * Lloyd's Algorithm - A greedy approximation to the kmeans clustering problem (NP-HARD), this is similar to
+ *                     finding the centers of the voronoi cells of a tessellation that has the input points
+ *                     distributed as evenly as possible throughout the cells.
+ *
+ * Steps:
+ * 		1) It guesses an initial location for the center of each cluster
+ * 		2) It assigns each input point to one cluster (the one with the closest center)
+ *			3) For each cluster, move its center to the centroid of all its assigned points.
+ *			4) Repeat steps 2-3 until no change occurs.
+ *
+ * Returns: An array of Clusters. If you need exactly k clusters you may have to run it several times since
+ *          some clusters may die out during the algorithm, this shouldn't be a problem because this function
+ *          usually runs very fast.
+ */
 
 public class LloydKMeans {
 

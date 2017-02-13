@@ -40,7 +40,7 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
     }
 
     /**
-     * @see GraphmlHandlerImpl(GraphModel graph)
+     * @see GraphmlHandlerImpl(GraphModel)
      */
     public GraphmlHandlerImpl() {
         g = null;

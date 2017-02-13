@@ -127,9 +127,9 @@ public class Partitioner {
 
         set[vid] = true;
         curSet++;
-        /*****************************/
+        //////////////////////////////////
         findMaxIndSetsRecursively(iiv);
-        /*****************************/
+        //////////////////////////////////
         curSet--;
         set[vid] = false;
 
@@ -142,9 +142,9 @@ public class Partitioner {
         while (iiv < N && mark[iiv]) {
             iiv++;
         }
-        /*****************************/
+        //////////////////////////////////
         findMaxIndSetsRecursively(iiv);
-        /*****************************/
+        //////////////////////////////////
     }
 
 

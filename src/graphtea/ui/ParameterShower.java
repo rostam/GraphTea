@@ -116,12 +116,12 @@ public class ParameterShower implements AttributeListener {
     /**
      * if f is an AttributeSet adds its members to the p
      *
-     * @param p
-     * @param f
-     * @param o
-     * @param name
-     * @param desc
-     * @throws IllegalAccessException
+     * @param p The attr set
+     * @param f The field
+     * @param o The object
+     * @param name The name
+     * @param desc The description
+     * @throws IllegalAccessException Illegal access exception
      */
     private void addField(PortableNotifiableAttributeSetImpl p, Field f, Object o, String name, String desc) throws IllegalAccessException {
         if (AttributeSet.class.isAssignableFrom(f.getType())) {

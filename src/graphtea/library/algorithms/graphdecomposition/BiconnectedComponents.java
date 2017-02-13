@@ -102,8 +102,8 @@ public class BiconnectedComponents
      * It finds biconnected components of the input graph g, by
      * starting search from the node v.
      *
-     * @param g
-     * @param v
+     * @param g The given graph
+     * @param v The given vertex
      */
     private void BC(BaseGraph<VertexType, EdgeType> g, VertexType v) {
         DFS_Number[v.getId()] = DFS_N;

@@ -131,9 +131,9 @@ public class GTabbedGraphPane extends GTabbedPane {
      * if formatIt=true, an html formatting will be applied to the message to make it nicer, do it if you don't
      * pass a complete html message
      *
-     * @param message
-     * @param b
-     * @param formatIt
+     * @param message The message
+     * @param b The blackboard
+     * @param formatIt The formatting switch
      */
     public static void showNotificationMessage(String message, BlackBoard b, boolean formatIt) {
         if (formatIt) message = htmlFormat(message);
@@ -193,8 +193,8 @@ public class GTabbedGraphPane extends GTabbedPane {
      * returns the current GHTMLPageComponent which is used in the top of a tab,
      * if there is not any of them returns null
      *
-     * @param b
-     * @return
+     * @param b The blackboard
+     * @return The HTML page component
      * @see GTabbedPane
      */
     public static GHTMLPageComponent getCurrentGHTMLPageComponent(BlackBoard b) {

@@ -34,7 +34,7 @@ public class AcyclicChecker extends Algorithm implements AutomatedAlgorithm {
      * Checks whether the current graph is acyclic.
      *
      * @return True if graph is acyclic and false otherwise.
-     * @throws InvalidGraphException
+     * @throws InvalidGraphException The invalid graph
      */
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     boolean isGraphAcyclic(BaseGraph<VertexType, EdgeType> graph) {

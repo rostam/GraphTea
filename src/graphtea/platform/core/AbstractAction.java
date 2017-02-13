@@ -42,8 +42,8 @@ public abstract class AbstractAction implements Action, Listener {
     /**
      * like Action
      *
-     * @param key
-     * @param value
+     * @param key The key
+     * @param value The value
      */
     public abstract void performAction(String key, Object value);
 
@@ -52,7 +52,7 @@ public abstract class AbstractAction implements Action, Listener {
     }
 
     /**
-     * @param key
+     * @param key The key
      */
     public void keyChanged(String key, Object value) {
         if (enabled) {

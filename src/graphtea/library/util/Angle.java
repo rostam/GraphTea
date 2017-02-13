@@ -41,7 +41,7 @@ constructs an angle 0 rad
 /**
 constructs an angle in default unit 'grades'.
 @param x angle in grades
-@exception Msg
+@exception Msg The message
 */
         public Angle(double x) {
                 _radians = (x/RHOGON) % TWOPI;
@@ -52,7 +52,7 @@ constructs an angle in default unit 'grades'.
 constructs an angle with given unit RAD, DEG, GON, etc.
 @param x value of the angle
 @param unit unit of: RAD, DEG, GON, DMS or SEMI
-@exception Msg
+@exception Msg The message
 */
         public Angle(double x, int unit) throws Msg {
           String r = "Angle.constructor";

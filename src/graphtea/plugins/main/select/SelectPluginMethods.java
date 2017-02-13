@@ -98,8 +98,6 @@ public class SelectPluginMethods implements PluginMethods {
 
     /**
      * adds any vertex in graph which is adjacent to at list one vertex in selected vertices
-     *
-     * @param g The Graph
      */
     public void expandSelection() {
         GraphModel g = b.getData(GraphAttrSet.name);

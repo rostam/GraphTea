@@ -34,8 +34,8 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
     static GraphModel g;
 
     /**
-     * @param eventName
-     * @param value
+     * @param eventName The event name
+     * @param value The value
      */
     public void performJob(String eventName, Object value) {
         visitedVertices = new Vector<>();

@@ -27,12 +27,10 @@ public interface NotifiableAttributeSet extends AttributeSet {
      * <code>getAttributeListeners()</code> method.
      *
      * @param attributeListener the listener!
-     * @param attrNames         the name of attributes to addListener for change
      */
     void addAttributeListener(AttributeListener attributeListener);
 
     /**
-     * @param attrNames
      * @return List of listeners
      */
     Collection<AttributeListener> getAttributeListeners();
@@ -40,7 +38,7 @@ public interface NotifiableAttributeSet extends AttributeSet {
     /**
      * Remove a listener from list of listeners.
      *
-     * @param attributeListener
+     * @param attributeListener The attribute listener
      */
     void removeAttributeListener(AttributeListener attributeListener);
 }

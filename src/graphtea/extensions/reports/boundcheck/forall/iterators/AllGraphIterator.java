@@ -20,7 +20,7 @@ public class AllGraphIterator extends GraphModelIterator {
     Scanner g_iters;
     String g6;
 
-    public AllGraphIterator(String fileSize, int size, boolean part) {
+    public AllGraphIterator(String fileSize, int size) {
         try {
             g_iters = new Scanner(new File("graphs/"+fileSize+".g6"));
         } catch (FileNotFoundException e) {

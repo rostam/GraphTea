@@ -2,13 +2,6 @@
 // Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
-
-/**
- * TestListGraph.java
- *
- * Created on November 15, 2004, 4:30 AM
- */
-
 package graphtea.library.test;
 
 import graphtea.library.*;
@@ -27,6 +20,9 @@ import java.util.Iterator;
 import java.util.Vector;
 
 /**
+ * TestListGraph.java
+ *
+ * Created on November 15, 2004, 4:30 AM
  * @author Omid Aladini
  */
 public class TestListGraph {

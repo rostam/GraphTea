@@ -66,7 +66,7 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
     /**
      * finds a maximal length path in the given DAG
      *
-     * @param graph
+     * @param graph The given graph
      * @return null if it is not a DAG, else a list of pairs, which ret[i].first is the parent of the longest path
      *         of the vertex with Id i, and ret[i].second is the longest path length.
      */

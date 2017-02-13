@@ -80,7 +80,7 @@ public class SaveLoadPluginMethods implements PluginMethods {
     /**
      * loads the matrix saved in file to the current graph
      *
-     * @param file
+     * @param file The given file
      */
     public GraphModel loadMatrix(File file) throws IOException {
         return LoadMatrix.loadMatrix(file);

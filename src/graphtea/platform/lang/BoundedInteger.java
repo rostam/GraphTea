@@ -19,7 +19,7 @@ public class BoundedInteger implements Validator<Integer>, AtomAttribute<Integer
     /**
      * sets the max and min to integer.maxvalue , minvalue
      *
-     * @param value
+     * @param value The value
      */
     public BoundedInteger(int value) {
         max = Integer.MAX_VALUE;

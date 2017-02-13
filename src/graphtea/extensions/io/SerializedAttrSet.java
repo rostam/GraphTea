@@ -27,7 +27,7 @@ public class SerializedAttrSet<Binding extends AttributeSet> implements Serializ
         }
     }
     /**
-     * @return a unmodifiable copy of attributes in this object
+     * a unmodifiable copy of attributes in this object
      */
     public void setBinding(Binding binding) {
         attrs.clear();

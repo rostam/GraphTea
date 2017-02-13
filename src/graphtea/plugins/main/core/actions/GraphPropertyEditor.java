@@ -325,9 +325,9 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
      * adds the given atr from source to dest, and if there was some values
      * on the place before, invalidate the place
      *
-     * @param dest
+     * @param dest The destination attribute set
      * @param key     reffers to the atr name in dest
-     * @param source
+     * @param source The source attribute set
      * @param atrName reffers to the atr name in source that should be inserted to dest
      */
     private void insertAttributeToSelectionAtrs(AttributeSet dest, String key, AttributeSet source, String atrName) {

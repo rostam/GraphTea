@@ -46,7 +46,7 @@ public abstract class Algorithm implements AlgorithmInterface {
     /**
      * defines a step on algorithm, for example visiting a vertex, or every thing which then user can 
      * pause on it.
-     * @param msg
+     * @param msg The message
      */
     protected void step(String msg, String id){
         EventUtils.algorithmStep(this, msg,id);

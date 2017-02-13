@@ -18,9 +18,9 @@ public class VisualizationExtensionHandler implements ExtensionHandler {
     AbstractAction a = null;
 
     /**
-     * @param b
-     * @param ext
-     * @return
+     * @param b The blackboard
+     * @param ext The extension
+     * @return The abstract action
      */
     public AbstractAction handle(BlackBoard b, Object ext) {
         a = null;

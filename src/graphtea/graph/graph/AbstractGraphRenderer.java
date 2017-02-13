@@ -233,8 +233,8 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
     /**
      * Runs run.run() and ignore all repaints until Its execution finishes
      *
-     * @param run
-     * @param repaintAfter
+     * @param run The runnable
+     * @param repaintAfter The repaint which is done after that
      */
     public void ignoreRepaints(Runnable run, boolean repaintAfter) {
         this.ignoreRapaints = true;

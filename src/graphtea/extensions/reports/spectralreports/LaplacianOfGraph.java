@@ -22,8 +22,8 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 	boolean inDegree;
 	/**
 	 * Round func
-	 * @param value
-	 * @param decimalPlace
+	 * @param value The value
+	 * @param decimalPlace The decimal place
 	 * @return rounded value of the input to the number of decimalPlace
 	 */
 	private double round(double value, int decimalPlace) {

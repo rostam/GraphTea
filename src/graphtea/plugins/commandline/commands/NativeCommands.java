@@ -2,13 +2,7 @@
 // Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
-
 package graphtea.plugins.commandline.commands;
-
-/**
- * @author Mohammad Ali Rostami
- * @email rostamiev@gmail.com
- */
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -21,7 +15,9 @@ import graphtea.plugins.main.GraphData;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.StringTokenizer;
-
+/**
+ * @author Mohammad Ali Rostami
+ */
 public class NativeCommands {
     private BlackBoard bb;
     private GraphData datas;

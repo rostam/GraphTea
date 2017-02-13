@@ -21,8 +21,8 @@ public class GraphActionExtensionHandler implements ExtensionHandler {
     AbstractAction a = null;
 
     /**
-     * @param b
-     * @param ext
+     * @param b The blackboard
+     * @param ext The extension
      * @return null if clazz doesn't implements GraphGeneratorExtension
      */
     public AbstractAction handle(BlackBoard b, Object ext) {

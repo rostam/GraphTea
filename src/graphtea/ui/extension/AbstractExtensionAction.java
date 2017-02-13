@@ -159,10 +159,10 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
      * if you want to create custom menues for your extension (i.e. want to add some extra components to it) you should
      * override this method.
      *
-     * @param name
-     * @param actionId
-     * @param bb
-     * @return
+     * @param name The name of the menu
+     * @param actionId The action id
+     * @param bb The blackboard
+     * @return  The menu item
      * @see graphtea.plugins.algorithmanimator.extension.AlgorithmExtensionAction
      */
     protected final GMenuItem createMenuItem(String name, String actionId, BlackBoard bb) {
@@ -295,7 +295,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
      * first checks if o instanceof Parametrizable if so, shows an
      * editor for it's Parameters.
      *
-     * @param o
+     * @param o The object
      * @return true if o isn't an instance of Parametrizable or the user cancells the editing
      */
     public boolean testAndSetParameters(Object o) {

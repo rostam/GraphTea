@@ -11,8 +11,6 @@ package graphtea.library.event;
  * One who implements this class may take different decision on different types of Event object.
  *
  * @author Omid Aladini
- * @param <VertexType> Type of the vertex associated with the graph which uses this dispatcher.
- * @param <EdgeType> Type of the edge associated with the graph which uses this dispatcher.
  */
 public interface EventDispatcher {
     /**

@@ -49,7 +49,7 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
     /**
      * registers a new kind of AtomAnimator
      *
-     * @param a
+     * @param a The nimator
      */
     static public void registerAtomAnimation(AtomAnimator a) {
         animators.add(a);
@@ -66,7 +66,7 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
     /**
      * The main method, Animates an algorithm
      *
-     * @param aa
+     * @param aa The automated algorithm
      */
     public void animateAlgorithm(final AutomatedAlgorithm aa) {
         new Thread() {
@@ -85,8 +85,8 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
     /**
      * dispatchs events that recieved from the algorithm
      *
-     * @param event
-     * @return
+     * @param event The event
+     * @return The event
      */
     public Event dispatchEvent(Event event) {
         try {
@@ -134,7 +134,7 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
     /**
      * handles gui control events
      *
-     * @param e
+     * @param e The action event
      */
     public void actionPerformed(ActionEvent e) {
         oneStep = false;
@@ -162,7 +162,7 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
     /**
      * creates the GUI control frame
      *
-     * @param algorithmName
+     * @param algorithmName The algorithm name
      */
     public void createControlDialog(String algorithmName) {
         f = new JFrame();

@@ -154,7 +154,7 @@ constructs a complex number from radius/magnitude and argument.
   }
 /**
  * Provides product of this and float right hand side.
- * @param z right hand side
+ * @param x right hand side
  * @return product of this and z
  */
   public Complex times(double x) {
@@ -319,9 +319,8 @@ constructs a complex number from radius/magnitude and argument.
 * The inverse problem to methode complexLatitude(): compute ellipsoidal latitude
 phi (in real part) and delta_lambda (in imaginary part) from complex
 latitude.
-* @param the reference ellipsoid
+* @param ell reference ellipsoid
 * @param b the complex latitude
-* @param a complex number containing phi/delta_lambda (in radians)
 */
         static Complex phi_dlam(Ellipsoid ell, Complex b) throws Msg {
                 Complex w = atanh(sin(b)).minus(atanh(sin(b).times(ell.e())).times(ell.e()));

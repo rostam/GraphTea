@@ -21,8 +21,8 @@ import java.util.Iterator;
 public class FloydWarshall<VertexType extends BaseVertex,
         EdgeType extends BaseEdge<VertexType>> {
     /**
-     * @param graph
-     * @return
+     * @param graph The given graph
+     * @return All shortest paths
      */
     public Integer[][] getAllPairsShortestPath(final BaseGraph<VertexType, EdgeType> graph) {
 

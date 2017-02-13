@@ -35,8 +35,8 @@ public class BackwardTrees implements VisualizationExtension {
 
     static GraphModel g;
     /**
-     * @param eventName
-     * @param value
+     * @param eventName The event name
+     * @param value The avlue
      */
     public HashSet<Vertex> placedVertices = new HashSet<>();
     @UserModifiableProperty(displayName = "BackWard Tree Visualization Radius", obeysAncestorCategory = false

@@ -13,8 +13,8 @@ public class EventUtils {
     /**
      * dispatches an event in a which means that there is a Algorithm Step point here
      *
-     * @param a
-     * @param message
+     * @param a The algorithm
+     * @param message The message in that step
      */
     public static void algorithmStep(Algorithm a, String message) {
         AlgorithmStep step = new AlgorithmStep();

@@ -14,15 +14,11 @@ import javax.swing.event.ChangeListener;
 import java.util.HashMap;
 
 /**
+ * provides a tabbed UI Interface for editing multiple graphs in multiple tabs
+ *
  * @author Azin Azadi
  */
 public class GTabbedPane {
-
-    /**
-     * provides a tabbed UI Interface for editing multiple graphs in multiple tabs
-     *
-     * @author azin azadi
-     */
     public static final String NAME = "GTabbedPane";
     public static final String CURRENT_COMPONENT = "GTabbedPane current component";
 
@@ -58,9 +54,9 @@ public class GTabbedPane {
      * adds a tab to the tabbed pane, if addHelper=true, the added component will be a
      * GSplitedPane which have a GHTMLPageComponent on it's top as a helper
      *
-     * @param title
-     * @param component
-     * @param addHelper
+     * @param title The component title
+     * @param component The component
+     * @param addHelper Switch for helper
      */
     public JComponent addComponent(String title, JComponent component, boolean addHelper) {
         if (addHelper)

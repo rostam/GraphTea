@@ -396,7 +396,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
      * their target goes to the specified vertex.
      *
      * @return in-degree of vertex <I>vertexId</I>.
-     * @throws InvalidVertexException
+     * @throws InvalidVertexException Invalid vertex exception
      */
     private int getInDegree(int vertexId) throws InvalidVertexException {
         if (vertexIdOutOfRange(vertexId))

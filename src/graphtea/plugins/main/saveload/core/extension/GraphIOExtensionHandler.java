@@ -38,8 +38,8 @@ public class GraphIOExtensionHandler implements ExtensionHandler, StorableOnExit
     public static String defaultFile = ".";
 
     /**
-     * @param b
-     * @param ext
+     * @param b The blackboard
+     * @param ext The extension
      * @return null if ext doesn't implements GraphReaderExtension
      */
     public AbstractAction handle(BlackBoard b, Object ext) {

@@ -29,8 +29,8 @@ public class TestAction extends AbstractAction {
     /**
      * like Action
      *
-     * @param eventName
-     * @param value
+     * @param eventName The event name
+     * @param value The value
      */
     public void performAction(String eventName, Object value) {
         JOptionPane.showMessageDialog(null, "test is ok :D, ", "tessst", JOptionPane.INFORMATION_MESSAGE);

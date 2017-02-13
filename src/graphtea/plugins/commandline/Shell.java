@@ -160,7 +160,7 @@ public class Shell {
     }
 
     /**
-     * @param b
+     * @param b The blackboard
      * @return the available shell for b. (normally the working shell of application)
      */
     public static Shell getCurrentShell(BlackBoard b) {

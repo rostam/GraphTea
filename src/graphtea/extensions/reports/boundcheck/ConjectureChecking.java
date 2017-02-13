@@ -40,8 +40,6 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public boolean connected = true;
     @Parameter(name = "Num Of Nodes", description = "")
     public int numOfNodes = 9;
-    @Parameter(name = "Partition", description = "")
-    public boolean part = false;
 //    @Parameter(name = "Up to", description = "")
 //    public boolean upto = false;
     @Parameter(name = "Filter", description = "")
@@ -85,7 +83,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         if(!conjCheck) {
             GraphReportExtensionAction.ig=null;
             IterGraphs itg=new IterGraphs(conjCheck,iterative,currentType,
-                    size,boundType.getValue(),generators.getValue(),part, PostP.getValue(),
+                    size,boundType.getValue(),generators.getValue(), PostP.getValue(),
                     Filters.getCorrectFilter(gfilters));
             Vector<GraphModel> gs = itg.wrapper_generate();
             String nameOfFile = JOptionPane.showInputDialog("Please enter tthe name of a file in which the " +
@@ -104,7 +102,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         }
 
         GraphReportExtensionAction.ig=new IterGraphs(conjCheck,iterative,currentType,
-                size,boundType.getValue(),generators.getValue(),part, PostP.getValue(),
+                size,boundType.getValue(),generators.getValue(), PostP.getValue(),
                 Filters.getCorrectFilter(gfilters));
 
         if(conjCheck) return "Conjecture Checking is enabled.";

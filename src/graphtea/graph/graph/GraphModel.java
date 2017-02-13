@@ -105,8 +105,8 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	 * sets and stores a user defined attribute for the graph. here you can put any attribute you like that are not available
 	 * in the standard attributes. your attributes will be editable in property editor part of GUI.
 	 *
-	 * @param name
-	 * @param value
+	 * @param name The attribute name
+	 * @param value The attribute value
 	 */
 	public void setUserDefinedAttribute(String name, Object value) {
 		if (userDefinedAttributes == null) {
@@ -181,7 +181,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	 * determines whether show changes in model to view, for example when an algorithm changes the color of a vertex
 	 * in Vertex(BaseVertex) should a color be assigned in GUI to it or not?
 	 *
-	 * @param showChangesOnView
+	 * @param showChangesOnView switch showing the changes on view
 	 */
 	public void setShowChangesOnView(boolean showChangesOnView) {
 		this.showChangesOnView = showChangesOnView;

@@ -117,7 +117,7 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
 
     /**
      * @param protocol for example in "BSH:" protocol will be "BSH"
-     * @param h
+     * @param h The hyperlink handler
      * @see graphtea.plugins.commandline.ShellHyperlinkHandler
      */
     public static void registerHyperLinkHandler(String protocol, HyperlinkHandler h) {

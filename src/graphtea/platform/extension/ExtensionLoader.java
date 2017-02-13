@@ -87,8 +87,8 @@ public class ExtensionLoader implements StorableOnExit {
      * returns an instance of extensionClass if the given extensionClass implements Extension (BasicExtension)
      * or has default constructor, otherwise it returns null
      *
-     * @param extensionClass
-     * @return
+     * @param extensionClass the extension class
+     * @return an object of the given extension
      */
     public static Object loadExtension(Class extensionClass) {
         Object ret = null;

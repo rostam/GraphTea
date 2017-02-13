@@ -23,7 +23,6 @@ import java.util.Collections;
 import java.util.Vector;
 
 public class IterGraphs {
-    private final boolean part;
     public boolean activeConjCheck = false;
     public boolean iterative = false;
     public String type = "";
@@ -34,7 +33,7 @@ public class IterGraphs {
     public GraphFilter gf;
 
     public IterGraphs(boolean activeConjCheck, boolean iterative,
-                      String type, int size, String bound, String gens, boolean part,
+                      String type, int size, String bound, String gens,
                       String postproc,GraphFilter gf) {
         this.activeConjCheck = activeConjCheck;
         this.iterative = iterative;
@@ -42,7 +41,6 @@ public class IterGraphs {
         this.size = size;
         this.bound = bound;
         this.gens = gens;
-        this.part = part;
         this.postproc = postproc;
         this.gf=gf;
     }
@@ -52,7 +50,7 @@ public class IterGraphs {
         if (!gens.equals(GeneratorFilters.NoGenerator)) {
             it = new GraphGeneratorIterator(gens);
         } else {
-            it = new AllGraphIterator(type,size,part);
+            it = new AllGraphIterator(type,size);
         }
 
         Vector<GraphModel> results = new Vector<>();
@@ -71,7 +69,7 @@ public class IterGraphs {
         if (!gens.equals(GeneratorFilters.NoGenerator)) {
             it = new GraphGeneratorIterator(gens);
         } else {
-            it = new AllGraphIterator(type,size,part);
+            it = new AllGraphIterator(type,size);
         }
 
         ToCall f = mr::calculate;
@@ -110,7 +108,7 @@ public class IterGraphs {
     }
 
     public void showWrapper(BlackBoard blackboard) {
-        AllGraphIterator agi = new AllGraphIterator(type, size, true);
+        AllGraphIterator agi = new AllGraphIterator(type, size);
         GraphModel g = agi.next();
         Point pp[] = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
