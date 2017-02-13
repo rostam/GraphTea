@@ -195,7 +195,7 @@ public class AttributeSetView {
     /**
      * connects this to a
      *
-     * @param a
+     * @param a The attribute set
      */
     public void setAttribute(AttributeSet a) {
         this.a = a;

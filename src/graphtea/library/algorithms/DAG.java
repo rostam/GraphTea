@@ -131,7 +131,7 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
     /**
      * This method returns a cycle in the given2t directed graph which is a proof that it is not a DAG,
      *
-     * @param graph
+     * @param graph The input graph
      * @return a cycle in the graph if it is NOT a dag or null if it is a dag
      */
     public static <Vertex extends BaseVertex, Edge extends BaseEdge<Vertex>>

@@ -52,9 +52,9 @@ public class MinimumCut extends Algorithm implements GraphReportExtension{
 		try{
 			dispatchEvent(gr);	
 		}
-		catch(Exception e){};
-		
-		Vertex source, sink;
+		catch(Exception e){}
+
+        Vertex source, sink;
 
 		BaseGraph<BaseVertex, BaseEdge<BaseVertex>> graph  = gr.getGraph();
 
@@ -62,8 +62,8 @@ public class MinimumCut extends Algorithm implements GraphReportExtension{
 		try{
 			dispatchEvent(sourceReq);	
 		}
-		catch(Exception e){};
-		source = g.getVertex(sourceReq.getVertex().getId());
+		catch(Exception e){}
+        source = g.getVertex(sourceReq.getVertex().getId());
 		source.setColor(7);
 		source.setMark(true);
 
@@ -71,8 +71,8 @@ public class MinimumCut extends Algorithm implements GraphReportExtension{
 		try{
 			dispatchEvent(sinkReq);	
 		}
-		catch(Exception e){};
-		sink = g.getVertex(sinkReq.getVertex().getId());
+		catch(Exception e){}
+        sink = g.getVertex(sinkReq.getVertex().getId());
 		sink.setColor(3);
 		sink.setMark(true);
 

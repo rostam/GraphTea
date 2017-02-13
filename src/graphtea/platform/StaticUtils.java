@@ -131,7 +131,7 @@ public class StaticUtils {
      * Adds a new FromStringProvider to current ones.
      *
      * @param className The given of a class
-     * @param pro
+     * @param pro From string provider
      */
     public static void setFromStringProvider(String className, FromStringProvider pro) {
         pr.put(className, pro);

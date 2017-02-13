@@ -5,16 +5,14 @@
 
 package graphtea.samples;
 
+import graphtea.platform.StaticUtils;
+
 /**
  * This is a sample class for who wants to debug his/her developing extensions.
  * Just replace your extension's class name with HelloWorldReport
  *
  * @author Azin Azadi
  */
-
-import graphtea.platform.StaticUtils;
-
-
 public class Debugger {
     public static void main(String[] args) {
         graphtea.platform.Application.main(args);

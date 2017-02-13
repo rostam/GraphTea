@@ -49,9 +49,9 @@ public class AppVertexCover<VertexType extends BaseVertex,
 
 
     /**
-     * @return
-     * @throws InvalidGraphException
-     * @throws InvalidVertexException
+     * @return Vector of vertices
+     * @throws InvalidGraphException The graph is invalid
+     * @throws InvalidVertexException The vertex is invalid
      */
 
     public Vector<VertexType> findAppCover()

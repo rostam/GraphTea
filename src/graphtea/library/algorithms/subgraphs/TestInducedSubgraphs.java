@@ -35,6 +35,4 @@ public class TestInducedSubgraphs extends Algorithm implements AutomatedAlgorith
         dispatchEvent(new GraphEvent<>(induced, GraphEvent.EventType.NEW_GRAPH));
     }
 
-    ;
-
 }

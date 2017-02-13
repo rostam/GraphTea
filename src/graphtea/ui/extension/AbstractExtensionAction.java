@@ -208,7 +208,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
      *
      * @return true to insert the extra button, false to no insert it.
      * @see Parametrizable
-     * @see @Parameter
+     * @see Parameter
      * @see graphtea.plugins.algorithmanimator.extension.AlgorithmExtensionAction
      */
     protected boolean isInsertExtraButtonToMenuItem() {

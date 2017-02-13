@@ -30,7 +30,6 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
     static Vector<AtomAnimator> animators = new Vector<>();
     BlackBoard blackboard;
     private boolean paused = true;
-    private JFrame f;
     /**
      * running algorithm just one step
      */
@@ -165,7 +164,7 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
      * @param algorithmName The algorithm name
      */
     public void createControlDialog(String algorithmName) {
-        f = new JFrame();
+        JFrame f = new JFrame();
         f.setTitle("Algorithm Runner: " + algorithmName);
         f.setAlwaysOnTop(true);
         alggui = new AnimatorGUI(this, blackboard);

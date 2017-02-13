@@ -62,7 +62,7 @@ public class JGraph extends JScrollPane {
         return view;
     }
 
-    /**
+    /*
      * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6333318 jscrollpane bug
      */
 }

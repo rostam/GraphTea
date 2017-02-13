@@ -409,7 +409,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
      * their tale is attached to the specified vertex.
      *
      * @return out-degree of vertex <I>vertexId</I>.
-     * @throws InvalidVertexException
+     * @throws InvalidVertexException The vertex is invalid
      */
     private int getOutDegree(int vertexId) throws InvalidVertexException {
         if (vertexIdOutOfRange(vertexId))

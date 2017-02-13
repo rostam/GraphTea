@@ -136,7 +136,7 @@ public class InwardCommandParser {
     /**
      * imports all commands stored in annotated methods of o
      *
-     * @param o
+     * @param o The object
      */
     public void addCommands(Object o) {
         try {

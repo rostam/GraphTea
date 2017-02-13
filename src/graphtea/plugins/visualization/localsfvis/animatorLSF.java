@@ -20,13 +20,11 @@ class animatorLSF extends Thread {
     private boolean c = true;
 
     public animatorLSF(BlackBoard blackboard, GraphModel g, AbstractGraphRenderer gv) {
-        this.blackboard = blackboard;
         this.g = g;
         this.gv = gv;
         getVertices();
     }
 
-    private BlackBoard blackboard;
     private GraphModel g;
     private AbstractGraphRenderer gv;
     private Vertex[] v;
@@ -36,8 +34,6 @@ class animatorLSF extends Thread {
     private GPoint[] prevVerPos; //refferes to previous state of vertex positions, for finding vertices that moved by anything else
     //    private final double neighborRadius = 300;
     private double stres = 10;
-    private double maxF = 1000;
-    private final int E = 5;
     private double springK = 0.7;
     private double q1q2k = 50000;
     private boolean stop = false;
@@ -366,14 +362,16 @@ class animatorLSF extends Thread {
             fx = (int) (q1q2k * fex - springK * fsx);
             fy = (int) (q1q2k * fey - springK * fsy);
             int fi = Math.abs(fx) + Math.abs(fy);
+            double maxF = 1000;
             if (fi > maxF) {
 //                System.out.println("MAXF exceeded: "+fi);
                 fx = (int) (maxF * fx / (fi));
                 fy = (int) (maxF * fy / (fi));
             }
 
-            verPos[i].x += fx / E;
-            verPos[i].y += fy / E;
+            int e = 5;
+            verPos[i].x += fx / e;
+            verPos[i].y += fy / e;
 //            velocity[i].x += fx;
 //            velocity[i].y += fy;
 //            verPos[i].x += (fx + velocity[i].x)/E;

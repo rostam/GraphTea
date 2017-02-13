@@ -224,7 +224,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
      * <p/>
      * It is equal to call ignoreRepaints(run, true)
      *
-     * @param run
+     * @param run The runnable
      */
     public void ignoreRepaints(Runnable run) {
         ignoreRepaints(run, true);
