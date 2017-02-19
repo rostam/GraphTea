@@ -10,7 +10,7 @@ import java.util.Vector;
  */
 public class RenderTable extends PriorityQueue<Vector<Object>> {
     int which = 1;
-    int maxSize = 5000;
+    int maxSize = 100000;
     public static boolean noFilter = false;
 
     private Vector<String> titles = new Vector<>();
@@ -24,22 +24,22 @@ public class RenderTable extends PriorityQueue<Vector<Object>> {
     }
 
     public RenderTable() {
-        super(1000,new RenderTableMaxComparator(1));
+        super(100000,new RenderTableMaxComparator(1));
     }
 
     public RenderTable(int which) {
-        super(1000,new RenderTableMaxComparator(which));
+        super(100000,new RenderTableMaxComparator(which));
         this.which=which;
     }
 
     public RenderTable(int which, int maxSize) {
-        super(1000,new RenderTableMaxComparator(which));
+        super(100000,new RenderTableMaxComparator(which));
         this.which=which;
         this.maxSize = maxSize;
     }
 
     public RenderTable(int which, int maxSize, Comparator<Vector<Object>> comp) {
-        super(1000,comp);
+        super(100000,comp);
         this.which=which;
         this.maxSize = maxSize;
     }
