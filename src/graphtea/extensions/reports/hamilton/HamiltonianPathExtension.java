@@ -15,7 +15,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "hamiltonianـpath", abbreviation = "_hp")
+@CommandAttitude(name = "hamiltonian_path", abbreviation = "_hp")
 public class HamiltonianPathExtension implements GraphReportExtension {
     public String getName() {
         return "Hamiltonian Path";

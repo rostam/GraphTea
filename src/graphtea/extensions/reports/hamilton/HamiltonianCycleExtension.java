@@ -15,7 +15,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "hamiltonianـcycle", abbreviation = "_hc")
+@CommandAttitude(name = "hamiltonian_cycle", abbreviation = "_hc")
 public class HamiltonianCycleExtension implements GraphReportExtension {
     public String getName() {
         return "Hamiltonian Cycle";

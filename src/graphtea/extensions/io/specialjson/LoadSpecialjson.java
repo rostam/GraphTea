@@ -197,8 +197,6 @@ public class LoadSpecialjson implements GraphReaderExtension {
     }
 
     GPoint convertLatLonToXY(double lat, double lon) {
-//        lat    = 41.145556; // (φ)
-//        lon   = -73.995;   // (λ)
         double mapWidth = 2000;
         double mapHeight = 1000;
 

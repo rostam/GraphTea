@@ -22,7 +22,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- * @author Ricado Nußbaum
+ * @author Ricado Nussbaum
  */
 
 
