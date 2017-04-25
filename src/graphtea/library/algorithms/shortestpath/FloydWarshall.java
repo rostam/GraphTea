@@ -10,6 +10,7 @@ import graphtea.library.BaseEdge;
 import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -25,18 +26,25 @@ public class FloydWarshall<VertexType extends BaseVertex,
      * @return All shortest paths
      */
     public Integer[][] getAllPairsShortestPath(final BaseGraph<VertexType, EdgeType> graph) {
-
         final Integer dist[][] = new Integer[graph.getVerticesCount()][graph.getVerticesCount()];
         Iterator<EdgeType> iet = graph.edgeIterator();
         EdgeType edge;
-        for (Integer i : dist[0])
-            for (Integer j : dist[0]) {
-                dist[i][j] = Integer.MAX_VALUE;
-            }
+        for(int i = 0; i < dist.length;i++)
+            Arrays.fill(dist[i],graph.numOfVertices()*2);
+
+//        for (Integer i : dist[0])
+//            for (Integer j : dist[0]) {
+//                dist[i][j] = Integer.MAX_VALUE;
+//
+//    }
+
+        for(VertexType v:graph)
+            dist[v.getId()][v.getId()] = 0;
 
         while (iet.hasNext()) {
             edge = iet.next();
             dist[edge.target.getId()][edge.source.getId()] = edge.getWeight();
+            dist[edge.source.getId()][edge.target.getId()] = edge.getWeight();
         }
 
         for (VertexType v : graph)
@@ -47,7 +55,42 @@ public class FloydWarshall<VertexType extends BaseVertex,
                 }
 
         return dist;
-
     }
 
+
+    /**
+     * @param graph The given graph
+     * @return All shortest paths
+     */
+    public Integer[][] getAllPairsShortestPathWithoutWeight(final BaseGraph<VertexType, EdgeType> graph) {
+        final Integer dist[][] = new Integer[graph.getVerticesCount()][graph.getVerticesCount()];
+        Iterator<EdgeType> iet = graph.edgeIterator();
+        EdgeType edge;
+        for(int i = 0; i < dist.length;i++)
+            Arrays.fill(dist[i],graph.numOfVertices()*2);
+
+//        for (Integer i : dist[0])
+//            for (Integer j : dist[0]) {
+//                dist[i][j] = Integer.MAX_VALUE;
+//
+//    }
+
+        for(VertexType v:graph)
+            dist[v.getId()][v.getId()] = 0;
+
+        while (iet.hasNext()) {
+            edge = iet.next();
+            dist[edge.target.getId()][edge.source.getId()] = 1;
+            dist[edge.source.getId()][edge.target.getId()] = 1;
+        }
+
+        for (VertexType v : graph)
+            for (VertexType u : graph)
+                for (VertexType w : graph) {
+                    if ((dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()]) < dist[v.getId()][u.getId()])
+                        dist[v.getId()][u.getId()] = dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()];
+                }
+
+        return dist;
+    }
 }
