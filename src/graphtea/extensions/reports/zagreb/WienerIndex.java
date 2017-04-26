@@ -29,19 +29,20 @@ public class WienerIndex implements GraphReportExtension<Object> {
 
     public Object calculate(GraphModel g) {
         FloydWarshall floydWarshall = new FloydWarshall();
+        // that should be called two times
+        floydWarshall.getAllPairsShortestPathWithoutWeight(g);
         Integer[][] ret = floydWarshall.getAllPairsShortestPathWithoutWeight(g);
         int sum =0;
         for (int i = 0;i<ret.length;i++)
-            for (int j = 0;j<ret[i].length;i++) {
-                System.out.println(i + " " + j);
+            for (int j = 0;j<ret[i].length;j++) {
                 sum += ret[i][j];
             }
 
-        return sum;
+        return sum/2;
     }
 
 	@Override
 	public String getCategory() {
-		return "Topological Indices-Zagreb Indices";
+		return "Topological Indices";
 	}
 }
