@@ -5,7 +5,7 @@
 
 package graphtea.extensions.actions;
 
-import graphtea.extensions.Utils;
+import graphtea.extensions.reports.Utils;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;

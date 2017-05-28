@@ -4,12 +4,12 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.zagreb;
 
+import graphtea.extensions.algs4.AdjMatrixEdgeWeightedDigraph;
+import graphtea.extensions.algs4.DirectedEdge;
+import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.library.algorithms.shortestpath.FloydWarshall;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.io.StringReader;
 
 /**
  * @author azin azadi
@@ -28,17 +28,25 @@ public class WienerIndex implements GraphReportExtension<Object> {
     }
 
     public Object calculate(GraphModel g) {
-        FloydWarshall floydWarshall = new FloydWarshall();
-        // that should be called two times
-        floydWarshall.getAllPairsShortestPathWithoutWeight(g);
-        Integer[][] ret = floydWarshall.getAllPairsShortestPathWithoutWeight(g);
         int sum =0;
-        for (int i = 0;i<ret.length;i++)
-            for (int j = 0;j<ret[i].length;j++) {
-                sum += ret[i][j];
+        AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
+        for(Edge e : g.edges()) {
+            G.addEdge(new DirectedEdge(e.source.getId(), e.target.getId(), 1d));
+            G.addEdge(new DirectedEdge(e.target.getId(), e.source.getId(), 1d));
+        }
+        graphtea.extensions.algs4.FloydWarshall spt = new graphtea.extensions.algs4.FloydWarshall(G);
+        double max = 0;
+        for (int v = 0; v < G.V(); v++) {
+            for (int u = v+1; u < G.V(); u++) {
+                if(spt.hasPath(v,u)) {
+                    double dist = spt.dist(u,v);
+                    if(dist > max) {
+                        sum += dist;
+                    }
+                }
             }
-
-        return sum/2;
+        }
+        return sum;
     }
 
 	@Override

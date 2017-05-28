@@ -5,14 +5,13 @@
 
 package graphtea.extensions.reports.basicreports;
 
+import graphtea.extensions.algs4.AdjMatrixEdgeWeightedDigraph;
+import graphtea.extensions.algs4.DirectedEdge;
+import graphtea.extensions.algs4.FloydWarshall;
+import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.library.algorithms.shortestpath.FloydWarshall;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Mohammad Ali Rostami
@@ -22,17 +21,24 @@ import java.util.List;
 public class Diameter implements GraphReportExtension {
 
     public Object calculate(GraphModel g) {
-        FloydWarshall floydWarshall = new FloydWarshall();
-        // that should be called two times
-        floydWarshall.getAllPairsShortestPathWithoutWeight(g);
-        Integer[][] ret = floydWarshall.getAllPairsShortestPathWithoutWeight(g);
-        int max =0;
-        for (int i = 0;i<ret.length;i++)
-            for (int j = 0;j<ret[i].length;j++) {
-                if(ret[i][j] > max) max =ret[i][j];
+        AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
+        for(Edge e : g.edges()) {
+            G.addEdge(new DirectedEdge(e.source.getId(), e.target.getId(), 1d));
+            G.addEdge(new DirectedEdge(e.target.getId(), e.source.getId(), 1d));
+        }
+        FloydWarshall spt = new FloydWarshall(G);
+        double max = 0;
+        for (int v = 0; v < G.V(); v++) {
+            for (int u = 0; u < G.V(); u++) {
+                if(spt.hasPath(v,u)) {
+                    double dist = spt.dist(u,v);
+                    if(dist > max) {
+                        max = dist;
+                    }
+                }
             }
-
-        return max;
+        }
+        return (int)max;
     }
 
     public String getName() {

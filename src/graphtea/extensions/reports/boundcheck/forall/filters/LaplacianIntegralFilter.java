@@ -13,7 +13,7 @@ import graphtea.graph.graph.GraphModel;
 public class LaplacianIntegralFilter implements GraphFilter {
     public boolean isLaplacianIntegral(GraphModel g) {
         Matrix B = g.getWeightedAdjacencyMatrix();
-        Matrix A = graphtea.extensions.Utils.getLaplacian(B);
+        Matrix A = graphtea.extensions.reports.Utils.getLaplacian(B);
         EigenvalueDecomposition ed = A.eig();
         double rrv[] = ed.getRealEigenvalues();
         double rv[] = Utils.round(rrv, 3);

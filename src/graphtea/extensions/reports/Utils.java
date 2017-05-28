@@ -1,4 +1,4 @@
-package graphtea.extensions;
+package graphtea.extensions.reports;
 
 import Jama.Matrix;
 import graphtea.graph.graph.Edge;

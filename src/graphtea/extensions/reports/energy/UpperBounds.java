@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Vector;
 
-import static graphtea.extensions.Utils.getLaplacian;
+import static graphtea.extensions.reports.Utils.getLaplacian;
 
 /**
  * @author Ali Rostami
