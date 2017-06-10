@@ -41,7 +41,9 @@ public class NumOfQuadrangle implements GraphReportExtension {
                         if (l != j &&
                                 l != i &&
                                 k != i &&
-                                graph.isEdge(i, l)) quadrangles++;
+                                graph.isEdge(i, l)) {
+                            quadrangles++;
+                        }
 
         return quadrangles / 8;
     }

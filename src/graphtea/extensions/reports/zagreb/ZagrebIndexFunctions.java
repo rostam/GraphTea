@@ -58,6 +58,26 @@ public class ZagrebIndexFunctions {
         return first_zagreb;
     }
 
+    public int getConnectionNumber(Vertex v) {
+        int count = 0;
+        for(Vertex n : g.directNeighbors(v)) {
+            for(Vertex nn : g.directNeighbors(n)) {
+                if(v.getId() != nn.getId()) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public double getModifiedFirstZagrebConnection() {
+        double first_zagreb = 0;
+        for (Vertex v : g.vertices()) {
+            first_zagreb += g.getDegree(v)*getConnectionNumber(v);
+        }
+        return first_zagreb;
+    }
+
     public double getThirdZagreb() {
         double ret = 0;
         for (Edge e : g.getEdges()) {
