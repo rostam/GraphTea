@@ -32,7 +32,7 @@ public class WienerDiameterReport implements GraphReportExtension {
 
     @Override
     public String getCategory() {
-        return "Topological Indices-Conjectures";
+        return "OurWorks-Conjectures";
     }
 
     @Override

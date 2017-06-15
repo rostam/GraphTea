@@ -160,6 +160,6 @@ public class EM1LowerBound implements GraphReportExtension{
 
     @Override
     public String getCategory() {
-        return "Topological Indices-Conjectures";
+        return "OurWorks-Conjectures";
     }
 }

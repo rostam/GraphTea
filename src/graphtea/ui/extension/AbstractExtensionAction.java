@@ -33,6 +33,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.Vector;
 
 /**
  * the base class for creating extension handlers
@@ -63,6 +64,8 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
     static HashMap<String, JMenu> reportSubSubMenus = new HashMap<>();
     static HashMap<String, JMenu> generateSubMenus = new HashMap<>();
     static HashMap<String, JMenu> operatorsSubmenus = new HashMap<>();
+
+    public static Vector<JMenu> ourW = new Vector<>();
 
     public AbstractExtensionAction(BlackBoard bb, t sp) {
         super(bb);
@@ -108,6 +111,10 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
                         GMenuBar.insert(parentMenu, categoryMenu, getMenuPlace());
                         GMenuBar.insert(categoryMenu, subsub, getMenuPlace());
                         GMenuBar.insert(subsub, menuItem, getMenuPlace());
+                        if(temp.getCategory().contains("OurWork")) {
+                            ourW.add(categoryMenu);
+                            categoryMenu.setVisible(false);
+                        }
                     }
                 } else
                     GMenuBar.insert(parentMenu, menuItem, getMenuPlace());

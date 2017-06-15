@@ -92,8 +92,6 @@ public class UpperBounds implements GraphReportExtension {
 
         Vector<Object> v = new Vector<>();
         String tmp = calc(g).toString();
-        if(Double.parseDouble(tmp) == 16)
-            System.out.println("salam " + tmp);
         v.add(Double.parseDouble(tmp));
         v.add(m);
         v.add(n);
@@ -143,7 +141,7 @@ public class UpperBounds implements GraphReportExtension {
     @Override
     public String getCategory() {
         // TODO Auto-generated method stub
-        return "Graph Energy";
+        return "OurWork-Graph Energy";
     }
 
     public Object calc(GraphModel g) {

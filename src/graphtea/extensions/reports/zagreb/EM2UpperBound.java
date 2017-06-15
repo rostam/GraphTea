@@ -178,6 +178,6 @@ public class EM2UpperBound implements GraphReportExtension{
 
     @Override
     public String getCategory() {
-        return "Topological Indices-Conjectures";
+        return "OurWorks-Conjectures";
     }
 }

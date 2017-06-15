@@ -200,6 +200,6 @@ public class M3Final implements GraphReportExtension{
 
     @Override
     public String getCategory() {
-        return "Topological Indices-Conjectures";
+        return "OurWorks-Conjectures";
     }
 }

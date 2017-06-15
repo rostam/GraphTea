@@ -185,6 +185,6 @@ public class NewLowerBounds implements GraphReportExtension{
 
     @Override
     public String getCategory() {
-        return "Graph Energy";
+        return "OurWork-Graph Energy";
     }
 }

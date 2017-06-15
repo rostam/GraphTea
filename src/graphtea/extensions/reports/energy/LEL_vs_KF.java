@@ -82,6 +82,6 @@ public class LEL_vs_KF implements GraphReportExtension {
 
     @Override
     public String getCategory() {
-        return "Graph Energy";
+        return "OurWorks-Graph Energy";
     }
 }

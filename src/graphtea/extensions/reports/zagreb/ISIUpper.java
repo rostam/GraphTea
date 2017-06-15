@@ -119,7 +119,7 @@ public class ISIUpper implements GraphReportExtension{
 
     @Override
     public String getCategory() {
-        return "Topological Indices-Conjectures";
+        return "OurWorks-Conjectures";
     }
 }
 
