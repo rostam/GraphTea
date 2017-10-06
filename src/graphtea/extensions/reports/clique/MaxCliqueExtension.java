@@ -48,6 +48,13 @@ public class MaxCliqueExtension implements GraphReportExtension {
 		return "General";
 	}
 
+
+    public static int maxCliqueSize(GraphModel g) {
+        MaxCliqueAlg mca = new MaxCliqueAlg(g);
+        Cliques mcs = mca.allMaxCliques();
+        return  mcs.get(0).size();
+    }
+
 }
 
 /**

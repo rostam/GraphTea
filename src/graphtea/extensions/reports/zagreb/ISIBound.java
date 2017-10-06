@@ -3,6 +3,8 @@ package graphtea.extensions.reports.zagreb;
 
 
 
+import graphtea.extensions.reports.ChromaticNumber;
+import graphtea.extensions.reports.clique.MaxCliqueExtension;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
@@ -39,20 +41,24 @@ public class ISIBound implements GraphReportExtension{
         Vector<String> titles = new Vector<>();
         titles.add(" m ");
         titles.add(" n ");
+        //  titles.add(" ID ");
+        //    titles.add(" ISI ");
+        titles.add("H");
         titles.add("R");
-        titles.add("Diameter");
+        titles.add("ID");
+        //titles.add("Wiener");
+        //titles.add("Avg");
+        //titles.add("Diameter");
+        titles.add("Clique Number");
+        titles.add("Chromatic Number");
         titles.add(" V. Degrees ");
+
         ret.setTitles(titles);
 
         double maxDeg = 0;
         double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
         double minDeg2 = Utils.getMinNonPendentDegree(g);
-
-
-
-
-
 
         ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);
@@ -83,17 +89,33 @@ public class ISIBound implements GraphReportExtension{
 
         double R=zif.getSecondZagreb(-0.5);
         double H=zif.getHarmonicIndex();
+        double GA=zif.getGAindex();
+        double chi=zif.getGeneralSumConnectivityIndex(-0.5);
+        double IED=zif.getEdgeDegree(-1);
+        double ID=zif.getFirstZagreb(-2);
+        double ISI=zif.getInverseEdgeDegree();
 
         int diameter = (int) new Diameter().calculate(g);
+        WienerIndex wi = new WienerIndex();
+        double Avg=(n*(n-1)/2);
 
         Vector<Object> v = new Vector<>();
         v.add(m);
         v.add(n);
+        //  v.add(GA);
+        //  v.add(ISI);
+        v.add(H);
         v.add(R);
-        v.add(diameter);
+        v.add(ID);
+        //  v.add(wi.calculate(g));
+        //  v.add(Avg);
+        //  v.add(diameter);
 
+        v.add(MaxCliqueExtension.maxCliqueSize(g));
+        v.add(ChromaticNumber.getChromaticNumber(g));
 
         v.add(al.toString());
+
         ret.add(v);
         return ret;
     }
@@ -103,8 +125,6 @@ public class ISIBound implements GraphReportExtension{
         return "OurWorks-Conjectures";
     }
 }
-
-
 
 
 

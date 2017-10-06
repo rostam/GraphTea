@@ -111,10 +111,10 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
                         GMenuBar.insert(parentMenu, categoryMenu, getMenuPlace());
                         GMenuBar.insert(categoryMenu, subsub, getMenuPlace());
                         GMenuBar.insert(subsub, menuItem, getMenuPlace());
-                        if(temp.getCategory().contains("OurWork")) {
-                            ourW.add(categoryMenu);
-                            categoryMenu.setVisible(false);
-                        }
+//                        if(temp.getCategory().contains("OurWork")) {
+//                            ourW.add(categoryMenu);
+//                            categoryMenu.setVisible(false);
+//                        }
                     }
                 } else
                     GMenuBar.insert(parentMenu, menuItem, getMenuPlace());

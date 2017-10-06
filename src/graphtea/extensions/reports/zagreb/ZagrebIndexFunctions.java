@@ -446,4 +446,23 @@ public class ZagrebIndexFunctions {
         else if(e1.target.getId() == e2.target.getId()) return true;
         return false;
     }
+
+    public double getGAindex() {
+        double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret += (2*Math.sqrt(g.getDegree(e.source)*g.getDegree(e.target)*1.0))
+                    /(g.getDegree(e.source) + g.getDegree(e.target));
+        }
+        return ret;
+    }
+
+    public double getInverseEdgeDegree() {
+        double edge_degree = 0;
+        for (Edge e : g.getEdges()) {
+            edge_degree +=
+                    Math.pow( (  ( g.getDegree(e.source) + g.getDegree(e.target) - 2  )  ), -1);
+        }
+
+        return edge_degree;
+    }
 }
