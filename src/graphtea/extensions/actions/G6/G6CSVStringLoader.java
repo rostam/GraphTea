@@ -43,7 +43,7 @@ public class G6CSVStringLoader implements GraphActionExtension, Parametrizable {
         fileChooser.showOpenDialog(new JDialog());
         File curFile = fileChooser.getSelectedFile();
         Scanner sc = new Scanner(indices.trim());
-        sc.useDelimiter(",");
+        if(indices.contains(",")) sc.useDelimiter(",");
         while (sc.hasNext()) {
             Scanner file_scan = null;
             String g6="";

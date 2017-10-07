@@ -36,22 +36,10 @@ public class G6StringLoader implements GraphActionExtension, Parametrizable {
 
     public void action(GraphData graphData) {
         graphs = graphs.trim();
-        if(graphs.contains(",")) {
-            Scanner sc = new Scanner(graphs);
-            sc.useDelimiter(",");
-            while(sc.hasNext()) {
-                GraphModel g = G6Format.stringToGraphModel(sc.next().trim());
-                Point pp[] = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
-
-                int tmpcnt = 0;
-                for (Vertex v : g) {
-                    v.setLocation(pp[tmpcnt]);
-                    tmpcnt++;
-                }
-                graphData.core.showGraph(g);
-            }
-        } else {
-            GraphModel g = G6Format.stringToGraphModel(graphs);
+        Scanner sc = new Scanner(graphs);
+        if (graphs.contains(",")) sc.useDelimiter(",");
+        while (sc.hasNext()) {
+            GraphModel g = G6Format.stringToGraphModel(sc.next().trim());
             Point pp[] = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
             int tmpcnt = 0;
