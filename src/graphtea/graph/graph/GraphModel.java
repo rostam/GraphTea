@@ -66,7 +66,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
             {Color.gray, Color.white
                     , Color.yellow, Color.green, Color.magenta, Color.red, Color.cyan, Color.pink, Color.lightGray, Color.darkGray};
 
-    private int lastUsedID = 0;
+    private int lastUsedID = 1;
 	/**
 	 * It is true if the edges of this graph are curves (not line),
 	 * This will be applied to all edges of graph

@@ -1,4 +1,5 @@
 package graphtea.extensions.reports.zagreb;
+import Jama.Matrix;
 import graphtea.extensions.reports.Utils;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -464,5 +465,60 @@ public class ZagrebIndexFunctions {
         }
 
         return edge_degree;
+    }
+
+    public double getRandicEnergy(GraphModel g) {
+        Matrix m = new Matrix(g.getVerticesCount(),g.getVerticesCount());
+        init(m,0);
+        for (int i = 0; i < m.getRowDimension(); i++) {
+            for (int j = 0; j < m.getColumnDimension(); j++) {
+                if (g.isEdge(g.getVertex(i), g.getVertex(j))) {
+                    m.set(i, j,
+                            1/Math.sqrt(g.getDegree(g.getVertex(i))*g.getDegree(g.getVertex(j))));
+                }
+            }
+        }
+        return sumOfEigValues(m);
+    }
+
+    public double getZagrebEnergyZ1(GraphModel g) {
+        Matrix m = new Matrix(g.getVerticesCount(), g.getVerticesCount());
+        init(m, 0);
+        for (int i = 0; i < m.getRowDimension(); i++) {
+            for (int j = 0; j < m.getColumnDimension(); j++) {
+                if (g.isEdge(g.getVertex(i), g.getVertex(j))) {
+                    m.set(i, j, (g.getDegree(g.getVertex(i)) + g.getDegree(g.getVertex(j))));
+                }
+            }
+        }
+        return sumOfEigValues(m);
+    }
+
+    public double getZagrebEnergyZ2(GraphModel g) {
+        Matrix m = new Matrix(g.getVerticesCount(),g.getVerticesCount());
+        init(m,0);
+        for (int i = 0; i < m.getRowDimension(); i++) {
+            for (int j = 0; j < m.getColumnDimension(); j++) {
+                if (g.isEdge(g.getVertex(i), g.getVertex(j))) {
+                    m.set(i, j, (g.getDegree(g.getVertex(i))*g.getDegree(g.getVertex(j))));
+                }
+            }
+        }
+        return sumOfEigValues(m);
+    }
+
+    public void init(Matrix m, double d) {
+        for(int i = 0;i < m.getRowDimension();i++)
+            for(int j=0;j < m.getColumnDimension();j++)
+                m.set(i,j,d);
+    }
+
+    public double sumOfEigValues(Matrix m) {
+        double[] eig = m.eig().getRealEigenvalues();
+        double sum = 0;
+        for(double d : eig) {
+            sum += Math.abs(d);
+        }
+        return sum;
     }
 }
