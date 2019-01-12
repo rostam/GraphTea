@@ -68,12 +68,11 @@ more docs will come soon. if you have any questions just post it in the issues a
 
 have fun!
 
-
-
-
+# Web Frontend
+Look at GTea (https:/github.com/rostam/GTea).
 
 ---
-###credits
+### Credits
 
 - Current Developers:
   - Mohammad Ali Rostami ali [at] c3e [dot] de
