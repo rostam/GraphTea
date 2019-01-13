@@ -2,10 +2,8 @@
 
 ![Preview](http://github.com/graphtheorysoftware/GraphTea/raw/master/src/presentation/peterson.png)
 
-# YouTube demo
-see this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
 
-#GraphTea
+# GraphTea
 GraphTea is a software framework to work on graphs and social networks. 
 It helps you to:
 - draw a graph
@@ -16,6 +14,10 @@ It helps you to:
 [DOWNLOAD GraphTea](https://github.com/graphtheorysoftware/GraphTea/zipball/master)
 
 it runs under window/linux/mac osx (based on java).
+
+
+# YouTube demo
+see this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
 
 #RUN
 execute `run.bat` (windows), or `run.sh` (linux/mac).
