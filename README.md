@@ -2,7 +2,7 @@
 
 ![Preview](http://github.com/graphtheorysoftware/GraphTea/raw/master/src/presentation/peterson.png)
 
-#YouTube demo
+# YouTube demo
 see this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
 
 #GraphTea
@@ -40,11 +40,11 @@ manually:
 
 note that you should have [appache ant](http://ant.apache.org/) installed.
 
-#Write a graph algorithm,
+# Write a graph algorithm,
 go change this file: [SampleAlgorithm.java](https://github.com/graphtheorysoftware/GraphTea/blob/master/src/graphtea/extensions/algorithms/SampleAlgorithm.java).
 you can make also reports, generators, file formats and actions.
 
-#What can you do with graphtea?
+# What can you do with graphtea?
 
 * Drawing your graph with mouse or using predefined graphs (under graph > generate), like trees, complete graphs, stars, generalized peterson and etc.
 * Getting information about your graphs (under graph > reports menu), like num of connected components, chromatic number, independence number, girth size, num of triangles and etc.
@@ -65,8 +65,6 @@ more docs will come soon. if you have any questions just post it in the issues a
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-have fun!
 
 # Web Frontend
 Look at GTea (https:/github.com/rostam/GTea).
