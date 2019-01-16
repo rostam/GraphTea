@@ -19,13 +19,13 @@ it runs under window/linux/mac osx (based on java).
 # YouTube demo
 see this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
 
-#RUN
+# RUN
 execute `run.bat` (windows), or `run.sh` (linux/mac).
 
 manually:
 > java -jar graphtea-main.jar
 
-#DEVELOP
+# DEVELOP
 for working on the source, 
 
 1. make your changes
