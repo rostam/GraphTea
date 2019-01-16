@@ -84,10 +84,3 @@ Look at GTea (https:/github.com/rostam/GTea).
   - Contributors: Azin Azadi, Ruzbeh Ebrahimi, Omid Aladini, Reza Mohammadi, Mohammad Ali Rostami [2], Mina Naghshnejad, Ali Ershadi, Soroosh Sabet, With Thanks to: Soheil Siadatnejad
 
 
-
-[0]: http://www.sharif.ir
-
-[1]: http://sharif.edu/~daneshgar/
-
-[2]: http://c3e.de/team/arostami
-
