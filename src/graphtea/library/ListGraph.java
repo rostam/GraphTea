@@ -164,7 +164,6 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
         return id < 0 || id >= vertices.size();
     }
 
-
     /**
      * Number of times edge Iteration is called. This will set as a temporary flag into
      * edges in order to reduce running time of edge iteration back to O(n^2).
