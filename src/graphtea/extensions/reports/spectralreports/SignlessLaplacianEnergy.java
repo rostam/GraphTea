@@ -6,9 +6,9 @@
 package graphtea.extensions.reports.spectralreports;
 
 import Jama.EigenvalueDecomposition;
-import graphtea.extensions.reports.Utils;
 import Jama.Matrix;
 import graphtea.graph.graph.GraphModel;
+import graphtea.extensions.reports.Utils;
 import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -18,7 +18,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class LaplacianEnergy implements GraphReportExtension {
+public class SignlessLaplacianEnergy implements GraphReportExtension {
 
     double round(double value, int decimalPlace) {
         double power_of_ten = 1;
@@ -32,7 +32,7 @@ public class LaplacianEnergy implements GraphReportExtension {
         double power = 1;
         try {
             Matrix B = g.getWeightedAdjacencyMatrix();
-            Matrix A = Utils.getLaplacian(B);
+            Matrix A = Utils.getSignlessLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
             double rv[] = ed.getRealEigenvalues();
             double iv[] = ed.getImagEigenvalues();
@@ -74,11 +74,11 @@ public class LaplacianEnergy implements GraphReportExtension {
     }
 
     public String getName() {
-        return "Laplacian Energy";
+        return "Signless Laplacian Energy";
     }
 
     public String getDescription() {
-        return "Laplacian Energy";
+        return "Signless Laplacian Energy";
     }
 
     @Override
