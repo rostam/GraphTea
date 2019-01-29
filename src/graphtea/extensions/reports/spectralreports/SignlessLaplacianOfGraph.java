@@ -3,11 +3,16 @@ package graphtea.extensions.reports.spectralreports;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.graph.graph.GraphModel;
+import graphtea.extensions.reports.Utils;
+import graphtea.library.util.Complex;
+import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+ 
 
 
 
@@ -16,7 +21,7 @@ import java.util.Arrays;
  *
  * @author Hooman Mohajeri Moghaddam
  */
-public class LaplacianOfGraph implements GraphReportExtension  {
+public class SignlessLaplacianOfGraph implements GraphReportExtension  {
 
 
 	boolean inDegree;
@@ -39,7 +44,7 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 	 * @param A the Adjacency matrix of the graph
 	 * @return Laplacian of the graph
 	 */
-	private Matrix getLaplacian(Matrix A)
+	private Matrix getSignlessLaplacian(Matrix A)
 	{
 		//double[][] res=new double[g.numOfVertices()][g.numOfVertices()];
 
@@ -75,17 +80,17 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 			}
 		}
 
-		return D.minus(A);
+		return D.plus(A); 
 	}
 
 	//
-	private ArrayList<String> ShowLaplacian(Matrix A)
+	private ArrayList<String> ShowSignlessLaplacian(Matrix A)
 	{
 		ArrayList<String> result = new ArrayList<>();
 
-		double[][] Lap = getLaplacian(A).getArray();
+		double[][] Lap = getSignlessLaplacian(A).getArray();
 
-		result.add("Laplacian Matrix:");
+		result.add("SignlessLaplacian Matrix:");
 		for(double[] k : Lap)
 		{
 			result.add( Arrays.toString(k));
@@ -103,7 +108,7 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 	{
 		ArrayList<String> result = new ArrayList<>();
 		result.add("Eigen Value Decomposition:");
-		EigenvalueDecomposition ed = getLaplacian(matrix).eig();
+		EigenvalueDecomposition ed = getSignlessLaplacian(matrix).eig();
 		double rv[] = ed.getRealEigenvalues();
 		double iv[] = ed.getImagEigenvalues();
 		for (int i = 0; i < rv.length; i++)
@@ -127,7 +132,7 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 
 	}
 	public String getName() {
-		return "Spectrum of Laplacian";
+		return "Spectrum of Signless Laplacian";
 	}
 
 	public String getDescription() {
@@ -149,7 +154,7 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 					inDegree = false;
 			}
 			Matrix A = g.getWeightedAdjacencyMatrix();
-			ArrayList<String> calc = new ArrayList<>(ShowLaplacian(A));
+			ArrayList<String> calc = new ArrayList<>(ShowSignlessLaplacian(A));
 			calc.addAll(getEigenValuesAndVectors(A));
 			return(calc);
 		} catch (Exception e) {

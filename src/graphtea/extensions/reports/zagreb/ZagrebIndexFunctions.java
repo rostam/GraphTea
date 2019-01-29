@@ -27,6 +27,53 @@ public class ZagrebIndexFunctions {
         }
         return ret;
     }
+    
+    public double getAugumentedZagrebIndex() {
+        double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret += Math.pow((g.getDegree(e.source)*g.getDegree(e.target)*1.0)
+                    /(g.getDegree(e.source) + g.getDegree(e.target)-2), 3);
+        }
+        return ret;
+    }
+    
+    public double getSDDIndex() {
+        double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret += ( ( (g.getDegree(e.source)*g.getDegree(e.source)*1.0) + (g.getDegree(e.target)*g.getDegree(e.target)*1.0) ) 
+            		/(g.getDegree(e.source)*g.getDegree(e.target)*1.0));
+        }
+        return ret;
+    }
+    
+    public double getABCindex() {
+        double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret += Math.sqrt((g.getDegree(e.source) + g.getDegree(e.target) - 2)
+                    /(g.getDegree(e.source)*g.getDegree(e.target)*1.0));
+        }
+        return ret;
+    }
+    
+    
+    public double getCheck() {
+        double c = 0;
+        for (Edge e : g.getEdges()) {
+            c +=
+                     ((1.0/Math.min(g.getDegree(e.source), g.getDegree(e.target))) -(1.0/Math.max(g.getDegree(e.source), g.getDegree(e.target))) );
+        }
+
+        return c;
+    }
+
+
+    public double getVariationRandicIndex() {
+        double V = 0;
+        for(Edge e : g.getEdges()) {
+            V += 1.0/(Math.max(g.getDegree(e.source), g.getDegree(e.target)));
+        }
+        return V;
+    }
 
     public double getEdgeDegree(double alpha) {
         double edge_degree = 0;
@@ -101,6 +148,18 @@ public class ZagrebIndexFunctions {
 
         return second_zagreb;
     }
+    
+
+    
+    
+    public double getRM2() {
+        double RM2 = 0;
+        for (Edge e : g.getEdges()) {
+            RM2 += ((g.getDegree(e.source)-1)*(g.getDegree(e.target)-1));
+        }
+
+        return RM2;
+    }
 
     public double getFirstReZagreb(double alpha) {
         double first_re_zagreb = 0;
@@ -168,6 +227,32 @@ public class ZagrebIndexFunctions {
         second_re_zagreb /= 2;
         return second_re_zagreb;
     }
+    
+    
+    double getSecondHyperZagreb(double alpha) {
+        double second_hyper_zagreb = 0;
+        ArrayList<Edge> eds = new ArrayList<>();
+        for (Edge ee : g.getEdges()) {
+            eds.add(ee);
+        }
+        for (Edge e1 : eds) {
+            for (Edge e2 : eds) {
+                if (edge_adj(e1, e2)) {
+                    int d1 = g.getDegree(e1.source) +
+                            g.getDegree(e1.target);
+
+                    int d2 = g.getDegree(e2.source) +
+                            g.getDegree(e2.target);
+
+                    second_hyper_zagreb += Math.pow(d1 * d2, alpha);
+                }
+            }
+        }
+
+        second_hyper_zagreb /= 2;
+        return second_hyper_zagreb;
+    }
+    
 
     double getFirstZagrebCoindex(double alpha) {
         double first_zagreb = 0;
@@ -180,6 +265,19 @@ public class ZagrebIndexFunctions {
         }
 
         return first_zagreb;
+    }
+    
+    double getHarmonicCoindex() {
+        double harmonic = 0;
+
+        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
+        for (Edge e : g2.getEdges()) {
+            int v1 = g.getDegree(g.getVertex(e.source.getId()));
+            int v2 = g.getDegree(g.getVertex(e.target.getId()));
+            harmonic += ( (2.0)/(v1  +  v2));
+        }
+
+        return harmonic;
     }
 
     double getSecondZagrebCoindex(double alpha) {
@@ -195,7 +293,8 @@ public class ZagrebIndexFunctions {
 
         return second_zagreb;
     }
-
+    
+ 
     public double getFirstZagrebSelectedEdges(double alpha) {
         double first_zagreb = 0;
         for (Vertex v : g.vertices()) {
@@ -470,40 +569,21 @@ public class ZagrebIndexFunctions {
     public double getRandicEnergy(GraphModel g) {
         Matrix m = new Matrix(g.getVerticesCount(),g.getVerticesCount());
         init(m,0);
-        for (int i = 0; i < m.getRowDimension(); i++) {
-            for (int j = 0; j < m.getColumnDimension(); j++) {
-                if (g.isEdge(g.getVertex(i), g.getVertex(j))) {
-                    m.set(i, j,
-                            1/Math.sqrt(g.getDegree(g.getVertex(i))*g.getDegree(g.getVertex(j))));
-                }
-            }
-        }
+        for(Edge e : g.getEdges()) m.set(e.source.getId(), e.target.getId(), getSecondZagreb(-0.5));
         return sumOfEigValues(m);
     }
 
     public double getZagrebEnergyZ1(GraphModel g) {
-        Matrix m = new Matrix(g.getVerticesCount(), g.getVerticesCount());
-        init(m, 0);
-        for (int i = 0; i < m.getRowDimension(); i++) {
-            for (int j = 0; j < m.getColumnDimension(); j++) {
-                if (g.isEdge(g.getVertex(i), g.getVertex(j))) {
-                    m.set(i, j, (g.getDegree(g.getVertex(i)) + g.getDegree(g.getVertex(j))));
-                }
-            }
-        }
+        Matrix m = new Matrix(g.getVerticesCount(),g.getVerticesCount());
+        init(m,0);
+        for(Edge e : g.getEdges()) m.set(e.source.getId(), e.target.getId(), getFirstPathZagrebIndex(1));
         return sumOfEigValues(m);
     }
 
     public double getZagrebEnergyZ2(GraphModel g) {
         Matrix m = new Matrix(g.getVerticesCount(),g.getVerticesCount());
         init(m,0);
-        for (int i = 0; i < m.getRowDimension(); i++) {
-            for (int j = 0; j < m.getColumnDimension(); j++) {
-                if (g.isEdge(g.getVertex(i), g.getVertex(j))) {
-                    m.set(i, j, (g.getDegree(g.getVertex(i))*g.getDegree(g.getVertex(j))));
-                }
-            }
-        }
+        for(Edge e : g.getEdges()) m.set(e.source.getId(), e.target.getId(), getSecondZagreb(1));
         return sumOfEigValues(m);
     }
 
@@ -516,9 +596,7 @@ public class ZagrebIndexFunctions {
     public double sumOfEigValues(Matrix m) {
         double[] eig = m.eig().getRealEigenvalues();
         double sum = 0;
-        for(double d : eig) {
-            sum += Math.abs(d);
-        }
+        for(double d : eig) sum += d;
         return sum;
     }
 }

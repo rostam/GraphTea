@@ -45,33 +45,60 @@ public class ISIBound implements GraphReportExtension{
         Vector<String> titles = new Vector<>();
         titles.add(" m ");
         titles.add(" n ");
-        //  titles.add("Hyper");
+          titles.add(" VR ");
+         titles.add(" R ");
+         titles.add("(n/2)- R ");
+          titles.add(" H ");
+         titles.add(" GA ");
+       titles.add(" chi ");  
+       titles.add("(n/2)- chi ");
+        titles.add(" Diameter ");   
+   //     titles.add("cr");
+       // titles.add("f(G)");
+      //  titles.add("Hyper");
         //titles.add("T-1");
-        //  titles.add("T-2");
-        titles.add("Zenergy");
-        //  titles.add(" R");
+      //  titles.add("T-2");
+       //   titles.add("Zenergy");
+      //  titles.add("H");
+      //  titles.add("check Shi");
+      //   titles.add("(n/2)-R");
+     //    titles.add("(n/2)-SCI");
+   //        titles.add("ISI..");
+  //         titles.add("Our");
+    //       titles.add("New");
+   //        titles.add("our Old");
+     //   titles.add("HC");
+      //titles.add("m-GA");
+      //titles.add("R");
+     // titles.add("AZI");
+   //    titles.add("shi");
+  //     titles.add("our");
+   //     titles.add("H check.");
         // titles.add(" milo1 ");
-        //  titles.add("R1 check");
-        //   titles.add(" R1 ");
-        //    titles.add(" H ");
-        //  titles.add(" chi ");
-        //  titles.add(" check1 ");
-        //   titles.add(" clique.check ");
-        //       titles.add(" GA ");
-        //   titles.add(" ISI ");
-        //      titles.add("Chromatic number");
-        //   titles.add(" L.H.S ");
-        //       titles.add(" R.H.S even ");
+      //  titles.add("R1 check");
+       //  titles.add(" GA ");
+      //    titles.add(" H ");
+    //     titles.add(" chi ");
+       //  titles.add(" check1 ");
+      //   titles.add(" clique.check ");
+     //      titles.add(" R1 ");
+    //     titles.add(" chi-1 ");
+   //      titles.add(" chi-0.5 ");
+  //       titles.add(" chi-0.1 ");
+      //   titles.add(" ISI ");
+     //      titles.add("Chromatic number");
+         //   titles.add(" L.H.S ");
+     //       titles.add(" R.H.S even ");
         //    titles.add(" R.H.S odd ");
-
-        //   titles.add("R");
-        //  titles.add("ID");
+        
+     //   titles.add("R");
+      //  titles.add("ID");
         //titles.add("Wiener");
         //titles.add("Avg");
         //titles.add("Diameter");
-        //    titles.add("Clique Number");
+     //    titles.add("Clique Number");
 
-        titles.add(" V. Degrees ");
+   //     titles.add(" V. Degrees ");
 
         ret.setTitles(titles);
 
@@ -105,26 +132,26 @@ public class ISIBound implements GraphReportExtension{
 
         double m = g.getEdgesCount();
         double n = g.getVerticesCount();
-
+        
         double maxEdge = 0;
         double maxEdge2 = 0;
         double minEdge = Integer.MAX_VALUE;
-
+        
         ArrayList<Integer> all = new ArrayList<Integer>();
         for(Edge e : g.getEdges()) {
-            int f = g.getDegree(e.source) +
-                    g.getDegree(e.target) - 2;
-            all.add(f);
+                int f = g.getDegree(e.source) +
+                g.getDegree(e.target) - 2;
+                all.add(f);
         }
         Collections.sort(all);
         maxEdge = all.get(all.size()-1);
         if(all.size()-2>=0) maxEdge2 = all.get(all.size()-2);
         else maxEdge2 = maxEdge;
         minEdge = all.get(0);
+        
+        
 
-
-
-
+        
         double M12=zif.getSecondZagreb(1);
         double M21=zif.getFirstZagreb(1);
         double H=zif.getHarmonicIndex();
@@ -133,19 +160,38 @@ public class ISIBound implements GraphReportExtension{
         double M22=zif.getSecondZagreb(2);
         double Mm31=zif.getFirstZagreb(-4);
         double Mm11=zif.getFirstZagreb(-2);
+        double M3=zif.getThirdZagreb();
+ 
 
         double R=zif.getSecondZagreb(-0.5);
         double R1=zif.getSecondZagreb(-1);
         double GA=zif.getGAindex();
+        double ABC=zif.getABCindex();
+        double HC=zif.getHarmonicCoindex();
+        double chi11=zif.getGeneralSumConnectivityIndex(-1);
+        double chi22=zif.getGeneralSumConnectivityIndex(-0.5);
+        double chi33=zif.getGeneralSumConnectivityIndex(-0.1);
         double chi=zif.getGeneralSumConnectivityIndex(-0.5);
+        double chi1=zif.getGeneralSumConnectivityIndex(1);
         double chi2=zif.getGeneralSumConnectivityIndex(2);
+        double chi3=zif.getGeneralSumConnectivityIndex(3);
         double IED=zif.getEdgeDegree(-1);
+        double SDD=zif.getSDDIndex();
         double ID=zif.getFirstZagreb(-2);
+        double AZI=zif.getAugumentedZagrebIndex();
         double ISI=zif.getInverseSumIndegIndex();
-        double chrome=ChromaticNumber.getChromaticNumber(g);
-        double clique=MaxCliqueExtension.maxCliqueSize(g);
-        double ZEnergy=zif.getZagrebEnergyZ1(g);
+        double chrome=ChromaticNumber.getChromaticNumber(g); 
 
+        double clique=MaxCliqueExtension.maxCliqueSize(g);
+        double ZEnergy=zif.getRandicEnergy(g);
+        double VR=zif.getVariationRandicIndex();
+        double check=zif.getCheck();
+        double S3=(M21-M3)/2;
+        double RM2=zif.getRM2();
+        
+        double alpha=(1/m)*(Math.floor(m))*(1-((1/m)*(Math.floor(m/2))));
+        double alpha1=(m)*(Math.floor(m/2))*(1-((1/m)*(Math.floor(m/2))));
+        
         int diameter = (int) new Diameter().calculate(g);
         WienerIndex wi = new WienerIndex();
         double Avg=(n*(n-1)/2);
@@ -153,53 +199,86 @@ public class ISIBound implements GraphReportExtension{
         Vector<Object> v = new Vector<>();
         v.add(m);
         v.add(n);
-        // v.add(chi2);
-        // v.add((2*(maxDeg+minDeg)*M21) -(4*m*maxDeg*minDeg));
-        // v.add((2*(maxDeg+minDeg)*M21) -(4*m*maxDeg*minDeg) + M21 +(2*maxDeg*minDeg*H)-(2*m*(maxDeg+minDeg)));
-        // v.add(M21 +(2*maxDeg*minDeg*H)-(2*m*(maxDeg+minDeg)));
-        // v.add(R);
-        //   v.add(H);
-        //   v.add((2/(maxEdge+2)) + (2*(chi-(1/Math.sqrt((maxEdge+2))))*(chi-(1/Math.sqrt((maxEdge+2))))/(m-1)) + ((Math.sqrt((minEdge+2))-Math.sqrt((minEdge+2)))*(Math.sqrt((minEdge+2))-Math.sqrt((minEdge+2)))/(maxEdge2*minEdge))  );
-        v.add(ZEnergy);
-        // v.add(R1);
-        // v.add(((n*(maxDeg+minDeg))-(2*m)) / (2*maxDeg*minDeg));
-        //v.add(( (a/maxDeg) + (b/minDeg) + ((((n-b)*maxDeg)+((n-a)*minDeg)-(2*m) ) / ((maxDeg-1)*(minDeg+1))) )/2 );
-        // v.add(GA);
-        //   v.add(ID);
-        //  v.add((2*m*R)/n);
-        //   v.add((Math.pow(n-3,2)/2) + (Math.sqrt(n-1)*2/n) + (((2*(n-2)*Math.sqrt((n-1)*(n-2))))/((2*n)-3)) - ((n-2)/Math.sqrt((n-1)*(n-2))) -(1/Math.sqrt((n-1))) );
+        v.add(VR);
+        v.add(R);
+        v.add((n/2)-R);
+        v.add(H);
+        v.add(GA);
+        v.add(chi);
+        v.add(chi-(n/2));
+       
+        
+      //   v.add(ISI);
+       //  v.add((H*M12)/(2*m));
+       //  v.add( ((H*M12)/(2*m)) + ((alpha*m*((maxEdge+2)-(minEdge+2))*((maxDeg*maxDeg)-(minDeg*minDeg))) /((maxEdge+2)*(minEdge+2))) );
+      //   v.add( ((H*M12)/(2*m)) + (alpha1*(maxDeg-minDeg)*(maxDeg-minDeg)*(maxDeg+minDeg)/(2*m*maxDeg*minDeg)) );
+         
+        // v.add((H*M12)/(2*m));
+       //   v.add(ABC);
+      //    v.add(n*(Math.sqrt(((chrome*(n-1))-n)/(2*chrome))));
+      //  v.add(AZI);
+      //   v.add(chrome);
+       //  v.add(chrome);
+       // v.add(HC);
+       // v.add(chi2);
+       // v.add((2*(maxDeg+minDeg)*M21) -(4*m*maxDeg*minDeg));
+       // v.add((2*(maxDeg+minDeg)*M21) -(4*m*maxDeg*minDeg) + M21 +(2*maxDeg*minDeg*H)-(2*m*(maxDeg+minDeg)));
+       // v.add(M21 +(2*maxDeg*minDeg*H)-(2*m*(maxDeg+minDeg)));
+       // v.add(GA);
+      //  v.add(HC);
+      // v.add(m-GA);
+      //   v.add((n/2)-R);
+      //  v.add(-(n/2)+chi);
+        // v.add(n*Math.sqrt(maxDeg*minDeg)/(minDeg+maxDeg));
+       //  v.add((n*minDeg)/(minDeg+maxDeg));
+       //  v.add((2*n)/(maxDeg-minDeg+4));        
+       //   v.add(H);
+       //   v.add((2/(maxEdge+2)) + (2*(chi-(1/Math.sqrt((maxEdge+2))))*(chi-(1/Math.sqrt((maxEdge+2))))/(m-1)) + ((Math.sqrt((minEdge+2))-Math.sqrt((minEdge+2)))*(Math.sqrt((minEdge+2))-Math.sqrt((minEdge+2)))/(maxEdge2*minEdge))  );
+      //    v.add(ZEnergy);
+     //      v.add(GA);
+          // v.add(((n*(maxDeg+minDeg))-(2*m)) / (2*maxDeg*minDeg));
+         //v.add(( (a/maxDeg) + (b/minDeg) + ((((n-b)*maxDeg)+((n-a)*minDeg)-(2*m) ) / ((maxDeg-1)*(minDeg+1))) )/2 );
+     //  v.add(AZI);
+    //   v.add((n*Math.sqrt(minDeg*maxDeg))/(maxDeg+minDeg));
+     //  v.add((2*maxDeg*minDeg*n)/((maxDeg+minDeg)*(maxDeg+minDeg)));
+     //      v.add(chi11);
+    //       v.add(chi22);
+   //        v.add(chi33);
+       //   v.add(ID);
+      //  v.add((2*m*R)/n);
+     //   v.add((Math.pow(n-3,2)/2) + (Math.sqrt(n-1)*2/n) + (((2*(n-2)*Math.sqrt((n-1)*(n-2))))/((2*n)-3)) - ((n-2)/Math.sqrt((n-1)*(n-2))) -(1/Math.sqrt((n-1))) );
         //v.add((n*(maxDeg+minDeg)-(2*m))/(2*maxDeg*minDeg));
-        //    v.add((1/(2*maxDeg2))+(((n-1)*(maxDeg2+minDeg)-((2*m)-n+1))/(2*maxDeg2*minDeg)) );
-        //  v.add(chi);
-        //  v.add(ISI);
+    //    v.add((1/(2*maxDeg2))+(((n-1)*(maxDeg2+minDeg)-((2*m)-n+1))/(2*maxDeg2*minDeg)) );
+   //     v.add(chi);
+      //  v.add(ISI);
         //  v.add(chi);
         // Randic check incomplete equality
-        //    v.add( ((chrome-2)/2) + (((n-chrome)+Math.sqrt(chrome-1))/(Math.sqrt(n-1))) );
-        //     v.add( ((clique-2)/2) + (((n-clique)+Math.sqrt(clique-1))/(Math.sqrt(n-1))) );
-        //        v.add(chrome);
-        //       v.add(chrome*m/n);
-        //  v.add(0.88*(n-1)/2);
-        //       v.add(clique);
+       //    v.add( ((chrome-2)/2) + (((n-chrome)+Math.sqrt(chrome-1))/(Math.sqrt(n-1))) );
+   //     v.add( ((clique-2)/2) + (((n-clique)+Math.sqrt(clique-1))/(Math.sqrt(n-1))) );
+    //        v.add(chrome);
+    //       v.add(chrome*m/n);
+         //  v.add(0.88*(n-1)/2);
+  //       v.add(clique);
         //  v.add(n*n/8);
-        //   v.add(Math.pow(((n*n)-1), 1.5)/(8*n));
+       //   v.add(Math.pow(((n*n)-1), 1.5)/(8*n));
 
-        //  v.add(ID);
+      //  v.add(ID);
         //  v.add(wi.calculate(g));
         //  v.add(Avg);
-        //  v.add(diameter);
+         v.add(diameter);
 
-        // v.add(MaxCliqueExtension.maxCliqueSize(g));
+       // v.add(MaxCliqueExtension.maxCliqueSize(g));
 
 
-        v.add(al.toString());
+     //   v.add(al.toString());
 
-        ret.add(v);
+         ret.add(v);
         return ret;
     }
 
     @Override
     public String getCategory() {
-        return "Conjectures";
+        return "OurWorks-Conjectures";
     }
 }
 

@@ -48,9 +48,9 @@ public class EigenValues implements GraphReportExtension,Parametrizable {
             if(minrv > tval) minrv=tval;
         }
         res.add("Largest Eigen Value");
-        res.add(round(maxrv, 3)+"");
+        res.add(round(maxrv, 5)+"");
         res.add("Smallest Eigen Value");
-        res.add(round(minrv, 3)+"");
+        res.add(round(minrv, 5)+"");
 
         res.add("Sum of power of Eigen Values");
         double sum = 0;
@@ -66,17 +66,17 @@ public class EigenValues implements GraphReportExtension,Parametrizable {
                 tmp.pow(new Complex(power,0));
                 num.plus(tmp);
             }
-            res.add("" + round(num.re(), 3) + " + "
-                    + round(num.im(), 3) + "i");
+            res.add("" + round(num.re(), 5) + " + "
+                    + round(num.im(), 5) + "i");
         } else {
-            res.add("" + round(sum, 3));
+            res.add("" + round(sum, 5));
         }
         res.add("Eigen Values");
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res.add("" + round(rv[i], 3) + " + " + round(iv[i], 3) + "i");
+                res.add("" + round(rv[i], 5) + " + " + round(iv[i], 5) + "i");
             else
-                res.add("" + round(rv[i], 3));
+                res.add("" + round(rv[i], 5));
         }
         return res;
     }

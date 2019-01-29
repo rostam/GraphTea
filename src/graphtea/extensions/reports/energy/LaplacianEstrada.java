@@ -14,6 +14,10 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
+import graphtea.library.util.Complex;
+
+
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,13 +30,13 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class NewLowerBounds implements GraphReportExtension{
+public class LaplacianEstrada implements GraphReportExtension{
     public String getName() {
-        return "Lower Bounds";
+        return "Laplacian Estrada";
     }
 
     public String getDescription() {
-        return "Lower Bounds";
+        return "Laplacian Estrada";
     }
 
     public Object calculate(GraphModel g) {
@@ -41,7 +45,7 @@ public class NewLowerBounds implements GraphReportExtension{
         Vector<String> titles = new Vector<>();
         titles.add(" m ");
         titles.add(" n ");
-        titles.add(" E(G) ");
+        titles.add(" L.Estrada ");
        // titles.add(" 1.1 ");
       //  titles.add(" 1.2 ");
        // titles.add(" 1.3 ");
@@ -49,17 +53,18 @@ public class NewLowerBounds implements GraphReportExtension{
      ///  titles.add(" 1.5 ");
     //    titles.add(" 1.6 ");
      //   titles.add(" 1.7 ");
-        titles.add(" Estarda ");
+     //   titles.add(" Laplacian Estarda ");
      //   titles.add(" Eigenvalues ");
    //     titles.add(" 2-degree sum ");
    //     titles.add("new query");
         ret.setTitles(titles);
 
-        Matrix A = g.getWeightedAdjacencyMatrix();
+        Matrix B = g.getWeightedAdjacencyMatrix();
+        Matrix A = Utils.getLaplacian(B);
         EigenvalueDecomposition ed = A.eig();
         double rv[] = ed.getRealEigenvalues();
-        double sum=0;
-        double estra=0;
+        double Lsum=0;
+        double Lapestra=0;
         double detA = Math.abs(A.det());
 
         //positiv RV
@@ -68,8 +73,8 @@ public class NewLowerBounds implements GraphReportExtension{
             prv[i] = Math.abs(rv[i]);
             prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
             rv[i] = (double)Math.round(rv[i] * 100000d) / 100000d;
-            sum += prv[i];
-            estra +=Math.exp(rv[i]);
+            Lsum += prv[i];
+            Lapestra +=Math.exp(rv[i]);
         }
         
         
@@ -109,8 +114,8 @@ public class NewLowerBounds implements GraphReportExtension{
         Vector<Object> v = new Vector<>();
         v.add(m);
         v.add(n);
-        v.add(sum);
-        v.add(estra);
+      
+        v.add(Lapestra);
         //1
      //   v.add(Math.sqrt(2*m));
         //2
@@ -176,9 +181,9 @@ public class NewLowerBounds implements GraphReportExtension{
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res +="" + round(rv[i], 3) + " + " + round(iv[i], 3) + "i";
+                res +="" + round(rv[i], 5) + " + " + round(iv[i], 5) + "i";
             else
-                res += "" + round(rv[i], 3);
+                res += "" + round(rv[i], 5);
             if(i!=rv.length-1) {
                 res += ",";
             }

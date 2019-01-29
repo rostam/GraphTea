@@ -43,12 +43,12 @@ public class AdjacencyMatrix implements GraphReportExtension {
 
         for (int i = 0; i < rv.length; i++)
             if (iv[i] != 0)
-                res.add("" + round(rv[i], 3) + " + " + round(iv[i], 3) + "i");
+                res.add("" + round(rv[i], 5) + " + " + round(iv[i], 5) + "i");
             else
-                res.add("" + round(rv[i], 3));
+                res.add("" + round(rv[i], 5));
         res.add("Eigen Vectors:\n");
         double[][] eigenVectors = ed.getV().getArray();
-        for (double[] eigenVector : eigenVectors) res.add(Arrays.toString(round(eigenVector, 3)));
+        for (double[] eigenVector : eigenVectors) res.add(Arrays.toString(round(eigenVector, 5)));
         return res;
     }
     

@@ -36,6 +36,8 @@ public class BalabanIndex implements GraphReportExtension{
     public Object calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
+        titles.add(" m ");
+        titles.add(" n ");
         titles.add(" Balaban Index ");
 
         double maxDeg = 0;
@@ -72,6 +74,9 @@ public class BalabanIndex implements GraphReportExtension{
 
         Vector<Object> v = new Vector<>();
 
+      v.add(m);
+        v.add(n);
+        
         double tmp = m/(m-n+2.);
 
         double allSum = 0;

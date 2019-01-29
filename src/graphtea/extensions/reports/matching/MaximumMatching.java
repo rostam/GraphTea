@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Algorithm of Edmonds
  */
-class MaximumMatching {
+public class MaximumMatching {
    private static void marking(int[] match, int[] base, boolean[] blossom, int[] p, int v, int b, int children) {
         for (; base[v] != b; v = p[match[v]]) {
             blossom[base[v]] = blossom[base[match[v]]] = true;
@@ -60,7 +60,7 @@ class MaximumMatching {
     }
 
     static int[] match;
-    static int maxMatching(List<Integer>[] graph) {
+    public static int maxMatching(List<Integer>[] graph) {
         int n = graph.length;
         match = new int[n];
         Arrays.fill(match, -1);

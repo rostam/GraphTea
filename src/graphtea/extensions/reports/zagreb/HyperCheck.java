@@ -37,7 +37,9 @@ public class HyperCheck implements GraphReportExtension{
 
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
-        titles.add(" p ");
+        titles.add(" Hyper ");
+        titles.add(" T-1 ");
+        titles.add(" T-2-HyHyper ");
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -72,15 +74,18 @@ public class HyperCheck implements GraphReportExtension{
 
         double M12=zif.getSecondZagreb(1);
         double M21=zif.getFirstZagreb(1);
+        double H=zif.getHarmonicIndex();
         double M31=zif.getFirstZagreb(2);
         double M41=zif.getFirstZagreb(3);
         double M22=zif.getSecondZagreb(2);
         double Mm31=zif.getFirstZagreb(-4);
         double Mm11=zif.getFirstZagreb(-2);
-
+        double chi=zif.getGeneralSumConnectivityIndex(2);
 
         Vector<Object> v = new Vector<>();
-        v.add(p);
+        v.add(chi);
+        v.add((2*(maxDeg+minDeg)*M21) -(4*m*maxDeg*minDeg));
+        v.add((2*(maxDeg+minDeg)*M21) -(4*m*maxDeg*minDeg) + M21 +(2*maxDeg*minDeg*H)-(2*m*(maxDeg+minDeg)));
         ret.add(v);
 
 

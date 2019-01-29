@@ -28,23 +28,24 @@ import static graphtea.extensions.reports.Utils.getLaplacian;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class UpperBounds implements GraphReportExtension {
+public class LaplacianEnergy implements GraphReportExtension {
     public String getName() {
-        return "Upper Bounds";
+        return "Laplacian Energy";
     }
 
     public String getDescription() {
-        return "Upper Bounds";
+        return "Laplacian Energy";
     }
 
     public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
-        titles.add(" Laplacian Energy ");
+
     titles.add("m ");
     titles.add("n ");
-        ret.setTitles(titles);
+    titles.add(" Laplacian Energy ");
+    ret.setTitles(titles);
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
@@ -93,9 +94,10 @@ public class UpperBounds implements GraphReportExtension {
 
         Vector<Object> v = new Vector<>();
         String tmp = calc(g).toString();
-        v.add(Double.parseDouble(tmp));
+
         v.add(m);
         v.add(n);
+        v.add(Double.parseDouble(tmp));
         //1
        // v.add(Math.sqrt(2 * m * n));
         //2

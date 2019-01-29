@@ -26,13 +26,13 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class NewLowerBounds implements GraphReportExtension{
+public class Energy implements GraphReportExtension{
     public String getName() {
-        return "Lower Bounds";
+        return "Energy";
     }
 
     public String getDescription() {
-        return "Lower Bounds";
+        return "Energy";
     }
 
     public Object calculate(GraphModel g) {
@@ -42,6 +42,7 @@ public class NewLowerBounds implements GraphReportExtension{
         titles.add(" m ");
         titles.add(" n ");
         titles.add(" E(G) ");
+        titles.add(" n ");
        // titles.add(" 1.1 ");
       //  titles.add(" 1.2 ");
        // titles.add(" 1.3 ");
@@ -49,7 +50,7 @@ public class NewLowerBounds implements GraphReportExtension{
      ///  titles.add(" 1.5 ");
     //    titles.add(" 1.6 ");
      //   titles.add(" 1.7 ");
-        titles.add(" Estarda ");
+     //   titles.add(" Estarda ");
      //   titles.add(" Eigenvalues ");
    //     titles.add(" 2-degree sum ");
    //     titles.add("new query");
@@ -58,7 +59,7 @@ public class NewLowerBounds implements GraphReportExtension{
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
         double rv[] = ed.getRealEigenvalues();
-        double sum=0;
+        double energy=0;
         double estra=0;
         double detA = Math.abs(A.det());
 
@@ -67,9 +68,9 @@ public class NewLowerBounds implements GraphReportExtension{
         for(int i=0;i<rv.length;i++) {
             prv[i] = Math.abs(rv[i]);
             prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
-            rv[i] = (double)Math.round(rv[i] * 100000d) / 100000d;
-            sum += prv[i];
-            estra +=Math.exp(rv[i]);
+             rv[i] = (double)Math.round(rv[i] * 100000d) / 100000d;
+            energy += prv[i];
+         //   estra +=Math.exp(rv[i]);
         }
         
         
@@ -109,8 +110,9 @@ public class NewLowerBounds implements GraphReportExtension{
         Vector<Object> v = new Vector<>();
         v.add(m);
         v.add(n);
-        v.add(sum);
-        v.add(estra);
+        v.add(energy);
+        v.add(n);
+       // v.add(estra);
         //1
      //   v.add(Math.sqrt(2*m));
         //2
@@ -176,9 +178,9 @@ public class NewLowerBounds implements GraphReportExtension{
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res +="" + round(rv[i], 3) + " + " + round(iv[i], 3) + "i";
+                res +="" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i";
             else
-                res += "" + round(rv[i], 3);
+                res += "" + round(rv[i], 10);
             if(i!=rv.length-1) {
                 res += ",";
             }

@@ -63,10 +63,10 @@ public class LaplacianEnergyLike implements GraphReportExtension {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 3) + " + "
-                        + round(num.im(), 3) + "i";
+                return "" + round(num.re(), 5) + " + "
+                        + round(num.im(), 5) + "i";
             } else {
-                return "" + round(sum, 3);
+                return "" + round(sum, 5);
             }
         } catch (Exception e) {
         }
