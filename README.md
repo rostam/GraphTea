@@ -66,7 +66,7 @@ more docs will come soon. if you have any questions just post it in the issues a
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-have fun!
+have fun!!
 
 
 
