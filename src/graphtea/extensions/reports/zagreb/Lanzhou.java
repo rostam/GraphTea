@@ -16,7 +16,7 @@ import graphtea.extensions.reports.zagreb.WienerIndex;
 import graphtea.extensions.reports.Utils;
 
 
- 
+
 
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class Lanzhou implements GraphReportExtension{
     public String getName() {
         return "Lanzhou";
     }
-      
+
 
     public String getDescription() {
         return " Lanzhou";
@@ -59,9 +59,9 @@ public class Lanzhou implements GraphReportExtension{
      //   titles.add(" max ");
     //    titles.add(" min ");
        //  titles.add(" Hyper ");
-       // titles.add("Th 7 "); 
-       // titles.add("check"); 
-      //  titles.add("Correct"); 
+       // titles.add("Th 7 ");
+       // titles.add("check");
+      //  titles.add("Correct");
        //    titles.add(" matching ");
         //      titles.add(" GA/x ");
      //         titles.add(" Wp ");
@@ -124,9 +124,9 @@ public class Lanzhou implements GraphReportExtension{
         if(all.size()-2>=0) maxEdge2 = all.get(all.size()-2);
         else maxEdge2 = maxEdge;
         minEdge = all.get(0);
-        
-        
-        
+
+
+
         double maxDel = 0;
         double maxDel2 = 0;
         double minDel = Integer.MAX_VALUE;
@@ -142,8 +142,8 @@ public class Lanzhou implements GraphReportExtension{
         else maxDel2 = maxDel;
         minDel = all1.get(0);
         if(maxDel2 == 0) maxDel2=maxDel;
-          
-       
+
+
         double M12=zif.getSecondZagreb(1);
         double M21=zif.getFirstZagreb(1);
         double H=zif.getHarmonicIndex();
