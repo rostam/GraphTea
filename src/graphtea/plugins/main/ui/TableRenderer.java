@@ -38,11 +38,11 @@ public class TableRenderer implements GBasicCellRenderer<RenderTable> {
             for(int j=0;j < row.size();j++) {
                 Object o = row.get(j);
 
-                if(o instanceof Double && !o.toString().equals("NaN")) {
-                    Double toBeTruncated = (Double) o;
-                    o = new BigDecimal(toBeTruncated).
-                            setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
-                }
+//                if(o instanceof Double && !o.toString().equals("NaN")) {
+//                    Double toBeTruncated = (Double) o;
+//                    o = new BigDecimal(toBeTruncated).
+//                            setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
+//                }
 
                 data[i][j] = o;
             }

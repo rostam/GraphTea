@@ -12,7 +12,7 @@ import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
- * @author azin azadi
+ * @author Ali Rostami
 
  */
 

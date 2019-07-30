@@ -1,11 +1,13 @@
 package graphtea.extensions.reports.others;
 
-import graphtea.extensions.reports.basicreports.AllPairShortestPathsWithoutWeight;
+import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
+import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 @CommandAttitude(name = "Eccentricity", abbreviation = "_eccentricity")
@@ -36,8 +38,7 @@ public class Eccentricity implements GraphReportExtension {
         titles.add("Eccentricity");
         ret.setTitles(titles);
 
-        Integer[][] dist = new AllPairShortestPathsWithoutWeight()
-                .getAllPairsShortestPathWithoutWeight(g);
+        Integer[][] dist = getAllPairsShortestPathWithoutWeight(g);
 
 
         for(int i=0;i < g.getVerticesCount();i++) {
@@ -47,6 +48,32 @@ public class Eccentricity implements GraphReportExtension {
             ret.add(v);
         }
         return ret;
+    }
+
+    public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
+        final Integer dist[][] = new Integer[g.numOfVertices()][g.numOfVertices()];
+        Iterator<Edge> iet = g.edgeIterator();
+        for (int i = 0; i < g.getVerticesCount(); i++)
+            for (int j = 0; j < g.getVerticesCount(); j++)
+                dist[i][j] = g.numOfVertices();
+
+        for (Vertex v : g)
+            dist[v.getId()][v.getId()] = 0;
+
+        while (iet.hasNext()) {
+            Edge edge = iet.next();
+            dist[edge.target.getId()][edge.source.getId()] = 1;
+            dist[edge.source.getId()][edge.target.getId()] = 1;
+        }
+
+        for (Vertex v : g)
+            for (Vertex u : g)
+                for (Vertex w : g) {
+                    if ((dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()]) < dist[v.getId()][u.getId()])
+                        dist[v.getId()][u.getId()] = dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()];
+                }
+
+        return dist;
     }
 
     @Override
