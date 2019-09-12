@@ -46,7 +46,7 @@ public class Vertex extends BaseVertex {
      * the location of the lable relative to the center of the edge
      */
 
-    private GPoint labelLocation = new GPoint(0, 4);
+    private GPoint labelLocation = new GPoint(0, 0);
 
     //________________________   Userdefined Attributes    _________________________________
     /**

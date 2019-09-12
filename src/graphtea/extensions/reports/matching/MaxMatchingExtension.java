@@ -67,4 +67,34 @@ public class MaxMatchingExtension implements GraphReportExtension {
 	public String getCategory() {
 		return "Matching";
 	}
+
+	public int numOfMatching(GraphModel gg) {
+        SubGraph sg = new SubGraph();
+        List<Integer>[] g = new List[gg.getVerticesCount()];
+        for (int i = 0; i < gg.getVerticesCount(); i++) {
+            g[i] = new ArrayList();
+        }
+
+        for(Edge e : gg.getEdges()) {
+            g[e.source.getId()].add(e.target.getId());
+        }
+        MaximumMatching.maxMatching(g);
+        int[] match = MaximumMatching.match;
+
+        for(int i=0;i<match.length;i++) {
+            if(match[i]>=0) {
+                sg.vertices.add(gg.getVertex(i));
+                sg.vertices.add(gg.getVertex(match[i]));
+            }
+        }
+
+        for(int i=0;i<match.length;i++) {
+            if(match[i] >= 0)
+                sg.edges.add(gg.getEdge(
+                        gg.getVertex(i),
+                        gg.getVertex(match[i])));
+        }
+
+        return sg.edges.size();
+    }
 }
