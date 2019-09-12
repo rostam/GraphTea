@@ -203,6 +203,6 @@ public class LaplacianEstrada implements GraphReportExtension{
 
     @Override
     public String getCategory() {
-        return "OurWork-Graph Energy";
+        return "OurWorks-Graph Energy";
     }
 }

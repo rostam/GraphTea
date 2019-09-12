@@ -142,7 +142,7 @@ public class UpperBounds implements GraphReportExtension {
     @Override
     public String getCategory() {
         // TODO Auto-generated method stub
-        return "OurWork-Graph Energy";
+        return "OurWorks-Graph Energy";
     }
 
     public Object calc(GraphModel g) {
