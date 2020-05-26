@@ -49,6 +49,25 @@ public class BasicReportsTest {
         Assertions.assertEquals(numOfConnectedComponents.calculate(peterson),1);
     }
 
+    @Test
+    public void testNumOfEdges() {
+        NumOfEdges numOfEdges = new NumOfEdges();
+        Assertions.assertEquals(numOfEdges.calculate(peterson),15);
+    }
+
+    @Test
+    public void testNumOfVertices() {
+        NumOfVertices numOfVertices = new NumOfVertices();
+        Assertions.assertEquals(numOfVertices.calculate(peterson),10);
+    }
+
+    @Test
+    public void testNumOfVerticesWithDegK() {
+        NumOfVerticesWithDegK numOfVerticesWithDegK = new NumOfVerticesWithDegK();
+        NumOfVerticesWithDegK.k = 3;
+        Assertions.assertEquals(numOfVerticesWithDegK.calculate(peterson),10);
+    }
+
 //    @Test public void testDominationNumber() {
 //        DominationNumber dn = new DominationNumber();
 //        Assertions.assertEquals(
