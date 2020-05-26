@@ -23,10 +23,8 @@ import java.awt.*;
  */
 @CommandAttitude(name = "generate_felower", abbreviation = "_g_flower", description = "generates a Helm graph of order n")
 public class FlowerGraph implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
-
 	@Parameter(name = "n")
 	public static int n = 3;
-
 
 	GraphModel g;
 
@@ -79,7 +77,7 @@ public class FlowerGraph implements GraphGeneratorExtension, Parametrizable, Sim
 	{
 		int w = 1000;
 		double mw = ((double)w)/2.0, qw = ((double)w)/4.0;
-		Point result[] = new Point[2*n+1];
+		Point[] result = new Point[2*n+1];
 		result[2*n] = new Point(w/2, w/2);
 		double ang = Math.PI*2.0/n;
 		double offset = 0.0;

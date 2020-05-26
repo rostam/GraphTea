@@ -77,7 +77,7 @@ public class CrownGraph implements GraphGeneratorExtension, Parametrizable, Simp
 	{
 		int w = 1000;
 		double mw = ((double)w)/2.0, qw = ((double)w)/4.0;
-		Point result[] = new Point[2*n];
+		Point[] result = new Point[2*n];
 		//result[2*n] = new Point((int)(w/2), (int)(w/2));
 		double ang = Math.PI*2.0/n;
 		double offset = 0.0;

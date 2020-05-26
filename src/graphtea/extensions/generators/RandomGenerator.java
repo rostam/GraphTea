@@ -40,7 +40,7 @@ public class RandomGenerator implements GraphGeneratorExtension, Parametrizable,
         return "Generates a random graph with N Vertices and E Edges";
     }
 
-    Vertex v[];
+    Vertex[] v;
 
     public Vertex[] getVertices() {
         Vertex[] ret = new Vertex[numOfVertices];

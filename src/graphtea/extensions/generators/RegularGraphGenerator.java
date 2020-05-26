@@ -31,8 +31,6 @@ public class RegularGraphGenerator implements GraphGeneratorExtension, Parametri
     public static Integer deg = 3;
     GraphModel g;
 
-
-
     public void setWorkingGraph(GraphModel g) {
         this.g = g;
     }

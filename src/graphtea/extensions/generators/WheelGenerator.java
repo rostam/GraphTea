@@ -70,8 +70,8 @@ public class WheelGenerator implements GraphGeneratorExtension, Parametrizable, 
     }
 
     public Point[] getVertexPositions() {
-        Point p[] = new Point[n];
-        Point p1[] = PositionGenerators.circle(50000, 200, 200, n - 1);
+        Point[] p = new Point[n];
+        Point[] p1 = PositionGenerators.circle(50000, 200, 200, n - 1);
         Point p2 = new Point(200, 200);
         System.arraycopy(p1, 0, p, 1, n - 1);
         p[0] = p2;

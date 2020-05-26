@@ -77,7 +77,7 @@ public class KmnoGenerator implements GraphGeneratorExtension, Parametrizable, S
 
 	public Point[] getVertexPositions()
 	{
-		Point ret[] = new Point[m + n + o];
+		Point[] ret = new Point[m + n + o];
 		int dx, dy;
 
 		if(m == 1)

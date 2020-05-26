@@ -76,9 +76,9 @@ public class KmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
     public Point[] getVertexPositions() {
         int w = 100;
         int h = 100;
-        Point ret[] = new Point[m + n];
-        Point np[] = PositionGenerators.line(5, h / 4, w, 0, n);
-        Point mp[] = PositionGenerators.line(5, 3 * h / 4, w, 0, m);
+        Point[] ret = new Point[m + n];
+        Point[] np = PositionGenerators.line(5, h / 4, w, 0, n);
+        Point[] mp = PositionGenerators.line(5, 3 * h / 4, w, 0, m);
         System.arraycopy(np, 0, ret, 0, n);
         System.arraycopy(mp, 0, ret, n, m);
         return ret;

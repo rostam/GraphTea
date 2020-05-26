@@ -66,10 +66,10 @@ public class CmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
     }
 
     public Point[] getVertexPositions() {
-        Point ret[] = new Point[m * n];
-        Point centerPoints[] = PositionGenerators.circle(0, 0, m * n, m * n, n);
+        Point[] ret = new Point[m * n];
+        Point[] centerPoints = PositionGenerators.circle(0, 0, m * n, m * n, n);
         for (int i = 0; i < n; i++) {
-            Point p[] = PositionGenerators.circle(m, centerPoints[i].x, centerPoints[i].y, m);
+            Point[] p = PositionGenerators.circle(m, centerPoints[i].x, centerPoints[i].y, m);
             System.arraycopy(p, 0, ret, i * m, m);
         }
 
