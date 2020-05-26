@@ -11,7 +11,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 /**
  * @author Azin Azadi
  */
-public class ChromaticNumber implements GraphReportExtension, ColoringListener {
+public class ChromaticNumber implements GraphReportExtension<Integer>, ColoringListener {
 
     public String getName() {
         return "Chromatic Number";
@@ -25,7 +25,7 @@ public class ChromaticNumber implements GraphReportExtension, ColoringListener {
     int ct;
     boolean found;
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         p = new Partitioner(g);
         ct = 1;
         found = false;

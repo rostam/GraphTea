@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  */
 
 @CommandAttitude(name = "mst_prim", abbreviation = "_max_c")
-public class MaxCliqueExtension implements GraphReportExtension {
+public class MaxCliqueExtension implements GraphReportExtension<Vector<SubGraph>> {
     public String getName() {
         return "Maximal Cliques";
     }
@@ -30,7 +30,7 @@ public class MaxCliqueExtension implements GraphReportExtension {
         return "Maximal Cliques";
     }
 
-    public Object calculate(GraphModel g) {
+    public Vector<SubGraph> calculate(GraphModel g) {
         Vector<SubGraph> ret = new Vector<>();
         MaxCliqueAlg mca = new MaxCliqueAlg(g);
         Cliques mcs = mca.allMaxCliques();

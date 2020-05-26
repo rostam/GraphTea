@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.Vector;
 
 @CommandAttitude(name = "Eccentricity", abbreviation = "_eccentricity")
-public class Eccentricity implements GraphReportExtension {
+public class Eccentricity implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Eccentricity";
     }
@@ -31,7 +31,7 @@ public class Eccentricity implements GraphReportExtension {
     }
 
     @Override
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add("Vertex");
@@ -51,7 +51,7 @@ public class Eccentricity implements GraphReportExtension {
     }
 
     public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
-        final Integer dist[][] = new Integer[g.numOfVertices()][g.numOfVertices()];
+        final Integer[][] dist = new Integer[g.numOfVertices()][g.numOfVertices()];
         Iterator<Edge> iet = g.edgeIterator();
         for (int i = 0; i < g.getVerticesCount(); i++)
             for (int j = 0; j < g.getVerticesCount(); j++)
@@ -82,4 +82,3 @@ public class Eccentricity implements GraphReportExtension {
     }
 
 }
-;

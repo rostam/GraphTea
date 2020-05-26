@@ -15,7 +15,7 @@ import java.util.Random;
  */
 
 @CommandAttitude(name = "maxium_Cut", abbreviation = "max_Cut")
-public class MaxCut implements GraphReportExtension {
+public class MaxCut implements GraphReportExtension<Integer> {
     public String getName() {
         return "Maximum Cut";
     }
@@ -24,11 +24,9 @@ public class MaxCut implements GraphReportExtension {
         return "Axproximate Maximum Cut In An Undirected Graph";
     }
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         return getMaxCut(g);
     }
-
-
 
     private int getMaxCut(GraphModel graph){
          permution(graph);

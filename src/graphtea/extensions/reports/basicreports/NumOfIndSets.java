@@ -18,7 +18,7 @@ import java.util.ArrayDeque;
  */
 
 @CommandAttitude(name = "num_of_inds", abbreviation = "_indssize")
-public class NumOfIndSets implements GraphReportExtension {
+public class NumOfIndSets implements GraphReportExtension<Integer> {
     public String getName() {
         return "Number of independent sets plus empty set";
     }
@@ -27,7 +27,7 @@ public class NumOfIndSets implements GraphReportExtension {
         return "Number of independent sets in the Graph";
     }
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         Partitioner p = new Partitioner(g);
         IndSetCounter l = new IndSetCounter();
         p.findAllSubsets(l);

@@ -20,9 +20,9 @@ import java.util.LinkedList;
  */
 
 @CommandAttitude(name = "k_vertex_connectivity", abbreviation = "_kvc")
-public class KConnected implements GraphReportExtension {
+public class KConnected implements GraphReportExtension<Integer> {
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         return kconn(g);
     }
 

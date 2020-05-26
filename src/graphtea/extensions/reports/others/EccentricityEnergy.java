@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.Vector;
 
 @CommandAttitude(name = "EccentricityEnergy", abbreviation = "_eccentricity_index")
-public class EccentricityEnergy implements GraphReportExtension {
+public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Eccentricity Energy";
     }
@@ -47,7 +47,7 @@ public class EccentricityEnergy implements GraphReportExtension {
     }
 
     public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
-        final Integer dist[][] = new Integer[g.numOfVertices()][g.numOfVertices()];
+        final Integer[][] dist = new Integer[g.numOfVertices()][g.numOfVertices()];
         Iterator<Edge> iet = g.edgeIterator();
         for (int i = 0; i < g.getVerticesCount(); i++)
             for (int j = 0; j < g.getVerticesCount(); j++)
@@ -73,7 +73,7 @@ public class EccentricityEnergy implements GraphReportExtension {
     }
 
     @Override
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add("m ");
@@ -84,7 +84,7 @@ public class EccentricityEnergy implements GraphReportExtension {
 
         Matrix m = eccentricityMatrix(g, dist);
         EigenvalueDecomposition ed = m.eig();
-        double rv[] = ed.getRealEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
         double sum = 0;
 
         //positiv RV
@@ -106,6 +106,4 @@ public class EccentricityEnergy implements GraphReportExtension {
     public String getCategory() {
         return "OurWorks-Conjectures";
     }
-
 }
-;

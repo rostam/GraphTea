@@ -26,7 +26,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class Complement implements GraphReportExtension{
+public class Complement implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Complement";
     }
@@ -35,7 +35,7 @@ public class Complement implements GraphReportExtension{
         return "Complement";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(Utils.createLineGraph(g));
 //        ZagrebIndexFunctions zifC = new ZagrebIndexFunctions(Utils.createComplementGraph(g));
@@ -56,12 +56,12 @@ public class Complement implements GraphReportExtension{
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
         double rv[] = ed.getRealEigenvalues();
-        double sum=0;
+        double sum = 0;
         double detA = Math.abs(A.det());
 
         //positiv RV
         Double[] prv = new Double[rv.length];
-        for(int i=0;i<rv.length;i++) {
+        for (int i = 0; i < rv.length; i++) {
             prv[i] = Math.abs(rv[i]);
             sum += prv[i];
         }
@@ -74,29 +74,29 @@ public class Complement implements GraphReportExtension{
 
         ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);
-        maxDeg = al.get(al.size()-1);
-        if(al.size()-2>=0) maxDeg2 = al.get(al.size()-2);
+        maxDeg = al.get(al.size() - 1);
+        if (al.size() - 2 >= 0) maxDeg2 = al.get(al.size() - 2);
         else maxDeg2 = maxDeg;
         minDeg = al.get(0);
 
-        if(maxDeg2 == 0) maxDeg2=maxDeg;
+        if (maxDeg2 == 0) maxDeg2 = maxDeg;
 
-        double a=0;
-        double b=0;
+        double a = 0;
+        double b = 0;
 
-        for(Vertex v : g) {
-            if(g.getDegree(v)==maxDeg) a++;
-            if(g.getDegree(v)==minDeg) b++;
+        for (Vertex v : g) {
+            if (g.getDegree(v) == maxDeg) a++;
+            if (g.getDegree(v) == minDeg) b++;
         }
-        if(maxDeg==minDeg) b=0;
+        if (maxDeg == minDeg) b = 0;
 
         double m = g.getEdgesCount();
         double n = g.getVerticesCount();
 
-        double M12=zif.getSecondZagreb(1);
-        double M21=zif.getFirstZagreb(1);
-        double M22=zif.getSecondZagreb(2);
-        double Mm11=zif.getFirstZagreb(-2);
+        double M12 = zif.getSecondZagreb(1);
+        double M21 = zif.getFirstZagreb(1);
+        double M22 = zif.getSecondZagreb(2);
+        double Mm11 = zif.getFirstZagreb(-2);
 //        double LE = zifL.getEnegry();
 //        double CE = zifC.getEnegry();
 //        double CLE = zifCL.getEnegry();
@@ -114,7 +114,6 @@ public class Complement implements GraphReportExtension{
         //1
 
 
-
         ret.add(v);
         return ret;
     }
@@ -127,10 +126,10 @@ public class Complement implements GraphReportExtension{
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res +="" + rv[i] + " + " + iv[i] + "i";
+                res += "" + rv[i] + " + " + iv[i] + "i";
             else
                 res += "" + rv[i];
-            if(i!=rv.length-1) {
+            if (i != rv.length - 1) {
                 res += ",";
             }
         }
@@ -144,7 +143,6 @@ public class Complement implements GraphReportExtension{
         return Math.round(value * power_of_ten)
                 / power_of_ten;
     }
-
 
 
     @Override
