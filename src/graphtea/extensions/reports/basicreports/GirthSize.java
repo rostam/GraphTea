@@ -77,7 +77,6 @@ public class GirthSize implements GraphReportExtension {
         return "Graph Girth Size";
     }
 
-
 	@Override
 	public String getCategory() {
 		return "General";
