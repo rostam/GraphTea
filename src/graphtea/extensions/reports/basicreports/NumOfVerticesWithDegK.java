@@ -15,7 +15,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  * @author azin azadi
  */
 
-public class NumOfVerticesWithDegK implements GraphReportExtension, Parametrizable {
+public class NumOfVerticesWithDegK implements GraphReportExtension<Integer>, Parametrizable {
     @Parameter(name = "K")
     public static Integer k = 1;
 
@@ -27,7 +27,7 @@ public class NumOfVerticesWithDegK implements GraphReportExtension, Parametrizab
         return "Number of vertices in the Graph which degrees are k";
     }
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         return numOfVerticesWithDegK(g,k);
     }
 

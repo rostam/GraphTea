@@ -18,9 +18,9 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "graph_diameter", abbreviation = "_gd")
-public class Diameter implements GraphReportExtension {
+public class Diameter implements GraphReportExtension<Integer> {
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
         for(Edge e : g.edges()) {
             G.addEdge(new DirectedEdge(e.source.getId(), e.target.getId(), 1d));

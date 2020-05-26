@@ -18,7 +18,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "num_of_stars", abbreviation = "_noss")
-public class NumOfStars implements GraphReportExtension, Parametrizable {
+public class NumOfStars implements GraphReportExtension<Integer>, Parametrizable {
 
     @Parameter(name = "k", description = "The size of star")
     public Integer k = 1;

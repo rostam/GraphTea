@@ -18,27 +18,27 @@ public class BasicReportsTest {
     @Test
     public void testGirthSize() {
         GirthSize girthSize = new GirthSize();
-        Assertions.assertEquals((Integer) girthSize.calculate(peterson),5);
+        Assertions.assertEquals(girthSize.calculate(peterson),5);
     }
 
     @Test
     public void testIsBipartite() {
         IsBipartite isBipartite = new IsBipartite();
-        Assertions.assertTrue((Boolean) isBipartite.calculate(circle4));
+        Assertions.assertTrue(isBipartite.calculate(circle4));
     }
 
     @Test
     public void testIsEulerian() {
         IsEulerian isEulerian = new IsEulerian();
-        Assertions.assertTrue((Boolean) isEulerian.calculate(circle5));
-        Assertions.assertTrue((Boolean) isEulerian.calculate(complete5));
-        Assertions.assertFalse((Boolean) isEulerian.calculate(complete4));
+        Assertions.assertTrue(isEulerian.calculate(circle5));
+        Assertions.assertTrue(isEulerian.calculate(complete5));
+        Assertions.assertFalse(isEulerian.calculate(complete4));
     }
 
     @Test
     public void testMaxAndMinDegree() {
         MaxAndMinDegree maxAndMinDegree = new MaxAndMinDegree();
-        ArrayList<Integer> al = (ArrayList<Integer>) maxAndMinDegree.calculate(peterson);
+        ArrayList<Integer> al = maxAndMinDegree.calculate(peterson);
         Assertions.assertEquals(al.get(0),3);
         Assertions.assertEquals(al.get(1),3);
     }

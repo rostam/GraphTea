@@ -21,8 +21,8 @@ import static graphtea.extensions.reports.Utils.choose;
  */
 
 @CommandAttitude(name = "num_of_stars", abbreviation = "_noss")
-public class SubTreeCounting implements GraphReportExtension {
-    public Object calculate(GraphModel g) {
+public class SubTreeCounting implements GraphReportExtension<RenderTable> {
+    public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable(2);
         Vector<String> titles = new Vector<>();
         Vector<Object> elem = new Vector<>();

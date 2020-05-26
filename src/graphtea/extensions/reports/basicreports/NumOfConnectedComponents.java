@@ -17,9 +17,8 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "num_of_connected_components", abbreviation = "_nocc")
-public class NumOfConnectedComponents implements GraphReportExtension {
-
-    public Object calculate(GraphModel g) {
+public class NumOfConnectedComponents implements GraphReportExtension<Integer> {
+    public Integer calculate(GraphModel g) {
         return getConnectedComponents(g).size();
     }
 

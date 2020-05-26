@@ -18,9 +18,8 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "total_num_of_stars", abbreviation = "_tnoss")
-public class TotalNumOfStars implements GraphReportExtension {
-
-    public Object calculate(GraphModel g) {
+public class TotalNumOfStars implements GraphReportExtension<Vector<String>> {
+    public Vector<String> calculate(GraphModel g) {
         Vector<String> ret = new Vector<>();
         for(int i=0;i<Utils.getMaxDegree(g);i++) {
             int sum = 0;

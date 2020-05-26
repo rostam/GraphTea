@@ -19,7 +19,7 @@ import java.util.Arrays;
  */
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class AdjacencyMatrix implements GraphReportExtension {
+public class AdjacencyMatrix implements GraphReportExtension<ArrayList<String>> {
 
     private double round(double value, int decimalPlace) {
         double power_of_ten = 1;
@@ -29,7 +29,7 @@ public class AdjacencyMatrix implements GraphReportExtension {
                 / power_of_ten;
     }
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ArrayList<String> res = new ArrayList<>();
         res.add("Adjacency Matrix");
         Matrix A = g.getWeightedAdjacencyMatrix();

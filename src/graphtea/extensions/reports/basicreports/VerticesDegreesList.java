@@ -19,8 +19,8 @@ import java.util.Collections;
  */
 
 @CommandAttitude(name = "vertices_degree_list", abbreviation = "_vdl")
-public class VerticesDegreesList implements GraphReportExtension {
-    public Object calculate(GraphModel g) {
+public class VerticesDegreesList implements GraphReportExtension<ArrayList<Integer>> {
+    public ArrayList<Integer> calculate(GraphModel g) {
         ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);
         return al;

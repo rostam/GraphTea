@@ -16,7 +16,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "num_of_quadrangle", abbreviation = "_noqa")
-public class NumOfQuadrangle implements GraphReportExtension {
+public class NumOfQuadrangle implements GraphReportExtension<Integer> {
     public String getName() {
         return "number of quadrangle";
     }
@@ -25,7 +25,7 @@ public class NumOfQuadrangle implements GraphReportExtension {
         return "number of quadrangle";
     }
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         return getNumOfQuadrangles(g);
     }
 

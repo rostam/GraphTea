@@ -13,7 +13,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "num_of_vertices", abbreviation = "_vsize")
-public class NumOfVertices implements GraphReportExtension {
+public class NumOfVertices implements GraphReportExtension<Integer> {
     public String getName() {
         return "Number of Vertices";
     }
@@ -22,7 +22,7 @@ public class NumOfVertices implements GraphReportExtension {
         return "Number of vertices in the Graph";
     }
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         return g.getVerticesCount();
     }
 
