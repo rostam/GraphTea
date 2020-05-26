@@ -13,16 +13,14 @@ import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-@CommandAttitude(name = "generate_helmn", abbreviation = "_g_prism", description = "generates a Prism graph of order n")
+@CommandAttitude(name = "generate_antiprism", abbreviation = "_g_aprism", description = "generates a Prism graph of order n")
 public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
-
     //the depth should be positive, and also if it is very large the
     //generated graph is too large to generate.
     //@Parameter(description = "depth of the tree")
     //public BoundedInteger depth = new BoundedInteger(3, 15, 1);
     @Parameter(name = "n",description = "Num of vertices")
     public static int n = 4;      //num of vertices
-
 
     public String checkParameters() {
         //d = depth.getValue();
@@ -53,15 +51,13 @@ public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
         GraphModel g = new GraphModel(false);
         Vertex[] v = new Vertex[2 * n];
         Edge[] e = new Edge[4 * n];
-
         //generating vertices
         for (int i = 0; i < 2 * n; i++) {
             v[i] = new Vertex();
         }
         g.insertVertices(v);
 
-
-        int cnt =0;
+        int cnt = 0;
         //generating edges
         for (int i = 0; i < n; i++) {
             e[cnt] = new Edge(v[i], v[(i + 1) % n]);
