@@ -37,8 +37,8 @@ public class AdjacencyMatrix implements GraphReportExtension {
             res.add(Arrays.toString(a));
         res.add("Eigen Values");
         EigenvalueDecomposition ed = A.eig();
-        double rv[] = ed.getRealEigenvalues();
-        double iv[] = ed.getImagEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
+        double[] iv = ed.getImagEigenvalues();
 
 
         for (int i = 0; i < rv.length; i++)

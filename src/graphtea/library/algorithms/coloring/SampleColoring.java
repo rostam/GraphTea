@@ -24,12 +24,10 @@ public class SampleColoring
 
     public SampleColoring(BaseGraph<VertexType, EdgeType> g) {
         graph = g;
-
     }
 
     public SampleColoring() {
         graph = null;
-
     }
 
     public void doColoring() {

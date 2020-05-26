@@ -16,7 +16,7 @@ public class AllPairShortestPathsWithoutWeight implements GraphReportExtension {
      * @return All shortest paths
      */
     public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
-        final Integer dist[][] = new Integer[g.numOfVertices()][g.numOfVertices()];
+        final Integer[][] dist = new Integer[g.numOfVertices()][g.numOfVertices()];
         Iterator<Edge> iet = g.edgeIterator();
         for (int i = 0; i < g.getVerticesCount(); i++)
             for (int j = 0; j < g.getVerticesCount(); j++)
@@ -50,7 +50,7 @@ public class AllPairShortestPathsWithoutWeight implements GraphReportExtension {
         titles.add("Distance");
         ret.setTitles(titles);
 
-        final Integer dist[][] = getAllPairsShortestPathWithoutWeight(g);
+        final Integer[][] dist = getAllPairsShortestPathWithoutWeight(g);
         for (int i = 0; i < dist.length; i++) {
             for (int j = i + 1; j < dist[i].length; j++) {
                 Vector<Object> v = new Vector<>();

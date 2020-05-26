@@ -18,7 +18,7 @@ import java.util.List;
  */
 
 @CommandAttitude(name = "girth_size", abbreviation = "_gs")
-public class GirthSize implements GraphReportExtension {
+public class GirthSize implements GraphReportExtension<Integer> {
 
     private static int bfs(int start, double[][] mat, int cc, int girth) {
         int[] baba = new int[cc];
@@ -49,7 +49,7 @@ public class GirthSize implements GraphReportExtension {
     }
 
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         return getGirthSize(g);
     }
 
