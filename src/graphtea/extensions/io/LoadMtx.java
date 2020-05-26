@@ -35,7 +35,7 @@ public class LoadMtx implements GraphReaderExtension {
         return "mtx";
     }
 
-    public GraphModel read(File file) throws GraphIOException {
+    public GraphModel read(File file) {
         try {
             Matrix mm = MM.loadMatrixFromSPARSE(file);
             int rows = mm.getRowDimension();
@@ -54,7 +54,7 @@ public class LoadMtx implements GraphReaderExtension {
                     }
                 }
             }
-            Point pp[] = PositionGenerators.circle(420, 300, 250, g.numOfVertices());
+            Point[] pp = PositionGenerators.circle(420, 300, 250, g.numOfVertices());
 
             int tmpcnt = 0;
             for (Vertex v : g) {

@@ -114,8 +114,7 @@ public class PrimAlgorithm extends GraphAlgorithm implements AlgorithmExtension 
 
             }
         } finally {
-            for (Edge e : tempEdgeArray)
-                pq.add(e);
+            pq.addAll(tempEdgeArray);
         }
     }
 

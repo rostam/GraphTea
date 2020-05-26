@@ -25,7 +25,7 @@ public class SaveGraph implements GraphWriterExtension {
     }
 
     @Override
-    public void write(File file, GraphModel graph) throws GraphIOException {
+    public void write(File file, GraphModel graph) {
         try {
             ObjectOutputStream out = new ObjectOutputStream(
                     new FileOutputStream(file));

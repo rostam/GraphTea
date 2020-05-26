@@ -41,7 +41,7 @@ public class KruskalAlgorithm extends GraphAlgorithm implements AlgorithmExtensi
         while (eit.hasNext())
             edges.add(eit.next());
 
-        java.util.Collections.sort(edges, (o1, o2) -> {
+        edges.sort((o1, o2) -> {
             if (o1.getWeight() < o2.getWeight())
                 return -1;
             else if (o1.getWeight() == o2.getWeight())

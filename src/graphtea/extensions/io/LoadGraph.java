@@ -32,7 +32,7 @@ public class LoadGraph implements GraphReaderExtension {
         return "tea";
     }
 
-    public GraphModel read(File file) throws GraphIOException {
+    public GraphModel read(File file) {
         try {
             ObjectInputStream in = new ObjectInputStream(
                     new FileInputStream(file));

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class Cluster // Represents a cluster of GraphPoints
 {
-	private ArrayList<GPoint> member;
-	private GPoint center;
+	private final ArrayList<GPoint> member;
+	private final GPoint center;
 
 	public Cluster(GPoint c) {
 		center = c;

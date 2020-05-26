@@ -32,14 +32,13 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
                 "vertex to the target vertex. The red vertex is the current vertex");
         step("---------------------------------------------------------------------<br/>");
 
-        final int dist[] = new int[graph.getVerticesCount()];
+        final int[] dist = new int[graph.getVerticesCount()];
         //the edge connected to i'th vertex
         final HashMap<Vertex, Edge> edges = new HashMap<>();
 
         HashMap<Vertex, Vertex> prev = new HashMap<>();
 
-        for (int i = 0; i < dist.length; i++)
-            dist[i] = Integer.MAX_VALUE;
+        Arrays.fill(dist, Integer.MAX_VALUE);
 
         dist[startVertex.getId()] = 0;
 

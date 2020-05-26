@@ -35,9 +35,7 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
         Partitioner p = new Partitioner(graph);
         AllIndSetSubSetListener l = new AllIndSetSubSetListener();
         p.findAllSubsets(l);
-        Vector<ArrayDeque<BaseVertex>> ret = new Vector<>();
-        ret.addAll(l.maxsets);
-        return ret;
+        return new Vector<>(l.maxsets);
     }
 
     @Override
@@ -101,14 +99,17 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
             IndSetsDialog isd = new IndSetsDialog(ind_sets2,"I^"+(i+2),"");
 
             boolean hasAllVSets = true;
-            for(int k=0;k<ind_sets2.size();k++) {
+            for (Vector<Integer> integers : ind_sets2) {
                 hasAllVSets = true;
-                Vector<Integer> v = ind_sets2.get(k);
-                for(int j=0;j<g.getVerticesCount();j++) {
-                    if(!v.contains(j)) {hasAllVSets = false;break;}
+                Vector<Integer> v = integers;
+                for (int j = 0; j < g.getVerticesCount(); j++) {
+                    if (!v.contains(j)) {
+                        hasAllVSets = false;
+                        break;
+                    }
                 }
 
-                if(hasAllVSets) break;
+                if (hasAllVSets) break;
             }
             String out = "<BR> I^ " + (i+2) +" is computed.";
             if(hasAllVSets)
@@ -122,32 +123,27 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
 
     public Vector<Vector<Integer>> setproduct(Vector<Vector<Integer>> set1,Vector<Vector<Integer>> set2,int minuscount) {
         Vector<Vector<Integer>> ret = new Vector<>();
-        for(int i=0;i<set1.size();i++) {
-            Vector<Integer> tt  = set1.get(i);
-            for(int j=0;j<set2.size();j++) {
-                Vector<Integer> tmp = new Vector<>();
-                for(int k=0;k<set1.get(i).size();k++) {
-                    tmp.add(tt.get(k));
-                }
-                Vector<Integer> tt2 = set2.get(j);
+        for (Vector<Integer> tt : set1) {
+            for (Vector<Integer> integers : set2) {
+                Vector<Integer> tmp = new Vector<>(tt);
                 boolean sameItem = false;
 
-                for (Integer aTt2 : tt2) {
+                for (Integer aTt2 : integers) {
                     int tmpInt = aTt2;
                     if (tmpInt != -1 && tmp.contains(tmpInt)) {
                         sameItem = true;
                     }
                 }
-                if(!sameItem && tmp.size() != 0 && tt2.size() != 0) {
+                if (!sameItem && tmp.size() != 0 && integers.size() != 0) {
                     tmp.add(-1);
-                    tmp.addAll(tt2);
+                    tmp.addAll(integers);
                 }
 
                 int mcount = 0;
-                for(int cnt : tmp) {
-                    if(cnt == -1) mcount ++ ;
+                for (int cnt : tmp) {
+                    if (cnt == -1) mcount++;
                 }
-                if(mcount == minuscount) ret.add(tmp);
+                if (mcount == minuscount) ret.add(tmp);
             }
 
         }

@@ -23,7 +23,7 @@ public class SaveMtx implements GraphWriterExtension {
     }
 
     @Override
-    public void write(File file, GraphModel graph) throws GraphIOException {
+    public void write(File file, GraphModel graph) {
         try {
             MM.saveMtxFormat(file,graph.getAdjacencyMatrix());
         } catch (IOException e) {

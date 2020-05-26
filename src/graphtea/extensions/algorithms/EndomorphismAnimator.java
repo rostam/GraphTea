@@ -25,7 +25,7 @@ public class EndomorphismAnimator extends GraphAlgorithm implements AlgorithmExt
         step("start the algorithm.");
         String str = JOptionPane.showInputDialog(null,
                 "Enter the homomorphism map size: ",
-                "Homomorphism Size", 1);
+                "Homomorphism Size", JOptionPane.INFORMATION_MESSAGE);
         int mapSize = Integer.parseInt(str);
         Vertex[] vs = new Vertex[2*mapSize];
         GPoint[] directions = new GPoint[mapSize];
