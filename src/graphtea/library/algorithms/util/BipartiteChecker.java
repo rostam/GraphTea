@@ -23,7 +23,6 @@ public class BipartiteChecker extends Algorithm implements AutomatedAlgorithm {
 	@SuppressWarnings("unchecked")
 	public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
 	boolean isBipartite(BaseGraph<VertexType, EdgeType> graph) {
-
 		//Copying to ColorableVertex
 		ColorableVertex<VertexType>[] CVArray =  (ColorableVertex<VertexType>[])Array.newInstance(ColorableVertex.class , graph.getVerticesCount());
 		int i=0;
@@ -32,8 +31,6 @@ public class BipartiteChecker extends Algorithm implements AutomatedAlgorithm {
 			CVArray[i] = new ColorableVertex<>(vm);
 			i++;
 		}
-
-
 
 		LinkedList<ColorableVertex<VertexType>> queue = new LinkedList<>();
 		ColorableVertex<VertexType> cv = CVArray[0];

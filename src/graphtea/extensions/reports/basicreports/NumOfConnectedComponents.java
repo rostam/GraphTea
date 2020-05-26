@@ -35,7 +35,7 @@ public class NumOfConnectedComponents implements GraphReportExtension {
             untraversed.add(i);
 
         ArrayList<ArrayList<Integer>> comps = new ArrayList<>();
-        int parent[] = new int[size];
+        int[] parent = new int[size];
         for (int i = 0; i < size; i++)
             parent[i] = -1;
 

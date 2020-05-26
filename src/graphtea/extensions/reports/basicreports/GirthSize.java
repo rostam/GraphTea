@@ -20,9 +20,9 @@ import java.util.List;
 @CommandAttitude(name = "girth_size", abbreviation = "_gs")
 public class GirthSize implements GraphReportExtension {
 
-    private static int bfs(int start, double mat[][], int cc, int girth) {
-        int baba[] = new int[cc];
-        int dist[] = new int[cc];
+    private static int bfs(int start, double[][] mat, int cc, int girth) {
+        int[] baba = new int[cc];
+        int[] dist = new int[cc];
         for (int i = 0; i < cc; i++) {
             baba[i] = AlgorithmUtils.Max_Int;
             dist[i] = AlgorithmUtils.Max_Int;
@@ -58,7 +58,7 @@ public class GirthSize implements GraphReportExtension {
      */
     private static int getGirthSize(GraphModel graph) {
         int size = graph.getVertexArray().length;
-        double mat[][] = graph.getAdjacencyMatrix().getArray();
+        double[][] mat = graph.getAdjacencyMatrix().getArray();
         int girth = AlgorithmUtils.Max_Int;
         for (int i = 0; i < size; i++) {
             int sizeofsmallestcycle = bfs(i, mat, size, girth);
@@ -80,7 +80,6 @@ public class GirthSize implements GraphReportExtension {
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "General";
 	}
 }
