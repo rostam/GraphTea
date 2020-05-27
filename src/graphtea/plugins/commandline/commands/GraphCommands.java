@@ -5,7 +5,10 @@
 package graphtea.plugins.commandline.commands;
 
 import Jama.Matrix;
+import graphtea.extensions.actions.MyGComposition;
+import graphtea.extensions.actions.MyGDisjunction;
 import graphtea.extensions.actions.product.MyGCartesianProduct;
+import graphtea.extensions.actions.product.MyGSymmDiff;
 import graphtea.extensions.actions.product.MyGTensorProduct;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
@@ -331,7 +334,7 @@ public class GraphCommands {
     public void disjunction(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        GDisjunction p = new GDisjunction();
+        MyGDisjunction p = new MyGDisjunction();
         GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
@@ -350,7 +353,7 @@ public class GraphCommands {
     public void symdiff(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        GSymDiff p = new GSymDiff();
+        MyGSymmDiff p = new MyGSymmDiff();
         GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
@@ -371,7 +374,7 @@ public class GraphCommands {
     public void composition(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        GComposition p = new GComposition();
+        MyGComposition p = new MyGComposition();
         GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());

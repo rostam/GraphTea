@@ -25,7 +25,7 @@ public class CoronaProduct implements GraphActionExtension, Parametrizable {
 
     @Override
     public String getDescription() {
-        return "Corona  Product";
+        return "Corona Product";
     }
 
     @Override
