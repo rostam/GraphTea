@@ -2,7 +2,6 @@ package graphtea.extensions.actions.product;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.ui.GTabbedGraphPane;
-import graphtea.library.algorithms.goperators.product.GCartesianProduct;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;

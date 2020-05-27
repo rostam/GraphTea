@@ -5,6 +5,8 @@
 package graphtea.plugins.commandline.commands;
 
 import Jama.Matrix;
+import graphtea.extensions.actions.product.MyGCartesianProduct;
+import graphtea.extensions.actions.product.MyGTensorProduct;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
@@ -283,8 +285,8 @@ public class GraphCommands {
     public void cartesian_product(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        GCartesianProduct p = new GCartesianProduct();
-        GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
+        MyGCartesianProduct p = new MyGCartesianProduct();
+        GraphModel graphModel = p.multiply(g1, g2);
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
@@ -309,8 +311,8 @@ public class GraphCommands {
     public void tensor_product(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        GTensorProduct p = new GTensorProduct();
-        GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
+        MyGTensorProduct p = new MyGTensorProduct();
+        GraphModel graphModel = p.multiply(g1, g2);
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
