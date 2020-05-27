@@ -30,7 +30,7 @@ public class TensorProduct implements GraphActionExtension, Parametrizable {
     @Override
     public void action(GraphData graphData) {
         GTabbedGraphPane gtp = graphData.getBlackboard().getData(GTabbedGraphPane.NAME);
-        MyGTensorProduct tensor = new MyGTensorProduct();
+        GTensorProduct tensor = new GTensorProduct();
         GraphModel g= tensor.multiply(gtp.getGraphs().get(g0),
                 gtp.getGraphs().get(g1));
         tensor.setPositions(g);

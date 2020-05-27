@@ -7,9 +7,9 @@ package graphtea.plugins.commandline.commands;
 import Jama.Matrix;
 import graphtea.extensions.actions.MyGComposition;
 import graphtea.extensions.actions.MyGDisjunction;
-import graphtea.extensions.actions.product.MyGCartesianProduct;
-import graphtea.extensions.actions.product.MyGSymmDiff;
-import graphtea.extensions.actions.product.MyGTensorProduct;
+import graphtea.extensions.actions.product.GCartesianProduct;
+import graphtea.extensions.actions.product.GSymmDiff;
+import graphtea.extensions.actions.product.GTensorProduct;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
@@ -19,7 +19,6 @@ import graphtea.library.algorithms.goperators.EdgeInduced;
 import graphtea.library.algorithms.goperators.GraphUnion;
 import graphtea.library.algorithms.goperators.VertexCorona;
 import graphtea.library.algorithms.goperators.VertexInduced;
-import graphtea.library.algorithms.goperators.product.*;
 import graphtea.library.util.Pair;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.lang.CommandAttitude;
@@ -288,7 +287,7 @@ public class GraphCommands {
     public void cartesian_product(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        MyGCartesianProduct p = new MyGCartesianProduct();
+        GCartesianProduct p = new GCartesianProduct();
         GraphModel graphModel = p.multiply(g1, g2);
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
@@ -314,7 +313,7 @@ public class GraphCommands {
     public void tensor_product(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        MyGTensorProduct p = new MyGTensorProduct();
+        GTensorProduct p = new GTensorProduct();
         GraphModel graphModel = p.multiply(g1, g2);
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
@@ -353,7 +352,7 @@ public class GraphCommands {
     public void symdiff(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        MyGSymmDiff p = new MyGSymmDiff();
+        GSymmDiff p = new GSymmDiff();
         GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());

@@ -7,20 +7,19 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 
 import java.awt.*;
 
-public class MyGCartesianProduct extends MyGProduct {
+public class GSymmDiff extends GProduct {
     @Override
     public boolean compare(Vertex v1OfFirstG, Vertex v2OfFirstG, Vertex v1OfSecondG, Vertex v2OfSecondG) {
-        return (v1OfFirstG == v2OfFirstG
-                && g2.isEdge(v1OfSecondG, v2OfSecondG))
-                || (v1OfSecondG == v2OfSecondG
-                && g1.isEdge(v1OfFirstG, v2OfFirstG));
+        return (g1.isEdge(v1OfFirstG, v2OfFirstG)
+                && !g2.isEdge(v1OfSecondG, v2OfSecondG)) ||
+                (!g1.isEdge(v1OfFirstG, v2OfFirstG)
+                        && g2.isEdge(v1OfSecondG, v2OfSecondG));
     }
 
     @Override
     public void setPositions(GraphModel g) {
         int n = g.getVerticesCount();
-        Point[] ps = PositionGenerators.circle(250, 300, 300, n);
-        setProductLabel(g);
+        Point[] ps = PositionGenerators.circle(200, 300, 300, n);
         int count = 0;
         for (Vertex v : g) {
             v.setLocation(new GPoint(ps[count].x, ps[count].y));

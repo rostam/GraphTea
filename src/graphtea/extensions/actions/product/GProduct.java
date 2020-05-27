@@ -5,7 +5,7 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.util.Pair;
 
-public abstract class MyGProduct {
+public abstract class GProduct {
 
     protected GraphModel g1;
     protected GraphModel g2;
