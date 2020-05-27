@@ -218,7 +218,7 @@ try {
     */
 
     public void setWorkingGraph(GraphModel g) {
-        this.g = g;
+        CircularTreeVisualization.g = g;
     }
 
     public HashMap<Vertex, GPoint> getNewVertexPlaces() {

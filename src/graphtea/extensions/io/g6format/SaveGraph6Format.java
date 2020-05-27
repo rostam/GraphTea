@@ -33,7 +33,7 @@ public class SaveGraph6Format implements GraphWriterExtension {
         try {
             FileWriter fw = new FileWriter(file,true);
             G6Format g6f = new G6Format();
-            String s = g6f.graphToG6(graph);
+            String s = G6Format.graphToG6(graph);
             fw.write(s);
             fw.write(System.lineSeparator());
             fw.close();

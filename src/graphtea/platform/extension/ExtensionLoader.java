@@ -24,8 +24,8 @@ import java.util.Vector;
  * @author Azin Azadi
  */
 public class ExtensionLoader implements StorableOnExit {
-    private static HashSet<ExtensionHandler> registeredExtensionHandlers = new HashSet<>();
-    private static HashSet<UnknownExtensionLoader> registeredUnknownExtensionLoaders = new HashSet<>();
+    private static final HashSet<ExtensionHandler> registeredExtensionHandlers = new HashSet<>();
+    private static final HashSet<UnknownExtensionLoader> registeredUnknownExtensionLoaders = new HashSet<>();
     // categorises the known extensions on their type. The type (eg report, generator, ...) is identified
     // by the respective ExtensionHandler
     public static HashMap<Class<? extends ExtensionHandler>, Vector> extensionsList = new HashMap<>();

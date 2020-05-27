@@ -86,10 +86,10 @@ public class BalabanIndex implements GraphReportExtension{
                 if(g.isEdge(fV,sV)) {
                     DijkstraNonNegative.dijkstra(g,sV);
                     double sum1 = 0;
-                    for(Vertex temp : g) sum1+=(Double)temp.getUserDefinedAttribute(DijkstraNonNegative.Dist);
+                    for(Vertex temp : g) sum1+= (Double)temp.getUserDefinedAttribute(DijkstraNonNegative.Dist);
                     DijkstraNonNegative.dijkstra(g,fV);
                     double sum2 = 0;
-                    for(Vertex temp : g) sum2+=(Double)temp.getUserDefinedAttribute(DijkstraNonNegative.Dist);
+                    for(Vertex temp : g) sum2+= (Double)temp.getUserDefinedAttribute(DijkstraNonNegative.Dist);
                     allSum += 1/Math.sqrt(sum1*sum2);
                 }
             }

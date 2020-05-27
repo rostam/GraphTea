@@ -27,7 +27,7 @@ public class AttributeSetView {
     private AttributeSet a = new AttributeSetImpl();
 
     static int dname = 2, desc = 3, cat = 4, index = 5, visible = 6, valid = 7, EDITOR = 8;
-    private HashMap<String, GBasicCellRenderer> renderers = new HashMap<>();
+    private final HashMap<String, GBasicCellRenderer> renderers = new HashMap<>();
 
     public AttributeSetView() {
         for (int i = 0; i < dlen; i++) {

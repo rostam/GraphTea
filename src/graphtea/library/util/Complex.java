@@ -12,8 +12,8 @@ public final class Complex extends Number {
 /** complex unit j; it holds j*j = -1 */
   public static final Complex j = new Complex(0.0,1.0);
 
-  private double u;
-  private double v;
+  private final double u;
+  private final double v;
 
 /**
 constructs a complex number from real part and imaginary part.

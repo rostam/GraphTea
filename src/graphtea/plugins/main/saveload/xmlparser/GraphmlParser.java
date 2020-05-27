@@ -18,13 +18,13 @@ import org.xml.sax.*;
  */
 public class GraphmlParser implements ContentHandler {
 
-    private java.lang.StringBuffer buffer;
+    private final java.lang.StringBuffer buffer;
 
-    private GraphmlHandler handler;
+    private final GraphmlHandler handler;
 
-    private java.util.Stack context;
+    private final java.util.Stack context;
 
-    private EntityResolver resolver;
+    private final EntityResolver resolver;
 
     /**
      * Creates a parser instance.

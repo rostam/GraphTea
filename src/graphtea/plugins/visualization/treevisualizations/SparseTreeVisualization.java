@@ -152,7 +152,7 @@ public class SparseTreeVisualization implements VisualizationExtension {
     */
 
     public void setWorkingGraph(GraphModel g) {
-        this.graph = g;
+        graph = g;
     }
 
     @UserModifiableProperty(displayName = "Sparse Tree Visualization Width", obeysAncestorCategory = false

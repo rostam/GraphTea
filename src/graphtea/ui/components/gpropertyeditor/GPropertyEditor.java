@@ -121,7 +121,7 @@ public class GPropertyEditor extends JComponent {
 //        l.setPreferredSize(new Dimension(300,300));
     }
 
-    private JTextArea l = new JTextArea();
+    private final JTextArea l = new JTextArea();
 
     private void initComponents() {
         JSplitPane jSplitPane1 = new JSplitPane();

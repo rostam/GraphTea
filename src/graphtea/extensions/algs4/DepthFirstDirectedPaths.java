@@ -47,8 +47,8 @@ package graphtea.extensions.algs4;
  *  @author Kevin Wayne
  */
 public class DepthFirstDirectedPaths {
-    private boolean[] marked;  // marked[v] = true if v is reachable from s
-    private int[] edgeTo;      // edgeTo[v] = last edge on path from s to v
+    private final boolean[] marked;  // marked[v] = true if v is reachable from s
+    private final int[] edgeTo;      // edgeTo[v] = last edge on path from s to v
     private final int s;       // source vertex
 
     /**

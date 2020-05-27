@@ -59,9 +59,9 @@ package graphtea.extensions.algs4;
  *  @author Nate Liu
  */
 public class DijkstraUndirectedSP {
-    private double[] distTo;          // distTo[v] = distance  of shortest s->v path
-    private Edge[] edgeTo;            // edgeTo[v] = last edge on shortest s->v path
-    private IndexMinPQ<Double> pq;    // priority queue of vertices
+    private final double[] distTo;          // distTo[v] = distance  of shortest s->v path
+    private final Edge[] edgeTo;            // edgeTo[v] = last edge on shortest s->v path
+    private final IndexMinPQ<Double> pq;    // priority queue of vertices
 
     /**
      * Computes a shortest-paths tree from the source vertex {@code s} to every

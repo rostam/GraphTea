@@ -42,7 +42,7 @@ import java.util.Iterator;
  *  @author Kevin Wayne
  */
 public class NonrecursiveDirectedDFS {
-    private boolean[] marked;  // marked[v] = is there an s->v path?
+    private final boolean[] marked;  // marked[v] = is there an s->v path?
     /**
      * Computes the vertices reachable from the source vertex {@code s} in the digraph {@code G}.
      * @param  G the digraph

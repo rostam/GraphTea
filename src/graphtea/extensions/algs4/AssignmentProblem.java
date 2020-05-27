@@ -35,13 +35,13 @@ public class AssignmentProblem {
     private static final double FLOATING_POINT_EPSILON = 1E-14;
     private static final int UNMATCHED = -1;
 
-    private int n;              // number of rows and columns
-    private double[][] weight;  // the n-by-n cost matrix
+    private final int n;              // number of rows and columns
+    private final double[][] weight;  // the n-by-n cost matrix
     private double minWeight;   // minimum value of any weight
-    private double[] px;        // px[i] = dual variable for row i
-    private double[] py;        // py[j] = dual variable for col j
-    private int[] xy;           // xy[i] = j means i-j is a match
-    private int[] yx;           // yx[j] = i means i-j is a match
+    private final double[] px;        // px[i] = dual variable for row i
+    private final double[] py;        // py[j] = dual variable for col j
+    private final int[] xy;           // xy[i] = j means i-j is a match
+    private final int[] yx;           // yx[j] = i means i-j is a match
 
     /**
      * Determines an optimal solution to the assignment problem.

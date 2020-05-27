@@ -73,9 +73,9 @@ public class PopupMenuHandler extends AbstractAction {
         }
     }
 
-    private static JPopupMenu graphMnu = new JPopupMenu();
-    private static JPopupMenu vertexMnu = new JPopupMenu();
-    private static JPopupMenu edgeMnu = new JPopupMenu();
+    private static final JPopupMenu graphMnu = new JPopupMenu();
+    private static final JPopupMenu vertexMnu = new JPopupMenu();
+    private static final JPopupMenu edgeMnu = new JPopupMenu();
 
     /**
      * registers a popup menu that will be shown on each graph that assigned to Graph.name in blackboard (after the assignment)

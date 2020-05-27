@@ -28,7 +28,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
     //    private double lasty;
     //    private double lastx;
     private GPoint lastPos;
-    private SelectPluginMethods selMethods;
+    private final SelectPluginMethods selMethods;
 
     /**
      * constructor

@@ -171,9 +171,7 @@ public class LinkedStack<Item> implements Iterable<Item> {
         for (Node x = first; x != null && numberOfNodes <= n; x = x.next) {
             numberOfNodes++;
         }
-        if (numberOfNodes != n) return false;
-
-        return true;
+        return numberOfNodes == n;
     }
 
     /**

@@ -126,7 +126,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
 
     //*****************menu handling------------------------
     public GMenuBar menubar;
-    private GFrame frame;
+    private final GFrame frame;
     private JMenu currentMenu;
 
     public void start_menues(Attributes meta) throws SAXException {
@@ -169,7 +169,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         int place = extractPlace(meta);
         if (label.equals("seperator_menu")) {
             JSeparator js = new JSeparator(JSeparator.HORIZONTAL);
-            menubar.insert(currentMenu, js, place);
+            GMenuBar.insert(currentMenu, js, place);
             return;
         }
         Pair<Integer, String> lInfo = extractLabelInfo(label);
@@ -211,7 +211,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
             item = new GMenuItem(label, action, blackboard, accel, index);
         }
 
-        menubar.insert(currentMenu, item, place);
+        GMenuBar.insert(currentMenu, item, place);
         if (DEBUG) System.err.println("handle_menu: " + meta);
     }
 
@@ -388,7 +388,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
                 c = t.getConstructor(BlackBoard.class);
             } catch (NoSuchMethodException e) {
                 try {
-                    c = t.getConstructor(new Class[]{});
+                    c = t.getConstructor();
                     o = new Object[]{};
                 } catch (NoSuchMethodException e1) {
                     System.err.println("the clazz " + clazz + "does not have a constructor(blackboard) or constructor(), how can i load it?");

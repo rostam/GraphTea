@@ -67,7 +67,7 @@ public class GCellEditor extends AbstractCellEditor implements TableCellEditor, 
         return editor.getEditorComponent(value);
     }
 
-    private static ObjectEditor oe = new ObjectEditor();
+    private static final ObjectEditor oe = new ObjectEditor();
 
     /**
      * gets an editor for the given object, the editor should be registered before,...

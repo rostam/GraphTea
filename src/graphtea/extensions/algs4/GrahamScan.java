@@ -44,7 +44,7 @@ import java.util.Arrays;
  *  @author Kevin Wayne
  */
 public class GrahamScan {
-    private Stack<Point2D> hull = new Stack<Point2D>();
+    private final Stack<Point2D> hull = new Stack<Point2D>();
 
     /**
      * Computes the convex hull of the specified array of points.

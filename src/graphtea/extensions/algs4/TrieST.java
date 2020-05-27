@@ -57,7 +57,7 @@ public class TrieST<Value> {
     // R-way trie node
     private static class Node {
         private Object val;
-        private Node[] next = new Node[R];
+        private final Node[] next = new Node[R];
     }
 
    /**

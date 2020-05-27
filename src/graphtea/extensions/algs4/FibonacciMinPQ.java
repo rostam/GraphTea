@@ -34,7 +34,7 @@ public class FibonacciMinPQ<Key> implements Iterable<Key> {
 	private Node min;					//Minimum Node of the root list
 	private int size;					//Number of keys in the heap
 	private final Comparator<Key> comp;	//Comparator over the keys
-	private HashMap<Integer, Node> table = new HashMap<Integer, Node>(); //Used for the consolidate operation
+	private final HashMap<Integer, Node> table = new HashMap<Integer, Node>(); //Used for the consolidate operation
 	
 	//Represents a Node of a tree
 	private class Node {
@@ -279,7 +279,7 @@ public class FibonacciMinPQ<Key> implements Iterable<Key> {
 	}
 	
 	private class MyIterator implements Iterator<Key> {
-		private FibonacciMinPQ<Key> copy;
+		private final FibonacciMinPQ<Key> copy;
 		
 		
 		//Constructor takes linear time

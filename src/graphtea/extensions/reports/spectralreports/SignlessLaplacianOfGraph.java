@@ -106,8 +106,8 @@ public class SignlessLaplacianOfGraph implements GraphReportExtension  {
 		ArrayList<String> result = new ArrayList<>();
 		result.add("Eigen Value Decomposition:");
 		EigenvalueDecomposition ed = getSignlessLaplacian(matrix).eig();
-		double rv[] = ed.getRealEigenvalues();
-		double iv[] = ed.getImagEigenvalues();
+		double[] rv = ed.getRealEigenvalues();
+		double[] iv = ed.getImagEigenvalues();
 		for (int i = 0; i < rv.length; i++)
 			if (iv[i] != 0)
 				result.add("" + round(rv[i], 5) + " + " + round(iv[i], 5) + "i");
@@ -144,10 +144,7 @@ public class SignlessLaplacianOfGraph implements GraphReportExtension  {
 
 				if (a== -1)
 					return null;
-				else if(a==0)
-					inDegree = true;
-				else
-					inDegree = false;
+				else inDegree = a == 0;
 			}
 			Matrix A = g.getWeightedAdjacencyMatrix();
 			ArrayList<String> calc = new ArrayList<>(ShowSignlessLaplacian(A));

@@ -101,7 +101,7 @@ public class one {
    }
 
 
-   public static void main (String argv[]) {
+   public static void main (String[] argv) {
 
    /* 
     | Tests LU, QR, SVD and symmetric Eig decompositions.

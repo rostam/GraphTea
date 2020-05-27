@@ -18,11 +18,13 @@ public class JFontChooser extends JComponent {
     public static int OK_OPTION = 0;
     public static int CANCEL_OPTION = 1;
 
-    private JList fontList, sizeList;
-    private JCheckBox cbBold, cbItalic;
-    private JTextArea txtSample;
+    private final JList fontList;
+    private final JList sizeList;
+    private final JCheckBox cbBold;
+    private final JCheckBox cbItalic;
+    private final JTextArea txtSample;
 
-    private String[] sizes = new String[]
+    private final String[] sizes = new String[]
             {"2", "4", "6", "8", "10", "12", "13", "14", "16", "18", "20", "22", "24", "30", "36", "48", "72"};
 
     public JFontChooser() {

@@ -46,15 +46,15 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
     }
 
     public void draw(Graphics g, int x, int y, int shapeWidth, int shapeHeight) {
-        ((Graphics2D) g).translate(x, y);
+        g.translate(x, y);
         drawShape(this.name, g, shapeWidth, shapeHeight);
-        ((Graphics2D) g).translate(-x, -y);
+        g.translate(-x, -y);
     }
 
     public void fill(Graphics g, int x, int y, int shapeWidth, int shapeHeight) {
-        ((Graphics2D) g).translate(x, y);
+        g.translate(x, y);
         fillShape(this.name, g, shapeWidth, shapeHeight);
-        ((Graphics2D) g).translate(-x, -y);
+        g.translate(-x, -y);
     }
 
     public String name;

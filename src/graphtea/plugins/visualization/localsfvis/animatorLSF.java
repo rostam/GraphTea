@@ -26,8 +26,8 @@ class animatorLSF extends Thread {
         getVertices();
     }
 
-    private GraphModel g;
-    private AbstractGraphRenderer gv;
+    private final GraphModel g;
+    private final AbstractGraphRenderer gv;
     private Vertex[] v;
     private GRect[] vRects;  //represents the rectangle arround each vertex
     private GPoint[] verPos; //fresh generated vertex positions!

@@ -27,7 +27,7 @@ public class VisualizationExtensionAction extends AbstractExtensionAction<Visual
     public void performExtension() {
         GeneralAnimator t;
         VisualizationExtension ve = getTarget();
-        GraphModel g = (GraphModel) blackboard.getData(GraphAttrSet.name);
+        GraphModel g = blackboard.getData(GraphAttrSet.name);
         ve.setWorkingGraph(g);
         t = new GeneralAnimator(ve.getNewVertexPlaces(), g, blackboard);
         t.start();

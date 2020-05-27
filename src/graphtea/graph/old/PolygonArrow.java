@@ -14,8 +14,8 @@ public class PolygonArrow implements Arrow {
      *
      */
     private static final long serialVersionUID = -17351484519616222L;
-    private Polygon p;
-    private String name;
+    private final Polygon p;
+    private final String name;
 
     public PolygonArrow(Polygon p, String name) {
         this.p = p;

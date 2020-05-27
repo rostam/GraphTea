@@ -55,7 +55,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
     // helper B-tree node data type
     private static final class Node {
         private int m;                             // number of children
-        private Entry[] children = new Entry[M];   // the array of children
+        private final Entry[] children = new Entry[M];   // the array of children
 
         // create a node with k children
         private Node(int k) {

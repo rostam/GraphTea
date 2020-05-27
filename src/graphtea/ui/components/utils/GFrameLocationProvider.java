@@ -10,8 +10,8 @@ import java.awt.*;
  * @author rouzbeh ebrahimi
  */
 public class GFrameLocationProvider {
-    private static int coefficent = 16;
-    private static int prefCoef = 18;
+    private static final int coefficent = 16;
+    private static final int prefCoef = 18;
 
     public static Point getLocation() {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();

@@ -68,10 +68,10 @@ package graphtea.extensions.algs4;
 public class PrimMST {
     private static final double FLOATING_POINT_EPSILON = 1E-12;
 
-    private Edge[] edgeTo;        // edgeTo[v] = shortest edge from tree vertex to non-tree vertex
-    private double[] distTo;      // distTo[v] = weight of shortest such edge
-    private boolean[] marked;     // marked[v] = true if v on tree, false otherwise
-    private IndexMinPQ<Double> pq;
+    private final Edge[] edgeTo;        // edgeTo[v] = shortest edge from tree vertex to non-tree vertex
+    private final double[] distTo;      // distTo[v] = weight of shortest such edge
+    private final boolean[] marked;     // marked[v] = true if v on tree, false otherwise
+    private final IndexMinPQ<Double> pq;
 
     /**
      * Compute a minimum spanning tree (or forest) of an edge-weighted graph.

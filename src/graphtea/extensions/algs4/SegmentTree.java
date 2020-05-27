@@ -33,9 +33,9 @@ import java.util.Arrays;
  */
 public class SegmentTree {
 
-    private Node[] heap;
-    private int[] array;
-    private int size;
+    private final Node[] heap;
+    private final int[] array;
+    private final int size;
 
     /**
      * Time-Complexity:  O(n*log(n))
@@ -45,7 +45,7 @@ public class SegmentTree {
     public SegmentTree(int[] array) {
         this.array = Arrays.copyOf(array, array.length);
         //The max size of this array is about 2 * 2 ^ log2(n) + 1
-        size = (int) (2 * Math.pow(2.0, Math.floor((Math.log((double) array.length) / Math.log(2.0)) + 1)));
+        size = (int) (2 * Math.pow(2.0, Math.floor((Math.log(array.length) / Math.log(2.0)) + 1)));
         heap = new Node[size];
         build(1, 0, array.length);
     }
@@ -292,7 +292,7 @@ public class SegmentTree {
                 StdOut.println("Segment Tree not initialized");
                 continue;
             }
-            int array[];
+            int[] array;
             switch (line[0]) {
                 case "set":
                     array = new int[line.length - 1];

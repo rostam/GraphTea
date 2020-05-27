@@ -27,7 +27,7 @@ import java.util.Arrays;
  *  @author Kevin Wayne
  */
 public class StaticSETofInts {
-    private int[] a;
+    private final int[] a;
 
     /**
      * Initializes a set of integers specified by the integer array.

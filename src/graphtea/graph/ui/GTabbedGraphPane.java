@@ -34,7 +34,7 @@ public class GTabbedGraphPane extends GTabbedPane {
         return b.getData(GTabbedGraphPane.NAME);
     }
 
-    private HashMap<String, GraphModel> graphs = new HashMap<>();
+    private final HashMap<String, GraphModel> graphs = new HashMap<>();
 
     public GTabbedGraphPane(BlackBoard b) {
         super(b);
@@ -83,7 +83,7 @@ public class GTabbedGraphPane extends GTabbedPane {
         graphs.put(g.getLabel(),g);
 
         new GraphNotifiableAttrSet(g).addAttributeListener(new AttributeListener() {
-            JComponent cc = gsp;
+            final JComponent cc = gsp;
 
             public void attributeUpdated(String name, Object oldVal, Object newVal) {
                 if (name.equals(GraphAttrSet.LABEL))

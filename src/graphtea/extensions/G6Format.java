@@ -13,11 +13,11 @@ import java.util.Vector;
  * @author M. Ali Rostami
  */
 public class G6Format {
-    private static int BIAS6 = 63;
-    private static int SMALLN = 62;
-    private static int SMALLISHN = 258047;
-    private static int TOPBIT6 = 32;
-    private static int  WORDSIZE = 32;
+    private static final int BIAS6 = 63;
+    private static final int SMALLN = 62;
+    private static final int SMALLISHN = 258047;
+    private static final int TOPBIT6 = 32;
+    private static final int  WORDSIZE = 32;
     private static String g6_graph;
 
 

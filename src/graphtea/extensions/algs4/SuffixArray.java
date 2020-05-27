@@ -61,7 +61,7 @@ import java.util.Arrays;
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  */
 public class SuffixArray {
-    private Suffix[] suffixes;
+    private final Suffix[] suffixes;
 
     /**
      * Initializes a suffix array for the given {@code text} string.

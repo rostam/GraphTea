@@ -23,7 +23,7 @@ public class ShellCodeCompletion implements NameCompletion {
     public HashMap<String, Method> commands;
     public HashMap<String, String> abbrs;
     Interpreter interpreter;
-    private HashMap<String, Class> ext_commands;
+    private final HashMap<String, Class> ext_commands;
 
     public ShellCodeCompletion(Interpreter interpreter
             , HashMap<String, Method> commands,

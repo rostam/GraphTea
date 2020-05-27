@@ -35,8 +35,8 @@ import java.util.Hashtable;
  */
 public class ExampleFileFilter extends FileFilter {
 
-    private static String TYPE_UNKNOWN = "Type Unknown";
-    private static String HIDDEN_FILE = "Hidden File";
+    private static final String TYPE_UNKNOWN = "Type Unknown";
+    private static final String HIDDEN_FILE = "Hidden File";
 
     private Hashtable filters = null;
     private String description = null;
@@ -165,9 +165,9 @@ public class ExampleFileFilter extends FileFilter {
                 // build the defaultValue from the extension list
                 Enumeration extensions = filters.keys();
                 if (extensions != null) {
-                    fullDescription += "." + (String) extensions.nextElement();
+                    fullDescription += "." + extensions.nextElement();
                     while (extensions.hasMoreElements()) {
-                        fullDescription += ", ." + (String) extensions.nextElement();
+                        fullDescription += ", ." + extensions.nextElement();
                     }
                 }
                 fullDescription += ")";

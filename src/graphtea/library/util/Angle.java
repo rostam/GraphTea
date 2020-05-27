@@ -51,7 +51,7 @@ public final class Angle {
      * private data
      */
     private double _radians; // angle in radians
-    private int _unit; // defining unit on angle
+    private final int _unit; // defining unit on angle
 
     /**
      * constructs an angle 0 rad

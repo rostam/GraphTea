@@ -22,7 +22,7 @@ import java.io.IOException;
 
  */
 public class GraphReaderExtensionAction extends AbstractExtensionAction {
-    private GraphReaderExtension gi;
+    private final GraphReaderExtension gi;
     private String prefix;
 
     public GraphReaderExtensionAction(BlackBoard bb, GraphReaderExtension gi) {

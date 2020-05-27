@@ -54,7 +54,7 @@ package graphtea.extensions.algs4;
  *  @author Kevin Wayne
  */
 public class TransitiveClosure {
-    private DirectedDFS[] tc;  // tc[v] = reachable from v
+    private final DirectedDFS[] tc;  // tc[v] = reachable from v
 
     /**
      * Computes the transitive closure of the digraph {@code G}.

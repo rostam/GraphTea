@@ -40,7 +40,7 @@ public class TestListGraph {
         }
 
         public boolean doPostWork(BaseVertex returnFrom, BaseVertex returnTo) {
-            System.out.println("");
+            System.out.println();
             System.out.print("<-" + returnTo.getId());
             return false;
         }
@@ -58,7 +58,7 @@ public class TestListGraph {
         }
     }
 
-    public static void mainCheckAcyclicChecker(String args[]) {
+    public static void mainCheckAcyclicChecker(String[] args) {
         ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph = new ListGraph<>(true, 0);
         BaseVertex v1 = new BaseVertex();
         BaseVertex v2 = new BaseVertex();
@@ -94,7 +94,7 @@ public class TestListGraph {
           */
     }
 
-    public static void mainCheckConnectivityChecker(String args[]) {
+    public static void mainCheckConnectivityChecker(String[] args) {
         final int iterations = 100000;
         int connected = 0;
         for (int i = 0; i < iterations; ++i) {
@@ -107,7 +107,7 @@ public class TestListGraph {
         System.out.println("Graph connected: " + ((double) (connected)) / (iterations) * 100 + "% of times.");
     }
 
-    public static void mainCheckTraversals(String args[]) {
+    public static void mainCheckTraversals(String[] args) {
         ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph =
                 generateRandomListGraph(30, 100);
 
@@ -165,7 +165,7 @@ public class TestListGraph {
     }
 
 
-    public static void mainTestVertexInduced(String args[]) {
+    public static void mainTestVertexInduced(String[] args) {
 //        ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph = generateRandomListGraph(30, 100);
 //        myListGraph.dump();
 //
@@ -180,7 +180,7 @@ public class TestListGraph {
 //        vInducedGraph.dump();
     }
 
-    public static void mainTestEdgeInduced(String args[]) {
+    public static void mainTestEdgeInduced(String[] args) {
 //        ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph = generateRandomListGraph(30, 100);
 //        myListGraph.dump();
 //
@@ -199,7 +199,7 @@ public class TestListGraph {
 //        eInducedGraph.dump();
     }
 
-    public static void mainOld(String args[]) {
+    public static void mainOld(String[] args) {
         try {
             ListGraph<BaseVertex, BaseEdge<BaseVertex>> myList = new ListGraph<>();
             BaseVertex v0 = new BaseVertex();
@@ -269,10 +269,10 @@ public class TestListGraph {
 //
 //    }
 
-    public static void main/*TestLightEdgeIterator*/(String args[]) {
+    public static void main/*TestLightEdgeIterator*/(String[] args) {
         ListGraph<BaseVertex, BaseEdge<BaseVertex>> g
                 = new ListGraph<>(false, 3);
-        BaseVertex v[] = new BaseVertex[3];
+        BaseVertex[] v = new BaseVertex[3];
         for (int i = 0; i < 3; i++) {
             v[i] = new BaseVertex();
             g.insertVertex(v[i]);

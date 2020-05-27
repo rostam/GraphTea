@@ -39,8 +39,8 @@ import java.util.HashMap;
  * @see graphtea.plugins.commandline.ShellHyperlinkHandler
  */
 public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener {
-    private BlackBoard blackboard;
-    private static HashMap<String, HyperlinkHandler> handlers = new HashMap<>();
+    private final BlackBoard blackboard;
+    private static final HashMap<String, HyperlinkHandler> handlers = new HashMap<>();
     JEditorPane jta;
 
     static {

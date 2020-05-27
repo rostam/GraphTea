@@ -36,7 +36,7 @@ public class Prim extends Algorithm implements AutomatedAlgorithm {
      * of the graph elements, because graph edges and vertices are going to be
      * copied to the newly created spanning tree.
      */
-    private EdgeVertexCopier<Vertex, Edge> gc;
+    private final EdgeVertexCopier<Vertex, Edge> gc;
     /**
      * Priority queue implemented as a binary heap to store edges, sorted according
      * to their weights.

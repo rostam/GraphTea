@@ -111,10 +111,10 @@ public class GRect {
         long var9 = (long)this.h;
         var7 += var3;
         var9 += var5;
-        var3 -= (long)var1;
-        var5 -= (long)var2;
-        var7 += (long)var1;
-        var9 += (long)var2;
+        var3 -= var1;
+        var5 -= var2;
+        var7 += var1;
+        var9 += var2;
         if(var7 < var3) {
             var7 -= var3;
             if(var7 < -2147483648L) {

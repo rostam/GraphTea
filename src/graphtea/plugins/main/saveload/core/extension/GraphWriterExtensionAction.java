@@ -25,7 +25,7 @@ import java.io.IOException;
  */
 public class GraphWriterExtensionAction extends AbstractExtensionAction {
 
-    private GraphWriterExtension ge;
+    private final GraphWriterExtension ge;
     private String prefix;
 
     public GraphWriterExtensionAction(BlackBoard bb, GraphWriterExtension ge) {
@@ -57,7 +57,7 @@ public class GraphWriterExtensionAction extends AbstractExtensionAction {
     GraphIOException gioe;
 
     private void exportGraph() throws IOException {
-        g = ((GraphModel) (blackboard.getData(GraphAttrSet.name)));
+        g = blackboard.getData(GraphAttrSet.name);
         JFileChooser fileChooser = new JFileChooser();
         ExampleFileFilter fileFilter = new ExampleFileFilter(ge.getExtension(), ge.getName());
         fileFilter.setDescription(ge.getDescription());

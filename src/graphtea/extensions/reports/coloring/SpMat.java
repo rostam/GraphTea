@@ -12,7 +12,8 @@ import java.util.Vector;
  *
  */
 public class SpMat extends Vector<HashSet<Integer>> {
-    private int rows, cols;
+    private final int rows;
+    private final int cols;
 
     public SpMat(int rows, int cols) {
         this.rows = rows;
@@ -66,9 +67,7 @@ public class SpMat extends Vector<HashSet<Integer>> {
 
 
     public void set(int i, int j) {
-        if (!this.get(i).contains(j)) {
-            this.get(i).add(j);
-        }
+        this.get(i).add(j);
     }
 
     public boolean contains(int i, int j) {

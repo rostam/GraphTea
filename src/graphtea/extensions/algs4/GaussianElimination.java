@@ -59,7 +59,7 @@ public class GaussianElimination {
 
     private final int m;      // number of rows
     private final int n;      // number of columns
-    private double[][] a;     // m-by-(n+1) augmented matrix
+    private final double[][] a;     // m-by-(n+1) augmented matrix
 
     /**
      * Solves the linear system of equations <em>Ax</em> = <em>b</em>,

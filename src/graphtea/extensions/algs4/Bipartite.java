@@ -42,9 +42,9 @@ package graphtea.extensions.algs4;
  */
 public class Bipartite {
     private boolean isBipartite;   // is the graph bipartite?
-    private boolean[] color;       // color[v] gives vertices on one side of bipartition
-    private boolean[] marked;      // marked[v] = true if v has been visited in DFS
-    private int[] edgeTo;          // edgeTo[v] = last edge on path to v
+    private final boolean[] color;       // color[v] gives vertices on one side of bipartition
+    private final boolean[] marked;      // marked[v] = true if v has been visited in DFS
+    private final int[] edgeTo;          // edgeTo[v] = last edge on path to v
     private Stack<Integer> cycle;  // odd-length cycle
 
     /**

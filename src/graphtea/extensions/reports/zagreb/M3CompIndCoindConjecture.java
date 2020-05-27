@@ -34,8 +34,7 @@ public class M3CompIndCoindConjecture implements GraphReportExtension{
     public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifc
-        = new ZagrebIndexFunctions((graphtea.graph.graph.GraphModel)
-                GraphComplement.complement(g));
+        = new ZagrebIndexFunctions(GraphComplement.complement(g));
 
 
         RenderTable ret = new RenderTable();

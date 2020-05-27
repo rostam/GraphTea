@@ -21,7 +21,7 @@ import java.util.Vector;
  * @author azin azadi
  */
 public class SelectPluginMethods implements PluginMethods {
-    private BlackBoard b;
+    private final BlackBoard b;
 
     public SelectPluginMethods(BlackBoard b) {
         this.b = b;

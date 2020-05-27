@@ -42,7 +42,7 @@ public class ShellServerCommands {
                     ServerSocket ss = new ServerSocket(1234);
                     final Socket s = ss.accept();
                     ConsoleInterface ci = new ConsoleInterface() {
-                        Reader r = new InputStreamReader(s.getInputStream());
+                        final Reader r = new InputStreamReader(s.getInputStream());
 
                         public Reader getIn() {
                             try {

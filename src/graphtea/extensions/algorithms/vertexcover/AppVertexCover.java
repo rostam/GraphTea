@@ -27,7 +27,7 @@ public class AppVertexCover extends Algorithm implements AutomatedAlgorithm {
      */
     final GraphModel graph;
 
-    private EdgeVertexConverter<Vertex, Vertex, Edge, Edge> gc;
+    private final EdgeVertexConverter<Vertex, Vertex, Edge, Edge> gc;
 
     /**
      * @param graph The input graph

@@ -54,7 +54,7 @@ public class EdgeWeightedGraph {
 
     private final int V;
     private int E;
-    private Bag<Edge>[] adj;
+    private final Bag<Edge>[] adj;
     
     /**
      * Initializes an empty edge-weighted graph with {@code V} vertices and 0 edges.

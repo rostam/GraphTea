@@ -22,7 +22,7 @@ import graphtea.plugins.main.core.actions.edge.AddEdge;
 public class EdgeCommands {
 
     BlackBoard bb;
-    private GraphData datas;
+    private final GraphData datas;
 
     public EdgeCommands(BlackBoard bb) {
         this.bb = bb;
@@ -33,7 +33,7 @@ public class EdgeCommands {
     public void addEdge(@Parameter(name = "first vertex label")String label1
             , @Parameter(name = "second vertex label")String label2) throws ShellCommandException {
         try {
-            AddEdge.doJob(((GraphModel) bb.getData(GraphAttrSet.name)), getVertexByLabel(label1), getVertexByLabel(label2));
+            AddEdge.doJob(bb.getData(GraphAttrSet.name), getVertexByLabel(label1), getVertexByLabel(label2));
         } catch (NullPointerException e) {
             throw new ShellCommandException("your entered vertex label doesnt exist");
 //            Init.run.ext_console.error("your entered vertex label doesnt exist!");

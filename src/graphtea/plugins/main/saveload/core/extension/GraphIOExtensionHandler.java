@@ -20,7 +20,7 @@ import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 
  */
 public class GraphIOExtensionHandler implements ExtensionHandler, StorableOnExit {
-    private boolean handlingReaders;
+    private final boolean handlingReaders;
     private AbstractAction a = null;
 
     {

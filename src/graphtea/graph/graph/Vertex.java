@@ -34,7 +34,7 @@ public class Vertex extends BaseVertex {
 
     public boolean isSelected = false;
     String label = null;
-    private Point center = new Point();
+    private final Point center = new Point();
     //    private static GPoint dp=new GPoint(100,100);
     //represents the location of the vertex on the graph, this location will not changed by zooming and similar operations, the location only change by moving the vertex
     private GPoint location = new GPoint(100, 100);

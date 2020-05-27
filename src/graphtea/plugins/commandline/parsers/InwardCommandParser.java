@@ -30,8 +30,8 @@ public class InwardCommandParser {
     public HashMap<String, Method> commands = new HashMap<>();
     public HashMap<String, String> abbrs = new HashMap<>();
 
-    private Interpreter interpreter;
-    private Shell shell;
+    private final Interpreter interpreter;
+    private final Shell shell;
     public static String evaluations;
 
 

@@ -71,11 +71,11 @@ class Painter implements PaintHandler {
         if (n == 0) return;
 
         AbstractGraphRenderer.getCurrentGraphRenderer(gd.getBlackboard()).ignoreRepaints(() -> {
-            Vertex V[] = G.getVertexArray();
-            final Vertex parent[] = new Vertex[n];
+            Vertex[] V = G.getVertexArray();
+            final Vertex[] parent = new Vertex[n];
             //consider the hole structure as a tree
             AlgorithmUtils.BFSrun(G, V[0], (v, p) -> parent[v.getId()] = p);
-            final int numChild[] = new int[n];
+            final int[] numChild = new int[n];
             for(int nc = 0;nc < numChild.length;nc++) numChild[nc]=0;
 
 

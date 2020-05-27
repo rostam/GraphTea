@@ -81,7 +81,7 @@ package graphtea.extensions.algs4;
  */
 
 public class QuickFindUF {
-    private int[] id;    // id[i] = component identifier of i
+    private final int[] id;    // id[i] = component identifier of i
     private int count;   // number of components
 
     /**

@@ -24,7 +24,7 @@ public class GeneralAnimator implements Runnable {
     GraphModel g;
     AbstractGraphRenderer gv;
     public Thread animate;
-    private BlackBoard blackboard;
+    private final BlackBoard blackboard;
 
     public GeneralAnimator(HashMap<Vertex, GPoint> vertexDestinations, GraphModel g, BlackBoard blackboard) {
         this.vertexDestinations = vertexDestinations;

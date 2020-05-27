@@ -18,8 +18,8 @@ import java.util.Stack;
 public class UndoAction extends AbstractAction {
     public static final String UNDO_EVENT = UIUtils.getUIEventKey("Undo Action");
     public static final String REDO_EVENT = UIUtils.getUIEventKey("Redo Action");
-    private HashMap<GraphModel, Stack<GraphSaveObject>> undoers = new HashMap<>();
-    private HashMap<GraphModel, Stack<GraphSaveObject>> redoers = new HashMap<>();
+    private final HashMap<GraphModel, Stack<GraphSaveObject>> undoers = new HashMap<>();
+    private final HashMap<GraphModel, Stack<GraphSaveObject>> redoers = new HashMap<>();
 
     public void pushUndo(GraphModel g) {
         if (g == null) return;

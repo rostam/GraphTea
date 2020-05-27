@@ -47,11 +47,11 @@ import java.util.Random;
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  */
 public class RabinKarp {
-    private String pat;      // the pattern  // needed only for Las Vegas
-    private long patHash;    // pattern hash value
-    private int m;           // pattern length
-    private long q;          // a large prime, small enough to avoid long overflow
-    private int R;           // radix
+    private final String pat;      // the pattern  // needed only for Las Vegas
+    private final long patHash;    // pattern hash value
+    private final int m;           // pattern length
+    private final long q;          // a large prime, small enough to avoid long overflow
+    private final int R;           // radix
     private long RM;         // R^(M-1) % Q
 
     /**

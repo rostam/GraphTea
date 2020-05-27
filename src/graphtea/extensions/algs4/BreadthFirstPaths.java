@@ -60,9 +60,9 @@ package graphtea.extensions.algs4;
  */
 public class BreadthFirstPaths {
     private static final int INFINITY = Integer.MAX_VALUE;
-    private boolean[] marked;  // marked[v] = is there an s-v path
-    private int[] edgeTo;      // edgeTo[v] = previous edge on shortest s-v path
-    private int[] distTo;      // distTo[v] = number of edges shortest s-v path
+    private final boolean[] marked;  // marked[v] = is there an s-v path
+    private final int[] edgeTo;      // edgeTo[v] = previous edge on shortest s-v path
+    private final int[] distTo;      // distTo[v] = number of edges shortest s-v path
 
     /**
      * Computes the shortest path between the source vertex {@code s}

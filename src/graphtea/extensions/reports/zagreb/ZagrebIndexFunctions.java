@@ -177,7 +177,7 @@ public class ZagrebIndexFunctions {
         double ret = 0;
         if(g.getEdgesCount()==1) return ret;
         GraphModel lg = Utils.createLineGraph(g);
-        GraphModel clg = (GraphModel) LibraryUtils.complement(lg);
+        GraphModel clg = LibraryUtils.complement(lg);
 
         for (Edge e : clg.getEdges()) {
             int v1 = lg.getDegree(lg.getVertex(e.source.getId()));
@@ -193,7 +193,7 @@ public class ZagrebIndexFunctions {
         double ret = 0;
         if(g.getEdgesCount()==1) return ret;
         GraphModel lg = Utils.createLineGraph(g);
-        GraphModel clg = (GraphModel) LibraryUtils.complement(lg);
+        GraphModel clg = LibraryUtils.complement(lg);
 
         for (Edge e : clg.getEdges()) {
             int v1 = lg.getDegree(lg.getVertex(e.source.getId()));
@@ -257,7 +257,7 @@ public class ZagrebIndexFunctions {
     double getFirstZagrebCoindex(double alpha) {
         double first_zagreb = 0;
 
-        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
+        GraphModel g2 = LibraryUtils.complement(g);
         for (Edge e : g2.getEdges()) {
             int v1 = g.getDegree(g.getVertex(e.source.getId()));
             int v2 = g.getDegree(g.getVertex(e.target.getId()));
@@ -270,7 +270,7 @@ public class ZagrebIndexFunctions {
     double getHarmonicCoindex() {
         double harmonic = 0;
 
-        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
+        GraphModel g2 = LibraryUtils.complement(g);
         for (Edge e : g2.getEdges()) {
             int v1 = g.getDegree(g.getVertex(e.source.getId()));
             int v2 = g.getDegree(g.getVertex(e.target.getId()));
@@ -283,7 +283,7 @@ public class ZagrebIndexFunctions {
     double getSecondZagrebCoindex(double alpha) {
         double second_zagreb = 0;
 
-        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
+        GraphModel g2 = LibraryUtils.complement(g);
 
         for (Edge e : g2.getEdges()) {
             int v1 = g.getDegree(g.getVertex(e.source.getId()));
@@ -543,8 +543,7 @@ public class ZagrebIndexFunctions {
         else if(e1.source.getId() == e2.source.getId()) return true;
         else if(e1.source.getId() == e2.target.getId()) return true;
         else if(e1.target.getId() == e2.source.getId()) return true;
-        else if(e1.target.getId() == e2.target.getId()) return true;
-        return false;
+        else return e1.target.getId() == e2.target.getId();
     }
 
     public double getGAindex() {

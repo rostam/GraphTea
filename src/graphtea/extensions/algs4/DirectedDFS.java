@@ -41,7 +41,7 @@ package graphtea.extensions.algs4;
  *  @author Kevin Wayne
  */
 public class DirectedDFS {
-    private boolean[] marked;  // marked[v] = true if v is reachable
+    private final boolean[] marked;  // marked[v] = true if v is reachable
                                // from source (or sources)
     private int count;         // number of vertices reachable from s
 

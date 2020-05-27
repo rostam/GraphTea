@@ -19,7 +19,7 @@ import java.util.Map;
  * @see graphtea.graph.atributeset.GraphAttrSet
  */
 public class VertexAttrSet implements AttributeSet {
-    private Vertex v;
+    private final Vertex v;
     public static final String LABEL = "Label";
     public static final String COLOR = "Color";
     public static final String SHAPE = "Shape";

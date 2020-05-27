@@ -78,8 +78,8 @@ public class Alphabet {
     public static final Alphabet UNICODE16      = new Alphabet(65536);
 
 
-    private char[] alphabet;     // the characters in the alphabet
-    private int[] inverse;       // indices
+    private final char[] alphabet;     // the characters in the alphabet
+    private final int[] inverse;       // indices
     private final int R;         // the radix of the alphabet
 
     /**

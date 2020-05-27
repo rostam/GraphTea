@@ -14,7 +14,7 @@ import java.awt.*;
 public class ReportsSideBar implements GComponentInterface {
     public Component getComponent(BlackBoard b) {
 
-        ReportsUI reportsUI = ((ReportsUI) b.getData(GraphReportExtensionHandler.REPORTS_SIDEBAR));
+        ReportsUI reportsUI = b.getData(GraphReportExtensionHandler.REPORTS_SIDEBAR);
 //        reportsUI.reCalculateReports();
         return reportsUI.sidebar;
 

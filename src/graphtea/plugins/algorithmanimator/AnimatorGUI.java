@@ -22,7 +22,7 @@ public class AnimatorGUI {
     public JButton playOneStepButton;
     public JSlider speedSlider;
     public GHTMLPageComponent algorithmOutputTextArea;
-    private BlackBoard blackboard;
+    private final BlackBoard blackboard;
 
     public AnimatorGUI(ActionListener listener, BlackBoard blackboard) {
         this.blackboard = blackboard;

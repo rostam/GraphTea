@@ -29,7 +29,7 @@ public class GCellRenderer implements TableCellRenderer, ListCellRenderer {
     public static HashMap<Class, GBasicCellRenderer> knownRenderers = new HashMap<>();
     private AttributeSetView attributes;
     //private int lastRow,lastColumn;
-    private HashMap<Integer, Component> lastRenderers = new HashMap<>();
+    private final HashMap<Integer, Component> lastRenderers = new HashMap<>();
 
     public static final Color SELECTED_COLOR = Color.red;
     /**

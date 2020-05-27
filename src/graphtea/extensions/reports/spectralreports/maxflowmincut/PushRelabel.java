@@ -22,12 +22,12 @@ public class PushRelabel extends MaxFlow{
 
 
 
-	private int height[];
-	private int excess[];
-	private Integer current[];
-	private HashMap <Integer, LinkedList<Integer>> neighborMap ;
-	private HashMap <Integer, Iterator<Integer>> iterMap ;
-	private boolean isDirecte;
+	private int[] height;
+	private int[] excess;
+	private Integer[] current;
+	private final HashMap <Integer, LinkedList<Integer>> neighborMap ;
+	private final HashMap <Integer, Iterator<Integer>> iterMap ;
+	private final boolean isDirecte;
 
 
 

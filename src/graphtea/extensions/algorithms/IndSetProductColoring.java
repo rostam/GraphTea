@@ -49,7 +49,7 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
             e.printStackTrace();
         }
 
-        gu.setMessage("<p><h1>The Zeta transformation of I is computed. <br/> " +
+        GraphUtils.setMessage("<p><h1>The Zeta transformation of I is computed. <br/> " +
                 "The example here is for three vertices.</h1></p><p>" +
                 "<table><tr><td><h1>I</h1></td><td>" +
                 "<img src=\"" + url.toString()+ "\"></img>" +

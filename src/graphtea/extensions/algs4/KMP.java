@@ -47,7 +47,7 @@ package graphtea.extensions.algs4;
  */
 public class KMP {
     private final int R;       // the radix
-    private int[][] dfa;       // the KMP automoton
+    private final int[][] dfa;       // the KMP automoton
 
     private char[] pattern;    // either the character array for the pattern
     private String pat;        // or the pattern string

@@ -31,10 +31,10 @@ public class GSplash extends javax.swing.JFrame {
      */
     private static final long serialVersionUID = 7023272493672748876L;
     public PrintWriter pp;
-    private BufferedReader br;
+    private final BufferedReader br;
     private boolean show;
-    private PrintStream defaultOut;
-    private PrintStream out;
+    private final PrintStream defaultOut;
+    private final PrintStream out;
 
     /**
      * Creates new form Splash

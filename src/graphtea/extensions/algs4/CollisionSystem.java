@@ -37,7 +37,7 @@ public class CollisionSystem {
 
     private MinPQ<Event> pq;          // the priority queue
     private double t  = 0.0;          // simulation clock time
-    private Particle[] particles;     // the array of particles
+    private final Particle[] particles;     // the array of particles
 
     /**
      * Initializes a system with the specified collection of particles.
@@ -159,8 +159,7 @@ public class CollisionSystem {
         // has any collision occurred between when event was created and now?
         public boolean isValid() {
             if (a != null && a.count() != countA) return false;
-            if (b != null && b.count() != countB) return false;
-            return true;
+            return b == null || b.count() == countB;
         }
    
     }

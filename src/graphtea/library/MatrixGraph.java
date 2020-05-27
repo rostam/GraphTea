@@ -424,7 +424,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
      * @author Omid Aladini
      */
     private class EdgeIterator implements Iterator<EdgeType> {
-        private Iterator<EdgeType> edgesIterator;
+        private final Iterator<EdgeType> edgesIterator;
         private EdgeType lastEdge = null;
 
         /**
@@ -691,7 +691,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
                 System.out.print(" ");
                 System.out.print(adjacencyMatrix.get(i).get(j) == null ? 0 : 1);
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 

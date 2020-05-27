@@ -61,7 +61,7 @@ public class GaussJordanElimination {
     private static final double EPSILON = 1e-8;
 
     private final int n;      // n-by-n system
-    private double[][] a;     // n-by-(n+1) augmented matrix
+    private final double[][] a;     // n-by-(n+1) augmented matrix
 
     // Gauss-Jordan elimination with partial pivoting
     /**

@@ -82,7 +82,7 @@ public class MemoryUsageStatusAction extends graphtea.platform.core.AbstractActi
         return "<font color='#444477'>" + str + "</font>";
     }
 
-    private String bname;
+    private final String bname;
     private JButton button = new JButton("memory usage");
 
     public Component getComponent(BlackBoard b) {

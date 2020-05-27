@@ -66,9 +66,9 @@ package graphtea.extensions.algs4;
  *  @author Kevin Wayne
  */
 public class SymbolGraph {
-    private ST<String, Integer> st;  // string -> index
-    private String[] keys;           // index  -> string
-    private Graph graph;             // the underlying graph
+    private final ST<String, Integer> st;  // string -> index
+    private final String[] keys;           // index  -> string
+    private final Graph graph;             // the underlying graph
 
     /**  
      * Initializes a graph from a file using the specified delimiter.

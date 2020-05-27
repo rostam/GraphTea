@@ -21,7 +21,7 @@ public class GMenuBar extends javax.swing.JMenuBar {
      *
      */
     private static final long serialVersionUID = 2020939077780205134L;
-    private HashMap<String, JMenu> menues = new HashMap<>();
+    private final HashMap<String, JMenu> menues = new HashMap<>();
 
     public GMenuBar() {
 //        setBackground(new Color(245,245,255));
@@ -31,7 +31,7 @@ public class GMenuBar extends javax.swing.JMenuBar {
     /**
      * stores the places given for components
      */
-    private static HashMap<Component, Integer> componentPlaces = new HashMap<>();
+    private static final HashMap<Component, Integer> componentPlaces = new HashMap<>();
 
     /**
      * inserts the child to parent with the given places,

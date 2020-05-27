@@ -30,8 +30,7 @@ import static graphtea.library.event.GraphEvent.EventType.NEW_GRAPH;
 public class NewGraph implements AtomAnimator<BaseGraphEvent> {
     public boolean isAnimatable(Event event) {
         if (event instanceof GraphEvent) {
-            if (((GraphEvent) event).eventType == NEW_GRAPH)
-                return true;
+            return ((GraphEvent) event).eventType == NEW_GRAPH;
         }
         return false;
     }

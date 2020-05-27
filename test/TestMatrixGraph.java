@@ -47,7 +47,7 @@ public class TestMatrixGraph {
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         try {
             MatrixGraph<BaseVertex, BaseEdge<BaseVertex>> myList = new MatrixGraph<>();
             BaseVertex v0 = new BaseVertex();

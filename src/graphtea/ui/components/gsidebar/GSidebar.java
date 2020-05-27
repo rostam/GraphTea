@@ -24,7 +24,7 @@ public class GSidebar extends JPanel {
      *
      */
     private static final long serialVersionUID = -599129598320886343L;
-    private GBody targetBody;
+    private final GBody targetBody;
 
     /**
      * constructor
@@ -119,9 +119,9 @@ class GSidebarButton extends GVerticalButton implements ActionListener {
      *
      */
     private static final long serialVersionUID = -3299575618889083096L;
-    private Component sidePanel;
-    private GSidebar sidebar;
-    private String label;
+    private final Component sidePanel;
+    private final GSidebar sidebar;
+    private final String label;
 
     public GSidebarButton(Icon icon, Component sidepanel, GSidebar sidebar, String label) {
         //todo: in sidePanel shaiad lazem she jaie JPanel ie chizi too maiehaie sidebarpanel bashe. felan ke lozoomi nemibinam

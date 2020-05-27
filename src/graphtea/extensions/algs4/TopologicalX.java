@@ -39,7 +39,7 @@ package graphtea.extensions.algs4;
  */
 public class TopologicalX {
     private Queue<Integer> order;     // vertices in topological order
-    private int[] ranks;              // ranks[v] = order where vertex v appers in order
+    private final int[] ranks;              // ranks[v] = order where vertex v appers in order
 
     /**
      * Determines whether the digraph {@code G} has a topological order and, if so,

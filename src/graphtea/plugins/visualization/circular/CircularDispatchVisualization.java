@@ -44,7 +44,7 @@ public class CircularDispatchVisualization implements VisualizationExtension {
 
         Vector<Vertex> t1 = new Vector<>();
         t1.add(root);
-        findCycle(t1, (int) vertexHeights.get(root), 0);
+        findCycle(t1, vertexHeights.get(root), 0);
         for (Vertex v : g) {
             int firstColor = ((PathProperties) v.getProp().obj).getFirstColor();
             int secColor = ((PathProperties) v.getProp().obj).getSecondColor();
@@ -219,7 +219,7 @@ public class CircularDispatchVisualization implements VisualizationExtension {
     */
 
     public void setWorkingGraph(GraphModel g) {
-        this.g = g;
+        CircularDispatchVisualization.g = g;
     }
 
     public HashMap<Vertex, GPoint> getNewVertexPlaces() {

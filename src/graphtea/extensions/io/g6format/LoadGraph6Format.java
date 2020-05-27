@@ -48,7 +48,7 @@ public class LoadGraph6Format implements GraphReaderExtension {
         }
 
         GraphModel g = G6Format.stringToGraphModel(g6);
-        Point pp[] = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
+        Point[] pp = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
         int tmpcnt = 0;
         for (Vertex v : g) {

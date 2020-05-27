@@ -29,8 +29,8 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension {
             Matrix B = g.getWeightedAdjacencyMatrix();
             Matrix A = Utils.getSignlessLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
-            double rv[] = ed.getRealEigenvalues();
-            double iv[] = ed.getImagEigenvalues();
+            double[] rv = ed.getRealEigenvalues();
+            double[] iv = ed.getImagEigenvalues();
             double maxrv=0;
             double minrv=1000000;
             for(double value : rv) {
@@ -74,8 +74,8 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension {
             Matrix B = g.getWeightedAdjacencyMatrix();
             Matrix A = Utils.getLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
-            double rv[] = ed.getRealEigenvalues();
-            double iv[] = ed.getImagEigenvalues();
+            double[] rv = ed.getRealEigenvalues();
+            double[] iv = ed.getImagEigenvalues();
             double maxrv=0;
             double minrv=1000000;
             for(double value : rv) {

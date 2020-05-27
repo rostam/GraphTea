@@ -66,7 +66,7 @@ public class Graph {
 
     private final int V;
     private int E;
-    private Bag<Integer>[] adj;
+    private final Bag<Integer>[] adj;
     
     /**
      * Initializes an empty graph with {@code V} vertices and 0 edges.

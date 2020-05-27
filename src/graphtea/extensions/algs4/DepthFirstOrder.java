@@ -53,11 +53,11 @@ package graphtea.extensions.algs4;
  *  @author Kevin Wayne
  */
 public class DepthFirstOrder {
-    private boolean[] marked;          // marked[v] = has v been marked in dfs?
-    private int[] pre;                 // pre[v]    = preorder  number of v
-    private int[] post;                // post[v]   = postorder number of v
-    private Queue<Integer> preorder;   // vertices in preorder
-    private Queue<Integer> postorder;  // vertices in postorder
+    private final boolean[] marked;          // marked[v] = has v been marked in dfs?
+    private final int[] pre;                 // pre[v]    = preorder  number of v
+    private final int[] post;                // post[v]   = postorder number of v
+    private final Queue<Integer> preorder;   // vertices in preorder
+    private final Queue<Integer> postorder;  // vertices in postorder
     private int preCounter;            // counter or preorder numbering
     private int postCounter;           // counter for postorder numbering
 

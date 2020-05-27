@@ -186,7 +186,7 @@ public class ISIBound implements GraphReportExtension{
         double alpha=(1/m)*(Math.floor(m))*(1-((1/m)*(Math.floor(m/2))));
         double alpha1=(m)*(Math.floor(m/2))*(1-((1/m)*(Math.floor(m/2))));
         
-        int diameter = (int) new Diameter().calculate(g);
+        int diameter = new Diameter().calculate(g);
         WienerIndex wi = new WienerIndex();
         double Avg=(n*(n-1)/2);
 

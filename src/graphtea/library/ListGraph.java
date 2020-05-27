@@ -178,7 +178,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
      * @author Omid Aladini
      */
     private class EdgeIterator implements Iterator<EdgeType> {
-        private Iterator<EdgeType> edgesIterator;
+        private final Iterator<EdgeType> edgesIterator;
         private EdgeType lastEdge = null;
 
         /**

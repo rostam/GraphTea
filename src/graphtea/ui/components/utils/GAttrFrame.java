@@ -18,7 +18,7 @@ public class GAttrFrame extends javax.swing.JDialog {
      *
      */
     private static final long serialVersionUID = 722213016758300314L;
-    private NotifiableAttributeSet atr;
+    private final NotifiableAttributeSet atr;
 
     /**
      * Creates new form GAttrFrame

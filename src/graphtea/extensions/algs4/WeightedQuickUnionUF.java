@@ -80,8 +80,8 @@ package graphtea.extensions.algs4;
  *  @author Kevin Wayne
  */
 public class WeightedQuickUnionUF {
-    private int[] parent;   // parent[i] = parent of i
-    private int[] size;     // size[i] = number of sites in subtree rooted at i
+    private final int[] parent;   // parent[i] = parent of i
+    private final int[] size;     // size[i] = number of sites in subtree rooted at i
     private int count;      // number of components
 
     /**

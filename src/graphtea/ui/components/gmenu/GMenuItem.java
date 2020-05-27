@@ -78,6 +78,6 @@ public class GMenuItem extends JMenuItem implements ActionListener {
         blackboard.setData(UIEventData.name(""), t);
     }
 
-    private BlackBoard blackboard;
-    private UIEventData t;
+    private final BlackBoard blackboard;
+    private final UIEventData t;
 }

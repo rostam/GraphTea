@@ -99,7 +99,7 @@ public class ObjectViewer implements ListSelectionListener {
         for (Method m : obj.getClass().getMethods()) {
             if (m.getName().startsWith("get") && m.getParameterTypes().length == 0) {
                 try {
-                    Object o = m.invoke(obj, new Object[]{});
+                    Object o = m.invoke(obj);
                     int mod = m.getModifiers();
                     String name = m.getName();
                     name = name.substring(3);
@@ -120,7 +120,7 @@ public class ObjectViewer implements ListSelectionListener {
         Map<String, Object> atr = in.getAttrs();
         Set<String> keys = atr.keySet();
         Object[] o = keys.toArray();
-        String k[] = new String[keys.size()];
+        String[] k = new String[keys.size()];
         NotifiableAttributeSetImpl ret = new NotifiableAttributeSetImpl();
         for (int i = 0; i < k.length; i++) {
             k[i] = (String) o[i];

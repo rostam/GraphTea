@@ -35,7 +35,7 @@ public class AlgorithmStep implements Event {
     }
 
     String message;
-    private String id;
+    private final String id;
 
 
     public String getID() {

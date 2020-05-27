@@ -177,8 +177,7 @@ public final class RectHV {
         if (this.xmin != that.xmin) return false;
         if (this.ymin != that.ymin) return false;
         if (this.xmax != that.xmax) return false;
-        if (this.ymax != that.ymax) return false;
-        return true;
+        return this.ymax == that.ymax;
     }
 
     /**

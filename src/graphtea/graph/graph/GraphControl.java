@@ -23,8 +23,8 @@ import java.util.Iterator;
  *         Mohsen Mansouryar > Added edge control for loops
  */
 public class GraphControl implements MouseListener, MouseWheelListener, MouseMotionListener {
-    private GraphModel g;
-    private JPanel gv;
+    private final GraphModel g;
+    private final JPanel gv;
     BlackBoard blackboard;
     private GraphControlListener listener;
     private Vertex lastVertexPressed = null;

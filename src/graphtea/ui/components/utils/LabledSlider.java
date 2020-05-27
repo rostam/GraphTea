@@ -19,7 +19,7 @@ public class LabledSlider extends JComponent implements ChangeListener {
      */
     private static final long serialVersionUID = -8976402299284319256L;
     JSlider slider;
-    private JLabel label;
+    private final JLabel label;
 
     public JSlider getSlider() {
         return slider;

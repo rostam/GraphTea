@@ -29,7 +29,7 @@ public abstract class GProduct {
                         , ((Pair<Vertex,Vertex>) v2.getProp().obj).first
                         , ((Pair<Vertex,Vertex>) v1.getProp().obj).second
                         , ((Pair<Vertex,Vertex>) v2.getProp().obj).second)) {
-                    g.insertEdge((Edge) g1.edgeIterator().next().getCopy(v1, v2));
+                    g.insertEdge(g1.edgeIterator().next().getCopy(v1, v2));
                 }
             }
         }

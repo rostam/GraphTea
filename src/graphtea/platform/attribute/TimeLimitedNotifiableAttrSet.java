@@ -24,9 +24,9 @@ import java.util.Map;
  */
 public class TimeLimitedNotifiableAttrSet<T extends AttributeSet> implements Runnable, NotifiableAttributeSet {
     private boolean started = false;
-    private long millis = 100;
+    private final long millis = 100;
     Thread thread;
-    private T inp;
+    private final T inp;
     NotifiableAttributeSetImpl as = new NotifiableAttributeSetImpl();
 
     public TimeLimitedNotifiableAttrSet(T input) {

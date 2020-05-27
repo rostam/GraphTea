@@ -60,7 +60,7 @@ public class SequentialSearchST<Key, Value> {
 
     // a helper linked list data type
     private class Node {
-        private Key key;
+        private final Key key;
         private Value val;
         private Node next;
 

@@ -30,8 +30,8 @@ public class RandomMatching implements GraphReportExtension {
         return "Random Matching";
     }
 
-    private Random r = new Random();
-    private Random r2 = new Random(10);
+    private final Random r = new Random();
+    private final Random r2 = new Random(10);
     public Object calculate(GraphModel g) {
         SubGraph sg = new SubGraph();
         int limit=r2.nextInt(g.getEdgesCount());
@@ -52,8 +52,8 @@ public class RandomMatching implements GraphReportExtension {
                 if(vi.contains(v1.getId()) && vi.contains(v2.getId())) {
                     vv.put(v1,v2);
 
-                    vi.remove(vi.indexOf(v1.getId()));
-                    vi.remove(vi.indexOf(v2.getId()));
+                    vi.remove((Integer) v1.getId());
+                    vi.remove((Integer) v2.getId());
                     break;
                 }
             }

@@ -16,7 +16,7 @@ import graphtea.ui.UIUtils;
 
  */
 public class UIActionExtensionAction extends AbstractAction {
-    private UIActionExtension ac;
+    private final UIActionExtension ac;
 
     public UIActionExtensionAction(BlackBoard bb, UIActionExtension action) {
         super(bb);

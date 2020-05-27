@@ -119,7 +119,7 @@ public class LEL_vs_KF implements GraphReportExtension {
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double rv[] = ed.getRealEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
         double sum = 0;
 
         //positiv RV
@@ -139,16 +139,16 @@ public class LEL_vs_KF implements GraphReportExtension {
         LaplacianEnergy le = new LaplacianEnergy();
         KirchhoffIndex kf = new KirchhoffIndex();
         WienerIndex wi = new WienerIndex();
-        int diameter = (int) new Diameter().calculate(g);
+        int diameter = new Diameter().calculate(g);
              //v.add(Double.parseDouble(lel.calculate(g).toString()));
            v.add(m);
            v.add(n);
            //Kirchhoff Index
-           v.add(Double.parseDouble(kf.calculate(g).toString()));
+           v.add(Double.parseDouble(kf.calculate(g)));
           // Wiener Index
            v.add(wi.calculate(g));
            //  Laplacian
-            v.add(Double.parseDouble(le.calculate(g).toString()));
+            v.add(Double.parseDouble(le.calculate(g)));
             // Signless Laplacian
             v.add(Double.parseDouble(sl.calculate(g).toString()));
            v.add(diameter);

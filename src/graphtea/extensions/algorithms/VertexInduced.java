@@ -25,7 +25,7 @@ public class VertexInduced {
         GraphModel baseGraph = g.createEmptyGraph();
         HashMap<Vertex, Vertex> hm = new HashMap<>();
         for (Vertex v : g) {
-            Vertex t = (Vertex) v.getCopy();
+            Vertex t = v.getCopy();
             hm.put(v, t);
             baseGraph.insertVertex(t);
         }
@@ -33,7 +33,7 @@ public class VertexInduced {
         Iterator<Edge> i = g.edgeIterator();
         while (i.hasNext()) {
             Edge e = i.next();
-            baseGraph.insertEdge((Edge) e.getCopy(hm.get(e.source), hm.get(e.target)));
+            baseGraph.insertEdge(e.getCopy(hm.get(e.source), hm.get(e.target)));
         }
 
         for (Vertex v : g) {

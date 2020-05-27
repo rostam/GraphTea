@@ -24,7 +24,7 @@ import java.io.IOException;
 
  */
 public class SaveLoadPluginMethods implements PluginMethods {
-    private BlackBoard blackboard;
+    private final BlackBoard blackboard;
 
     public SaveLoadPluginMethods(BlackBoard blackboard) {
         this.blackboard = blackboard;

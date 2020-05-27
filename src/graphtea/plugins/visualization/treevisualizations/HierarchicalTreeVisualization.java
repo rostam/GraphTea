@@ -147,7 +147,7 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
     */
 
     public void setWorkingGraph(GraphModel g) {
-        this.g = g;
+        HierarchicalTreeVisualization.g = g;
     }
 
     @UserModifiableProperty(displayName = "Hierachical Tree Visualization Width", obeysAncestorCategory = false

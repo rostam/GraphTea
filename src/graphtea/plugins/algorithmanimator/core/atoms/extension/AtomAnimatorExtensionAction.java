@@ -11,7 +11,7 @@ import graphtea.ui.extension.AbstractExtensionAction;
 
 public class AtomAnimatorExtensionAction
         extends AbstractExtensionAction {
-    private AtomAnimatorExtension em;
+    private final AtomAnimatorExtension em;
 
     public AtomAnimatorExtensionAction(BlackBoard bb, AtomAnimatorExtension sp) {
         super(bb, sp);

@@ -33,8 +33,8 @@ public class QIntegralFilter implements GraphFilter {
         Matrix B = g.getWeightedAdjacencyMatrix();
         Matrix A = getSignlessLaplacian(B);
         EigenvalueDecomposition ed = A.eig();
-        double rrv[] = ed.getRealEigenvalues();
-        double rv[] = Utils.round(rrv, 3);
+        double[] rrv = ed.getRealEigenvalues();
+        double[] rv = Utils.round(rrv, 3);
         for (double aRv : rv) {
             if (Math.floor(aRv) != aRv) return false;
         }

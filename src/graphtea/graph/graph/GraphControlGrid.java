@@ -31,10 +31,10 @@ public class GraphControlGrid implements GraphModelListener {
      */
     private boolean refresh;
 
-    private GraphModel g;
+    private final GraphModel g;
 
-    private Vertex fakeVertex;
-    private Edge fakeEdge;
+    private final Vertex fakeVertex;
+    private final Edge fakeEdge;
 
     Vertex[][][] verticesGrid;
 

@@ -51,13 +51,13 @@ public class ShellConsole extends JScrollPane
     }
 
     private int cmdStart = 0;
-    private Vector history = new Vector();
+    private final Vector history = new Vector();
     private String startedLine;
     private int histLine = 0;
 
-    private JPopupMenu menu;
-    private JTextPane text;
-    private DefaultStyledDocument doc;
+    private final JPopupMenu menu;
+    private final JTextPane text;
+    private final DefaultStyledDocument doc;
 
     NameCompletion nameCompletion;
     final int SHOW_AMBIG_MAX = 15;

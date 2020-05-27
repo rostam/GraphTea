@@ -107,7 +107,7 @@ public class LocalSF extends AbstractAction {
         return g2a.get(g);
     }
 
-    private HashMap<GraphModel, animatorLSF> g2a = new HashMap<>();
+    private final HashMap<GraphModel, animatorLSF> g2a = new HashMap<>();
     private GraphModel g;
 }
 

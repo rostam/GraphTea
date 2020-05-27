@@ -72,7 +72,7 @@ public final class In {
 
     //// end: section (1 of 2) of code duplicated from In to StdIn.
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
    /**
      * Initializes an input stream from standard input.

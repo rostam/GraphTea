@@ -9,10 +9,10 @@ package graphtea.ui.components.gmenu;
  */
 public class KeyBoardShortCut {
     private int keyEvent;
-    private int keyMnemonic;
+    private final int keyMnemonic;
     private int keyModifiers;
-    private int keyWordIndex;
-    private boolean isAccelerator;
+    private final int keyWordIndex;
+    private final boolean isAccelerator;
 
     public KeyBoardShortCut(int keyEvent, int keyModifiers, int keyWordIndex, boolean isMnemonics, int keyMnemonic) {
         this.keyMnemonic = keyMnemonic;

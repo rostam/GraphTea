@@ -16,7 +16,7 @@ import java.io.IOException;
 public class Init implements graphtea.platform.plugin.PluginInterface {
 
     public void init(BlackBoard blackboard) {
-        UI ui = (UI) blackboard.getData(UI.name);
+        UI ui = blackboard.getData(UI.name);
         try {
             ui.addXML("/graphtea/plugins/main/select/SelectUI.xml", getClass());
 

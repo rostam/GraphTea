@@ -52,7 +52,7 @@ import java.util.TreeMap;
  */
 public class ST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
 
-    private TreeMap<Key, Value> st;
+    private final TreeMap<Key, Value> st;
 
     /**
      * Initializes an empty symbol table.

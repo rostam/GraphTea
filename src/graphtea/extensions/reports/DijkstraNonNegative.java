@@ -55,8 +55,8 @@ public class DijkstraNonNegative {
     }
     static class VertexComparator implements Comparator<Vertex> {
         public int compare(Vertex o1, Vertex o2) {
-            if ((Double) o1.getUserDefinedAttribute(Dist) < (Double) o2.getUserDefinedAttribute(Dist)) return -1;
-            else if ((Double) o1.getUserDefinedAttribute(Dist) > (Double) o2.getUserDefinedAttribute(Dist)) return 1;
+            if ((Double)o1.getUserDefinedAttribute(Dist) < (Double)o2.getUserDefinedAttribute(Dist)) return -1;
+            else if ((Double)o1.getUserDefinedAttribute(Dist) > (Double)o2.getUserDefinedAttribute(Dist)) return 1;
             return 0;
         }
     }

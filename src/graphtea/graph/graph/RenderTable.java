@@ -62,26 +62,9 @@ class RenderTableMaxComparator implements Comparator<Vector<Object>> {
     @Override
     public int compare(Vector<Object> first, Vector<Object> second) {
         if (first.get(which) instanceof Double)
-            return (Double) first.get(which)
-                    > (Double) second.get(which) ? 1 : -1;
+            return (Double)first.get(which) < (Double)second.get(which) ? 1 : -1;
         else
-            return (Integer) first.get(which)
-                    > (Integer) second.get(which) ? 1 : -1;
+            return (Integer)first.get(which) < (Integer)second.get(which) ? 1 : -1;
     }
 }
 
-class RenderTableMinComparator implements Comparator<Vector<Object>> {
-    private int which=0;
-    public RenderTableMinComparator(int which) {
-        this.which=which;
-    }
-    @Override
-    public int compare(Vector<Object> first, Vector<Object> second) {
-        if (first.get(which) instanceof Double)
-            return (Double) first.get(which)
-                    < (Double) second.get(which) ? 1 : -1;
-        else
-            return (Integer) first.get(which)
-                    < (Integer) second.get(which) ? 1 : -1;
-    }
-}

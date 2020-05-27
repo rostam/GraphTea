@@ -17,7 +17,7 @@ import java.util.HashMap;
  * Author: azin azadi
  */
 public class ProEditor2NotifiableAttributeSetConnector implements AttributeListener, TableModelListener {
-    private GPropertyTableModel model;
+    private final GPropertyTableModel model;
     GPropertyEditor editor;
     private NotifiableAttributeSet atr;
 

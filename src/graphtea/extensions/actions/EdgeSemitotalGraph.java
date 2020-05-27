@@ -88,8 +88,7 @@ public class EdgeSemitotalGraph implements GraphActionExtension, Parametrizable 
         if(e1.source.getId() == e2.source.getId()) return true;
         if(e1.target.getId() == e2.source.getId()) return true;
         if(e1.source.getId() == e2.target.getId()) return true;
-        if(e1.target.getId() == e2.target.getId()) return true;
-        return false;
+        return e1.target.getId() == e2.target.getId();
     }
 
     public String getName() {

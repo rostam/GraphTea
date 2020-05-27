@@ -38,7 +38,7 @@ public class FlowNetwork {
 
     private final int V;
     private int E;
-    private Bag<FlowEdge>[] adj;
+    private final Bag<FlowEdge>[] adj;
     
     /**
      * Initializes an empty flow network with {@code V} vertices and 0 edges.

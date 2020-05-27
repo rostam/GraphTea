@@ -55,7 +55,7 @@ public class TwoPersonZeroSumGame {
 
     private final int m;            // number of rows
     private final int n;            // number of columns
-    private LinearProgramming lp;   // linear program solver
+    private final LinearProgramming lp;   // linear program solver
     private double constant;        // constant added to each entry in payoff matrix
                                     // (0 if all entries are strictly positive)
  

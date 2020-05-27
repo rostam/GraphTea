@@ -40,7 +40,7 @@ public class AdjMatrixEdgeWeightedDigraph {
 
     private final int V;
     private int E;
-    private DirectedEdge[][] adj;
+    private final DirectedEdge[][] adj;
     
     /**
      * Initializes an empty edge-weighted digraph with {@code V} vertices and 0 edges.
@@ -120,7 +120,7 @@ public class AdjMatrixEdgeWeightedDigraph {
 
     // support iteration over graph vertices
     private class AdjIterator implements Iterator<DirectedEdge>, Iterable<DirectedEdge> {
-        private int v;
+        private final int v;
         private int w = 0;
 
         public AdjIterator(int v) {

@@ -68,7 +68,7 @@ public class GlobalMincut {
     private boolean[] cut;
 
     // number of vertices
-    private int V;
+    private final int V;
 
     /**
      * This helper class represents the <em>cut-of-the-phase</em>. The

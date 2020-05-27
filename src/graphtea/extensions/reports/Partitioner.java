@@ -22,9 +22,9 @@ import java.util.Iterator;
  */
 public class Partitioner {
     public BaseVertex[] vertices;
-    private int[][] edgeArray;
+    private final int[][] edgeArray;
     public int[] color;
-    private BaseGraph g;
+    private final BaseGraph g;
 
 
     public Partitioner(final BaseGraph g) {

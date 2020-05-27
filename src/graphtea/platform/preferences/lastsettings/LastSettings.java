@@ -17,16 +17,17 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.InvalidPreferencesFormatException;
+import java.util.prefs.Preferences;
 
 /**
  * @author Rouzbeh Ebrahimi
  */
 public class LastSettings implements AttributeListener {
-    private HashSet<Object> registeredObjects = new HashSet<>();
-    private java.util.prefs.Preferences builtInPrefs = java.util.prefs.Preferences.userRoot();
-    private java.util.prefs.Preferences graphPrefs = builtInPrefs.node("graph");
-    private HashSet<Class> registeredClasses = new HashSet<>();
-    private File file = new File("prefs");
+    private final HashSet<Object> registeredObjects = new HashSet<>();
+    private final java.util.prefs.Preferences builtInPrefs = java.util.prefs.Preferences.userRoot();
+    private final java.util.prefs.Preferences graphPrefs = builtInPrefs.node("graph");
+    private final HashSet<Class> registeredClasses = new HashSet<>();
+    private final File file = new File("prefs");
     {
         file.mkdir();
     }
@@ -35,7 +36,7 @@ public class LastSettings implements AttributeListener {
         try {
             File file = new File(this.file, "graph.xml");
             FileInputStream is = new FileInputStream(file);
-            graphPrefs.importPreferences(is);
+            Preferences.importPreferences(is);
             is.close();
 
         } catch (IOException | InvalidPreferencesFormatException e) {
@@ -79,7 +80,7 @@ public class LastSettings implements AttributeListener {
         String key = f.getName();
         Object value = t.get(key, null);
         String m = f.getType().toString();
-        Object obj = StaticUtils.fromString(m.substring(6, m.length()), value.toString());
+        Object obj = StaticUtils.fromString(m.substring(6), value.toString());
         try {
             if (obj != null)
                 f.set(o, obj);

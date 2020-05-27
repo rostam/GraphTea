@@ -19,8 +19,8 @@ import java.util.StringTokenizer;
  * @author Mohammad Ali Rostami
  */
 public class NativeCommands {
-    private BlackBoard bb;
-    private GraphData datas;
+    private final BlackBoard bb;
+    private final GraphData datas;
 
     public NativeCommands(BlackBoard bb) {
         this.bb = bb;

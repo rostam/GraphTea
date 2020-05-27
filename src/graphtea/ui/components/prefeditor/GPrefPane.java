@@ -25,13 +25,13 @@ import java.util.stream.Collectors;
 public class GPrefPane extends GFrame {
     // Variables declaration - do not modify
     public HashMap<String, AbstractPreference> tabs;
-    private javax.swing.JList list;
-    private javax.swing.JScrollPane scrollPane;
-    private GPropertyEditor tabPane;
-    private JButton ok;
-    private JButton cancel;
-    private JButton apply;
-    private JLabel label;
+    private final javax.swing.JList list;
+    private final javax.swing.JScrollPane scrollPane;
+    private final GPropertyEditor tabPane;
+    private final JButton ok;
+    private final JButton cancel;
+    private final JButton apply;
+    private final JLabel label;
 // End of variables declaration
 
     /**
@@ -60,7 +60,7 @@ public class GPrefPane extends GFrame {
         final String[] strs = refined.toArray(new String[refined.size()]);
 
         list.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = strs;
+            final String[] strings = strs;
 
             public int getSize() {
                 return strings.length;

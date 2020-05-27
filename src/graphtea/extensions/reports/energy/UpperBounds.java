@@ -48,7 +48,7 @@ public class UpperBounds implements GraphReportExtension {
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double rv[] = ed.getRealEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
         double sum = 0;
 
         //positiv RV
@@ -153,8 +153,8 @@ public class UpperBounds implements GraphReportExtension {
             Matrix A = g.getWeightedAdjacencyMatrix();
             A = getLaplacian(A);
             EigenvalueDecomposition ed = A.eig();
-            double rv[] = ed.getRealEigenvalues();
-            double iv[] = ed.getImagEigenvalues();
+            double[] rv = ed.getRealEigenvalues();
+            double[] iv = ed.getImagEigenvalues();
             double maxrv = 0;
             double minrv = 1000000;
             for (double value : rv) {
@@ -174,7 +174,7 @@ public class UpperBounds implements GraphReportExtension {
                 Complex num = new Complex(0, 0);
                 for (int i = 0; i < iv.length; i++) {
                     Complex tmp = new Complex(rv[i], iv[i]);
-                    tmp.pow(new Complex(power, 0));
+                    Complex.pow(new Complex(power, 0));
                     num.plus(tmp);
                 }
                 return "" + round(num.re(), 5) + " + "

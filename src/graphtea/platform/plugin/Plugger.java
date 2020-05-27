@@ -207,7 +207,7 @@ public class Plugger {
                 if (mark.get(name) == -1) {
                     String depName = (String) dep[0];
                     Long depVer = (Long) dep[1];
-                    Long depPlugVer = (versions.get(depName) == null) ? null : (Long) versions.get(depName);
+                    Long depPlugVer = versions.get(depName);
                     if (depPlugVer == null || depPlugVer < depVer || mark.get(depName) == -2) {
                         remove(name);
                     } else {

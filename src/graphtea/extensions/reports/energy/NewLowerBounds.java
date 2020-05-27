@@ -56,7 +56,7 @@ public class NewLowerBounds implements GraphReportExtension{
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double rv[] = ed.getRealEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
         double sum=0;
         double estra=0;
         double detA = Math.abs(A.det());
@@ -170,8 +170,8 @@ public class NewLowerBounds implements GraphReportExtension{
     public static String getEigenValues(GraphModel g) {
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double rv[] = ed.getRealEigenvalues();
-        double iv[] = ed.getImagEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
+        double[] iv = ed.getImagEigenvalues();
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)

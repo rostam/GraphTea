@@ -23,12 +23,12 @@ public class GBody extends JPanel {
      *
      */
     private static final long serialVersionUID = 2389438929191166213L;
-    private JSplitPane splitPane = new JSplitPane();
+    private final JSplitPane splitPane = new JSplitPane();
     private Component bodyPane;
     //is side bar hidden
     private boolean hidden = false;
 
-    private ArrayList<Pair<Component, String>> showingSideBars = new ArrayList<>();
+    private final ArrayList<Pair<Component, String>> showingSideBars = new ArrayList<>();
 
     public void setBodyPane(Component bodyPane) {
         this.bodyPane = bodyPane;

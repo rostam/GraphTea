@@ -35,7 +35,7 @@ public class Union implements GraphActionExtension, Parametrizable {
         GraphSum prod = new GraphSum(graphData.getBlackboard());
         GraphModel g1 = gtp.getGraphs().get(fG);
         GraphModel g2 = gtp.getGraphs().get(sG);
-        GraphModel g= (GraphModel) GraphUnion.union(g1, g2);
+        GraphModel g= GraphUnion.union(g1, g2);
         GraphSum.setUnionLabel(g1,g2,g);
         graphData.core.showGraph(g);
     }

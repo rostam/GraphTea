@@ -25,8 +25,8 @@ package graphtea.extensions.algs4;
  */
 public class GraphGenerator {
     private static final class Edge implements Comparable<Edge> {
-        private int v;
-        private int w;
+        private final int v;
+        private final int w;
 
         private Edge(int v, int w) {
             if (v < w) {

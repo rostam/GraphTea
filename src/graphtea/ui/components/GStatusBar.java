@@ -19,7 +19,7 @@ public class GStatusBar extends JPanel {
      *
      */
     private static final long serialVersionUID = 7638151469264118382L;
-    private BlackBoard blackboard;
+    private final BlackBoard blackboard;
 
     public GStatusBar(BlackBoard blackboard) {
         super();

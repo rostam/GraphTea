@@ -39,11 +39,11 @@ package graphtea.extensions.algs4;
  */
 public class LinearProgramming {
     private static final double EPSILON = 1.0E-10;
-    private double[][] a;   // tableaux
-    private int m;          // number of constraints
-    private int n;          // number of original variables
+    private final double[][] a;   // tableaux
+    private final int m;          // number of constraints
+    private final int n;          // number of original variables
 
-    private int[] basis;    // basis[i] = basic variable corresponding to row i
+    private final int[] basis;    // basis[i] = basic variable corresponding to row i
                             // only needed to print out solution, not book
 
     /**

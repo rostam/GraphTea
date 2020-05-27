@@ -41,8 +41,8 @@ package graphtea.extensions.algs4;
  */
 public class FloydWarshall {
     private boolean hasNegativeCycle;  // is there a negative cycle?
-    private double[][] distTo;         // distTo[v][w] = length of shortest v->w path
-    private DirectedEdge[][] edgeTo;   // edgeTo[v][w] = last edge on shortest v->w path
+    private final double[][] distTo;         // distTo[v][w] = length of shortest v->w path
+    private final DirectedEdge[][] edgeTo;   // edgeTo[v][w] = last edge on shortest v->w path
 
     /**
      * Computes a shortest paths tree from each vertex to to every other vertex in

@@ -42,8 +42,8 @@ package graphtea.extensions.algs4;
  */
 public class Vector { 
 
-    private int d;               // dimension of the vector
-    private double[] data;       // array of vector's components
+    private final int d;               // dimension of the vector
+    private final double[] data;       // array of vector's components
 
 
     /**

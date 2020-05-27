@@ -42,8 +42,8 @@ package graphtea.extensions.algs4;
  *  @author Kevin Wayne
  */
 public class AcyclicLP {
-    private double[] distTo;          // distTo[v] = distance  of longest s->v path
-    private DirectedEdge[] edgeTo;    // edgeTo[v] = last edge on longest s->v path
+    private final double[] distTo;          // distTo[v] = distance  of longest s->v path
+    private final DirectedEdge[] edgeTo;    // edgeTo[v] = last edge on longest s->v path
 
     /**
      * Computes a longest paths tree from {@code s} to every other vertex in

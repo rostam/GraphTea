@@ -50,8 +50,7 @@ public class ZagrebCoindex implements GraphReportExtension, Parametrizable {
         else if(e1.source.getId() == e2.source.getId()) return true;
         else if(e1.source.getId() == e2.target.getId()) return true;
         else if(e1.target.getId() == e2.source.getId()) return true;
-        else if(e1.target.getId() == e2.target.getId()) return true;
-        return false;
+        else return e1.target.getId() == e2.target.getId();
     }
 
     public String checkParameters() {

@@ -200,7 +200,7 @@ public class BackwardTrees implements VisualizationExtension {
                     BaseVertexProperties properties = new BaseVertexProperties(v1.getColor(), v1.getMark());
                     properties.obj = (angularSpan / (Math.abs(sum))) * (g.getInDegree(v1));
                     v1.setProp(properties);
-                    locateAllSubTrees(v1, this.radius + radius, newOffset);
+                    locateAllSubTrees(v1, BackwardTrees.radius + radius, newOffset);
                     j++;
 
                 }
@@ -226,7 +226,7 @@ public class BackwardTrees implements VisualizationExtension {
     */
 
     public void setWorkingGraph(GraphModel g) {
-        this.g = g;
+        BackwardTrees.g = g;
     }
 
     public HashMap<Vertex, GPoint> getNewVertexPlaces() {

@@ -41,9 +41,9 @@ package graphtea.extensions.algs4;
  *  @author Kevin Wayne
  */
 public class SymbolDigraph {
-    private ST<String, Integer> st;  // string -> index
-    private String[] keys;           // index  -> string
-    private Digraph graph;           // the underlying digraph
+    private final ST<String, Integer> st;  // string -> index
+    private final String[] keys;           // index  -> string
+    private final Digraph graph;           // the underlying digraph
 
     /**  
      * Initializes a digraph from a file using the specified delimiter.

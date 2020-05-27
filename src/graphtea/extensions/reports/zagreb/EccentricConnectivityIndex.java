@@ -38,7 +38,7 @@ public class EccentricConnectivityIndex implements GraphReportExtension {
             DijkstraNonNegative.dijkstra(g, it_v);
             double max = 0;
             for (Vertex v : g.getVertexArray()) {
-                double value = (Double) v.getUserDefinedAttribute(
+                double value = v.getUserDefinedAttribute(
                         DijkstraNonNegative.Dist);
                 if (value > max) {
                     max = value;

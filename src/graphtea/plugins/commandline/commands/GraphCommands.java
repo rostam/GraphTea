@@ -182,7 +182,7 @@ public class GraphCommands {
         for (Object vm : c) {
             hs.add(getVertexById((Integer) vm, g));
         }
-        GraphModel gm = (GraphModel) VertexInduced.induced(g, hs);
+        GraphModel gm = VertexInduced.induced(g, hs);
         gm.setDirected(g.isDirected());
         gtp.addGraph(gm);
         return gm;
@@ -200,7 +200,7 @@ public class GraphCommands {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
         HashSet hs = datas.select.getSelectedEdges();
         resetGraph();
-        GraphModel gm = (GraphModel) EdgeInduced.edgeInduced(g, hs);
+        GraphModel gm = EdgeInduced.edgeInduced(g, hs);
         gm.setDirected(g.isDirected());
         gtp.addGraph(gm);
         return gm;
@@ -210,7 +210,7 @@ public class GraphCommands {
     public GraphModel gunion(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        GraphModel graphModel = (GraphModel) GraphUnion.union(g1, g2);
+        GraphModel graphModel = GraphUnion.union(g1, g2);
         setUnionLabel(g1, g2, graphModel);
         graphModel.setDirected(g1.isDirected());
         gtp.addGraph(graphModel);
@@ -238,7 +238,7 @@ public class GraphCommands {
     public GraphModel gcorona(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        GraphModel graphModel = (GraphModel) VertexCorona.corona(g1, g2);
+        GraphModel graphModel = VertexCorona.corona(g1, g2);
         for(Vertex v : graphModel) {
             //v.getSize().multiply(1.5);
         }
@@ -268,7 +268,7 @@ public class GraphCommands {
     public GraphModel gsum(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        GraphModel graphModel = (GraphModel) GraphUnion.union(g1,g2);
+        GraphModel graphModel = GraphUnion.union(g1,g2);
         setUnionLabel(g1,g2,graphModel);
         Vertex[] varr = graphModel.getVertexArray();
         for(int i=0; i < g1.getVerticesCount();i++) {
@@ -334,7 +334,7 @@ public class GraphCommands {
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
         GDisjunction p = new GDisjunction();
-        GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
+        GraphModel graphModel = p.multiply(g1, g2);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
         Point[] ps = PositionGenerators.circle(200, 300, 300, n);
@@ -353,7 +353,7 @@ public class GraphCommands {
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
         GSymmDiff p = new GSymmDiff();
-        GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
+        GraphModel graphModel = p.multiply(g1, g2);
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
@@ -374,7 +374,7 @@ public class GraphCommands {
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
         GComposition p = new GComposition();
-        GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
+        GraphModel graphModel = p.multiply(g1, g2);
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();

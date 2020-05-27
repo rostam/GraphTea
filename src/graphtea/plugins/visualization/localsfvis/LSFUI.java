@@ -19,7 +19,7 @@ public class LSFUI extends JPanel implements ActionListener {
 
     private LocalSF target;
 
-    private Listener n = new Listener() {
+    private final Listener n = new Listener() {
         //todo: what does this performJob do (Rouzbeh)?
         public void performJob(String name) {
             animatorLSF a = target.getCurrentAnimator();

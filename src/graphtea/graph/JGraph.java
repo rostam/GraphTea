@@ -26,7 +26,7 @@ import java.awt.*;
  */
 public class JGraph extends JScrollPane {
     private static final long serialVersionUID = -500431952321243220L;
-    private AbstractGraphRenderer view;
+    private final AbstractGraphRenderer view;
 
     public JGraph(GraphModel g, AbstractGraphRenderer view) {
         super(view);

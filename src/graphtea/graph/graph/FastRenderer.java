@@ -33,9 +33,9 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
     @UserModifiableProperty(displayName = "Default Vertex Radius", obeysAncestorCategory = false, category = "Rendering Options")
     public static Integer defaultVertexRadius = 20;
     public int vertexRadius = defaultVertexRadius;
-    private BlackBoard blackboard;
+    private final BlackBoard blackboard;
 
-    private static GStroke markedStroke = GStroke.strong;
+    private static final GStroke markedStroke = GStroke.strong;
     @UserModifiableProperty(displayName = "Default Edge Stroke")
     public static GStroke defaultStroke = GStroke.strong;
     @UserModifiableProperty(displayName = "Default Vertex Shape")

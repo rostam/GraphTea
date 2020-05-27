@@ -50,10 +50,10 @@ import java.util.Vector;
  *
  */
 public class BlackBoard {
-    private HashMap<String, Object> data = new HashMap<>();
-    private HashMap<String, HashSet<Listener>> listeners = new HashMap<>();
-    private HashMap<String, Vector<Couple<Boolean, Listener>>> addRemoveAfterFiring = new HashMap<>();
-    private HashMap<String, Integer> firingNames = new HashMap<>();
+    private final HashMap<String, Object> data = new HashMap<>();
+    private final HashMap<String, HashSet<Listener>> listeners = new HashMap<>();
+    private final HashMap<String, Vector<Couple<Boolean, Listener>>> addRemoveAfterFiring = new HashMap<>();
+    private final HashMap<String, Integer> firingNames = new HashMap<>();
 
     /**
      * @param key The key

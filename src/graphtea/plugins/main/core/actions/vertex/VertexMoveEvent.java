@@ -92,7 +92,7 @@ public class VertexMoveEvent extends AbstractAction {
         //store the original position
         x1 = vdd.mousePos.x;
         y1 = vdd.mousePos.y;
-        isVertexSelected = ((SubGraph) Select.getSelection(blackboard)).vertices.contains(vdd.v);
+        isVertexSelected = Select.getSelection(blackboard).vertices.contains(vdd.v);
     }
 }
 

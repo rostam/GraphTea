@@ -48,8 +48,7 @@ public class Interval2D {
      */
     public boolean intersects(Interval2D that) {
         if (!this.x.intersects(that.x)) return false;
-        if (!this.y.intersects(that.y)) return false;
-        return true;
+        return this.y.intersects(that.y);
     }
 
     /**

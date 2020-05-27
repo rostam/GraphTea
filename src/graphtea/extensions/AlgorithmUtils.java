@@ -176,7 +176,7 @@ public class AlgorithmUtils {
         int did = dest.getId();
         ret.insert(dest);
         while (did != source.getId()) {
-            ret.insert((Vertex) parents[did]);
+            ret.insert(parents[did]);
             if (parents[did] == null)
                 return null;
             did = parents[did].getId();

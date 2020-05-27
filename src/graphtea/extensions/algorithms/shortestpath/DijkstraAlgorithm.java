@@ -99,7 +99,7 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
                 Vertex target = vMin == edge.source ? edge.target : edge.source;
                 int tmp = dist[vMin.getId()] + edge.getWeight();
                 if (!selectedVertices.contains(target)) {
-                    gu.setMessage("Currently computed distnace:"
+                    GraphUtils.setMessage("Currently computed distnace:"
                                     + tmp,
                             graphData.getBlackboard(), true);
                     step("<br/>");
@@ -120,7 +120,7 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
 
                 if(edge.target.getId() == targetVertex.getId()
                         || edge.source.getId() == targetVertex.getId()) {
-                    gu.setMessage("The minimum path is found: " + dist[targetVertex.getId()],
+                    GraphUtils.setMessage("The minimum path is found: " + dist[targetVertex.getId()],
                             graphData.getBlackboard(),true);
                     step("The minimum path is found: " + dist[targetVertex.getId()]);
 

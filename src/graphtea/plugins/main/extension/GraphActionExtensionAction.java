@@ -13,8 +13,8 @@ import graphtea.ui.extension.AbstractExtensionAction;
 
  */
 public class GraphActionExtensionAction extends AbstractExtensionAction {
-    private GraphActionExtension ga;
-    private GraphData gd;
+    private final GraphActionExtension ga;
+    private final GraphData gd;
 
     public GraphActionExtensionAction(BlackBoard bb, GraphActionExtension ga) {
         super(bb, ga);

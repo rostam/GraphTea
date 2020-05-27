@@ -27,7 +27,7 @@ public class Init implements PluginInterface {
     public void init(BlackBoard blackboard) {
         this.blackboard = blackboard;
 
-        UI ui = (UI) blackboard.getData(UI.name);
+        UI ui = blackboard.getData(UI.name);
         try {
             ui.addXML("/graphtea/plugins/reports/config.xml", getClass());
         } catch (Exception e) {
@@ -38,7 +38,7 @@ public class Init implements PluginInterface {
     }
 
     private void postInit() {
-        UI ui = (UI) blackboard.getData(UI.name);
+        UI ui = blackboard.getData(UI.name);
         ReportsUI rui = new ReportsUI(blackboard);
 
         ui.getGFrame().getSidebar().addButton(this.getClass().getResource("/graphtea/plugins/reports/ui/sbicon.GIF"), rui.sidebar, "Graph Reports");

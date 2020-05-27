@@ -17,8 +17,8 @@ import java.util.Iterator;
  */
 public class Homomorphism {
 
-    private GraphModel domain;
-    private GraphModel range;
+    private final GraphModel domain;
+    private final GraphModel range;
     HashMap<Vertex, Vertex> homomorphism;
 
     Homomorphism(GraphModel domain, GraphModel range,

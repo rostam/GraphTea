@@ -130,12 +130,12 @@ public class LinkedQueue<Item> implements Iterable<Item> {
         }
         else if (n == 0) {
             if (first != null) return false;
-            if (last  != null) return false;
+            return last == null;
         }
         else if (n == 1) {
             if (first == null || last == null) return false;
             if (first != last)                 return false;
-            if (first.next != null)            return false;
+            return first.next == null;
         }
         else {
             if (first == null || last == null) return false;
@@ -155,10 +155,8 @@ public class LinkedQueue<Item> implements Iterable<Item> {
             while (lastNode.next != null) {
                 lastNode = lastNode.next;
             }
-            if (last != lastNode) return false;
+            return last == lastNode;
         }
-
-        return true;
     } 
  
 
