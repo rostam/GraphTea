@@ -127,7 +127,7 @@ public class ParameterShower implements AttributeListener {
         if (AttributeSet.class.isAssignableFrom(f.getType())) {
             if (f.get(o) instanceof AttributeSet) {
                 AttributeSet as = (AttributeSet) f.get(o);
-                for (Map.Entry<String, Object> x : ((Set<Map.Entry>) as.getAttrs().entrySet())) {
+                for (Map.Entry<String, Object> x : ((Set<Map.Entry<String, Object>>) as.getAttrs().entrySet())) {
                     String nam = "atrset." + f.getName() + "." + x.getKey();
                     p.put(nam, x.getValue());
                     p.getView().setDisplayName(nam, x.getKey());

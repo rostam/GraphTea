@@ -12,8 +12,6 @@ import graphtea.ui.UIUtils;
 import org.xml.sax.SAXException;
 
 import javax.swing.*;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 import javax.swing.text.BadLocationException;
 import java.io.IOException;
 

@@ -10,7 +10,6 @@ import bsh.Interpreter;
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.core.BlackBoard;
-import graphtea.platform.core.Listener;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.plugins.commandline.commands.EdgeCommands;
 import graphtea.plugins.commandline.commands.GraphCommands;

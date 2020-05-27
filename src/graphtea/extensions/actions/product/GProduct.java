@@ -1,6 +1,5 @@
 package graphtea.extensions.actions.product;
 
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.util.Pair;

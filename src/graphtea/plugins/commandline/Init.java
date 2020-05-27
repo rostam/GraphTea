@@ -9,7 +9,6 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.ui.GHTMLPageComponent;
 import graphtea.platform.Application;
 import graphtea.platform.core.BlackBoard;
-import graphtea.platform.core.Listener;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.plugin.PluginInterface;

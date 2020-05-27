@@ -15,8 +15,6 @@ import graphtea.platform.attribute.AttributeListener;
 import graphtea.platform.core.BlackBoard;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.util.HashMap;
 

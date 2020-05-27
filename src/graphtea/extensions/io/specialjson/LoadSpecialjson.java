@@ -11,15 +11,12 @@ package graphtea.extensions.io.specialjson;
 
 import graphtea.graph.graph.*;
 import graphtea.plugins.main.saveload.SaveLoadPluginMethods;
-import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphReaderExtension;
 import graphtea.ui.UIUtils;
 import graphtea.ui.components.gpropertyeditor.GCellRenderer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
