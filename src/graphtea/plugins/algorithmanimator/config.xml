@@ -43,9 +43,6 @@
         <action class="graphtea.plugins.algorithmanimator.BFSAnim"
                 id="do bfs"/>
         <action
-                class="graphtea.plugins.algorithmanimator.AppVertexCoverAnim"
-                id="do app vertex cover"/>
-        <action
                 class="graphtea.plugins.algorithmanimator.BiconnectedComponentsAnim"
                 id="do biconnected components"/>
         <action

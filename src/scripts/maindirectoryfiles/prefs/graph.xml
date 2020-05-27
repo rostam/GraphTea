@@ -1898,11 +1898,6 @@
           <entry key="object" value="graphtea.plugins.algorithmanimator.AcyclicCheckerAnim"/>
         </map>
       </node>
-      <node name="graphtea.plugins.algorithmanimator.AppVertexCoverAnim">
-        <map>
-          <entry key="object" value="graphtea.plugins.algorithmanimator.AppVertexCoverAnim"/>
-        </map>
-      </node>
       <node name="graphtea.plugins.algorithmanimator.BFSAnim">
         <map>
           <entry key="object" value="graphtea.plugins.algorithmanimator.BFSAnim"/>

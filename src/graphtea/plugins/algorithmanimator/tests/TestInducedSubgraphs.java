@@ -7,7 +7,7 @@ package graphtea.plugins.algorithmanimator.tests;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
 public class TestInducedSubgraphs
-        extends graphtea.library.algorithms.subgraphs.TestInducedSubgraphs
+        extends graphtea.extensions.algorithms.subgraphs.TestInducedSubgraphs
         implements AlgorithmExtension {
 
     public String getName() {
