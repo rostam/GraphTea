@@ -30,7 +30,7 @@ public class Composition implements GraphActionExtension, Parametrizable {
     @Override
     public void action(GraphData graphData) {
         GTabbedGraphPane gtp = graphData.getBlackboard().getData(GTabbedGraphPane.NAME);
-        MyGComposition prod = new MyGComposition();
+        GComposition prod = new GComposition();
         GraphModel g= prod.multiply(gtp.getGraphs().get(g0),
                 gtp.getGraphs().get(g1));
         prod.setPositions(g);

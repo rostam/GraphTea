@@ -8,7 +8,7 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 
 import java.awt.*;
 
-public class MyGComposition extends GProduct {
+public class GComposition extends GProduct {
     @Override
     public boolean compare(Vertex v1OfFirstG, Vertex v2OfFirstG, Vertex v1OfSecondG, Vertex v2OfSecondG) {
         return (g1.isEdge(v1OfFirstG, v2OfFirstG) || (v1OfFirstG== v2OfFirstG && g2.isEdge(v1OfSecondG, v2OfSecondG)));

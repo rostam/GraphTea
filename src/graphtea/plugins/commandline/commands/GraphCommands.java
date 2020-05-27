@@ -5,8 +5,8 @@
 package graphtea.plugins.commandline.commands;
 
 import Jama.Matrix;
-import graphtea.extensions.actions.MyGComposition;
-import graphtea.extensions.actions.MyGDisjunction;
+import graphtea.extensions.actions.GComposition;
+import graphtea.extensions.actions.GDisjunction;
 import graphtea.extensions.actions.product.GCartesianProduct;
 import graphtea.extensions.actions.product.GSymmDiff;
 import graphtea.extensions.actions.product.GTensorProduct;
@@ -333,7 +333,7 @@ public class GraphCommands {
     public void disjunction(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        MyGDisjunction p = new MyGDisjunction();
+        GDisjunction p = new GDisjunction();
         GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
@@ -373,7 +373,7 @@ public class GraphCommands {
     public void composition(@Parameter(name = "first_graph")GraphModel g1
             , @Parameter(name = "second_graph")GraphModel g2) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        MyGComposition p = new MyGComposition();
+        GComposition p = new GComposition();
         GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
