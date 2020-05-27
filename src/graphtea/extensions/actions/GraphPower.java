@@ -11,7 +11,7 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
-import graphtea.plugins.main.core.AlgorithmUtils;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
 import java.util.Vector;

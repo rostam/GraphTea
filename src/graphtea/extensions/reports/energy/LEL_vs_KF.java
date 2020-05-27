@@ -16,16 +16,12 @@ import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.extensions.reports.basicreports.Diameter;
-import graphtea.extensions.reports.basicreports.IsBipartite;
 import graphtea.extensions.reports.zagreb.WienerIndex;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Vector;
 import java.util.ArrayList;
-import java.util.Vector;
-import java.util.List;
-import java.util.Collections;
 
 
 /**
@@ -34,13 +30,9 @@ import java.util.Collections;
  */
 
 
- 
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.graph.graph.Edge;
-import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.main.core.AlgorithmUtils;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.Utils;
 
 
@@ -49,12 +41,6 @@ import graphtea.extensions.reports.Utils;
 /**
  * @author Ali Rostami
  */
-import java.util.Collections;
-
-
-
-
-
 
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")

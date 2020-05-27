@@ -5,7 +5,7 @@ import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
-import graphtea.plugins.main.core.AlgorithmUtils;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
 /**

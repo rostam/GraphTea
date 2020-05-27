@@ -42,11 +42,6 @@
                 id="do dfs"/>
         <action class="graphtea.plugins.algorithmanimator.BFSAnim"
                 id="do bfs"/>
-        <!--<action class="graphtea.plugins.algorithmanimator.PrimAnim"-->
-                <!--id="do prim"/>-->
-        <!--<action-->
-                <!--class="graphtea.plugins.algorithmanimator.KruskalAnim"-->
-                <!--id="do kruskal"/>-->
         <action
                 class="graphtea.plugins.algorithmanimator.AppVertexCoverAnim"
                 id="do app vertex cover"/>

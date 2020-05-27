@@ -8,11 +8,10 @@ import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.graph.graph.Edge;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.main.core.AlgorithmUtils;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.extensions.reports.basicreports.Diameter;
-import graphtea.extensions.reports.zagreb.WienerIndex;
 import graphtea.extensions.reports.Utils;
 
 
@@ -28,7 +27,6 @@ import java.util.Collections;
 /**
  * @author Ali Rostami
  */
-import java.util.Collections;
 
 @CommandAttitude(name = "Lanzhou", abbreviation = "_Lanzhou")
 public class Lanzhou implements GraphReportExtension{

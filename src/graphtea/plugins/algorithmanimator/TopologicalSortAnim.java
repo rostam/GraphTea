@@ -5,7 +5,7 @@
 
 package graphtea.plugins.algorithmanimator;
 
-import graphtea.library.algorithms.DAG;
+import graphtea.extensions.algorithms.DAG;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
 public class TopologicalSortAnim extends DAG

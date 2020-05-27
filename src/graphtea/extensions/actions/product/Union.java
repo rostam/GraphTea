@@ -32,7 +32,7 @@ public class Union implements GraphActionExtension, Parametrizable {
     @Override
     public void action(GraphData graphData) {
         GTabbedGraphPane gtp = graphData.getBlackboard().getData(GTabbedGraphPane.NAME);
-        GraphSum prod = new GraphSum();
+        GraphSum prod = new GraphSum(graphData.getBlackboard());
         GraphModel g1 = gtp.getGraphs().get(fG);
         GraphModel g2 = gtp.getGraphs().get(sG);
         GraphModel g= (GraphModel) GraphUnion.union(g1, g2);

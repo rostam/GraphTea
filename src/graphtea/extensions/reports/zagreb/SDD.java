@@ -6,31 +6,27 @@ package graphtea.extensions.reports.zagreb;
 import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.clique.MaxCliqueExtension;
 import graphtea.extensions.reports.matching.MaxMatchingExtension;
-import graphtea.extensions.reports.matching.MaximumMatching;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.graph.graph.Edge;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.main.core.AlgorithmUtils;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.extensions.reports.basicreports.Diameter;
-import graphtea.extensions.reports.zagreb.WienerIndex;
 import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.basicreports.NumOfIndSets;
 
 
 import java.util.ArrayList;
 import java.util.Vector;
-import java.util.List;
 import java.util.Collections;
 
 
 /**
  * @author Ali Rostami
  */
-import java.util.Collections;
 
 @CommandAttitude(name = "SDD", abbreviation = "_SDD")
 public class SDD implements GraphReportExtension {

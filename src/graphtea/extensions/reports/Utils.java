@@ -5,7 +5,7 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
-import graphtea.plugins.main.core.AlgorithmUtils;
+import graphtea.extensions.AlgorithmUtils;
 
 import java.awt.*;
 import java.math.BigInteger;

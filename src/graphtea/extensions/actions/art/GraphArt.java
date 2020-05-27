@@ -3,7 +3,7 @@ package graphtea.extensions.actions.art;
 import graphtea.graph.graph.*;
 import graphtea.graph.old.GStroke;
 import graphtea.plugins.main.GraphData;
-import graphtea.plugins.main.core.AlgorithmUtils;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
 import java.awt.*;

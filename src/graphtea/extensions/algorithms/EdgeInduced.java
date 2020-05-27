@@ -5,9 +5,9 @@
 
 package graphtea.extensions.algorithms;
 
-import graphtea.library.BaseEdge;
-import graphtea.library.BaseGraph;
-import graphtea.library.BaseVertex;
+import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.Vertex;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -18,25 +18,24 @@ import java.util.Iterator;
  * @email rostamiev@gmail.com
  */
 public class EdgeInduced {
-    public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-    BaseGraph<VertexType, EdgeType> edgeInduced(BaseGraph<VertexType, EdgeType> g, Collection<EdgeType> S) {
-        BaseGraph<VertexType, EdgeType> ret = g.createEmptyGraph();
-        HashMap<VertexType, VertexType> vv = new HashMap<>();
-        for (VertexType v : g) {
-            VertexType t = (VertexType) v.getCopy();
+    public static GraphModel edgeInduced(GraphModel g, Collection<Edge> S) {
+        GraphModel ret = g.createEmptyGraph();
+        HashMap<Vertex, Vertex> vv = new HashMap<>();
+        for (Vertex v : g) {
+            Vertex t = v.getCopy();
             vv.put(v, t);
             ret.insertVertex(t);
         }
 
-        Iterator<EdgeType> e = g.edgeIterator();
+        Iterator<Edge> e = g.edgeIterator();
         while (e.hasNext()) {
-            EdgeType t = e.next();
-            ret.insertEdge((EdgeType) t.getCopy(vv.get(t.source), vv.get(t.target)));
+            Edge t = e.next();
+            ret.insertEdge(t.getCopy(vv.get(t.source), vv.get(t.target)));
         }
 
-        for (EdgeType ee : S) {
-            VertexType v1 = ee.source;
-            VertexType v2 = ee.target;
+        for (Edge ee : S) {
+            Vertex v1 = ee.source;
+            Vertex v2 = ee.target;
             if (ret.getInDegree(v1) + ret.getOutDegree(v1) == 0)
                 ret.removeVertex(v1);
             else if (ret.getInDegree(v2) + ret.getOutDegree(v2) == 0)

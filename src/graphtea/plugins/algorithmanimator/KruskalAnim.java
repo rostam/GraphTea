@@ -4,7 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.algorithmanimator;
 
-import graphtea.library.algorithms.spanningtree.Kruskal;
+import graphtea.extensions.algorithms.spanningtree.Kruskal;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
 public class KruskalAnim extends Kruskal

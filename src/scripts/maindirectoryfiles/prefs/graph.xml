@@ -1923,11 +1923,6 @@
           <entry key="object" value="graphtea.plugins.algorithmanimator.KruskalAnim"/>
         </map>
       </node>
-      <node name="graphtea.plugins.algorithmanimator.PrimAnim">
-        <map>
-          <entry key="object" value="graphtea.plugins.algorithmanimator.PrimAnim"/>
-        </map>
-      </node>
       <node name="graphtea.plugins.algorithmanimator.TopologicalSortAnim">
         <map>
           <entry key="object" value="graphtea.plugins.algorithmanimator.TopologicalSortAnim"/>

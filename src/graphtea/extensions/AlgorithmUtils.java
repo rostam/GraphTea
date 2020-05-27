@@ -3,22 +3,18 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
-package graphtea.plugins.main.core;
+package graphtea.extensions;
 
-import graphtea.graph.graph.GPoint;
-import graphtea.graph.graph.GRect;
-import graphtea.graph.graph.Vertex;
-import graphtea.library.BaseEdge;
-import graphtea.library.BaseGraph;
-import graphtea.library.BaseVertex;
+import graphtea.graph.graph.*;
 import graphtea.library.Path;
-import graphtea.library.algorithms.util.LibraryUtils;
+import graphtea.library.algorithms.LibraryUtils;
+
 import java.util.*;
 
 /**
  * Just some methods helping you to write Graph Algorithms easier,
  *
- * @see graphtea.library.algorithms.util.LibraryUtils
+ * @see LibraryUtils
  */
 public class AlgorithmUtils {
     public final static int Max_Int = 2100000000;
@@ -27,8 +23,8 @@ public class AlgorithmUtils {
     /**
      * sets all vertex colors to 0.
      */
-    public static void resetVertexColors(BaseGraph<BaseVertex, BaseEdge<BaseVertex>> g) {
-        for (BaseVertex v : g) {
+    public static void resetVertexColors(GraphModel g) {
+        for (Vertex v : g) {
             v.setColor(0);
         }
     }
@@ -36,8 +32,8 @@ public class AlgorithmUtils {
     /**
      * sets all vertex marks to false
      */
-    public static void resetVertexMarks(BaseGraph<BaseVertex, BaseEdge<BaseVertex>> g) {
-        for (BaseVertex v : g) {
+    public static void resetVertexMarks(GraphModel g) {
+        for (Vertex v : g) {
             v.setMark(false);
         }
     }
@@ -45,9 +41,8 @@ public class AlgorithmUtils {
     /**
      * determines wether g is connected or not
      */
-    public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-    boolean isConnected(BaseGraph<VertexType, EdgeType> g) {
-        ArrayList vs = new ArrayList();
+    public static boolean isConnected(GraphModel g) {
+        ArrayList<Integer> vs = new ArrayList<>();
         int[] parent = new int[g.getVerticesCount()];
         for(int i=0;i < g.getVerticesCount();i++) parent[i] = -1;
         dfs(g, 0, vs, parent);
@@ -57,8 +52,8 @@ public class AlgorithmUtils {
     /**
      * determines wether g is complete or not
      */
-    public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-    boolean isCompleteGraph(BaseGraph<VertexType, EdgeType> g) {
+    public static 
+    boolean isCompleteGraph(GraphModel g) {
         int size = g.getVerticesCount();
         for (int i : getDegreesList(g))
             if (i != size - 1)
@@ -71,15 +66,15 @@ public class AlgorithmUtils {
      *
      * @deprecated use BaseGraph.getEdgeArray instead
      */
-    public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-    ArrayList<ArrayList<Integer>> getAdjList(BaseGraph<VertexType, EdgeType> g) {
+    public static 
+    ArrayList<ArrayList<Integer>> getAdjList(GraphModel g) {
         double[][] mat = g.getAdjacencyMatrix().getArray();
         ArrayList<ArrayList<Integer>> alist = new ArrayList<>();
         int vCount = mat.length;
-        for (int i = 0; i < vCount; i++) {
+        for (double[] doubles : mat) {
             ArrayList<Integer> adjacencyList = new ArrayList<>();
             for (int j = 0; j < vCount; j++)
-                if (mat[i][j] == 1)
+                if (doubles[j] == 1)
                     adjacencyList.add(j);
             alist.add(adjacencyList);
         }
@@ -89,11 +84,9 @@ public class AlgorithmUtils {
     /**
      * returns the degree of the node with the id
      * @deprecated
-
-      * @see graphtea.library.BaseGraph#getDegree(graphtea.library.BaseVertex)
      */
-    public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-    int getDegree(BaseGraph<VertexType, EdgeType> bg, int node) {
+    public static 
+    int getDegree(GraphModel bg, int node) {
         int result = 0;
         double[][] mat = bg.getAdjacencyMatrix().getArray();
         int vCount = mat.length;
@@ -110,14 +103,13 @@ public class AlgorithmUtils {
     /**
      * returns all neighbors of the given vertex
      * @deprecated
-     * @see graphtea.library.BaseGraph#getNeighbors(graphtea.library.BaseVertex)
      */
-    public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-    ArrayList<VertexType> getNeighbors(BaseGraph<VertexType, EdgeType> g, VertexType source) {
-        ArrayList<VertexType> ret = new ArrayList<>();
-        Iterator<EdgeType> ie = g.edgeIterator(source);
+    public static 
+    ArrayList<Vertex> getNeighbors(GraphModel g, Vertex source) {
+        ArrayList<Vertex> ret = new ArrayList<>();
+        Iterator<Edge> ie = g.edgeIterator(source);
         while (ie.hasNext()) {
-            EdgeType e = ie.next();
+            Edge e = ie.next();
             if (e.target == source && !ret.contains(e.source))
                 ret.add(e.source);
             if (e.source == source && !ret.contains(e.target))
@@ -129,14 +121,13 @@ public class AlgorithmUtils {
     /**
      * returns all neighbors of the given vertex
      * @deprecated
-     * @see graphtea.library.BaseGraph#getNeighbors(graphtea.library.BaseVertex)
      */
-    public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-    ArrayList<VertexType> getNeighbors2(BaseGraph<VertexType, EdgeType> g, VertexType source) {
-        ArrayList<VertexType> ret = new ArrayList<>();
-        Iterator<EdgeType> ie = g.edgeIterator(source);
+    public static 
+    ArrayList<Vertex> getNeighbors2(GraphModel g, Vertex source) {
+        ArrayList<Vertex> ret = new ArrayList<>();
+        Iterator<Edge> ie = g.edgeIterator(source);
         while (ie.hasNext()) {
-            EdgeType e = ie.next();
+            Edge e = ie.next();
 //            if (e.target == source && !ret.contains(e.source))
 //                ret.add(e.source);
             if (e.source == source && !ret.contains(e.target))
@@ -149,20 +140,20 @@ public class AlgorithmUtils {
      * returns a path from source to target
      * path.get(0) = dest
      */
-    public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-    Path<VertexType> getPath(BaseGraph<VertexType, EdgeType> g, VertexType source, VertexType dest) {
-        boolean vertexMarksBackup[] = LibraryUtils.getVertexMarks(g);
+    public static 
+    Path<Vertex> getPath(GraphModel g, Vertex source, Vertex dest) {
+        boolean[] vertexMarksBackup = LibraryUtils.getVertexMarks(g);
         clearVertexMarks(g);
-        Vector<VertexType> q = new Vector<>();
+        Vector<Vertex> q = new Vector<>();
         q.add(source);
         source.setMark(true);
 
-        BaseVertex[] parents = new BaseVertex[g.getVerticesCount()];
+        Vertex[] parents = new Vertex[g.getVerticesCount()];
         boolean found = false;
         while (!q.isEmpty() && !found) {
-            VertexType v = q.remove(0);
+            Vertex v = q.remove(0);
 
-            for (VertexType neigh : getNeighbors(g, v)) {
+            for (Vertex neigh : getNeighbors(g, v)) {
                 if (neigh == dest) {
                     found = true;
 //                    break;
@@ -180,12 +171,12 @@ public class AlgorithmUtils {
         }
 
         //extract the path
-        Path<VertexType> ret = new Path<>();
+        Path<Vertex> ret = new Path<>();
 
         int did = dest.getId();
         ret.insert(dest);
         while (did != source.getId()) {
-            ret.insert((VertexType) parents[did]);
+            ret.insert((Vertex) parents[did]);
             if (parents[did] == null)
                 return null;
             did = parents[did].getId();
@@ -197,17 +188,17 @@ public class AlgorithmUtils {
     /**
      * returns the parent of v, if ve DFS on parent
      */
-    public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-    VertexType getParent(BaseGraph<VertexType, EdgeType> g, VertexType treeRoot, VertexType v) {
+    public static 
+    Vertex getParent(GraphModel g, Vertex treeRoot, Vertex v) {
         return getPath(g, treeRoot, v).get(1);
     }
 
     /**
      * clears all vertex marks
      */
-    public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-    void clearVertexMarks(BaseGraph<VertexType, EdgeType> g) {
-        for (VertexType type : g) {
+    public static 
+    void clearVertexMarks(GraphModel g) {
+        for (Vertex type : g) {
             type.setMark(false);
         }
     }
@@ -217,9 +208,9 @@ public class AlgorithmUtils {
      * the vertices are ordered by their distances to subTreeRoot
      * the exact distance is placed in v.getProp().obj as an Integer, starting distance is 0 which is subTreeRoot
      */
-    public static <Vertex extends BaseVertex, Edge extends BaseEdge<Vertex>>
-    ArrayList<Vertex> getSubTree(BaseGraph<Vertex, Edge> tree, Vertex treeRoot, Vertex subTreeRoot) {
-        boolean vertexMarksBackup[] = LibraryUtils.getVertexMarks(tree);
+    public static 
+    ArrayList<Vertex> getSubTree(GraphModel tree, Vertex treeRoot, Vertex subTreeRoot) {
+        boolean[] vertexMarksBackup = LibraryUtils.getVertexMarks(tree);
         Path<Vertex> pathToRoot = getPath(tree, treeRoot, subTreeRoot);
 
         clearVertexMarks(tree);
@@ -238,9 +229,9 @@ public class AlgorithmUtils {
     /**
      * gets the vertices in the order of AlgorithmUtils.getSubTree()
      */
-    public static <Vertex extends BaseVertex, Edge extends BaseEdge<Vertex>>
-    ArrayList<Vertex> BFSOrder(BaseGraph<Vertex, Edge> unRootedTree, Vertex treeRoot) {
-        boolean vertexMarksBackup[] = LibraryUtils.getVertexMarks(unRootedTree);
+    public static 
+    ArrayList<Vertex> BFSOrder(GraphModel unRootedTree, Vertex treeRoot) {
+        boolean[] vertexMarksBackup = LibraryUtils.getVertexMarks(unRootedTree);
         clearVertexMarks(unRootedTree);
         ArrayList<Vertex> ret = BFS(unRootedTree, treeRoot, null);
         LibraryUtils.setVertexMarks(unRootedTree, vertexMarksBackup);
@@ -250,9 +241,8 @@ public class AlgorithmUtils {
     /**
      * runs a BFS on graph, starting the given vertex as the root
      */
-    public static <Vertex extends BaseVertex, Edge extends BaseEdge<Vertex>>
-    void BFSrun(BaseGraph<Vertex, Edge> unRootedTree, Vertex treeRoot, BFSListener<Vertex> listener) {
-        boolean vertexMarksBackup[] = LibraryUtils.getVertexMarks(unRootedTree);
+    public static void BFSrun(GraphModel unRootedTree, Vertex treeRoot, BFSListener listener) {
+        boolean[] vertexMarksBackup = LibraryUtils.getVertexMarks(unRootedTree);
         clearVertexMarks(unRootedTree);
         BFS(unRootedTree, treeRoot, listener);
         LibraryUtils.setVertexMarks(unRootedTree, vertexMarksBackup);
@@ -265,9 +255,8 @@ public class AlgorithmUtils {
      * @param unRootedTree An unrooted tree
      * @param listener The listener
      */
-    public static <Vertex extends BaseVertex, Edge extends BaseEdge<Vertex>>
-    void BFS(BaseGraph<Vertex, Edge> unRootedTree, BFSListener<Vertex> listener) {
-        boolean vertexMarksBackup[] = LibraryUtils.getVertexMarks(unRootedTree);
+    public static void BFS(GraphModel unRootedTree, BFSListener listener) {
+        boolean[] vertexMarksBackup = LibraryUtils.getVertexMarks(unRootedTree);
         clearVertexMarks(unRootedTree);
         for (Vertex v : unRootedTree) {
             if (!v.getMark()) {
@@ -286,8 +275,8 @@ public class AlgorithmUtils {
      * @param listener The listener
      * @return The results of the BFS algorithm
      */
-    public static <Vertex extends BaseVertex, Edge extends BaseEdge<Vertex>>
-    ArrayList<Vertex> BFS(BaseGraph<Vertex, Edge> unRootedTree, Vertex treeRoot, BFSListener<Vertex> listener) {
+    public static 
+    ArrayList<Vertex> BFS(GraphModel unRootedTree, Vertex treeRoot, BFSListener listener) {
         //do a bfs on the subTreeRoot
         ArrayList<Vertex> q = new ArrayList<>();
         ArrayList<Vertex> ret = new ArrayList<>();
@@ -315,12 +304,12 @@ public class AlgorithmUtils {
      * runs a dfs and fills visit and parent, visit is the visiting order of vertices and parent[i] is the id of i'th vertex parent
      * the parent array should be initialized by -1
      */
-    public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-    void dfs(BaseGraph<VertexType, EdgeType> g,
-             int node, ArrayList visit, int parent[]) {
+    public static 
+    void dfs(GraphModel g,
+             int node, ArrayList<Integer> visit, int[] parent) {
         visit.add(node);
-        ArrayList e = getAdjList(g);
-        ArrayList neighbors = (ArrayList) e.get(node);
+        ArrayList<ArrayList<Integer>> e = getAdjList(g);
+        ArrayList<Integer> neighbors = e.get(node);
         for (Object neighbor1 : neighbors) {
             int neighbor = (Integer) neighbor1;
             if (parent[neighbor] == -1) {
@@ -333,7 +322,7 @@ public class AlgorithmUtils {
     /**
      * retunrs the degree of vertex (indegree + outdegree)
      */
-    public static int getTotalDegree(BaseGraph g, BaseVertex v) {
+    public static int getTotalDegree(GraphModel g, Vertex v) {
         return g.getOutDegree(v) + g.getInDegree(v);
     }
 
@@ -341,11 +330,10 @@ public class AlgorithmUtils {
      * returns the root which is assigned to each vertex
      * it is the minimum id vertex in the corresponding component of vertex
      */
-    public static <Vertex extends BaseVertex, Edge extends BaseEdge<Vertex>>
-    Vertex getRoot(BaseGraph<Vertex, Edge> g, Vertex v) {
+    public static 
+    Vertex getRoot(GraphModel g, Vertex v) {
         ArrayList<Vertex> componentVertices = BFSOrder(g, v);
         Vertex rootCandidate = v;
-
         for (Vertex vertex : componentVertices) {
             if (vertex.getId() < v.getId()) {
                 rootCandidate = vertex;
@@ -478,8 +466,8 @@ public class AlgorithmUtils {
     /**
      * returns the vertex degrees as a list, sorted by vertex ids
      */
-    public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-    ArrayList<Integer> getDegreesList(BaseGraph<VertexType, EdgeType> g) {
+    public static 
+    ArrayList<Integer> getDegreesList(GraphModel g) {
         ArrayList<Integer> result = new ArrayList<>();
         int vCount = g.getVertexArray().length;
         for (int i = 0; i < vCount; i++)
@@ -487,7 +475,7 @@ public class AlgorithmUtils {
         return result;
     }
 
-    public interface BFSListener<Vertex extends BaseVertex> {
+    public interface BFSListener {
         void visit(Vertex v, Vertex parent);
     }
 
