@@ -62,7 +62,7 @@ public class GTabbedAttributePane extends JTabbedPane {
         } else {
             iter = complicatedTabs.keySet().iterator();
         }
-        for (; iter.hasNext();) {
+        while (iter.hasNext()) {
             if (!isComplicatedForm) {
                 String title = iter.next();
                 GPropertyEditor gp = new GPropertyEditor();
@@ -74,12 +74,12 @@ public class GTabbedAttributePane extends JTabbedPane {
                 GPropertyEditor gp = new GPropertyEditor();
                 Iterator<AbstractPreference> i = complicatedTabs.get(title).iterator();
                 NotifiableAttributeSetImpl attributeSet = new NotifiableAttributeSetImpl();
-                for (; i.hasNext();) {
+                while (i.hasNext()) {
                     AbstractPreference ap = i.next();
 
                     Map<String, Object> attributeMap = ap.attributeSet.getAttrs();
                     Iterator<String> j = attributeMap.keySet().iterator();
-                    for (; j.hasNext();) {
+                    while (j.hasNext()) {
                         String name = j.next();
                         Object o = attributeMap.get(name);
                         attributeSet.put(ap.preferenceName + ":   " + name, o);

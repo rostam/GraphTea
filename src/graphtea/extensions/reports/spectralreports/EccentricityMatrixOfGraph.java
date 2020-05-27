@@ -98,10 +98,7 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension<ArrayList
 
 				if (a== -1)
 					return null;
-				else if(a==0)
-					inDegree = true;
-				else
-					inDegree = false;
+				else inDegree = a == 0;
 			}
 			Matrix A = eccentricityMatrix(g, getAllPairsShortestPathWithoutWeight(g));
 			ArrayList<String> calc = new ArrayList<>(showEccentricityMatrix(A));

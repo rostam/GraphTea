@@ -110,7 +110,7 @@ public class IterGraphs {
     public void showWrapper(BlackBoard blackboard) {
         AllGraphIterator agi = new AllGraphIterator(type, size);
         GraphModel g = agi.next();
-        Point pp[] = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
+        Point[] pp = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
         int tmpcnt = 0;
         for (Vertex v : g) {

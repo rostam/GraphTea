@@ -122,10 +122,9 @@ public class SignlessLaplacianOfGraph implements GraphReportExtension  {
 
 	private double[] round (double[] array, int prec)
 	{
-		double[] res=array;
 		for(int i=0;i<array.length;i++)
-			res[i]=round(res[i],prec);
-		return res;
+			array[i]=round(array[i],prec);
+		return array;
 
 	}
 	public String getName() {

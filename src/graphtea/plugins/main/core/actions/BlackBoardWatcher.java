@@ -13,6 +13,7 @@ import graphtea.platform.Application;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.Listener;
+import graphtea.platform.plugin.Plugger;
 import graphtea.plugins.main.core.actions.edge.AddEdge;
 import graphtea.plugins.main.core.actions.vertex.AddVertex;
 import graphtea.ui.UIUtils;
@@ -37,15 +38,13 @@ public class BlackBoardWatcher extends AbstractAction {
     public void performAction(String eventName, Object value) {
         GraphModel g = blackboard.getData(GraphAttrSet.name);
         final BlackBoardDebug bbd = new BlackBoardDebug(g);
-        new Thread(){
-            public void run() {
-        Application gg = new graphtea.platform.Application();
-        //blackboard.getData(Application.APPLICATION_INSTANCE);
-        gg.plugger = new graphtea.platform.plugin.Plugger(bbd);
+        new Thread(() -> {
+    Application gg = new Application();
+    //blackboard.getData(Application.APPLICATION_INSTANCE);
+    gg.plugger = new Plugger(bbd);
 
-        gg.run(bbd);
-            }
-        }.start();
+    gg.run(bbd);
+        }).start();
     }
 }
 

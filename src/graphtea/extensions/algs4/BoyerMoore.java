@@ -76,8 +76,7 @@ public class BoyerMoore {
     public BoyerMoore(char[] pattern, int R) {
         this.R = R;
         this.pattern = new char[pattern.length];
-        for (int j = 0; j < pattern.length; j++)
-            this.pattern[j] = pattern[j];
+        System.arraycopy(pattern, 0, this.pattern, 0, pattern.length);
 
         // position of rightmost occurrence of c in the pattern
         right = new int[R];

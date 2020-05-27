@@ -55,9 +55,7 @@ public class LongestCommonSubstring {
             if (s.charAt(p + i) != t.charAt(q + i))
                 return s.charAt(p+i) - t.charAt(q+i);
         }
-        if      (s.length() - p < t.length() - q) return -1;
-        else if (s.length() - p > t.length() - q) return +1;
-        else                                      return  0;
+        return Integer.compare(s.length() - p, t.length() - q);
     }
 
     /**

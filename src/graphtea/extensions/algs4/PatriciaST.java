@@ -111,7 +111,7 @@ public class PatriciaST<Value> {
             this.val = val;
             this.b = b;
         }
-    };
+    }
 
     /**
      * Initializes an empty PATRICIA-based symbol table.

@@ -520,7 +520,7 @@ public class ShellConsole extends JScrollPane
             return;
         }
 
-        print(String.valueOf(o) + "\n");
+        print(o + "\n");
         text.repaint();
     }
 
@@ -529,12 +529,10 @@ public class ShellConsole extends JScrollPane
             console_interface.print(o);
             return;
         }
-        invokeAndWait(new Runnable() {
-            public void run() {
-                append(String.valueOf(o));
-                resetCommandStart();
-                text.setCaretPosition(cmdStart);
-            }
+        invokeAndWait(() -> {
+            append(String.valueOf(o));
+            resetCommandStart();
+            text.setCaretPosition(cmdStart);
         });
     }
 
@@ -578,12 +576,10 @@ public class ShellConsole extends JScrollPane
         if (icon == null)
             return;
 
-        invokeAndWait(new Runnable() {
-            public void run() {
-                text.insertIcon(icon);
-                resetCommandStart();
-                text.setCaretPosition(cmdStart);
-            }
+        invokeAndWait(() -> {
+            text.insertIcon(icon);
+            resetCommandStart();
+            text.setCaretPosition(cmdStart);
         });
     }
 
@@ -613,15 +609,13 @@ public class ShellConsole extends JScrollPane
     }
 
     public void print(final Object o, final Font font, final Color color) {
-        invokeAndWait(new Runnable() {
-            public void run() {
-                AttributeSet old = getStyle();
-                setStyle(font, color);
-                append(String.valueOf(o));
-                resetCommandStart();
-                text.setCaretPosition(cmdStart);
-                setStyle(old, true);
-            }
+        invokeAndWait(() -> {
+            AttributeSet old = getStyle();
+            setStyle(font, color);
+            append(String.valueOf(o));
+            resetCommandStart();
+            text.setCaretPosition(cmdStart);
+            setStyle(old, true);
         });
     }
 
@@ -644,15 +638,13 @@ public class ShellConsole extends JScrollPane
             final boolean italic,
             final boolean underline
     ) {
-        invokeAndWait(new Runnable() {
-            public void run() {
-                AttributeSet old = getStyle();
-                setStyle(fontFamilyName, size, color, bold, italic, underline);
-                append(String.valueOf(o));
-                resetCommandStart();
-                text.setCaretPosition(cmdStart);
-                setStyle(old, true);
-            }
+        invokeAndWait(() -> {
+            AttributeSet old = getStyle();
+            setStyle(fontFamilyName, size, color, bold, italic, underline);
+            append(String.valueOf(o));
+            resetCommandStart();
+            text.setCaretPosition(cmdStart);
+            setStyle(old, true);
         });
     }
 

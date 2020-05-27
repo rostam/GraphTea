@@ -137,12 +137,7 @@ public class BaseEdge<VertexType extends BaseVertex>
      *         1 if this object is greater than the supplied object.
      */
     public int compareTo(BaseEdge<VertexType> o) {
-        if (o.prop.weight == prop.weight)
-            return 0;
+        return Integer.compare(prop.weight, o.prop.weight);
 
-        if (o.prop.weight > prop.weight)
-            return -1;
-
-        return 1;
     }
 }

@@ -17,7 +17,6 @@ import java.awt.*;
 
  */
 public interface SimpleGeneratorInterface {
-    void setWorkingGraph(GraphModel g);
 
     Vertex[] getVertices();
 

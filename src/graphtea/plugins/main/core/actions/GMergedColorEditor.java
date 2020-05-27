@@ -116,17 +116,15 @@ public class GMergedColorEditor implements GBasicCellEditor<Integer>, ActionList
         f.add(comp);
         f.pack();
         f.setVisible(true);
-        comp.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String text = comp.getText();
-                try {
-                    int v = Integer.parseInt(text);
-                    listener.editingFinished(v);
-                    f.setVisible(false);
-                }
-                catch (Exception ee) { //it was not a number
-                    comp.setText("" + curVal);
-                }
+        comp.addActionListener(e -> {
+            String text = comp.getText();
+            try {
+                int v = Integer.parseInt(text);
+                listener.editingFinished(v);
+                f.setVisible(false);
+            }
+            catch (Exception ee) { //it was not a number
+                comp.setText("" + curVal);
             }
         });
     }

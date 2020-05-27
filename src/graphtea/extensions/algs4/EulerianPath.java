@@ -208,12 +208,10 @@ public class EulerianPath {
         if (path == null) return true;
 
         // check that path() uses correct number of edges
-        if (path.size() != G.E() + 1) return false;
+        return path.size() == G.E() + 1;
 
         // check that path() is a path in G
         // TODO
-
-        return true;
     }
 
 

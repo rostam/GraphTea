@@ -47,7 +47,7 @@ public class StaticUtils {
         return result;
     }
 
-    public static void putInJar(File directory, JarOutputStream jos, String prefix) throws IOException, FileNotFoundException, Exception {
+    public static void putInJar(File directory, JarOutputStream jos, String prefix) throws Exception {
         FileInputStream fis;
         File[] files = directory.listFiles();
 
@@ -99,7 +99,7 @@ public class StaticUtils {
 
         if (String.class.getName().equals(classname)) return data;
 
-        if (Integer.class.getName().equals(classname)) return new Integer(data);
+        if (Integer.class.getName().equals(classname)) return Integer.valueOf(data);
 
         if (BigInteger.class.getName().equals(classname)) return new BigInteger(data);
 
@@ -300,7 +300,7 @@ class BareBonesBrowserLaunch {
                     if (browser == null)
                         throw new Exception(Arrays.toString(browsers));
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
     }

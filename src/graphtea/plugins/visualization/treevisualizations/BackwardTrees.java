@@ -59,7 +59,7 @@ public class BackwardTrees implements VisualizationExtension {
     private Vertex findAppropriateRoot(GraphModel g) {
         Vertex root = g.getAVertex();
         Iterator<Vertex> ei = g.iterator();
-        for (; ei.hasNext();) {
+        while (ei.hasNext()) {
             Vertex e = ei.next();
             root = findHigherVertex(e, root);
         }
@@ -71,7 +71,7 @@ public class BackwardTrees implements VisualizationExtension {
         for (Vertex v : currentLevel) {
             v.setMark(true);
             Iterator<Edge> em = g.edgeIterator(v);
-            for (; em.hasNext();) {
+            while (em.hasNext()) {
                 Edge e = em.next();
                 Vertex v2 = e.source;
                 if (!v2.getMark()) {
@@ -93,7 +93,7 @@ public class BackwardTrees implements VisualizationExtension {
         if (currentLevelVertices.size() != 0) {
             for (Vertex v : currentLevelVertices) {
                 Iterator<Edge> e = g.edgeIterator(v);
-                for (; e.hasNext();) {
+                while (e.hasNext()) {
                     Edge ed = e.next();
                     Vertex dest = ed.source;
                     if (!visitedVertices.contains(dest)) {
@@ -128,7 +128,7 @@ public class BackwardTrees implements VisualizationExtension {
                 GPoint[] circle = PositionGenerators.convert(PositionGenerators.circle((int) v.getLocation().getX(), (int) v.getLocation().getY(), radius, radius, degree));
 
                 int t = 0;
-                for (; ei.hasNext();) {
+                while (ei.hasNext()) {
                     Vertex ver = ei.next().source;
 //                    double x;
 //                    double y;
@@ -177,7 +177,7 @@ public class BackwardTrees implements VisualizationExtension {
             }
             Iterator<Edge> iter = g.edgeIterator(v);
             int sum = 0;
-            for (; iter.hasNext();) {
+            while (iter.hasNext()) {
                 Edge e = iter.next();
                 Vertex v1 = e.source.equals(v) ? e.target : e.source;
                 if (!placedVertices.contains(v1)) {
@@ -187,7 +187,7 @@ public class BackwardTrees implements VisualizationExtension {
             }
             iter = g.edgeIterator(v);
             int j = 1;
-            for (; iter.hasNext();) {
+            while (iter.hasNext()) {
                 Edge e = iter.next();
                 Vertex v1 = e.source.equals(v) ? e.target : e.source;
                 if (!placedVertices.contains(v1)) {
@@ -198,16 +198,13 @@ public class BackwardTrees implements VisualizationExtension {
                     vertexPlaces.put(v1, newPoint);
                     placedVertices.add(v1);
                     BaseVertexProperties properties = new BaseVertexProperties(v1.getColor(), v1.getMark());
-                    properties.obj = new Double((angularSpan / (Math.abs(sum))) * (g.getInDegree(v1)));
+                    properties.obj = (angularSpan / (Math.abs(sum))) * (g.getInDegree(v1));
                     v1.setProp(properties);
                     locateAllSubTrees(v1, this.radius + radius, newOffset);
                     j++;
 
-                } else {
                 }
-
             }
-            return;
         } else {
             double x = 350;
             double y = 350;

@@ -70,10 +70,7 @@ public class GMenuBar extends javax.swing.JMenuBar {
 
     private static int checkPlaceValue(int place, Component child) {
         if (place == -1) {
-            if (componentPlaces.containsKey(child))
-                place = componentPlaces.get(child);       //it has given a place before
-            else
-                place = 1000;
+            place = componentPlaces.getOrDefault(child, 1000);       //it has given a place before
         }
         componentPlaces.put(child, place);
         return place;

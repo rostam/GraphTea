@@ -25,7 +25,6 @@ import java.awt.*;
 @CommandAttitude(name = "generate_wheel", abbreviation = "_g_w"
         , description = "generate a n vertices wheel graph")
 public class WheelGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
-    private GraphModel g;
     @Parameter(name = "n")
     public static Integer n = 5;
 
@@ -37,10 +36,6 @@ public class WheelGenerator implements GraphGeneratorExtension, Parametrizable, 
 
     public String getDescription() {
         return "Wheel Graph";
-    }
-
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
     }
 
     public Vertex[] getVertices() {

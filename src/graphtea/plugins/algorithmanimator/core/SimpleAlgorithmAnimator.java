@@ -28,12 +28,10 @@ public abstract class SimpleAlgorithmAnimator extends AbstractAction {
     }
 
     private void startAnim() {
-        new Thread() {
-            public void run() {
-                AlgorithmAnimator a = new AlgorithmAnimator(blackboard);
-                a.animateAlgorithm(getAlgorithm());
-            }
-        }.start();
+        new Thread(() -> {
+            AlgorithmAnimator a = new AlgorithmAnimator(blackboard);
+            a.animateAlgorithm(getAlgorithm());
+        }).start();
 
     }
 

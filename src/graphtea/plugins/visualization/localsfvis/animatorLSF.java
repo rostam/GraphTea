@@ -101,20 +101,19 @@ class animatorLSF extends Thread {
                 counter2 = 0;
 //                gv.ignoreUpdates = true;
                 try {
-                    gv.ignoreRepaints(new Runnable() {
-                        public void run() {
-                            GPoint newCenterPoint = calculateGraphCenterPoint();
-                            GRect newBounds = calculateGraphAbsBoundsPoint();
-                            //todo: to preserve graph bounds
-                            double dx = centerPoint.x - newCenterPoint.x;
-                            double dy = centerPoint.y - newCenterPoint.y;
-                            for (int i = 0; i < n; i++) {
-                                double x = verPos[i].x;
-                                double y = verPos[i].y;
+                    gv.ignoreRepaints(() -> {
+                        GPoint newCenterPoint = calculateGraphCenterPoint();
+                        GRect newBounds = calculateGraphAbsBoundsPoint();
+                        //todo: to preserve graph bounds
+                        double dx = centerPoint.x - newCenterPoint.x;
+                        double dy = centerPoint.y - newCenterPoint.y;
+                        for (int i = 0; i < n; i++) {
+                            double x = verPos[i].x;
+                            double y = verPos[i].y;
 //                                x=x+dx+ ((x-newCenterPoint.x)/newBounds.width)*bounds.width;
-                                x += dx;
-                                y += dy;
-                                GPoint p = v[i].getLocation();
+                            x += dx;
+                            y += dy;
+                            GPoint p = v[i].getLocation();
 //                    if (p.distance(verPos[i])<2)
 //                        stableVertex[i] = true;
 
@@ -123,11 +122,10 @@ class animatorLSF extends Thread {
 //                        }
 
 //                    if (!stableVertex[i])
-                                v[i].setLocation(verPos[i]);
-                                prevVerPos[i] = p;
+                            v[i].setLocation(verPos[i]);
+                            prevVerPos[i] = p;
 //                    else
 //                        stableVertex[i]=true;
-                            }
                         }
                     });
                 }
@@ -278,7 +276,7 @@ class animatorLSF extends Thread {
         stop = true;
     }
 
-    boolean stableVertex[];
+    boolean[] stableVertex;
 
 
     private void getVertices() {

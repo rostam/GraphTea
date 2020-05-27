@@ -120,10 +120,9 @@ public class LaplacianOfGraph implements GraphReportExtension<ArrayList<String>>
 
 	private double[] round (double[] array, int prec)
 	{
-		double[] res=array;
 		for(int i=0;i<array.length;i++)
-			res[i]=round(res[i],prec);
-		return res;
+			array[i]=round(array[i],prec);
+		return array;
 
 	}
 	public String getName() {
@@ -143,10 +142,7 @@ public class LaplacianOfGraph implements GraphReportExtension<ArrayList<String>>
 
 				if (a== -1)
 					return null;
-				else if(a==0)
-					inDegree = true;
-				else
-					inDegree = false;
+				else inDegree = a == 0;
 			}
 			Matrix A = g.getWeightedAdjacencyMatrix();
 			ArrayList<String> calc = new ArrayList<>(ShowLaplacian(A));

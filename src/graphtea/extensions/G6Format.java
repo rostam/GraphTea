@@ -21,7 +21,7 @@ public class G6Format {
     private static String g6_graph;
 
 
-    static int bit_[] = {020000000000, 010000000000, 04000000000, 02000000000,
+    static int[] bit_ = {020000000000, 010000000000, 04000000000, 02000000000,
             01000000000, 0400000000, 0200000000, 0100000000, 040000000,
             020000000, 010000000, 04000000, 02000000, 01000000, 0400000,
             0200000, 0100000, 040000, 020000, 010000, 04000, 02000, 01000,
@@ -63,11 +63,10 @@ public class G6Format {
                     it++;
                 }
                 if ((x & TOPBIT6) != 0) {
-                    if (graph.containsKey(i)) graph.get(i).add(j);
-                    else {
+                    if (!graph.containsKey(i)) {
                         graph.put(i, new Vector<>());
-                        graph.get(i).add(j);
                     }
+                    graph.get(i).add(j);
                 }
                 x <<= 1;
             }

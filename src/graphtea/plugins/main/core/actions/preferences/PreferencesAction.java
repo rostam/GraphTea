@@ -42,7 +42,7 @@ public class PreferencesAction extends AbstractAction implements StorableOnExit 
         HashMap<String, AbstractPreference> tabs = new HashMap<>();
         Iterator<AbstractPreference> iterator = pref.set.iterator();
 
-        for (; iterator.hasNext();) {
+        while (iterator.hasNext()) {
             AbstractPreference ap = iterator.next();
             tabs.put(ap.preferenceName, ap);
         }

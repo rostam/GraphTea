@@ -132,6 +132,7 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
                     int tmpInt = aTt2;
                     if (tmpInt != -1 && tmp.contains(tmpInt)) {
                         sameItem = true;
+                        break;
                     }
                 }
                 if (!sameItem && tmp.size() != 0 && integers.size() != 0) {

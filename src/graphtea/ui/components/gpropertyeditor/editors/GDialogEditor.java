@@ -72,11 +72,7 @@ public abstract class GDialogEditor<t> implements GBasicCellEditor, ActionListen
 
         d.validate();
         d.pack();
-        new Thread() {
-            public void run() {
-                d.setVisible(true);
-            }
-        }.start();
+        new Thread(() -> d.setVisible(true)).start();
         return GCellRenderer.getRendererFor(value);
     }
 

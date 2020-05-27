@@ -603,7 +603,7 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
      * @return all keys in the symbol table following an in-order traversal
      */
     public Iterable<Key> keysInOrder() {
-        Queue<Key> queue = new Queue<Key>();
+        Queue<Key> queue = new Queue<>();
         keysInOrder(root, queue);
         return queue;
     }
@@ -627,9 +627,9 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
      * @return all keys in the symbol table following a level-order traversal.
      */
     public Iterable<Key> keysLevelOrder() {
-        Queue<Key> queue = new Queue<Key>();
+        Queue<Key> queue = new Queue<>();
         if (!isEmpty()) {
-            Queue<Node> queue2 = new Queue<Node>();
+            Queue<Node> queue2 = new Queue<>();
             queue2.enqueue(root);
             while (!queue2.isEmpty()) {
                 Node x = queue2.dequeue();
@@ -658,7 +658,7 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
     public Iterable<Key> keys(Key lo, Key hi) {
         if (lo == null) throw new IllegalArgumentException("first argument to keys() is null");
         if (hi == null) throw new IllegalArgumentException("second argument to keys() is null");
-        Queue<Key> queue = new Queue<Key>();
+        Queue<Key> queue = new Queue<>();
         keys(root, queue, lo, hi);
         return queue;
     }
@@ -799,7 +799,7 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        AVLTreeST<String, Integer> st = new AVLTreeST<String, Integer>();
+        AVLTreeST<String, Integer> st = new AVLTreeST<>();
         for (int i = 0; !StdIn.isEmpty(); i++) {
             String key = StdIn.readString();
             st.put(key, i);

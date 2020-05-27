@@ -101,17 +101,15 @@ public class PopupMenuHandler extends AbstractAction {
         JMenuItem item = new JMenuItem(id);
         mnu.add(item, index);
         mnu.validate();
-        item.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (forceEnable) {
+        item.addActionListener(e -> {
+            if (forceEnable) {
 //                    Configuration conf = n.getBlackBoard().getData(UIEventHandler.CONF);
 //                    conf.enableAction(n);
-                    if (n.isEnable()) {
-                        n.performAction("popup menu: " + id, null);
-                    }
-                } else {
+                if (n.isEnable()) {
                     n.performAction("popup menu: " + id, null);
                 }
+            } else {
+                n.performAction("popup menu: " + id, null);
             }
         });
     }

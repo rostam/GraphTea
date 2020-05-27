@@ -39,16 +39,14 @@ public class UISample {
         final JTextArea editor = Utils.getMainEditor(blackBoard);
 
         //sets the lbl to show current row and colomn of caret in text editor
-        editor.addCaretListener(new CaretListener() {
-            public void caretUpdate(CaretEvent e) {
-                try {
-                    int caretPosition = editor.getCaretPosition();
-                    int line = editor.getLineOfOffset(caretPosition);
-                    int col = caretPosition - editor.getLineStartOffset(line);
-                    lbl.setText(line + ":" + col);
-                } catch (BadLocationException e1) {
-                    e1.printStackTrace();
-                }
+        editor.addCaretListener(e -> {
+            try {
+                int caretPosition = editor.getCaretPosition();
+                int line = editor.getLineOfOffset(caretPosition);
+                int col = caretPosition - editor.getLineStartOffset(line);
+                lbl.setText(line + ":" + col);
+            } catch (BadLocationException e1) {
+                e1.printStackTrace();
             }
         });
         u.getGFrame().setVisible(true);

@@ -123,9 +123,7 @@ public class ExampleFileFilter extends FileFilter {
                 return true;
             }
             String extension = SaveLoadPluginMethods.getExtension(f);
-            if (extension != null && filters.get(SaveLoadPluginMethods.getExtension(f)) != null) {
-                return true;
-            }
+            return extension != null && filters.get(SaveLoadPluginMethods.getExtension(f)) != null;
         }
         return false;
     }

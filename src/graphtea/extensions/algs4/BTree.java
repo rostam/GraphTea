@@ -190,8 +190,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
             }
         }
 
-        for (int i = h.m; i > j; i--)
-            h.children[i] = h.children[i-1];
+        if (h.m - j >= 0) System.arraycopy(h.children, j, h.children, j + 1, h.m - j);
         h.children[j] = t;
         h.m++;
         if (h.m < M) return null;
@@ -202,8 +201,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
     private Node split(Node h) {
         Node t = new Node(M/2);
         h.m = M/2;
-        for (int j = 0; j < M/2; j++)
-            t.children[j] = h.children[M/2+j]; 
+        System.arraycopy(h.children, 2, t.children, 0, M / 2);
         return t;    
     }
 

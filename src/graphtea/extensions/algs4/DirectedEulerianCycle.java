@@ -166,12 +166,10 @@ public class DirectedEulerianCycle {
         if (cycle == null) return true;
 
         // check that cycle() uses correct number of edges
-        if (cycle.size() != G.E() + 1) return false;
+        return cycle.size() == G.E() + 1;
 
         // check that cycle() is a directed cycle of G
         // TODO
-
-        return true;
     }
 
 

@@ -6,8 +6,8 @@ import graphtea.graph.graph.Vertex;
 
 public abstract class MaxFlow {
 	
-	public double C[][]; 
-	public double F[][];
+	public double[][] C;
+	public double[][] F;
 	
 	protected GraphModel g;
 	protected int n;

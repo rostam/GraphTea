@@ -36,7 +36,7 @@ public class CircularTreeVisualization implements VisualizationExtension {
     private Vertex findAppropriateRoot(GraphModel g) {
         Vertex root = g.getAVertex();
         Iterator<Vertex> ei = g.iterator();
-        for (; ei.hasNext();) {
+        while (ei.hasNext()) {
             Vertex e = ei.next();
             root = findHigherVertex(e, root);
         }
@@ -65,7 +65,7 @@ public class CircularTreeVisualization implements VisualizationExtension {
         for (Vertex v : currentLevel) {
             v.setMark(true);
             Iterator<Edge> em = g.edgeIterator(v);
-            for (; em.hasNext();) {
+            while (em.hasNext()) {
                 Edge e = em.next();
                 Vertex v2 = e.source;
                 if (!v2.getMark()) {
@@ -119,7 +119,7 @@ try {
             Iterator<Edge> iter = g.edgeIterator(v);
             int j = 0;
             int sum = 0;
-            for (; iter.hasNext();) {
+            while (iter.hasNext()) {
                 Edge e = iter.next();
                 Vertex v1 = e.source.equals(v) ? e.target : e.source;
                 if (!placedVertices.contains(v1)) {
@@ -127,7 +127,7 @@ try {
                 }
             }
             iter = g.edgeIterator(v);
-            for (; iter.hasNext();) {
+            while (iter.hasNext()) {
                 Edge e = iter.next();
                 Vertex v1 = e.source.equals(v) ? e.target : e.source;
                 if (!placedVertices.contains(v1)) {
@@ -166,7 +166,7 @@ try {
         Vector<Vertex> newChildren = new Vector<>();
         for (Vertex v : currentLevelVertices) {
             Iterator<Edge> e = g.edgeIterator(v);
-            for (; e.hasNext();) {
+            while (e.hasNext()) {
                 Edge ed = e.next();
                 Vertex dest = ed.source;
                 if (!visitedVertices.contains(dest)) {

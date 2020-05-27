@@ -83,7 +83,7 @@ public class GCellEditor extends AbstractCellEditor implements TableCellEditor, 
         }
         if (editor == null) {
             //search implementing interfaces
-            Class cc[] = value.getClass().getInterfaces();
+            Class[] cc = value.getClass().getInterfaces();
             for (int i = 0; i < cc.length && editor == null; i++)
                 editor = knownEditors.get(cc[i]);
         }

@@ -62,10 +62,8 @@ public class DeleteSelected implements GraphActionExtension {
         if (selection.edges.isEmpty() && selection.vertices.isEmpty())
             return;
 
-        HashSet<Edge> edges = new HashSet<>();
-        edges.addAll(selection.edges);
-        HashSet<Vertex> vertices = new HashSet<>();
-        vertices.addAll(selection.vertices);
+        HashSet<Edge> edges = new HashSet<>(selection.edges);
+        HashSet<Vertex> vertices = new HashSet<>(selection.vertices);
         selection.edges.forEach(g::removeEdge);
         Vector<Edge> ed = new Vector<>();
         for (Vertex v : selection.vertices) {

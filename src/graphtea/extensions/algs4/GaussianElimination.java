@@ -80,8 +80,7 @@ public class GaussianElimination {
         // build augmented matrix
         a = new double[m][n+1];
         for (int i = 0; i < m; i++)
-            for (int j = 0; j < n; j++)
-                a[i][j] = A[i][j];
+            System.arraycopy(A[i], 0, a[i], 0, n);
         for (int i = 0; i < m; i++)
             a[i][n] = b[i];
 

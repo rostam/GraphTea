@@ -68,7 +68,7 @@ public class BiconnectedComponents extends Algorithm implements AutomatedAlgorit
      * This class is used to put both vertices and edges in
      * a stack.
      */
-    private class VE {
+    private static class VE {
 
         Vertex v;
         Edge e;

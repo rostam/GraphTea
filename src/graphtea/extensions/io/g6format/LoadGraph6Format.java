@@ -38,7 +38,7 @@ public class LoadGraph6Format implements GraphReaderExtension {
     }
 
     @Override
-    public GraphModel read(File file) throws GraphIOException {
+    public GraphModel read(File file) {
         String g6 = "";
         try {
             Scanner sc = new Scanner(file);

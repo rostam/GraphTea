@@ -260,12 +260,7 @@ public final class StdAudio {
             // (if not, will throw an UnsupportedAudioFileException)
             AudioInputStream ais = AudioSystem.getAudioInputStream(is);
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    stream(filename);
-                }
-           }).start();
+            new Thread(() -> stream(filename)).start();
         }
 
         // let's try Applet.newAudioClip() instead

@@ -149,7 +149,7 @@ public class Matrix {
         	n++;
         	sc.nextInt();
         }
-        int ret[][] = new int[n][n];
+        int[][] ret = new int[n][n];
         sc = new Scanner(s);
         int i = 0;
         while (sc.hasNextLine()) {

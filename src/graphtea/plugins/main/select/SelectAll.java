@@ -32,7 +32,7 @@ public class SelectAll extends AbstractAction {
         SubGraph sd = getSelection();
         Iterator<Vertex> vertices = g.iterator();
         Iterator<Edge> edges = g.lightEdgeIterator();
-        for (; vertices.hasNext();) {
+        while (vertices.hasNext()) {
 
             Vertex vertex = vertices.next();
 //            if (vertex.view.isSelected) {
@@ -42,7 +42,7 @@ public class SelectAll extends AbstractAction {
             sd.vertices.add(vertex);
 
         }
-        for (; edges.hasNext();) {
+        while (edges.hasNext()) {
 
             Edge edge = edges.next();
 //            if (edge.view.isSelected){

@@ -61,31 +61,23 @@ public class Init implements PluginInterface, StorableOnExit {
 
 
         track("App", "Started");
-        blackboard.addListener(ExceptionOccuredData.EVENT_KEY, new Listener() {
-            public void keyChanged(String key, Object value) {
-                trackError(getLatestExceptionStackStrace(blackboard));
-            }
-        });
+        blackboard.addListener(ExceptionOccuredData.EVENT_KEY, (key, value) -> trackError(getLatestExceptionStackStrace(blackboard)));
 
         //tracks
-        new Thread(new Runnable() {
-            public void run() {
-                while (true) { try {
-                    Thread.sleep(100);
-                    if (tracks.isEmpty()) continue;
+        new Thread(() -> {
+            while (true) { try {
+                Thread.sleep(100);
+                if (tracks.isEmpty()) continue;
 
-                    sendEvent(tracks.removeFirst());
+                sendEvent(tracks.removeFirst());
 
-                } catch (Exception e) { addExceptionLog(e); } }
-            }
+            } catch (Exception e) { addExceptionLog(e); } }
         }).start();
         try { uid = getExternalIP(); } catch (Exception e) { e.printStackTrace();}
 
-        blackboard.addListener("ATrack", new Listener<AEvent>(){
-            public void keyChanged(String key, AEvent event){
-                System.out.println(event);
-                tracks.add(event);
-            }
+        blackboard.addListener("ATrack", (Listener<AEvent>) (key, event) -> {
+            System.out.println(event);
+            tracks.add(event);
         });
 
     }

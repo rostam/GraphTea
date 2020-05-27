@@ -96,14 +96,12 @@ public class Shell {
 
     public void performJob(String name) {
 
-        bb.addListener(GraphAttrSet.name, new Listener() {
-            public void keyChanged(String key, Object value) {
-                GraphModel gm = bb.getData(GraphAttrSet.name);
-                try {
-                    main_interpreter.set(gm.getLabel(), gm);
-                } catch (EvalError evalError) {
-                    evalError.printStackTrace();
-                }
+        bb.addListener(GraphAttrSet.name, (key, value) -> {
+            GraphModel gm = bb.getData(GraphAttrSet.name);
+            try {
+                main_interpreter.set(gm.getLabel(), gm);
+            } catch (EvalError evalError) {
+                evalError.printStackTrace();
             }
         });
         evaluations += "clr(){console.clear();}";
@@ -123,40 +121,35 @@ public class Shell {
         ShellCodeCompletion code_completion = new ShellCodeCompletion(main_interpreter, parser.commands, parser.abbrs, code_completion_dictionary);
         console.setNameCompletion(code_completion);
 
-        new Thread() {
-            public void run() {
-                try {
-                    main_interpreter.set("abbreviations", parser.abbrs);
-                    main_interpreter.set("code_completion_dictionary", code_completion_dictionary);
-                    main_interpreter.set("evaluations", evaluations);
-                    main_interpreter.set("console", console);
-                    main_interpreter.set("blackboard", bb);
-                    main_interpreter.set("graphdata", new GraphData(bb));
-                    parser.abbrs.put("_clr", "clr");
+        new Thread(() -> {
+            try {
+                main_interpreter.set("abbreviations", parser.abbrs);
+                main_interpreter.set("code_completion_dictionary", code_completion_dictionary);
+                main_interpreter.set("evaluations", evaluations);
+                main_interpreter.set("console", console);
+                main_interpreter.set("blackboard", bb);
+                main_interpreter.set("graphdata", new GraphData(bb));
+                parser.abbrs.put("_clr", "clr");
 //                    main_interpreter.set("me", Shell.this);
-                    main_interpreter.eval(evaluations);
-                }
-                catch (EvalError evalError) {
-                    evalError.printStackTrace();
-                }
-                main_interpreter.run();
-
+                main_interpreter.eval(evaluations);
             }
-        }.start();
+            catch (EvalError evalError) {
+                evalError.printStackTrace();
+            }
+            main_interpreter.run();
+
+        }).start();
 
         //for not printing 'by niemeyer'
-       new Thread() {
-
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                    console.clear();
-                    console.print("bsh % ");
-                } catch (InterruptedException e) {
-                    ExceptionHandler.catchException(e);
-                }
-            }
-        }.start();
+       new Thread(() -> {
+           try {
+               Thread.sleep(1000);
+               console.clear();
+               console.print("bsh % ");
+           } catch (InterruptedException e) {
+               ExceptionHandler.catchException(e);
+           }
+       }).start();
     }
 
     /**

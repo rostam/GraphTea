@@ -49,7 +49,7 @@ public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double rv[] = ed.getRealEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
         double sum = 0;
 
         //positiv RV
@@ -155,8 +155,8 @@ public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
             Matrix A = g.getWeightedAdjacencyMatrix();
             A = getLaplacian(A);
             EigenvalueDecomposition ed = A.eig();
-            double rv[] = ed.getRealEigenvalues();
-            double iv[] = ed.getImagEigenvalues();
+            double[] rv = ed.getRealEigenvalues();
+            double[] iv = ed.getImagEigenvalues();
             double maxrv = 0;
             double minrv = 1000000;
             for (double value : rv) {

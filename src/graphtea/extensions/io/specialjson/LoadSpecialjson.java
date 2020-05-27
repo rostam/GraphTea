@@ -48,7 +48,7 @@ public class LoadSpecialjson implements GraphReaderExtension {
     }
 
     @Override
-    public GraphModel read(File file) throws GraphIOException {
+    public GraphModel read(File file) {
         GraphModel g = new GraphModel(false);
         //2793
         Vector<String> regions = new Vector<>();
@@ -97,12 +97,10 @@ public class LoadSpecialjson implements GraphReaderExtension {
                     v.setLabel(id);
                     v.setLocation(convertLatLonToXY(lat, lng));
                     g.addVertex(v);
-                    if (regionVertices.keySet().contains(region)) {
-                        regionVertices.get(region).add(i);
-                    } else {
+                    if (!regionVertices.containsKey(region)) {
                         regionVertices.put(region, new Vector<>());
-                        regionVertices.get(region).add(i);
                     }
+                    regionVertices.get(region).add(i);
                     verticesRegion.put(i, region);
                     if (!regions.contains(region)) regions.add(region);
                     g.getVertex(i).setColor(regions.indexOf(region) + 2);
@@ -139,19 +137,16 @@ public class LoadSpecialjson implements GraphReaderExtension {
             rendererComponent.setEnabled(true);
             jd.add(rendererComponent, BorderLayout.CENTER);
             Button bt = new Button("Show settlements without coordinates");
-            bt.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent actionEvent) {
-                    int i = 0;
-                    for(Vertex v : g) {
-                        if(sttlWithoutCoordinates.contains(v.getLabel())) {
+            bt.addActionListener(actionEvent -> {
+                int i1 = 0;
+                for(Vertex v : g) {
+                    if(sttlWithoutCoordinates.contains(v.getLabel())) {
 //                            v.setColor(3);
-                            //v.setLocation(new GPoint(200,200 + i*20));
-                            i++;
-                        } else {
-                            v.setLocation(new GPoint(100,100));
-                            v.setColor(0);
-                        }
+                        //v.setLocation(new GPoint(200,200 + i*20));
+                        i1++;
+                    } else {
+                        v.setLocation(new GPoint(100,100));
+                        v.setColor(0);
                     }
                 }
             });

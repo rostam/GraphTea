@@ -62,7 +62,7 @@ public class G6CSVStringLoader implements GraphActionExtension, Parametrizable {
             }
             if(!g6.equals("")) {
                 GraphModel g = G6Format.stringToGraphModel(g6);
-                Point pp[] = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
+                Point[] pp = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
                 int tmpcnt = 0;
                 for (Vertex v : g) {

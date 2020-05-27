@@ -211,14 +211,12 @@ public class FFT {
      */
     public static Complex[] convolve(Complex[] x, Complex[] y) {
         Complex[] a = new Complex[2*x.length];
-        for (int i = 0; i < x.length; i++)
-            a[i] = x[i];
+        System.arraycopy(x, 0, a, 0, x.length);
         for (int i = x.length; i < 2*x.length; i++)
             a[i] = ZERO;
 
         Complex[] b = new Complex[2*y.length];
-        for (int i = 0; i < y.length; i++)
-            b[i] = y[i];
+        System.arraycopy(y, 0, b, 0, y.length);
         for (int i = y.length; i < 2*y.length; i++)
             b[i] = ZERO;
 

@@ -19,6 +19,6 @@ class pair implements Comparable<pair> {
     }
 
     public int compareTo(pair o) {
-        return ((Double) d).compareTo(o.d);
+        return Double.compare(d, o.d);
     }
 }

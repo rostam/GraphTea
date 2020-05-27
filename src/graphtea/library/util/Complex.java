@@ -119,7 +119,7 @@ constructs a complex number from radius/magnitude and argument.
     try {
                 result = new Angle(Math.atan2(v, u),Angle.RAD);
         }
-        catch(Exception e) { }
+        catch(Exception ignored) { }
         return result;
   }
 /**
@@ -242,7 +242,7 @@ constructs a complex number from radius/magnitude and argument.
     return new Complex(sinh(z).divideBy(cosh(z)));
   }
 
-  public static double tanh(double x) throws Msg {
+  public static double tanh(double x) {
    //throw new FatalMsg("Complex.tanh"," tanh() einbauen");
                 return new Complex(x,0.0).re();
   }
@@ -392,6 +392,6 @@ test function.
                                                                 new Angle(bb.im(),Angle.RAD).deg())+" deg");
                 System.out.println();
         }
-        catch(Exception e) { }
+        catch(Exception ignored) { }
   }
 } // end class Complex

@@ -350,7 +350,7 @@ public class Edge extends BaseEdge<Vertex> {
         else if (isShowWeight())
             _label = String.valueOf(super.getWeight());
         else
-            _label = label + "," + String.valueOf(super.getWeight());
+            _label = label + "," + super.getWeight();
         this.text = _label;
         repaintView();
     }

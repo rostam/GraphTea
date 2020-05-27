@@ -172,9 +172,7 @@ public final class Point2D implements Comparable<Point2D> {
     public int compareTo(Point2D that) {
         if (this.y < that.y) return -1;
         if (this.y > that.y) return +1;
-        if (this.x < that.x) return -1;
-        if (this.x > that.x) return +1;
-        return 0;
+        return Double.compare(this.x, that.x);
     }
 
     /**
@@ -207,18 +205,14 @@ public final class Point2D implements Comparable<Point2D> {
     // compare points according to their x-coordinate
     private static class XOrder implements Comparator<Point2D> {
         public int compare(Point2D p, Point2D q) {
-            if (p.x < q.x) return -1;
-            if (p.x > q.x) return +1;
-            return 0;
+            return Double.compare(p.x, q.x);
         }
     }
 
     // compare points according to their y-coordinate
     private static class YOrder implements Comparator<Point2D> {
         public int compare(Point2D p, Point2D q) {
-            if (p.y < q.y) return -1;
-            if (p.y > q.y) return +1;
-            return 0;
+            return Double.compare(p.y, q.y);
         }
     }
 
@@ -237,9 +231,7 @@ public final class Point2D implements Comparable<Point2D> {
         public int compare(Point2D q1, Point2D q2) {
             double angle1 = angleTo(q1);
             double angle2 = angleTo(q2);
-            if      (angle1 < angle2) return -1;
-            else if (angle1 > angle2) return +1;
-            else                      return  0;
+            return Double.compare(angle1, angle2);
         }
     }
 
@@ -269,9 +261,7 @@ public final class Point2D implements Comparable<Point2D> {
         public int compare(Point2D p, Point2D q) {
             double dist1 = distanceSquaredTo(p);
             double dist2 = distanceSquaredTo(q);
-            if      (dist1 < dist2) return -1;
-            else if (dist1 > dist2) return +1;
-            else                    return  0;
+            return Double.compare(dist1, dist2);
         }
     }
 

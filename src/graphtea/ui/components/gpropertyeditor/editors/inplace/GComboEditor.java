@@ -37,11 +37,7 @@ public abstract class GComboEditor implements GBasicCellEditor, ActionListener {
         } else {
             cbox.setSelectedItem(value);
         }
-        cbox.setRenderer(new ListCellRenderer() {
-            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                return GCellRenderer.getRendererFor(value);
-            }
-        });
+        cbox.setRenderer((list, value1, index, isSelected, cellHasFocus) -> GCellRenderer.getRendererFor(value1));
         cbox.setBackground(Color.white);
         return cbox;
     }

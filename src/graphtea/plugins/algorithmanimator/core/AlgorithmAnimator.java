@@ -68,16 +68,14 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
      * @param aa The automated algorithm
      */
     public void animateAlgorithm(final AutomatedAlgorithm aa) {
-        new Thread() {
-            public void run() {
-                GraphModel g = blackboard.getData(GraphAttrSet.name);
-                boolean b = g.isShowChangesOnView();
-                g.setShowChangesOnView(true);
-                aa.acceptEventDispatcher(AlgorithmAnimator.this);
-                aa.doAlgorithm();
-                g.setShowChangesOnView(b);
-            }
-        }.start();
+        new Thread(() -> {
+            GraphModel g = blackboard.getData(GraphAttrSet.name);
+            boolean b = g.isShowChangesOnView();
+            g.setShowChangesOnView(true);
+            aa.acceptEventDispatcher(AlgorithmAnimator.this);
+            aa.doAlgorithm();
+            g.setShowChangesOnView(b);
+        }).start();
 
     }
 

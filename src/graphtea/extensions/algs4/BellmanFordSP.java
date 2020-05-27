@@ -76,7 +76,7 @@ public class BellmanFordSP {
         distTo[s] = 0.0;
 
         // Bellman-Ford algorithm
-        queue = new Queue<Integer>();
+        queue = new Queue<>();
         queue.enqueue(s);
         onQueue[s] = true;
         while (!queue.isEmpty() && !hasNegativeCycle()) {
@@ -180,7 +180,7 @@ public class BellmanFordSP {
         if (hasNegativeCycle())
             throw new UnsupportedOperationException("Negative cost cycle exists");
         if (!hasPathTo(v)) return null;
-        Stack<DirectedEdge> path = new Stack<DirectedEdge>();
+        Stack<DirectedEdge> path = new Stack<>();
         for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.from()]) {
             path.push(e);
         }

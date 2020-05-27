@@ -67,8 +67,7 @@ public class BinaryInsertion {
 
             // insetion sort with "half exchanges"
             // (insert a[i] at index j and shift a[j], ..., a[i-1] to right)
-            for (int j = i; j > lo; --j)
-                a[j] = a[j-1];
+            if (i - lo >= 0) System.arraycopy(a, lo, a, lo + 1, i - lo);
             a[lo] = v;
         }
         assert isSorted(a);

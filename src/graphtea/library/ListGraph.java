@@ -191,10 +191,8 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
             ++edgeIterationIndex;
             ArrayList<EdgeType> edges = new ArrayList<>();
 
-            Iterator<VertexType> it = iterator();
-
-            while (it.hasNext()) {
-                Iterator<EdgeType> it2 = new EdgeIterator(it.next(), true);
+            for (VertexType vertexType : ListGraph.this) {
+                Iterator<EdgeType> it2 = new EdgeIterator(vertexType, true);
                 while (it2.hasNext()) {
                     EdgeType edge = it2.next();
                     if (edge.edgeIterationIndex == edgeIterationIndex)

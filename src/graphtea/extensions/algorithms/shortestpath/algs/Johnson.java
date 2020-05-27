@@ -58,10 +58,9 @@ public class Johnson extends GraphAlgorithm {
             for (Vertex v : g) {
 
                 int dd = 0;
-                Vertex w = v;
                 Edge h;
-                while (w != u) {
-                    h = getSingleEdge(g, pd.get(v.getId()), w);
+                while (v != u) {
+                    h = getSingleEdge(g, pd.get(v.getId()), v);
                     dd += h.getWeight();
                 }
                 a[v.getId()] = dd;
@@ -81,10 +80,9 @@ public class Johnson extends GraphAlgorithm {
                 Vector<Vertex> pdj = dj.getShortestPath(g, v);
                 for (Vertex z : g) {
                     int dd = 0;
-                    Vertex w = z;
                     Edge f;
-                    while (w != v) {
-                        f = getSingleEdge(g, pdj.get(z.getId()), w);
+                    while (z != v) {
+                        f = getSingleEdge(g, pdj.get(z.getId()), z);
                         dd += f.getWeight();
                     }
                     d[v.getId()][z.getId()] = dd + a[z.getId()] - a[v.getId()];

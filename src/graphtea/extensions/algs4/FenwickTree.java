@@ -150,32 +150,33 @@ public class FenwickTree {
                 continue;
             }
 
-            if (line[0].equals("init")) {
-                ft = new FenwickTree(arg1);
-                for (int i = 1; i <= ft.size(); i++) {
-                    StdOut.print(ft.rsq(i, i) + " ");
-                }
-                StdOut.println();
-            }
-            else if (line[0].equals("set")) {
-                ft = new FenwickTree(line.length - 1);
-                for (int i = 1; i <= line.length - 1; i++) {
-                    ft.update(i, Integer.parseInt(line[i]));
-                }
-            }
-
-            else if (line[0].equals("up")) {
-                ft.update(arg1, arg2);
-                for (int i = 1; i <= ft.size(); i++) {
-                    StdOut.print(ft.rsq(i, i) + " ");
-                }
-                StdOut.println();
-            }
-            else if (line[0].equals("rsq")) {
-                StdOut.printf("Sum from %d to %d = %d%n", arg1, arg2, ft.rsq(arg1, arg2));
-            }
-            else {
-                StdOut.println("Invalid command");
+            switch (line[0]) {
+                case "init":
+                    ft = new FenwickTree(arg1);
+                    for (int i = 1; i <= ft.size(); i++) {
+                        StdOut.print(ft.rsq(i, i) + " ");
+                    }
+                    StdOut.println();
+                    break;
+                case "set":
+                    ft = new FenwickTree(line.length - 1);
+                    for (int i = 1; i <= line.length - 1; i++) {
+                        ft.update(i, Integer.parseInt(line[i]));
+                    }
+                    break;
+                case "up":
+                    ft.update(arg1, arg2);
+                    for (int i = 1; i <= ft.size(); i++) {
+                        StdOut.print(ft.rsq(i, i) + " ");
+                    }
+                    StdOut.println();
+                    break;
+                case "rsq":
+                    StdOut.printf("Sum from %d to %d = %d%n", arg1, arg2, ft.rsq(arg1, arg2));
+                    break;
+                default:
+                    StdOut.println("Invalid command");
+                    break;
             }
 
         }

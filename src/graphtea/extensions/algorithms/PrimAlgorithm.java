@@ -34,12 +34,7 @@ public class PrimAlgorithm extends GraphAlgorithm implements AlgorithmExtension 
 
         class DefaultEdgeComparator implements Comparator<Edge> {
             public int compare(Edge o1, Edge o2) {
-                if (o1.getWeight() < o2.getWeight())
-                    return -1;
-                if (o1.getWeight() == o2.getWeight())
-                    return 0;
-                else
-                    return 1;
+                return Integer.compare(o1.getWeight(), o2.getWeight());
             }
         }
 

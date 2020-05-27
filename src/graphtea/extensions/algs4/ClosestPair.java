@@ -53,8 +53,7 @@ public class ClosestPair {
 
         // sort by x-coordinate (breaking ties by y-coordinate)
         Point2D[] pointsByX = new Point2D[n];
-        for (int i = 0; i < n; i++)
-            pointsByX[i] = points[i];
+        System.arraycopy(points, 0, pointsByX, 0, n);
         Arrays.sort(pointsByX, Point2D.X_ORDER);
 
         // check for coincident points
@@ -69,8 +68,7 @@ public class ClosestPair {
 
         // sort by y-coordinate (but not yet sorted) 
         Point2D[] pointsByY = new Point2D[n];
-        for (int i = 0; i < n; i++)
-            pointsByY[i] = pointsByX[i];
+        System.arraycopy(pointsByX, 0, pointsByY, 0, n);
 
         // auxiliary array
         Point2D[] aux = new Point2D[n];
@@ -162,9 +160,7 @@ public class ClosestPair {
     // precondition: a[lo .. mid] and a[mid+1 .. hi] are sorted subarrays
     private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
         // copy to aux[]
-        for (int k = lo; k <= hi; k++) {
-            aux[k] = a[k];
-        }
+        if (hi + 1 - lo >= 0) System.arraycopy(a, lo, aux, lo, hi + 1 - lo);
     
         // merge back to a[] 
         int i = lo, j = mid+1;

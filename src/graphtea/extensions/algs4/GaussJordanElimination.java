@@ -78,8 +78,7 @@ public class GaussJordanElimination {
         // build augmented matrix
         a = new double[n][n+n+1];
         for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-                a[i][j] = A[i][j];
+            System.arraycopy(A[i], 0, a[i], 0, n);
 
         // only needed if you want to find certificate of infeasibility (or compute inverse)
         for (int i = 0; i < n; i++)
@@ -179,8 +178,7 @@ public class GaussJordanElimination {
         double[] y = new double[n];
         for (int i = 0; i < n; i++) {
             if ((Math.abs(a[i][i]) <= EPSILON) && (Math.abs(a[i][n+n]) > EPSILON)) {
-                for (int j = 0; j < n; j++)
-                    y[j] = a[i][n+j];
+                System.arraycopy(a[i], n + 0, y, 0, n);
                 return y;
             }
         }

@@ -109,12 +109,10 @@ class MaxCliqueAlg
         List<Vertex> candidates_array = new ArrayList<>(C);
         if (!allEdgesSeen(C, F)) {
             for (Vertex candidate : candidates_array) {
-                List<Vertex> new_candidates = new ArrayList<>();
-                List<Vertex> new_already_found = new ArrayList<>();
                 likelyC.add(candidate);
                 C.remove(candidate);
-                new_candidates.addAll(C.stream().filter(new_candidate -> g.isEdge(candidate, new_candidate)).collect(Collectors.toList()));
-                new_already_found.addAll(F.stream().filter(new_found -> g.isEdge(candidate, new_found)).collect(Collectors.toList()));
+                List<Vertex> new_candidates = new ArrayList<>(C.stream().filter(new_candidate -> g.isEdge(candidate, new_candidate)).collect(Collectors.toList()));
+                List<Vertex> new_already_found = new ArrayList<>(F.stream().filter(new_found -> g.isEdge(candidate, new_found)).collect(Collectors.toList()));
                 if (new_candidates.isEmpty() && new_already_found.isEmpty()) {
                     maxCliques.add(new Vector<>(likelyC));
                 }

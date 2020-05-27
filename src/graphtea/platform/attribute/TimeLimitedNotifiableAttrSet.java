@@ -68,9 +68,7 @@ public class TimeLimitedNotifiableAttrSet<T extends AttributeSet> implements Run
     }
 
     private void fireChange(Map<String, Object> _new, Map<String, Object> old) {
-        Iterator<Map.Entry<String, Object>> i = old.entrySet().iterator();
-        while (i.hasNext()) {
-            Map.Entry<String, Object> e = i.next();
+        for (Map.Entry<String, Object> e : old.entrySet()) {
             String key = e.getKey();
             Object value = e.getValue();
             if (value == null) {

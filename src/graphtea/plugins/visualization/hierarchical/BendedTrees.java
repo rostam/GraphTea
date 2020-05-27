@@ -42,7 +42,7 @@ public class BendedTrees extends AbstractAction {
     private Vertex findAppropriateRoot(GraphModel g) {
         Vertex root = g.getAVertex();
         Iterator<Vertex> ei = g.iterator();
-        for (; ei.hasNext();) {
+        while (ei.hasNext()) {
             Vertex e = ei.next();
             root = findHigherVertex(e, root);
         }
@@ -67,7 +67,7 @@ public class BendedTrees extends AbstractAction {
         for (Vertex v : currentLevel) {
             v.setMark(true);
             Iterator<Edge> em = g.edgeIterator(v);
-            for (; em.hasNext();) {
+            while (em.hasNext()) {
                 Edge e = em.next();
                 Vertex v2 = e.source;
                 if (!marked.contains(v2)) {
@@ -110,7 +110,7 @@ public class BendedTrees extends AbstractAction {
         Vector<Vertex> newChildren = new Vector<>();
         for (Vertex v : currentLevelVertices) {
             Iterator<Edge> e = g.edgeIterator(v);
-            for (; e.hasNext();) {
+            while (e.hasNext()) {
                 Edge ed = e.next();
                 Vertex dest = ed.source;
                 if (!visitedVertices.contains(dest)) {
@@ -123,7 +123,7 @@ public class BendedTrees extends AbstractAction {
 
     public void reshapeAllEdges() {
         Iterator<Edge> ei = graph.edgeIterator();
-        for (; ei.hasNext();) {
+        while (ei.hasNext()) {
             Edge e = ei.next();
             GPoint d1 = vertexPlaces.get(e.target);
             GPoint d2 = vertexPlaces.get(e.source);

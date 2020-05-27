@@ -198,12 +198,7 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
             prosheet.connect(xx);
         }
         if(getTarget() != null) {
-            getTarget().addAttributeListener(new AttributeListener() {
-                @Override
-                public void attributeUpdated(String name, Object oldVal, Object newVal) {
-                    blackboard.setData("undo point", lastGraph());
-                }
-            });
+            getTarget().addAttributeListener((name, oldVal, newVal) -> blackboard.setData("undo point", lastGraph()));
         }
     }
 

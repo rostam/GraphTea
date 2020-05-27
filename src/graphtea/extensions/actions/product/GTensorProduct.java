@@ -18,7 +18,7 @@ public class GTensorProduct extends GProduct {
         setProductLabel(g);
         g.setDirected(g1.isDirected());
         int n = g.getVerticesCount();
-        Point ps[] = PositionGenerators.circle(250, 300, 300, n);
+        Point[] ps = PositionGenerators.circle(250, 300, 300, n);
         int count = 0;
         for (Vertex v : g) {
             v.setLocation(new GPoint(ps[count].x, ps[count].y));

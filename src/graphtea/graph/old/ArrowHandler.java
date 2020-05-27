@@ -78,8 +78,8 @@ public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, From
 
     static {
         //create and add default arrows
-        int xPoints[] = {0, -15, -15};
-        int yPoints[] = {0, -15 / 2, 15 / 2};
+        int[] xPoints = {0, -15, -15};
+        int[] yPoints = {0, -15 / 2, 15 / 2};
         defaultArrow = new PolygonArrow(new Polygon(xPoints, yPoints, 3), "Default");
         PolygonArrow ar1 = new PolygonArrow(new Polygon(new int[]{0, -8, -8}, new int[]{0, -4, 4}, 3), "Small");
         PolygonArrow ar4 = new PolygonArrow(new Polygon(new int[]{0, -15, -10, -15}, new int[]{0, -7, 0, 7}, 4), "Narrow");
@@ -105,10 +105,10 @@ public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, From
     }
 
     public HashMap<Object, ArrayX> defineEligibleValuesForSettings(HashMap<Object, ArrayX> objectValues) {
-        ArrayX t = new ArrayX(new Integer(3));
-        t.addValidValue(new Integer(10));
-        t.addValidValue(new Integer(20));
-        t.addValidValue(new Integer(30));
+        ArrayX t = new ArrayX(3);
+        t.addValidValue(10);
+        t.addValidValue(20);
+        t.addValidValue(30);
 //        t.addValidValue(15);
 
         try {

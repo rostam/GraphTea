@@ -413,11 +413,7 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      * @see BaseGraph#lightEdgeIterator()
      */
     public Iterable<EdgeType> edges() {
-        return new Iterable<EdgeType>() {
-            public Iterator<EdgeType> iterator() {
-                return lightEdgeIterator();
-            }
-        };
+        return () -> lightEdgeIterator();
     }
 
     /**
@@ -426,12 +422,7 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      * yeah
      */
     public Iterable<EdgeType> edges(final VertexType v){
-        return new Iterable<EdgeType>(){
-            @Override
-            public Iterator<EdgeType> iterator() {
-                return lightEdgeIterator(v);
-            }
-        };
+        return () -> lightEdgeIterator(v);
     }
     /**
      * Returns degree of vertex, the number of edges which their target or source is the specified vertex.
@@ -448,28 +439,25 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      * @see graphtea.library.BaseGraph#lightEdgeIterator(BaseVertex)
      */
     public Iterable<VertexType> getNeighbors(final VertexType vertex) {
-        return new Iterable<VertexType>() {
+        return () -> {
+            final Iterator<EdgeType> ei = lightEdgeIterator(vertex);
+            return new Iterator<VertexType>() {
+                public boolean hasNext() {
+                    return ei.hasNext();
+                }
 
-            public Iterator<VertexType> iterator() {
-                final Iterator<EdgeType> ei = lightEdgeIterator(vertex);
-                return new Iterator<VertexType>() {
-                    public boolean hasNext() {
-                        return ei.hasNext();
-                    }
+                public VertexType next() {
+                    EdgeType edg = ei.next();
+                    if (edg.source == vertex)
+                        return edg.target;
+                    else
+                        return edg.source;
+                }
 
-                    public VertexType next() {
-                        EdgeType edg = ei.next();
-                        if (edg.source == vertex)
-                            return edg.target;
-                        else
-                            return edg.source;
-                    }
-
-                    public void remove() {
-                        ei.remove();
-                    }
-                };
-            }
+                public void remove() {
+                    ei.remove();
+                }
+            };
         };
     }
 
@@ -496,27 +484,25 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      * @see ListGraph#lightBackEdgeIterator(graphtea.library.BaseVertex)
      */
     public Iterable<VertexType> getBackNeighbours(final VertexType vertex) {
-        return new Iterable<VertexType>() {
-            public Iterator<VertexType> iterator() {
-                final Iterator<EdgeType> ei = lightBackEdgeIterator(vertex);
-                return new Iterator<VertexType>() {
-                    public boolean hasNext() {
-                        return ei.hasNext();
-                    }
+        return () -> {
+            final Iterator<EdgeType> ei = lightBackEdgeIterator(vertex);
+            return new Iterator<VertexType>() {
+                public boolean hasNext() {
+                    return ei.hasNext();
+                }
 
-                    public VertexType next() {
-                        EdgeType edg = ei.next();
-                        if (edg.source == vertex)
-                            return edg.target;
-                        else
-                            return edg.source;
-                    }
+                public VertexType next() {
+                    EdgeType edg = ei.next();
+                    if (edg.source == vertex)
+                        return edg.target;
+                    else
+                        return edg.source;
+                }
 
-                    public void remove() {
-                        ei.remove();
-                    }
-                };
-            }
+                public void remove() {
+                    ei.remove();
+                }
+            };
         };
     }
     

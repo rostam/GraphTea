@@ -34,9 +34,7 @@ public class DigraphGenerator {
         public int compareTo(Edge that) {
             if (this.v < that.v) return -1;
             if (this.v > that.v) return +1;
-            if (this.w < that.w) return -1;
-            if (this.w > that.w) return +1;
-            return 0;
+            return Integer.compare(this.w, that.w);
         }
     }
 

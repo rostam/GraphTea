@@ -61,12 +61,7 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
 
         class VertexComparator implements Comparator<Vertex> {
             public int compare(Vertex o1, Vertex o2) {
-                if (dist[o1.getId()] < dist[o2.getId()])
-                    return -1;
-                if (dist[o1.getId()] == dist[o2.getId()])
-                    return 0;
-                else
-                    return 1;
+                return Integer.compare(dist[o1.getId()], dist[o2.getId()]);
             }
         }
 

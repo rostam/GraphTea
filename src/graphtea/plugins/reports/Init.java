@@ -34,11 +34,7 @@ public class Init implements PluginInterface {
             ExceptionHandler.catchException(e);
             System.out.println("xml file was not found , or IO error");
         }
-        blackboard.addListener(Application.POST_INIT_EVENT, new Listener() {
-            public void keyChanged(String key, Object value) {
-                postInit();
-            }
-        });
+        blackboard.addListener(Application.POST_INIT_EVENT, (key, value) -> postInit());
     }
 
     private void postInit() {

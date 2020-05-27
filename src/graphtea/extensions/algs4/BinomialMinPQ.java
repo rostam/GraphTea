@@ -112,7 +112,7 @@ public class BinomialMinPQ<Key> implements Iterable<Key> {
 		Node x = new Node();
 		x.key = key;
 		x.order = 0;
-		BinomialMinPQ<Key> H = new BinomialMinPQ<Key>(); //The Comparator oh the H heap is not used
+		BinomialMinPQ<Key> H = new BinomialMinPQ<>(); //The Comparator oh the H heap is not used
 		H.head = x;
 		this.head = this.union(H).head;
 	}
@@ -153,7 +153,7 @@ public class BinomialMinPQ<Key> implements Iterable<Key> {
 				x = nextx;nextx = nextx.sibling;
 			}
 			x.sibling = prevx;
-			BinomialMinPQ<Key> H = new BinomialMinPQ<Key>();
+			BinomialMinPQ<Key> H = new BinomialMinPQ<>();
 			H.head = x;
 			head = union(H).head;
 		}
@@ -262,7 +262,7 @@ public class BinomialMinPQ<Key> implements Iterable<Key> {
 		//Constructor clones recursively the elements in the queue
 		//It takes linear time
 		public MyIterator() {
-			data = new BinomialMinPQ<Key>(comp);
+			data = new BinomialMinPQ<>(comp);
 			data.head = clone(head, false, false, null);
 		}
 		

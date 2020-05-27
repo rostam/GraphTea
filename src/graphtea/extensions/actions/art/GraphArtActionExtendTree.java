@@ -30,7 +30,7 @@ public class GraphArtActionExtendTree
 
         @Override
         public void action(GraphData graphData) {
-            final Vertex parent[] = new Vertex[graphData.getGraph().getVerticesCount()];
+            final Vertex[] parent = new Vertex[graphData.getGraph().getVerticesCount()];
             //consider the hole structure as a tree
             AlgorithmUtils.BFSrun(graphData.getGraph(), graphData.getGraph().getVertex(0), (v, p) -> parent[v.getId()] = p);
             for (Vertex v : graphData.select.getSelectedVertices()) {

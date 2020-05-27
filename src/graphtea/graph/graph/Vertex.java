@@ -167,8 +167,8 @@ public class Vertex extends BaseVertex {
     }
 
     public String toString() {
-        Integer i = getId();
-        return label + " (" + i + ")";
+        int i = getId();
+        return label + " (" + getId() + ")";
     }
 
     public void setMark(boolean mark) {

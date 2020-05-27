@@ -40,7 +40,7 @@ public class G6StringLoader implements GraphActionExtension, Parametrizable {
         if (graphs.contains(",")) sc.useDelimiter(",");
         while (sc.hasNext()) {
             GraphModel g = G6Format.stringToGraphModel(sc.next().trim());
-            Point pp[] = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
+            Point[] pp = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
             int tmpcnt = 0;
             for (Vertex v : g) {

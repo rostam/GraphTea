@@ -45,11 +45,11 @@ public class BinaryTreeGenerator implements GraphGeneratorExtension, Parametriza
         int last = 1;
         for (int h = 1; h <= d; h++) {
             int nh = (int) Math.pow(2, h);      //num of vertices at height h.
-            Point p[] = PositionGenerators.circle(30 * h * h, 0, 0, nh);
+            Point[] p = PositionGenerators.circle(30 * h * h, 0, 0, nh);
             System.arraycopy(p, 0, r, last, nh);
             last += nh;
         }
-        GPoint ret[] = new GPoint[n];
+        GPoint[] ret = new GPoint[n];
         for (int i = 0; i < n; i++) {
             ret[i] = new GPoint(r[i].x, r[i].y);
         }

@@ -292,7 +292,7 @@ public class GraphCommands {
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
-        Point ps[] = PositionGenerators.circle(250, 300, 300, n);
+        Point[] ps = PositionGenerators.circle(250, 300, 300, n);
         int count = 0;
         for (Vertex v : graphModel) {
             v.setLocation(new GPoint(ps[count].x, ps[count].y));
@@ -318,7 +318,7 @@ public class GraphCommands {
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
-        Point ps[] = PositionGenerators.circle(250, 300, 300, n);
+        Point[] ps = PositionGenerators.circle(250, 300, 300, n);
         int count = 0;
         for (Vertex v : graphModel) {
             v.setLocation(new GPoint(ps[count].x, ps[count].y));
@@ -337,7 +337,7 @@ public class GraphCommands {
         GraphModel graphModel = (GraphModel) p.multiply(g1, g2);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
-        Point ps[] = PositionGenerators.circle(200, 300, 300, n);
+        Point[] ps = PositionGenerators.circle(200, 300, 300, n);
         int count = 0;
         for (Vertex v : graphModel) {
             v.setLocation(new GPoint(ps[count].x, ps[count].y));
@@ -357,7 +357,7 @@ public class GraphCommands {
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
-        Point ps[] = PositionGenerators.circle(200, 300, 300, n);
+        Point[] ps = PositionGenerators.circle(200, 300, 300, n);
         int count = 0;
         for (Vertex v : graphModel) {
             v.setLocation(new GPoint(ps[count].x, ps[count].y));
@@ -378,7 +378,7 @@ public class GraphCommands {
         setProductLabel(graphModel);
         graphModel.setDirected(g1.isDirected());
         int n = graphModel.getVerticesCount();
-        Point ps[] = PositionGenerators.circle(200, 300, 300, n);
+        Point[] ps = PositionGenerators.circle(200, 300, 300, n);
         int count = 0;
         for (Vertex v : graphModel) {
             v.setLocation(new GPoint(ps[count].x, ps[count].y));

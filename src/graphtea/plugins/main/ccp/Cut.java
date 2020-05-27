@@ -86,7 +86,7 @@ public class Cut extends AbstractAction {
     }
 
     private static void removeInCompleteEdgesFromGraph(GraphModel g, Iterator<Edge> iter, Collection<Vertex> vertices, HashSet<Edge> wrongEdges) {
-        for (; iter.hasNext();) {
+        while (iter.hasNext()) {
             Edge em = iter.next();
 
             if ((vertices.contains(em.source) && !vertices.contains(em.target)) || (vertices.contains(em.target) && !vertices.contains(em.source))) {

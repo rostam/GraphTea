@@ -33,7 +33,7 @@ public class InvertSelection extends AbstractAction {
         SubGraph sd = getSelection();
         Iterator<Vertex> vertices = g.iterator();
         Iterator<Edge> edges = g.lightEdgeIterator();
-        for (; vertices.hasNext();) {
+        while (vertices.hasNext()) {
 
             Vertex vertex = vertices.next();
             if (sd.vertices.contains(vertex)) {
@@ -42,7 +42,7 @@ public class InvertSelection extends AbstractAction {
                 sd.vertices.add(vertex);
 
         }
-        for (; edges.hasNext();) {
+        while (edges.hasNext()) {
 
             Edge edge = edges.next();
             if (sd.edges.contains(edge)) {

@@ -92,8 +92,7 @@ public class ShowG {
         try {
             ProcessBuilder process = getShowGProcess(file, from,to);
             Process p = process.start();
-            BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            return bri;
+            return new BufferedReader(new InputStreamReader(p.getInputStream()));
         } catch (IOException e) {
             e.printStackTrace();
         }

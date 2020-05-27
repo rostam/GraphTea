@@ -95,7 +95,7 @@ public class Plugger {
                     for (File ff : libf.listFiles()) {
                         if (ff.isFile() && "jar".equalsIgnoreCase(getExtension(ff))) {
                             try {
-                                libURLs.add(ff.toURL());
+                                libURLs.add(ff.toURI().toURL());
                                 System.out.println("Library file " + ff + " added.");
                             } catch (MalformedURLException e) {
                                 ExceptionHandler.catchException(e);
@@ -111,7 +111,7 @@ public class Plugger {
                 for (String name : files.keySet()) {
                     if (mark.get(name) == 0)
                         try {
-                            urls[i] = files.get(name).toURL();
+                            urls[i] = files.get(name).toURI().toURL();
                         } catch (MalformedURLException e) {
                             System.out.println(name + " [" + files.get(name).getPath() + "]");
                             ExceptionHandler.catchException(e);
@@ -119,7 +119,7 @@ public class Plugger {
                     i++;
                 }
                 try {
-                    urls[i] = new File(directory, "extensions").toURL();
+                    urls[i] = new File(directory, "extensions").toURI().toURL();
                 } catch (MalformedURLException e) {
                     ExceptionHandler.catchException(e);
                 }

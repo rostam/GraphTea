@@ -14,8 +14,8 @@ public class IntegralFilter implements GraphFilter {
     public boolean isIntegral(GraphModel g) {
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double rrv[] = ed.getRealEigenvalues();
-        double rv[] = Utils.round(rrv, 3);
+        double[] rrv = ed.getRealEigenvalues();
+        double[] rv = Utils.round(rrv, 3);
         for (double aRv : rv) {
             if (Math.floor(aRv) != aRv) return false;
         }

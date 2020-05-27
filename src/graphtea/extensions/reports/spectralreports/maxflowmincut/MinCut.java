@@ -7,8 +7,8 @@ import java.util.LinkedList;
 
 public class MinCut{
 
-	public double C[][]; 
-	public double F[][];
+	public double[][] C;
+	public double[][] F;
 	public Vertex source,sink;
 	public LinkedList<Integer> cut = new LinkedList<>();
 	public boolean showResult;
@@ -16,7 +16,7 @@ public class MinCut{
 	
 	protected int n;
 	protected GraphModel g;
-	protected double Cf[][];
+	protected double[][] Cf;
 	protected PushRelabel PR;
 		
 	

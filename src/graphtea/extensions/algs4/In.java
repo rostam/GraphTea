@@ -488,8 +488,7 @@ public final class In {
         if (tokens.length == 0 || tokens[0].length() > 0)
             return tokens;
         String[] decapitokens = new String[tokens.length-1];
-        for (int i = 0; i < tokens.length-1; i++)
-            decapitokens[i] = tokens[i+1];
+        System.arraycopy(tokens, 1, decapitokens, 0, tokens.length - 1);
         return decapitokens;
     }
 

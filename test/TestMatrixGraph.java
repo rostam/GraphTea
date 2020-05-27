@@ -43,12 +43,7 @@ public class TestMatrixGraph {
     public static class BaseEdgeWeightComparator
             implements Comparator<BaseEdge<BaseVertex>> {
         public int compare(BaseEdge<BaseVertex> o1, BaseEdge<BaseVertex> o2) {
-            if (o1.getWeight() < o2.getWeight())
-                return -1;
-            else if (o1.getWeight() == o2.getWeight())
-                return 0;
-            else
-                return 1;
+            return Integer.compare(o1.getWeight(), o2.getWeight());
         }
     }
 

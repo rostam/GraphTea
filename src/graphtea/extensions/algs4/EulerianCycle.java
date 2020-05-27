@@ -214,9 +214,7 @@ public class EulerianCycle {
             if (first == -1) first = v;
             last = v;
         }
-        if (first != last) return false;
-
-        return true;
+        return first == last;
     }
 
     private static void unitTest(Graph G, String description) {

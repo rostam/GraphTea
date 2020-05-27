@@ -45,7 +45,7 @@ public class ExtensionClassLoader extends ClassLoader {
         File file = new File(dir);
         if (!file.exists())
             return;
-        File files[] = file.listFiles();
+        File[] files = file.listFiles();
         for (File f1:files){
             if (f1.getName().endsWith(".zip")){
                 unZip(f1.getAbsolutePath(), f1.getParentFile().getAbsolutePath());
@@ -63,7 +63,7 @@ public class ExtensionClassLoader extends ClassLoader {
                     else
                         name = "";
                     name = name + file1.getName().substring(0, file1.getName().length() - 6);
-                    byte data[] = new byte[(int) file1.length()];
+                    byte[] data = new byte[(int) file1.length()];
                     FileInputStream fis = new FileInputStream(file1);
                     fis.read(data);
                     classesData.put(name, data);
@@ -88,7 +88,7 @@ public class ExtensionClassLoader extends ClassLoader {
         if (!classesData.containsKey(name))
             ret = getParent().loadClass(name);
         if (ret == null && !classes.containsKey(name)) {
-            byte data[] = classesData.get(name);
+            byte[] data = classesData.get(name);
             Class c = defineClass(name, data, 0, data.length);
             classes.put(name, c);
         }

@@ -36,10 +36,10 @@ public class GraphControlGrid implements GraphModelListener {
     private Vertex fakeVertex;
     private Edge fakeEdge;
 
-    Vertex[] verticesGrid[][];
+    Vertex[][][] verticesGrid;
 
 
-    Edge[] edgesGrid[][];
+    Edge[][][] edgesGrid;
 
     int planeDivisions = 10;
 
@@ -204,7 +204,7 @@ public class GraphControlGrid implements GraphModelListener {
             }
         }
         if (!found) {      //there were no fake edges so make the array larger
-            Edge edges[] = new Edge[s.length + 2];
+            Edge[] edges = new Edge[s.length + 2];
             System.arraycopy(s, 0, edges, 0, s.length);
             edges[s.length] = e;
             edges[s.length + 1] = fakeEdge;         //make it a little more larger for better performance, similar to Vectors

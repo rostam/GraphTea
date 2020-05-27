@@ -104,8 +104,7 @@ public class DepthFirstSearch<VertexType extends BaseVertex, EdgeType extends Ba
         EventUtils.algorithmStep(this, "leave: " + vertex.getId());
 
         if (handler != null)
-            if (handler.doPostWork(lastInDepthVertex, vertex))
-                return true;
+            return handler.doPostWork(lastInDepthVertex, vertex);
 
         return false;
     }

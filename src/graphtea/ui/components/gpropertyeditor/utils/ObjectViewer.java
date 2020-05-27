@@ -32,10 +32,6 @@ public class ObjectViewer implements ListSelectionListener {
         return oo;
     }
 
-    public static void main(String[] args) {
-
-    }
-
     public void Connect(Object obj) {
         PortableNotifiableAttributeSetImpl a = Object2NotifiableAttributeSet(obj);
         GAttrFrame f = GAttrFrame.showEditDialog(a, false);

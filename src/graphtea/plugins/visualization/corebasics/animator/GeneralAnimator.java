@@ -56,7 +56,7 @@ public class GeneralAnimator implements Runnable {
         Iterator<Vertex> v = vertexDestinations.keySet().iterator();
         final Vector<GPoint> movements = new Vector<>();
         final Vector<GPoint> initials = new Vector<>();
-        for (; v.hasNext();) {
+        while (v.hasNext()) {
             Vertex vertex = v.next();
             double initalX = vertex.getLocation().getX();
             GPoint GPoint = vertexDestinations.get(vertex);
@@ -73,11 +73,7 @@ public class GeneralAnimator implements Runnable {
         for (int j = 1; j != k; j++) {
             AbstractGraphRenderer ren = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
             final int j1 = j;
-            ren.ignoreRepaints(new Runnable() {
-                public void run() {
-                    doAnimateStep(movements, initials, j1, k, current);
-                }
-            });
+            ren.ignoreRepaints(() -> doAnimateStep(movements, initials, j1, k, current));
         }
         if (supportBendedEdge) {
             paintEdges();
@@ -92,7 +88,7 @@ public class GeneralAnimator implements Runnable {
 
         m = movements.iterator();
         i = initials.iterator();
-        for (; v.hasNext();) {
+        while (v.hasNext()) {
             Vertex vertex = v.next();
             GPoint movement = m.next();
             GPoint initial = i.next();
@@ -113,7 +109,7 @@ public class GeneralAnimator implements Runnable {
 
     public void paintEdges() {
         Iterator<Edge> ei = g.edgeIterator();
-        for (; ei.hasNext();) {
+        while (ei.hasNext()) {
             Edge e = ei.next();
 //            e.view.ssetBendedEdge(true);
 //            e.view.setBendPoints(edgeBendPoints.get(e));

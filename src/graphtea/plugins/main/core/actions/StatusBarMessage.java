@@ -67,19 +67,17 @@ public class StatusBarMessage extends AbstractAction implements GComponentInterf
     private static void setLabelMessage(BlackBoard b, String msg) {
         final JLabel l = (JLabel) UIUtils.getComponent(b, "user message");
         l.setText(msg);
-        new Thread() {
-            public void run() {
-                l.setBackground(Color.white);
-                l.setOpaque(true);
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                l.repaint();
-                l.setOpaque(false);
+        new Thread(() -> {
+            l.setBackground(Color.white);
+            l.setOpaque(true);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        }.start();
+            l.repaint();
+            l.setOpaque(false);
+        }).start();
     }
 
     public void actionPerformed(ActionEvent e) {

@@ -97,10 +97,8 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
                                 return true;
                             else {
                                 String path = arg0.getAbsolutePath().toLowerCase();
-                                if ((path.endsWith("txt") && (path.charAt(path.length() - 4)) == '.'))
-                                    return true;
+                                return path.endsWith("txt") && (path.charAt(path.length() - 4)) == '.';
                             }
-                            return false;
                         }
                     });
                     fileChooser.setDialogTitle("Choose a file");

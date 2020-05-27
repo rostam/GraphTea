@@ -84,7 +84,7 @@ public class Bipartite {
             // if v-w create an odd-length cycle, find it
             else if (color[w] == color[v]) {
                 isBipartite = false;
-                cycle = new Stack<Integer>();
+                cycle = new Stack<>();
                 cycle.push(w);  // don't need this unless you want to include start vertex twice
                 for (int x = v; x != w; x = edgeTo[x]) {
                     cycle.push(x);

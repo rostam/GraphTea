@@ -122,8 +122,7 @@ public class Interval1D {
      */
     public boolean intersects(Interval1D that) {
         if (this.max < that.min) return false;
-        if (that.max < this.min) return false;
-        return true;
+        return !(that.max < this.min);
     }
 
     /**
@@ -186,9 +185,7 @@ public class Interval1D {
         public int compare(Interval1D a, Interval1D b) {
             if      (a.min < b.min) return -1;
             else if (a.min > b.min) return +1;
-            else if (a.max < b.max) return -1;
-            else if (a.max > b.max) return +1;
-            else                    return  0;
+            else return Double.compare(a.max, b.max);
         }
     }
 
@@ -197,9 +194,7 @@ public class Interval1D {
         public int compare(Interval1D a, Interval1D b) {
             if      (a.max < b.max) return -1;
             else if (a.max > b.max) return +1;
-            else if (a.min < b.min) return -1;
-            else if (a.min > b.min) return +1;
-            else                    return  0;
+            else return Double.compare(a.min, b.min);
         }
     }
 
@@ -208,9 +203,7 @@ public class Interval1D {
         public int compare(Interval1D a, Interval1D b) {
             double alen = a.length();
             double blen = b.length();
-            if      (alen < blen) return -1;
-            else if (alen > blen) return +1;
-            else                  return  0;
+            return Double.compare(alen, blen);
         }
     }
 

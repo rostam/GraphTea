@@ -116,7 +116,7 @@ public class LastSettings implements AttributeListener {
         NotifiableAttributeSetImpl y = new NotifiableAttributeSetImpl();
         Map<String, Object> map = x.getAttrs();
         Iterator<String> iterator = map.keySet().iterator();
-        for (; iterator.hasNext();) {
+        while (iterator.hasNext()) {
             String key = iterator.next();
             Object value = map.get(key);
             if (value instanceof Serializable) {

@@ -106,7 +106,7 @@ public class PatriciaSET implements Iterable<String> {
             this.key = key;
             this.b = b;
         }
-    };
+    }
 
     /**
      * Initializes an empty PATRICIA-based set.
