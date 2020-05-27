@@ -34,7 +34,7 @@ public class CoronaProduct implements GraphActionExtension, Parametrizable {
         VertexCorona prod = new VertexCorona();
         GraphModel g1 = gtp.getGraphs().get(fG);
         GraphModel g2 = gtp.getGraphs().get(sG);
-        GraphModel g= (GraphModel) prod.corona(g1,g2);
+        GraphModel g= (GraphModel) VertexCorona.corona(g1,g2);
         prod.setPositions(g1, g2, g);
         graphData.core.showGraph(g);
     }

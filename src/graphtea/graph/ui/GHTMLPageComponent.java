@@ -91,20 +91,16 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
     }
 
     public void appendHTML(String html) {
-
-
-        StringBuffer sb9 = new StringBuffer();
+        StringBuilder sb9 = new StringBuilder();
         String pointtext = jta.getText();
-
         sb9.append("<html><body>");
         sb9.append(html);
         sb9.append("</body></html>");
 
 
         try {
-            Document doc = (Document) jta.getDocument();
-
-            ((HTMLEditorKit) jta.getEditorKit()).read(
+            Document doc = jta.getDocument();
+            jta.getEditorKit().read(
                     new java.io.StringReader(sb9.toString())
                     , jta.getDocument()
                     , jta.getDocument().getLength());

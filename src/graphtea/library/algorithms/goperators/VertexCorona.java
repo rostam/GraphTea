@@ -22,8 +22,7 @@ import java.util.Iterator;
  * @email rostamiev@gmail.com
  */
 
-public class VertexCorona
-        extends Algorithm {
+public class VertexCorona extends Algorithm {
     public static <VertexType extends BaseVertex
             , EdgeType extends BaseEdge<VertexType>>
     BaseGraph<VertexType, EdgeType> corona(BaseGraph<VertexType, EdgeType> g1, BaseGraph<VertexType, EdgeType> g2) {
