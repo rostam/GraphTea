@@ -61,8 +61,7 @@ public class ResizingArrayBag<Item> implements Iterable<Item> {
     private void resize(int capacity) {
         assert capacity >= n;
         Item[] temp = (Item[]) new Object[capacity];
-        for (int i = 0; i < n; i++)
-            temp[i] = a[i];
+        if (n >= 0) System.arraycopy(a, 0, temp, 0, n);
         a = temp;
     }
 
@@ -102,7 +101,7 @@ public class ResizingArrayBag<Item> implements Iterable<Item> {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        ResizingArrayBag<String> bag = new ResizingArrayBag<String>();
+        ResizingArrayBag<String> bag = new ResizingArrayBag<>();
         bag.add("Hello");
         bag.add("World");
         bag.add("how");
