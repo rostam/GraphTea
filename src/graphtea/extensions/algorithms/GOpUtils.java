@@ -1,4 +1,4 @@
-package graphtea.library.algorithms.goperators;
+package graphtea.extensions.algorithms;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;

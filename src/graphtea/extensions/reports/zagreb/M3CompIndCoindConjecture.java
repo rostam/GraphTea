@@ -7,7 +7,7 @@ package graphtea.extensions.reports.zagreb;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
-import graphtea.library.algorithms.goperators.GraphComplement;
+import graphtea.extensions.algorithms.GraphComplement;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.main.core.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;

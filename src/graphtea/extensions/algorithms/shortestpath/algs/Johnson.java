@@ -3,7 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
-package graphtea.extensions.algorithms.shortestpath.algorithms;
+package graphtea.extensions.algorithms.shortestpath.algs;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -11,6 +11,8 @@ import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseEdge;
 import graphtea.library.algorithms.Algorithm;
 import graphtea.library.genericcloners.BaseEdgeVertexCopier;
+import graphtea.platform.core.BlackBoard;
+import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -24,10 +26,14 @@ import java.util.Vector;
  * @author Soroush Sabet
  * @author M. Ali Rostami
  */
-public class Johnson extends Algorithm {
+public class Johnson extends GraphAlgorithm {
 
     int[] a;
     int[][] d;
+
+    public Johnson(BlackBoard blackBoard) {
+        super(blackBoard);
+    }
 
     public int[][] ComputePaths(GraphModel g) {
 
@@ -46,7 +52,7 @@ public class Johnson extends Algorithm {
             }
 
         }
-        BellmanFord sp = new BellmanFord();
+        BellmanFord sp = new BellmanFord(blackBoard);
 
         if (sp.computePaths(g, u) != null) {
             Vector<Vertex> pd = sp.computePaths(g, u);

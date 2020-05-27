@@ -3,7 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
-package graphtea.extensions.algorithms.shortestpath.algorithms;
+package graphtea.extensions.algorithms.shortestpath.algs;
 
 
 import graphtea.graph.graph.Edge;

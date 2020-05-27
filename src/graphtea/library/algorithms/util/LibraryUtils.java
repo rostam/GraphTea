@@ -9,10 +9,10 @@ import graphtea.library.BaseEdge;
 import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;
 import graphtea.library.algorithms.Algorithm;
-import graphtea.library.algorithms.goperators.EdgeInduced;
-import graphtea.library.algorithms.goperators.GraphComplement;
-import graphtea.library.algorithms.goperators.GraphUnion;
-import graphtea.library.algorithms.goperators.VertexInduced;
+import graphtea.extensions.algorithms.EdgeInduced;
+import graphtea.extensions.algorithms.GraphComplement;
+import graphtea.extensions.algorithms.GraphUnion;
+import graphtea.extensions.algorithms.VertexInduced;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -46,7 +46,7 @@ public class LibraryUtils {
     }
 
     /**
-     * @see graphtea.library.algorithms.goperators.GraphComplement#complement(graphtea.library.BaseGraph)
+     * @see GraphComplement#complement(graphtea.library.BaseGraph)
      */
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     BaseGraph<VertexType, EdgeType>
@@ -55,7 +55,7 @@ public class LibraryUtils {
     }
 
     /**
-     * @see graphtea.library.algorithms.goperators.EdgeInduced#edgeInduced(graphtea.library.BaseGraph,java.util.Collection)
+     * @see EdgeInduced#edgeInduced(graphtea.library.BaseGraph,java.util.Collection)
      */
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     BaseGraph<VertexType, EdgeType> edgeInduced(BaseGraph<VertexType, EdgeType> g, Collection<EdgeType> S) {
@@ -63,7 +63,7 @@ public class LibraryUtils {
     }
 
     /**
-     * @see graphtea.library.algorithms.goperators.VertexInduced#induced(graphtea.library.BaseGraph,java.util.Collection)
+     * @see VertexInduced#induced(graphtea.library.BaseGraph,java.util.Collection)
      */
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     BaseGraph<VertexType, EdgeType> induced(BaseGraph<VertexType, EdgeType> g, Collection<VertexType> S) {
@@ -71,7 +71,7 @@ public class LibraryUtils {
     }
 
     /**
-     * @see graphtea.library.algorithms.goperators.GraphUnion#join(graphtea.library.BaseGraph,graphtea.library.BaseGraph)
+     * @see GraphUnion#join(graphtea.library.BaseGraph,graphtea.library.BaseGraph)
      */
     public static <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
     BaseGraph<VertexType, EdgeType> join(BaseGraph<VertexType, EdgeType> g1, BaseGraph<VertexType, EdgeType> g2) {

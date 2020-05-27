@@ -3,13 +3,16 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
-package graphtea.extensions.algorithms.shortestpath.algorithms;
+package graphtea.extensions.algorithms.shortestpath.algs;
 
+import graphtea.extensions.algs4.Graph;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.algorithms.Algorithm;
 import graphtea.library.algorithms.AutomatedAlgorithm;
+import graphtea.platform.core.BlackBoard;
+import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -24,8 +27,12 @@ import java.util.Vector;
  *
  * @author Soroush Sabet
  */
-public class BellmanFord extends Algorithm implements AutomatedAlgorithm {
+public class BellmanFord extends GraphAlgorithm implements AutomatedAlgorithm {
     private GraphModel graph;
+
+    public BellmanFord(BlackBoard blackBoard) {
+        super(blackBoard);
+    }
 
     /**
      * A graph with a negative cycle is not well defined

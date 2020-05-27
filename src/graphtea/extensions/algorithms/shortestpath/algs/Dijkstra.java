@@ -3,15 +3,13 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
-package graphtea.extensions.algorithms.shortestpath.algorithms;
+package graphtea.extensions.algorithms.shortestpath.algs;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.algorithms.Algorithm;
 import graphtea.library.algorithms.AutomatedAlgorithm;
-import graphtea.library.event.GraphRequest;
-import graphtea.library.event.VertexRequest;
 import graphtea.library.exceptions.InvalidVertexException;
 
 import java.util.*;

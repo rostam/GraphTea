@@ -2,7 +2,7 @@ package graphtea.extensions.actions;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.ui.GTabbedGraphPane;
-import graphtea.library.algorithms.goperators.GraphSum;
+import graphtea.extensions.algorithms.GraphSum;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
