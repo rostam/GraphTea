@@ -50,12 +50,6 @@
         <action
                 class="graphtea.plugins.algorithmanimator.AppVertexCoverAnim"
                 id="do app vertex cover"/>
-        <!--<action-->
-                <!--class="graphtea.plugins.algorithmanimator.DijkstraAnim"-->
-                <!--id="do dijkstra"/>-->
-        <!--&lt;!&ndash;<action&ndash;&gt;-->
-        <!--class="graphtea.plugins.algorithmanimator.BellmanFordAnim"-->
-        <!--id="do bellmanford"/>-->
         <action
                 class="graphtea.plugins.algorithmanimator.BiconnectedComponentsAnim"
                 id="do biconnected components"/>

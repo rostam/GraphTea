@@ -1,9 +1,10 @@
-package graphtea.extensions.algorithms;
+package graphtea.extensions.algorithms.shortestpath;
 
 import graphtea.graph.GraphUtils;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
+import graphtea.library.exceptions.InvalidVertexException;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
@@ -11,6 +12,9 @@ import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 import java.util.*;
 
 /**
+ *  This method finds the shortest path from a vertex to all vertices
+ *  of a graph.
+ *
  * Created by rostam on 06.03.15.
  * @author M. Ali Rostami
  */
@@ -19,6 +23,19 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
         super(blackBoard);
     }
 
+    /**
+     * This method finds a reference array using Dijkstra algorithm
+     * from which, one can find
+     * the shortest paths of all vertices of a graph from an arbitrary
+     * given vertex.
+     *
+     * @param graph  Graph object to be searched.
+     * @param vertex The source of the paths.
+     * @return Vector of vertices that for each i, it has a reference to
+     *         the vertex, before the vertex with ID number i in the shortest path
+     *         from "vertex" to i, or null if there is no such vertex.
+     * @throws InvalidVertexException if the supplied vertices are invalid.
+     */
     @Override
     public void doAlgorithm() {
         step("Start of the algorithm.") ;
@@ -127,7 +144,7 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
 
     @Override
     public String getName() {
-        return "Dijkstra";
+        return "Dijkstra Algorithm";
     }
 
     @Override

@@ -1918,11 +1918,6 @@
           <entry key="object" value="graphtea.plugins.algorithmanimator.DFSAnim"/>
         </map>
       </node>
-      <node name="graphtea.plugins.algorithmanimator.DijkstraAnim">
-        <map>
-          <entry key="object" value="graphtea.plugins.algorithmanimator.DijkstraAnim"/>
-        </map>
-      </node>
       <node name="graphtea.plugins.algorithmanimator.KruskalAnim">
         <map>
           <entry key="object" value="graphtea.plugins.algorithmanimator.KruskalAnim"/>
