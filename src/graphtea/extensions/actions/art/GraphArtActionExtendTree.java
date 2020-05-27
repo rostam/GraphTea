@@ -1,11 +1,11 @@
 package graphtea.extensions.actions.art;
 
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
-import graphtea.extensions.AlgorithmUtils;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
 /**

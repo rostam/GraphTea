@@ -7,6 +7,7 @@ package graphtea.graph.graph;
 
 import graphtea.graph.event.GraphModelListener;
 import graphtea.library.util.Pair;
+
 import java.util.Iterator;
 
 //todo: it can not handle the cas hat vertex positions are changed. unusable

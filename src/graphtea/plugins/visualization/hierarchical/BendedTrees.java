@@ -13,6 +13,7 @@ import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.visualization.corebasics.animator.GeneralAnimator;
 import graphtea.ui.UIUtils;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;

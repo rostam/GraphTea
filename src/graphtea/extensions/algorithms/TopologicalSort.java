@@ -8,14 +8,9 @@ package graphtea.extensions.algorithms;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.library.BaseEdge;
-import graphtea.library.BaseGraph;
-import graphtea.library.BaseVertex;
 import graphtea.library.algorithms.Algorithm;
 import graphtea.library.algorithms.AutomatedAlgorithm;
 import graphtea.library.algorithms.LibraryUtils;
-import graphtea.library.event.MessageEvent;
-import graphtea.library.event.typedef.BaseGraphRequest;
 
 import java.util.AbstractList;
 import java.util.ArrayList;

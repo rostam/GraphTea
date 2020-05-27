@@ -4,8 +4,8 @@ package graphtea.samples.extensions;// GraphTea Project: http://github.com/graph
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
 import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GPoint;
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.BoundedInteger;
 import graphtea.platform.parameter.Parameter;

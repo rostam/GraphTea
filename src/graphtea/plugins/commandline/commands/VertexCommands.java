@@ -6,8 +6,8 @@
 package graphtea.plugins.commandline.commands;
 
 import graphtea.graph.atributeset.GraphAttrSet;
-import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GPoint;
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;

@@ -14,6 +14,7 @@ import graphtea.plugins.visualization.corebasics.basics.PathProperties;
 import graphtea.plugins.visualization.corebasics.basics.VertexCycleLengthComparator;
 import graphtea.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphtea.ui.UIUtils;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;

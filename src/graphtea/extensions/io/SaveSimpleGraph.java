@@ -6,8 +6,8 @@
 package graphtea.extensions.io;
 
 import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GPoint;
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.StaticUtils;
 import graphtea.plugins.main.saveload.core.GraphIOException;

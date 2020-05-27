@@ -3,8 +3,10 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.graph.graph;
+
 import graphtea.platform.StaticUtils;
 import graphtea.platform.lang.FromStringProvider;
+
 import java.io.Serializable;
 
 public class GPoint implements Serializable, FromStringProvider {

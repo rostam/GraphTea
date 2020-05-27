@@ -27,106 +27,96 @@ public class HelmGraph implements GraphGeneratorExtension, Parametrizable, Simpl
 	@Parameter(name = "n")
 	public static int n = 3;
 
-    @Parameter(name = "closed")
-    public static boolean closed = false;
+	@Parameter(name = "closed")
+	public static boolean closed = false;
 
 	GraphModel g;
 
-	public void setWorkingGraph(GraphModel g)
-	{
+	public void setWorkingGraph(GraphModel g) {
 		this.g = g;
 	}
 
-	public String getName()
-	{
+	public String getName() {
 		return "Helm Graph";
 	}
 
-	public String getDescription()
-	{
+	public String getDescription() {
 		return "Generate Helm Graph";
 	}
 
 	Vertex[] v;
 
-	public Vertex[] getVertices()
-	{
-		Vertex[] result = new Vertex[2*n+1];
-		for (int i = 0; i < 2*n+1; i++)
+	public Vertex[] getVertices() {
+		Vertex[] result = new Vertex[2 * n + 1];
+		for (int i = 0; i < 2 * n + 1; i++)
 			result[i] = new Vertex();
 		v = result;
 		return result;
 	}
 
-	public Edge[] getEdges()
-	{
+	public Edge[] getEdges() {
 		Edge[] result;
-        if(!closed) result = new Edge[3*n];
-        else result = new Edge[3*n+n];
-        int ecnt = 0;
-		for (int i = 0; i < n; i++)
-		{
-			result[ecnt] = new Edge(v[i], v[n+i]);
-            ecnt++;
-			result[ecnt] = new Edge(v[n+i], v[2*n]);
-            ecnt++;
-			result[ecnt] = new Edge(v[n+i],v[n+((i+1)%n)]);
-            ecnt++;
-            if(closed) {
-                result[ecnt] = new Edge(v[i],v[((i+1)%n)]);
-                ecnt++;
-            }
+		if (!closed) result = new Edge[3 * n];
+		else result = new Edge[3 * n + n];
+		int ecnt = 0;
+		for (int i = 0; i < n; i++) {
+			result[ecnt] = new Edge(v[i], v[n + i]);
+			ecnt++;
+			result[ecnt] = new Edge(v[n + i], v[2 * n]);
+			ecnt++;
+			result[ecnt] = new Edge(v[n + i], v[n + ((i + 1) % n)]);
+			ecnt++;
+			if (closed) {
+				result[ecnt] = new Edge(v[i], v[((i + 1) % n)]);
+				ecnt++;
+			}
 		}
 
-        return result;
+		return result;
 	}
 
-	public Point[] getVertexPositions()
-	{
+	public Point[] getVertexPositions() {
 		int w = 1000;
-		double mw = ((double)w)/2.0, qw = ((double)w)/4.0;
-		Point[] result = new Point[2*n+1];
-		result[2*n] = new Point(w/2, w/2);
-		double ang = Math.PI*2.0/n;
+		double mw = ((double) w) / 2.0, qw = ((double) w) / 4.0;
+		Point[] result = new Point[2 * n + 1];
+		result[2 * n] = new Point(w / 2, w / 2);
+		double ang = Math.PI * 2.0 / n;
 		double offset = 0.0;
 		if ((n % 2) == 0)
-			offset = ang/2.0; 
-		for ( int i = 0 ; i < n ; i++ )
-		{
+			offset = ang / 2.0;
+		for (int i = 0; i < n; i++) {
 			double angle = offset + i * ang;
-			result[i] = new Point((int)(mw + Math.sin(angle)* mw), (int)(mw - Math.cos(angle)* mw));
-			result[n+i] = new Point((int)(mw + Math.sin(angle)* qw), (int)(mw - Math.cos(angle)* qw));
+			result[i] = new Point((int) (mw + Math.sin(angle) * mw), (int) (mw - Math.cos(angle) * mw));
+			result[n + i] = new Point((int) (mw + Math.sin(angle) * qw), (int) (mw - Math.cos(angle) * qw));
 		}
 		return result;
 	}
 
-	public String checkParameters(){
-		if( n<3)return "n must be higher than 2!";
+	public String checkParameters() {
+		if (n < 3) return "n must be higher than 2!";
 		else
 			return null;
 	}
 
-	public GraphModel generateGraph()
-	{
+	public GraphModel generateGraph() {
 		return GraphGenerator.getGraph(false, this);
 	}
 
 	/**
 	 * generates a Helm Graph with given parameters
 	 */
-	public static GraphModel generateHelm(int n)
-	{
+	public static GraphModel generateHelm(int n) {
 		HelmGraph.n = n;
 		return GraphGenerator.getGraph(false, new HelmGraph());
-    }
+	}
 
-public static void main(String[] args) {
-        graphtea.platform.Application.main(args);
+	public static void main(String[] args) {
+		graphtea.platform.Application.main(args);
 //        StaticUtils.loadSingleExtension(graphtea.samples.extensions.HelmGraph.class);
-    }
+	}
 
-    @Override
-    public String getCategory() {
-        return "Web Class Graphs";
-    }
+	@Override
+	public String getCategory() {
+		return "Web Class Graphs";
+	}
 }

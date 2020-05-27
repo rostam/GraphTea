@@ -7,8 +7,6 @@ package graphtea.plugins.commonplugin.reporter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class TextBox extends JFrame {
     JPanel contentPane;
@@ -19,11 +17,7 @@ public class TextBox extends JFrame {
         setContentPane(contentPane);
         getRootPane().setDefaultButton(buttonOK);
 
-        buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
-        });
+        buttonOK.addActionListener(e -> onOK());
     }
 
     private void onOK() {

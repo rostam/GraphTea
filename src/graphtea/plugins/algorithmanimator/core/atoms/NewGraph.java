@@ -8,8 +8,8 @@ package graphtea.plugins.algorithmanimator.core.atoms;
 
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.GPoint;
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseEdge;
 import graphtea.library.BaseVertex;

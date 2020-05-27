@@ -11,6 +11,7 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.ui.UIUtils;
+
 import java.awt.*;
 
 public class circular extends AbstractAction implements Parametrizable {

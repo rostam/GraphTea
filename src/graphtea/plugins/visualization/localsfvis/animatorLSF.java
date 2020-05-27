@@ -8,6 +8,7 @@ import graphtea.graph.graph.*;
 import graphtea.library.exceptions.InvalidVertexException;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;

@@ -6,8 +6,6 @@ package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.platform.parameter.Parameter;
-import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;

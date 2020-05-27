@@ -1,8 +1,8 @@
 package graphtea.extensions.actions;
 
+import graphtea.extensions.algorithms.GraphSum;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.ui.GTabbedGraphPane;
-import graphtea.extensions.algorithms.GraphSum;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
@@ -33,7 +33,7 @@ public class Sum implements GraphActionExtension, Parametrizable {
         GTabbedGraphPane gtp = graphData.getBlackboard().getData(GTabbedGraphPane.NAME);
         GraphModel g1 = gtp.getGraphs().get(fG);
         GraphModel g2 = gtp.getGraphs().get(sG);
-        GraphModel g= (GraphModel) GraphSum.sum(g1,g2);
+        GraphModel g= GraphSum.sum(g1,g2);
         GraphSum.setUnionLabel(g1,g2,g);
         graphData.core.showGraph(g);
     }

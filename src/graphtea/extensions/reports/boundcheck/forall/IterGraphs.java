@@ -1,6 +1,7 @@
 package graphtea.extensions.reports.boundcheck.forall;
 
 
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.boundcheck.ConjectureChecking;
 import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;
 import graphtea.extensions.reports.boundcheck.forall.filters.GeneratorFilters;
@@ -13,7 +14,6 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
-import graphtea.extensions.AlgorithmUtils;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.awt.*;

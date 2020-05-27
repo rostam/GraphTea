@@ -6,34 +6,30 @@ package graphtea.extensions.reports.energy;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.AlgorithmUtils;
+import graphtea.extensions.reports.Utils;
+import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.extensions.reports.spectralreports.KirchhoffIndex;
+import graphtea.extensions.reports.spectralreports.LaplacianEnergy;
 import graphtea.extensions.reports.spectralreports.LaplacianEnergyLike;
 import graphtea.extensions.reports.spectralreports.SignlessLaplacianEnergy;
-import graphtea.extensions.reports.spectralreports.LaplacianEnergy;
+import graphtea.extensions.reports.zagreb.WienerIndex;
 import graphtea.extensions.reports.zagreb.ZagrebIndexFunctions;
+import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
+import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-import graphtea.extensions.reports.basicreports.Diameter;
-import graphtea.extensions.reports.zagreb.WienerIndex;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Vector;
-import java.util.ArrayList;
-
 
 /**
  * @author Ali Rostami
-
  */
-
-
-import graphtea.graph.graph.Vertex;
-import graphtea.graph.graph.Edge;
-import graphtea.extensions.AlgorithmUtils;
-import graphtea.extensions.reports.Utils;
 
 
 

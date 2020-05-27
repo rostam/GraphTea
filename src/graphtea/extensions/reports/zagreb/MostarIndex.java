@@ -4,8 +4,6 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.zagreb;
 
-import graphtea.extensions.algs4.AdjMatrixEdgeWeightedDigraph;
-import graphtea.extensions.algs4.DirectedEdge;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;

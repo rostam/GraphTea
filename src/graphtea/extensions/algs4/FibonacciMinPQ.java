@@ -8,10 +8,10 @@
 
 package graphtea.extensions.algs4;
 
-import java.util.Iterator;
-import java.util.HashMap;
-import java.util.NoSuchElementException;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /*
  *  The FibonacciMinPQ class represents a priority queue of generic keys.

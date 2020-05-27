@@ -70,9 +70,9 @@ public class PmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
     public Point[] getVertexPositions() {
         int w = 20000;
         int h = 20000;
-        Point ret[] = new Point[m * n];
+        Point[] ret = new Point[m * n];
         for (int i = 0; i < n; i++) {
-            Point p[] = PositionGenerators.line(5, h * (i + 1) / (n + 1), w, 0, m);
+            Point[] p = PositionGenerators.line(5, h * (i + 1) / (n + 1), w, 0, m);
             System.arraycopy(p, 0, ret, i * m, m);
 
         }

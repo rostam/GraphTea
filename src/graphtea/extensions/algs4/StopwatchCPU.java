@@ -14,8 +14,8 @@
 
 package graphtea.extensions.algs4;
 
-import java.lang.management.ThreadMXBean;
 import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadMXBean;
 
 /**
  *  The {@code StopwatchCPU} data type is for measuring

@@ -28,7 +28,7 @@ public class UndoAction extends AbstractAction {
 
         redoers.put(g, new Stack<>());  //reset redo for this graph
 
-        if(undoers.get(g) == null || undoers.get(g).size() == 0) {
+        if (undoers.get(g) == null || undoers.get(g).size() == 0) {
             undoers.put(g, new Stack<>());
             undoers.get(g).push(gso);
             return;
@@ -56,8 +56,8 @@ public class UndoAction extends AbstractAction {
     }
 
     public GraphSaveObject popUndo(GraphModel label) {
-        if(undoers.get(label)== null) return null;
-        if(undoers.get(label).size()==0) return null;
+        if (undoers.get(label) == null) return null;
+        if (undoers.get(label).size() == 0) return null;
         GraphSaveObject temp = undoers.get(label).pop();
         redoers.putIfAbsent(label, new Stack<>());
         redoers.get(label).push(temp);
@@ -65,10 +65,10 @@ public class UndoAction extends AbstractAction {
     }
 
     public GraphSaveObject popRedo(GraphModel label) {
-        if(redoers.get(label)== null) return null;
-        if(redoers.get(label).size()==0) return null;
+        if (redoers.get(label) == null) return null;
+        if (redoers.get(label).size() == 0) return null;
         GraphSaveObject temp = redoers.get(label).pop();
-        if(undoers.get(label)!= null) undoers.get(label).push(temp);
+        if (undoers.get(label) != null) undoers.get(label).push(temp);
         return temp;
     }
 
@@ -79,11 +79,9 @@ public class UndoAction extends AbstractAction {
         listen4Event(REDO_EVENT);
         final GraphData gd = new GraphData(bb);
 
-        bb.addListener("undo point", new Listener<GraphModel>() {
-            public void keyChanged(String key, GraphModel value) {
+        bb.addListener("undo point", (Listener<GraphModel>) (key, value) -> {
             GraphModel g = gd.getGraph();
             if (g != null) pushUndo(g);
-            }
         });
     }
 
@@ -100,14 +98,14 @@ public class UndoAction extends AbstractAction {
 //        System.out.println("UNDO #: " + undoers.get(cur).size());
 
         GraphSaveObject gso = popUndo(cur);
-        if(gso == null) return;
+        if (gso == null) return;
 //        System.out.println("GSO: " + gso.vs.size());
         cur.clear();
         gso.insertIntoGraph(cur);
         gd.getGraphRenderer().repaintGraph();
     }
 
-    public  void redo() {
+    public void redo() {
         GraphData gd = new GraphData(blackboard);
         GraphModel cur = gd.getGraph();
         GraphSaveObject gso = popRedo(cur);

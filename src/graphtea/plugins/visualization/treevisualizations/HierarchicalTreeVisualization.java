@@ -11,6 +11,7 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 import graphtea.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphtea.ui.UIUtils;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;

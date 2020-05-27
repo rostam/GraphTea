@@ -19,11 +19,7 @@ public class NewGraph extends AbstractAction {
     }
 
     public void performAction(String eventName, Object value) {
-        new Thread() {
-            public void run() {
-                doJob(blackboard);
-            }
-        }.start();
+        new Thread(() -> doJob(blackboard)).start();
     }
 
     public static BlackBoard doJob(BlackBoard b) {

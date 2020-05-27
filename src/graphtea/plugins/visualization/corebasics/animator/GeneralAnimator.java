@@ -7,6 +7,7 @@ package graphtea.plugins.visualization.corebasics.animator;
 import graphtea.graph.graph.*;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;

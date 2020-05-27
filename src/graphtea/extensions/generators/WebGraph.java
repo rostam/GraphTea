@@ -91,7 +91,7 @@ public class WebGraph implements GraphGeneratorExtension, Parametrizable, Simple
         Point[] r = new Point[((t+1)*n)+1];
 
         for(int i=t; i >=0 ;i--) {
-            Point p[] = PositionGenerators.circle((t-(i-1))*10000, 10000, 10000, n);
+            Point[] p = PositionGenerators.circle((t-(i-1))*10000, 10000, 10000, n);
             System.arraycopy(p, 0, r, (i * n), n);
         }
         r[(t+1)*n] = new Point(10000,10000);

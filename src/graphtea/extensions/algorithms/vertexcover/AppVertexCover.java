@@ -8,17 +8,11 @@ package graphtea.extensions.algorithms.vertexcover;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.library.BaseEdge;
-import graphtea.library.BaseGraph;
-import graphtea.library.BaseVertex;
 import graphtea.library.algorithms.Algorithm;
 import graphtea.library.algorithms.AutomatedAlgorithm;
 import graphtea.library.algorithms.util.EventUtils;
-import graphtea.library.event.VertexEvent;
-import graphtea.library.event.typedef.BaseGraphRequest;
 import graphtea.library.exceptions.InvalidGraphException;
 import graphtea.library.exceptions.InvalidVertexException;
-import graphtea.library.genericcloners.BaseEdgeVertexCopier;
 import graphtea.library.genericcloners.EdgeVertexConverter;
 
 import java.util.Iterator;

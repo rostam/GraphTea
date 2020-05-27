@@ -1,9 +1,9 @@
 package graphtea.extensions.actions.art;
 
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.*;
 import graphtea.graph.old.GStroke;
 import graphtea.plugins.main.GraphData;
-import graphtea.extensions.AlgorithmUtils;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
 import java.awt.*;

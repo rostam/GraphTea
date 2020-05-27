@@ -25,7 +25,7 @@ public class EdgeSaveObject implements Serializable {
     public EdgeSaveObject(Edge e) {
         source = e.source.getId();
         target = e.target.getId();
-        attrs = new SerializedAttrSet(new EdgeAttrSet(e));
+        attrs = new SerializedAttrSet<>(new EdgeAttrSet(e));
     }
 
     public void addEdge(GraphModel g) {

@@ -8,6 +8,7 @@ package graphtea.extensions.io;
 import graphtea.graph.graph.*;
 import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

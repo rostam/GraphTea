@@ -1,11 +1,11 @@
 package graphtea.extensions.reports;
 
 import Jama.Matrix;
-import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.GPoint;
-import graphtea.graph.graph.Vertex;
 import graphtea.extensions.AlgorithmUtils;
+import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.Vertex;
 
 import java.awt.*;
 import java.math.BigInteger;

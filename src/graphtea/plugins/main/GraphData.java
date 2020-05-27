@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.main;
 
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.GraphUtils;
 import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.AbstractGraphRenderer;
@@ -11,7 +12,6 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.library.algorithms.LibraryUtils;
 import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;
-import graphtea.extensions.AlgorithmUtils;
 import graphtea.plugins.main.core.CorePluginMethods;
 import graphtea.plugins.main.saveload.SaveLoadPluginMethods;
 import graphtea.plugins.main.select.SelectPluginMethods;

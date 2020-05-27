@@ -93,7 +93,7 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
         for (int i = 0; i < n - Math.pow(degree, depth); i++) {
             int h = (int) ((Math.log((i + 1) * (degree - 1))) / Math.log(degree));
             int rad = (i == 0 ? rad0 : (int) (rad0 / Math.pow(2.5, h)));
-            Point _p[] = PositionGenerators.circle(rad, ret[i].x, ret[i].y, degree);
+            Point[] _p = PositionGenerators.circle(rad, ret[i].x, ret[i].y, degree);
             System.arraycopy(_p, 0, ret, last, degree);
             last += degree;
         }
@@ -140,7 +140,7 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
         int last = 1;
         for (int h = 1; h <= depth; h++) {
             int n = (int) Math.pow(degree, h);
-            Point p[] = PositionGenerators.circle(30 * h * h, 0, 0, n);
+            Point[] p = PositionGenerators.circle(30 * h * h, 0, 0, n);
             System.arraycopy(p, 0, ret, last, n);
             last += n;
         }

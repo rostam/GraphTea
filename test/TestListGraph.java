@@ -171,37 +171,37 @@ public class TestListGraph {
 
 
     public static void mainTestVertexInduced(String args[]) {
-        ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph = generateRandomListGraph(30, 100);
-        myListGraph.dump();
-
-        ArrayList<BaseVertex> arr = new ArrayList<>();
-
-        for (int i = 0; i < myListGraph.getVerticesCount(); i += 2)
-            arr.add(myListGraph.getVertexArray()[i]);
-
-        BaseGraph<BaseVertex, BaseEdge<BaseVertex>> vInducedGraph =
-                InducedSubgraphs.getVertexInducedSubgraph(myListGraph, arr);
-
-        vInducedGraph.dump();
+//        ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph = generateRandomListGraph(30, 100);
+//        myListGraph.dump();
+//
+//        ArrayList<BaseVertex> arr = new ArrayList<>();
+//
+//        for (int i = 0; i < myListGraph.getVerticesCount(); i += 2)
+//            arr.add(myListGraph.getVertexArray()[i]);
+//
+//        BaseGraph<BaseVertex, BaseEdge<BaseVertex>> vInducedGraph =
+//                InducedSubgraphs.getVertexInducedSubgraph(myListGraph, arr);
+//
+//        vInducedGraph.dump();
     }
 
     public static void mainTestEdgeInduced(String args[]) {
-        ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph = generateRandomListGraph(30, 100);
-        myListGraph.dump();
-
-        ArrayList<BaseEdge<BaseVertex>> arr = new ArrayList<>();
-
-        Iterator<BaseEdge<BaseVertex>> it = myListGraph.edgeIterator();
-        for (int i = 0; i < myListGraph.getEdgesCount(); ++i) {
-            BaseEdge<BaseVertex> e = it.next();
-            if (i % 12 == 0)
-                arr.add(e);
-        }
-
-        BaseGraph<BaseVertex, BaseEdge<BaseVertex>> eInducedGraph =
-                InducedSubgraphs.getEdgeInducedSubgraph(myListGraph, arr);
-
-        eInducedGraph.dump();
+//        ListGraph<BaseVertex, BaseEdge<BaseVertex>> myListGraph = generateRandomListGraph(30, 100);
+//        myListGraph.dump();
+//
+//        ArrayList<BaseEdge<BaseVertex>> arr = new ArrayList<>();
+//
+//        Iterator<BaseEdge<BaseVertex>> it = myListGraph.edgeIterator();
+//        for (int i = 0; i < myListGraph.getEdgesCount(); ++i) {
+//            BaseEdge<BaseVertex> e = it.next();
+//            if (i % 12 == 0)
+//                arr.add(e);
+//        }
+//
+//        BaseGraph<BaseVertex, BaseEdge<BaseVertex>> eInducedGraph =
+//                InducedSubgraphs.getEdgeInducedSubgraph(myListGraph, arr);
+//
+//        eInducedGraph.dump();
     }
 
     public static void mainOld(String args[]) {

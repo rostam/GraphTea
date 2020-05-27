@@ -1,8 +1,8 @@
 package graphtea.extensions.actions.product;
 
+import graphtea.extensions.algorithms.VertexCorona;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.ui.GTabbedGraphPane;
-import graphtea.extensions.algorithms.VertexCorona;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;

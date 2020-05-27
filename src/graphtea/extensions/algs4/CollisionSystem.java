@@ -18,7 +18,7 @@
 
 package graphtea.extensions.algs4;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  *  The {@code CollisionSystem} class represents a collection of particles
