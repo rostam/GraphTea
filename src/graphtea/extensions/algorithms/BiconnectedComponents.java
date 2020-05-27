@@ -5,13 +5,12 @@
 
 package graphtea.extensions.algorithms;
 
-import graphtea.library.BaseEdge;
-import graphtea.library.BaseGraph;
-import graphtea.library.BaseVertex;
+import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.Vertex;
 import graphtea.library.algorithms.Algorithm;
 import graphtea.library.algorithms.AutomatedAlgorithm;
 import graphtea.library.algorithms.util.EventUtils;
-import graphtea.library.event.GraphRequest;
 import graphtea.library.util.Pair;
 
 import java.util.HashSet;
@@ -26,18 +25,16 @@ import java.util.Vector;
  *
  * @author Azin Azadi    :returning biconnected compoenents
  * @author Soroush Sabet
+ * @author M. Ali Rostami
  */
-public class BiconnectedComponents
-        <VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>>
-        extends Algorithm implements AutomatedAlgorithm {
-    //PreWorkPostWorkHandler handler = new PreWorkPostWorkHandler<VertexType>();
+public class BiconnectedComponents extends Algorithm implements AutomatedAlgorithm {
     Integer[] DFS_Number;
     Integer[] High;
     int[] parent;
-    Vector<Pair<Vector<VertexType>, Vector<EdgeType>>> BiC = new Vector<>();
-   Vector<HashSet<VertexType>> ret;
+    Vector<Pair<Vector<Vertex>, Vector<Edge>>> BiC = new Vector<>();
+   Vector<HashSet<Vertex>> ret;
     int DFS_N;
-    private VertexType root;
+    private Vertex root;
 
     /**
      * The initialization, before searching for biconnected
@@ -49,7 +46,7 @@ public class BiconnectedComponents
      *
      * @param g is the input graph.
      */
-    private void init(BaseGraph<VertexType, EdgeType> g) {
+    private void init(GraphModel g) {
         DFS_Number = new Integer[g.getVerticesCount()];
         for (int i = 0; i < g.getVerticesCount(); i++)
             DFS_Number[i] = 0;
@@ -60,10 +57,10 @@ public class BiconnectedComponents
     }
 
     public void doAlgorithm() {
-        GraphRequest<VertexType, EdgeType> gr = new GraphRequest<>();
-        dispatchEvent(gr);
-        BaseGraph<VertexType, EdgeType> g = gr.getGraph();
-        BC(g, root);
+//        GraphRequest<Vertex, Edge> gr = new GraphRequest<>();
+//        dispatchEvent(gr);
+//        GraphModel g = gr.getGraph();
+//        BC(g, root);
 //        LibraryUtils.algorithmStep(this, "Biconnected Components:" + comps);
     }
 
@@ -73,15 +70,15 @@ public class BiconnectedComponents
      */
     private class VE {
 
-        VertexType v;
-        EdgeType e;
+        Vertex v;
+        Edge e;
 
-        VE(VertexType v) {
+        VE(Vertex v) {
             this.v = v;
             this.e = null;
         }
 
-        VE(EdgeType e) {
+        VE(Edge e) {
             this.e = e;
             this.v = null;
         }
@@ -105,17 +102,17 @@ public class BiconnectedComponents
      * @param g The given graph
      * @param v The given vertex
      */
-    private void BC(BaseGraph<VertexType, EdgeType> g, VertexType v) {
+    private void BC(GraphModel g, Vertex v) {
         DFS_Number[v.getId()] = DFS_N;
         DFS_N--;
         S.push(new VE(v));
         High[v.getId()] = DFS_Number[v.getId()];
 
-        Iterator<EdgeType> iet;
+        Iterator<Edge> iet;
         iet = g.edgeIterator(v);
 
-        EdgeType edge;
-        VertexType w;
+        Edge edge;
+        Vertex w;
 
         while (iet.hasNext()) {
             edge = iet.next();
@@ -147,14 +144,14 @@ public class BiconnectedComponents
     }
 
 
-    public Vector<HashSet<VertexType>> biconnected_components(BaseGraph<VertexType, EdgeType> g, VertexType v, int n) {
+    public Vector<HashSet<Vertex>> biconnected_components(GraphModel g, Vertex v, int n) {
         DFS_Number=new Integer[n];
         High=new Integer[n];
         parent=new int[n];
         S = new Stack<>();
         ret= new Vector<>();
 
-        for (VertexType scan : g)
+        for (Vertex scan : g)
             DFS_Number[scan.getId()] = 0;
         DFS_N = n;
         Bicon(g,v);
@@ -166,13 +163,13 @@ public class BiconnectedComponents
      * the input, and returns the biconnected components
      * of g in a vector.
      */
-    public void Bicon(BaseGraph<VertexType, EdgeType> g, VertexType v) {
+    public void Bicon(GraphModel g, Vertex v) {
         DFS_Number[v.getId()] = DFS_N;
         DFS_N--;
         S.push(new VE(v));
         High[v.getId()] = DFS_Number[v.getId()];
-        for (VertexType w : g.getNeighbors(v)) {
-            EdgeType vw = g.getEdges(v,w).get(0);
+        for (Vertex w : g.getNeighbors(v)) {
+            Edge vw = g.getEdges(v,w).get(0);
             S.push(new VE(vw));
             if (parent[v.getId()]!=w.getId()){
                 if (DFS_Number[w.getId()]==0){
@@ -180,7 +177,7 @@ public class BiconnectedComponents
                     Bicon(g,w);
                     if (High[w.getId()] <= DFS_Number[v.getId()]){
                         VE top=S.pop();
-                        HashSet<VertexType> comp= new HashSet<>();
+                        HashSet<Vertex> comp= new HashSet<>();
                         if (top.v!=null)
                             comp.add(top.v);
                         while (v!=top.v){
@@ -200,28 +197,28 @@ public class BiconnectedComponents
             }
         }
 
-////    public Vector<BaseGraph<VertexType,EdgeType>> Bicon(BaseGraph<VertexType,EdgeType> g){
+////    public Vector<BaseGraph<Vertex,Edge>> Bicon(BaseGraph<Vertex,Edge> g){
 //        init(g);
 //        rootChilds = 0;
 //        root = g.iterator().next();
 //
 //        foundDecompositions = 0;
 //        BC(g, root);
-//        Vector<HashSet<VertexType>> ret = new Vector<HashSet<VertexType>>();
-//        for (VertexType v : g) {
+//        Vector<HashSet<Vertex>> ret = new Vector<HashSet<Vertex>>();
+//        for (Vertex v : g) {
 //            v.setMark(false);
 //        }
-//        for (VertexType v : g) {
+//        for (Vertex v : g) {
 //            if (!v.getMark()) {
-//                Queue<VertexType> q = new LinkedList<VertexType>();
-//                HashSet<VertexType> r = new HashSet<VertexType>();
+//                Queue<Vertex> q = new LinkedList<Vertex>();
+//                HashSet<Vertex> r = new HashSet<Vertex>();
 //                q.add(v);
 //                while (!q.isEmpty()) {
-//                    VertexType t = q.poll();
+//                    Vertex t = q.poll();
 //                    t.setMark(true);
 //                    r.add(t);
 //                    if (t.getColor() != 2)
-//                        for (VertexType scan : g.getNeighbors(t)) {
+//                        for (Vertex scan : g.getNeighbors(t)) {
 //                            if (!scan.getMark() || scan.getColor() == 2)
 //                                q.add(scan);
 //                        }
