@@ -75,12 +75,12 @@ public class Partitioner {
         return maxSet;
     }
 
-    boolean set[];
-    boolean mark[];
+    boolean[] set;
+    boolean[] mark;
 //    boolean markbck[];
 
     Vertex[] V;
-    int ID[];
+    int[] ID;
     int N;
     ArrayDeque<BaseVertex> v;
     int maxSet = Integer.MIN_VALUE;
@@ -113,7 +113,7 @@ public class Partitioner {
         int[] nv = edgeArray[vid];
         int ss = nv.length;
 
-        boolean markbck[] = new boolean[ss];
+        boolean[] markbck = new boolean[ss];
         for (i = 0; i < ss; i++) {
             markbck[i] = mark[nv[i]];
             mark[nv[i]] = true;

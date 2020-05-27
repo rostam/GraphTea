@@ -18,7 +18,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class LaplacianEnergyLike implements GraphReportExtension {
+public class LaplacianEnergyLike implements GraphReportExtension<String> {
 
     double round(double value, int decimalPlace) {
         double power_of_ten = 1;
@@ -28,7 +28,7 @@ public class LaplacianEnergyLike implements GraphReportExtension {
                 / power_of_ten;
     }
 
-    public Object calculate(GraphModel g) {
+    public String calculate(GraphModel g) {
         double power = 1;
         try {
             Matrix B = g.getWeightedAdjacencyMatrix();

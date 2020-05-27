@@ -17,7 +17,7 @@ import java.util.Vector;
 /**
  * @author Azin Azadi
  */
-public class ColoringReport implements GraphReportExtension, ColoringListener, Parametrizable {
+public class ColoringReport implements GraphReportExtension<Vector<GraphColoring>>, ColoringListener, Parametrizable {
     Partitioner p;
     Vector<GraphColoring> colorings;
     boolean found;
@@ -28,7 +28,7 @@ public class ColoringReport implements GraphReportExtension, ColoringListener, P
     @Parameter(name = "All Colorings", description = "Create a list of all colorings of graph using minimum number of colors")
     public Boolean allColorings=false;
 
-    public Object calculate(GraphModel g) {
+    public Vector<GraphColoring> calculate(GraphModel g) {
         p = new Partitioner(g);
         colorings = new Vector<>(1);
         int ct = lowerBound;

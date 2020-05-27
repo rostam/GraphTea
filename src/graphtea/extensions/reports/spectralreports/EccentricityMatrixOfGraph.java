@@ -18,7 +18,7 @@ import java.util.Iterator;
  *
  * @author Hooman Mohajeri Moghaddam
  */
-public class EccentricityMatrixOfGraph implements GraphReportExtension  {
+public class EccentricityMatrixOfGraph implements GraphReportExtension<ArrayList<String>>  {
 
 
 	boolean inDegree;
@@ -54,15 +54,15 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension  {
 	/**
 	 * Gets the eigen values and vectors of the graph and returns them as an array of strings.
 	 * @param matrix the Adjacency matrix of the graph
-	 * @return
+	 * @return 
 	 */
 	private ArrayList<String> getEigenValuesAndVectors(Matrix matrix)
 	{
 		ArrayList<String> result = new ArrayList<>();
 		result.add("Eigen Value Decomposition:");
 		EigenvalueDecomposition ed = matrix.eig();
-		double rv[] = ed.getRealEigenvalues();
-		double iv[] = ed.getImagEigenvalues();
+		double[] rv = ed.getRealEigenvalues();
+		double[] iv = ed.getImagEigenvalues();
 		for (int i = 0; i < rv.length; i++)
 			if (iv[i] != 0)
 				result.add("" + round(rv[i], 5) + " + " + round(iv[i], 5) + "i");
@@ -70,8 +70,7 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension  {
 				result.add("" + round(rv[i], 5));
 		result.add("Eigen Vectors:\n");
 		double[][] eigenVectors = ed.getV().getArray();
-		for (int k = 0; k < eigenVectors.length; k++)
-			result.add(Arrays.toString(round(eigenVectors[k], 5)));
+		for (double[] eigenVector : eigenVectors) result.add(Arrays.toString(round(eigenVector, 5)));
 		return result;
 	}
 
@@ -91,8 +90,7 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension  {
 		return "The eccentricity matrix associated with the graph";
 	}
 
-	public Object calculate(GraphModel g) {
-
+	public ArrayList<String> calculate(GraphModel g) {
 		try {
 			if(g.isDirected())
 			{
@@ -142,7 +140,7 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension  {
 	}
 
 	public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
-		final Integer dist[][] = new Integer[g.numOfVertices()][g.numOfVertices()];
+		final Integer[][] dist = new Integer[g.numOfVertices()][g.numOfVertices()];
 		Iterator<Edge> iet = g.edgeIterator();
 		for (int i = 0; i < g.getVerticesCount(); i++)
 			for (int j = 0; j < g.getVerticesCount(); j++)

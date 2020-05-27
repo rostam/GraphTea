@@ -1,7 +1,7 @@
 package graphtea.extensions.reports.spanningtree;
 
 public class MSTPrim {
-    public int[] prim(int g[][]) {
+    public int[] prim(int[][] g) {
         int[] parent = new int[g.length];
         int[] id    = new int[g.length];
         boolean[] MST = new boolean[g.length];
@@ -26,7 +26,7 @@ public class MSTPrim {
         return parent;
     }
 
-    public int minimumID(int id[], boolean MST[])
+    public int minimumID(int[] id, boolean[] MST)
     {
         int min = 10000, minIndex=0;
         for (int v = 0; v < id.length; v++) {

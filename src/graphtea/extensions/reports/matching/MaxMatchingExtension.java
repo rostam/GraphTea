@@ -20,7 +20,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "maxium_matching", abbreviation = "_max_match")
-public class MaxMatchingExtension implements GraphReportExtension {
+public class MaxMatchingExtension implements GraphReportExtension<Vector<Object>> {
     public String getName() {
         return "Maximum Matching";
     }
@@ -29,11 +29,11 @@ public class MaxMatchingExtension implements GraphReportExtension {
         return "Maximum Matching";
     }
 
-    public Object calculate(GraphModel gg) {
+    public Vector<Object> calculate(GraphModel gg) {
         SubGraph sg = new SubGraph();
         List<Integer>[] g = new List[gg.getVerticesCount()];
         for (int i = 0; i < gg.getVerticesCount(); i++) {
-            g[i] = new ArrayList();
+            g[i] = new ArrayList<>();
         }
 
         for(Edge e : gg.getEdges()) {
@@ -72,7 +72,7 @@ public class MaxMatchingExtension implements GraphReportExtension {
         SubGraph sg = new SubGraph();
         List<Integer>[] g = new List[gg.getVerticesCount()];
         for (int i = 0; i < gg.getVerticesCount(); i++) {
-            g[i] = new ArrayList();
+            g[i] = new ArrayList<>();
         }
 
         for(Edge e : gg.getEdges()) {

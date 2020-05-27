@@ -29,7 +29,7 @@ public class GCartesianProduct extends GProduct {
     @Override
     public void setPositions(GraphModel g) {
         int n = g.getVerticesCount();
-        Point ps[] = PositionGenerators.circle(250, 300, 300, n);
+        Point[] ps = PositionGenerators.circle(250, 300, 300, n);
         setProductLabel(g);
         int count = 0;
         for (Vertex v : g) {

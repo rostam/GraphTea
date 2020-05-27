@@ -70,11 +70,11 @@ public class TopologicalSort extends Algorithm implements AutomatedAlgorithm {
         if (alv == null)
             dispatchEvent(new MessageEvent("Graph has a cycle"));
         else {
-            String s = "Topological sort sequence:";
+            StringBuilder s = new StringBuilder("Topological sort sequence:");
             for (BaseVertex v : alv)
-                s += v.getId() + ',';
+                s.append(v.getId() + ',');
 
-            dispatchEvent(new MessageEvent(s));
+            dispatchEvent(new MessageEvent(s.toString()));
         }
 
     }

@@ -23,7 +23,7 @@ public class GDisjunction extends GProduct {
     @Override
     public void setPositions(GraphModel g) {
         int n = g.getVerticesCount();
-        Point ps[] = PositionGenerators.circle(200, 300, 300, n);
+        Point[] ps = PositionGenerators.circle(200, 300, 300, n);
         int count = 0;
         for (Vertex v : g) {
             v.setLocation(new GPoint(ps[count].x, ps[count].y));

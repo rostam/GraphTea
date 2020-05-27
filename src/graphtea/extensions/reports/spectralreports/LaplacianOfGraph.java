@@ -16,7 +16,7 @@ import java.util.Arrays;
  *
  * @author Hooman Mohajeri Moghaddam
  */
-public class LaplacianOfGraph implements GraphReportExtension  {
+public class LaplacianOfGraph implements GraphReportExtension<ArrayList<String>>  {
 
 
 	boolean inDegree;
@@ -134,7 +134,7 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 		return "The Laplacian matrix associated with the graph";
 	}
 
-	public Object calculate(GraphModel g) {
+	public ArrayList<String> calculate(GraphModel g) {
 
 		try {
 			if(g.isDirected())

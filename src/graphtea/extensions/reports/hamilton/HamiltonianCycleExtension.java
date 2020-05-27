@@ -16,7 +16,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "hamiltonian_cycle", abbreviation = "_hc")
-public class HamiltonianCycleExtension implements GraphReportExtension {
+public class HamiltonianCycleExtension implements GraphReportExtension<SubGraph> {
     public String getName() {
         return "Hamiltonian Cycle";
     }
@@ -25,7 +25,7 @@ public class HamiltonianCycleExtension implements GraphReportExtension {
         return "Hamiltonian Cycle";
     }
 
-    public Object calculate(GraphModel g) {
+    public SubGraph calculate(GraphModel g) {
         SubGraph sg = new SubGraph();
         HamiltonianCycle hc = new HamiltonianCycle();
         double[][] adj = g.getAdjacencyMatrix().getArray();

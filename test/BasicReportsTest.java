@@ -68,6 +68,8 @@ public class BasicReportsTest {
         Assertions.assertEquals(numOfVerticesWithDegK.calculate(peterson),10);
     }
 
+
+
 //    @Test public void testDominationNumber() {
 //        DominationNumber dn = new DominationNumber();
 //        Assertions.assertEquals(

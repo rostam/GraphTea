@@ -51,6 +51,6 @@ public class ChromaticNumber implements GraphReportExtension<Integer>, ColoringL
 
     public static int getChromaticNumber(GraphModel g) {
         ChromaticNumber cn = new ChromaticNumber();
-        return (int) cn.calculate(g);
+        return cn.calculate(g);
     }
 }

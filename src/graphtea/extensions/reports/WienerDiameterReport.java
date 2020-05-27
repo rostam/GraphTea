@@ -12,9 +12,9 @@ import java.util.Vector;
  * Created by rostami on 26.04.17.
  *
  */
-public class WienerDiameterReport implements GraphReportExtension {
+public class WienerDiameterReport implements GraphReportExtension<RenderTable> {
     @Override
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add(" Wiener ");

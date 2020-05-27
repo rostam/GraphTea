@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  */
 
 @CommandAttitude(name = "maximum_independent_set", abbreviation = "_mis")
-public class MaxIndependentSetReport implements GraphReportExtension {
+public class MaxIndependentSetReport implements GraphReportExtension<Vector<SubGraph>> {
 //    @Parameter(name = "Lower Bound", description = "Lower Bound for the number of independent set members, This will make the search Interval smaller")
 //    public Integer lowerBound = 1;
 //
@@ -39,7 +39,7 @@ public class MaxIndependentSetReport implements GraphReportExtension {
     }
 
 
-    public Object calculate(GraphModel g) {
+    public Vector<SubGraph> calculate(GraphModel g) {
         Vector<ArrayDeque<BaseVertex>> maxsets = getMaxIndependentSet(g);
         Vector<SubGraph> ret = new Vector<>();
         for (ArrayDeque<BaseVertex> maxset : maxsets) {

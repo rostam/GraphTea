@@ -1,6 +1,5 @@
 package graphtea.extensions.reports.others;
 
-import graphtea.extensions.actions.LineGraph;
 import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.basicreports.NumOfIndSets;
 import graphtea.graph.graph.GraphModel;

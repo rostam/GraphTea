@@ -18,7 +18,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class LaplacianEnergy implements GraphReportExtension {
+public class LaplacianEnergy implements GraphReportExtension<String> {
 
     double round(double value, int decimalPlace) {
         double power_of_ten = 1;
@@ -28,14 +28,14 @@ public class LaplacianEnergy implements GraphReportExtension {
                 / power_of_ten;
     }
 
-    public Object calculate(GraphModel g) {
+    public String calculate(GraphModel g) {
         double power = 1;
         try {
             Matrix B = g.getWeightedAdjacencyMatrix();
             Matrix A = Utils.getLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
-            double rv[] = ed.getRealEigenvalues();
-            double iv[] = ed.getImagEigenvalues();
+            double[] rv = ed.getRealEigenvalues();
+            double[] iv = ed.getImagEigenvalues();
             double maxrv=0;
             double minrv=1000000;
             for(double value : rv) {
