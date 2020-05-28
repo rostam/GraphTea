@@ -27,11 +27,6 @@ public class CmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
 
     @Parameter(name = "N")
     public static Integer n = 5;
-    GraphModel g;
-
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
-    }
 
     Vertex[] v;
 

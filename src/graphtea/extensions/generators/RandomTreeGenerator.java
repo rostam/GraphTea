@@ -22,17 +22,12 @@ import java.awt.*;
  */
 @CommandAttitude(name = "generate_random_tree", abbreviation = "_g_rand_t")
 public class RandomTreeGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
-    GraphModel g;
     @Parameter(name = "Number of Vertices")
     public static Integer n = 50;
     @Parameter(name = "Height")
     public static Integer h = 5;
     @Parameter(name = "Maximum Degree")
     public static Integer d = 5;
-
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
-    }
 
     Vertex[] v;
 

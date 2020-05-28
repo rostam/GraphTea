@@ -30,12 +30,6 @@ public class HelmGraph implements GraphGeneratorExtension, Parametrizable, Simpl
 	@Parameter(name = "closed")
 	public static boolean closed = false;
 
-	GraphModel g;
-
-	public void setWorkingGraph(GraphModel g) {
-		this.g = g;
-	}
-
 	public String getName() {
 		return "Helm Graph";
 	}

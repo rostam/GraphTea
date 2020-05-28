@@ -27,10 +27,6 @@ public class CircleGenerator implements GraphGeneratorExtension, Parametrizable,
     Vertex[] v;
     GraphModel g;
 
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
-    }
-
     public String getName() {
         return "Circle";
     }

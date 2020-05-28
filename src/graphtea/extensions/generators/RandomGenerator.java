@@ -22,15 +22,10 @@ import java.awt.*;
  */
 @CommandAttitude(name = "generate_random", abbreviation = "_g_rand")
 public class RandomGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
-    GraphModel g;
     @Parameter(name = "Vertices", description = "Num of Vertices")
     public static Integer numOfVertices = 30;
     @Parameter(name = "Edges", description = "Num of Edges")
     private static Integer numOfEdges = 80;
-
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
-    }
 
     public String getName() {
         return "Random Graph";

@@ -26,11 +26,6 @@ public class PmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
     public static Integer m = 10;
     @Parameter(name = "N")
     public static Integer n = 4;
-    GraphModel g;
-
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
-    }
 
     public String getName() {
         return "Pm * Pn";

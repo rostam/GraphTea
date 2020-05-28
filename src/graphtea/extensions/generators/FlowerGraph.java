@@ -26,13 +26,6 @@ public class FlowerGraph implements GraphGeneratorExtension, Parametrizable, Sim
 	@Parameter(name = "n")
 	public static int n = 3;
 
-	GraphModel g;
-
-	public void setWorkingGraph(GraphModel g)
-	{
-		this.g = g;
-	}
-
 	public String getName()
 	{
 		return "Flower Graph";

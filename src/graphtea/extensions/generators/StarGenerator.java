@@ -21,12 +21,7 @@ import java.awt.*;
 public class StarGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "S(N) Generator's N")
     public static Integer n = 10;
-    GraphModel g;
     Vertex[] v;
-
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
-    }
 
     public Vertex[] getVertices() {
         Vertex[] ret = new Vertex[n];

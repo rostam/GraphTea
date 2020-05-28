@@ -30,11 +30,6 @@ public class TadpoleGenerator implements GraphGeneratorExtension, Parametrizable
     public static Integer k = 10;
 
     Vertex[] v;
-    GraphModel g;
-
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
-    }
 
     public String getName() {
         return "Tadpole Graph";

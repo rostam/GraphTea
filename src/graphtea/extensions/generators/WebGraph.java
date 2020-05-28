@@ -30,13 +30,6 @@ public class WebGraph implements GraphGeneratorExtension, Parametrizable, Simple
     @Parameter(name = "t")
     public static int t = 2;
 
-	GraphModel g;
-
-	public void setWorkingGraph(GraphModel g)
-	{
-		this.g = g;
-	}
-
 	public String getName()
 	{
 		return "Web Graph";

@@ -26,11 +26,6 @@ public class PathGenerator implements GraphGeneratorExtension, Parametrizable, S
     @Parameter(name = "N")
     public static Integer n = 10;
     Vertex[] v;
-    GraphModel g;
-
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
-    }
 
     public String getName() {
         return "Path";

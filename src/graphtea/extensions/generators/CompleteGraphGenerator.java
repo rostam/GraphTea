@@ -22,13 +22,8 @@ import java.awt.*;
  */
 @CommandAttitude(name = "generate_kn", abbreviation = "_g_kn", description = "Generates a complete graph with n vertices")
 public class CompleteGraphGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
-    GraphModel g;
     @Parameter(name = "n")
     public static Integer n = 3;
-
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
-    }
 
     Vertex[] v;
 

@@ -34,11 +34,6 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
 //    String positioning;
 
     int n;
-    GraphModel g;
-
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
-    }
 
 /*    public NotifiableAttributeSet getParameters() {
         PortableNotifiableAttributeSetImpl a=new PortableNotifiableAttributeSetImpl();

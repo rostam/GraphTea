@@ -25,8 +25,6 @@ import java.awt.*;
 
 @CommandAttitude(name = "generate_generalized_peterson", abbreviation = "_g_p", description = "generalized peterson")
 public class GeneralizedPetersonGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
-    private GraphModel g;
-
     @Parameter(name = "n")
     public static Integer n = 5;
 
@@ -40,10 +38,6 @@ public class GeneralizedPetersonGenerator implements GraphGeneratorExtension, Pa
 
     public String getDescription() {
         return "Generalized Peterson";
-    }
-
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
     }
 
     public Vertex[] getVertices() {

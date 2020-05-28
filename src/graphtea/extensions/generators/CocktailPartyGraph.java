@@ -25,11 +25,6 @@ public class CocktailPartyGraph implements GraphGeneratorExtension, Parametrizab
 
     @Parameter(name = "N")
     public static Integer n = 3;
-    GraphModel g;
-
-    public void setWorkingGraph(GraphModel g) {
-        this.g = g;
-    }
 
 //    public NotifiableAttributeSet getParameters() {
 //        PortableNotifiableAttributeSetImpl a=new PortableNotifiableAttributeSetImpl();

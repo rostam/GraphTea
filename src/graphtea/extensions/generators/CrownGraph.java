@@ -28,13 +28,6 @@ public class CrownGraph implements GraphGeneratorExtension, Parametrizable, Simp
 	@Parameter(name = "n")
 	public static int n = 3;
 
-	GraphModel g;
-
-	public void setWorkingGraph(GraphModel g)
-	{
-		this.g = g;
-	}
-
 	public String getName()
 	{
 		return "Crown Graph";

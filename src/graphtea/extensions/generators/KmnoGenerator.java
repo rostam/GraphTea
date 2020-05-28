@@ -35,13 +35,6 @@ public class KmnoGenerator implements GraphGeneratorExtension, Parametrizable, S
 	@Parameter(name = "O")
 	public static int o = 3;
 
-	GraphModel g;
-
-	public void setWorkingGraph(GraphModel g)
-	{
-		this.g = g;
-	}
-
 	public String getName()
 	{
 		return "Km,n,o";
