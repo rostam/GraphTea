@@ -6,6 +6,7 @@ package graphtea.platform;
 
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionOccuredData;
+import graphtea.platform.extension.Extension;
 import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.lang.ArrayX;
 import graphtea.platform.lang.FromStringProvider;
@@ -226,8 +227,8 @@ public class StaticUtils {
      *
      * @param s The class to be loaded
      */
-    public static void loadSingleExtension(Class s) {
-        Object extension = ExtensionLoader.loadExtension(s);
+    public static void loadSingleExtension(Class<Extension> s) {
+        Extension extension = ExtensionLoader.loadExtension(s);
         if (extension != null) {
             StorableOnExit.SETTINGS.registerSetting(extension, "Extention Options");
             ExtensionLoader.handleExtension(Application.blackboard, extension);

@@ -8,6 +8,7 @@ import graphtea.platform.StaticUtils;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
+import graphtea.platform.extension.Extension;
 import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.lang.Pair;
 import graphtea.platform.preferences.lastsettings.StorableOnExit;
@@ -258,9 +259,9 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
 //todo: is it good to remove the action wich loaded twice, (2 of same action are working together)
         System.err.println("  Adding action " + clazz + " (" + id + "," + group + ") ...");
 
-        Class<?> clazzz = null;
+        Class<Extension> clazzz = null;
         try {
-            clazzz = Class.forName(clazz);
+            clazzz = (Class<Extension>) Class.forName(clazz);
         } catch (ClassNotFoundException e) {
             System.err.println("the given class name can't be loaded: " + clazz);
             ExceptionHandler.catchException(e);
@@ -280,7 +281,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
 
 //        for (ExtensionHandler s : ExtensionLoader.getRegisteredExtensionHandlers()) {
         if (x == null) {
-            Object e = ExtensionLoader.loadExtension(clazzz);
+            Extension e = ExtensionLoader.loadExtension(clazzz);
 //            SETTINGS.registerSetting(e,"Extention Options");     //Moved to Extension Loader
             if (e != null)
                 x = ExtensionLoader.handleExtension(blackboard, e);

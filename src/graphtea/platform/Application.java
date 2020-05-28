@@ -102,8 +102,8 @@ public class Application implements StorableOnExit {
         ExtensionClassLoader e = new ExtensionClassLoader(path + File.separator + "extensions");
         for (String c : e.classesData.keySet()) {
             try {
-                Class s = getExtensionsClassLoader().loadClass(c);
-                Object extension = ExtensionLoader.loadExtension(s);
+                Class<Extension> s = (Class<Extension>) getExtensionsClassLoader().loadClass(c);
+                Extension extension = ExtensionLoader.loadExtension(s);
                 if (extension != null) {
                     SETTINGS.registerSetting(extension, "Extention Options");
                     ExtensionLoader.handleExtension(blackboard, extension);

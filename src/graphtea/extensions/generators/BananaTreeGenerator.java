@@ -87,13 +87,6 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
         vv.setLocation(new GPoint(gp.x, gp.y));
     }
 
-
-    public static void main(String[] args) {
-        graphtea.platform.Application.main(args);
-        StaticUtils.loadSingleExtension(BananaTreeGenerator.class);
-
-    }
-
     @Override
     public String getCategory() {
         return "Trees";

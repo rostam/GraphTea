@@ -135,12 +135,6 @@ public class KmnoGenerator implements GraphGeneratorExtension, Parametrizable, S
 		return GraphGenerator.getGraph(false, new KmnoGenerator());
 	}
 
-    public static void main(String[] args) {
-        graphtea.platform.Application.main(args);
-        StaticUtils.loadSingleExtension(KmnoGenerator.class);
-
-    }
-
     @Override
     public String getCategory() {
         return "Multipartite Graphs";
