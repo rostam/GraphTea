@@ -4,7 +4,6 @@
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
 import graphtea.library.*;
-import graphtea.extensions.algorithms.subgraphs.InducedSubgraphs;
 import graphtea.library.algorithms.traversal.BreadthFirstSearch;
 import graphtea.library.algorithms.traversal.DepthFirstSearch;
 import graphtea.library.algorithms.util.AcyclicChecker;

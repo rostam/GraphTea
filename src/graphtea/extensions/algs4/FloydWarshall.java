@@ -173,7 +173,7 @@ public class FloydWarshall {
         if (hasNegativeCycle())
             throw new UnsupportedOperationException("Negative cost cycle exists");
         if (!hasPath(s, t)) return null;
-        Stack<DirectedEdge> path = new Stack<DirectedEdge>();
+        Stack<DirectedEdge> path = new Stack<>();
         for (DirectedEdge e = edgeTo[s][t]; e != null; e = edgeTo[s][e.from()]) {
             path.push(e);
         }

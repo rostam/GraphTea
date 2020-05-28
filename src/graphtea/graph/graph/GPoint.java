@@ -9,7 +9,7 @@ import graphtea.platform.lang.FromStringProvider;
 
 import java.io.Serializable;
 
-public class GPoint implements Serializable, FromStringProvider {
+public class GPoint implements Serializable, FromStringProvider<GPoint> {
     static {
         StaticUtils.setFromStringProvider(GPoint.class.getName(), new GPoint());
     }

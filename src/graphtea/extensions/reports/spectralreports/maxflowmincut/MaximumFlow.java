@@ -48,7 +48,7 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 		try{
 			dispatchEvent(gr);	
 		}
-		catch(Exception e){}
+		catch(Exception ignored){}
 
 		Vertex source, sink;
 
@@ -58,7 +58,7 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 		try{
 			dispatchEvent(sourceReq);	
 		}
-		catch(Exception e){}
+		catch(Exception ignored){}
 		source = g.getVertex(sourceReq.getVertex().getId());
 		source.setColor(7);
 		source.setMark(true);
@@ -67,7 +67,7 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 		try{
 			dispatchEvent(sinkReq);	
 		}
-		catch(Exception e){}
+		catch(Exception ignored){}
 		sink = g.getVertex(sinkReq.getVertex().getId());
 		sink.setColor(3);
 		sink.setMark(true);

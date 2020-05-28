@@ -107,7 +107,7 @@ public class Lanzhou implements GraphReportExtension{
         double maxEdge2 = 0;
         double minEdge = Integer.MAX_VALUE;
 
-        ArrayList<Integer> all = new ArrayList<Integer>();
+        ArrayList<Integer> all = new ArrayList<>();
         for(Edge e : g.getEdges()) {
             int f = g.getDegree(e.source) +
                     g.getDegree(e.target) - 2;
@@ -125,7 +125,7 @@ public class Lanzhou implements GraphReportExtension{
         double maxDel2 = 0;
         double minDel = Integer.MAX_VALUE;
 
-        ArrayList<Integer> all1 = new ArrayList<Integer>();
+        ArrayList<Integer> all1 = new ArrayList<>();
         for(Edge e : g.getEdges()) {
             int f1 = ((2*(g.getDegree(e.source) * g.getDegree(e.target) ) )/((g.getDegree(e.source) + g.getDegree(e.target) )*(g.getDegree(e.source) + g.getDegree(e.target) ))) ;
             all1.add(f1);

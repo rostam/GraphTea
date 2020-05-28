@@ -43,8 +43,6 @@ public class SaveImage implements GraphWriterExtension, Parametrizable {
     }
 
     public void write(File file, GraphModel graph) throws GraphIOException {
-        //todo
-//        throw new RuntimeException("not implemented");
         saveImage(graph, file, extension);
     }
 

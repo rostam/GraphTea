@@ -113,8 +113,7 @@ public class LaplacianOfGraph implements GraphReportExtension<ArrayList<String>>
 				result.add("" + round(rv[i], 5));
 		result.add("Eigen Vectors:\n");
 		double[][] eigenVectors = ed.getV().getArray();
-		for (int k = 0; k < eigenVectors.length; k++)
-			result.add(Arrays.toString(round(eigenVectors[k], 5)));
+		for (double[] eigenVector : eigenVectors) result.add(Arrays.toString(round(eigenVector, 5)));
 		return result;
 	}
 

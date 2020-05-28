@@ -34,15 +34,15 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         PostP.addValidValue("Min Filter");
     }
 
-    @Parameter(name = "Bound Check", description = "")
+    @Parameter(name = "Bound Check", description = "Bound Check")
     public boolean conjCheck = false;
-    @Parameter(name = "Connected", description = "")
+    @Parameter(name = "Connected", description = "Connected")
     public boolean connected = true;
-    @Parameter(name = "Num Of Nodes", description = "")
+    @Parameter(name = "Num Of Nodes", description = "Num Of Nodes")
     public int numOfNodes = 9;
 //    @Parameter(name = "Up to", description = "")
 //    public boolean upto = false;
-    @Parameter(name = "Filter", description = "")
+    @Parameter(name = "Filter", description = "Filter")
     public ArrayX<String> gfilters;
     @Parameter(name = "Graph Generators", description = "")
     public ArrayX<String> generators;

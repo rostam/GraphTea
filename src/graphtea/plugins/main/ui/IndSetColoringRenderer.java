@@ -41,12 +41,10 @@ public class IndSetColoringRenderer implements GBasicCellRenderer<IndSubGraphs> 
         txt = "<HTML><BODY>";
             txt += "<B>V:</B>{";
             if(hasAllVSet) txt+="<B>";
-            for(int j=0;j<res.size();j++)
-            {
-                int tmp = res.get(j);
-                if(tmp == -1)txt += "},{";
-                else txt += tmp + ",";
-            }
+        for (int tmp : res) {
+            if (tmp == -1) txt += "},{";
+            else txt += tmp + ",";
+        }
             if(hasAllVSet) txt+="</B>";
 
             txt += "}<BR>";
@@ -80,9 +78,9 @@ public class IndSetColoringRenderer implements GBasicCellRenderer<IndSubGraphs> 
             v.setColor(0);
         }
         int color = 2;
-        for(int i=0;i<res.size();i++) {
-            if(res.get(i) != -1)
-              gd.getGraph().getVertex(res.get(i)).setColor(color);
+        for (Integer re : res) {
+            if (re != -1)
+                gd.getGraph().getVertex(re).setColor(color);
             else color++;
         }
     }

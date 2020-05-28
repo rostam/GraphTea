@@ -90,7 +90,7 @@ public class Stack<Item> implements Iterable<Item> {
      */
     public void push(Item item) {
         Node<Item> oldfirst = first;
-        first = new Node<Item>();
+        first = new Node<>();
         first.item = item;
         first.next = oldfirst;
         n++;
@@ -143,7 +143,7 @@ public class Stack<Item> implements Iterable<Item> {
      * @return an iterator to this stack that iterates through the items in LIFO order
      */
     public Iterator<Item> iterator() {
-        return new ListIterator<Item>(first);
+        return new ListIterator<>(first);
     }
 
     // an iterator, doesn't implement remove() since it's optional

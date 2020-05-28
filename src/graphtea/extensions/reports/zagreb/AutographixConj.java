@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "conj", abbreviation = "_conj")
-public class AutographixConj implements GraphReportExtension {
+public class AutographixConj implements GraphReportExtension<ArrayList<String>> {
     public String getName() {
         return "AutographiX  Conjecture";
     }
@@ -27,7 +27,7 @@ public class AutographixConj implements GraphReportExtension {
         return "AutographiX  conjecture";
     }
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
 

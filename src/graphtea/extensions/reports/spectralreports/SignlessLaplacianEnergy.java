@@ -45,10 +45,8 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
             }
             double sum = 0;
             double sum_i = 0;
-            for(int i=0;i < rv.length;i++)
-                sum += Math.pow(Math.abs(rv[i]),power);
-            for(int i=0;i < iv.length;i++)
-                sum_i +=  Math.abs(iv[i]);
+            for (double value : rv) sum += Math.pow(Math.abs(value), power);
+            for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
                 //here is completely false

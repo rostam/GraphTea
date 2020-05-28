@@ -80,10 +80,10 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
         }
 
         Vector<Vector<Integer>> ind_sets= new Vector<>();
-        for(int i=0;i<ret.size();i++) {
-            HashSet<Vertex> ind_set = ret.get(i).vertices;
+        for (SubGraph subGraph : ret) {
+            HashSet<Vertex> ind_set = subGraph.vertices;
             Vector<Integer> indset = new Vector<>();
-            for(Vertex vid:ind_set)
+            for (Vertex vid : ind_set)
                 indset.add(vid.getId());
             ind_sets.add(indset);
         }

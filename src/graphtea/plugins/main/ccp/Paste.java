@@ -118,8 +118,7 @@ public class Paste extends AbstractAction {
                     GraphmlHandlerImpl phi = new GraphmlHandlerImpl(gg);
                     GraphmlParser.parse(new InputSource(stream), phi);
                     stream.close();
-                } catch (Exception e) {
-
+                } catch (Exception ignored) {
                 }
             }
 

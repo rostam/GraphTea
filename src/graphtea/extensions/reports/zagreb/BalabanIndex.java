@@ -24,7 +24,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "m3finalconj", abbreviation = "_m3conj")
-public class BalabanIndex implements GraphReportExtension{
+public class BalabanIndex implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Balaban Index";
     }
@@ -33,7 +33,7 @@ public class BalabanIndex implements GraphReportExtension{
         return "Balaban Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add(" m ");

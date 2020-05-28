@@ -45,10 +45,8 @@ public class LaplacianEnergyLike implements GraphReportExtension<String> {
             }
             double sum = 0;
             double sum_i = 0;
-            for(int i=0;i < rv.length;i++)
-                sum += Math.sqrt(Math.abs(rv[i]));
-            for(int i=0;i < iv.length;i++)
-                sum_i +=  Math.abs(iv[i]);
+            for (double value : rv) sum += Math.sqrt(Math.abs(value));
+            for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
                 //here is completely false

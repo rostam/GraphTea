@@ -134,10 +134,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 
             gg.drawImage(gr.getBackgroundImage(),0,0,(int)(gr.getBackgroundImage().getWidth()*zoomFactor),(int)(gr.getBackgroundImage().getHeight()*zoomFactor),null);
 
-        }
-        catch(Exception e)
-        {
-        	
+        } catch(Exception ignored) {
         }
        
        

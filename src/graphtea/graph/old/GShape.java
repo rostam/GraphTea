@@ -343,28 +343,26 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
 
     private static int[][] provideTrapezoidPoints(int h, int w, boolean t) {
 //        h = h < w ? h : w;
+        int[] xPoints = new int[]{(w - 1) * 2 / 3, (w - 1) / 3, 0, (w - 1)};
+        int[] yPoints;
         if (t) {
-            int[] xPoints = new int[]{(w - 1) * 2 / 3, (w - 1) / 3, 0, (w - 1)};
-            int[] yPoints = new int[]{h - 1, h - 1, 0, 0};
-            return new int[][]{xPoints, yPoints};
+            yPoints = new int[]{h - 1, h - 1, 0, 0};
         } else {
-            int[] xPoints = new int[]{(w - 1) * 2 / 3, (w - 1) / 3, 0, (w - 1)};
-            int[] yPoints = new int[]{0, 0, h - 1, h - 1};
-            return new int[][]{xPoints, yPoints};
+            yPoints = new int[]{0, 0, h - 1, h - 1};
         }
+        return new int[][]{xPoints, yPoints};
     }
 
     private static int[][] provideParallelogramPoints(int h, int w, boolean t) {
 //        h = h < w ? h : w;
+        int[] xPoints = new int[]{(w - 1), (w - 1) / 2, 0, (w - 1) / 2};
+        int[] yPoints;
         if (t) {
-            int[] xPoints = new int[]{(w - 1), (w - 1) / 2, 0, (w - 1) / 2};
-            int[] yPoints = new int[]{(h - 1) * 3 / 4, (h - 1) * 3 / 4, (h - 1) / 4, (h - 1) / 4};
-            return new int[][]{xPoints, yPoints};
+            yPoints = new int[]{(h - 1) * 3 / 4, (h - 1) * 3 / 4, (h - 1) / 4, (h - 1) / 4};
         } else {
-            int[] xPoints = new int[]{(w - 1), (w - 1) / 2, 0, (w - 1) / 2};
-            int[] yPoints = new int[]{(h - 1) / 4, (h - 1) / 4, (h - 1) * 3 / 4, (h - 1) * 3 / 4};
-            return new int[][]{xPoints, yPoints};
+            yPoints = new int[]{(h - 1) / 4, (h - 1) / 4, (h - 1) * 3 / 4, (h - 1) * 3 / 4};
         }
+        return new int[][]{xPoints, yPoints};
     }
 
     private static int[][] provideRegularPolygonPoints(int h, int w, int n) {
@@ -452,15 +450,14 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
 
     private static int[][] provideTrianglePoints(int h, int w, boolean t) {
         // h = h < w ? h : w;
+        int[] xPoints;
+        int[] yPoints = new int[]{(h - 1) / 2, 0, h - 1};
         if (t) {
-            int[] xPoints = new int[]{0, w - 1, w - 1};
-            int[] yPoints = new int[]{(h - 1) / 2, 0, h - 1};
-            return new int[][]{xPoints, yPoints};
+            xPoints = new int[]{0, w - 1, w - 1};
         } else {
-            int[] xPoints = new int[]{w - 1, 0, 0};
-            int[] yPoints = new int[]{(h - 1) / 2, 0, h - 1};
-            return new int[][]{xPoints, yPoints};
+            xPoints = new int[]{w - 1, 0, 0};
         }
+        return new int[][]{xPoints, yPoints};
 
     }
 }

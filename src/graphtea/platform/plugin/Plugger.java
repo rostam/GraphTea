@@ -165,7 +165,7 @@ public class Plugger {
                 while (st.hasMoreElements()) {
                     String depName = st.nextToken();
                     String depVerStr = st.nextToken();
-                    Long depVer = Long.parseLong(depVerStr);
+                    long depVer = Long.parseLong(depVerStr);
                     dependsArray.add(new Object[]{depName, depVer});
                 }
             }

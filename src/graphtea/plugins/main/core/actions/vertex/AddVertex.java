@@ -28,7 +28,7 @@ public class AddVertex extends AbstractAction {
     public AddVertex(BlackBoard bb) {
         super(bb);
         listen4Event(GraphEvent.EVENT_KEY);
-        blackboard.addListener(DISABLE, new Listener() {
+        blackboard.addListener(DISABLE, new Listener<Object>() {
             public void performJob(String name) {
                 disable = blackboard.getData(DISABLE);
                 if (disable)
@@ -45,9 +45,6 @@ public class AddVertex extends AbstractAction {
                     enable();
             }
 
-            public boolean isEnable() {
-                return true;
-            }
         });
     }
 

@@ -28,8 +28,7 @@ public class FloydWarshall {
         final Integer[][] dist = new Integer[graph.getVerticesCount()][graph.getVerticesCount()];
         Iterator<Edge> iet = graph.edgeIterator();
         Edge edge;
-        for(int i = 0; i < dist.length;i++)
-            Arrays.fill(dist[i],graph.numOfVertices()*2);
+        for (Integer[] integers : dist) Arrays.fill(integers, graph.numOfVertices() * 2);
 
 //        for (Integer i : dist[0])
 //            for (Integer j : dist[0]) {

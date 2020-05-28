@@ -9,7 +9,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 import java.util.Iterator;
 import java.util.Vector;
 
-public class AllPairShortestPathsWithoutWeight implements GraphReportExtension {
+public class AllPairShortestPathsWithoutWeight implements GraphReportExtension<RenderTable> {
 
     /**
      * @param g The given graph
@@ -42,7 +42,7 @@ public class AllPairShortestPathsWithoutWeight implements GraphReportExtension {
     }
 
     @Override
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add("Vertex 1");

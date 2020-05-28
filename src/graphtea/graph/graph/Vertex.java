@@ -150,8 +150,8 @@ public class Vertex extends BaseVertex {
         this.shapeStroke = v.shapeStroke;
         this.labelLocation = v.labelLocation;
         //copies all attributes from second edge to first edge
-        AttributeSet a = new VertexAttrSet(v);
-        AttributeSet b = new VertexAttrSet(this);
+        AttributeSet<Object> a = new VertexAttrSet(v);
+        AttributeSet<Object> b = new VertexAttrSet(this);
         Map<String, Object> map = a.getAttrs();
         for (String name : map.keySet()) {
             b.put(name, map.get(name));

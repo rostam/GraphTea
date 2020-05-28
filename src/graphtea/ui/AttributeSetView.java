@@ -23,7 +23,7 @@ public class AttributeSetView {
     HashMap<String, Boolean> editable = new HashMap<>();
     HashMap<String, GBasicCellEditor> editors = new HashMap<>();
     final int dlen = 8;
-    HashMap[] descriptions = new HashMap[dlen];
+    HashMap<String,String>[] descriptions = new HashMap[dlen];
     private AttributeSet a = new AttributeSetImpl();
 
     static int dname = 2, desc = 3, cat = 4, index = 5, visible = 6, valid = 7, EDITOR = 8;
@@ -31,7 +31,7 @@ public class AttributeSetView {
 
     public AttributeSetView() {
         for (int i = 0; i < dlen; i++) {
-            descriptions[i] = new HashMap();
+            descriptions[i] = new HashMap<>();
         }
     }
 

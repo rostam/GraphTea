@@ -145,7 +145,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
 
         gv.requestFocusInWindow();
         GPoint mousePos = mousePos(mouseEvent);
-        Pair p = mindistv(g, mousePos);
+        Pair<Vertex,Double> p = mindistv(g, mousePos);
         Vertex v = (Vertex) p.first;
         int mbuton = mouseEvent.getModifiersEx();
         if (v != null && isPointOnVertex(g, v, mousePos)) {
@@ -171,7 +171,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
 
 
     public void mouseReleased(MouseEvent mouseEvent) {
-        Pair p = mindistv(g, mousePos(mouseEvent));
+        Pair<Vertex, Double> p = mindistv(g, mousePos(mouseEvent));
         Vertex v = (Vertex) p.first;
         int mouseButton = mouseEvent.getModifiersEx();
         if (v != null && isPointOnVertex(g, v, mousePos(mouseEvent)) && lastVertexPressed != null) {

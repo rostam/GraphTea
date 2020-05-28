@@ -105,11 +105,11 @@ public class Matrix {
             return "";
         int b = mat[0].length;
         String ret = "<table>";
-        for (int i = 0; i < a; i++) {
+        for (Object[] objects : mat) {
             ret += "<tr>";
             for (int j = 0; j < b; j++) {
-                if(mat[i][j]!=null)
-                    ret += "<td>" + ((Number)(mat[i][j])).intValue() + "</td>";
+                if (objects[j] != null)
+                    ret += "<td>" + ((Number) (objects[j])).intValue() + "</td>";
                 else
                     ret += "<td>0</td>";
 //                ret += (mat[i][j] ? "1" : "0");
@@ -127,12 +127,12 @@ public class Matrix {
             return "";
         int b = mat[0].length;
         String ret = "";
-        for (int i = 0; i < a; i++) {
+        for (Object[] objects : mat) {
             for (int j = 0; j < b; j++) {
-            	if(mat[i][j]!=null)
-            		ret += ((Number)(mat[i][j])).intValue() + " ";
-            	else
-            		ret += "0 ";
+                if (objects[j] != null)
+                    ret += ((Number) (objects[j])).intValue() + " ";
+                else
+                    ret += "0 ";
 //                ret += (mat[i][j] ? "1" : "0");
 //                ret += " ";
             }

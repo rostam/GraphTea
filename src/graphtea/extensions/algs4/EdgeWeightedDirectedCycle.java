@@ -76,7 +76,7 @@ public class EdgeWeightedDirectedCycle {
 
             // trace back directed cycle
             else if (onStack[w]) {
-                cycle = new Stack<DirectedEdge>();
+                cycle = new Stack<>();
 
                 DirectedEdge f = e;
                 while (f.from() != w) {

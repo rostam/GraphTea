@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "hyper_zagreb_index", abbreviation = "_zi")
-public class HyperZagrebIndex implements GraphReportExtension {
+public class HyperZagrebIndex implements GraphReportExtension<ArrayList<String>> {
     public String getName() {
         return "Hyper Zagreb Index";
     }
@@ -25,7 +25,7 @@ public class HyperZagrebIndex implements GraphReportExtension {
         return "Hyper Zagreb Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         out.add("Hyper Zagreb Index : " + zif.getGeneralSumConnectivityIndex(2));

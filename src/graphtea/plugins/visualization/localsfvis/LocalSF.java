@@ -46,10 +46,6 @@ public class LocalSF extends AbstractAction {
                 stopbtn = blackboard.getData(stop);
                 stopbtn.setVisible(false);
             }
-
-            public boolean isEnable() {
-                return true;
-            }
         });
     }
 

@@ -139,8 +139,7 @@ public class IterGraphs {
         }
         if (ConjectureChecking.PostP.getValue().equals("Equality Filter")) {
             Double toBeTruncated = (Double) data.get(1);
-            Double o = new BigDecimal(toBeTruncated).
-                    setScale(8, BigDecimal.ROUND_HALF_UP).doubleValue();
+            double o = new BigDecimal(toBeTruncated).setScale(8, BigDecimal.ROUND_HALF_UP).doubleValue();
 
             if (Double.parseDouble(ConjectureChecking.ppvalue) == o) {
                 mpq.add(data);

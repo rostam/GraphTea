@@ -27,13 +27,6 @@ public class NativeCommands {
         datas = new GraphData(bb);
     }
 
-    static {
-        try {
-            //System.loadLibrary("graphtea_gui_plugins_commandline_commands_NativeCommands");
-        } catch (Exception e) {
-        }
-    }
-
     private native String homomorph(String graph_format1, String graph_format2);
 
     @CommandAttitude(name = "ghomomorph", abbreviation = "_ghom", description = "check homomorphism")

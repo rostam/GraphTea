@@ -168,7 +168,7 @@ public class PushRelabel extends MaxFlow{
 		initializePreflow();
 		LinkedList<Integer> L = new LinkedList<>();
 
-		for(Integer i=0 ; i < n ; i++)
+		for(int i = 0; i < n ; i++)
 			if( i != s && i != t )
 				L.add(i);
 		Iterator<Integer> iter = L.iterator();
