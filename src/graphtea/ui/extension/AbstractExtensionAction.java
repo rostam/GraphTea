@@ -77,7 +77,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
             menuItem = createMenuItem(name, actionId, bb);
             parentMenu = getParentMenu();
             if (parentMenu.getText().equalsIgnoreCase("reports")) {
-                GraphReportExtension<t> temp = (GraphReportExtension<t>) sp;
+                GraphReportExtension temp = (GraphReportExtension) sp;
                 if (temp.getCategory() != null) {
                     if(!temp.getCategory().contains("-")) {
                         JMenu categoryMenu;

@@ -5,7 +5,7 @@
  *
  *  An edge-weighted digraph, implemented using an adjacency matrix.
  *  Parallel edges are disallowed; self-loops are allowed.
- *  
+ *
  ******************************************************************************/
 
 package graphtea.extensions.algs4;
@@ -41,7 +41,7 @@ public class AdjMatrixEdgeWeightedDigraph {
     private final int V;
     private int E;
     private final DirectedEdge[][] adj;
-    
+
     /**
      * Initializes an empty edge-weighted digraph with {@code V} vertices and 0 edges.
      * @param V the number of vertices
@@ -175,20 +175,6 @@ public class AdjMatrixEdgeWeightedDigraph {
         if (v < 0 || v >= V)
             throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
     }
-
-
-    /**
-     * Unit tests the {@code AdjMatrixEdgeWeightedDigraph} data type.
-     *
-     * @param args the command-line arguments
-     */
-    public static void main(String[] args) {
-        int V = Integer.parseInt(args[0]);
-        int E = Integer.parseInt(args[1]);
-        AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(V, E);
-        StdOut.println(G);
-    }
-
 }
 
 /******************************************************************************

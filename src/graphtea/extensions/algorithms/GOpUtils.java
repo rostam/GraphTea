@@ -32,9 +32,8 @@ public class GOpUtils {
 
     public static void addOffsets(GraphModel g, HashMap<Integer,GPoint> offsets, GPoint center) {
         for(Integer gp : offsets.keySet()) {
-            GPoint pos = center;
-            pos.add(offsets.get(gp));
-            g.getVertex(gp).setLocation(pos);
+            center.add(offsets.get(gp));
+            g.getVertex(gp).setLocation(center);
         }
     }
 

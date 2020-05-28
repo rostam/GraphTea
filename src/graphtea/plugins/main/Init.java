@@ -253,12 +253,10 @@ public static void sendGet(String host, String payload) {
             urlConnection.setDoInput(true);
             urlConnection.setRequestMethod("POST");
 
-            String urlParameters = payload;
-
             // Send post request
             urlConnection.setDoOutput(true);
             wr = new DataOutputStream(urlConnection.getOutputStream());
-            wr.writeBytes(urlParameters);
+            wr.writeBytes(payload);
             wr.flush();
             wr.close();
 

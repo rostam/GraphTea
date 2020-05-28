@@ -76,10 +76,8 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension<ArrayList
 
 	private double[] round (double[] array, int prec)
 	{
-		double[] res=array;
-		for(int i=0;i<array.length;i++)
-			res[i]=round(res[i],prec);
-		return res;
+		Arrays.setAll(array, i -> round(array[i], prec));
+		return array;
 
 	}
 	public String getName() {

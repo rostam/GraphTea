@@ -346,13 +346,11 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
         if (t) {
             int[] xPoints = new int[]{(w - 1) * 2 / 3, (w - 1) / 3, 0, (w - 1)};
             int[] yPoints = new int[]{h - 1, h - 1, 0, 0};
-            int[][] points = new int[][]{xPoints, yPoints};
-            return points;
+            return new int[][]{xPoints, yPoints};
         } else {
             int[] xPoints = new int[]{(w - 1) * 2 / 3, (w - 1) / 3, 0, (w - 1)};
             int[] yPoints = new int[]{0, 0, h - 1, h - 1};
-            int[][] points = new int[][]{xPoints, yPoints};
-            return points;
+            return new int[][]{xPoints, yPoints};
         }
     }
 
@@ -361,13 +359,11 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
         if (t) {
             int[] xPoints = new int[]{(w - 1), (w - 1) / 2, 0, (w - 1) / 2};
             int[] yPoints = new int[]{(h - 1) * 3 / 4, (h - 1) * 3 / 4, (h - 1) / 4, (h - 1) / 4};
-            int[][] points = new int[][]{xPoints, yPoints};
-            return points;
+            return new int[][]{xPoints, yPoints};
         } else {
             int[] xPoints = new int[]{(w - 1), (w - 1) / 2, 0, (w - 1) / 2};
             int[] yPoints = new int[]{(h - 1) / 4, (h - 1) / 4, (h - 1) * 3 / 4, (h - 1) * 3 / 4};
-            int[][] points = new int[][]{xPoints, yPoints};
-            return points;
+            return new int[][]{xPoints, yPoints};
         }
     }
 
@@ -459,13 +455,11 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
         if (t) {
             int[] xPoints = new int[]{0, w - 1, w - 1};
             int[] yPoints = new int[]{(h - 1) / 2, 0, h - 1};
-            int[][] points = new int[][]{xPoints, yPoints};
-            return points;
+            return new int[][]{xPoints, yPoints};
         } else {
             int[] xPoints = new int[]{w - 1, 0, 0};
             int[] yPoints = new int[]{(h - 1) / 2, 0, h - 1};
-            int[][] points = new int[][]{xPoints, yPoints};
-            return points;
+            return new int[][]{xPoints, yPoints};
         }
 
     }

@@ -101,9 +101,8 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
             boolean hasAllVSets = true;
             for (Vector<Integer> integers : ind_sets2) {
                 hasAllVSets = true;
-                Vector<Integer> v = integers;
                 for (int j = 0; j < g.getVerticesCount(); j++) {
-                    if (!v.contains(j)) {
+                    if (!integers.contains(j)) {
                         hasAllVSets = false;
                         break;
                     }
