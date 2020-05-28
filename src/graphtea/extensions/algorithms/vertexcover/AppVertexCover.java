@@ -14,6 +14,9 @@ import graphtea.library.algorithms.util.EventUtils;
 import graphtea.library.exceptions.InvalidGraphException;
 import graphtea.library.exceptions.InvalidVertexException;
 import graphtea.library.genericcloners.EdgeVertexConverter;
+import graphtea.platform.core.BlackBoard;
+import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
+import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
 import java.util.Iterator;
 import java.util.Vector;
@@ -21,26 +24,18 @@ import java.util.Vector;
 /**
  * @author Soroush Sabet
  */
-public class AppVertexCover extends Algorithm implements AutomatedAlgorithm {
-    /**
-     *
-     */
-    final GraphModel graph;
-
-    private final EdgeVertexConverter<Vertex, Vertex, Edge, Edge> gc;
+public class AppVertexCover extends GraphAlgorithm implements AlgorithmExtension {
+    public AppVertexCover(BlackBoard blackBoard) {
+        super(blackBoard);
+    }
 
     /**
      * @param graph The input graph
-     * @param gc The edge vertex converter
      */
-    public AppVertexCover(GraphModel graph,
-                          EdgeVertexConverter<Vertex, Vertex, Edge, Edge> gc) {
-//		if (gc == null || graph == null)
-//			throw new NullPointerException();
-
-        this.graph = graph;
-        this.gc = gc;
-    }
+//    public AppVertexCover(GraphModel graph) {
+//        super();
+//        this.graph = graph;
+//    }
 
 
     /**
@@ -48,11 +43,11 @@ public class AppVertexCover extends Algorithm implements AutomatedAlgorithm {
      * @throws InvalidGraphException The graph is invalid
      * @throws InvalidVertexException The vertex is invalid
      */
-
-    public Vector<Vertex> findAppCover()
-            throws InvalidGraphException, InvalidVertexException {
-
-//        BaseGraph<Vertex,Edge> gCopy = graph.copy(gc);
+    @Override
+    public void doAlgorithm() {
+        step("Start of the algorithm.") ;
+        GraphModel graph = graphData.getGraph();
+        GraphModel gCopy = graph.getCopy();
         Vector<Vertex> C = new Vector<>();
         Vector<Vertex> D = new Vector<>();
         Vector<Vertex> marked = new Vector<>();
@@ -67,21 +62,20 @@ public class AppVertexCover extends Algorithm implements AutomatedAlgorithm {
             e = iet.next();
             if (!(C.contains(e.source) || C.contains(e.target))) {
                 e.setMark(true);
-//                dispatchEvent(new EdgeEvent<Vertex, Edge>(graph, e, EdgeEvent.EventType.MARK));
-                EventUtils.algorithmStep(this, "");
+                step("");
                 C.add(e.source);
                 C.add(e.target);
-                //            i = graph.edgeIterator(e.source);
-                //            while(i.hasNext()){
-                //                gCopy.removeEdge(i.next());
-                //
-                //            }
+                            i = graph.edgeIterator(e.source);
+                            while(i.hasNext()){
+                                gCopy.removeEdge(i.next());
 
-                //            i= gCopy.edgeIterator(e.target);
-                //            while(i.hasNext()){
-                //                gCopy.removeEdge(i.next());
-                //            }
-                //            iet = gCopy.edgeIterator();
+                            }
+
+                            i= gCopy.edgeIterator(e.target);
+                            while(i.hasNext()){
+                                gCopy.removeEdge(i.next());
+                            }
+                            iet = gCopy.edgeIterator();
             }
         }
 
@@ -91,17 +85,26 @@ public class AppVertexCover extends Algorithm implements AutomatedAlgorithm {
 //                if (u.getId() == j){
 //                    dispatchEvent(new VertexEvent(graph, v, VertexEvent.EventType.MARK));
             v.setMark(true);
-            EventUtils.algorithmStep(this, "");
+            step("");
             D.add(v);
 //                }
 //            }
         }
-
-        return D;
-
     }
 
-    public void doAlgorithm() {
+    @Override
+    public String getName() {
+        return "Vertex Cover";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Vertex Cover";
+    }
+
+//    public void doAlgorithm() {
+//        step("Start of the algorithm.") ;
+//        GraphModel graph = graphData.getGraph();
 //        BaseGraphRequest gr = new BaseGraphRequest();
 //        dispatchEvent(gr);
 //        BaseGraph<BaseVertex, BaseEdge<BaseVertex>> graph = gr.getGraph();
@@ -120,5 +123,5 @@ public class AppVertexCover extends Algorithm implements AutomatedAlgorithm {
 ////            prim.findMinimumSpanningTree(vr.getVertex());
 //
 ////        dispatchEvent(new BaseGraphEvent(output));
-    }
+//    }
 }

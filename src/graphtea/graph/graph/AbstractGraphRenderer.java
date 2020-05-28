@@ -24,7 +24,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
     boolean ignoreRapaints;
     int minx, miny;
     boolean isGraphChanged = true;
-    private final HashSet<PaintHandler<AbstractGraphRenderer>> prePaintHandlers = new HashSet<>();
+    private final HashSet<PaintHandler> prePaintHandlers = new HashSet<>();
 
     public static AbstractGraphRenderer getCurrentGraphRenderer(BlackBoard b) {
         return b.getData(EVENT_KEY);
@@ -50,7 +50,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
      *
      * @param ph The paint handler
      */
-    public void addPostPaintHandler(PaintHandler<AbstractGraphRenderer> ph) {
+    public void addPostPaintHandler(PaintHandler ph) {
         postPaintHandlers.add(ph);
     }
 
@@ -59,7 +59,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
      *
      * @param ph The paint handler
      */
-    public void addPrePaintHandler(PaintHandler<AbstractGraphRenderer> ph) {
+    public void addPrePaintHandler(PaintHandler ph) {
         prePaintHandlers.add(ph);
     }
 

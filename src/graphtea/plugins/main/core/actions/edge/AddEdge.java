@@ -83,7 +83,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
         gv = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
 
 
-        if (eventName == VertexEvent.EVENT_KEY) {
+        if (eventName.equals(VertexEvent.EVENT_KEY)) {
             if (ve.eventType == VertexEvent.DRAGGING_STARTED) {
                 if (!sd.vertices.contains(ve.v)) {   //start if the vertex is not selected
 //            VertexDragData vdrag = blackboard.get(VertexDragData.name);
@@ -135,7 +135,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
                 v1 = null;
                 stopPainting();
             }
-        } else if (eventName == GraphEvent.EVENT_KEY) {
+        } else if (eventName.equals(GraphEvent.EVENT_KEY)) {
 //                if (ge.eventType == GraphEvent.) {
 //                    stopPainting();
 //                }

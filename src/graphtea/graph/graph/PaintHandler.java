@@ -9,6 +9,6 @@ import java.awt.*;
 /**
  * User: Shabn
  */
-public interface PaintHandler<dest> {
+public interface PaintHandler {
     void paint(Graphics g, Object destinationComponent, Boolean drawExtras);
 }

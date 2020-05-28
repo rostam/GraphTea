@@ -20,7 +20,7 @@ import java.awt.*;
  * @author azin azadi
  * @email
  */
-public abstract class GraphRectRegionSelect implements Listener, PaintHandler<AbstractGraphRenderer> {
+public abstract class GraphRectRegionSelect implements Listener, PaintHandler {
     public Rectangle getCurrentRect() {
         return rect;
     }
