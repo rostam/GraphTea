@@ -144,7 +144,7 @@ public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
     @Override
     public String getCategory() {
         // TODO Auto-generated method stub
-        return "OurWork-Graph Energy";
+        return "OurWorks-Graph Energy";
     }
 
     public Object calc(GraphModel g) {

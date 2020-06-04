@@ -199,6 +199,6 @@ public class LaplacianEstrada implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWork-Graph Energy";
+        return "OurWorks-Graph Energy";
     }
 }

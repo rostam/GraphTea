@@ -221,6 +221,6 @@ public class Estrada implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWork-Graph Energy";
+        return "OurWorks-Graph Energy";
     }
 }

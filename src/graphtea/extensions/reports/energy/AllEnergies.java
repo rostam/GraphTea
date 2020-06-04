@@ -151,7 +151,7 @@ public class AllEnergies implements GraphReportExtension<RenderTable> {
     @Override
     public String getCategory() {
         // TODO Auto-generated method stub
-        return "OurWork-Graph Energy";
+        return "OurWorks-Graph Energy";
     }
 
     
