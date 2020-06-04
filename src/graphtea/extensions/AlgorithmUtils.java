@@ -297,9 +297,7 @@ public class AlgorithmUtils {
             return 0;
         else {
             double alfacos = pDOTq / (plength * qlength);
-            double alfa = Math.acos(alfacos);
-//            return (Math.signum(cartesianProd) < 0 ? 2 * Math.PI - Math.acos(alfacos) : Math.acos(alfacos));
-            return alfa;
+            return Math.acos(alfacos);
         }
     }
 

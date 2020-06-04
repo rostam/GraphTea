@@ -150,14 +150,6 @@ public class SignlessLaplacianEnergy implements GraphReportExtension<RenderTable
         return ret;
     }
 
-    double round(double value, int decimalPlace) {
-        double power_of_ten = 1;
-        while (decimalPlace-- > 0)
-            power_of_ten *= 10.0;
-        return Math.round(value * power_of_ten)
-                / power_of_ten;
-    }
-
     @Override
     public String getCategory() {
         return "OurWorks-Graph Energy";
@@ -193,10 +185,10 @@ public class SignlessLaplacianEnergy implements GraphReportExtension<RenderTable
                     Complex.pow(new Complex(power, 0));
                     num.plus(tmp);
                 }
-                return "" + round(num.re(), 5) + " + "
-                        + round(num.im(), 5) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 5) + " + "
+                        + AlgorithmUtils.round(num.im(), 5) + "i";
             } else {
-                return "" + round(sum, 5);
+                return "" + AlgorithmUtils.round(sum, 5);
             }
         } catch (Exception ignored) {
         }

@@ -402,7 +402,6 @@ public class ZagrebIndexFunctions {
         return second_re_zagreb;
     }
     
-    
     double getSecondHyperZagreb(double alpha) {
         double second_hyper_zagreb = 0;
         ArrayList<Edge> eds = new ArrayList<>();

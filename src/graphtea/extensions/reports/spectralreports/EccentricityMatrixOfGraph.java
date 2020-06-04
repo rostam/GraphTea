@@ -2,6 +2,7 @@ package graphtea.extensions.reports.spectralreports;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -17,22 +18,7 @@ import java.util.Arrays;
  * @author Hooman Mohajeri Moghaddam
  */
 public class EccentricityMatrixOfGraph implements GraphReportExtension<ArrayList<String>>  {
-
-
 	boolean inDegree;
-	/**
-	 * Round func
-	 * @param value The value
-	 * @param decimalPlace The decimal place
-	 * @return rounded value of the input to the number of decimalPlace
-	 */
-	private double round(double value, int decimalPlace) {
-		double power_of_ten = 1;
-		while (decimalPlace-- > 0)
-			power_of_ten *= 10.0;
-		return Math.round(value * power_of_ten)
-		/ power_of_ten;
-	}
 
 	private ArrayList<String> showEccentricityMatrix(Matrix A)
 	{
@@ -63,9 +49,9 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension<ArrayList
 		double[] iv = ed.getImagEigenvalues();
 		for (int i = 0; i < rv.length; i++)
 			if (iv[i] != 0)
-				result.add("" + round(rv[i], 5) + " + " + round(iv[i], 5) + "i");
+				result.add("" + AlgorithmUtils.round(rv[i], 5) + " + " + AlgorithmUtils.round(iv[i], 5) + "i");
 			else
-				result.add("" + round(rv[i], 5));
+				result.add("" + AlgorithmUtils.round(rv[i], 5));
 		result.add("Eigen Vectors:\n");
 		double[][] eigenVectors = ed.getV().getArray();
 		for (double[] eigenVector : eigenVectors) result.add(Arrays.toString(round(eigenVector, 5)));
@@ -74,7 +60,7 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension<ArrayList
 
 	private double[] round (double[] array, int prec)
 	{
-		Arrays.setAll(array, i -> round(array[i], prec));
+		Arrays.setAll(array, i -> AlgorithmUtils.round(array[i], prec));
 		return array;
 
 	}

@@ -169,14 +169,6 @@ public class Linear implements GraphReportExtension<RenderTable> {
         return ret;
     }
 
-    double round(double value, int decimalPlace) {
-        double power_of_ten = 1;
-        while (decimalPlace-- > 0)
-            power_of_ten *= 10.0;
-        return Math.round(value * power_of_ten)
-                / power_of_ten;
-    }
-
     @Override
     public String getCategory() {
         // TODO Auto-generated method stub
@@ -225,10 +217,10 @@ public class Linear implements GraphReportExtension<RenderTable> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 12) + " + "
-                        + round(num.im(), 12) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                        + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
-                return "" + round(sum, 12);
+                return "" + AlgorithmUtils.round(sum, 12);
             }
         } catch (Exception ignored) {
         }
@@ -271,10 +263,10 @@ public class Linear implements GraphReportExtension<RenderTable> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 12) + " + "
-                        + round(num.im(), 12) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                        + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
-                return "" + round(sum, 12);
+                return "" + AlgorithmUtils.round(sum, 12);
             }
         } catch (Exception ignored) {
         }
@@ -320,10 +312,10 @@ public class Linear implements GraphReportExtension<RenderTable> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 12) + " + "
-                        + round(num.im(), 12) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                        + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
-                return "" + round(sum, 12);
+                return "" + AlgorithmUtils.round(sum, 12);
             }
         } catch (Exception ignored) {
         }
@@ -364,10 +356,10 @@ public class Linear implements GraphReportExtension<RenderTable> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 12) + " + "
-                        + round(num.im(), 12) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                        + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
-                return "" + round(sum, 12);
+                return "" + AlgorithmUtils.round(sum, 12);
             }
         } catch (Exception ignored) {
         }
@@ -410,10 +402,10 @@ public class Linear implements GraphReportExtension<RenderTable> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 12) + " + "
-                        + round(num.im(), 12) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                        + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
-                return "" + round(sum, 12);
+                return "" + AlgorithmUtils.round(sum, 12);
             }
         } catch (Exception ignored) {
         }
@@ -456,10 +448,10 @@ public class Linear implements GraphReportExtension<RenderTable> {
 //                     System.out.println(tmp);
 //                     num.plus(tmp);
 //                 }
-                 return "" + round(num.re(), 12) + " + "
-                         + round(num.im(), 12) + "i";
+                 return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                         + AlgorithmUtils.round(num.im(), 12) + "i";
              } else {
-                 return "" + round(sum, 12);
+                 return "" + AlgorithmUtils.round(sum, 12);
              }
          } catch (Exception ignored) {
          }
@@ -512,10 +504,10 @@ public class Linear implements GraphReportExtension<RenderTable> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 12) + " + "
-                        + round(num.im(), 12) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                        + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
-                return "" + round(sum, 12);
+                return "" + AlgorithmUtils.round(sum, 12);
             }
         } catch (Exception ignored) {
         }

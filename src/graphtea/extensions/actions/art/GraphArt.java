@@ -76,9 +76,6 @@ class Painter implements PaintHandler {
             //consider the hole structure as a tree
             AlgorithmUtils.BFSrun(G, V[0], (v, p) -> parent[v.getId()] = p);
             final int[] numChild = new int[n];
-            for(int nc = 0;nc < numChild.length;nc++) numChild[nc]=0;
-
-
             for(Vertex v:G) {
                 if(G.getDegree(v) != 1) continue;
                 Vertex par = v;
@@ -108,7 +105,6 @@ class Painter implements PaintHandler {
 
                     GPoint m1 = AlgorithmUtils.getMiddlePoint(p1, p2);
                     GPoint m2 = AlgorithmUtils.getMiddlePoint(p2, p3);
-                    GPoint cp = p2;
 
 //                        Integer w1 = numChild[v.getId()]/2;
                     Integer w1 = v.getUserDefinedAttribute(GraphArt.CURVE_WIDTH);
@@ -128,12 +124,12 @@ class Painter implements PaintHandler {
                     //generate boundary curves
                     QuadCurve2D c1 = new QuadCurve2D.Double(
                             m1.x - startWidth * Math.sin(teta1), m1.y + startWidth * Math.cos(teta1),
-                            cp.x - middleWidth * Math.sin(teta2), cp.y + middleWidth * Math.cos(teta2),
+                            p2.x - middleWidth * Math.sin(teta2), p2.y + middleWidth * Math.cos(teta2),
                             m2.x - endWidth * Math.sin(teta3), m2.y + endWidth * Math.cos(teta3));
 
                     QuadCurve2D c2 = new QuadCurve2D.Double(
                             m2.x + endWidth * Math.sin(teta3), m2.y - endWidth * Math.cos(teta3),
-                            cp.x + middleWidth * Math.sin(teta2), cp.y - middleWidth * Math.cos(teta2),
+                            p2.x + middleWidth * Math.sin(teta2), p2.y - middleWidth * Math.cos(teta2),
                             m1.x + startWidth * Math.sin(teta1), m1.y - startWidth * Math.cos(teta1));
 
                     //mix them

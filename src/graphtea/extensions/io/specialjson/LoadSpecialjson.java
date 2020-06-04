@@ -55,7 +55,6 @@ public class LoadSpecialjson implements GraphReaderExtension {
         HashMap<Integer, String> verticesRegion = new HashMap<>();
         try {
             int i = 0;
-            final double QUARTERPI = Math.PI / 4.0;
             Scanner sc = new Scanner(file);
             FastRenderer.defaultVertexRadius = 12;
             RenderTable rt = new RenderTable();

@@ -2,6 +2,7 @@ package graphtea.extensions.reports.spectralreports;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -18,23 +19,8 @@ import java.util.Arrays;
  *
  * @author Hooman Mohajeri Moghaddam
  */
-public class SignlessLaplacianOfGraph implements GraphReportExtension  {
-
-
+public class SignlessLaplacianOfGraph implements GraphReportExtension<ArrayList<String>>  {
 	boolean inDegree;
-	/**
-	 * Round func
-	 * @param value The value
-	 * @param decimalPlace The decimal place
-	 * @return rounded value of the input to the number of decimalPlace
-	 */
-	private double round(double value, int decimalPlace) {
-		double power_of_ten = 1;
-		while (decimalPlace-- > 0)
-			power_of_ten *= 10.0;
-		return Math.round(value * power_of_ten)
-		/ power_of_ten;
-	}
 
 	/**
 	 * Undirected Laplacian.
@@ -110,9 +96,9 @@ public class SignlessLaplacianOfGraph implements GraphReportExtension  {
 		double[] iv = ed.getImagEigenvalues();
 		for (int i = 0; i < rv.length; i++)
 			if (iv[i] != 0)
-				result.add("" + round(rv[i], 5) + " + " + round(iv[i], 5) + "i");
+				result.add("" + AlgorithmUtils.round(rv[i], 5) + " + " + AlgorithmUtils.round(iv[i], 5) + "i");
 			else
-				result.add("" + round(rv[i], 5));
+				result.add("" + AlgorithmUtils.round(rv[i], 5));
 		result.add("Eigen Vectors:\n");
 		double[][] eigenVectors = ed.getV().getArray();
         for (double[] eigenVector : eigenVectors) result.add(Arrays.toString(round(eigenVector, 5)));
@@ -122,7 +108,7 @@ public class SignlessLaplacianOfGraph implements GraphReportExtension  {
 	private double[] round (double[] array, int prec)
 	{
 		for(int i=0;i<array.length;i++)
-			array[i]=round(array[i],prec);
+			array[i]=AlgorithmUtils.round(array[i],prec);
 		return array;
 
 	}
@@ -134,7 +120,7 @@ public class SignlessLaplacianOfGraph implements GraphReportExtension  {
 		return "The Laplacian matrix associated with the graph";
 	}
 
-	public Object calculate(GraphModel g) {
+	public ArrayList<String> calculate(GraphModel g) {
 
 		try {
 			if(g.isDirected())

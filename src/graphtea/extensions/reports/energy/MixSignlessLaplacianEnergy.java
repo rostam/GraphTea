@@ -3,6 +3,7 @@ package graphtea.extensions.reports.energy;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.Utils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -14,16 +15,6 @@ import java.util.Vector;
 
 @CommandAttitude(name = "mix_eig_values", abbreviation = "_mevs")
 public class MixSignlessLaplacianEnergy implements GraphReportExtension<Vector<String>> {
-    double round(double value, int decimalPlace) {
-        double power_of_ten = 1;
-        while (decimalPlace-- > 0)
-            power_of_ten *= 10.0;
-        return Math.round(value * power_of_ten)
-                / power_of_ten;
-    }
-
-
-
     String signlessLaplacianEnergy(GraphModel g) {
         double power = 1;
         try {
@@ -62,10 +53,10 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension<Vector<S
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 5) + " + "
-                        + round(num.im(), 5) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 5) + " + "
+                        + AlgorithmUtils.round(num.im(), 5) + "i";
             } else {
-                return "" + round(sum, 5);
+                return "" + AlgorithmUtils.round(sum, 5);
             }
         } catch (Exception ignored) {
         }
@@ -108,10 +99,10 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension<Vector<S
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 5) + " + "
-                        + round(num.im(), 5) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 5) + " + "
+                        + AlgorithmUtils.round(num.im(), 5) + "i";
             } else {
-                return "" + round(sum, 5);
+                return "" + AlgorithmUtils.round(sum, 5);
             }
         } catch (Exception ignored) {
         }

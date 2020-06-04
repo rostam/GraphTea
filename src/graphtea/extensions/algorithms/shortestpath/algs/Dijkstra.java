@@ -84,10 +84,9 @@ public class Dijkstra extends Algorithm implements AutomatedAlgorithm {
                 edge.setColor((int) (Math.random() * 10));
            //EventUtils.algorithmStep(this,600);
                 Vertex target = vMin == edge.source ? edge.target : edge.source;
-                Vertex source = vMin;
                 if (!selectedVertices.contains(target)) {
-                    if (dist[target.getId()] > dist[source.getId()] + edge.getWeight()) {
-                        dist[target.getId()] = dist[source.getId()] + edge.getWeight();
+                    if (dist[target.getId()] > dist[vMin.getId()] + edge.getWeight()) {
+                        dist[target.getId()] = dist[vMin.getId()] + edge.getWeight();
                         //dispatchEvent(new EdgeEvent<Vertex, Edge>(graph, edge, EdgeEvent.EventType.MARK));
                         //dispatchEvent(new VertexEvent<Vertex, Edge>(graph, target, VertexEvent.EventType.MARK));
                         edge.setMark(true);

@@ -7,6 +7,7 @@ package graphtea.extensions.reports.spectralreports;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
@@ -26,14 +27,6 @@ public class EigenValues implements GraphReportExtension,Parametrizable {
     @Parameter(name = "power:", description = "The power of the eigen values")
     public double power = 2;
 
-    private double round(double value, int decimalPlace) {
-        double power_of_ten = 1;
-        while (decimalPlace-- > 0)
-            power_of_ten *= 10.0;
-        return Math.round(value * power_of_ten)
-                / power_of_ten;
-    }
-
     public Object calculate(GraphModel g) {
         ArrayList<String> res = new ArrayList<>();
         Matrix A = g.getWeightedAdjacencyMatrix();
@@ -48,9 +41,9 @@ public class EigenValues implements GraphReportExtension,Parametrizable {
             if(minrv > tval) minrv=tval;
         }
         res.add("Largest Eigen Value");
-        res.add(round(maxrv, 10)+"");
+        res.add(AlgorithmUtils.round(maxrv, 10)+"");
         res.add("Smallest Eigen Value");
-        res.add(round(minrv, 10)+"");
+        res.add(AlgorithmUtils.round(minrv, 10)+"");
 
         res.add("Sum of power of Eigen Values");
         double sum = 0;
@@ -66,17 +59,17 @@ public class EigenValues implements GraphReportExtension,Parametrizable {
                 Complex.pow(new Complex(power,0));
                 num.plus(tmp);
             }
-            res.add("" + round(num.re(), 10) + " + "
-                    + round(num.im(), 10) + "i");
+            res.add("" + AlgorithmUtils.round(num.re(), 10) + " + "
+                    + AlgorithmUtils.round(num.im(), 10) + "i");
         } else {
-            res.add("" + round(sum, 10));
+            res.add("" + AlgorithmUtils.round(sum, 10));
         }
         res.add("Eigen Values");
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res.add("" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i");
+                res.add("" + AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i");
             else
-                res.add("" + round(rv[i], 10));
+                res.add("" + AlgorithmUtils.round(rv[i], 10));
         }
         return res;
     }

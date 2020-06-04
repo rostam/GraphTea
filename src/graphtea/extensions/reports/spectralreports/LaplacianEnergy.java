@@ -7,6 +7,7 @@ package graphtea.extensions.reports.spectralreports;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.Utils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.library.util.Complex;
@@ -19,15 +20,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
 public class LaplacianEnergy implements GraphReportExtension<String> {
-
-    double round(double value, int decimalPlace) {
-        double power_of_ten = 1;
-        while (decimalPlace-- > 0)
-            power_of_ten *= 10.0;
-        return Math.round(value * power_of_ten)
-                / power_of_ten;
-    }
-
     public String calculate(GraphModel g) {
         double power = 1;
         try {
@@ -61,10 +53,10 @@ public class LaplacianEnergy implements GraphReportExtension<String> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 5) + " + "
-                        + round(num.im(), 5) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 5) + " + "
+                        + AlgorithmUtils.round(num.im(), 5) + "i";
             } else {
-                return "" + round(sum, 5);
+                return "" + AlgorithmUtils.round(sum, 5);
             }
         } catch (Exception ignored) {
         }
