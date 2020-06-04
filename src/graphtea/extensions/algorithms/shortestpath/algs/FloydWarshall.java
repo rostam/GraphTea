@@ -30,12 +30,6 @@ public class FloydWarshall {
         Edge edge;
         for (Integer[] integers : dist) Arrays.fill(integers, graph.numOfVertices() * 2);
 
-//        for (Integer i : dist[0])
-//            for (Integer j : dist[0]) {
-//                dist[i][j] = Integer.MAX_VALUE;
-//
-//    }
-
         for(Vertex v:graph)
             dist[v.getId()][v.getId()] = 0;
 
@@ -45,9 +39,9 @@ public class FloydWarshall {
             dist[edge.source.getId()][edge.target.getId()] = edge.getWeight();
         }
 
-        for (Vertex v : graph)
+        for (Vertex w : graph)
             for (Vertex u : graph)
-                for (Vertex w : graph) {
+                for (Vertex v : graph) {
                     if ((dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()]) < dist[v.getId()][u.getId()])
                         dist[v.getId()][u.getId()] = dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()];
                 }
@@ -67,12 +61,6 @@ public class FloydWarshall {
             for(int j = 0; j < graph.getVerticesCount();j++)
                 dist[i][j] = graph.numOfVertices();
 
-//        for (Integer i : dist[0])
-//            for (Integer j : dist[0]) {
-//                dist[i][j] = Integer.MAX_VALUE;
-//
-//    }
-
         for(Vertex v:graph)
             dist[v.getId()][v.getId()] = 0;
 
@@ -82,9 +70,9 @@ public class FloydWarshall {
             dist[edge.source.getId()][edge.target.getId()] = 1;
         }
 
-        for (Vertex v : graph)
+        for (Vertex w : graph)
             for (Vertex u : graph)
-                for (Vertex w : graph) {
+                for (Vertex v : graph) {
                     if ((dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()]) < dist[v.getId()][u.getId()])
                         dist[v.getId()][u.getId()] = dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()];
                 }
