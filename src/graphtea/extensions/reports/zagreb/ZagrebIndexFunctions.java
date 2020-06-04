@@ -24,7 +24,7 @@ public class ZagrebIndexFunctions {
     public double getEnegry() {
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double rv[] = ed.getRealEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
         double sum=0;
     	
     	

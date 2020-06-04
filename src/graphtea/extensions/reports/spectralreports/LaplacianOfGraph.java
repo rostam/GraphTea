@@ -104,8 +104,8 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 		ArrayList<String> result = new ArrayList<>();
 		result.add("Eigen Value Decomposition:");
 		EigenvalueDecomposition ed = getLaplacian(matrix).eig();
-		double rv[] = ed.getRealEigenvalues();
-		double iv[] = ed.getImagEigenvalues();
+		double[] rv = ed.getRealEigenvalues();
+		double[] iv = ed.getImagEigenvalues();
 		for (int i = 0; i < rv.length; i++)
 			if (iv[i] != 0)
 				result.add("" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i");

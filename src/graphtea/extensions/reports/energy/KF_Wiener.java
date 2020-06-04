@@ -127,7 +127,7 @@ public class KF_Wiener implements GraphReportExtension<RenderTable> {
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double rv[] = ed.getRealEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
         double sum = 0;
 
         //positiv RV

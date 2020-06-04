@@ -58,7 +58,7 @@ public class LaplacianEstrada implements GraphReportExtension<RenderTable> {
         Matrix B = g.getWeightedAdjacencyMatrix();
         Matrix A = Utils.getLaplacian(B);
         EigenvalueDecomposition ed = A.eig();
-        double rv[] = ed.getRealEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
         double Lsum=0;
         double Lapestra=0;
         double detA = Math.abs(A.det());
@@ -172,8 +172,8 @@ public class LaplacianEstrada implements GraphReportExtension<RenderTable> {
     public static String getEigenValues(GraphModel g) {
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double rv[] = ed.getRealEigenvalues();
-        double iv[] = ed.getImagEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
+        double[] iv = ed.getImagEigenvalues();
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)

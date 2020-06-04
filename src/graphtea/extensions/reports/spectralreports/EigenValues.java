@@ -38,8 +38,8 @@ public class EigenValues implements GraphReportExtension,Parametrizable {
         ArrayList<String> res = new ArrayList<>();
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double rv[] = ed.getRealEigenvalues();
-        double iv[] = ed.getImagEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
+        double[] iv = ed.getImagEigenvalues();
         double maxrv=0;
         double minrv=1000000;
         for(double value : rv) {
