@@ -5,7 +5,6 @@
 
 package graphtea.extensions.reports.basicreports;
 
-import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -35,9 +34,9 @@ public class NumOfQuadrangle implements GraphReportExtension<Integer> {
     public static int getNumOfQuadrangles(GraphModel graph) {
         int quadrangles = 0;
         for (Vertex i : graph)
-            for (Vertex j : AlgorithmUtils.getNeighbors(graph, i))
-                for (Vertex k : AlgorithmUtils.getNeighbors(graph, j))
-                    for (Vertex l : AlgorithmUtils.getNeighbors(graph, k))
+            for (Vertex j : graph.directNeighbors(i))
+                for (Vertex k : graph.directNeighbors(j))
+                    for (Vertex l : graph.directNeighbors(k))
                         if (l != j &&
                                 l != i &&
                                 k != i &&

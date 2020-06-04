@@ -62,26 +62,6 @@ public class AlgorithmUtils {
     }
 
     /**
-     * returns the adjacency list of g.
-     *
-     * @deprecated use BaseGraph.getEdgeArray instead
-     */
-    public static 
-    ArrayList<ArrayList<Integer>> getAdjList(GraphModel g) {
-        double[][] mat = g.getAdjacencyMatrix().getArray();
-        ArrayList<ArrayList<Integer>> alist = new ArrayList<>();
-        int vCount = mat.length;
-        for (double[] doubles : mat) {
-            ArrayList<Integer> adjacencyList = new ArrayList<>();
-            for (int j = 0; j < vCount; j++)
-                if (doubles[j] == 1)
-                    adjacencyList.add(j);
-            alist.add(adjacencyList);
-        }
-        return alist;
-    }
-
-    /**
      * returns the degree of the node with the id
      * @deprecated
      */
@@ -101,42 +81,6 @@ public class AlgorithmUtils {
     }
 
     /**
-     * returns all neighbors of the given vertex
-     * @deprecated
-     */
-    public static 
-    ArrayList<Vertex> getNeighbors(GraphModel g, Vertex source) {
-        ArrayList<Vertex> ret = new ArrayList<>();
-        Iterator<Edge> ie = g.edgeIterator(source);
-        while (ie.hasNext()) {
-            Edge e = ie.next();
-            if (e.target == source && !ret.contains(e.source))
-                ret.add(e.source);
-            if (e.source == source && !ret.contains(e.target))
-                ret.add(e.target);
-        }
-        return ret;
-    }
-
-    /**
-     * returns all neighbors of the given vertex
-     * @deprecated
-     */
-    public static 
-    ArrayList<Vertex> getNeighbors2(GraphModel g, Vertex source) {
-        ArrayList<Vertex> ret = new ArrayList<>();
-        Iterator<Edge> ie = g.edgeIterator(source);
-        while (ie.hasNext()) {
-            Edge e = ie.next();
-//            if (e.target == source && !ret.contains(e.source))
-//                ret.add(e.source);
-            if (e.source == source && !ret.contains(e.target))
-                ret.add(e.target);
-        }
-        return ret;
-    }
-
-    /**
      * returns a path from source to target
      * path.get(0) = dest
      */
@@ -153,7 +97,7 @@ public class AlgorithmUtils {
         while (!q.isEmpty() && !found) {
             Vertex v = q.remove(0);
 
-            for (Vertex neigh : getNeighbors(g, v)) {
+            for (Vertex neigh : g.directNeighbors(v)) {
                 if (neigh == dest) {
                     found = true;
 //                    break;
@@ -188,8 +132,7 @@ public class AlgorithmUtils {
     /**
      * returns the parent of v, if ve DFS on parent
      */
-    public static 
-    Vertex getParent(GraphModel g, Vertex treeRoot, Vertex v) {
+    public static Vertex getParent(GraphModel g, Vertex treeRoot, Vertex v) {
         return getPath(g, treeRoot, v).get(1);
     }
 
@@ -305,13 +248,10 @@ public class AlgorithmUtils {
      * the parent array should be initialized by -1
      */
     public static 
-    void dfs(GraphModel g,
-             int node, ArrayList<Integer> visit, int[] parent) {
+    void dfs(GraphModel g, int node, ArrayList<Integer> visit, int[] parent) {
         visit.add(node);
-        ArrayList<ArrayList<Integer>> e = getAdjList(g);
-        ArrayList<Integer> neighbors = e.get(node);
-        for (Object neighbor1 : neighbors) {
-            int neighbor = (Integer) neighbor1;
+        int[][] e = g.getEdgeArray();
+        for(int neighbor : e[node]) {
             if (parent[neighbor] == -1) {
                 parent[neighbor] = node;
                 dfs(g, neighbor, visit, parent);

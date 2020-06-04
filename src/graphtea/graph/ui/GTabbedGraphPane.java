@@ -40,8 +40,6 @@ public class GTabbedGraphPane extends GTabbedPane {
         b.setData(GTabbedGraphPane.NAME, this);
     }
 
-    public static Boolean defaultDirectedChoice = false;
-
     protected void reTab() {
         super.reTab();
         JComponent sc = (JComponent) jtp.getSelectedComponent();

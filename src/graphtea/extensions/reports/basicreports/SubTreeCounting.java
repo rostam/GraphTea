@@ -25,7 +25,6 @@ public class SubTreeCounting implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable(2);
         Vector<String> titles = new Vector<>();
-        Vector<Object> elem = new Vector<>();
 
         double maxDeg = 0;
         for(Vertex v : g) {
