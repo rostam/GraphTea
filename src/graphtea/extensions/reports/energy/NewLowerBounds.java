@@ -188,9 +188,9 @@ public class NewLowerBounds implements GraphReportExtension{
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res +="" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i";
+                res +="" + AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i";
             else
-                res += "" + round(rv[i], 10);
+                res += "" + AlgorithmUtils.round(rv[i], 10);
             if(i!=rv.length-1) {
                 res += ",";
             }
@@ -208,9 +208,9 @@ public class NewLowerBounds implements GraphReportExtension{
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res +="" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i";
+                res +="" + AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i";
             else
-                res += "" + round(rv[i], 10);
+                res += "" + AlgorithmUtils.round(rv[i], 10);
             if(i!=rv.length-1) {
                 res += ",";
             }
@@ -227,28 +227,15 @@ public class NewLowerBounds implements GraphReportExtension{
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res +="" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i";
+                res +="" + AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i";
             else
-                res += "" + round(rv[i], 10);
+                res += "" + AlgorithmUtils.round(rv[i], 10);
             if(i!=rv.length-1) {
                 res += ",";
             }
         }
         return res;
     }
-    
-    
-    
-
-    static double round(double value, int decimalPlace) {
-        double power_of_ten = 1;
-        while (decimalPlace-- > 0)
-            power_of_ten *= 10.0;
-        return Math.round(value * power_of_ten)
-                / power_of_ten;
-    }
-
-
 
     @Override
     public String getCategory() {
@@ -294,10 +281,10 @@ public class NewLowerBounds implements GraphReportExtension{
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 10) + " + "
-                        + round(num.im(), 10) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 10) + " + "
+                        + AlgorithmUtils.round(num.im(), 10) + "i";
             } else {
-                return "" + round(sum, 10);
+                return "" + AlgorithmUtils.round(sum, 10);
             }
         } catch (Exception e) {
         }
@@ -346,10 +333,10 @@ public class NewLowerBounds implements GraphReportExtension{
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 12) + " + "
-                        + round(num.im(), 12) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                        + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
-                return "" + round(sum, 12);
+                return "" + AlgorithmUtils.round(sum, 12);
             }
         } catch (Exception e) {
         }
@@ -397,10 +384,10 @@ public class NewLowerBounds implements GraphReportExtension{
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 12) + " + "
-                        + round(num.im(), 12) + "i";
+                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                        + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
-                return "" + round(sum, 12);
+                return "" + AlgorithmUtils.round(sum, 12);
             }
         } catch (Exception e) {
         }

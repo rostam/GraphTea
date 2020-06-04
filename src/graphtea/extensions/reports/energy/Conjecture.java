@@ -264,25 +264,15 @@ public class Conjecture implements GraphReportExtension<RenderTable> {
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res +="" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i";
+                res +="" + AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i";
             else
-                res += "" + round(rv[i], 10);
+                res += "" + AlgorithmUtils.round(rv[i], 10);
             if(i!=rv.length-1) {
                 res += ",";
             }
         }
         return res;
     }
-
-    static double round(double value, int decimalPlace) {
-        double power_of_ten = 1;
-        while (decimalPlace-- > 0)
-            power_of_ten *= 10.0;
-        return Math.round(value * power_of_ten)
-                / power_of_ten;
-    }
-
-
 
     @Override
     public String getCategory() {
