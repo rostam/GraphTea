@@ -40,7 +40,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
     public GToolbar toolbar;
     public BlackBoard blackboard;
     Class resourceClass;
-    HashMap<String, graphtea.platform.core.AbstractAction> actions = null;
+    HashMap<String, graphtea.platform.core.AbstractAction> actions;
     /**
      * determines the character which if put before a character in the string of the label, that character will be set to it's mnemonics
      */
@@ -348,9 +348,8 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
 //************** utilities +++++++++++++++++++++
 
     AbstractAction loadAbstractAction(String abstractActionclazz) {
-        String clazz = abstractActionclazz;
-        if (!(clazz == null) && !(clazz.equals(""))) {
-            Class t = clazz2Class(clazz);
+        if (!(abstractActionclazz == null) && !(abstractActionclazz.equals(""))) {
+            Class t = clazz2Class(abstractActionclazz);
             if (graphtea.platform.core.AbstractAction.class.isAssignableFrom(t)) {
                 Object[] o = {blackboard};
                 try {
@@ -370,9 +369,8 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
 
     //todo: it is possible to also get a component from xml by it's direct class name, like javax.swing.JLabel . but i decided not to do it for cleaner codes! i am not sure is it good or not?
     Component getComponent(String GComponentInterfaceClassName) {
-        String clazz = GComponentInterfaceClassName;
-        if (!(clazz == null) && !(clazz.equals(""))) {
-            Class t = clazz2Class(clazz);
+        if (!(GComponentInterfaceClassName == null) && !(GComponentInterfaceClassName.equals(""))) {
+            Class t = clazz2Class(GComponentInterfaceClassName);
             Constructor c = null;
             Object[] o = {blackboard};
             try {
@@ -382,7 +380,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
                     c = t.getConstructor();
                     o = new Object[]{};
                 } catch (NoSuchMethodException e1) {
-                    System.err.println("the clazz " + clazz + "does not have a constructor(blackboard) or constructor(), how can i load it?");
+                    System.err.println("the clazz " + GComponentInterfaceClassName + "does not have a constructor(blackboard) or constructor(), how can i load it?");
                     e1.printStackTrace();
                 }
 //                ExceptionHandler.catchException(e);
@@ -394,13 +392,13 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
                     //load was successfull
                     return ((GComponentInterface) o1).getComponent(blackboard);
                 } else {
-                    System.err.println("the class " + clazz + " doesn't implement the interface GComponentInterface, so it can't be put on the UI.");
+                    System.err.println("the class " + GComponentInterfaceClassName + " doesn't implement the interface GComponentInterface, so it can't be put on the UI.");
                 }
             } catch (InstantiationException | IllegalAccessException e) {
-                System.err.println("There was an error while initializing the class" + clazz + "may be in it's constructor or in one of classes it instantiate in its constructor");
+                System.err.println("There was an error while initializing the class" + GComponentInterfaceClassName + "may be in it's constructor or in one of classes it instantiate in its constructor");
                 ExceptionHandler.catchException(e);
             } catch (InvocationTargetException e) {
-                System.err.println("There was an error while initializing the class" + clazz + "may be in it's constructor or in one of classes it instantiate in its constructor");
+                System.err.println("There was an error while initializing the class" + GComponentInterfaceClassName + "may be in it's constructor or in one of classes it instantiate in its constructor");
                 e.getTargetException().printStackTrace();
             }
         }
