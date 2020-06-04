@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "zagreb_coindex_edges", abbreviation = "_zcie")
-public class ZagrebCoindexSelectedEdges implements GraphReportExtension, Parametrizable {
+public class ZagrebCoindexSelectedEdges implements GraphReportExtension<ArrayList<String>>, Parametrizable {
     public String getName() {
         return "Zagreb Coindices of Selected Edges";
     }
@@ -31,7 +31,7 @@ public class ZagrebCoindexSelectedEdges implements GraphReportExtension, Paramet
         return "Zagreb Coindices of Selected Edges";
     }
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         out.add("First Zagreb Coindex : "+ zif.getFirstZagrebCoindexSelectedEdges(alpha));

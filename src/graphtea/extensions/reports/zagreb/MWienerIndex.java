@@ -19,7 +19,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 
 @CommandAttitude(name = "mwiener_index", abbreviation = "_windex")
-public class MWienerIndex implements GraphReportExtension<Object> {
+public class MWienerIndex implements GraphReportExtension<Integer> {
     public String getName() {
         return "Multiplicative Wiener Index";
     }
@@ -28,7 +28,7 @@ public class MWienerIndex implements GraphReportExtension<Object> {
         return "Multiplicative Wiener Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         int sum =1;
         AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
         for(Edge e : g.edges()) {

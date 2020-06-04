@@ -23,7 +23,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "m3finalconj", abbreviation = "_m3conj")
-public class EM1UpperBound implements GraphReportExtension{
+public class EM1UpperBound implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "EM1 Upper";
     }
@@ -32,7 +32,7 @@ public class EM1UpperBound implements GraphReportExtension{
         return "EM1 Upper";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(
                 Utils.createLineGraph(g)

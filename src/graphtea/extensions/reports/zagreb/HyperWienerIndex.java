@@ -19,7 +19,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 
 @CommandAttitude(name = "hyper_wiener_index", abbreviation = "_windex")
-public class HyperWienerIndex implements GraphReportExtension<Object> {
+public class HyperWienerIndex implements GraphReportExtension<Double> {
     public String getName() {
         return "Hyper Wiener Index";
     }
@@ -28,7 +28,7 @@ public class HyperWienerIndex implements GraphReportExtension<Object> {
         return "Hyper Wiener Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public Double calculate(GraphModel g) {
         double sum =0;
         AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
         for(Edge e : g.edges()) {

@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  */
 
 @CommandAttitude(name = "maxium_matching", abbreviation = "_max_match")
-public class RandomMatching implements GraphReportExtension {
+public class RandomMatching implements GraphReportExtension<Vector<Object>> {
     public String getName() {
         return "Random Matching";
     }
@@ -32,7 +32,7 @@ public class RandomMatching implements GraphReportExtension {
 
     private final Random r = new Random();
     private final Random r2 = new Random(10);
-    public Object calculate(GraphModel g) {
+    public Vector<Object> calculate(GraphModel g) {
         SubGraph sg = new SubGraph();
         int limit=r2.nextInt(g.getEdgesCount());
 
@@ -89,7 +89,7 @@ public class RandomMatching implements GraphReportExtension {
     }
 
     public double calculateMaxMatching(GraphModel g) {
-        Vector<Object> result = (Vector<Object>)calculate(g);
+        Vector<Object> result = calculate(g);
         SubGraph maxMatching = (SubGraph)result.elementAt(1);
         return maxMatching.edges.size();
     }

@@ -29,7 +29,7 @@ public class MostarIndex implements GraphReportExtension<Object> {
     }
 
     public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
-        final Integer dist[][] = new Integer[g.numOfVertices()][g.numOfVertices()];
+        final Integer[][] dist = new Integer[g.numOfVertices()][g.numOfVertices()];
         Iterator<Edge> iet = g.edgeIterator();
         for (int i = 0; i < g.getVerticesCount(); i++)
             for (int j = 0; j < g.getVerticesCount(); j++)

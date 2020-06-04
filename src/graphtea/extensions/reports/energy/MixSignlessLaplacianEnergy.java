@@ -1,4 +1,4 @@
-package graphtea.extensions.reports.spectralreports;
+package graphtea.extensions.reports.energy;
 
 
 import Jama.EigenvalueDecomposition;
@@ -13,7 +13,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 import java.util.Vector;
 
 @CommandAttitude(name = "mix_eig_values", abbreviation = "_mevs")
-public class MixSignlessLaplacianEnergy implements GraphReportExtension {
+public class MixSignlessLaplacianEnergy implements GraphReportExtension<Vector<String>> {
     double round(double value, int decimalPlace) {
         double power_of_ten = 1;
         while (decimalPlace-- > 0)
@@ -32,8 +32,8 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension {
             Matrix B = g.getWeightedAdjacencyMatrix();
             Matrix A = Utils.getSignlessLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
-            double rv[] = ed.getRealEigenvalues();
-            double iv[] = ed.getImagEigenvalues();
+            double[] rv = ed.getRealEigenvalues();
+            double[] iv = ed.getImagEigenvalues();
             double maxrv=0;
             double minrv=1000000;
             for(double value : rv) {
@@ -45,11 +45,9 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension {
  
             double sum = 0;
             double sum_i = 0;
-            for(int i=0;i < rv.length;i++)
-              //  sum += Math.pow(Math.abs(rv[i]),power);
-            	sum += Math.pow(Math.abs(rv[i] - ((2*m)/n)), power);
-            for(int i=0;i < iv.length;i++)
-                sum_i +=  Math.abs(iv[i]);
+            //  sum += Math.pow(Math.abs(rv[i]),power);
+            for (double v : rv) sum += Math.pow(Math.abs(v - ((2 * m) / n)), power);
+            for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
                 //here is completely false
@@ -69,7 +67,7 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension {
             } else {
                 return "" + round(sum, 5);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return null;
     }
@@ -82,8 +80,8 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension {
             Matrix B = g.getWeightedAdjacencyMatrix();
             Matrix A = Utils.getLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
-            double rv[] = ed.getRealEigenvalues();
-            double iv[] = ed.getImagEigenvalues();
+            double[] rv = ed.getRealEigenvalues();
+            double[] iv = ed.getImagEigenvalues();
             double maxrv=0;
             double minrv=1000000;
             for(double value : rv) {
@@ -93,11 +91,9 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension {
             }
             double sum = 0;
             double sum_i = 0;
-            for(int i=0;i < rv.length;i++)
-            	sum += Math.pow(Math.abs(rv[i] - ((2*m)/n)), power);
+            for (double value : rv) sum += Math.pow(Math.abs(value - ((2 * m) / n)), power);
               //  sum += Math.pow(Math.abs(rv[i]),power);
-            for(int i=0;i < iv.length;i++)
-                sum_i +=  Math.abs(iv[i]);
+            for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
                 //here is completely false
@@ -117,14 +113,14 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension {
             } else {
                 return "" + round(sum, 5);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return null;
     }
 
 
     @Override
-    public Object calculate(GraphModel g) {
+    public Vector<String> calculate(GraphModel g) {
         RenderTable rt = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add("Laplacian Energy");

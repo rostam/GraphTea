@@ -19,7 +19,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "inc_var_zagreb_coindex", abbreviation = "_ivzci")
-public class IncrementalVariableZagrebIndex implements GraphReportExtension, Parametrizable {
+public class IncrementalVariableZagrebIndex implements GraphReportExtension<RenderTable>, Parametrizable {
     public String getName() {
         return "Incremental Variable Zagreb Indices";
     }
@@ -37,7 +37,7 @@ public class IncrementalVariableZagrebIndex implements GraphReportExtension, Par
         return "Incremental Zagreb Indices";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add("Alpha");

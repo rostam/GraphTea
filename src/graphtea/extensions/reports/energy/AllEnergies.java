@@ -27,7 +27,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class AllEnergies implements GraphReportExtension {
+public class AllEnergies implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "AllEnergies";
     }
@@ -36,7 +36,7 @@ public class AllEnergies implements GraphReportExtension {
         return "All-Energies";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

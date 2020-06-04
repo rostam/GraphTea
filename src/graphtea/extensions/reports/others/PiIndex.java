@@ -2,7 +2,7 @@
 // Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
-package graphtea.extensions.reports.zagreb;
+package graphtea.extensions.reports.others;
 
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.Edge;
@@ -17,7 +17,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 
 @CommandAttitude(name = "PI_Index", abbreviation = "_SzegedIndex")
-public class PiIndex implements GraphReportExtension<Object> {
+public class PiIndex implements GraphReportExtension<Integer> {
     public String getName() {
         return "PI Index";
     }
@@ -26,7 +26,7 @@ public class PiIndex implements GraphReportExtension<Object> {
         return "PI Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         FloydWarshall fw = new FloydWarshall();
         Integer[][] dists = fw.getAllPairsShortestPathWithoutWeight(g);
         int sum = 0;

@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "second_mix_zagreb_index", abbreviation = "_smzi")
-public class SecondMixZagrebIndex implements GraphReportExtension, Parametrizable {
+public class SecondMixZagrebIndex implements GraphReportExtension<ArrayList<String>>, Parametrizable {
 
     @Parameter(name = "Alpha", description = "")
     public Double alpha = 1.0;
@@ -33,7 +33,7 @@ public class SecondMixZagrebIndex implements GraphReportExtension, Parametrizabl
         return "Second Mix Zagreb Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ArrayList<String> out = new ArrayList<>();
         out.add("Second Mix Zagreb Index : "+ zif.getSecondMixZagrebIndex(alpha,beta));

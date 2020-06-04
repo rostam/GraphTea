@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "randic_index", abbreviation = "_ri")
-public class ConnectiveEccentricIndex implements GraphReportExtension {
+public class ConnectiveEccentricIndex implements GraphReportExtension<ArrayList<String>> {
     public String getName() {
         return "Connective Eccentric Index";
     }
@@ -28,7 +28,7 @@ public class ConnectiveEccentricIndex implements GraphReportExtension {
     }
 
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<>();
 
         double sum = 0;

@@ -28,7 +28,7 @@ import static graphtea.extensions.reports.Utils.getSignlessLaplacian;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class SignlessLaplacianEnergy implements GraphReportExtension {
+public class SignlessLaplacianEnergy implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Signless-Laplacian Energy";
     }
@@ -37,7 +37,7 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
         return "Signless-Laplacian Energy";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
@@ -51,12 +51,12 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double rv[] = ed.getRealEigenvalues();
+        double[] rv = ed.getRealEigenvalues();
         
         Matrix B = g.getWeightedAdjacencyMatrix();
         B = getSignlessLaplacian(B);
         EigenvalueDecomposition sled = B.eig();
-        double lrv[] = sled.getRealEigenvalues();
+        double[] lrv = sled.getRealEigenvalues();
         double sum=0;
  
 
@@ -172,8 +172,8 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
             Matrix A = g.getWeightedAdjacencyMatrix();
             A = getSignlessLaplacian(A);
             EigenvalueDecomposition ed = A.eig();
-            double rv[] = ed.getRealEigenvalues();
-            double iv[] = ed.getImagEigenvalues();
+            double[] rv = ed.getRealEigenvalues();
+            double[] iv = ed.getImagEigenvalues();
             double maxrv = 0;
             double minrv = 1000000;
             for (double value : rv) {
@@ -183,10 +183,8 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
             }
             double sum = 0;
             double sum_i = 0;
-            for (int i = 0; i < rv.length; i++)
-                sum += Math.pow(Math.abs(rv[i] - (2*m/n)), power);
-            for (int i = 0; i < iv.length; i++)
-                sum_i += Math.abs(iv[i]);
+            for (double value : rv) sum += Math.pow(Math.abs(value - (2 * m / n)), power);
+            for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
                 sum_i = 0;
@@ -201,7 +199,7 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
             } else {
                 return "" + round(sum, 5);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return null;
     }

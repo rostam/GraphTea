@@ -22,7 +22,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "m3finalconj", abbreviation = "_m3conj")
-public class M3Final implements GraphReportExtension{
+public class M3Final implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "M3 Final";
     }
@@ -31,7 +31,7 @@ public class M3Final implements GraphReportExtension{
         return "M3 Final";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(
                 Utils.createLineGraph(g)

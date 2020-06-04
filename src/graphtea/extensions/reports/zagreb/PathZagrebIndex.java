@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "zagreb_index", abbreviation = "_zi")
-public class PathZagrebIndex implements GraphReportExtension, Parametrizable {
+public class PathZagrebIndex implements GraphReportExtension<ArrayList<String>>, Parametrizable {
     public String getName() {
         return "Path Zagreb Indices";
     }
@@ -30,7 +30,7 @@ public class PathZagrebIndex implements GraphReportExtension, Parametrizable {
         return "Path Zagreb Indices";
     }
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         out.add("First Path Zagreb Index : "+ zif.getFirstPathZagrebIndex(alpha));

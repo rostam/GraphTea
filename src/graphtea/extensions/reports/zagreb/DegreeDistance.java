@@ -19,7 +19,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 
 @CommandAttitude(name = "degree_distance", abbreviation = "_ddistance")
-public class DegreeDistance implements GraphReportExtension<Object> {
+public class DegreeDistance implements GraphReportExtension<Integer> {
     public String getName() {
         return "Degree Distance";
     }
@@ -28,7 +28,7 @@ public class DegreeDistance implements GraphReportExtension<Object> {
         return "Degree Distance";
     }
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         int sum =0;
         AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
         for(Edge e : g.edges()) {

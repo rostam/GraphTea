@@ -19,7 +19,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 
 @CommandAttitude(name = "eccentricityconnectivity_index", abbreviation = "_ECindex")
-public class EccentricityConnectivityIndex implements GraphReportExtension<Object> {
+public class EccentricityConnectivityIndex implements GraphReportExtension<Double> {
     private double a;
 
     public String getName() {
@@ -34,7 +34,7 @@ public class EccentricityConnectivityIndex implements GraphReportExtension<Objec
         a = value;
     }
 
-    public Object calculate(GraphModel g) {
+    public Double calculate(GraphModel g) {
         AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
         for(Edge e : g.edges()) {
             G.addEdge(new DirectedEdge(e.source.getId(), e.target.getId(), 1d));

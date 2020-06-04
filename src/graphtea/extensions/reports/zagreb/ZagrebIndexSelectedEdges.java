@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "zagreb_index_edges", abbreviation = "_zie")
-public class ZagrebIndexSelectedEdges implements GraphReportExtension, Parametrizable {
+public class ZagrebIndexSelectedEdges implements GraphReportExtension<ArrayList<String>>, Parametrizable {
     public String getName() {
         return "Zagreb Indices of Selected Edges";
     }
@@ -31,7 +31,7 @@ public class ZagrebIndexSelectedEdges implements GraphReportExtension, Parametri
         return "Zagreb Indices of Selected Edges";
     }
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         out.add("First General Zagreb Index : "+ zif.getFirstZagrebSelectedEdges(alpha));

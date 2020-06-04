@@ -21,7 +21,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "m3boundconj", abbreviation = "_m3conj")
-public class M3BoundConjecture implements GraphReportExtension{
+public class M3BoundConjecture implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "M3 Bound Conjecture";
     }
@@ -30,7 +30,7 @@ public class M3BoundConjecture implements GraphReportExtension{
         return "M3 Bound Conjecture";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

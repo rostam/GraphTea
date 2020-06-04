@@ -19,7 +19,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 
 @CommandAttitude(name = "reciprocaldegreedistance_index", abbreviation = "_reciprocaldegreedistance")
-public class ReciprocalDegreeDistance implements GraphReportExtension<Object> {
+public class ReciprocalDegreeDistance implements GraphReportExtension<Double> {
     public String getName() {
         return "Reciprocal Degree Distance";
     }
@@ -28,7 +28,7 @@ public class ReciprocalDegreeDistance implements GraphReportExtension<Object> {
         return "Reciprocal Degree Distance";
     }
 
-    public Object calculate(GraphModel g) {
+    public Double calculate(GraphModel g) {
         double sum =0;
         AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
         for(Edge e : g.edges()) {

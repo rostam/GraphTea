@@ -17,7 +17,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 
 @CommandAttitude(name = "mostar_index", abbreviation = "_windex")
-public class MostarIndex implements GraphReportExtension<Object> {
+public class MostarIndex implements GraphReportExtension<Integer> {
     public String getName() {
         return "Mostar Index";
     }
@@ -26,7 +26,7 @@ public class MostarIndex implements GraphReportExtension<Object> {
         return "Mostar Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         FloydWarshall fw = new FloydWarshall();
         Integer[][] dists = fw.getAllPairsShortestPathWithoutWeight(g);
         int sum = 0;

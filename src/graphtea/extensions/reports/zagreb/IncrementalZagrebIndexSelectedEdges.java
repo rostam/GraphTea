@@ -20,7 +20,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "inc_zagreb_index_edges", abbreviation = "_izie")
-public class IncrementalZagrebIndexSelectedEdges implements GraphReportExtension, Parametrizable {
+public class IncrementalZagrebIndexSelectedEdges implements GraphReportExtension<RenderTable>, Parametrizable {
     public String getName() {
         return "Incremental Zagreb Indices of Selected Edges";
     }
@@ -38,7 +38,7 @@ public class IncrementalZagrebIndexSelectedEdges implements GraphReportExtension
         return "Incremental Zagreb Indices of Selected Edges";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<>();
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

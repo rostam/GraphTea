@@ -22,7 +22,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "m3norconj", abbreviation = "_m3norconj")
-public class M3CompIndCoindConjecture implements GraphReportExtension{
+public class M3CompIndCoindConjecture implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "M3 Comp Index + Coindex Conj";
     }
@@ -31,7 +31,7 @@ public class M3CompIndCoindConjecture implements GraphReportExtension{
         return "M3 Comp Index + Coindex Conj";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifc
         = new ZagrebIndexFunctions(GraphComplement.complement(g));

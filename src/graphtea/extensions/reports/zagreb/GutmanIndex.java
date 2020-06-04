@@ -19,7 +19,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 
 @CommandAttitude(name = "gutman_index", abbreviation = "_gutmanindex")
-public class GutmanIndex implements GraphReportExtension<Object> {
+public class GutmanIndex implements GraphReportExtension<Integer> {
     public String getName() {
         return "Gutman Index";
     }
@@ -28,7 +28,7 @@ public class GutmanIndex implements GraphReportExtension<Object> {
         return "Gutman Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         int sum =0;
         AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
         for(Edge e : g.edges()) {

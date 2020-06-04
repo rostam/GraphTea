@@ -26,7 +26,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "Exponential", abbreviation = "_Exponential")
-public class Exponential implements GraphReportExtension {
+public class Exponential implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Exponential";
     }
@@ -35,7 +35,7 @@ public class Exponential implements GraphReportExtension {
         return " Exponential ";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

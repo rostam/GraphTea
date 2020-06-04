@@ -22,7 +22,7 @@ import java.util.Set;
 
 
 @CommandAttitude(name = "eccentricitycomplexity_index", abbreviation = "_Ecomplexindex")
-public class EccentricityComplexityIndex implements GraphReportExtension<Object> {
+public class EccentricityComplexityIndex implements GraphReportExtension<Integer> {
     public String getName() {
         return "E-complex Index";
     }
@@ -31,7 +31,7 @@ public class EccentricityComplexityIndex implements GraphReportExtension<Object>
         return "E-complex Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
         for(Edge e : g.edges()) {
             G.addEdge(new DirectedEdge(e.source.getId(), e.target.getId(), 1d));

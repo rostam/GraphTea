@@ -23,7 +23,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "WinerPolarity", abbreviation = "_WinerPolarity")
-public class WinerPolarity implements GraphReportExtension{
+public class WinerPolarity implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "WinerPolarity";
     }
@@ -32,7 +32,7 @@ public class WinerPolarity implements GraphReportExtension{
         return " WinerPolarity ";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
  
         

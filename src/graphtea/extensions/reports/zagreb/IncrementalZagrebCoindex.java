@@ -19,7 +19,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "inc_zagreb_coindex", abbreviation = "_izci")
-public class IncrementalZagrebCoindex implements GraphReportExtension, Parametrizable {
+public class IncrementalZagrebCoindex implements GraphReportExtension<RenderTable>, Parametrizable {
     public String getName() {
         return "Incremental Zagreb Coindices";
     }
@@ -37,7 +37,7 @@ public class IncrementalZagrebCoindex implements GraphReportExtension, Parametri
         return "Incremental Zagreb Coindices";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add("Alpha");

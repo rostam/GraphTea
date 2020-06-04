@@ -26,7 +26,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class Complement implements GraphReportExtension{
+public class Complement implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Complement";
     }
@@ -35,7 +35,7 @@ public class Complement implements GraphReportExtension{
         return "Complement";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(Utils.createLineGraph(g));
         ZagrebIndexFunctions zifC = new ZagrebIndexFunctions(Utils.createComplementGraph(g));

@@ -16,7 +16,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "finalm2conj", abbreviation = "_finalm2conj")
-public class FinalNewM2Lower implements GraphReportExtension{
+public class FinalNewM2Lower implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Final New M2 Lower";
     }
@@ -25,7 +25,7 @@ public class FinalNewM2Lower implements GraphReportExtension{
         return " Final New M2 Lower ";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

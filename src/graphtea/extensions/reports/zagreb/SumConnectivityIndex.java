@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "sumconn_index", abbreviation = "_sci")
-public class SumConnectivityIndex implements GraphReportExtension {
+public class SumConnectivityIndex implements GraphReportExtension<ArrayList<String>> {
     public String getName() {
         return "Sum Connectivity Index";
     }
@@ -25,7 +25,7 @@ public class SumConnectivityIndex implements GraphReportExtension {
         return "Sum Connectivity Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ArrayList<String> out = new ArrayList<>();
         out.add("Sum Connectivity Index : "+zif.getGeneralSumConnectivityIndex(-0.5));

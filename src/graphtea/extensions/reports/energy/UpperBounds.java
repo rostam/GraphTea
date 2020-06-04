@@ -28,7 +28,7 @@ import static graphtea.extensions.reports.Utils.getLaplacian;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class UpperBounds implements GraphReportExtension {
+public class UpperBounds implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Upper Bounds";
     }
@@ -37,7 +37,7 @@ public class UpperBounds implements GraphReportExtension {
         return "Upper Bounds";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
@@ -164,10 +164,8 @@ public class UpperBounds implements GraphReportExtension {
             }
             double sum = 0;
             double sum_i = 0;
-            for (int i = 0; i < rv.length; i++)
-                sum += Math.pow(Math.abs(rv[i] - (2*m/n)), power);
-            for (int i = 0; i < iv.length; i++)
-                sum_i += Math.abs(iv[i]);
+            for (double v : rv) sum += Math.pow(Math.abs(v - (2 * m / n)), power);
+            for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
                 sum_i = 0;

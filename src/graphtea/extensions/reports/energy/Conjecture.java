@@ -29,7 +29,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class Conjecture implements GraphReportExtension{
+public class Conjecture implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Conjecture";
     }
@@ -38,7 +38,7 @@ public class Conjecture implements GraphReportExtension{
         return "Conjecture";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

@@ -24,7 +24,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "ISIBound", abbreviation = "_ISIBound")
-public class ISIBound implements GraphReportExtension{
+public class ISIBound implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "ISIBound";
     }
@@ -33,7 +33,7 @@ public class ISIBound implements GraphReportExtension{
         return " ISIBound ";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

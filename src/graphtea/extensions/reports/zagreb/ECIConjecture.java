@@ -25,7 +25,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "ECI-Conjecture", abbreviation = "_Eci-Conjecture")
-public class ECIConjecture implements GraphReportExtension {
+public class ECIConjecture implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "ECI-Conjecture";
     }
@@ -34,7 +34,7 @@ public class ECIConjecture implements GraphReportExtension {
         return " ECI-Conjecture ";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

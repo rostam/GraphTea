@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "randic_index", abbreviation = "_ri")
-public class EccentricConnectivityIndex implements GraphReportExtension {
+public class EccentricConnectivityIndex implements GraphReportExtension<ArrayList<String>> {
     public String getName() {
         return "Eccentric Connectivity Index";
     }
@@ -28,7 +28,7 @@ public class EccentricConnectivityIndex implements GraphReportExtension {
     }
 
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ArrayList<String> out = new ArrayList<>();
 

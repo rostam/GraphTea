@@ -24,7 +24,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "SDD", abbreviation = "_SDD")
-public class SDD implements GraphReportExtension{
+public class SDD implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "SDD";
     }
@@ -33,7 +33,7 @@ public class SDD implements GraphReportExtension{
         return " SDD ";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

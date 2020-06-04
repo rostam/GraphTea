@@ -28,7 +28,7 @@ import static graphtea.extensions.reports.Utils.getLaplacian;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class LaplacianEnergy implements GraphReportExtension {
+public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Laplacian Energy";
     }
@@ -37,7 +37,7 @@ public class LaplacianEnergy implements GraphReportExtension {
         return "Laplacian Energy";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

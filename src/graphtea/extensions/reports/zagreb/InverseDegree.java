@@ -21,7 +21,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "lowerm2conj", abbreviation = "_lm2conj")
-public class InverseDegree implements GraphReportExtension{
+public class InverseDegree implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Inverse Degree";
     }
@@ -30,7 +30,7 @@ public class InverseDegree implements GraphReportExtension{
         return "Inverse Degree";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

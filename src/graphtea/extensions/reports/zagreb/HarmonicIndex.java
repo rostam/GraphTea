@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "sumconn_index", abbreviation = "_sci")
-public class HarmonicIndex implements GraphReportExtension {
+public class HarmonicIndex implements GraphReportExtension<ArrayList<String>> {
     public String getName() {
         return "Harmomic Index";
     }
@@ -25,7 +25,7 @@ public class HarmonicIndex implements GraphReportExtension {
         return "Harmonic Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ArrayList<String> out = new ArrayList<>();
         out.add("Harmonic Index : "+zif.getHarmonicIndex());

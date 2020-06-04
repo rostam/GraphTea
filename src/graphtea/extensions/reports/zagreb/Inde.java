@@ -25,7 +25,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "i(G)", abbreviation = "_i(G)")
-public class Inde implements GraphReportExtension {
+public class Inde implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "i(G)";
     }
@@ -34,7 +34,7 @@ public class Inde implements GraphReportExtension {
         return " i(G) ";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

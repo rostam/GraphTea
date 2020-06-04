@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "modified_first_zagreb_connection_index", abbreviation = "_mfzci")
-public class ModifiedFirstZagrebConnectionIndex implements GraphReportExtension {
+public class ModifiedFirstZagrebConnectionIndex implements GraphReportExtension<ArrayList<String>> {
 
     public String getName() {
         return "Modified First Zagreb Connection Index";
@@ -26,7 +26,7 @@ public class ModifiedFirstZagrebConnectionIndex implements GraphReportExtension 
         return "Modified First Zagreb Connection Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ArrayList<String> out = new ArrayList<>();
         out.add("Modified First Zagreb Connection Index: "+ zif.getModifiedFirstZagrebConnection());

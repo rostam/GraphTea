@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "zagreb_index", abbreviation = "_zi")
-public class ThirdZagrebIndex implements GraphReportExtension {
+public class ThirdZagrebIndex implements GraphReportExtension<ArrayList<String>> {
     public String getName() {
         return "Third Zagreb Index";
     }
@@ -24,7 +24,7 @@ public class ThirdZagrebIndex implements GraphReportExtension {
         return "Third Zagreb Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<>();
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         out.add("Third Zagreb Index : "+ zif.getThirdZagreb());

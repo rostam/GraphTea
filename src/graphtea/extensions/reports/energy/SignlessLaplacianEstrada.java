@@ -26,7 +26,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class SignlessLaplacianEstrada implements GraphReportExtension{
+public class SignlessLaplacianEstrada implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Signless Laplacian Estrada";
     }
@@ -35,7 +35,7 @@ public class SignlessLaplacianEstrada implements GraphReportExtension{
         return "Signless Laplacian Estrada";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();

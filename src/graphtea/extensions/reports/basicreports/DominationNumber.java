@@ -15,9 +15,9 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "domination_number", abbreviation = "_dn")
-public class DominationNumber implements GraphReportExtension {
+public class DominationNumber implements GraphReportExtension<Integer> {
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         return MaxIndependentSetReport.getMaxIndependentSetSize(g, false);
     }
     public String getName() {

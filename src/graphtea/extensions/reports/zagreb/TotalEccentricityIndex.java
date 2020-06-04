@@ -19,7 +19,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 
 @CommandAttitude(name = "totaleccentricity_index", abbreviation = "_TEindex")
-public class TotalEccentricityIndex implements GraphReportExtension<Object> {
+public class TotalEccentricityIndex implements GraphReportExtension<Double> {
     public String getName() {
         return "Total eccentrity Index";
     }
@@ -28,7 +28,7 @@ public class TotalEccentricityIndex implements GraphReportExtension<Object> {
         return "Total eccentrity Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public Double calculate(GraphModel g) {
         AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
         for(Edge e : g.edges()) {
             G.addEdge(new DirectedEdge(e.source.getId(), e.target.getId(), 1d));

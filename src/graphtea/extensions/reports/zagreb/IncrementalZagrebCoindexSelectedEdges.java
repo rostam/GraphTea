@@ -19,7 +19,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "inc_zagreb_index_edges", abbreviation = "_izie")
-public class IncrementalZagrebCoindexSelectedEdges implements GraphReportExtension, Parametrizable {
+public class IncrementalZagrebCoindexSelectedEdges implements GraphReportExtension<RenderTable>, Parametrizable {
     public String getName() {
         return "Incremental Zagreb Coindices of Selected Edges";
     }
@@ -37,7 +37,7 @@ public class IncrementalZagrebCoindexSelectedEdges implements GraphReportExtensi
         return "Incremental Zagreb Coindices of Selected Edges";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add("Alpha");

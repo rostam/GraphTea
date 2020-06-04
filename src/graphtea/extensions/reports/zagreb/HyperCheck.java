@@ -23,7 +23,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "m3finalconj", abbreviation = "_m3conj")
-public class HyperCheck implements GraphReportExtension{
+public class HyperCheck implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Hyper Check";
     }
@@ -32,7 +32,7 @@ public class HyperCheck implements GraphReportExtension{
         return "Hyper Check";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(Utils.createLineGraph(g));
 
