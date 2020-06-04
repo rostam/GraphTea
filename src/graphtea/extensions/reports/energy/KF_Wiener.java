@@ -53,7 +53,7 @@ public class KF_Wiener implements GraphReportExtension<RenderTable> {
         titles.add("m ");
         titles.add("n ");
         titles.add("KF");
-     //   titles.add("Wiener");
+        titles.add("Wiener");
        // titles.add("Laplacian");
       //  titles.add("Signless Laplacian");
         titles.add("Diameter");
