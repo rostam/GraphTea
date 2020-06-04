@@ -62,25 +62,6 @@ public class AlgorithmUtils {
     }
 
     /**
-     * returns the degree of the node with the id
-     * @deprecated
-     */
-    public static 
-    int getDegree(GraphModel bg, int node) {
-        int result = 0;
-        double[][] mat = bg.getAdjacencyMatrix().getArray();
-        int vCount = mat.length;
-        if (node > vCount)
-            return -1;
-        for (int i = 0; i < vCount; i++)
-            if (mat[node][i] == 1)
-                result++;
-
-        return result;
-
-    }
-
-    /**
      * returns a path from source to target
      * path.get(0) = dest
      */
@@ -411,7 +392,7 @@ public class AlgorithmUtils {
         ArrayList<Integer> result = new ArrayList<>();
         int vCount = g.getVertexArray().length;
         for (int i = 0; i < vCount; i++)
-            result.add(getDegree(g, i));
+            result.add(g.getDegree(g.getVertex(i)));
         return result;
     }
 
