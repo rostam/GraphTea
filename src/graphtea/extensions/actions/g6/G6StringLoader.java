@@ -3,7 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
-package graphtea.extensions.actions.G6;
+package graphtea.extensions.actions.g6;
 
 import graphtea.extensions.G6Format;
 import graphtea.graph.graph.GraphModel;

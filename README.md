@@ -48,16 +48,16 @@ you can make also reports, generators, file formats and actions.
 
 # What can you do with graphtea?
 
-* Drawing your graph with mouse or using predefined graphs (under graph > generate), like trees, complete graphs, stars, generalized peterson and etc.
-* Getting information about your graphs (under graph > reports menu), like num of connected components, chromatic number, independence number, girth size, num of triangles and etc.
+* Drawing your graph with a mouse or using predefined graphs (under graph > generate), like trees, complete graphs, stars, generalized peterson, etc.
+* Getting information about your graphs (under graph > reports menu), like num of connected components, chromatic number, independence number, girth size, num of triangles etc.
 * Run algorithms step by step on your graph and see how they work. This is very usefull for teaching graph algorithms. You can pause, and it shows the current state of algorithm by coloring edges and vertices.
 * Visualizing your graphs. You made a social network from your database and want to represent it in a meaningfull way? Use the visualizations.
-* Presenting your graphs in your papers, websites or reports. GraphTea has a wide range of options to draw graphs, having different colors for edges and vertices, different borders, fonts, and sizes and etc. When you finish drawing your graph, you can save to a image file or even to a Tex document to put in your report.
+* Presenting your graphs in your papers, websites or reports. GraphTea has a wide range of options to draw graphs, having different colors for edges and vertices, different borders, fonts, sizes, etc. When you finish drawing your graph, you can save to an image file or even to a Tex document to put in your report.
 
 * making new graph generators, graph reports, file types, actions, algorithms by writing extensions. Extensions provide a gateway to add new functionalities as simple as putting a file to extensions directory. You can write them using Java and Matlab. For more samples take a look at extensions directory.
 
 # Need help?
-more docs will come soon. if you have any questions just post it in the issues and i will write you back as soon as possible.
+more docs will come soon. if you have any questions just post it in the issues, and we will write you back as soon as possible.
 
 # CONTRIBUTE
 (http://help.github.com/send-pull-requests/)
