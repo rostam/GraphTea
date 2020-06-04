@@ -110,7 +110,7 @@ public class KF_Wiener implements GraphReportExtension<RenderTable> {
         double maxEdge2 = 0;
         double minEdge = Integer.MAX_VALUE;
         
-        ArrayList<Integer> all = new ArrayList<Integer>();
+        ArrayList<Integer> all = new ArrayList<>();
         for(Edge e : g.getEdges()) {
                 int f = g.getDegree(e.source) +
                 g.getDegree(e.target) - 2;
@@ -153,7 +153,7 @@ public class KF_Wiener implements GraphReportExtension<RenderTable> {
            v.add(m);
            v.add(n);
            //Kirchhoff Index
-           v.add(Double.parseDouble(kf.calculate(g).toString()));
+           v.add(Double.parseDouble(kf.calculate(g)));
           // Wiener Index
            v.add(wi.calculate(g));
            //  Laplacian

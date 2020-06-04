@@ -58,9 +58,7 @@ public class BackwardTrees implements VisualizationExtension {
 
     private Vertex findAppropriateRoot(GraphModel g) {
         Vertex root = g.getAVertex();
-        Iterator<Vertex> ei = g.iterator();
-        while (ei.hasNext()) {
-            Vertex e = ei.next();
+        for (Vertex e : g) {
             root = findHigherVertex(e, root);
         }
         return root;
@@ -155,8 +153,6 @@ public class BackwardTrees implements VisualizationExtension {
         if (!nextLevel.isEmpty()) {
             visitedVertices.addAll(nextLevel);
             locateAll(nextLevel, width, currentLevelHeight + 30, level + 1, radius * 9 / 16);
-        } else {
-            return;
         }
     }
 
@@ -182,7 +178,6 @@ public class BackwardTrees implements VisualizationExtension {
                 Vertex v1 = e.source.equals(v) ? e.target : e.source;
                 if (!placedVertices.contains(v1)) {
                     sum += g.getInDegree(v1);
-                } else {
                 }
             }
             iter = g.edgeIterator(v);

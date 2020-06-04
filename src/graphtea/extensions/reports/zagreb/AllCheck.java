@@ -141,7 +141,7 @@ public class AllCheck implements GraphReportExtension<RenderTable> {
         double maxEdge2 = 0;
         double minEdge = Integer.MAX_VALUE;
         
-        ArrayList<Integer> all = new ArrayList<Integer>();
+        ArrayList<Integer> all = new ArrayList<>();
         for(Edge e : g.getEdges()) {
                 int f = g.getDegree(e.source) +
                 g.getDegree(e.target) - 2;
@@ -197,7 +197,7 @@ public class AllCheck implements GraphReportExtension<RenderTable> {
         double alpha=(1/m)*(Math.floor(m))*(1-((1/m)*(Math.floor(m/2))));
         double alpha1=(m)*(Math.floor(m/2))*(1-((1/m)*(Math.floor(m/2))));
         
-        int diameter = (int) new Diameter().calculate(g);
+        int diameter = new Diameter().calculate(g);
         WienerIndex wi = new WienerIndex();
         double Avg=(n*(n-1)/2);
 

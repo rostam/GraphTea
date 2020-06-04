@@ -144,7 +144,7 @@ public class Mostar implements GraphReportExtension<RenderTable> {
         double maxEdge2 = 0;
         double minEdge = Integer.MAX_VALUE;
 
-        ArrayList<Integer> all = new ArrayList<Integer>();
+        ArrayList<Integer> all = new ArrayList<>();
         for(Edge e : g.getEdges()) {
             int f = g.getDegree(e.source) +
                     g.getDegree(e.target) - 2;

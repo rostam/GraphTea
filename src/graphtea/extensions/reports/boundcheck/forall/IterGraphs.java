@@ -134,9 +134,7 @@ public class IterGraphs {
 
         Vector<Object> data = new Vector<>();
         data.add(count + "");
-        for (Object o : ret.poll()) {
-            data.add(o);
-        }
+        data.addAll(ret.poll());
         if (ConjectureChecking.PostP.getValue().equals("Equality Filter")) {
             Double toBeTruncated = (Double) data.get(1);
             double o = new BigDecimal(toBeTruncated).setScale(8, BigDecimal.ROUND_HALF_UP).doubleValue();

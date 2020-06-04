@@ -46,8 +46,7 @@ public class AcyclicSP extends GraphAlgorithm implements AutomatedAlgorithm {
             t.put(type.getId(), type);
         for (Vertex type : g)
             gcopy2g.put(t.get(type.getId()), type);
-        for (int i = 0; i < dist.length; i++)
-            dist[i] = Integer.MAX_VALUE;
+        Arrays.fill(dist, Integer.MAX_VALUE);
 
         dist[v.getId()] = 0;
 

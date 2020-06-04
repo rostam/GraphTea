@@ -114,7 +114,7 @@ public class AGIndex implements GraphReportExtension<RenderTable> {
         double maxEdge2 = 0;
         double minEdge = Integer.MAX_VALUE;
 
-        ArrayList<Integer> all = new ArrayList<Integer>();
+        ArrayList<Integer> all = new ArrayList<>();
         for(Edge e : g.getEdges()) {
             int f = g.getDegree(e.source) +
                     g.getDegree(e.target) - 2;
@@ -132,7 +132,7 @@ public class AGIndex implements GraphReportExtension<RenderTable> {
         double maxDel2 = 0;
         double minDel = Integer.MAX_VALUE;
 
-        ArrayList<Integer> all1 = new ArrayList<Integer>();
+        ArrayList<Integer> all1 = new ArrayList<>();
         for(Edge e : g.getEdges()) {
             int f1 = ((2*(g.getDegree(e.source) * g.getDegree(e.target) ) )/((g.getDegree(e.source) + g.getDegree(e.target) )*(g.getDegree(e.source) + g.getDegree(e.target) ))) ;
             all1.add(f1);
@@ -190,7 +190,7 @@ public class AGIndex implements GraphReportExtension<RenderTable> {
 
         List<Integer>[] gg = new List[g.getVerticesCount()];
         for (int i = 0; i < g.getVerticesCount(); i++) {
-            gg[i] = new ArrayList();
+            gg[i] = new ArrayList<>();
         }
 
         for(Edge e : g.getEdges()) {
@@ -203,7 +203,7 @@ public class AGIndex implements GraphReportExtension<RenderTable> {
         double alpha=(1/m)*(Math.floor(m))*(1-((1/m)*(Math.floor(m/2))));
         double alpha1=(m)*(Math.floor(m/2))*(1-((1/m)*(Math.floor(m/2))));
 
-        int diameter = (int) new Diameter().calculate(g);
+        int diameter = new Diameter().calculate(g);
         WienerIndex wi = new WienerIndex();
         double Avg=(n*(n-1)/2);
 

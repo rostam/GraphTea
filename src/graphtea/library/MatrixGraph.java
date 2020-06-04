@@ -438,8 +438,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
             if (directed) {
                 for (ArrayList<ArrayList<EdgeType>> aae : adjacencyMatrix)
                     for (ArrayList<EdgeType> ae : aae)
-                        for (EdgeType e : ae)
-                            edges.add(e);
+                        edges.addAll(ae);
             } else {
                 int iCount = 0;
                 int jCount;
@@ -454,8 +453,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
                         if (ae == null)
                             continue;
 
-                        for (EdgeType e : ae)
-                            edges.add(e);
+                        edges.addAll(ae);
                     }
                     ++iCount;
                 }

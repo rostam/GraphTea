@@ -34,9 +34,7 @@ public class SparseTreeVisualization implements VisualizationExtension {
 
     private Vertex findAppropriateRoot(GraphModel g) {
         Vertex root = g.getAVertex();
-        Iterator<Vertex> ei = g.iterator();
-        while (ei.hasNext()) {
-            Vertex e = ei.next();
+        for (Vertex e : g) {
             root = findHigherVertex(e, root);
         }
         return root;
