@@ -5,11 +5,17 @@
 
 package graphtea.extensions;
 
-import graphtea.graph.graph.*;
+import graphtea.graph.graph.GPoint;
+import graphtea.graph.graph.GRect;
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.Vertex;
 import graphtea.library.Path;
 import graphtea.library.algorithms.LibraryUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Vector;
 
 /**
  * Just some methods helping you to write Graph Algorithms easier,
