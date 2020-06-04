@@ -38,7 +38,7 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension<ArrayList
 	/**
 	 * Gets the eigen values and vectors of the graph and returns them as an array of strings.
 	 * @param matrix the Adjacency matrix of the graph
-	 * @return 
+	 * @return Eigen values and vectors
 	 */
 	private ArrayList<String> getEigenValuesAndVectors(Matrix matrix)
 	{
@@ -54,16 +54,10 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension<ArrayList
 				result.add("" + AlgorithmUtils.round(rv[i], 5));
 		result.add("Eigen Vectors:\n");
 		double[][] eigenVectors = ed.getV().getArray();
-		for (double[] eigenVector : eigenVectors) result.add(Arrays.toString(round(eigenVector, 5)));
+		for (double[] eigenVector : eigenVectors) result.add(Arrays.toString(AlgorithmUtils.round(eigenVector, 5)));
 		return result;
 	}
 
-	private double[] round (double[] array, int prec)
-	{
-		Arrays.setAll(array, i -> AlgorithmUtils.round(array[i], prec));
-		return array;
-
-	}
 	public String getName() {
 		return "Spectrum of Eccentricity Matrix";
 	}

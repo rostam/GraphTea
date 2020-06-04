@@ -17,25 +17,20 @@ public class MinimumCut extends Algorithm implements GraphReportExtension{
 	GraphModel g;
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "Connectivity";
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
 		return "Min Cut";
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return "Min Cut";
 	}
 	
 
-	
-	
 	@Override
 	public Object calculate(GraphModel g) {
 		//AlgorithmAnimator algorithmAnimator = new AlgorithmAnimator( gd.getBlackboard());

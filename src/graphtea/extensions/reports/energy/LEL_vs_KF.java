@@ -157,14 +157,6 @@ public class LEL_vs_KF implements GraphReportExtension<RenderTable> {
         return ret;
     }
 
-    double round(double value, int decimalPlace) {
-        double power_of_ten = 1;
-        while (decimalPlace-- > 0)
-            power_of_ten *= 10.0;
-        return Math.round(value * power_of_ten)
-                / power_of_ten;
-    }
-
     @Override
     public String getCategory() {
         return "OurWorks-Graph Energy";

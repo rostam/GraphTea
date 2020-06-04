@@ -19,9 +19,9 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class SignlessLaplacianEnergy implements GraphReportExtension {
+public class SignlessLaplacianEnergy implements GraphReportExtension<String> {
 
-    public Object calculate(GraphModel g) {
+    public String calculate(GraphModel g) {
         double power = 1;
         try {
             Matrix B = g.getWeightedAdjacencyMatrix();

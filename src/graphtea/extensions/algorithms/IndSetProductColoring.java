@@ -7,7 +7,6 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.IndSubGraphs;
 import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
-import graphtea.library.BaseVertex;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
@@ -31,7 +30,7 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
         super(blackBoard);
     }
 
-    public static Vector<ArrayDeque<BaseVertex>> getAllIndependentSets(GraphModel graph) {
+    public static Vector<ArrayDeque<Vertex>> getAllIndependentSets(GraphModel graph) {
         Partitioner p = new Partitioner(graph);
         AllIndSetSubSetListener l = new AllIndSetSubSetListener();
         p.findAllSubsets(l);
@@ -68,14 +67,12 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
         //       "</tr>");
 
         GraphModel g = graphData.getGraph();
-        Vector<ArrayDeque<BaseVertex>> maxsets = getAllIndependentSets(g);
+        Vector<ArrayDeque<Vertex>> maxsets = getAllIndependentSets(g);
         Vector<SubGraph> ret = new Vector<>();
-        for (ArrayDeque<BaseVertex> maxset : maxsets) {
+        for (ArrayDeque<Vertex> maxset : maxsets) {
             SubGraph sd = new SubGraph(g);
             sd.vertices = new HashSet<>();
-            for (BaseVertex v : maxset) {
-                sd.vertices.add((Vertex) v);
-            }
+            sd.vertices.addAll(maxset);
             ret.add(sd);
         }
 
@@ -163,8 +160,8 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
 }
 
 class AllIndSetSubSetListener implements SubSetListener {
-    Vector<ArrayDeque<BaseVertex>> maxsets = new Vector<>();
-    public boolean subsetFound(int t, ArrayDeque<BaseVertex> complement, ArrayDeque<BaseVertex> set) {
+    Vector<ArrayDeque<Vertex>> maxsets = new Vector<>();
+    public boolean subsetFound(int t, ArrayDeque<Vertex> complement, ArrayDeque<Vertex> set) {
         maxsets.add(new ArrayDeque<>(set));
         return false;
     }

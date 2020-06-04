@@ -138,7 +138,6 @@ public class FinalNewM2Lower implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        // TODO Auto-generated method stub
         return "OurWorks-Conjectures";
     }
 }

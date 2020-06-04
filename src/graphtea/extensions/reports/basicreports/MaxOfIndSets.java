@@ -7,7 +7,7 @@ package graphtea.extensions.reports.basicreports;
 import graphtea.extensions.reports.Partitioner;
 import graphtea.extensions.reports.SubSetListener;
 import graphtea.graph.graph.GraphModel;
-import graphtea.library.BaseVertex;
+import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -18,7 +18,7 @@ import java.util.ArrayDeque;
  */
 
 @CommandAttitude(name = "num_of_inds", abbreviation = "_indssize")
-public class MaxOfIndSets implements GraphReportExtension {
+public class MaxOfIndSets implements GraphReportExtension<Integer> {
     public String getName() {
         return "Number of independent sets plus empty set";
     }
@@ -27,12 +27,9 @@ public class MaxOfIndSets implements GraphReportExtension {
         return "Number of independent sets in the Graph";
     }
 
-    public Object calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         Partitioner p = new Partitioner(g);
         return p.findMaxIndSet(false);
-//        IndSetCounter l = new IndSetCounter();
-//        p.findAllSubsets(l);
-//        return l.num + 1;
     }
 
 	@Override
@@ -45,7 +42,7 @@ public class MaxOfIndSets implements GraphReportExtension {
 class IndSetCounter implements SubSetListener {
     public int num = -1;
 
-    public boolean subsetFound(int t, ArrayDeque<BaseVertex> complement, ArrayDeque<BaseVertex> set) {
+    public boolean subsetFound(int t, ArrayDeque<Vertex> complement, ArrayDeque<Vertex> set) {
         num++;
         return false;
     }

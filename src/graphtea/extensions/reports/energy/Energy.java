@@ -138,7 +138,7 @@ public class Energy implements GraphReportExtension<RenderTable> {
     //    v.add(Math.sqrt(2*m*n) - (up/down));
 
         //eigenvalues
-        v.add(getEigenValues(g));
+        v.add(AlgorithmUtils.getEigenValues(g));
 
         //2-degree sum
      //   v.add(Utils.getDegreeSum(g,1));
@@ -170,26 +170,6 @@ public class Energy implements GraphReportExtension<RenderTable> {
         ret.add(v);
         return ret;
     }
-
-    public static String getEigenValues(GraphModel g) {
-        Matrix A = g.getWeightedAdjacencyMatrix();
-        EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double[] iv = ed.getImagEigenvalues();
-        String res = "";
-        for (int i = 0; i < rv.length; i++) {
-            if (iv[i] != 0)
-                res +="" + AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i";
-            else
-                res += "" + AlgorithmUtils.round(rv[i], 10);
-            if(i!=rv.length-1) {
-                res += ",";
-            }
-        }
-        return res;
-    }
-
-
 
     @Override
     public String getCategory() {

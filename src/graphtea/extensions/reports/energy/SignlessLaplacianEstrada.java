@@ -169,24 +169,6 @@ public class SignlessLaplacianEstrada implements GraphReportExtension<RenderTabl
         return ret;
     }
 
-    public static String getEigenValues(GraphModel g) {
-        Matrix A = g.getWeightedAdjacencyMatrix();
-        EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double[] iv = ed.getImagEigenvalues();
-        String res = "";
-        for (int i = 0; i < rv.length; i++) {
-            if (iv[i] != 0)
-                res +="" + AlgorithmUtils.round(rv[i], 5) + " + " + AlgorithmUtils.round(iv[i], 5) + "i";
-            else
-                res += "" + AlgorithmUtils.round(rv[i], 5);
-            if(i!=rv.length-1) {
-                res += ",";
-            }
-        }
-        return res;
-    }
-
     @Override
     public String getCategory() {
         return "OurWorks-Graph Energy";

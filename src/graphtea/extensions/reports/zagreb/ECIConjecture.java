@@ -312,7 +312,7 @@ public class ECIConjecture implements GraphReportExtension<RenderTable> {
    //     v.add(eci.calculate(g));
         
         eci.setA(0);
-       double dd = (double)eci.calculate(g);
+       double dd = eci.calculate(g);
         // Average Eccentricity.
         v.add(dd/n);
         v.add((Math.floor(5*n/2)) / n );

@@ -5,7 +5,7 @@
 
 package graphtea.extensions.reports;
 
-import graphtea.library.BaseVertex;
+import graphtea.graph.graph.Vertex;
 
 import java.util.ArrayDeque;
 
@@ -14,5 +14,5 @@ import java.util.ArrayDeque;
  * @see graphtea.extensions.reports.Partitioner
  */
 public interface SubSetListener {
-    boolean subsetFound(int t, ArrayDeque<BaseVertex> complement, ArrayDeque<BaseVertex> set);
+    boolean subsetFound(int t, ArrayDeque<Vertex> complement, ArrayDeque<Vertex> set);
 }

@@ -29,7 +29,6 @@ public class KirchhoffIndex implements GraphReportExtension<String> {
     }
 
     public String calculate(GraphModel g) {
-        double power = 1;
         try {
             Matrix B = g.getWeightedAdjacencyMatrix();
             Matrix A = Utils.getLaplacian(B);

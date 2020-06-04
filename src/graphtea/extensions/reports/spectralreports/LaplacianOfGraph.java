@@ -2,6 +2,7 @@ package graphtea.extensions.reports.spectralreports;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -16,23 +17,10 @@ import java.util.Arrays;
  *
  * @author Hooman Mohajeri Moghaddam
  */
-public class LaplacianOfGraph implements GraphReportExtension  {
+public class LaplacianOfGraph implements GraphReportExtension<ArrayList<String>>  {
 
 
 	boolean inDegree;
-	/**
-	 * Round func
-	 * @param value The value
-	 * @param decimalPlace The decimal place
-	 * @return rounded value of the input to the number of decimalPlace
-	 */
-	private double round(double value, int decimalPlace) {
-		double power_of_ten = 1;
-		while (decimalPlace-- > 0)
-			power_of_ten *= 10.0;
-		return Math.round(value * power_of_ten)
-		/ power_of_ten;
-	}
 
 	/**
 	 * Undirected Laplacian.
@@ -108,22 +96,15 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 		double[] iv = ed.getImagEigenvalues();
 		for (int i = 0; i < rv.length; i++)
 			if (iv[i] != 0)
-				result.add("" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i");
+				result.add("" + AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i");
 			else
-				result.add("" + round(rv[i], 10));
+				result.add("" + AlgorithmUtils.round(rv[i], 10));
 		result.add("Eigen Vectors:\n");
 		double[][] eigenVectors = ed.getV().getArray();
-        for (double[] eigenVector : eigenVectors) result.add(Arrays.toString(round(eigenVector, 10)));
+        for (double[] eigenVector : eigenVectors) result.add(Arrays.toString(AlgorithmUtils.round(eigenVector, 10)));
 		return result;
 	}
 
-	private double[] round (double[] array, int prec)
-	{
-		for(int i=0;i<array.length;i++)
-			array[i]=round(array[i],prec);
-		return array;
-
-	}
 	public String getName() {
 		return "Spectrum of Laplacian";
 	}
@@ -132,7 +113,7 @@ public class LaplacianOfGraph implements GraphReportExtension  {
 		return "The Laplacian matrix associated with the graph";
 	}
 
-	public Object calculate(GraphModel g) {
+	public ArrayList<String> calculate(GraphModel g) {
 
 		try {
 			if(g.isDirected())

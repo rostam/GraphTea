@@ -5,6 +5,8 @@
 
 package graphtea.extensions;
 
+import Jama.EigenvalueDecomposition;
+import Jama.Matrix;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GRect;
 import graphtea.graph.graph.GraphModel;
@@ -412,6 +414,33 @@ public class AlgorithmUtils {
             power_of_ten *= 10.0;
         return Math.round(value * power_of_ten)
                 / power_of_ten;
+    }
+
+
+    public static double[] round (double[] array, int prec)
+    {
+        for(int i=0;i<array.length;i++)
+            array[i]=round(array[i],prec);
+        return array;
+
+    }
+
+    public static String getEigenValues(GraphModel g) {
+        Matrix A = g.getWeightedAdjacencyMatrix();
+        EigenvalueDecomposition ed = A.eig();
+        double[] rv = ed.getRealEigenvalues();
+        double[] iv = ed.getImagEigenvalues();
+        String res = "";
+        for (int i = 0; i < rv.length; i++) {
+            if (iv[i] != 0)
+                res +="" + rv[i] + " + " + iv[i] + "i";
+            else
+                res += "" + rv[i];
+            if(i!=rv.length-1) {
+                res += ",";
+            }
+        }
+        return res;
     }
 
     public interface BFSListener {

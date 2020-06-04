@@ -21,7 +21,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
 public class LaplacianEnergyLike implements GraphReportExtension<String> {
     public String calculate(GraphModel g) {
-        double power = 1;
         try {
             Matrix B = g.getWeightedAdjacencyMatrix();
             Matrix A = Utils.getLaplacian(B);

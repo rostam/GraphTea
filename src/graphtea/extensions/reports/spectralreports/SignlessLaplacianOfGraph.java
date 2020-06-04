@@ -101,17 +101,10 @@ public class SignlessLaplacianOfGraph implements GraphReportExtension<ArrayList<
 				result.add("" + AlgorithmUtils.round(rv[i], 5));
 		result.add("Eigen Vectors:\n");
 		double[][] eigenVectors = ed.getV().getArray();
-        for (double[] eigenVector : eigenVectors) result.add(Arrays.toString(round(eigenVector, 5)));
+        for (double[] eigenVector : eigenVectors) result.add(Arrays.toString(AlgorithmUtils.round(eigenVector, 5)));
 		return result;
 	}
 
-	private double[] round (double[] array, int prec)
-	{
-		for(int i=0;i<array.length;i++)
-			array[i]=AlgorithmUtils.round(array[i],prec);
-		return array;
-
-	}
 	public String getName() {
 		return "Spectrum of Signless Laplacian";
 	}

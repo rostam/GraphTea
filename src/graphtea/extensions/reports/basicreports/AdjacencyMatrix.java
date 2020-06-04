@@ -7,6 +7,7 @@ package graphtea.extensions.reports.basicreports;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -20,14 +21,6 @@ import java.util.Arrays;
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
 public class AdjacencyMatrix implements GraphReportExtension<ArrayList<String>> {
-
-    private double round(double value, int decimalPlace) {
-        double power_of_ten = 1;
-        while (decimalPlace-- > 0)
-            power_of_ten *= 10.0;
-        return Math.round(value * power_of_ten)
-                / power_of_ten;
-    }
 
     public ArrayList<String> calculate(GraphModel g) {
         ArrayList<String> res = new ArrayList<>();
@@ -43,23 +36,14 @@ public class AdjacencyMatrix implements GraphReportExtension<ArrayList<String>> 
 
         for (int i = 0; i < rv.length; i++)
             if (iv[i] != 0)
-                res.add("" + round(rv[i], 5) + " + " + round(iv[i], 5) + "i");
+                res.add("" + AlgorithmUtils.round(rv[i], 5) + " + " + AlgorithmUtils.round(iv[i], 5) + "i");
             else
-                res.add("" + round(rv[i], 5));
+                res.add("" + AlgorithmUtils.round(rv[i], 5));
         res.add("Eigen Vectors:\n");
         double[][] eigenVectors = ed.getV().getArray();
-        for (double[] eigenVector : eigenVectors) res.add(Arrays.toString(round(eigenVector, 5)));
+        for (double[] eigenVector : eigenVectors) res.add(Arrays.toString(AlgorithmUtils.round(eigenVector, 5)));
         return res;
     }
-    
-
-private double[] round (double[] array, int prec)
-{
-    for(int i=0;i<array.length;i++)
-		array[i]=round(array[i],prec);
-	return array;
-	
-}
 
     public String getName() {
         return "Spectrum of Adjacency";
