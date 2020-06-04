@@ -23,7 +23,6 @@ import graphtea.ui.components.gsidebar.GSidebar;
 import graphtea.ui.extension.AbstractExtensionAction;
 import graphtea.ui.extension.UIActionExtensionAction;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -98,7 +97,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         if (DEBUG) System.err.println("handle_tool: " + meta);
     }
 
-    public void end_toolbar() throws SAXException {
+    public void end_toolbar()  {
         lastToolbar.add(new JSeparator(JSeparator.VERTICAL));
         toolbar.addIndexed(lastToolbar, lastToolbarPlace);
 //        toolbar.add(lastToolbar);
@@ -133,8 +132,6 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
     public void start_menues(Attributes meta) {
     }
 
-    static HashMap<JMenuItem, Integer> places = new HashMap<>();
-
     private Pair<Integer, String> extractLabelInfo(String label) {
         int index = Math.max(label.indexOf(menueIndexChar), 0);
         label = label.replace(menueIndexChar + "", "");
@@ -143,7 +140,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
 
     int lastMenuPlace;
 
-    public void start_submenu(final Attributes meta) throws SAXException {
+    public void start_submenu(final Attributes meta)  {
         String label = meta.getValue("label");
         String accel = meta.getValue("accelerator");
         Pair<Integer, String> lInfo = extractLabelInfo(label);
@@ -183,10 +180,9 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
          * if the menu action was an extension removes the menu
          * that the extension created in UI and set it to this menu.
          */
-        System.out.println(" whatthewhat " + action);
-
+        
         graphtea.platform.core.AbstractAction targetAction = actions.get(action);
-        System.out.println(" whatthewhat2 " + targetAction);
+        
         if (targetAction instanceof AbstractExtensionAction) {
             AbstractExtensionAction targetExt = (AbstractExtensionAction) targetAction;
             item = targetExt.menuItem;
@@ -231,14 +227,14 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         return place;
     }
 
-    public void end_submenu() throws SAXException {
+    public void end_submenu()  {
 //        currentMenu.add(new JSeparator(JSeparator.VERTICAL));
 //        GMenuBar.insert(currentMenu, new JSeparator(JSeparator.VERTICAL), -1);
         //todo: add ability of adding JSeperator to UI
         if (DEBUG) System.err.println("end_submenu()");
     }
 
-    public void end_menues() throws SAXException {
+    public void end_menues()  {
         //pak kardan e menu e action e ezafe
         GMenuBar menu = frame.getMenu();
         for (int i = 0; i < menu.getMenuCount(); i++) {
@@ -269,7 +265,6 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
             ExceptionHandler.catchException(e);
             return;
         }
-        boolean b = false;
         graphtea.platform.core.AbstractAction x = loadAbstractAction(clazz);
 
 /*
