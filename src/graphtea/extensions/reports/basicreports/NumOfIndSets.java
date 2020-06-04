@@ -5,13 +5,9 @@
 package graphtea.extensions.reports.basicreports;
 
 import graphtea.extensions.reports.Partitioner;
-import graphtea.extensions.reports.SubSetListener;
 import graphtea.graph.graph.GraphModel;
-import graphtea.library.BaseVertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.util.ArrayDeque;
 
 /**
  * @author azin azadi
@@ -40,11 +36,3 @@ public class NumOfIndSets implements GraphReportExtension<Integer> {
 	}
 }
 
-class IndSetCounter implements SubSetListener {
-    public int num = -1;
-
-    public boolean subsetFound(int t, ArrayDeque<BaseVertex> complement, ArrayDeque<BaseVertex> set) {
-        num++;
-        return false;
-    }
-}

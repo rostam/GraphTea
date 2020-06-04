@@ -5,7 +5,6 @@ import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.basicreports.Diameter;
-import graphtea.extensions.reports.basicreports.GirthSize;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.extensions.reports.clique.MaxCliqueExtension;
 import graphtea.graph.graph.Edge;
@@ -23,57 +22,41 @@ import java.util.Vector;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "ISIBound", abbreviation = "_ISIBound")
-public class ISIBound implements GraphReportExtension{
+@CommandAttitude(name = "AllCheck", abbreviation = "_AllCheck")
+public class AllCheck implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "ISIBound";
+        return "AllCheck";
     }
 
     public String getDescription() {
-        return " ISIBound ";
+        return " AllCheck ";
     }
 
-    public Object calculate(GraphModel g) {
+    public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add(" m ");
         titles.add(" n ");
-       //   titles.add(" VR ");
-   //      titles.add(" R ");
-   //     titles.add("H");
+
+           titles.add(" R ");
       //    titles.add("(n/2)- R ");
-     //     titles.add(" H ");
+           titles.add(" H ");
+           titles.add(" VR ");
     //      titles.add(" f(G) ");
     //            titles.add(" VR ");
       //          titles.add("(n/2)- VR ");
-     //           titles.add(" GA "); 
-    //    titles.add(" Multiplicative "); 
-    //    titles.add(" SDD-co "); 
-    //    titles.add(" RHS "); 
-    //    titles.add(" RHS-2  ");  
-     //   titles.add(" RHS-3  "); 
-       titles.add(" SDD-co "); 
-        titles.add(" LHS1 "); 
-        titles.add(" alb "); 
-   //     titles.add(" GA+GA-co "); 
-   //     titles.add(" RHS "); 
-      //   titles.add(" L.H.S> ");  
-
-      //   titles.add(" SDD ");  
-    //     titles.add(" f(G) "); 
-     //   titles.add(" ISI ");  
-   //     titles.add(" RHS ");  
+               titles.add(" GA "); 
+        titles.add(" chi "); 
+        titles.add("ID");
+        titles.add(" SDD ");  
+        titles.add(" ISI ");  
+        titles.add(" check ");  
      //   titles.add(" Rao Sir ");  
-   //      titles.add(" Upper "); 
-   //      titles.add(" p "); 
-
-       // titles.add(" Lemma "); 
-   //     titles.add(" 1 "); 
-    //    titles.add(" 2 "); 
+        
      //  titles.add("(n/2)- chi ");
     //   titles.add(" W_p ");  
-       
+        titles.add(" Diameter ");   
    //     titles.add("cr");
        // titles.add("f(G)");
       //  titles.add("Hyper");
@@ -97,7 +80,7 @@ public class ISIBound implements GraphReportExtension{
    //     titles.add("H check.");
         // titles.add(" milo1 ");
       //  titles.add("R1 check");
-    //     titles.add(" GA ");
+       //  titles.add(" GA ");
       //    titles.add(" H ");
     //     titles.add(" chi ");
        //  titles.add(" check1 ");
@@ -110,14 +93,15 @@ public class ISIBound implements GraphReportExtension{
      //      titles.add("Chromatic number");
          //   titles.add(" L.H.S ");
      //       titles.add(" R.H.S even ");
-        //    titles.add(" R.H.S odd "); 
-
-   //  titles.add("ID");
+        //    titles.add(" R.H.S odd ");
+        
+     //   titles.add("R");
+    
         //titles.add("Wiener");
         //titles.add("Avg");
-   //     titles.add("Diameter");
+        //titles.add("Diameter");
      //    titles.add("Clique Number");
-    //    titles.add("Girth");
+
    //     titles.add(" V. Degrees ");
 
         ret.setTitles(titles);
@@ -174,7 +158,6 @@ public class ISIBound implements GraphReportExtension{
         
         double M12=zif.getSecondZagreb(1);
         double M21=zif.getFirstZagreb(1);
-        double MM21=zif.getMultiplicativeFirstZagreb(1);
         double H=zif.getHarmonicIndex();
         double M31=zif.getFirstZagreb(2);
         double M41=zif.getFirstZagreb(3);
@@ -188,11 +171,7 @@ public class ISIBound implements GraphReportExtension{
         double R1=zif.getSecondZagreb(-1);
         double GA=zif.getGAindex();
         double ABC=zif.getABCindex();
-        double Hcoindex=zif.getHarmonicCoindex();
-        double Albcoindex=zif.getAlbCoindex();
-        double SDDcoindex=zif.getSDDCoindex();
-        double GAcoindex=zif.getGACoindex();
-        double inversesumcoindex= zif.getInverseSumIndegCoindex();
+        double HC=zif.getHarmonicCoindex();
         double chi11=zif.getGeneralSumConnectivityIndex(-1);
         double chi22=zif.getGeneralSumConnectivityIndex(-0.5);
         double chi33=zif.getGeneralSumConnectivityIndex(-0.1);
@@ -218,8 +197,6 @@ public class ISIBound implements GraphReportExtension{
         double alpha=(1/m)*(Math.floor(m))*(1-((1/m)*(Math.floor(m/2))));
         double alpha1=(m)*(Math.floor(m/2))*(1-((1/m)*(Math.floor(m/2))));
         
-        int girth = (int) new GirthSize().calculate(g);
-        
         int diameter = (int) new Diameter().calculate(g);
         WienerIndex wi = new WienerIndex();
         double Avg=(n*(n-1)/2);
@@ -227,64 +204,29 @@ public class ISIBound implements GraphReportExtension{
         Vector<Object> v = new Vector<>();
         v.add(m);
         v.add(n);
-        //v.add(VR);
-        // Hyper Zagreb Index.
-      //  v.add(chi2);
-    //     v.add(R);
-   //      v.add((n/2)-R);
-    //    v.add((n/2)-H);
-   //     v.add(MM21);
-  //       v.add(VR);
-   ////      v.add((n/2)-VR);
-      // v.add(R);
-   //    v.add(H);
- 
-  //      
-        // R.H.S
-        v.add( SDDcoindex );
-            v.add( ((4*m*m)-M21-(2*M12))*(SDDcoindex-(n*(n-1))+(2*m)) );
-            v.add(2*Albcoindex*Albcoindex);
-      //    v.add( 2*(((2*m)*(n-1))-M21)*(((2*m)*(n-1))-M21)*1.0 );
-     //   v.add( SDDcoindex );
-     //   v.add( (n*(n-1)) - (2*m) );
-    //    v.add( (n-1)*(n-2) );
-    //    v.add( n*(n-3) );
-    //    v.add( SDD+SDDcoindex );
-     //   v.add( n*(n-1)  );
-     //   v.add( GAcoindex );
-      //  v.add( (n-2)*(n-1)/2  );
-     //   v.add( n*(n-3)/2  );
-      //  v.add( GA+GAcoindex );
-      //  v.add( n*(n-1)/2);
-      //  v.add(2*(SDDcoindex+(n*(n-1))-(2*m))*(GAcoindex*GAcoindex));
-     //   v.add( ((n*(n-1))-(2*m))*((n*(n-1))-(2*m))*((n*(n-1))-(2*m)) );
-        
-      //  v.add( (n-2)*(n-1)  );
-        
-   //    v.add(GA);
-   //    v.add( (n*n*(maxDeg+1)/(n+1+maxDeg))  +  (m*maxDeg*((7*maxDeg)+5)/((3*maxDeg)+1))  );
-    // v.add(n+m);
-    // v.add(SDD);
-    // v.add(SDD-(2*m));
-     // error 
-    // v.add(((27*n)+1)/8);
-     //v.add( p );
-  //   v.add( (2.0*m)+((2.0*p)/3) );
-   
-     // Theorem 3 SDD index.
-    //v.add( (3.0*n)+(m/2) );
-     // Theorem 3 SDD index.
-    //  v.add((3.0*n)+(m/2)-0.5 );
- 
-     //  v.add(ISI);
-    //   v.add((maxDeg*maxDeg/2)*(1+((1/minDeg)*( ((n*n*(clique-1))  /(2*clique))-maxDeg ) )  )  );
-   //    v.add( (n*n*(minDeg+1)/(n+1+minDeg))  +  (m*minDeg*((7*minDeg)+5)/((3*minDeg)+1))  );
-  //     v.add(chi);
+      
+          v.add(R);
+          v.add(H);
+          v.add(VR);
+          v.add(GA);
+          v.add(chi);
+          v.add(ID);
+          v.add(SDD);
+          v.add(ISI);
 
+   //      v.add((n/2)-R);
+      
+    //    v.add((n/2)-H);
+  //       v.add(VR);
+   //      v.add((n/2)-VR);
+      
+
+   //     
+      
     //    v.add(SDD-(2*m));
         //rao sir
    //     v.add(((n-5)*((n*n)-(2*n)+2)/(n-1)) +(2*((n*n)-(2*n)+5)/(n-1)) +4 );
-     //   v.add(((p*minDeg2)/(maxDeg+1))+((m-p)*(Math.sqrt(  (2*maxDeg*Math.pow(minDeg2,6))/((Math.pow(maxDeg,6))+(2*Math.pow(minDeg2,5))+(4*Math.pow(minDeg2,2)*Math.pow(maxDeg,3))  )   ))));
+        v.add(((p*minDeg2)/(maxDeg+1))+((m-p)*(Math.sqrt(  (2*maxDeg*Math.pow(minDeg2,6))/((Math.pow(maxDeg,6))+(2*Math.pow(minDeg2,5))+(4*Math.pow(minDeg2,2)*Math.pow(maxDeg,3))  )   ))));
       //  v.add(RM2);
       //  v.add(chi-(n/2));
       
@@ -325,7 +267,7 @@ public class ISIBound implements GraphReportExtension{
      //      v.add(chi11);
     //       v.add(chi22);
    //        v.add(chi33);
-       //   v.add(ID);
+       //   
       //  v.add((2*m*R)/n);
      //   v.add((Math.pow(n-3,2)/2) + (Math.sqrt(n-1)*2/n) + (((2*(n-2)*Math.sqrt((n-1)*(n-2))))/((2*n)-3)) - ((n-2)/Math.sqrt((n-1)*(n-2))) -(1/Math.sqrt((n-1))) );
         //v.add((n*(maxDeg+minDeg)-(2*m))/(2*maxDeg*minDeg));
@@ -346,8 +288,8 @@ public class ISIBound implements GraphReportExtension{
       //  v.add(ID);
         //  v.add(wi.calculate(g));
         //  v.add(Avg);
-   //      v.add(diameter);
-  //      v.add(girth); 
+         v.add(diameter);
+
        // v.add(MaxCliqueExtension.maxCliqueSize(g));
 
 

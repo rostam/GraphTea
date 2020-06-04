@@ -87,4 +87,10 @@ public class RandomMatching implements GraphReportExtension {
         }
         return rotated;
     }
+
+    public double calculateMaxMatching(GraphModel g) {
+        Vector<Object> result = (Vector<Object>)calculate(g);
+        SubGraph maxMatching = (SubGraph)result.elementAt(1);
+        return maxMatching.edges.size();
+    }
 }

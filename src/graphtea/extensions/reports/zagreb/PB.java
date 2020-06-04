@@ -2,7 +2,6 @@ package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
-import graphtea.extensions.reports.RandomMatching;
 import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
@@ -23,15 +22,15 @@ import java.util.Vector;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "Lanzhou", abbreviation = "_Lanzhou")
-public class Lanzhou implements GraphReportExtension{
+@CommandAttitude(name = "PB", abbreviation = "_PB")
+public class PB implements GraphReportExtension{
     public String getName() {
-        return "Lanzhou";
+        return "PB";
     }
       
 
     public String getDescription() {
-        return " Lanzhou";
+        return " PB ";
     }
 
     public Object calculate(GraphModel g) {
@@ -40,27 +39,25 @@ public class Lanzhou implements GraphReportExtension{
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add(" m ");
-        titles.add(" Max Planar ");
-                titles.add(" n ");
-                titles.add(" Min ");
-       // titles.add(" Lanzhou ");
-       //  titles.add(" GA ");
+        titles.add(" n ");
+       // titles.add(" GA ");
       //  titles.add(" R-min ");
       //  titles.add(" HM2 ");
       //  titles.add(" EM2 ");
      //   titles.add(" Hyper ");
-        titles.add(" M2-M1 ");
     //    titles.add(" milo ");
-   //     titles.add(" Inverse Sum Indeg ");
-       // titles.add(" SDD ");
+    //    titles.add(" lower ");
+          titles.add(" PB ");
+     //     titles.add(" upper ");
        //   titles.add(" R.H.S ");
+          
      //   titles.add(" max ");
     //    titles.add(" min ");
        //  titles.add(" Hyper ");
        // titles.add("Th 7 "); 
        // titles.add("check"); 
-    // titles.add("Correct"); 
-      //      titles.add(" matching ");
+      //  titles.add("Correct"); 
+       //    titles.add(" matching ");
         //      titles.add(" GA/x ");
      //         titles.add(" Wp ");
      //         titles.add(" chrome ");
@@ -69,10 +66,10 @@ public class Lanzhou implements GraphReportExtension{
         //   titles.add(" Lz-Bar ");
 
         //   titles.add(" R.H.S ");
-         titles.add("Diameter");
+        //titles.add("Diameter");
         //    titles.add("Clique Number");
 
-        titles.add(" V. Degrees ");
+      //  titles.add(" V. Degrees ");
 
         ret.setTitles(titles);
 
@@ -151,17 +148,16 @@ public class Lanzhou implements GraphReportExtension{
         double Mm31=zif.getFirstZagreb(-4);
         double Mm11=zif.getFirstZagreb(-2);
         double M3=zif.getThirdZagreb();
+        double pb=zif.getPBIndex();
        // double EM1 = zifL.getFirstZagreb(1);
      //   double EM2 = zifL.getSecondZagreb(1);
         double SDD=zif.getSDDIndex();
         double R=zif.getSecondZagreb(-0.5);
-        double R2=zif.getSecondZagreb(2);
         double R1=zif.getSecondZagreb(-1);
         double GA=zif.getGAindex();
         double ABC=zif.getABCindex();
         double HC=zif.getHarmonicCoindex();
         double chi11=zif.getGeneralSumConnectivityIndex(-1);
-        double chi2inv=zif.getGeneralSumConnectivityIndex(-2);
         double chi22=zif.getGeneralSumConnectivityIndex(-0.5);
         double chi33=zif.getGeneralSumConnectivityIndex(-0.1);
         double chi=zif.getGeneralSumConnectivityIndex(-0.5);
@@ -173,6 +169,7 @@ public class Lanzhou implements GraphReportExtension{
         double AZI=zif.getAugumentedZagrebIndex();
         double ISI=zif.getInverseSumIndegIndex();
         double chrome=ChromaticNumber.getChromaticNumber(g);
+    //    double maxmat=MaxMatchingExtension.Max(g);
         double clique=MaxCliqueExtension.maxCliqueSize(g);
         double ZEnergy=zif.getRandicEnergy(g);
         double VR=zif.getVariationRandicIndex();
@@ -183,7 +180,6 @@ public class Lanzhou implements GraphReportExtension{
         double EM1 = zifL.getFirstZagreb(1);
         double EM2 = zifL.getSecondZagreb(1);
 
-
         List<Integer>[] gg = new List[g.getVerticesCount()];
         for (int i = 0; i < g.getVerticesCount(); i++) {
             gg[i] = new ArrayList();
@@ -192,10 +188,6 @@ public class Lanzhou implements GraphReportExtension{
         for(Edge e : g.getEdges()) {
             gg[e.source.getId()].add(e.target.getId());
         }
-       // double maxMatching = MaximumMatching.maxMatching(gg);
-
-        double maxMatching = (new RandomMatching()).calculateMaxMatching(g);
-
         double alpha=(1/m)*(Math.floor(m))*(1-((1/m)*(Math.floor(m/2))));
         double alpha1=(m)*(Math.floor(m/2))*(1-((1/m)*(Math.floor(m/2))));
 
@@ -205,34 +197,31 @@ public class Lanzhou implements GraphReportExtension{
 
         Vector<Object> v = new Vector<>();
         v.add(m);
-        v.add((3*n)-6);
         v.add(n);
-        v.add(minDeg);
-
        // v.add(R-minDeg);
       //  v.add((n/2)-((13-Math.sqrt(6)-(3*Math.sqrt(2)))/6));
-     //    v.add(GA);
+     //   v.add(GA);
      //   v.add(M12);
       // v.add(HM2);
      //   v.add(EM2);
       //  v.add(H);
-        v.add(M12-M21);
       //  v.add(maxDel);
        // v.add(minDel);
      //   v.add(chi2);
-  //      v.add((n-1)*M21-M31);
-   //    v.add(ISI);
-  //      v.add(SDD);
+      //  v.add(Math.sqrt((2.0*minDeg)/(maxDeg-1))*R);
+        v.add(pb);
+        //v.add(2.0*IED);        
+       // v.add((n*minDeg)/(2.0*maxDeg*(maxDeg-1)));
       // milo 1
         //v.add((M21*M21/M12)-(2*m));
-     //   v.add((4*m*m*m/(GA*GA))-(2*m));
+    //    v.add((4*m*m*m/(GA*GA))-(2*m));
         // milo
      //   v.add((M21*M21/(4*m))*(Math.sqrt(maxEdge/minEdge)+Math.sqrt(minEdge/maxEdge))*(Math.sqrt(maxEdge/minEdge)+Math.sqrt(minEdge/maxEdge)) );
     // GA new bound Try
-        //    v.add((2*minDeg*m)/((2*minDeg)+((Math.sqrt(maxDeg)-Math.sqrt(minDeg))*(Math.sqrt(maxDeg)-Math.sqrt(minDeg))) )  );
+
+ 
       //  v.add(RM2);
-     //   v.add( ((2*minDeg*minDeg*minDeg*maxDeg*maxDeg*maxDeg)/((minDeg*minDeg*minDeg)+(maxDeg*maxDeg*maxDeg)))*((R2/(4*minDeg*minDeg*minDeg*maxDeg*maxDeg*maxDeg)) + chi2inv ) ) ;
-    //   v.add(maxMatching);
+     //   v.add(maxMatching);
     //    v.add(RM2);
      //    v.add(H);
      // Error in Hyper Zagreb index paper
@@ -256,12 +245,12 @@ public class Lanzhou implements GraphReportExtension{
         //  v.add(ID);
         //  v.add(wi.calculate(g));
         //  v.add(Avg);
-        v.add(diameter);
+        //  v.add(diameter);
 
         // v.add(MaxCliqueExtension.maxCliqueSize(g));
 
 
-        v.add(al.toString());
+     //  v.add(al.toString());
 
         ret.add(v);
         return ret;

@@ -16,7 +16,7 @@ import java.util.Arrays;
  *
  * @author Hooman Mohajeri Moghaddam
  */
-public class LaplacianOfGraph implements GraphReportExtension<ArrayList<String>>  {
+public class LaplacianOfGraph implements GraphReportExtension  {
 
 
 	boolean inDegree;
@@ -104,24 +104,26 @@ public class LaplacianOfGraph implements GraphReportExtension<ArrayList<String>>
 		ArrayList<String> result = new ArrayList<>();
 		result.add("Eigen Value Decomposition:");
 		EigenvalueDecomposition ed = getLaplacian(matrix).eig();
-		double[] rv = ed.getRealEigenvalues();
-		double[] iv = ed.getImagEigenvalues();
+		double rv[] = ed.getRealEigenvalues();
+		double iv[] = ed.getImagEigenvalues();
 		for (int i = 0; i < rv.length; i++)
 			if (iv[i] != 0)
-				result.add("" + round(rv[i], 5) + " + " + round(iv[i], 5) + "i");
+				result.add("" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i");
 			else
-				result.add("" + round(rv[i], 5));
+				result.add("" + round(rv[i], 10));
 		result.add("Eigen Vectors:\n");
 		double[][] eigenVectors = ed.getV().getArray();
-		for (double[] eigenVector : eigenVectors) result.add(Arrays.toString(round(eigenVector, 5)));
+		for (int k = 0; k < eigenVectors.length; k++)
+			result.add(Arrays.toString(round(eigenVectors[k], 10)));
 		return result;
 	}
 
 	private double[] round (double[] array, int prec)
 	{
+		double[] res=array;
 		for(int i=0;i<array.length;i++)
-			array[i]=round(array[i],prec);
-		return array;
+			res[i]=round(res[i],prec);
+		return res;
 
 	}
 	public String getName() {
@@ -132,7 +134,7 @@ public class LaplacianOfGraph implements GraphReportExtension<ArrayList<String>>
 		return "The Laplacian matrix associated with the graph";
 	}
 
-	public ArrayList<String> calculate(GraphModel g) {
+	public Object calculate(GraphModel g) {
 
 		try {
 			if(g.isDirected())
@@ -141,7 +143,10 @@ public class LaplacianOfGraph implements GraphReportExtension<ArrayList<String>>
 
 				if (a== -1)
 					return null;
-				else inDegree = a == 0;
+				else if(a==0)
+					inDegree = true;
+				else
+					inDegree = false;
 			}
 			Matrix A = g.getWeightedAdjacencyMatrix();
 			ArrayList<String> calc = new ArrayList<>(ShowLaplacian(A));

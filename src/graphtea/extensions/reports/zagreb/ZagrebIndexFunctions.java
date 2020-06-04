@@ -1,12 +1,14 @@
-package graphtea.extensions.reports.zagreb;
-import Jama.Matrix;
-import graphtea.extensions.reports.Utils;
-import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.Vertex;
-import graphtea.library.algorithms.LibraryUtils;
+ package graphtea.extensions.reports.zagreb;
 
-import java.util.ArrayList;
+ import Jama.EigenvalueDecomposition;
+ import Jama.Matrix;
+ import graphtea.extensions.reports.Utils;
+ import graphtea.graph.graph.Edge;
+ import graphtea.graph.graph.GraphModel;
+ import graphtea.graph.graph.Vertex;
+ import graphtea.library.algorithms.LibraryUtils;
+
+ import java.util.ArrayList;
 
 /**
  * Created by rostam on 27.01.15.
@@ -18,6 +20,23 @@ public class ZagrebIndexFunctions {
     public ZagrebIndexFunctions(GraphModel g) {
         this.g = g;
     }
+    
+    public double getEnegry() {
+        Matrix A = g.getWeightedAdjacencyMatrix();
+        EigenvalueDecomposition ed = A.eig();
+        double rv[] = ed.getRealEigenvalues();
+        double sum=0;
+    	
+    	
+    Double[] prv = new Double[rv.length];
+    for(int i=0;i<rv.length;i++) {
+        prv[i] = Math.abs(rv[i]);
+        sum += prv[i];
+             }
+    return sum;
+    }   
+  
+
 
     public double getInverseSumIndegIndex() {
         double ret = 0;
@@ -27,6 +46,46 @@ public class ZagrebIndexFunctions {
         }
         return ret;
     }
+    
+    
+    double getInverseSumIndegCoindex() {
+        double  InverseSumIndeg = 0;
+
+        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
+        for (Edge e : g2.getEdges()) {
+            int v1 = g.getDegree(g.getVertex(e.source.getId()));
+            int v2 = g.getDegree(g.getVertex(e.target.getId()));
+           InverseSumIndeg += ( (v1 * v2)/(v1  +  v2));
+        }
+
+        return InverseSumIndeg;
+    }
+    
+    public double getAlbCoindex() {
+        double  albco = 0;
+
+        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
+        for (Edge e : g2.getEdges()) {
+            int v1 = g.getDegree(g.getVertex(e.source.getId()));
+            int v2 = g.getDegree(g.getVertex(e.target.getId()));
+            albco += Math.abs((v1*1.0) - (v2*1.0) );
+        }
+
+        return albco;
+    }
+       
+    
+   
+    public double getAlbertson() {
+        double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret += Math.abs(((g.getDegree(e.source)*g.getDegree(e.source)*1.0)) - ((g.getDegree(e.target)*g.getDegree(e.target)*1.0)) );
+        }
+        return ret;
+    }
+    
+
+
     
     public double getAugumentedZagrebIndex() {
         double ret = 0;
@@ -45,6 +104,37 @@ public class ZagrebIndexFunctions {
         }
         return ret;
     }
+    
+    double getSDDCoindex() {
+        double  SDD = 0;
+
+        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
+        for (Edge e : g2.getEdges()) {
+            int v1 = g.getDegree(g.getVertex(e.source.getId()));
+            int v2 = g.getDegree(g.getVertex(e.target.getId()));
+            SDD += (((v1*v1*1.0)+(v2*v2*1.0))/(v1*v2*1.0));
+        }
+
+        return SDD;
+    }
+    
+    public double getAGIndex() {
+    	double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret += ((g.getDegree(e.source) + g.getDegree(e.target))/(2*Math.sqrt(g.getDegree(e.source)*g.getDegree(e.target)*1.0)));
+        }
+        return ret;
+    }
+
+    public double getPBIndex() {
+        double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret +=  ((Math.sqrt(g.getDegree(e.source)*1.0)) + (Math.sqrt(g.getDegree(e.target))*1.0))*
+            		(1.0/Math.sqrt(g.getDegree(e.source)*g.getDegree(e.target)*1.0))*(1.0/(Math.sqrt(g.getDegree(e.source) + g.getDegree(e.target) - 2))) ;
+        }
+        return ret;
+    }
+    
     
     public double getABCindex() {
         double ret = 0;
@@ -105,6 +195,64 @@ public class ZagrebIndexFunctions {
         }
         return first_zagreb;
     }
+    
+    public double getMultiplicativeFirstZagreb(double alpha) {
+        double multi_first_zagreb = 1;
+        for (Vertex v : g.vertices()) {
+            multi_first_zagreb *= Math.pow(g.getDegree(v), alpha + 1);
+        }
+        return multi_first_zagreb;
+    }
+    
+   
+    
+    public double getexpHarmonicIndex() {
+        double ret = 0;
+        for (Edge e : g.getEdges()) {
+            ret+=Math.exp(2./(g.getDegree(e.source)+g.getDegree(e.target)));
+        }
+        return ret;
+    }
+    
+    public double getexpGAindex() {
+        double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret += Math.exp((2*Math.sqrt(g.getDegree(e.source)*g.getDegree(e.target)*1.0))
+                    /(g.getDegree(e.source) + g.getDegree(e.target)));
+        }
+        return ret;
+    }
+    
+    public double getexpSDDIndex() {
+        double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret += Math.exp(( ( (g.getDegree(e.source)*g.getDegree(e.source)*1.0) + (g.getDegree(e.target)*g.getDegree(e.target)*1.0) ) 
+            		/(g.getDegree(e.source)*g.getDegree(e.target)*1.0)) );
+        }
+        return ret;
+    }
+    
+    
+    public double getexpABCindex() {
+        double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret +=Math.exp(Math.sqrt((g.getDegree(e.source) + g.getDegree(e.target) - 2)
+                    /(g.getDegree(e.source)*g.getDegree(e.target)*1.0)) );
+        }
+        return ret;
+    }
+    
+    
+    public double getexpAugumentedZagrebIndex() {
+        double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret += Math.exp(Math.pow((g.getDegree(e.source)*g.getDegree(e.target)*1.0)
+                    /(g.getDegree(e.source) + g.getDegree(e.target)-2), 3) );
+        }
+        return ret;
+    }
+    
+    
 
     public int getConnectionNumber(Vertex v) {
         int count = 0;
@@ -136,6 +284,26 @@ public class ZagrebIndexFunctions {
         return ret;
     }
 
+    public double getexpSecondZagreb(double alpha) {
+        double exp_second_zagreb = 0;
+        for (Edge e : g.getEdges()) {
+            exp_second_zagreb +=
+                    Math.exp(Math.pow(
+                            g.getDegree(e.source) *
+                                    g.getDegree(e.target), alpha ));
+        }
+
+        return exp_second_zagreb;
+    }
+    
+    
+    public double getexpFirstZagreb(double alpha) {
+        double exp_first_zagreb = 0;
+        for (Vertex v : g.vertices()) {
+            exp_first_zagreb += Math.exp(Math.pow(g.getDegree(v), alpha + 1));
+        }        
+        return exp_first_zagreb;
+   }
 
     public double getSecondZagreb(double alpha) {
         double second_zagreb = 0;
@@ -149,7 +317,13 @@ public class ZagrebIndexFunctions {
         return second_zagreb;
     }
     
-
+    public double getexpInvEdge(double alpha) {
+        double check = 0;
+        for (Edge e : g.getEdges()) {
+            check += Math.exp(Math.pow(g.getDegree(e.source), alpha)+ Math.pow(g.getDegree(e.target), alpha) ) ;
+        }        
+        return check;
+   }
     
     
     public double getRM2() {
@@ -177,7 +351,7 @@ public class ZagrebIndexFunctions {
         double ret = 0;
         if(g.getEdgesCount()==1) return ret;
         GraphModel lg = Utils.createLineGraph(g);
-        GraphModel clg = LibraryUtils.complement(lg);
+        GraphModel clg = (GraphModel) LibraryUtils.complement(lg);
 
         for (Edge e : clg.getEdges()) {
             int v1 = lg.getDegree(lg.getVertex(e.source.getId()));
@@ -193,7 +367,7 @@ public class ZagrebIndexFunctions {
         double ret = 0;
         if(g.getEdgesCount()==1) return ret;
         GraphModel lg = Utils.createLineGraph(g);
-        GraphModel clg = LibraryUtils.complement(lg);
+        GraphModel clg = (GraphModel) LibraryUtils.complement(lg);
 
         for (Edge e : clg.getEdges()) {
             int v1 = lg.getDegree(lg.getVertex(e.source.getId()));
@@ -257,7 +431,7 @@ public class ZagrebIndexFunctions {
     double getFirstZagrebCoindex(double alpha) {
         double first_zagreb = 0;
 
-        GraphModel g2 = LibraryUtils.complement(g);
+        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
         for (Edge e : g2.getEdges()) {
             int v1 = g.getDegree(g.getVertex(e.source.getId()));
             int v2 = g.getDegree(g.getVertex(e.target.getId()));
@@ -270,20 +444,31 @@ public class ZagrebIndexFunctions {
     double getHarmonicCoindex() {
         double harmonic = 0;
 
-        GraphModel g2 = LibraryUtils.complement(g);
+        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
         for (Edge e : g2.getEdges()) {
             int v1 = g.getDegree(g.getVertex(e.source.getId()));
             int v2 = g.getDegree(g.getVertex(e.target.getId()));
             harmonic += ( (2.0)/(v1  +  v2));
         }
-
         return harmonic;
+    }
+    
+    public double getGACoindex() {
+        double ret = 0;
+        
+        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
+        for (Edge e : g2.getEdges()) {
+            int v1 = g.getDegree(g.getVertex(e.source.getId()));
+            int v2 = g.getDegree(g.getVertex(e.target.getId()));
+            ret += ((2*Math.sqrt(v1*v2*1.0))/(v1  +  v2));
+        }
+        return ret;
     }
 
     double getSecondZagrebCoindex(double alpha) {
         double second_zagreb = 0;
 
-        GraphModel g2 = LibraryUtils.complement(g);
+        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
 
         for (Edge e : g2.getEdges()) {
             int v1 = g.getDegree(g.getVertex(e.source.getId()));
@@ -543,7 +728,8 @@ public class ZagrebIndexFunctions {
         else if(e1.source.getId() == e2.source.getId()) return true;
         else if(e1.source.getId() == e2.target.getId()) return true;
         else if(e1.target.getId() == e2.source.getId()) return true;
-        else return e1.target.getId() == e2.target.getId();
+        else if(e1.target.getId() == e2.target.getId()) return true;
+        return false;
     }
 
     public double getGAindex() {

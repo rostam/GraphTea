@@ -25,7 +25,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class Estrada implements GraphReportExtension<RenderTable> {
+public class Estrada implements GraphReportExtension{
     public String getName() {
         return "Estrada";
     }
@@ -34,13 +34,13 @@ public class Estrada implements GraphReportExtension<RenderTable> {
         return "Estrada";
     }
 
-    public RenderTable calculate(GraphModel g) {
+    public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add(" m ");
         titles.add(" n ");
-        titles.add(" E(G) ");
+   //     titles.add(" E(G) ");
        // titles.add(" 1.1 ");
       //  titles.add(" 1.2 ");
        // titles.add(" 1.3 ");
@@ -49,6 +49,10 @@ public class Estrada implements GraphReportExtension<RenderTable> {
     //    titles.add(" 1.6 ");
      //   titles.add(" 1.7 ");
         titles.add(" Estarda ");
+      //  titles.add(" D.Es ");
+        titles.add(" check1 ");
+        titles.add(" check2 ");
+    //    titles.add(" check3 ");
      //   titles.add(" Eigenvalues ");
    //     titles.add(" 2-degree sum ");
    //     titles.add("new query");
@@ -56,20 +60,27 @@ public class Estrada implements GraphReportExtension<RenderTable> {
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
+        double rv[] = ed.getRealEigenvalues();
         double energy=0;
         double estra=0;
+        double es=0;
+        double e=0;
+        double tot=0;
         double detA = Math.abs(A.det());
 
-        //positiv RV
+      //positiv RV
         Double[] prv = new Double[rv.length];
         for(int i=0;i<rv.length;i++) {
             prv[i] = Math.abs(rv[i]);
-            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
-             rv[i] = (double)Math.round(rv[i] * 100000d) / 100000d;
-            energy += prv[i];
-            estra +=Math.exp(rv[i]);
+            prv[i] = (double)Math.round(prv[i] * 10000000000d) / 10000000000d;
+             rv[i] = (double)Math.round(rv[i] * 10000000000d) / 10000000000d;
+   //         energy += prv[i];
+             tot +=rv[i];
+             estra +=Math.exp(rv[i]);
+             es +=Math.exp(2*(rv[i]));
+             e +=Math.exp((rv[i]/2));
         }
+
         
         
 
@@ -104,14 +115,27 @@ public class Estrada implements GraphReportExtension<RenderTable> {
         double M21=zif.getFirstZagreb(1);
         double M22=zif.getSecondZagreb(2);
         double Mm11=zif.getFirstZagreb(-2);
+        double che=tot-rv[0];
+        double c=(che/(2*(n-1)));
 
         Vector<Object> v = new Vector<>();
         v.add(m);
         v.add(n);
-        v.add(energy);
+     //   v.add(energy);
         v.add(estra);
+        v.add(Math.sqrt(n*es));
+        v.add(Math.pow(n*(Math.exp(rv[0])-Math.exp(rv[rv.length-1])) ,2)/4);
+        
         //1
      //   v.add(Math.sqrt(2*m));
+           //  thm 2
+       //    v.add(Math.sqrt((es*n) - (Math.pow(n*(Math.exp(rv[0])-Math.exp(rv[rv.length-1])) ,2)/4)));
+           
+           // them 5
+       //   v.add((2*(n-1)*Math.exp((tot-rv[rv.length-1])/(2*(n-1)))) + (Math.exp(rv[rv.length-1]))-n+1);
+          
+          // theorem 7
+     //     v.add(((e*e)-n)/(n-1) );
         //2
       //  v.add((2*Math.sqrt(2*m*n)*Math.sqrt(prv[0]*prv[prv.length-1]))
       //          /(prv[0] + prv[prv.length-1]));
@@ -170,8 +194,8 @@ public class Estrada implements GraphReportExtension<RenderTable> {
     public static String getEigenValues(GraphModel g) {
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double[] iv = ed.getImagEigenvalues();
+        double rv[] = ed.getRealEigenvalues();
+        double iv[] = ed.getImagEigenvalues();
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
@@ -197,6 +221,6 @@ public class Estrada implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Graph Energy";
+        return "OurWork-Graph Energy";
     }
 }

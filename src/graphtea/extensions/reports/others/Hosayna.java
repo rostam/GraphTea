@@ -10,7 +10,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 import java.util.Vector;
 
 @CommandAttitude(name = "Hosayna Index", abbreviation = "_hosayna")
-public class Hosayna implements GraphReportExtension<RenderTable> {
+public class Hosayna implements GraphReportExtension {
     public String getName() {
         return "Hosayna Index";
     }
@@ -21,13 +21,13 @@ public class Hosayna implements GraphReportExtension<RenderTable> {
     }
 
     @Override
-    public RenderTable calculate(GraphModel g) {
+    public Object calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add("Hosayna");
         ret.setTitles(titles);
         Vector<Object> v = new Vector<>();
-        v.add(new NumOfIndSets().calculate(Utils.createLineGraph(g)));
+        v.add((Integer)new NumOfIndSets().calculate(Utils.createLineGraph(g)));
         ret.add(v);
         return ret;
     }

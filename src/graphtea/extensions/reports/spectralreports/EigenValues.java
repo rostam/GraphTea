@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class EigenValues implements GraphReportExtension<ArrayList<String>>,Parametrizable {
+public class EigenValues implements GraphReportExtension,Parametrizable {
 
     @Parameter(name = "power:", description = "The power of the eigen values")
     public double power = 2;
@@ -34,12 +34,12 @@ public class EigenValues implements GraphReportExtension<ArrayList<String>>,Para
                 / power_of_ten;
     }
 
-    public ArrayList<String> calculate(GraphModel g) {
+    public Object calculate(GraphModel g) {
         ArrayList<String> res = new ArrayList<>();
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double[] iv = ed.getImagEigenvalues();
+        double rv[] = ed.getRealEigenvalues();
+        double iv[] = ed.getImagEigenvalues();
         double maxrv=0;
         double minrv=1000000;
         for(double value : rv) {
@@ -48,9 +48,9 @@ public class EigenValues implements GraphReportExtension<ArrayList<String>>,Para
             if(minrv > tval) minrv=tval;
         }
         res.add("Largest Eigen Value");
-        res.add(round(maxrv, 5)+"");
+        res.add(round(maxrv, 10)+"");
         res.add("Smallest Eigen Value");
-        res.add(round(minrv, 5)+"");
+        res.add(round(minrv, 10)+"");
 
         res.add("Sum of power of Eigen Values");
         double sum = 0;
@@ -63,20 +63,20 @@ public class EigenValues implements GraphReportExtension<ArrayList<String>>,Para
             Complex num = new Complex(0,0);
             for(int i=0;i < iv.length;i++) {
                 Complex tmp = new Complex(rv[i], iv[i]);
-                Complex.pow(new Complex(power,0));
+                tmp.pow(new Complex(power,0));
                 num.plus(tmp);
             }
-            res.add("" + round(num.re(), 5) + " + "
-                    + round(num.im(), 5) + "i");
+            res.add("" + round(num.re(), 10) + " + "
+                    + round(num.im(), 10) + "i");
         } else {
-            res.add("" + round(sum, 5));
+            res.add("" + round(sum, 10));
         }
         res.add("Eigen Values");
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res.add("" + round(rv[i], 5) + " + " + round(iv[i], 5) + "i");
+                res.add("" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i");
             else
-                res.add("" + round(rv[i], 5));
+                res.add("" + round(rv[i], 10));
         }
         return res;
     }

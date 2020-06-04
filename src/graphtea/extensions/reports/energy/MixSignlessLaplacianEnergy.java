@@ -23,14 +23,17 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension {
     }
 
 
+
     String signlessLaplacianEnergy(GraphModel g) {
         double power = 1;
         try {
+            double m = g.getEdgesCount();
+            double n = g.getVerticesCount();
             Matrix B = g.getWeightedAdjacencyMatrix();
             Matrix A = Utils.getSignlessLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
-            double[] rv = ed.getRealEigenvalues();
-            double[] iv = ed.getImagEigenvalues();
+            double rv[] = ed.getRealEigenvalues();
+            double iv[] = ed.getImagEigenvalues();
             double maxrv=0;
             double minrv=1000000;
             for(double value : rv) {
@@ -38,10 +41,15 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension {
                 if(maxrv < tval) maxrv=tval;
                 if(minrv > tval) minrv=tval;
             }
+            
+ 
             double sum = 0;
             double sum_i = 0;
-            for (double value : rv) sum += Math.pow(Math.abs(value), power);
-            for (double v : iv) sum_i += Math.abs(v);
+            for(int i=0;i < rv.length;i++)
+              //  sum += Math.pow(Math.abs(rv[i]),power);
+            	sum += Math.pow(Math.abs(rv[i] - ((2*m)/n)), power);
+            for(int i=0;i < iv.length;i++)
+                sum_i +=  Math.abs(iv[i]);
 
             if (sum_i != 0) {
                 //here is completely false
@@ -69,11 +77,13 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension {
     String laplacianEnergy(GraphModel g) {
         double power = 1;
         try {
+            double m = g.getEdgesCount();
+            double n = g.getVerticesCount();
             Matrix B = g.getWeightedAdjacencyMatrix();
             Matrix A = Utils.getLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
-            double[] rv = ed.getRealEigenvalues();
-            double[] iv = ed.getImagEigenvalues();
+            double rv[] = ed.getRealEigenvalues();
+            double iv[] = ed.getImagEigenvalues();
             double maxrv=0;
             double minrv=1000000;
             for(double value : rv) {
@@ -83,8 +93,11 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension {
             }
             double sum = 0;
             double sum_i = 0;
-            for (double value : rv) sum += Math.pow(Math.abs(value), power);
-            for (double v : iv) sum_i += Math.abs(v);
+            for(int i=0;i < rv.length;i++)
+            	sum += Math.pow(Math.abs(rv[i] - ((2*m)/n)), power);
+              //  sum += Math.pow(Math.abs(rv[i]),power);
+            for(int i=0;i < iv.length;i++)
+                sum_i +=  Math.abs(iv[i]);
 
             if (sum_i != 0) {
                 //here is completely false

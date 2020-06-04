@@ -64,6 +64,7 @@ public class Utils {
         }
         return answer;
     }
+       
 
     public static int getMaxDegree(GraphModel g) {
         int maxDegree = 0;
@@ -107,6 +108,33 @@ public class Utils {
         }
         return g2;
     }
+    
+    public static GraphModel createComplementGraph(GraphModel g1)  {
+
+        GraphModel g2 = new GraphModel(false);//
+
+        for(Vertex v : g1.getVertexArray()) {
+            Vertex tmp = new Vertex();
+            tmp.setLocation(v.getLocation());
+            g2.addVertex(tmp);
+        }
+
+
+       for(Vertex v1 : g1.getVertexArray()) {
+           for(Vertex v2 : g1.getVertexArray()) {
+               if(v1.getId() != v2.getId()) {
+                   if (!g1.isEdge(v1, v2)) {
+                       g2.addEdge(new Edge(g2.getVertex(v1.getId()),
+                               g2.getVertex(v2.getId())));
+                   }
+               }
+           }
+       }
+       return g2;
+    }
+    
+        
+    
 
     public static Point[] computeRandomPositions(int numOfVertices) {
         Point[] ret = new Point[numOfVertices];

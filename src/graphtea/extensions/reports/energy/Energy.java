@@ -25,7 +25,7 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class Energy implements GraphReportExtension<RenderTable> {
+public class Energy implements GraphReportExtension{
     public String getName() {
         return "Energy";
     }
@@ -34,14 +34,14 @@ public class Energy implements GraphReportExtension<RenderTable> {
         return "Energy";
     }
 
-    public RenderTable calculate(GraphModel g) {
+    public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add(" m ");
         titles.add(" n ");
         titles.add(" E(G) ");
-        titles.add(" n ");
+   //     titles.add(" n ");
        // titles.add(" 1.1 ");
       //  titles.add(" 1.2 ");
        // titles.add(" 1.3 ");
@@ -50,27 +50,28 @@ public class Energy implements GraphReportExtension<RenderTable> {
     //    titles.add(" 1.6 ");
      //   titles.add(" 1.7 ");
      //   titles.add(" Estarda ");
-     //   titles.add(" Eigenvalues ");
+          titles.add(" Eigenvalues ");
    //     titles.add(" 2-degree sum ");
    //     titles.add("new query");
         ret.setTitles(titles);
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
+        double rv[] = ed.getRealEigenvalues();
         double energy=0;
         double estra=0;
         double detA = Math.abs(A.det());
 
-        //positiv RV
+      //positiv RV
         Double[] prv = new Double[rv.length];
         for(int i=0;i<rv.length;i++) {
             prv[i] = Math.abs(rv[i]);
-            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
-             rv[i] = (double)Math.round(rv[i] * 100000d) / 100000d;
+            prv[i] = (double)Math.round(prv[i] * 10000000000d) / 10000000000d;
+             rv[i] = (double)Math.round(rv[i] * 10000000000d) / 10000000000d;
             energy += prv[i];
          //   estra +=Math.exp(rv[i]);
         }
+
         
         
 
@@ -110,7 +111,8 @@ public class Energy implements GraphReportExtension<RenderTable> {
         v.add(m);
         v.add(n);
         v.add(energy);
-        v.add(n);
+    //  v.add(rv[]);
+      //  v.add(n);
        // v.add(estra);
         //1
      //   v.add(Math.sqrt(2*m));
@@ -136,7 +138,7 @@ public class Energy implements GraphReportExtension<RenderTable> {
     //    v.add(Math.sqrt(2*m*n) - (up/down));
 
         //eigenvalues
-      //   v.add(getEigenValues(g));
+        v.add(getEigenValues(g));
 
         //2-degree sum
      //   v.add(Utils.getDegreeSum(g,1));
@@ -172,8 +174,8 @@ public class Energy implements GraphReportExtension<RenderTable> {
     public static String getEigenValues(GraphModel g) {
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double[] iv = ed.getImagEigenvalues();
+        double rv[] = ed.getRealEigenvalues();
+        double iv[] = ed.getImagEigenvalues();
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
@@ -188,7 +190,7 @@ public class Energy implements GraphReportExtension<RenderTable> {
     }
 
     static double round(double value, int decimalPlace) {
-        double power_of_ten = 1;
+        double power_of_ten = 10.0;
         while (decimalPlace-- > 0)
             power_of_ten *= 10.0;
         return Math.round(value * power_of_ten)
@@ -199,6 +201,6 @@ public class Energy implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Graph Energy";
+        return "OurWork-Graph Energy";
     }
 }

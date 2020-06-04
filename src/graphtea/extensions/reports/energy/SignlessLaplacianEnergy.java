@@ -45,12 +45,20 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
     titles.add("m ");
     titles.add("n ");
     titles.add(" Signless-Laplacian Energy ");
+    titles.add(" lambda 1 ");
+    titles.add(" lambda 2 ");
     ret.setTitles(titles);
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double sum = 0;
+        double rv[] = ed.getRealEigenvalues();
+        
+        Matrix B = g.getWeightedAdjacencyMatrix();
+        B = getSignlessLaplacian(B);
+        EigenvalueDecomposition sled = B.eig();
+        double lrv[] = sled.getRealEigenvalues();
+        double sum=0;
+ 
 
         //positiv RV
         Double[] prv = new Double[rv.length];
@@ -59,7 +67,14 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
             prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
             sum += prv[i];
         }
-
+        
+        Double[] slrv = new Double[lrv.length];
+        for (int i = 0; i < lrv.length; i++) {
+            slrv[i] = Math.abs(lrv[i]);
+            slrv[i] = (double)Math.round(lrv[i] * 100000d) / 100000d;
+        }
+        
+        Arrays.sort(slrv, Collections.reverseOrder());
         Arrays.sort(prv, Collections.reverseOrder());
 
         double maxDeg = 0;
@@ -98,6 +113,8 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
         v.add(m);
         v.add(n);
         v.add(Double.parseDouble(tmp));
+        v.add(slrv[0]);
+        v.add(slrv[1]);
         //1
        // v.add(Math.sqrt(2 * m * n));
         //2
@@ -143,7 +160,8 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Graph Energy";
+        // TODO Auto-generated method stub
+        return "OurWork-Graph Energy";
     }
 
     public Object calc(GraphModel g) {
@@ -154,8 +172,8 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
             Matrix A = g.getWeightedAdjacencyMatrix();
             A = getSignlessLaplacian(A);
             EigenvalueDecomposition ed = A.eig();
-            double[] rv = ed.getRealEigenvalues();
-            double[] iv = ed.getImagEigenvalues();
+            double rv[] = ed.getRealEigenvalues();
+            double iv[] = ed.getImagEigenvalues();
             double maxrv = 0;
             double minrv = 1000000;
             for (double value : rv) {
@@ -165,15 +183,17 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
             }
             double sum = 0;
             double sum_i = 0;
-            for (double value : rv) sum += Math.pow(Math.abs(value - (2 * m / n)), power);
-            for (double v : iv) sum_i += Math.abs(v);
+            for (int i = 0; i < rv.length; i++)
+                sum += Math.pow(Math.abs(rv[i] - (2*m/n)), power);
+            for (int i = 0; i < iv.length; i++)
+                sum_i += Math.abs(iv[i]);
 
             if (sum_i != 0) {
                 sum_i = 0;
                 Complex num = new Complex(0, 0);
                 for (int i = 0; i < iv.length; i++) {
                     Complex tmp = new Complex(rv[i], iv[i]);
-                    Complex.pow(new Complex(power, 0));
+                    tmp.pow(new Complex(power, 0));
                     num.plus(tmp);
                 }
                 return "" + round(num.re(), 5) + " + "

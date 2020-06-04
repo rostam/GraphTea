@@ -3,15 +3,12 @@ package graphtea.extensions.reports.spectralreports;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.Vertex;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 
 
 /**

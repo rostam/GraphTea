@@ -1,53 +1,31 @@
+// GraphTea Project: http://github.com/graphtheorysoftware/GraphTea
+// Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
+// Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
+// Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.others;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.Iterator;
-import java.util.Vector;
 
-@CommandAttitude(name = "Eccentricity", abbreviation = "_eccentricity")
-public class Eccentricity implements GraphReportExtension {
+/**
+ * @author Ali Rostami
+
+ */
+
+
+@CommandAttitude(name = "mostar_index", abbreviation = "_windex")
+public class MostarIndex implements GraphReportExtension<Object> {
     public String getName() {
-        return "Eccentricity";
+        return "Mostar Index";
     }
 
     public String getDescription() {
-        return "Eccentricity";
-    }
-
-    public int eccentricity(GraphModel g, int v, Integer[][] dist) {
-        int max_dist = 0;
-        for(int j=0;j < g.getVerticesCount();j++) {
-            if(max_dist < dist[v][j]) {
-                max_dist = dist[v][j];
-            }
-        }
-        return max_dist;
-    }
-
-    @Override
-    public Object calculate(GraphModel g) {
-        RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
-        titles.add("Vertex");
-        titles.add("Eccentricity");
-        ret.setTitles(titles);
-
-        Integer[][] dist = getAllPairsShortestPathWithoutWeight(g);
-
-
-        for(int i=0;i < g.getVerticesCount();i++) {
-            Vector<Object> v = new Vector<>();
-            v.add(i);
-            v.add(eccentricity(g,i,dist));
-            ret.add(v);
-        }
-        return ret;
+        return "Mostar Index";
     }
 
     public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
@@ -76,10 +54,24 @@ public class Eccentricity implements GraphReportExtension {
         return dist;
     }
 
-    @Override
-    public String getCategory() {
-        return "OurWorks-Conjectures";
+    public Object calculate(GraphModel g) {
+        Integer[][] dists = getAllPairsShortestPathWithoutWeight(g);
+        int sum = 0;
+        for(Edge e : g.getEdges()) {
+            int u = e.source.getId();
+            int v = e.target.getId();
+            int nu = 0, nv = 0;
+            for(int i=0;i<dists[0].length;i++) {
+                if(dists[u][i] > dists[v][i]) nu++;
+                if(dists[u][i] < dists[v][i]) nv++;
+            }
+            sum += Math.abs(nu - nv);
+        }
+        return sum;
     }
 
+	@Override
+	public String getCategory() {
+		return "Topological Indices";
+	}
 }
-;

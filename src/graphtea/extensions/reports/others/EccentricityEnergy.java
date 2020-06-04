@@ -2,7 +2,6 @@ package graphtea.extensions.reports.others;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
-import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -14,7 +13,7 @@ import java.util.Iterator;
 import java.util.Vector;
 
 @CommandAttitude(name = "EccentricityEnergy", abbreviation = "_eccentricity_index")
-public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
+public class EccentricityEnergy implements GraphReportExtension {
     public String getName() {
         return "Eccentricity Energy";
     }
@@ -47,20 +46,45 @@ public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
         return m;
     }
 
+    public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
+        final Integer dist[][] = new Integer[g.numOfVertices()][g.numOfVertices()];
+        Iterator<Edge> iet = g.edgeIterator();
+        for (int i = 0; i < g.getVerticesCount(); i++)
+            for (int j = 0; j < g.getVerticesCount(); j++)
+                dist[i][j] = g.numOfVertices();
+
+        for (Vertex v : g)
+            dist[v.getId()][v.getId()] = 0;
+
+        while (iet.hasNext()) {
+            Edge edge = iet.next();
+            dist[edge.target.getId()][edge.source.getId()] = 1;
+            dist[edge.source.getId()][edge.target.getId()] = 1;
+        }
+
+        for (Vertex v : g)
+            for (Vertex u : g)
+                for (Vertex w : g) {
+                    if ((dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()]) < dist[v.getId()][u.getId()])
+                        dist[v.getId()][u.getId()] = dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()];
+                }
+
+        return dist;
+    }
+
     @Override
-    public RenderTable calculate(GraphModel g) {
+    public Object calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
         titles.add("m ");
         titles.add("n ");
         titles.add("Eccentricity Energy");
         ret.setTitles(titles);
-        FloydWarshall fw = new FloydWarshall();
-        Integer[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        Integer[][] dist = getAllPairsShortestPathWithoutWeight(g);
 
         Matrix m = eccentricityMatrix(g, dist);
         EigenvalueDecomposition ed = m.eig();
-        double[] rv = ed.getRealEigenvalues();
+        double rv[] = ed.getRealEigenvalues();
         double sum = 0;
 
         //positiv RV
@@ -82,4 +106,6 @@ public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
     public String getCategory() {
         return "OurWorks-Conjectures";
     }
+
 }
+;

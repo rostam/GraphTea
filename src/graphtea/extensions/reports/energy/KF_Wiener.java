@@ -1,0 +1,183 @@
+// GraphTea Project:bvb   http://github.com/graphtheorysoftware/GraphTea
+// Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
+// Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
+// Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
+package graphtea.extensions.reports.energy;
+
+import Jama.EigenvalueDecomposition;
+import Jama.Matrix;
+import graphtea.extensions.AlgorithmUtils;
+import graphtea.extensions.reports.RandomMatching;
+import graphtea.extensions.reports.Utils;
+import graphtea.extensions.reports.basicreports.Diameter;
+import graphtea.extensions.reports.basicreports.GirthSize;
+import graphtea.extensions.reports.spectralreports.KirchhoffIndex;
+import graphtea.extensions.reports.spectralreports.LaplacianEnergy;
+import graphtea.extensions.reports.spectralreports.LaplacianEnergyLike;
+import graphtea.extensions.reports.spectralreports.SignlessLaplacianEnergy;
+import graphtea.extensions.reports.zagreb.WienerIndex;
+import graphtea.extensions.reports.zagreb.ZagrebIndexFunctions;
+import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.RenderTable;
+import graphtea.graph.graph.Vertex;
+import graphtea.platform.lang.CommandAttitude;
+import graphtea.plugins.reports.extension.GraphReportExtension;
+
+import java.util.*;
+
+/**
+ * @author Ali Rostami
+ * @author Ali Rostami
+ */
+/**
+ * @author Ali Rostami
+ */
+
+
+@CommandAttitude(name = "newInvs", abbreviation = "_newInv")
+public class KF_Wiener implements GraphReportExtension {
+    public String getName() {
+        return "KF_Wiener";
+    }
+
+    public String getDescription() {
+        return "KF_Wiener";
+    }
+
+    public Object calculate(GraphModel g) {
+        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+       // titles.add(" LEL ");
+        titles.add("m ");
+        titles.add("n ");
+        titles.add("KF");
+     //   titles.add("Wiener");
+       // titles.add("Laplacian");
+      //  titles.add("Signless Laplacian");
+        titles.add("Diameter");
+        titles.add(" girth ");
+        titles.add(" matching ");
+        //titles.add("check");
+       // 
+       // titles.add("n ");
+        ret.setTitles(titles);
+        
+
+        double maxDeg = 0;
+        double maxDeg2 = 0;
+        double minDeg = Integer.MAX_VALUE;
+        double minDeg2 = Utils.getMinNonPendentDegree(g);
+        
+        List<Integer>[] gg = new List[g.getVerticesCount()];
+        for (int i = 0; i < g.getVerticesCount(); i++) {
+            gg[i] = new ArrayList();
+        }
+
+        for(Edge e : g.getEdges()) {
+            gg[e.source.getId()].add(e.target.getId());
+        }
+        double maxMatching = (new RandomMatching()).calculateMaxMatching(g);
+
+        ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
+        Collections.sort(al);
+        maxDeg = al.get(al.size()-1);
+        if(al.size()-2>=0) maxDeg2 = al.get(al.size()-2);
+        else maxDeg2 = maxDeg;
+        minDeg = al.get(0);
+        if(maxDeg2 == 0) maxDeg2=maxDeg;
+
+        double a=0;
+        double b=0;
+        double c=0;
+        double d=0;
+
+
+        for(Vertex v : g) {
+            if(g.getDegree(v)==maxDeg) a++;
+            if(g.getDegree(v)==minDeg) b++;
+            if(g.getDegree(v)==maxDeg2) c++;
+            if(g.getDegree(v)==minDeg2) d++;
+        }
+        if(maxDeg==minDeg) b=0;
+        if(maxDeg==maxDeg2) c=0;
+
+        double m = g.getEdgesCount();
+        double n = g.getVerticesCount();
+        
+        double maxEdge = 0;
+        double maxEdge2 = 0;
+        double minEdge = Integer.MAX_VALUE;
+        
+        ArrayList<Integer> all = new ArrayList<Integer>();
+        for(Edge e : g.getEdges()) {
+                int f = g.getDegree(e.source) +
+                g.getDegree(e.target) - 2;
+                all.add(f);
+        }
+        Collections.sort(all);
+        maxEdge = all.get(all.size()-1);
+        if(all.size()-2>=0) maxEdge2 = all.get(all.size()-2);
+        else maxEdge2 = maxEdge;
+        minEdge = all.get(0);
+        
+        
+        
+
+        Matrix A = g.getWeightedAdjacencyMatrix();
+        EigenvalueDecomposition ed = A.eig();
+        double rv[] = ed.getRealEigenvalues();
+        double sum = 0;
+
+        //positiv RV
+        Double[] prv = new Double[rv.length];
+        for (int i = 0; i < rv.length; i++) {
+            prv[i] = Math.abs(rv[i]);
+            sum += prv[i];
+        }
+
+        Arrays.sort(prv, Collections.reverseOrder());
+
+
+
+        Vector<Object> v = new Vector<>();
+        LaplacianEnergyLike lel = new LaplacianEnergyLike();
+        SignlessLaplacianEnergy  sl = new SignlessLaplacianEnergy();
+        LaplacianEnergy le = new LaplacianEnergy();
+        KirchhoffIndex kf = new KirchhoffIndex();
+        WienerIndex wi = new WienerIndex();
+        int diameter = (int) new Diameter().calculate(g);
+        int girth = (int) new GirthSize().calculate(g);
+             //v.add(Double.parseDouble(lel.calculate(g).toString()));
+           v.add(m);
+           v.add(n);
+           //Kirchhoff Index
+           v.add(Double.parseDouble(kf.calculate(g).toString()));
+          // Wiener Index
+           v.add(wi.calculate(g));
+           //  Laplacian
+          //  v.add(Double.parseDouble(le.calculate(g).toString()));
+            // Signless Laplacian
+          //  v.add(Double.parseDouble(sl.calculate(g).toString()));
+           v.add(diameter);
+           v.add(girth); 
+           v.add(maxMatching);
+         //  v.add( (((n*n*(n-1))-(2*m))/(2*m))+(((n-1)*(Math.sqrt(maxDeg)-Math.sqrt(minDeg))*(Math.sqrt(maxDeg)-Math.sqrt(minDeg)))/(2*maxDeg*minDeg)));
+           ret.add(v);
+        return ret;
+    }
+
+    double round(double value, int decimalPlace) {
+        double power_of_ten = 1;
+        while (decimalPlace-- > 0)
+            power_of_ten *= 10.0;
+        return Math.round(value * power_of_ten)
+                / power_of_ten;
+    }
+
+    @Override
+    public String getCategory() {
+        return "OurWorks-Graph Energy";
+    }
+}

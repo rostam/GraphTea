@@ -55,7 +55,7 @@ public class UpperBounds implements GraphReportExtension {
         Double[] prv = new Double[rv.length];
         for (int i = 0; i < rv.length; i++) {
             prv[i] = Math.abs(rv[i]);
-            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
+            prv[i] = (double)Math.round(prv[i] * 10000000000d) / 10000000000d;
             sum += prv[i];
         }
 
@@ -142,7 +142,7 @@ public class UpperBounds implements GraphReportExtension {
     @Override
     public String getCategory() {
         // TODO Auto-generated method stub
-        return "OurWorks-Graph Energy";
+        return "OurWork-Graph Energy";
     }
 
     public Object calc(GraphModel g) {
@@ -174,7 +174,7 @@ public class UpperBounds implements GraphReportExtension {
                 Complex num = new Complex(0, 0);
                 for (int i = 0; i < iv.length; i++) {
                     Complex tmp = new Complex(rv[i], iv[i]);
-                    Complex.pow(new Complex(power, 0));
+                    tmp.pow(new Complex(power, 0));
                     num.plus(tmp);
                 }
                 return "" + round(num.re(), 5) + " + "

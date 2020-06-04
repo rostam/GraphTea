@@ -7,10 +7,12 @@ package graphtea.extensions.reports.energy;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
+import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.zagreb.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
+import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Vector;
+
 
 /**
  * @author Ali Rostami
@@ -40,23 +43,25 @@ public class NewLowerBounds implements GraphReportExtension{
         Vector<String> titles = new Vector<>();
         titles.add(" m ");
         titles.add(" n ");
-        titles.add(" E(G) ");
+       // titles.add(" E(G) ");
        // titles.add(" 1.1 ");
       //  titles.add(" 1.2 ");
        // titles.add(" 1.3 ");
       //  titles.add(" 1.4 ");
      ///  titles.add(" 1.5 ");
     //    titles.add(" 1.6 ");
-     //   titles.add(" 1.7 ");
-        titles.add(" Estarda ");
-     //   titles.add(" Eigenvalues ");
+        titles.add("  Energy  ");
+     //   titles.add(" S.Lap");
+     //   titles.add(" Estrada ");
+        titles.add("Eigenvalues ");
+   //     titles.add(" Q-Eigenvalues ");
    //     titles.add(" 2-degree sum ");
    //     titles.add("new query");
         ret.setTitles(titles);
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
+        double rv[] = ed.getRealEigenvalues();
         double sum=0;
         double estra=0;
         double detA = Math.abs(A.det());
@@ -108,8 +113,9 @@ public class NewLowerBounds implements GraphReportExtension{
         Vector<Object> v = new Vector<>();
         v.add(m);
         v.add(n);
-        v.add(sum);
-        v.add(estra);
+        v.add(Energy(g));
+       // v.add(SignlessLaplacianEnergy(g));
+        // v.add(estra);
         //1
      //   v.add(Math.sqrt(2*m));
         //2
@@ -132,9 +138,15 @@ public class NewLowerBounds implements GraphReportExtension{
     //    double up=n*Math.pow(prv[0]-prv[prv.length-1],2);
     //    double down=4*(prv[0] + prv[prv.length-1]);
     //    v.add(Math.sqrt(2*m*n) - (up/down));
+        
+        //  eigenvalues
+     v.add(getEigenValues(g));
 
-        //eigenvalues
-      //   v.add(getEigenValues(g));
+        //Laplcian eigenvalues
+    //   v.add(getLEigenValues(g));
+        
+        //Signless -- Laplcian eigenvalues
+     // v.add(getQEigenValues(g));
 
         //2-degree sum
      //   v.add(Utils.getDegreeSum(g,1));
@@ -166,24 +178,67 @@ public class NewLowerBounds implements GraphReportExtension{
         ret.add(v);
         return ret;
     }
-
+    
+    
     public static String getEigenValues(GraphModel g) {
-        Matrix A = g.getWeightedAdjacencyMatrix();
+    	Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double[] iv = ed.getImagEigenvalues();
+        double rv[] = ed.getRealEigenvalues();
+        double iv[] = ed.getImagEigenvalues();
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res +="" + round(rv[i], 3) + " + " + round(iv[i], 3) + "i";
+                res +="" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i";
             else
-                res += "" + round(rv[i], 3);
+                res += "" + round(rv[i], 10);
             if(i!=rv.length-1) {
                 res += ",";
             }
         }
         return res;
     }
+    
+
+    public static String getLEigenValues(GraphModel g) {
+    	Matrix B = g.getWeightedAdjacencyMatrix();
+        Matrix A = Utils.getLaplacian(B);
+        EigenvalueDecomposition ed = A.eig();
+        double rv[] = ed.getRealEigenvalues();
+        double iv[] = ed.getImagEigenvalues();
+        String res = "";
+        for (int i = 0; i < rv.length; i++) {
+            if (iv[i] != 0)
+                res +="" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i";
+            else
+                res += "" + round(rv[i], 10);
+            if(i!=rv.length-1) {
+                res += ",";
+            }
+        }
+        return res;
+    }
+    
+    public static String getQEigenValues(GraphModel g) {
+    	Matrix B = g.getWeightedAdjacencyMatrix();
+        Matrix A = Utils.getSignlessLaplacian(B);
+        EigenvalueDecomposition ed = A.eig();
+        double rv[] = ed.getRealEigenvalues();
+        double iv[] = ed.getImagEigenvalues();
+        String res = "";
+        for (int i = 0; i < rv.length; i++) {
+            if (iv[i] != 0)
+                res +="" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i";
+            else
+                res += "" + round(rv[i], 10);
+            if(i!=rv.length-1) {
+                res += ",";
+            }
+        }
+        return res;
+    }
+    
+    
+    
 
     static double round(double value, int decimalPlace) {
         double power_of_ten = 1;
@@ -197,6 +252,165 @@ public class NewLowerBounds implements GraphReportExtension{
 
     @Override
     public String getCategory() {
-        return "OurWorks-Graph Energy";
+        return "OurWork-Graph Energy";
     }
+    
+    
+    
+    public Object Energy(GraphModel g) {
+        double power = 1;
+        try {
+            double m = g.getEdgesCount();
+            double n = g.getVerticesCount();
+            Matrix A = g.getWeightedAdjacencyMatrix();
+            EigenvalueDecomposition ed = A.eig();
+            double rv[] = ed.getRealEigenvalues();
+            double iv[] = ed.getImagEigenvalues();
+            double maxrv=0;
+            double minrv=1000000;
+            for(double value : rv) {
+                double tval = Math.abs(value);
+                if(maxrv < tval) maxrv=tval;
+                if(minrv > tval) minrv=tval;
+            }
+            double sum = 0;
+            double sum_i = 0;
+            for(int i=0;i < rv.length;i++)
+            	sum += Math.abs(rv[i]);
+              //  sum += Math.pow(Math.abs(rv[i]),power);
+            for(int i=0;i < iv.length;i++)
+                sum_i +=  Math.abs(iv[i]);
+
+            if (sum_i != 0) {
+                //here is completely false
+                System.out.println("imaginary part is available. So this function does not work.");
+                sum_i=0;
+                Complex num = new Complex(0,0);
+//                for(int i=0;i < iv.length;i++) {
+//                    Complex tmp = new Complex(rv[i], iv[i]);
+//                    System.out.println(tmp);
+//                    tmp.pow(new Complex(power,0));
+//                    System.out.println(power);
+//                    System.out.println(tmp);
+//                    num.plus(tmp);
+//                }
+                return "" + round(num.re(), 10) + " + "
+                        + round(num.im(), 10) + "i";
+            } else {
+                return "" + round(sum, 10);
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    
+    
+    public Object  SignlessLaplacianEnergy(GraphModel g) {
+        double power = 1;
+        try {
+            double m = g.getEdgesCount();
+            double n = g.getVerticesCount();
+            Matrix B = g.getWeightedAdjacencyMatrix();
+            Matrix A = Utils.getSignlessLaplacian(B);
+            EigenvalueDecomposition ed = A.eig();
+            double rv[] = ed.getRealEigenvalues();
+            double iv[] = ed.getImagEigenvalues();
+            double maxrv=0;
+            double minrv=1000000;
+            for(double value : rv) {
+                double tval = Math.abs(value);
+                if(maxrv < tval) maxrv=tval;
+                if(minrv > tval) minrv=tval;
+            }
+            
+ 
+            double sum = 0;
+            double sum_i = 0;
+            for(int i=0;i < rv.length;i++)
+              //  sum += Math.pow(Math.abs(rv[i]),power);
+            	sum += Math.pow(Math.abs(rv[i] - ((2*m)/n)), power);
+            for(int i=0;i < iv.length;i++)
+                sum_i +=  Math.abs(iv[i]);
+
+            if (sum_i != 0) {
+                //here is completely false
+                System.out.println("imaginary part is available. So this function does not work.");
+                sum_i=0;
+                Complex num = new Complex(0,0);
+//                for(int i=0;i < iv.length;i++) {
+//                    Complex tmp = new Complex(rv[i], iv[i]);
+//                    System.out.println(tmp);
+//                    tmp.pow(new Complex(power,0));
+//                    System.out.println(power);
+//                    System.out.println(tmp);
+//                    num.plus(tmp);
+//                }
+                return "" + round(num.re(), 12) + " + "
+                        + round(num.im(), 12) + "i";
+            } else {
+                return "" + round(sum, 12);
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    
+    
+    
+    public Object LaplacianEnergy(GraphModel g) {
+        double power = 1;
+        try {
+            double m = g.getEdgesCount();
+            double n = g.getVerticesCount();
+            Matrix B = g.getWeightedAdjacencyMatrix();
+            Matrix A = Utils.getLaplacian(B);
+            EigenvalueDecomposition ed = A.eig();
+            double rv[] = ed.getRealEigenvalues();
+            double iv[] = ed.getImagEigenvalues();
+            double maxrv=0;
+            double minrv=1000000;
+            for(double value : rv) {
+                double tval = Math.abs(value);
+                if(maxrv < tval) maxrv=tval;
+                if(minrv > tval) minrv=tval;
+            }
+            double sum = 0;
+            double sum_i = 0;
+            for(int i=0;i < rv.length;i++)
+            	sum += Math.pow(Math.abs(rv[i] - ((2*m)/n)), power);
+              //  sum += Math.pow(Math.abs(rv[i]),power);
+            for(int i=0;i < iv.length;i++)
+                sum_i +=  Math.abs(iv[i]);
+
+            if (sum_i != 0) {
+                //here is completely false
+                System.out.println("imaginary part is available. So this function does not work.");
+                sum_i=0;
+                Complex num = new Complex(0,0);
+//                for(int i=0;i < iv.length;i++) {
+//                    Complex tmp = new Complex(rv[i], iv[i]);
+//                    System.out.println(tmp);
+//                    tmp.pow(new Complex(power,0));
+//                    System.out.println(power);
+//                    System.out.println(tmp);
+//                    num.plus(tmp);
+//                }
+                return "" + round(num.re(), 12) + " + "
+                        + round(num.im(), 12) + "i";
+            } else {
+                return "" + round(sum, 12);
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    
+    
+    
+    
+    
+    
 }

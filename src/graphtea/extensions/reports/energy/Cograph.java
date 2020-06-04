@@ -26,13 +26,13 @@ import java.util.Vector;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class Complement implements GraphReportExtension{
+public class Cograph implements GraphReportExtension{
     public String getName() {
-        return "Complement";
+        return "Cograph";
     }
 
     public String getDescription() {
-        return "Complement";
+        return "Cograph";
     }
 
     public Object calculate(GraphModel g) {
@@ -40,17 +40,16 @@ public class Complement implements GraphReportExtension{
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(Utils.createLineGraph(g));
         ZagrebIndexFunctions zifC = new ZagrebIndexFunctions(Utils.createComplementGraph(g));
         ZagrebIndexFunctions zifCL = new ZagrebIndexFunctions(Utils.createComplementGraph(Utils.createLineGraph(g)));
-        //ZagrebIndexFunctions zifLC = new ZagrebIndexFunctions(Utils.createLineGraph(Utils.createComplementGraph(g)));
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
 
         titles.add(" m ");
         titles.add(" n ");
-        titles.add(" E(G) ");
-        titles.add(" CE ");
-        titles.add(" LE ");
-      //  titles.add(" LCE ");
-        titles.add(" CLE ");
+        titles.add(" LE values ");
+   //     titles.add(" E(G) ");
+      //  titles.add(" LE ");
+     //   titles.add(" CE ");
+     //   titles.add(" CLE ");
         ret.setTitles(titles);
 
         Matrix A = g.getWeightedAdjacencyMatrix();
@@ -63,6 +62,7 @@ public class Complement implements GraphReportExtension{
         Double[] prv = new Double[rv.length];
         for(int i=0;i<rv.length;i++) {
             prv[i] = Math.abs(rv[i]);
+            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
             sum += prv[i];
         }
 
@@ -99,21 +99,19 @@ public class Complement implements GraphReportExtension{
         double Mm11=zif.getFirstZagreb(-2);
         double LE = zifL.getEnegry();
         double CE = zifC.getEnegry();
+       // double CoLE = zifC.getLEigenValues();
         double CLE = zifCL.getEnegry();
-       //double LCE = zifLC.getEnegry();
         Vector<Object> v = new Vector<>();
 
         v.add(m);
         v.add(n);
-        v.add(sum);
-        v.add(CE);
-        v.add(LE);
-        v.add(CLE);
-
-      //  v.add(CLE);
+    //    v.add(sum);
+     //   v.add(LE);
+    //    v.add(CE);
+   //     v.add(CLE);
         //1
  
- 
+        v.add(getLEigenValues(g));
  
         ret.add(v);
         return ret;
@@ -127,15 +125,37 @@ public class Complement implements GraphReportExtension{
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res +="" + rv[i] + " + " + iv[i] + "i";
+                res +="" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i";
             else
-                res += "" + rv[i];
+                res += "" + round(rv[i], 10);
             if(i!=rv.length-1) {
                 res += ",";
             }
         }
         return res;
     }
+    
+    
+    
+    public static String getLEigenValues(GraphModel g) {
+    	Matrix B = g.getWeightedAdjacencyMatrix();
+        Matrix A = Utils.getLaplacian(B);
+        EigenvalueDecomposition ed = A.eig();
+        double rv[] = ed.getRealEigenvalues();
+        double iv[] = ed.getImagEigenvalues();
+        String res = "";
+        for (int i = 0; i < rv.length; i++) {
+            if (iv[i] != 0)
+                res +="" + round(rv[i], 10) + " + " + round(iv[i], 10) + "i";
+            else
+                res += "" + round(rv[i], 10);
+            if(i!=rv.length-1) {
+                res += ",";
+            }
+        }
+        return res;
+    }
+    
 
     static double round(double value, int decimalPlace) {
         double power_of_ten = 1;

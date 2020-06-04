@@ -1,6 +1,7 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.AlgorithmUtils;
+import graphtea.extensions.reports.basicreports.GirthSize;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
@@ -29,9 +30,24 @@ public class ISIUpper implements GraphReportExtension{
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
-        titles.add(" ISI ");
-        titles.add("1 ");
-        titles.add(" 2 ");
+
+        titles.add(" m ");
+        titles.add(" n ");
+        titles.add(" Alb ");
+        titles.add(" irr ");
+        titles.add(" M2 ");
+        titles.add(" R ");
+        titles.add(" H ");
+        titles.add(" SDD ");
+        titles.add(" GA ");
+        titles.add(" I-Sum ");
+        titles.add(" Identity ");
+        titles.add(" girth ");
+      
+      //  titles.add(" Mo.Alb ");
+      //  titles.add(" ISI ");
+      //  titles.add("1 ");
+     //   titles.add(" 2 ");
         //   titles.add(" My-mix2 ");
         //   titles.add(" Th-13 ");
         //  titles.add(" Th-13.1 ");
@@ -69,15 +85,36 @@ public class ISIUpper implements GraphReportExtension{
         double Mm11=zif.getFirstZagreb(-2);
         double M212=zif.getSecondMixZagrebIndex(1,2);
         double chi=zif.getGeneralSumConnectivityIndex(2);
-        double H=zif.getGeneralSumConnectivityIndex(-1);
-
+        double Albertson=zif.getAlbertson();
+        double irr=zif.getThirdZagreb();
+        double R=zif.getSecondZagreb(-0.5);
+        double H=zif.getHarmonicIndex();
+        double SDD=zif.getSDDIndex();
+        double GA=zif.getGAindex();
+        double ISI=zif.getInverseSumIndegIndex();
+        
+        int girth = (int) new GirthSize().calculate(g);
+        
         Vector<Object> v = new Vector<>();
 
-        v.add(zif.getInverseSumIndegIndex());
+
+        v.add(m);
+        v.add(n);
+       // v.add(zif.getInverseSumIndegIndex());
+        v.add(Albertson);
+        v.add(irr);
+        v.add(M12);
+        v.add(R);
+        v.add(H);
+        v.add(SDD); 
+        v.add(GA); 
+        v.add(ISI); 
+        v.add(M21-(4*ISI)); 
+      v.add(girth); 
 
         // my cauchy
-        v.add(1);
-        v.add(2 );
+        //v.add(1);
+       // v.add(2 );
 
         // my mixed simple 
         // v.add( ( M12 * H ) / m  );

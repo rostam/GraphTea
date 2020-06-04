@@ -28,7 +28,7 @@ import static graphtea.extensions.reports.Utils.getLaplacian;
  */
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
-public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
+public class LaplacianEnergy implements GraphReportExtension {
     public String getName() {
         return "Laplacian Energy";
     }
@@ -37,26 +37,26 @@ public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
         return "Laplacian Energy";
     }
 
-    public RenderTable calculate(GraphModel g) {
+    public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
 
-        titles.add("m ");
-        titles.add("n ");
-        titles.add(" Laplacian Energy ");
-        ret.setTitles(titles);
+    titles.add("m ");
+    titles.add("n ");
+    titles.add(" Laplacian Energy ");
+    ret.setTitles(titles);
 
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
+        double rv[] = ed.getRealEigenvalues();
         double sum = 0;
 
         //positiv RV
         Double[] prv = new Double[rv.length];
         for (int i = 0; i < rv.length; i++) {
             prv[i] = Math.abs(rv[i]);
-            prv[i] = (double) Math.round(prv[i] * 100000d) / 100000d;
+            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
             sum += prv[i];
         }
 
@@ -99,35 +99,35 @@ public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
         v.add(n);
         v.add(Double.parseDouble(tmp));
         //1
-        // v.add(Math.sqrt(2 * m * n));
+       // v.add(Math.sqrt(2 * m * n));
         //2
-        // v.add(prv[0]
-        //          + Math.sqrt((n - 1) * (2 * m - Math.pow(prv[0], 2))));
+       // v.add(prv[0]
+      //          + Math.sqrt((n - 1) * (2 * m - Math.pow(prv[0], 2))));
         //3
-        //  v.add(n * Math.sqrt(M21 / (2 * m)));
+      //  v.add(n * Math.sqrt(M21 / (2 * m)));
         //4
-        //  double up = (n - 1) * Math.sqrt((M21 - maxDeg * maxDeg) * (2 * m - prv[0] * prv[0]));
-        //   double down = 2 * m - maxDeg;
-        //   v.add(prv[0] + up / down);
+      //  double up = (n - 1) * Math.sqrt((M21 - maxDeg * maxDeg) * (2 * m - prv[0] * prv[0]));
+     //   double down = 2 * m - maxDeg;
+     //   v.add(prv[0] + up / down);
         //5
-        //   double tmp = Math.sqrt((n - 1) * (2 * m - Math.pow(prv[0], 2))
-        //            + (Math.pow(n - 2, 2) / (n - 1)) * Math.pow(prv[1] - prv[prv.length - 1], 2));
+     //   double tmp = Math.sqrt((n - 1) * (2 * m - Math.pow(prv[0], 2))
+    //            + (Math.pow(n - 2, 2) / (n - 1)) * Math.pow(prv[1] - prv[prv.length - 1], 2));
 
-        //    v.add(prv[0] + tmp);
+   //    v.add(prv[0] + tmp);
         //6
-        //    tmp = Math.sqrt((n - 1) * (2 * m - Math.pow(prv[0], 2))
-        //             + (((n - 2) * 2) / (n - 1)) * Math.pow(prv[1] - prv[prv.length - 1], 2));
+    //    tmp = Math.sqrt((n - 1) * (2 * m - Math.pow(prv[0], 2))
+   //             + (((n - 2) * 2) / (n - 1)) * Math.pow(prv[1] - prv[prv.length - 1], 2));
 //
-        //     v.add(prv[0] + tmp);
+   //     v.add(prv[0] + tmp);
 
         //Laplacian Energy
 
-        //   v.add(sum);
-        //   v.add((2*m/n) + ((2/(n-1))*(Math.sqrt(((n-1)*((2*m) + M21)) - (4*m*m) ) )) );
+     //   v.add(sum);
+     //   v.add((2*m/n) + ((2/(n-1))*(Math.sqrt(((n-1)*((2*m) + M21)) - (4*m*m) ) )) );
 
-        //   v.add(Math.sqrt((2/(n-1))*(((n-1)*((2*m) + M21)) - (4*m*m) ) )  );
+     //   v.add(Math.sqrt((2/(n-1))*(((n-1)*((2*m) + M21)) - (4*m*m) ) )  );
 
-        // v.add((2*m/n) + ((2/(n-1))*(Math.sqrt( (2*m*((n*(n-1) - (2*m)) )) / n ) )) );
+       // v.add((2*m/n) + ((2/(n-1))*(Math.sqrt( (2*m*((n*(n-1) - (2*m)) )) / n ) )) );
         ret.add(v);
 
         return ret;
@@ -144,7 +144,7 @@ public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
     @Override
     public String getCategory() {
         // TODO Auto-generated method stub
-        return "OurWorks-Graph Energy";
+        return "OurWork-Graph Energy";
     }
 
     public Object calc(GraphModel g) {
@@ -155,8 +155,8 @@ public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
             Matrix A = g.getWeightedAdjacencyMatrix();
             A = getLaplacian(A);
             EigenvalueDecomposition ed = A.eig();
-            double[] rv = ed.getRealEigenvalues();
-            double[] iv = ed.getImagEigenvalues();
+            double rv[] = ed.getRealEigenvalues();
+            double iv[] = ed.getImagEigenvalues();
             double maxrv = 0;
             double minrv = 1000000;
             for (double value : rv) {
@@ -166,15 +166,17 @@ public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
             }
             double sum = 0;
             double sum_i = 0;
-            for (double value : rv) sum += Math.pow(Math.abs(value - (2 * m / n)), power);
-            for (double v : iv) sum_i += Math.abs(v);
+            for (int i = 0; i < rv.length; i++)
+                sum += Math.pow(Math.abs(rv[i] - (2*m/n)), power);
+            for (int i = 0; i < iv.length; i++)
+                sum_i += Math.abs(iv[i]);
 
             if (sum_i != 0) {
                 sum_i = 0;
                 Complex num = new Complex(0, 0);
                 for (int i = 0; i < iv.length; i++) {
                     Complex tmp = new Complex(rv[i], iv[i]);
-                    Complex.pow(new Complex(power, 0));
+                    tmp.pow(new Complex(power, 0));
                     num.plus(tmp);
                 }
                 return "" + round(num.re(), 5) + " + "
@@ -182,8 +184,9 @@ public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
             } else {
                 return "" + round(sum, 5);
             }
-        } catch (Exception ignored) {
+        } catch (Exception e) {
         }
         return null;
     }
+    
 }
