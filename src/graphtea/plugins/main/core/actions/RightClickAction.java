@@ -30,7 +30,7 @@ import java.util.HashMap;
 /**
  * @author Azin Azadi
  */
-public class RightClickAction implements BasicExtension, Listener {
+public class RightClickAction implements BasicExtension, Listener<Object> {
     BlackBoard b;
     GraphData gd;
     private final JPopupMenu popup = new JPopupMenu();
@@ -77,7 +77,7 @@ public class RightClickAction implements BasicExtension, Listener {
 
 
     public void keyChanged(String key, Object value) {
-        if (key == VertexEvent.EVENT_KEY) {
+        if (key.equals(VertexEvent.EVENT_KEY)) {
             VertexEvent ve = (VertexEvent) value;
             if (ve.eventType == VertexEvent.CLICKED && ve.mouseBtn == MouseEvent.BUTTON3) {
                 if (!gd.select.getSelectedVertices().contains(ve.v)) {
@@ -86,7 +86,7 @@ public class RightClickAction implements BasicExtension, Listener {
                 showPopup(ve.posOnGraph());
             }
         }
-        if (key == EdgeEvent.EVENT_KEY) {
+        if (key.equals(EdgeEvent.EVENT_KEY)) {
             EdgeEvent ee = (EdgeEvent) value;
             if (ee.eventType == EdgeEvent.CLICKED && ee.mouseBtn == MouseEvent.BUTTON3) {
                 if (!gd.select.getSelectedEdges().contains(ee.e)) {
@@ -95,9 +95,8 @@ public class RightClickAction implements BasicExtension, Listener {
                 showPopup(ee.posOnGraph());
             }
         }
-        if (key == GraphEvent.EVENT_KEY) {
+        if (key.equals(GraphEvent.EVENT_KEY)) {
             GraphEvent ge = (GraphEvent) value;
-            GraphModel g = ge.graph;
             if (ge.eventType == GraphEvent.CLICKED && ge.mouseBtn == MouseEvent.BUTTON3) {
                 showPopup(ge.mousePos);
             }

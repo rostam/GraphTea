@@ -8,7 +8,6 @@ import graphtea.graph.graph.GraphModel;
 
 /**
  * @author azin azadi
-
  */
 public interface GraphReportInterface<t> {
     t calculate(GraphModel g);

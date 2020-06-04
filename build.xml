@@ -276,7 +276,7 @@
         <path id="zdir">
             <pathelement location="${basedir}"/>
         </path>
-        <pathconvert property="xdir" refid="zdir" targetos="unix"></pathconvert>
+        <pathconvert property="xdir" refid="zdir" targetos="unix"/>
         <property name="scripts.dir" value="${xdir}/src/scripts"/>
         <property name="build.dir" value="${xdir}/build"/>
         <property name="dist.dir" value="${xdir}/binary"/>

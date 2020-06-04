@@ -14,7 +14,6 @@ import graphtea.ui.components.utils.GAttrFrame;
 import javax.swing.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -140,8 +139,6 @@ public class ParameterShower implements AttributeListener {
             p.getView().setDescription(f.getName(), desc);
         }
     }
-
-    HashMap<String, String> names = new HashMap<>();
 
     public void attributeUpdated(String name, Object oldVal, Object newVal) {
         try {
