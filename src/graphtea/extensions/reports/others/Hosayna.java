@@ -9,7 +9,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.Vector;
 
-@CommandAttitude(name = "Hosayna Index", abbreviation = "_hosayna")
+@CommandAttitude(name = "HosaynaIndex", abbreviation = "_hosayna")
 public class Hosayna implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Hosayna Index";
