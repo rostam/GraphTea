@@ -88,7 +88,6 @@ class MouseEventListener implements Listener {
 
     @Override
     public void keyChanged(String key, Object Value) {
-
         if (key.equals(GraphEvent.EVENT_KEY)) {
             GraphEvent ge = bb.getData(GraphEvent.EVENT_KEY);
             if (ge.eventType == GraphEvent.MOUSE_MOVED) {

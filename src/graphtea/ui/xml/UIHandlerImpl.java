@@ -65,7 +65,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
     private JToolBar lastToolbar = new JToolBar();
     private int lastToolbarPlace;
 
-    public void start_toolbar(final Attributes meta) throws SAXException {
+    public void start_toolbar(final Attributes meta) {
 //        lastToolbar = new JToolBar();
 //        lastToolbar.setFloatable(false);
         lastToolbar = toolbar.createToolBar();
@@ -73,7 +73,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         if (DEBUG) System.err.println("start_toolbar: " + meta);
     }
 
-    public void handle_tool(final Attributes meta) throws SAXException {
+    public void handle_tool(final Attributes meta) {
         String label = meta.getValue("label");
         String icon = meta.getValue("image");
         String action = meta.getValue("action");
@@ -105,17 +105,17 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         if (DEBUG) System.err.println("end_toolbar()");
     }
 
-    public void start_toolbars(Attributes meta) throws SAXException {
+    public void start_toolbars(Attributes meta) {
 //        lastToolbar = toolbar.getLastToolBar();
     }
 
-    public void end_toolbars() throws SAXException {
+    public void end_toolbars() {
     }
 
     //***************** status handling --------------------
     public GStatusBar statusbar;
 
-    public void handle_bar(Attributes meta) throws SAXException {
+    public void handle_bar(Attributes meta) {
         String clazz = meta.getValue("class");
         String id = meta.getValue("id");
         System.out.println("Adding the Bar with id:" + id + " ,class:" + clazz);
@@ -130,7 +130,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
     private final GFrame frame;
     private JMenu currentMenu;
 
-    public void start_menues(Attributes meta) throws SAXException {
+    public void start_menues(Attributes meta) {
     }
 
     static HashMap<JMenuItem, Integer> places = new HashMap<>();
@@ -163,7 +163,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         if (DEBUG) System.err.println("start_submenu: " + meta);
     }
 
-    public void handle_menu(final Attributes meta) throws SAXException {
+    public void handle_menu(final Attributes meta) {
         String label = meta.getValue("label");
         String action = meta.getValue("action");
         String accel = meta.getValue("accelerator");
@@ -177,14 +177,16 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         int index = lInfo.first;
         label = lInfo.second;
 
-
         GMenuItem item;
         /*
          * extension handling part:
          * if the menu action was an extension removes the menu
          * that the extension created in UI and set it to this menu.
          */
+        System.out.println(" whatthewhat " + action);
+
         graphtea.platform.core.AbstractAction targetAction = actions.get(action);
+        System.out.println(" whatthewhat2 " + targetAction);
         if (targetAction instanceof AbstractExtensionAction) {
             AbstractExtensionAction targetExt = (AbstractExtensionAction) targetAction;
             item = targetExt.menuItem;
@@ -252,14 +254,14 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
 // If action has a group, then its default value for enable will be true,
 // else it will true if enable property equals to true.
 
-    public void handle_action(Attributes meta) throws SAXException {
+    public void handle_action(Attributes meta) {
         String clazz = meta.getValue("class");
         String id = meta.getValue("id");
         String group = meta.getValue("group");
 //todo: is it good to remove the action wich loaded twice, (2 of same action are working together)
         System.err.println("  Adding action " + clazz + " (" + id + "," + group + ") ...");
 
-        Class<Extension> clazzz = null;
+        Class<Extension> clazzz;
         try {
             clazzz = (Class<Extension>) Class.forName(clazz);
         } catch (ClassNotFoundException e) {
@@ -325,10 +327,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
     //****************** side bar handling -------------------------
     public GSidebar sidebar;
 
-    public void start_sidebar(Attributes meta) throws SAXException {
-    }
-
-    public void handle_sidebar(Attributes meta) throws SAXException {
+    public void handle_sidebar(Attributes meta) {
         String image = meta.getValue("image") + "";//to getting it not null
         String clazz = meta.getValue("class");
         String id = meta.getValue("id");
@@ -342,12 +341,8 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
             sidebar.addButton(resourceClass.getResource(image), component, label);
     }
 
-    public void end_sidebar() throws SAXException {
-    }
-
 //************* body handling ------------------------------------
-
-    public void handle_body(Attributes meta) throws SAXException {
+    public void handle_body(Attributes meta) {
         String clazz = meta.getValue("class");
         String id = meta.getValue("id");
         Component gci = getComponent(clazz);
