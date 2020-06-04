@@ -4,13 +4,11 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.zagreb;
 
+import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.util.Iterator;
 
 /**
  * @author Ali Rostami
@@ -28,34 +26,9 @@ public class MostarIndex implements GraphReportExtension<Object> {
         return "Mostar Index";
     }
 
-    public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
-        final Integer[][] dist = new Integer[g.numOfVertices()][g.numOfVertices()];
-        Iterator<Edge> iet = g.edgeIterator();
-        for (int i = 0; i < g.getVerticesCount(); i++)
-            for (int j = 0; j < g.getVerticesCount(); j++)
-                dist[i][j] = g.numOfVertices();
-
-        for (Vertex v : g)
-            dist[v.getId()][v.getId()] = 0;
-
-        while (iet.hasNext()) {
-            Edge edge = iet.next();
-            dist[edge.target.getId()][edge.source.getId()] = 1;
-            dist[edge.source.getId()][edge.target.getId()] = 1;
-        }
-
-        for (Vertex v : g)
-            for (Vertex u : g)
-                for (Vertex w : g) {
-                    if ((dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()]) < dist[v.getId()][u.getId()])
-                        dist[v.getId()][u.getId()] = dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()];
-                }
-
-        return dist;
-    }
-
     public Object calculate(GraphModel g) {
-        Integer[][] dists = getAllPairsShortestPathWithoutWeight(g);
+        FloydWarshall fw = new FloydWarshall();
+        Integer[][] dists = fw.getAllPairsShortestPathWithoutWeight(g);
         int sum = 0;
         for(Edge e : g.getEdges()) {
             int u = e.source.getId();

@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.zagreb;
 
+import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -22,32 +23,6 @@ public class AllEccen implements GraphReportExtension<RenderTable>{
 
     public String getDescription() {
         return " AllEccen ";
-    }
-
-    public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
-        final Integer[][] dist = new Integer[g.numOfVertices()][g.numOfVertices()];
-        Iterator<Edge> iet = g.edgeIterator();
-        for (int i = 0; i < g.getVerticesCount(); i++)
-            for (int j = 0; j < g.getVerticesCount(); j++)
-                dist[i][j] = g.numOfVertices();
-
-        for (Vertex v : g)
-            dist[v.getId()][v.getId()] = 0;
-
-        while (iet.hasNext()) {
-            Edge edge = iet.next();
-            dist[edge.target.getId()][edge.source.getId()] = 1;
-            dist[edge.source.getId()][edge.target.getId()] = 1;
-        }
-
-        for (Vertex v : g)
-            for (Vertex u : g)
-                for (Vertex w : g) {
-                    if ((dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()]) < dist[v.getId()][u.getId()])
-                        dist[v.getId()][u.getId()] = dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()];
-                }
-
-        return dist;
     }
 
     public int eccentricity(GraphModel g, int v, Integer[][] dist) {
@@ -78,22 +53,23 @@ public class AllEccen implements GraphReportExtension<RenderTable>{
         v.add(m);
         v.add(n);
 
-        Integer[][] dist = getAllPairsShortestPathWithoutWeight(g);
+        FloydWarshall fw = new FloydWarshall();
+        Integer[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
         int total_eccentricity = 0;
         for(Vertex ver : g) {
-            total_eccentricity += eccentricity(g, ver.getId(), getAllPairsShortestPathWithoutWeight(g));
+            total_eccentricity += eccentricity(g, ver.getId(), dist);
         }
         v.add(total_eccentricity);
 
         int eccentric_connectivity_index = 0;
         for(Vertex ver : g) {
-            eccentric_connectivity_index += eccentricity(g, ver.getId(), getAllPairsShortestPathWithoutWeight(g))*g.getDegree(ver);
+            eccentric_connectivity_index += eccentricity(g, ver.getId(), dist)*g.getDegree(ver);
         }
         v.add(eccentric_connectivity_index);
 
         double connective_eccentric_index = 0;
         for(Vertex ver : g) {
-            connective_eccentric_index += (double)g.getDegree(ver)/eccentricity(g, ver.getId(), getAllPairsShortestPathWithoutWeight(g));
+            connective_eccentric_index += (double)g.getDegree(ver)/eccentricity(g, ver.getId(), dist);
         }
         v.add(connective_eccentric_index);
         ret.add(v);

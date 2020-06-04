@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.zagreb;
 
+import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.extensions.algs4.AdjMatrixEdgeWeightedDigraph;
 import graphtea.extensions.algs4.DirectedEdge;
 import graphtea.graph.graph.Edge;
@@ -34,14 +35,15 @@ public class WienerIndex implements GraphReportExtension<Object> {
             G.addEdge(new DirectedEdge(e.source.getId(), e.target.getId(), 1d));
             G.addEdge(new DirectedEdge(e.target.getId(), e.source.getId(), 1d));
         }
-        graphtea.extensions.algs4.FloydWarshall spt = new graphtea.extensions.algs4.FloydWarshall(G);
+        FloydWarshall fw = new FloydWarshall();
+        Integer[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
         double max = 0;
         for (int v = 0; v < G.V(); v++) {
             for (int u = v+1; u < G.V(); u++) {
-                if(spt.hasPath(v,u)) {
-                    double dist = spt.dist(u,v);
-                    if(dist > max) {
-                        sum += dist;
+                if(dist[v][u] < g.numOfVertices()) {
+                    double distance = dist[u][v];
+                    if(distance > max) {
+                        sum += distance;
                     }
                 }
             }

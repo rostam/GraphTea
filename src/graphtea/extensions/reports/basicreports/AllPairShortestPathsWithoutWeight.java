@@ -1,12 +1,10 @@
 package graphtea.extensions.reports.basicreports;
 
-import graphtea.graph.graph.Edge;
+import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.graph.graph.Vertex;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Iterator;
 import java.util.Vector;
 
 public class AllPairShortestPathsWithoutWeight implements GraphReportExtension<RenderTable> {
@@ -16,29 +14,8 @@ public class AllPairShortestPathsWithoutWeight implements GraphReportExtension<R
      * @return All shortest paths
      */
     public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
-        final Integer[][] dist = new Integer[g.numOfVertices()][g.numOfVertices()];
-        Iterator<Edge> iet = g.edgeIterator();
-        for (int i = 0; i < g.getVerticesCount(); i++)
-            for (int j = 0; j < g.getVerticesCount(); j++)
-                dist[i][j] = g.numOfVertices();
-
-        for (Vertex v : g)
-            dist[v.getId()][v.getId()] = 0;
-
-        while (iet.hasNext()) {
-            Edge edge = iet.next();
-            dist[edge.target.getId()][edge.source.getId()] = 1;
-            dist[edge.source.getId()][edge.target.getId()] = 1;
-        }
-
-        for (Vertex v : g)
-            for (Vertex u : g)
-                for (Vertex w : g) {
-                    if ((dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()]) < dist[v.getId()][u.getId()])
-                        dist[v.getId()][u.getId()] = dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()];
-                }
-
-        return dist;
+        FloydWarshall fw = new FloydWarshall();
+        return fw.getAllPairsShortestPathWithoutWeight(g);
     }
 
     @Override

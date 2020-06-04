@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.others;
 
+import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -38,7 +39,8 @@ public class Eccentricity implements GraphReportExtension<RenderTable> {
         titles.add("Eccentricity");
         ret.setTitles(titles);
 
-        Integer[][] dist = getAllPairsShortestPathWithoutWeight(g);
+        FloydWarshall fw = new FloydWarshall();
+        Integer[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
 
 
         for(int i=0;i < g.getVerticesCount();i++) {
@@ -48,32 +50,6 @@ public class Eccentricity implements GraphReportExtension<RenderTable> {
             ret.add(v);
         }
         return ret;
-    }
-
-    public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
-        final Integer[][] dist = new Integer[g.numOfVertices()][g.numOfVertices()];
-        Iterator<Edge> iet = g.edgeIterator();
-        for (int i = 0; i < g.getVerticesCount(); i++)
-            for (int j = 0; j < g.getVerticesCount(); j++)
-                dist[i][j] = g.numOfVertices();
-
-        for (Vertex v : g)
-            dist[v.getId()][v.getId()] = 0;
-
-        while (iet.hasNext()) {
-            Edge edge = iet.next();
-            dist[edge.target.getId()][edge.source.getId()] = 1;
-            dist[edge.source.getId()][edge.target.getId()] = 1;
-        }
-
-        for (Vertex v : g)
-            for (Vertex u : g)
-                for (Vertex w : g) {
-                    if ((dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()]) < dist[v.getId()][u.getId()])
-                        dist[v.getId()][u.getId()] = dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()];
-                }
-
-        return dist;
     }
 
     @Override
