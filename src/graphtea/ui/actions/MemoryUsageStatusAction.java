@@ -53,7 +53,7 @@ public class MemoryUsageStatusAction extends graphtea.platform.core.AbstractActi
         try {
             button.setText(getOutStr(used, totalmem));
             button.setSize(100, 15);
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
     }
 

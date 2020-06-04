@@ -66,7 +66,7 @@ public class SignlessLaplacianEnergy implements GraphReportExtension {
             } else {
                 return "" + round(sum, 5);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return null;
     }

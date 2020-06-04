@@ -190,7 +190,7 @@ public class SignlessLaplacianEnergy implements GraphReportExtension<RenderTable
                 Complex num = new Complex(0, 0);
                 for (int i = 0; i < iv.length; i++) {
                     Complex tmp = new Complex(rv[i], iv[i]);
-                    tmp.pow(new Complex(power, 0));
+                    Complex.pow(new Complex(power, 0));
                     num.plus(tmp);
                 }
                 return "" + round(num.re(), 5) + " + "

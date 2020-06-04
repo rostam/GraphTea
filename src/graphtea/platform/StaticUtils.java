@@ -52,13 +52,13 @@ public class StaticUtils {
         FileInputStream fis;
         File[] files = directory.listFiles();
 
-        for (int n = 0; n < files.length; n++) {
+        for (File file : files) {
 
-            if (files[n].isDirectory()) {
-                putInJar(files[n], jos, prefix + files[n].getName() + "/");
+            if (file.isDirectory()) {
+                putInJar(file, jos, prefix + file.getName() + "/");
             } else {
-                jos.putNextEntry(new JarEntry(prefix + files[n].getName()));
-                fis = new FileInputStream(files[n]);
+                jos.putNextEntry(new JarEntry(prefix + file.getName()));
+                fis = new FileInputStream(file);
 
                 copyStream(fis, jos);
 

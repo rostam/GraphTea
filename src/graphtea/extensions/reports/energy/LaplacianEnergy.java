@@ -166,17 +166,15 @@ public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
             }
             double sum = 0;
             double sum_i = 0;
-            for (int i = 0; i < rv.length; i++)
-                sum += Math.pow(Math.abs(rv[i] - (2*m/n)), power);
-            for (int i = 0; i < iv.length; i++)
-                sum_i += Math.abs(iv[i]);
+            for (double value : rv) sum += Math.pow(Math.abs(value - (2 * m / n)), power);
+            for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
                 sum_i = 0;
                 Complex num = new Complex(0, 0);
                 for (int i = 0; i < iv.length; i++) {
                     Complex tmp = new Complex(rv[i], iv[i]);
-                    tmp.pow(new Complex(power, 0));
+                    Complex.pow(new Complex(power, 0));
                     num.plus(tmp);
                 }
                 return "" + round(num.re(), 5) + " + "
@@ -184,7 +182,7 @@ public class LaplacianEnergy implements GraphReportExtension<RenderTable> {
             } else {
                 return "" + round(sum, 5);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return null;
     }

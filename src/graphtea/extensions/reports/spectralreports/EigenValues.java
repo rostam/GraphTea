@@ -63,7 +63,7 @@ public class EigenValues implements GraphReportExtension,Parametrizable {
             Complex num = new Complex(0,0);
             for(int i=0;i < iv.length;i++) {
                 Complex tmp = new Complex(rv[i], iv[i]);
-                tmp.pow(new Complex(power,0));
+                Complex.pow(new Complex(power,0));
                 num.plus(tmp);
             }
             res.add("" + round(num.re(), 10) + " + "

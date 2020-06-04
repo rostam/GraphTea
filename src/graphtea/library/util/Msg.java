@@ -38,7 +38,7 @@ constructs a message
                 catch(Msg msg) {
                         System.err.println(msg+"\n");
                 }
-                catch(Exception ex) {
+                catch(Exception ignored) {
                 }
         }
 

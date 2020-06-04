@@ -109,7 +109,7 @@ public class RectangularSelect extends AbstractAction {
                         sd.edges.add(edge);
                     }
                 }
-                catch (InvalidVertexException e) {
+                catch (InvalidVertexException ignored) {
                 }
             }
         }

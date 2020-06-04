@@ -176,11 +176,9 @@ public class AllEnergies implements GraphReportExtension<RenderTable> {
  
             double sum = 0;
             double sum_i = 0;
-            for(int i=0;i < rv.length;i++)
-              //  sum += Math.pow(Math.abs(rv[i]),power);
-            	sum += Math.pow(Math.abs(rv[i] - ((2*m)/n)), power);
-            for(int i=0;i < iv.length;i++)
-                sum_i +=  Math.abs(iv[i]);
+            //  sum += Math.pow(Math.abs(rv[i]),power);
+            for (double value : rv) sum += Math.pow(Math.abs(value - ((2 * m) / n)), power);
+            for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
                 //here is completely false
@@ -200,7 +198,7 @@ public class AllEnergies implements GraphReportExtension<RenderTable> {
             } else {
                 return "" + round(sum, 12);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return null;
     }
@@ -223,11 +221,9 @@ public class AllEnergies implements GraphReportExtension<RenderTable> {
             }
             double sum = 0;
             double sum_i = 0;
-            for(int i=0;i < rv.length;i++)
-            	sum += Math.abs(rv[i]);
+            for (double value : rv) sum += Math.abs(value);
               //  sum += Math.pow(Math.abs(rv[i]),power);
-            for(int i=0;i < iv.length;i++)
-                sum_i +=  Math.abs(iv[i]);
+            for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
                 //here is completely false
@@ -247,7 +243,7 @@ public class AllEnergies implements GraphReportExtension<RenderTable> {
             } else {
                 return "" + round(sum, 12);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return null;
     }
@@ -271,11 +267,9 @@ public class AllEnergies implements GraphReportExtension<RenderTable> {
              }
              double sum = 0;
              double sum_i = 0;
-             for(int i=0;i < rv.length;i++)
-             	sum +=1.0/(n-rv[i]);
+             for (double value : rv) sum += 1.0 / (n - value);
                //  sum += Math.pow(Math.abs(rv[i]),power);
-             for(int i=0;i < iv.length;i++)
-                 sum_i +=  iv[i];
+             for (double v : iv) sum_i += v;
 
              if (sum_i != 0) {
                  //here is completely false
@@ -295,7 +289,7 @@ public class AllEnergies implements GraphReportExtension<RenderTable> {
              } else {
                  return "" + round(sum, 12);
              }
-         } catch (Exception e) {
+         } catch (Exception ignored) {
          }
          return null;
     }
@@ -329,11 +323,9 @@ public class AllEnergies implements GraphReportExtension<RenderTable> {
             }
             double sum = 0;
             double sum_i = 0;
-            for(int i=0;i < rv.length;i++)
-            	sum += Math.pow(Math.abs(rv[i] - ((2*m)/n)), power);
+            for (double value : rv) sum += Math.pow(Math.abs(value - ((2 * m) / n)), power);
               //  sum += Math.pow(Math.abs(rv[i]),power);
-            for(int i=0;i < iv.length;i++)
-                sum_i +=  Math.abs(iv[i]);
+            for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
                 //here is completely false
@@ -353,7 +345,7 @@ public class AllEnergies implements GraphReportExtension<RenderTable> {
             } else {
                 return "" + round(sum, 12);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return null;
     }

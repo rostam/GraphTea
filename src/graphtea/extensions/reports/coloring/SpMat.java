@@ -126,8 +126,8 @@ public class SpMat extends Vector<HashSet<Integer>> {
 
     public void writeToFile(String fileName) throws IOException {
         FileWriter fw = new FileWriter(fileName);
-        for (int i = 0; i < this.size(); i++) {
-            for (int j : this.get(i)) {
+        for (HashSet<Integer> integers : this) {
+            for (int j : integers) {
                 fw.write(j + " ");
             }
             fw.write("\n");
