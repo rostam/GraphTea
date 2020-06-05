@@ -242,7 +242,6 @@ public class BackwardTrees implements VisualizationExtension {
 //            GeneralAnimator t = new GeneralAnimator(vertexPlaces, g, blackboard);
 //            t.start();
         } catch (NullPointerException e) {
-//            System.out.println("Graph is Empty");
             ExceptionHandler.catchException(e);
         }
         return vertexPlaces;

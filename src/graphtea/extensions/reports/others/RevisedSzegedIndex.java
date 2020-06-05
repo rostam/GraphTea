@@ -5,6 +5,7 @@
 package graphtea.extensions.reports.others;
 
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
+import graphtea.extensions.generators.CircleGenerator;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
@@ -17,7 +18,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 
 @CommandAttitude(name = "revised_szeged_index", abbreviation = "_RevisedSzegedIndex")
-public class RevisedSzegedIndex implements GraphReportExtension<Integer> {
+public class RevisedSzegedIndex implements GraphReportExtension<Double> {
     public String getName() {
         return "Revised Szeged Index";
     }
@@ -26,10 +27,10 @@ public class RevisedSzegedIndex implements GraphReportExtension<Integer> {
         return "Revised Szeged Index";
     }
 
-    public Integer calculate(GraphModel g) {
+    public Double calculate(GraphModel g) {
         FloydWarshall fw = new FloydWarshall();
         int[][] dists = fw.getAllPairsShortestPathWithoutWeight(g);
-        int sum = 0;
+        double sum = 0;
         for (Edge e : g.getEdges()) {
             int u = e.source.getId();
             int v = e.target.getId();
@@ -39,7 +40,8 @@ public class RevisedSzegedIndex implements GraphReportExtension<Integer> {
                 if (dists[u][i] < dists[v][i]) nv++;
                 if (dists[u][i] == dists[v][i]) nequal++;
             }
-            sum += (nu + (nequal / 2)) * (nv + (nequal / 2));
+
+            sum += (nu + (nequal / 2.)) * (nv + (nequal / 2.));
         }
         return sum;
     }
