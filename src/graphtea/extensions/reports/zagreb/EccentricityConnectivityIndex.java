@@ -41,7 +41,7 @@ public class EccentricityConnectivityIndex implements GraphReportExtension<Doubl
             G.addEdge(new DirectedEdge(e.target.getId(), e.source.getId(), 1d));
         }
         FloydWarshall fw = new FloydWarshall();
-        Integer[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
+        int[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
 
     	double maxVUDistance;
     	double sum = 0;

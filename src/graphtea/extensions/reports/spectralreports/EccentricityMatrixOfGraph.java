@@ -89,7 +89,7 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension<ArrayList
 
 	}
 
-	public int eccentricity(GraphModel g, int v, Integer[][] dist) {
+	public int eccentricity(GraphModel g, int v, int[][] dist) {
 		int max_dist = 0;
 		for(int j=0;j < g.getVerticesCount();j++) {
 			if(max_dist < dist[v][j]) {
@@ -99,7 +99,7 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension<ArrayList
 		return max_dist;
 	}
 
-	public Matrix eccentricityMatrix(GraphModel g, Integer[][] dist) {
+	public Matrix eccentricityMatrix(GraphModel g, int[][] dist) {
 		Matrix m = new Matrix(g.getVerticesCount(),g.getVerticesCount());
 		for(int i=0;i < g.getVerticesCount();i++) {
 			for(int j=0;j < g.getVerticesCount();j++) {

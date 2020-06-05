@@ -16,7 +16,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 
-@CommandAttitude(name = "mostar_index", abbreviation = "_SzegedIndex")
+@CommandAttitude(name = "szeged_index", abbreviation = "_SzegedIndex")
 public class SzegedIndex implements GraphReportExtension<Integer> {
     public String getName() {
         return "Szeged Index";
@@ -28,7 +28,7 @@ public class SzegedIndex implements GraphReportExtension<Integer> {
 
     public Integer calculate(GraphModel g) {
         FloydWarshall fw = new FloydWarshall();
-        Integer[][] dists = fw.getAllPairsShortestPathWithoutWeight(g);
+        int[][] dists = fw.getAllPairsShortestPathWithoutWeight(g);
         int sum = 0;
         for(Edge e : g.getEdges()) {
             int u = e.source.getId();

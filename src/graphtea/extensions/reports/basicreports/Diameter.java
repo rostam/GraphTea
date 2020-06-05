@@ -27,7 +27,7 @@ public class Diameter implements GraphReportExtension<Integer> {
             G.addEdge(new DirectedEdge(e.target.getId(), e.source.getId(), 1d));
         }
         FloydWarshall spt = new FloydWarshall();
-        Integer[][] dist = spt.getAllPairsShortestPathWithoutWeight(g);
+        int[][] dist = spt.getAllPairsShortestPathWithoutWeight(g);
         double max = 0;
         for (int v = 0; v < G.V(); v++) {
             for (int u = 0; u < G.V(); u++) {

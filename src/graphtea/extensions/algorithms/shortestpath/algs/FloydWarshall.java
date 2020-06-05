@@ -24,11 +24,11 @@ public class FloydWarshall {
      * @param graph The given graph
      * @return All shortest paths
      */
-    public Integer[][] getAllPairsShortestPath(final GraphModel graph) {
-        final Integer[][] dist = new Integer[graph.getVerticesCount()][graph.getVerticesCount()];
+    public int[][] getAllPairsShortestPath(final GraphModel graph) {
+        final int[][] dist = new int[graph.getVerticesCount()][graph.getVerticesCount()];
         Iterator<Edge> iet = graph.edgeIterator();
         Edge edge;
-        for (Integer[] integers : dist) Arrays.fill(integers, graph.numOfVertices() * 2);
+        for (int[] integers : dist) Arrays.fill(integers, graph.numOfVertices() * 2);
 
         for(Vertex v:graph)
             dist[v.getId()][v.getId()] = 0;
@@ -54,8 +54,8 @@ public class FloydWarshall {
      * @param graph The given graph
      * @return All shortest paths
      */
-    public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel graph) {
-        final Integer[][] dist = new Integer[graph.getVerticesCount()][graph.getVerticesCount()];
+    public int[][] getAllPairsShortestPathWithoutWeight(final GraphModel graph) {
+        final int[][] dist = new int[graph.getVerticesCount()][graph.getVerticesCount()];
         Iterator<Edge> iet = graph.edgeIterator();
         for(int i = 0; i < graph.getVerticesCount();i++)
             for(int j = 0; j < graph.getVerticesCount();j++)

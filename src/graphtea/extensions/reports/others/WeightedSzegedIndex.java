@@ -29,7 +29,7 @@ public class WeightedSzegedIndex implements GraphReportExtension<Integer> {
 
     public Integer calculate(GraphModel g) {
 		FloydWarshall fw = new FloydWarshall();
-        Integer[][] dists = fw.getAllPairsShortestPathWithoutWeight(g);
+        int[][] dists = fw.getAllPairsShortestPathWithoutWeight(g);
         int sum = 0;
         for(Edge e : g.getEdges()) {
             int u = e.source.getId();

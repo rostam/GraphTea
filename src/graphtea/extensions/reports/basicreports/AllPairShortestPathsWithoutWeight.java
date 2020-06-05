@@ -13,7 +13,7 @@ public class AllPairShortestPathsWithoutWeight implements GraphReportExtension<R
      * @param g The given graph
      * @return All shortest paths
      */
-    public Integer[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
+    public int[][] getAllPairsShortestPathWithoutWeight(final GraphModel g) {
         FloydWarshall fw = new FloydWarshall();
         return fw.getAllPairsShortestPathWithoutWeight(g);
     }
@@ -27,7 +27,7 @@ public class AllPairShortestPathsWithoutWeight implements GraphReportExtension<R
         titles.add("Distance");
         ret.setTitles(titles);
 
-        final Integer[][] dist = getAllPairsShortestPathWithoutWeight(g);
+        final int[][] dist = getAllPairsShortestPathWithoutWeight(g);
         for (int i = 0; i < dist.length; i++) {
             for (int j = i + 1; j < dist[i].length; j++) {
                 Vector<Object> v = new Vector<>();

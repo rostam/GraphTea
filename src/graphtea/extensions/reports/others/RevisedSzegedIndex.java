@@ -16,29 +16,30 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 
-@CommandAttitude(name = "PI_Index", abbreviation = "_SzegedIndex")
-public class PiIndex implements GraphReportExtension<Integer> {
+@CommandAttitude(name = "revised_szeged_index", abbreviation = "_RevisedSzegedIndex")
+public class RevisedSzegedIndex implements GraphReportExtension<Integer> {
     public String getName() {
-        return "PI Index";
+        return "Revised Szeged Index";
     }
 
     public String getDescription() {
-        return "PI Index";
+        return "Revised Szeged Index";
     }
 
     public Integer calculate(GraphModel g) {
         FloydWarshall fw = new FloydWarshall();
         int[][] dists = fw.getAllPairsShortestPathWithoutWeight(g);
         int sum = 0;
-        for(Edge e : g.getEdges()) {
+        for (Edge e : g.getEdges()) {
             int u = e.source.getId();
             int v = e.target.getId();
-            int nu = 0, nv = 0;
-            for(int i=0;i<dists[0].length;i++) {
-                if(dists[u][i] > dists[v][i]) nu++;
-                if(dists[u][i] < dists[v][i]) nv++;
+            int nu = 0, nv = 0, nequal = 0;
+            for (int i = 0; i < dists[0].length; i++) {
+                if (dists[u][i] > dists[v][i]) nu++;
+                if (dists[u][i] < dists[v][i]) nv++;
+                if (dists[u][i] == dists[v][i]) nequal++;
             }
-            sum += nu + nv;
+            sum += (nu + (nequal / 2)) * (nv + (nequal / 2));
         }
         return sum;
     }

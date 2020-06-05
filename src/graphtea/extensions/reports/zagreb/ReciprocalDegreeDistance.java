@@ -37,7 +37,7 @@ public class ReciprocalDegreeDistance implements GraphReportExtension<Double> {
         }
 
         FloydWarshall fw = new FloydWarshall();
-        Integer[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
+        int[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
 
         double max = 0;
         for (int v = 0; v < G.V(); v++) {

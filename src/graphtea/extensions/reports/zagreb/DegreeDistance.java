@@ -36,7 +36,7 @@ public class DegreeDistance implements GraphReportExtension<Integer> {
             G.addEdge(new DirectedEdge(e.target.getId(), e.source.getId(), 1d));
         }
         FloydWarshall fw = new FloydWarshall();
-        Integer[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
+        int[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
         double max = 0;
         for (int v = 0; v < G.V(); v++) {
             for (int u = v+1; u < G.V(); u++) {

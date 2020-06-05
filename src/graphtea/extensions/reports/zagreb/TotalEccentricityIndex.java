@@ -36,7 +36,7 @@ public class TotalEccentricityIndex implements GraphReportExtension<Double> {
         }
 
         FloydWarshall fw = new FloydWarshall();
-        Integer[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
+        int[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
 
         double maxVUDistance;
     	double sum = 0;

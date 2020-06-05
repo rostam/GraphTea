@@ -24,7 +24,7 @@ public class AllEccen implements GraphReportExtension<RenderTable>{
         return " AllEccen ";
     }
 
-    public int eccentricity(GraphModel g, int v, Integer[][] dist) {
+    public int eccentricity(GraphModel g, int v, int[][] dist) {
         int max_dist = 0;
         for(int j=0;j < g.getVerticesCount();j++) {
             if(max_dist < dist[v][j]) {
@@ -53,7 +53,7 @@ public class AllEccen implements GraphReportExtension<RenderTable>{
         v.add(n);
 
         FloydWarshall fw = new FloydWarshall();
-        Integer[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
         int total_eccentricity = 0;
         for(Vertex ver : g) {
             total_eccentricity += eccentricity(g, ver.getId(), dist);
