@@ -6,6 +6,8 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
+import java.util.ArrayList;
+
 @CommandAttitude(name = "PeripheralWienerIndex", abbreviation = "_peripheral_wiener_index")
 public class PeripheralWienerIndex implements GraphReportExtension<Integer> {
     public String getName() {
@@ -15,7 +17,6 @@ public class PeripheralWienerIndex implements GraphReportExtension<Integer> {
     public String getDescription() {
         return "Peripheral wiener index";
     }
-
 
     /**
      *  The peripheral Wiener index PW (G)
@@ -30,9 +31,15 @@ public class PeripheralWienerIndex implements GraphReportExtension<Integer> {
         int sum = 0;
         FloydWarshall fw = new FloydWarshall();
         int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
-        for (int v = 0; v < g.numOfVertices(); v++) {
-            for (int u = v + 1; u < g.numOfVertices(); u++) {
-                sum += dist[v][u];
+        PeripheralVertices pv = new PeripheralVertices();
+        ArrayList<Vertex> al = pv.calculate(g);
+        for(Vertex vertex1 : al) {
+            for (Vertex vertex2 : al) {
+                int v = vertex1.getId();
+                int u = vertex2.getId();
+                if (v < u) {
+                    sum += dist[v][u];
+                }
             }
         }
         return sum;
