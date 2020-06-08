@@ -18,7 +18,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 public class Diameter implements GraphReportExtension<Integer> {
 
     public Integer calculate(GraphModel g) {
-        FloydWarshall spt = new SFloydWarshall();
+        FloydWarshall spt = new FloydWarshall();
         int[][] dist = spt.getAllPairsShortestPathWithoutWeight(g);
         double max = 0;
         for (int v = 0; v < g.numOfVertices(); v++) {
