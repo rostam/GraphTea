@@ -5,18 +5,13 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
-import graphtea.extensions.algs4.AdjMatrixEdgeWeightedDigraph;
-import graphtea.extensions.algs4.DirectedEdge;
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
- * @author azin azadi
-
+ * @author Ali Rostami
  */
-
 
 @CommandAttitude(name = "totaleccentricity_index", abbreviation = "_TEindex")
 public class TotalEccentricityIndex implements GraphReportExtension<Double> {
@@ -29,21 +24,15 @@ public class TotalEccentricityIndex implements GraphReportExtension<Double> {
     }
 
     public Double calculate(GraphModel g) {
-        AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
-        for(Edge e : g.edges()) {
-            G.addEdge(new DirectedEdge(e.source.getId(), e.target.getId(), 1d));
-            G.addEdge(new DirectedEdge(e.target.getId(), e.source.getId(), 1d));
-        }
-
         FloydWarshall fw = new FloydWarshall();
         int[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
 
         double maxVUDistance;
     	double sum = 0;
 
-        for (int v = 0; v < G.V(); v++) {
+        for (int v = 0; v < g.numOfVertices(); v++) {
         	maxVUDistance = 0;
-            for (int u = 0; u < G.V(); u++) {
+            for (int u = 0; u < g.numOfVertices(); u++) {
             	if (v == u) {
             		continue;
             	}

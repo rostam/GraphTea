@@ -5,18 +5,13 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
-import graphtea.extensions.algs4.AdjMatrixEdgeWeightedDigraph;
-import graphtea.extensions.algs4.DirectedEdge;
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
- * @author azin azadi
-
+ * @author Ali Rostami
  */
-
 
 @CommandAttitude(name = "hyper_wiener_index", abbreviation = "_windex")
 public class HyperWienerIndex implements GraphReportExtension<Double> {
@@ -30,18 +25,12 @@ public class HyperWienerIndex implements GraphReportExtension<Double> {
 
     public Double calculate(GraphModel g) {
         double sum =0;
-        AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
-        for(Edge e : g.edges()) {
-            G.addEdge(new DirectedEdge(e.source.getId(), e.target.getId(), 1d));
-            G.addEdge(new DirectedEdge(e.target.getId(), e.source.getId(), 1d));
-        }
-
         FloydWarshall fw = new FloydWarshall();
         int[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
 
         double max = 0;
-        for (int v = 0; v < G.V(); v++) {
-            for (int u = v+1; u < G.V(); u++) {
+        for (int v = 0; v < g.numOfVertices(); v++) {
+            for (int u = v+1; u < g.numOfVertices(); u++) {
                 if(spt[v][u] < g.numOfVertices() + 1) {
                     double dist = spt[u][v];
                     if(dist > max) {

@@ -5,9 +5,6 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
-import graphtea.extensions.algs4.AdjMatrixEdgeWeightedDigraph;
-import graphtea.extensions.algs4.DirectedEdge;
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -28,18 +25,22 @@ public class WienerIndex implements GraphReportExtension<Integer> {
         return "Wiener Index";
     }
 
+    /**
+     * In chemical graph theory, the Wiener index (also Wiener number)
+     * introduced by Harry Wiener, is a topological index of a molecule,
+     * defined as the sum of the lengths of the shortest paths between all pairs of vertices
+     * in the chemical graph representing the non-hydrogen atoms in the molecule.
+     *
+     * @param g the given graph
+     * @return the wiener index
+     */
     public Integer calculate(GraphModel g) {
         int sum =0;
-        AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
-        for(Edge e : g.edges()) {
-            G.addEdge(new DirectedEdge(e.source.getId(), e.target.getId(), 1d));
-            G.addEdge(new DirectedEdge(e.target.getId(), e.source.getId(), 1d));
-        }
         FloydWarshall fw = new FloydWarshall();
         int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
         double max = 0;
-        for (int v = 0; v < G.V(); v++) {
-            for (int u = v+1; u < G.V(); u++) {
+        for (int v = 0; v < g.numOfVertices(); v++) {
+            for (int u = v+1; u < g.numOfVertices(); u++) {
                 if(dist[v][u] < g.numOfVertices()) {
                     double distance = dist[u][v];
                     if(distance > max) {

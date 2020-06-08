@@ -8,34 +8,34 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.Vector;
 
-@CommandAttitude(name = "Eccentricity", abbreviation = "_eccentricity")
-public class Eccentricity implements GraphReportExtension<RenderTable> {
+@CommandAttitude(name = "Radius", abbreviation = "_graph_radius")
+public class Radius implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Eccentricity";
+        return "Radius";
     }
 
     public String getDescription() {
-        return "Eccentricity";
+        return "Radius";
     }
 
     /**
-     * The eccentricity of a graph vertex v in a connected graph G is
-     * the maximum graph distance between v and any other vertex u of G.
-     * For a disconnected graph, all vertices are defined to have infinite eccentricity
+     * The radius of a graph is the minimum graph eccentricity @{@link Eccentricity}
+     * of any graph vertex in a graph.
+     * A disconnected graph therefore has infinite radius (West 2000, p. 71).
      *
      * @param g the given graph
      * @param v the given vertex
      * @param dist All pair shortest path without considering weights
      * @return the eccentricity value
      */
-    public static int eccentricity(GraphModel g, int v, int[][] dist) {
-        int max_dist = 0;
+    public int eccentricity(GraphModel g, int v, int[][] dist) {
+        int min_dist = 2*g.numOfVertices();
         for (int j = 0; j < g.getVerticesCount(); j++) {
-            if (max_dist < dist[v][j]) {
-                max_dist = dist[v][j];
+            if (min_dist > dist[v][j]) {
+                min_dist = dist[v][j];
             }
         }
-        return max_dist;
+        return min_dist;
     }
 
     @Override

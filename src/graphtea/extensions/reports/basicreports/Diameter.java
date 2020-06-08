@@ -6,9 +6,6 @@
 package graphtea.extensions.reports.basicreports;
 
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
-import graphtea.extensions.algs4.AdjMatrixEdgeWeightedDigraph;
-import graphtea.extensions.algs4.DirectedEdge;
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -21,16 +18,11 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 public class Diameter implements GraphReportExtension<Integer> {
 
     public Integer calculate(GraphModel g) {
-        AdjMatrixEdgeWeightedDigraph G = new AdjMatrixEdgeWeightedDigraph(g.numOfVertices());
-        for(Edge e : g.edges()) {
-            G.addEdge(new DirectedEdge(e.source.getId(), e.target.getId(), 1d));
-            G.addEdge(new DirectedEdge(e.target.getId(), e.source.getId(), 1d));
-        }
-        FloydWarshall spt = new FloydWarshall();
+        FloydWarshall spt = new SFloydWarshall();
         int[][] dist = spt.getAllPairsShortestPathWithoutWeight(g);
         double max = 0;
-        for (int v = 0; v < G.V(); v++) {
-            for (int u = 0; u < G.V(); u++) {
+        for (int v = 0; v < g.numOfVertices(); v++) {
+            for (int u = 0; u < g.numOfVertices(); u++) {
                 if(dist[v][u] < g.numOfVertices()) {
                     double distance = dist[u][v];
                     if(distance > max) {
