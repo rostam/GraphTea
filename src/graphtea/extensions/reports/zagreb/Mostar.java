@@ -7,6 +7,7 @@ import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.extensions.reports.clique.MaxCliqueExtension;
+import graphtea.extensions.reports.others.MostarIndex;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;

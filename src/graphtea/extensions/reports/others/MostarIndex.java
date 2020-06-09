@@ -24,7 +24,6 @@ public class MostarIndex implements GraphReportExtension<Integer> {
         return "Mostar Index";
     }
 
-
     public Integer calculate(GraphModel g) {
         FloydWarshall fw = new FloydWarshall();
         int[][] dists = fw.getAllPairsShortestPathWithoutWeight(g);
