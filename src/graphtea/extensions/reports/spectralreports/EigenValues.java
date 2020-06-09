@@ -22,12 +22,12 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class EigenValues implements GraphReportExtension,Parametrizable {
+public class EigenValues implements GraphReportExtension<ArrayList<String>>,Parametrizable {
 
     @Parameter(name = "power:", description = "The power of the eigen values")
     public double power = 2;
 
-    public Object calculate(GraphModel g) {
+    public ArrayList<String> calculate(GraphModel g) {
         ArrayList<String> res = new ArrayList<>();
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();

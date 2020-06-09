@@ -14,7 +14,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "harary_index", abbreviation = "_harary")
-public class Harary implements GraphReportExtension<Object> {
+public class Harary implements GraphReportExtension<Double> {
     public String getName() {
         return "Harary Index";
     }
@@ -23,7 +23,7 @@ public class Harary implements GraphReportExtension<Object> {
         return "Harary Index";
     }
 
-    public Object calculate(GraphModel g) {
+    public Double calculate(GraphModel g) {
         double sum =0;
         FloydWarshall fw = new FloydWarshall();
         int[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
