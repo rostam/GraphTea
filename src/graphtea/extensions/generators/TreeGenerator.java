@@ -32,8 +32,8 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
             new ArrayX<>("Circular", "Backward", "UpDown");
 
 //    String positioning;
-
-    int n;
+    @Parameter(description = "N")
+    public static int n;
 
 /*    public NotifiableAttributeSet getParameters() {
         PortableNotifiableAttributeSetImpl a=new PortableNotifiableAttributeSetImpl();

@@ -20,9 +20,9 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
     //the depth should be positive, and also if it is very large the
     //generated graph is too large to generate.
     @Parameter(description = "N")
-    public int n = 4;
+    public static int n = 4;
     @Parameter(description = "K")
-    public int k = 4;      //num of each star vertices
+    public static int k = 4;      //num of each star vertices
 
 
     public String checkParameters() {
