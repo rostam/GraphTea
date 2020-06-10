@@ -250,9 +250,11 @@ public class GeneratorsTest {
     @Test
     public void testBananaTreeGenerator() {
         BananaTreeGenerator.n = 10;
+        BananaTreeGenerator.k = 4;
         BananaTreeGenerator varBananaTreeGenerator = new BananaTreeGenerator();
         GraphModel g = varBananaTreeGenerator.generateGraph();
         int n = BananaTreeGenerator.n;
+        int k = BananaTreeGenerator.k;
         int numOfVertices = g.numOfVertices();
         int numOfEdges = g.getEdgesCount();
         ArrayList<Integer> maxAndMinDegree = new MaxAndMinDegree().calculate(g);
@@ -262,10 +264,10 @@ public class GeneratorsTest {
         int diameter = new Diameter().calculate(g);
         Assertions.assertEquals(girth, n);
         Assertions.assertEquals(diameter, n);
-        Assertions.assertEquals(numOfVertices, n);
-        Assertions.assertEquals(numOfEdges, n);
+        Assertions.assertEquals(numOfVertices, n*k + 1);
+        Assertions.assertEquals(numOfEdges, n*k);
         Assertions.assertEquals(maxDegree, n);
-        Assertions.assertEquals(minDegree, n);
+        Assertions.assertEquals(minDegree, 1);
     }
 
     @Test
@@ -326,12 +328,12 @@ public class GeneratorsTest {
         int minDegree = maxAndMinDegree.get(1);
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
-        Assertions.assertEquals(girth, n);
-        Assertions.assertEquals(diameter, n);
-        Assertions.assertEquals(numOfVertices, n);
-        Assertions.assertEquals(numOfEdges, n);
-        Assertions.assertEquals(maxDegree, n);
-        Assertions.assertEquals(minDegree, n);
+        Assertions.assertEquals(girth, 3);
+        Assertions.assertEquals(diameter, n/2 + n%2);
+        Assertions.assertEquals(numOfVertices, 2*n);
+        Assertions.assertEquals(numOfEdges, 4*n);
+        Assertions.assertEquals(maxDegree, 4);
+        Assertions.assertEquals(minDegree, 4);
     }
 
     @Test
@@ -347,12 +349,12 @@ public class GeneratorsTest {
         int minDegree = maxAndMinDegree.get(1);
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
-        Assertions.assertEquals(girth, n);
-        Assertions.assertEquals(diameter, n);
-        Assertions.assertEquals(numOfVertices, n);
-        Assertions.assertEquals(numOfEdges, n);
+        Assertions.assertEquals(girth, 4);
+        Assertions.assertEquals(diameter, 4);
+        Assertions.assertEquals(numOfVertices, 2*n+1);
+        Assertions.assertEquals(numOfEdges, 3*n);
         Assertions.assertEquals(maxDegree, n);
-        Assertions.assertEquals(minDegree, n);
+        Assertions.assertEquals(minDegree, 2);
     }
 
     @Test
@@ -379,9 +381,11 @@ public class GeneratorsTest {
     @Test
     public void testRegularGraphGenerator() {
         RegularGraphGenerator.n = 10;
+        RegularGraphGenerator.deg = 3;
         RegularGraphGenerator varRegularGraphGenerator = new RegularGraphGenerator();
         GraphModel g = varRegularGraphGenerator.generateGraph();
         int n = RegularGraphGenerator.n;
+        int deg = RegularGraphGenerator.deg;
         int numOfVertices = g.numOfVertices();
         int numOfEdges = g.getEdgesCount();
         ArrayList<Integer> maxAndMinDegree = new MaxAndMinDegree().calculate(g);
@@ -392,9 +396,9 @@ public class GeneratorsTest {
         Assertions.assertEquals(girth, n);
         Assertions.assertEquals(diameter, n);
         Assertions.assertEquals(numOfVertices, n);
-        Assertions.assertEquals(numOfEdges, n);
-        Assertions.assertEquals(maxDegree, n);
-        Assertions.assertEquals(minDegree, n);
+        Assertions.assertEquals(numOfEdges, (n*deg)/2);
+        Assertions.assertEquals(maxDegree, deg);
+        Assertions.assertEquals(minDegree, deg);
     }
 
     @Test
@@ -442,9 +446,11 @@ public class GeneratorsTest {
     @Test
     public void testKmnGenerator() {
         KmnGenerator.n = 10;
+        KmnGenerator.m = 4;
         KmnGenerator varKmnGenerator = new KmnGenerator();
         GraphModel g = varKmnGenerator.generateGraph();
         int n = KmnGenerator.n;
+        int m = KmnGenerator.m;
         int numOfVertices = g.numOfVertices();
         int numOfEdges = g.getEdgesCount();
         ArrayList<Integer> maxAndMinDegree = new MaxAndMinDegree().calculate(g);
@@ -452,12 +458,12 @@ public class GeneratorsTest {
         int minDegree = maxAndMinDegree.get(1);
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
-        Assertions.assertEquals(girth, n);
-        Assertions.assertEquals(diameter, n);
-        Assertions.assertEquals(numOfVertices, n);
-        Assertions.assertEquals(numOfEdges, n);
-        Assertions.assertEquals(maxDegree, n);
-        Assertions.assertEquals(minDegree, n);
+        Assertions.assertEquals(girth, 4);
+        Assertions.assertEquals(diameter, 2);
+        Assertions.assertEquals(numOfVertices, n+m);
+        Assertions.assertEquals(numOfEdges, n*m);
+        Assertions.assertEquals(maxDegree, Math.max(m,n));
+        Assertions.assertEquals(minDegree, Math.min(m,n));
     }
 
     @Test
@@ -484,9 +490,13 @@ public class GeneratorsTest {
     @Test
     public void testKmnoGenerator() {
         KmnoGenerator.n = 10;
+        KmnoGenerator.m = 4;
+        KmnoGenerator.o = 3;
         KmnoGenerator varKmnoGenerator = new KmnoGenerator();
         GraphModel g = varKmnoGenerator.generateGraph();
         int n = KmnoGenerator.n;
+        int m = KmnoGenerator.m;
+        int o = KmnoGenerator.o;
         int numOfVertices = g.numOfVertices();
         int numOfEdges = g.getEdgesCount();
         ArrayList<Integer> maxAndMinDegree = new MaxAndMinDegree().calculate(g);
@@ -494,12 +504,23 @@ public class GeneratorsTest {
         int minDegree = maxAndMinDegree.get(1);
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
-        Assertions.assertEquals(girth, n);
-        Assertions.assertEquals(diameter, n);
-        Assertions.assertEquals(numOfVertices, n);
-        Assertions.assertEquals(numOfEdges, n);
-        Assertions.assertEquals(maxDegree, n);
-        Assertions.assertEquals(minDegree, n);
+        Assertions.assertEquals(girth, 3);
+        Assertions.assertEquals(diameter, 2);
+        Assertions.assertEquals(numOfVertices, n + m + o);
+        Assertions.assertEquals(numOfEdges, n*m + n*o + m*o);
+        int maxdeg = 0, mindeg  = 0;
+        if(m >= n && m >= o) {
+            maxdeg = m + Math.max(n,o);
+            mindeg = n + o;
+        } else if(n >= m && n >= o) {
+            maxdeg = n + Math.max(m,o);
+            mindeg = m + o;
+        } else if(o > n && o > m) {
+            maxdeg = o + Math.max(n,m);
+            mindeg = n + m;
+        }
+        Assertions.assertEquals(maxDegree, maxdeg);
+        Assertions.assertEquals(minDegree, mindeg);
     }
 
     @Test
