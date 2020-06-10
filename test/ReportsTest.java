@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Assertions;
 import graphtea.graph.graph.SubGraph;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 public class ReportsTest {
     GraphModel peterson = GeneralizedPetersonGenerator.generateGeneralizedPeterson(5,2);
     GraphModel circle4 = CircleGenerator.generateCircle(4);
@@ -571,7 +573,11 @@ public class ReportsTest {
     @Test
     public void testIsBipartite() {
         IsBipartite varIsBipartite = new IsBipartite();
-        Assertions.assertTrue(varIsBipartite.calculate(peterson));
+        Assertions.assertFalse(varIsBipartite.calculate(peterson));
+        Assertions.assertTrue(varIsBipartite.calculate(circle4));
+        Assertions.assertFalse(varIsBipartite.calculate(circle5));
+        Assertions.assertFalse(varIsBipartite.calculate(complete4));
+        Assertions.assertFalse(varIsBipartite.calculate(complete5));
     }
 
     @Test
@@ -583,19 +589,31 @@ public class ReportsTest {
     @Test
     public void testIsEulerian() {
         IsEulerian varIsEulerian = new IsEulerian();
-        Assertions.assertTrue(varIsEulerian.calculate(peterson));
+        Assertions.assertFalse(varIsEulerian.calculate(peterson));
+        Assertions.assertTrue(varIsEulerian.calculate(circle4));
+        Assertions.assertTrue(varIsEulerian.calculate(circle5));
+        Assertions.assertFalse(varIsEulerian.calculate(complete4));
+        Assertions.assertTrue(varIsEulerian.calculate(complete5));
     }
 
     @Test
     public void testGirthSize() {
         GirthSize varGirthSize = new GirthSize();
-        Assertions.assertEquals(varGirthSize.calculate(peterson),0);
+        Assertions.assertEquals(varGirthSize.calculate(peterson),5);
+        Assertions.assertEquals(varGirthSize.calculate(circle4),4);
+        Assertions.assertEquals(varGirthSize.calculate(circle5),5);
+        Assertions.assertEquals(varGirthSize.calculate(complete4), 3);
+        Assertions.assertEquals(varGirthSize.calculate(complete5), 3);
     }
 
     @Test
     public void testNumOfTriangles() {
         NumOfTriangles varNumOfTriangles = new NumOfTriangles();
         Assertions.assertEquals(varNumOfTriangles.calculate(peterson),0);
+        Assertions.assertEquals(varNumOfTriangles.calculate(circle4),0);
+        Assertions.assertEquals(varNumOfTriangles.calculate(circle5),0);
+        Assertions.assertEquals(varNumOfTriangles.calculate(complete4), 4);
+        Assertions.assertEquals(varNumOfTriangles.calculate(complete5), 10);
     }
 
     @Test
@@ -607,7 +625,11 @@ public class ReportsTest {
     @Test
     public void testNumOfEdges() {
         NumOfEdges varNumOfEdges = new NumOfEdges();
-        Assertions.assertEquals(varNumOfEdges.calculate(peterson),0);
+        Assertions.assertEquals(varNumOfEdges.calculate(peterson),15);
+        Assertions.assertEquals(varNumOfEdges.calculate(circle4),4);
+        Assertions.assertEquals(varNumOfEdges.calculate(circle5),5);
+        Assertions.assertEquals(varNumOfEdges.calculate(complete4), 6);
+        Assertions.assertEquals(varNumOfEdges.calculate(complete5), 10);
     }
 
     @Test
@@ -619,13 +641,35 @@ public class ReportsTest {
     @Test
     public void testMaxAndMinDegree() {
         MaxAndMinDegree varMaxAndMinDegree = new MaxAndMinDegree();
-        Assertions.assertEquals(varMaxAndMinDegree.calculate(peterson).get(0),0);
+        ArrayList<Integer> maxmin = varMaxAndMinDegree.calculate(peterson);
+        Assertions.assertEquals(maxmin.get(0),3);
+        Assertions.assertEquals(maxmin.get(1),3);
+
+        maxmin = varMaxAndMinDegree.calculate(circle4);
+        Assertions.assertEquals(maxmin.get(0),2);
+        Assertions.assertEquals(maxmin.get(1),2);
+
+        maxmin = varMaxAndMinDegree.calculate(circle5);
+        Assertions.assertEquals(maxmin.get(0),2);
+        Assertions.assertEquals(maxmin.get(1),2);
+
+        maxmin = varMaxAndMinDegree.calculate(complete4);
+        Assertions.assertEquals(maxmin.get(0),3);
+        Assertions.assertEquals(maxmin.get(1),3);
+
+        maxmin = varMaxAndMinDegree.calculate(complete5);
+        Assertions.assertEquals(maxmin.get(0),4);
+        Assertions.assertEquals(maxmin.get(1),4);
     }
 
     @Test
     public void testNumOfStars() {
         NumOfStars varNumOfStars = new NumOfStars();
         Assertions.assertEquals(varNumOfStars.calculate(peterson),0);
+        Assertions.assertEquals(varNumOfStars.calculate(circle4),0);
+        Assertions.assertEquals(varNumOfStars.calculate(circle5),0);
+        Assertions.assertEquals(varNumOfStars.calculate(complete4), 0);
+        Assertions.assertEquals(varNumOfStars.calculate(complete5), 0);
     }
 
     @Test
@@ -649,25 +693,41 @@ public class ReportsTest {
     @Test
     public void testPathsofLengthTwo() {
         PathsofLengthTwo varPathsofLengthTwo = new PathsofLengthTwo();
-        Assertions.assertEquals(varPathsofLengthTwo.calculate(peterson),0);
+        Assertions.assertEquals(varPathsofLengthTwo.calculate(peterson),30);//???
+        Assertions.assertEquals(varPathsofLengthTwo.calculate(circle4),4);
+        Assertions.assertEquals(varPathsofLengthTwo.calculate(circle5),5);
+        Assertions.assertEquals(varPathsofLengthTwo.calculate(complete4), 15);
+        Assertions.assertEquals(varPathsofLengthTwo.calculate(complete5), 45);
     }
 
     @Test
     public void testDiameter() {
         Diameter varDiameter = new Diameter();
-        Assertions.assertEquals(varDiameter.calculate(peterson),0);
+        Assertions.assertEquals(varDiameter.calculate(peterson),2);
+        Assertions.assertEquals(varDiameter.calculate(circle4),2);
+        Assertions.assertEquals(varDiameter.calculate(circle5),2);
+        Assertions.assertEquals(varDiameter.calculate(complete4), 1);
+        Assertions.assertEquals(varDiameter.calculate(complete5), 1);
     }
 
     @Test
     public void testNumOfVertices() {
         NumOfVertices varNumOfVertices = new NumOfVertices();
-        Assertions.assertEquals(varNumOfVertices.calculate(peterson),0);
+        Assertions.assertEquals(varNumOfVertices.calculate(peterson),10);
+        Assertions.assertEquals(varNumOfVertices.calculate(circle4),4);
+        Assertions.assertEquals(varNumOfVertices.calculate(circle5),5);
+        Assertions.assertEquals(varNumOfVertices.calculate(complete4), 4);
+        Assertions.assertEquals(varNumOfVertices.calculate(complete5), 5);
     }
 
     @Test
     public void testNumOfQuadrangle() {
         NumOfQuadrangle varNumOfQuadrangle = new NumOfQuadrangle();
         Assertions.assertEquals(varNumOfQuadrangle.calculate(peterson),0);
+        Assertions.assertEquals(varNumOfQuadrangle.calculate(circle4),1);
+        Assertions.assertEquals(varNumOfQuadrangle.calculate(circle5),0);
+        Assertions.assertEquals(varNumOfQuadrangle.calculate(complete4), 3);//???
+        Assertions.assertEquals(varNumOfQuadrangle.calculate(complete5), 12);
     }
 
     @Test
@@ -678,8 +738,13 @@ public class ReportsTest {
 
     @Test
     public void testNumOfVerticesWithDegK() {
+        NumOfVerticesWithDegK.k = 3;
         NumOfVerticesWithDegK varNumOfVerticesWithDegK = new NumOfVerticesWithDegK();
-        Assertions.assertEquals(varNumOfVerticesWithDegK.calculate(peterson),0);
+        Assertions.assertEquals(varNumOfVerticesWithDegK.calculate(peterson),10);
+        Assertions.assertEquals(varNumOfVerticesWithDegK.calculate(circle4),0);
+        Assertions.assertEquals(varNumOfVerticesWithDegK.calculate(circle5),0);
+        Assertions.assertEquals(varNumOfVerticesWithDegK.calculate(complete4), 4);//???
+        Assertions.assertEquals(varNumOfVerticesWithDegK.calculate(complete5), 0);
     }
 
     @Test
