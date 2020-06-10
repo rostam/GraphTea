@@ -216,17 +216,19 @@ public class GeneratorsTest {
         int minDegree = maxAndMinDegree.get(1);
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
-        Assertions.assertEquals(girth, n);
-        Assertions.assertEquals(diameter, n);
-        Assertions.assertEquals(numOfVertices, n);
-        Assertions.assertEquals(numOfEdges, n);
-        Assertions.assertEquals(maxDegree, n);
-        Assertions.assertEquals(minDegree, n);
+        //assume n >= 3
+        if(n==3) Assertions.assertEquals(girth, 6);
+        else Assertions.assertEquals(girth, 4);//???
+        Assertions.assertEquals(diameter, 3);
+        Assertions.assertEquals(numOfVertices, 2*n);
+        Assertions.assertEquals(numOfEdges, n*(n-1));
+        Assertions.assertEquals(maxDegree, n - 1);
+        Assertions.assertEquals(minDegree, n - 1);
     }
 
     @Test
     public void testPrismGraph() {
-        PrismGraph.n = 10;
+        PrismGraph.n = 12;
         PrismGraph varPrismGraph = new PrismGraph();
         GraphModel g = varPrismGraph.generateGraph();
         int n = PrismGraph.n;
@@ -237,12 +239,12 @@ public class GeneratorsTest {
         int minDegree = maxAndMinDegree.get(1);
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
-        Assertions.assertEquals(girth, n);
-        Assertions.assertEquals(diameter, n);
-        Assertions.assertEquals(numOfVertices, n);
-        Assertions.assertEquals(numOfEdges, n);
-        Assertions.assertEquals(maxDegree, n);
-        Assertions.assertEquals(minDegree, n);
+        Assertions.assertEquals(girth, 4);
+        Assertions.assertEquals(diameter, n/2 + 1);
+        Assertions.assertEquals(numOfVertices, 2*n);
+        Assertions.assertEquals(numOfEdges, 3*n);
+        Assertions.assertEquals(maxDegree, 3);
+        Assertions.assertEquals(minDegree, 3);
     }
 
     @Test
