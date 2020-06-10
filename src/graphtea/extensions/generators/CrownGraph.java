@@ -49,8 +49,7 @@ public class CrownGraph implements GraphGeneratorExtension, Parametrizable, Simp
 		return result;
 	}
 
-	public Edge[] getEdges()
-	{
+	public Edge[] getEdges() {
 		Edge[] result = new Edge[3*n-n];
         int ecnt = 0;
 		for (int i = 0; i < n; i++)

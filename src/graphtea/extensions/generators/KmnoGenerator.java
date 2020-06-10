@@ -55,8 +55,7 @@ public class KmnoGenerator implements GraphGeneratorExtension, Parametrizable, S
 		return ret;
 	}
 
-	public Edge[] getEdges()
-	{
+	public Edge[] getEdges() {
 		Edge[] ret = new Edge[m * n + m * o + n * o];
 		for (int i = 0; i < m; i++)
 			for (int j = 0; j < n + o; j++)

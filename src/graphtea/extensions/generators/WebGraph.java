@@ -51,8 +51,7 @@ public class WebGraph implements GraphGeneratorExtension, Parametrizable, Simple
 		return result;
 	}
 
-    public Edge[] getEdges()
-    {
+    public Edge[] getEdges() {
         Edge[] result = new Edge[(2*t*n)+n];
         int ecnt = 0;
 

@@ -47,8 +47,7 @@ public class FlowerGraph implements GraphGeneratorExtension, Parametrizable, Sim
 		return result;
 	}
 
-	public Edge[] getEdges()
-	{
+	public Edge[] getEdges() {
 		Edge[] result =  new Edge[4*n];
         int ecnt = 0;
 		for (int i = 0; i < n; i++) {
