@@ -96,7 +96,7 @@ public class FlowerGraph implements GraphGeneratorExtension, Parametrizable, Sim
 	}
 
 	/**
-	 * generates a Helm Graph with given parameters
+	 * generates a Flower Graph with given parameters
 	 */
 	public static GraphModel generateHelm(int n)
 	{

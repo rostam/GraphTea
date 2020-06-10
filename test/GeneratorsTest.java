@@ -395,7 +395,7 @@ public class GeneratorsTest {
         int minDegree = maxAndMinDegree.get(1);
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
-        Assertions.assertEquals(girth, n);
+        Assertions.assertEquals(girth, deg + 1);
         Assertions.assertEquals(diameter, n);
         Assertions.assertEquals(numOfVertices, n);
         Assertions.assertEquals(numOfEdges, (n*deg)/2);

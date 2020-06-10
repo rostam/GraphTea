@@ -5,12 +5,13 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  */
 
 @CommandAttitude(name = "zagreb_index", abbreviation = "_zi")
-public class ZagrebIndex implements GraphReportExtension<ArrayList<String>>, Parametrizable {
+public class ZagrebIndex implements GraphReportExtension<RenderTable>, Parametrizable {
     public String getName() {
         return "All Zagreb Indices";
     }
@@ -30,14 +31,23 @@ public class ZagrebIndex implements GraphReportExtension<ArrayList<String>>, Par
         return "All Zagreb Indices";
     }
 
-    public ArrayList<String> calculate(GraphModel g) {
-        ArrayList<String> out = new ArrayList<>();
+    public RenderTable calculate(GraphModel g) {
+        RenderTable renderTable = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add("First General Zagreb Index");
+        titles.add("Second General Zagreb Index");
+        titles.add("First Reformulated Zagreb Index");
+        titles.add("First Reformulated Zagreb Index");
+        renderTable.setTitles(titles);
+
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        out.add("First General Zagreb Index : "+ zif.getFirstZagreb(alpha));
-        out.add("Second General Zagreb Index : "+ zif.getSecondZagreb(alpha));
-        out.add("First Reformulated Zagreb Index : " + zif.getFirstReZagreb(alpha));
-        out.add("Second Reformulated Zagreb Index : " + zif.getSecondReZagreb(alpha));
-        return out;
+        Vector<Object> values = new Vector<>();
+        values.add(zif.getFirstZagreb(alpha));
+        values.add(zif.getSecondZagreb(alpha));
+        values.add(zif.getFirstReZagreb(alpha));
+        values.add(zif.getSecondReZagreb(alpha));
+        renderTable.add(values);
+        return renderTable;
     }
 
     public String checkParameters() {
@@ -46,7 +56,6 @@ public class ZagrebIndex implements GraphReportExtension<ArrayList<String>>, Par
 
     @Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "Topological Indices-Zagreb Indices";
 	}
 }
