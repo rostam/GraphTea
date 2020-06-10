@@ -51,8 +51,7 @@ public class FlowerGraph implements GraphGeneratorExtension, Parametrizable, Sim
 	{
 		Edge[] result =  new Edge[4*n];
         int ecnt = 0;
-		for (int i = 0; i < n; i++)
-		{
+		for (int i = 0; i < n; i++) {
 			result[ecnt] = new Edge(v[i], v[n+i]);
             ecnt++;
 			result[ecnt] = new Edge(v[n+i], v[2*n]);
@@ -104,11 +103,6 @@ public class FlowerGraph implements GraphGeneratorExtension, Parametrizable, Sim
 	{
 		FlowerGraph.n = n;
 		return GraphGenerator.getGraph(false, new FlowerGraph());
-    }
-
-public static void main(String[] args) {
-        graphtea.platform.Application.main(args);
-//        StaticUtils.loadSingleExtension(graphtea.samples.extensions.HelmGraph.class);
     }
 
     @Override

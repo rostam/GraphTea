@@ -29,10 +29,8 @@ public class NumOfStars implements GraphReportExtension<Integer>, Parametrizable
             int deg = g.getDegree(v);
             sum += Utils.choose(deg,k).intValue();
         }
-
         return sum;
     }
-
 
     public String getName() {
         return "Number of Stars";
@@ -44,7 +42,6 @@ public class NumOfStars implements GraphReportExtension<Integer>, Parametrizable
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "General";
 	}
 
