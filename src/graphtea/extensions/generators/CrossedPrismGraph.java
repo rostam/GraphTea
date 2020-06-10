@@ -31,7 +31,10 @@ public class CrossedPrismGraph implements GraphGeneratorExtension, Parametrizabl
     	//////// !!! check it later!!!
     	//if (n<4)return "n must be higher than 4!!! For more information check: 'http://mathworld.wolfram.com/CubicalGraph.html'";
     	//else 
-    	if(n<0)return "n must be positive!";
+    	if(n<0)
+    	    return "n must be positive!";
+    	else if(n%2!=0)
+    	    return "n must be even!";
     	else
     		return null;
     }
