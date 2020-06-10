@@ -43,15 +43,19 @@ public class CmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
         int counter = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (j > m - 2) ret[counter] = new Edge(v[i * m + j], v[i * m]);
-                else ret[counter] = new Edge(v[i * m + j], v[i * m + j + 1]);
+                if (j > m - 2)
+                    ret[counter] = new Edge(v[i * m + j], v[i * m]);
+                else
+                    ret[counter] = new Edge(v[i * m + j], v[i * m + j + 1]);
                 counter++;
             }
         }
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (i > n - 2) ret[counter] = new Edge(v[i * m + j], v[j]);
-                else ret[counter] = new Edge(v[i * m + j], v[(i + 1) * m + j]);
+                if (i > n - 2)
+                    ret[counter] = new Edge(v[i * m + j], v[j]);
+                else
+                    ret[counter] = new Edge(v[i * m + j], v[(i + 1) * m + j]);
                 counter++;
             }
         }

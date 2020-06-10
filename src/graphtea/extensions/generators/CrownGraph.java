@@ -52,8 +52,7 @@ public class CrownGraph implements GraphGeneratorExtension, Parametrizable, Simp
 	public Edge[] getEdges() {
 		Edge[] result = new Edge[3*n-n];
         int ecnt = 0;
-		for (int i = 0; i < n; i++)
-		{
+		for (int i = 0; i < n; i++) {
 			result[ecnt] = new Edge(v[i], v[n+i]);
             ecnt++;
 			//result[ecnt] = new Edge(v[n+i], v[2*n]);
