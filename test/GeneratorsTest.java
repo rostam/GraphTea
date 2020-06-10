@@ -547,9 +547,11 @@ public class GeneratorsTest {
     @Test
     public void testPmnGenerator() {
         PmnGenerator.n = 10;
+        PmnGenerator.m = 4;
         PmnGenerator varPmnGenerator = new PmnGenerator();
         GraphModel g = varPmnGenerator.generateGraph();
         int n = PmnGenerator.n;
+        int m = PmnGenerator.m;
         int numOfVertices = g.numOfVertices();
         int numOfEdges = g.getEdgesCount();
         ArrayList<Integer> maxAndMinDegree = new MaxAndMinDegree().calculate(g);
@@ -557,12 +559,12 @@ public class GeneratorsTest {
         int minDegree = maxAndMinDegree.get(1);
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
-        Assertions.assertEquals(girth, n);
-        Assertions.assertEquals(diameter, n);
-        Assertions.assertEquals(numOfVertices, n);
-        Assertions.assertEquals(numOfEdges, n);
-        Assertions.assertEquals(maxDegree, n);
-        Assertions.assertEquals(minDegree, n);
+        Assertions.assertEquals(girth, 4);
+        Assertions.assertEquals(diameter, n + m - 2);
+        Assertions.assertEquals(numOfVertices, n*m);
+        Assertions.assertEquals(numOfEdges, 2*n*m - n - m);
+        Assertions.assertEquals(maxDegree, 4);
+        Assertions.assertEquals(minDegree, 2);
     }
 
     @Test
