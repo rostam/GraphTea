@@ -2,6 +2,7 @@ package graphtea.extensions.reports.others;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -54,6 +55,7 @@ public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
         titles.add("m ");
         titles.add("n ");
         titles.add("Eccentricity Energy");
+        titles.add("Eigen Values");
         ret.setTitles(titles);
         FloydWarshall fw = new FloydWarshall();
         int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
@@ -74,6 +76,7 @@ public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
         v.add(g.getVerticesCount());
         v.add(g.getEdgesCount());
         v.add(sum);
+        v.add(AlgorithmUtils.getEigenValues(g));
         ret.add(v);
         return ret;
     }

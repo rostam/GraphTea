@@ -425,6 +425,8 @@ public class AlgorithmUtils {
 
     }
 
+
+
     public static String getEigenValues(GraphModel g) {
         Matrix A = g.getWeightedAdjacencyMatrix();
         EigenvalueDecomposition ed = A.eig();
@@ -433,9 +435,9 @@ public class AlgorithmUtils {
         String res = "";
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res +="" + rv[i] + " + " + iv[i] + "i";
+                res +="" + AlgorithmUtils.round(rv[i],10) + " + " + AlgorithmUtils.round(iv[i],10) + "i";
             else
-                res += "" + rv[i];
+                res += "" + AlgorithmUtils.round(rv[i],10);
             if(i!=rv.length-1) {
                 res += ",";
             }

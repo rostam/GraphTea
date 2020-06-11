@@ -111,52 +111,11 @@ public class Cograph implements GraphReportExtension<RenderTable> {
    //     v.add(CLE);
         //1
  
-        v.add(getLEigenValues(g));
+        v.add(AlgorithmUtils.getEigenValues(g));
  
         ret.add(v);
         return ret;
     }
-
-    public static String getEigenValues(GraphModel g) {
-        Matrix A = g.getWeightedAdjacencyMatrix();
-        EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double[] iv = ed.getImagEigenvalues();
-        String res = "";
-        for (int i = 0; i < rv.length; i++) {
-            if (iv[i] != 0)
-                res +="" + AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i";
-            else
-                res += "" + AlgorithmUtils.round(rv[i], 10);
-            if(i!=rv.length-1) {
-                res += ",";
-            }
-        }
-        return res;
-    }
-    
-    
-    
-    public static String getLEigenValues(GraphModel g) {
-    	Matrix B = g.getWeightedAdjacencyMatrix();
-        Matrix A = Utils.getLaplacian(B);
-        EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double[] iv = ed.getImagEigenvalues();
-        String res = "";
-        for (int i = 0; i < rv.length; i++) {
-            if (iv[i] != 0)
-                res +="" + AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i";
-            else
-                res += "" + AlgorithmUtils.round(rv[i], 10);
-            if(i!=rv.length-1) {
-                res += ",";
-            }
-        }
-        return res;
-    }
-
-
 
     @Override
     public String getCategory() {
