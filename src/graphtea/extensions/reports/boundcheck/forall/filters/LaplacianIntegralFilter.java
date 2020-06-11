@@ -2,6 +2,7 @@ package graphtea.extensions.reports.boundcheck.forall.filters;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.boundcheck.forall.GraphFilter;
 import graphtea.extensions.reports.boundcheck.forall.Utils;
 import graphtea.graph.graph.GraphModel;
@@ -13,7 +14,7 @@ import graphtea.graph.graph.GraphModel;
 public class LaplacianIntegralFilter implements GraphFilter {
     public boolean isLaplacianIntegral(GraphModel g) {
         Matrix B = g.getWeightedAdjacencyMatrix();
-        Matrix A = graphtea.extensions.reports.Utils.getLaplacian(B);
+        Matrix A = AlgorithmUtils.getLaplacian(B);
         EigenvalueDecomposition ed = A.eig();
         double[] rrv = ed.getRealEigenvalues();
         double[] rv = Utils.round(rrv, 3);

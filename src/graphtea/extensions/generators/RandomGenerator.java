@@ -4,7 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.generators;
 
-import graphtea.extensions.reports.Utils;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -66,7 +66,7 @@ public class RandomGenerator implements GraphGeneratorExtension, Parametrizable,
     }
 
     public Point[] getVertexPositions() {
-        return Utils.computeRandomPositions(n);
+        return AlgorithmUtils.computeRandomPositions(n);
     }
 
     public String checkParameters() {

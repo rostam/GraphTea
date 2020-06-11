@@ -4,7 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.basicreports;
 
-import graphtea.extensions.reports.Utils;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -25,7 +25,7 @@ public class PathsofLengthTwo implements GraphReportExtension<Integer> {
     }
 
     public Integer calculate(GraphModel g) {
-        return Utils.createLineGraph(g).getEdgesCount();
+        return AlgorithmUtils.createLineGraph(g).getEdgesCount();
     }
 
 	@Override

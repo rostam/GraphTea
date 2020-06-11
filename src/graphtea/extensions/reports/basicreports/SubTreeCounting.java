@@ -14,7 +14,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.Vector;
 
-import static graphtea.extensions.reports.Utils.choose;
+import static graphtea.extensions.AlgorithmUtils.choose;
 
 /**
  * @author Mohammad Ali Rostami

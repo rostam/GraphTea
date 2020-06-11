@@ -4,7 +4,6 @@ package graphtea.extensions.reports.energy;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
-import graphtea.extensions.reports.Utils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.library.util.Complex;
@@ -21,7 +20,7 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension<Vector<S
             double m = g.getEdgesCount();
             double n = g.getVerticesCount();
             Matrix B = g.getWeightedAdjacencyMatrix();
-            Matrix A = Utils.getSignlessLaplacian(B);
+            Matrix A = AlgorithmUtils.getSignlessLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
             double[] rv = ed.getRealEigenvalues();
             double[] iv = ed.getImagEigenvalues();
@@ -69,7 +68,7 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension<Vector<S
             double m = g.getEdgesCount();
             double n = g.getVerticesCount();
             Matrix B = g.getWeightedAdjacencyMatrix();
-            Matrix A = Utils.getLaplacian(B);
+            Matrix A = AlgorithmUtils.getLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
             double[] rv = ed.getRealEigenvalues();
             double[] iv = ed.getImagEigenvalues();

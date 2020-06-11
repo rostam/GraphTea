@@ -8,7 +8,6 @@ package graphtea.extensions.reports.spectralreports;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
-import graphtea.extensions.reports.Utils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
@@ -25,7 +24,7 @@ public class SignlessLaplacianEnergy implements GraphReportExtension<String> {
         double power = 1;
         try {
             Matrix B = g.getWeightedAdjacencyMatrix();
-            Matrix A = Utils.getSignlessLaplacian(B);
+            Matrix A = AlgorithmUtils.getSignlessLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
             double[] rv = ed.getRealEigenvalues();
             double[] iv = ed.getImagEigenvalues();
@@ -68,8 +67,20 @@ public class SignlessLaplacianEnergy implements GraphReportExtension<String> {
         return "Signless Laplacian Energy";
     }
 
+    /**
+     * Ivan Gutman, Luis Medina C, Pamela Pizarro, María Robbiano,
+     * Graphs with maximum Laplacian and signless Laplacian Estrada index,
+     * Discrete Mathematics,
+     * Volume 339, Issue 11,
+     * 2016,
+     * Pages 2664-2671,
+     * ISSN 0012-365X,
+     * https://doi.org/10.1016/j.disc.2016.04.022.
+     * @return
+     */
     public String getDescription() {
-        return "Signless Laplacian Energy";
+        return "Signless Laplacian Energy" +
+                "";
     }
 
     @Override

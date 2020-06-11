@@ -8,7 +8,6 @@ import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.RandomMatching;
-import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.extensions.reports.basicreports.GirthSize;
 import graphtea.extensions.reports.spectralreports.KirchhoffIndex;
@@ -68,7 +67,7 @@ public class KF_Wiener implements GraphReportExtension<RenderTable> {
         double maxDeg = 0;
         double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
-        double minDeg2 = Utils.getMinNonPendentDegree(g);
+        double minDeg2 = AlgorithmUtils.getMinNonPendentDegree(g);
         
         List<Integer>[] gg = new List[g.getVerticesCount()];
         for (int i = 0; i < g.getVerticesCount(); i++) {

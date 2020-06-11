@@ -7,7 +7,6 @@ package graphtea.extensions.reports.energy;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
-import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.zagreb.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -37,9 +36,9 @@ public class Cograph implements GraphReportExtension<RenderTable> {
 
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(Utils.createLineGraph(g));
-        ZagrebIndexFunctions zifC = new ZagrebIndexFunctions(Utils.createComplementGraph(g));
-        ZagrebIndexFunctions zifCL = new ZagrebIndexFunctions(Utils.createComplementGraph(Utils.createLineGraph(g)));
+        ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(AlgorithmUtils.createLineGraph(g));
+        ZagrebIndexFunctions zifC = new ZagrebIndexFunctions(AlgorithmUtils.createComplementGraph(g));
+        ZagrebIndexFunctions zifCL = new ZagrebIndexFunctions(AlgorithmUtils.createComplementGraph(AlgorithmUtils.createLineGraph(g)));
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
 

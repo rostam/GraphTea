@@ -7,7 +7,6 @@ package graphtea.extensions.reports.energy;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
-import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.zagreb.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -56,7 +55,7 @@ public class LaplacianEstrada implements GraphReportExtension<RenderTable> {
         ret.setTitles(titles);
 
         Matrix B = g.getWeightedAdjacencyMatrix();
-        Matrix A = Utils.getLaplacian(B);
+        Matrix A = AlgorithmUtils.getLaplacian(B);
         EigenvalueDecomposition ed = A.eig();
         double[] rv = ed.getRealEigenvalues();
         double Lsum=0;

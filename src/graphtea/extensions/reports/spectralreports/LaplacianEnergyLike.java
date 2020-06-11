@@ -8,7 +8,6 @@ package graphtea.extensions.reports.spectralreports;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
-import graphtea.extensions.reports.Utils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
@@ -23,7 +22,7 @@ public class LaplacianEnergyLike implements GraphReportExtension<String> {
     public String calculate(GraphModel g) {
         try {
             Matrix B = g.getWeightedAdjacencyMatrix();
-            Matrix A = Utils.getLaplacian(B);
+            Matrix A = AlgorithmUtils.getLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
             double[] rv = ed.getRealEigenvalues();
             double[] iv = ed.getImagEigenvalues();

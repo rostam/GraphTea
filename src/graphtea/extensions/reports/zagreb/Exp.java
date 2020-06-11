@@ -4,7 +4,6 @@ package graphtea.extensions.reports.zagreb;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.RandomMatching;
-import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.extensions.reports.basicreports.GirthSize;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
@@ -166,7 +165,7 @@ public class Exp implements GraphReportExtension<RenderTable> {
         double maxDeg = 0;
         double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
-        double minDeg2 = Utils.getMinNonPendentDegree(g);
+        double minDeg2 = AlgorithmUtils.getMinNonPendentDegree(g);
 
         ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);

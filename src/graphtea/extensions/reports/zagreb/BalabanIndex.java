@@ -6,7 +6,6 @@ package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.DijkstraNonNegative;
-import graphtea.extensions.reports.Utils;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -43,7 +42,7 @@ public class BalabanIndex implements GraphReportExtension<RenderTable> {
         double maxDeg = 0;
         double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
-        double minDeg2 = Utils.getMinNonPendentDegree(g); 
+        double minDeg2 = AlgorithmUtils.getMinNonPendentDegree(g);
 
         ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);

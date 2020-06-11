@@ -4,48 +4,24 @@ import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Iterator;
 import java.util.Vector;
 
-@CommandAttitude(name = "EccentricityEnergy", abbreviation = "_eccentricity_index")
-public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
+@CommandAttitude(name = "MaximumDegreeEnergy", abbreviation = "_max_deg_energy")
+public class MaxDegreeEnergy implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Eccentricity Energy";
+        return "Maximum Degree Energy";
     }
 
     public String getDescription() {
-        return "Eccentricity Energy";
-    }
-
-    public int eccentricity(GraphModel g, int v, int[][] dist) {
-        int max_dist = 0;
-        for(int j=0;j < g.getVerticesCount();j++) {
-            if(max_dist < dist[v][j]) {
-                max_dist = dist[v][j];
-            }
-        }
-        return max_dist;
-    }
-
-    public Matrix eccentricityMatrix(GraphModel g, int[][] dist) {
-        Matrix m = new Matrix(g.getVerticesCount(),g.getVerticesCount());
-        for(int i=0;i < g.getVerticesCount();i++) {
-            for(int j=0;j < g.getVerticesCount();j++) {
-                int ecc_i = eccentricity(g, i, dist);
-                int ecc_j = eccentricity(g, j, dist);
-                if(dist[i][j] == Math.min(ecc_i, ecc_j)) {
-                    m.set(i,j,dist[i][j]);
-                }
-            }
-        }
-        return m;
+        return "Maximum Degree Energy based on" +
+                "C. Adiga, M. Smitha\n" +
+                "      On maximum degree energy of a graph\n" +
+                "      Int. Journal of Contemp. Math. Sciences, Vol. 4, 2009, no. 5-8, 385-396. ";
     }
 
     @Override
@@ -54,13 +30,11 @@ public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
         Vector<String> titles = new Vector<>();
         titles.add("m ");
         titles.add("n ");
-        titles.add("Eccentricity Energy");
+        titles.add("Maximum Degree Energy");
         titles.add("Eigen Values");
         ret.setTitles(titles);
-        FloydWarshall fw = new FloydWarshall();
-        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
 
-        Matrix m = eccentricityMatrix(g, dist);
+        Matrix m = AlgorithmUtils.getMaxDegreeAdjacencyMatrix(g);
         EigenvalueDecomposition ed = m.eig();
         double[] rv = ed.getRealEigenvalues();
         double sum = 0;

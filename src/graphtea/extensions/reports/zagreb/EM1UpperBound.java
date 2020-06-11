@@ -5,7 +5,6 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.AlgorithmUtils;
-import graphtea.extensions.reports.Utils;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -35,7 +34,7 @@ public class EM1UpperBound implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(
-                Utils.createLineGraph(g)
+                AlgorithmUtils.createLineGraph(g)
         );
 
         RenderTable ret = new RenderTable();
@@ -61,7 +60,7 @@ public class EM1UpperBound implements GraphReportExtension<RenderTable> {
         double maxDeg = 0;
         double maxDeg2 = 0;
         double minDeg = Integer.MAX_VALUE;
-        double minDeg2 = Utils.getMinNonPendentDegree(g);
+        double minDeg2 = AlgorithmUtils.getMinNonPendentDegree(g);
 
         ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);

@@ -2,7 +2,7 @@
 
  import Jama.EigenvalueDecomposition;
  import Jama.Matrix;
- import graphtea.extensions.reports.Utils;
+ import graphtea.extensions.AlgorithmUtils;
  import graphtea.graph.graph.Edge;
  import graphtea.graph.graph.GraphModel;
  import graphtea.graph.graph.Vertex;
@@ -350,7 +350,7 @@ public class ZagrebIndexFunctions {
     public double getFirstReZagrebCoindex(double alpha) {
         double ret = 0;
         if(g.getEdgesCount()==1) return ret;
-        GraphModel lg = Utils.createLineGraph(g);
+        GraphModel lg = AlgorithmUtils.createLineGraph(g);
         GraphModel clg = (GraphModel) LibraryUtils.complement(lg);
 
         for (Edge e : clg.getEdges()) {
@@ -366,7 +366,7 @@ public class ZagrebIndexFunctions {
     public double getSecondReZagrebCoindex(double alpha) {
         double ret = 0;
         if(g.getEdgesCount()==1) return ret;
-        GraphModel lg = Utils.createLineGraph(g);
+        GraphModel lg = AlgorithmUtils.createLineGraph(g);
         GraphModel clg = (GraphModel) LibraryUtils.complement(lg);
 
         for (Edge e : clg.getEdges()) {
@@ -663,7 +663,7 @@ public class ZagrebIndexFunctions {
 
     public double getFirstPathZagrebIndex(double alpha) {
         double ret = 0;
-        GraphModel g2 = Utils.createLineGraph(g);
+        GraphModel g2 = AlgorithmUtils.createLineGraph(g);
         for(Edge e : g2.getEdges()) {
             Vertex src = e.source;
             Vertex tgt = e.target;
@@ -694,7 +694,7 @@ public class ZagrebIndexFunctions {
 
     public double getSecondPathZagrebIndex(double alpha) {
         double ret = 0;
-        GraphModel g2 = Utils.createLineGraph(g);
+        GraphModel g2 = AlgorithmUtils.createLineGraph(g);
         for(Edge e : g2.getEdges()) {
             Vertex src = e.source;
             Vertex tgt = e.target;

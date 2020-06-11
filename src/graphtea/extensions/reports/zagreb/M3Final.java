@@ -5,7 +5,6 @@
 package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.AlgorithmUtils;
-import graphtea.extensions.reports.Utils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
@@ -34,7 +33,7 @@ public class M3Final implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(
-                Utils.createLineGraph(g)
+                AlgorithmUtils.createLineGraph(g)
         );
 
         RenderTable ret = new RenderTable();

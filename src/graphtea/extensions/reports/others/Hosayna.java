@@ -1,6 +1,6 @@
 package graphtea.extensions.reports.others;
 
-import graphtea.extensions.reports.Utils;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.basicreports.NumOfIndSets;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -27,7 +27,7 @@ public class Hosayna implements GraphReportExtension<RenderTable> {
         titles.add("Hosayna");
         ret.setTitles(titles);
         Vector<Object> v = new Vector<>();
-        v.add(new NumOfIndSets().calculate(Utils.createLineGraph(g)));
+        v.add(new NumOfIndSets().calculate(AlgorithmUtils.createLineGraph(g)));
         ret.add(v);
         return ret;
     }

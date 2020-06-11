@@ -5,7 +5,7 @@
 
 package graphtea.extensions.actions;
 
-import graphtea.extensions.reports.Utils;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
@@ -23,7 +23,7 @@ public class ParalineGraph implements GraphActionExtension , Parametrizable {
     public int k = 2;
 
     public void action(GraphData graphData) {
-        graphData.core.showGraph(Utils.createLineGraph(BarycentricSubdivisionGraph.createBarycentricGraph(graphData.getGraph(),k)));
+        graphData.core.showGraph(AlgorithmUtils.createLineGraph(BarycentricSubdivisionGraph.createBarycentricGraph(graphData.getGraph(),k)));
     }
 
     public String getName() {

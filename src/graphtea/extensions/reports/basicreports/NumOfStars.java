@@ -5,7 +5,7 @@
 
 package graphtea.extensions.reports.basicreports;
 
-import graphtea.extensions.reports.Utils;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -27,7 +27,7 @@ public class NumOfStars implements GraphReportExtension<Integer>, Parametrizable
         int sum = 0;
         for(Vertex v : g) {
             int deg = g.getDegree(v);
-            sum += Utils.choose(deg,k).intValue();
+            sum += AlgorithmUtils.choose(deg,k).intValue();
         }
         return sum;
     }
