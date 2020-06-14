@@ -37,7 +37,8 @@
     <description>
         The ant build file of GraphTea Project.
     </description>
-
+    <target name="test">
+    </target>
     <!-- - - - - - - - - - - - - - - - - -
           target: depends
          - - - - - - - - - - - - - - - - - -->
