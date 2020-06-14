@@ -1,4 +1,5 @@
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/graphtheorysoftware/GraphTea?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Travis](https://travis-ci.org/rostam/GraphTea.svg?branch=master)](https://travis-ci.org/rostam/GraphTea.svg?branch=master)
 
 ![Preview](http://github.com/graphtheorysoftware/GraphTea/raw/master/src/presentation/peterson.png)
 
