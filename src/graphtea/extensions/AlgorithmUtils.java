@@ -7,6 +7,7 @@ package graphtea.extensions;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.*;
 import graphtea.library.Path;
 import graphtea.library.algorithms.LibraryUtils;
@@ -444,13 +445,26 @@ public class AlgorithmUtils {
         double[] rv = ed.getRealEigenvalues();
         double[] iv = ed.getImagEigenvalues();
         String res = "";
+        Vector<Double> EigenValues = new Vector<>();
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
                 res +="" + AlgorithmUtils.round(rv[i],10) + " + " + AlgorithmUtils.round(iv[i],10) + "i";
             else
-                res += "" + AlgorithmUtils.round(rv[i],10);
-            if(i!=rv.length-1) {
-                res += ",";
+                EigenValues.add(AlgorithmUtils.round(rv[i],10));
+        }
+        if(EigenValues.size() > 0) {
+            res = "";
+            EigenValues.sort(new Comparator<Double>() {
+                @Override
+                public int compare(Double aDouble, Double t1) {
+                    return -aDouble.compareTo(t1);
+                }
+            });
+            for (int i = 0; i < EigenValues.size(); i++) {
+                res += EigenValues.get(i);
+                if(i != EigenValues.size() - 1) {
+                    res+=",";
+                }
             }
         }
         return res;
@@ -611,6 +625,28 @@ public class AlgorithmUtils {
                 } else {
                     adj.set(i,j,0);
                 }
+            }
+        }
+        return adj;
+    }
+
+    /**
+     * Distance adjacency matrix
+     * Distance Energy based on
+     * Gopalapillai Indulal,a Ivan Gutmanb and Vijayakumarc
+     * ON DISTANCE ENERGY OF GRAPHS
+     * MATCH Commun. Math. Comput. Chem. 60 (2008) 461-472.
+     *
+     * @param g the given graph
+     * @return the maximum degree adjacency matrix
+     */
+    public static Matrix getDistanceAdjacencyMatrix (GraphModel g) {
+        FloydWarshall fw = new FloydWarshall();
+        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        Matrix adj = g.getAdjacencyMatrix();
+        for(int i=0;i < adj.getColumnDimension();i++) {
+            for(int j=0;j < adj.getRowDimension();j++) {
+                adj.set(i,j,dist[i][j]);
             }
         }
         return adj;
