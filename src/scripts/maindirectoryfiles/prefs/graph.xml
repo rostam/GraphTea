@@ -1611,9 +1611,9 @@
           <entry key="object" value="graphtea.extensions.reports.basicreports.AdjMatrixEigenValues"/>
         </map>
       </node>
-      <node name="graphtea.extensions.reports.basicreports.AdjacencyMatrix">
+      <node name="graphtea.extensions.reports.basicreports.SpectrumOfAdjacencyMatrix">
         <map>
-          <entry key="object" value="graphtea.extensions.reports.basicreports.AdjacencyMatrix"/>
+          <entry key="object" value="graphtea.extensions.reports.basicreports.SpectrumOfAdjacencyMatrix"/>
         </map>
       </node>
       <node name="graphtea.extensions.reports.basicreports.GirthSize">

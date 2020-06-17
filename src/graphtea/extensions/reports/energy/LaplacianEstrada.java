@@ -66,13 +66,11 @@ public class LaplacianEstrada implements GraphReportExtension<RenderTable> {
         Double[] prv = new Double[rv.length];
         for(int i=0;i<rv.length;i++) {
             prv[i] = Math.abs(rv[i]);
-            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
-            rv[i] = (double)Math.round(rv[i] * 100000d) / 100000d;
+            prv[i] = (double) Math.round(prv[i] * 100000d) / 100000d;
+            rv[i] = (double) Math.round(rv[i] * 100000d) / 100000d;
             Lsum += prv[i];
-            Lapestra +=Math.exp(rv[i]);
+            Lapestra += Math.exp(rv[i]);
         }
-        
-        
 
         Arrays.sort(prv, Collections.reverseOrder());
 

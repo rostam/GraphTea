@@ -13,7 +13,6 @@ import graphtea.extensions.reports.energy.*;
 import graphtea.extensions.reports.hamilton.*;
 import graphtea.extensions.reports.matching.*;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RenderTable;
 import org.junit.jupiter.api.Assertions;
 import graphtea.graph.graph.SubGraph;
 import org.junit.jupiter.api.Test;
@@ -680,7 +679,7 @@ public class ReportsTest {
 
     @Test
     public void testAdjacencyMatrix() {
-        AdjacencyMatrix varAdjacencyMatrix = new AdjacencyMatrix();
+        SpectrumOfAdjacencyMatrix varAdjacencyMatrix = new SpectrumOfAdjacencyMatrix();
         Assertions.assertEquals(varAdjacencyMatrix.calculate(peterson).get(0),"");
     }
 

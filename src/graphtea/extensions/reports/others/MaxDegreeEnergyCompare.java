@@ -3,6 +3,7 @@ package graphtea.extensions.reports.others;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
+import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
@@ -10,17 +11,17 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.Vector;
 
-@CommandAttitude(name = "DistanceEnergy", abbreviation = "_distance_energy")
-public class DistanceEnergy implements GraphReportExtension<RenderTable> {
+@CommandAttitude(name = "MaximumDegreeEnergyCompare", abbreviation = "_max_deg_energy_compare")
+public class MaxDegreeEnergyCompare implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Distance Energy";
+        return "Maximum Degree Energy Compare";
     }
 
     public String getDescription() {
-        return "Distance Energy based on" +
-                "Gopalapillai Indulal,a Ivan Gutmanb and Vijayakumarc\n" +
-                "      ON DISTANCE ENERGY OF GRAPHS\n" +
-                "      MATCH Commun. Math. Comput. Chem. 60 (2008) 461-472. ";
+        return "Maximum Degree Energy based on" +
+                "C. Adiga, M. Smitha\n" +
+                "      On maximum degree energy of a graph\n" +
+                "      Int. Journal of Contemp. Math. Sciences, Vol. 4, 2009, no. 5-8, 385-396. ";
     }
 
     @Override
@@ -29,26 +30,18 @@ public class DistanceEnergy implements GraphReportExtension<RenderTable> {
         Vector<String> titles = new Vector<>();
         titles.add("m ");
         titles.add("n ");
-        titles.add("Distance Energy");
+        titles.add("Maximum Degree Energy");
+        titles.add("Estrada Version");
         titles.add("Eigen Values");
         ret.setTitles(titles);
-
-        Matrix m = AlgorithmUtils.getDistanceAdjacencyMatrix(g);
-        EigenvalueDecomposition ed = m.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double sum = 0;
-
-        //positiv RV
-        Double[] prv = new Double[rv.length];
-        for (int i = 0; i < rv.length; i++) {
-            prv[i] = Math.abs(rv[i]);
-            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
-            sum += prv[i];
-        }
+        Matrix m = AlgorithmUtils.getMaxDegreeAdjacencyMatrix(g);
+        double sum = AlgorithmUtils.sumOfEigenValues(m);
+        double estrada = AlgorithmUtils.sumOfExpOfEigenValues(m);
         Vector<Object> v = new Vector<>();
         v.add(g.getVerticesCount());
         v.add(g.getEdgesCount());
         v.add(sum);
+        v.add(estrada);
         v.add(AlgorithmUtils.getEigenValues(m));
         ret.add(v);
         return ret;

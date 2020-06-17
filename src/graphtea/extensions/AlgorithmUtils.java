@@ -440,6 +440,56 @@ public class AlgorithmUtils {
         return res;
     }
 
+    /**
+     * Computes the sum of the eigenvalues of A
+     *
+     * @param A the given matrix
+     * @return the sum of the eigenvalues of A
+     */
+    public static double sumOfExpOfEigenValues(Matrix A) {
+        EigenvalueDecomposition ed = A.eig();
+        double[] rv = ed.getRealEigenvalues();
+        double sum = 0;
+
+        //positiv RV
+        Double[] prv = new Double[rv.length];
+        for (int i = 0; i < rv.length; i++) {
+            prv[i] = Math.exp(rv[i]);
+            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
+            sum += prv[i];
+        }
+
+        return sum;
+    }
+
+    /**
+     * Computes the sum of the eigenvalues of A
+     *
+     * @param A the given matrix
+     * @return the sum of the eigenvalues of A
+     */
+    public static double sumOfEigenValues(Matrix A) {
+        EigenvalueDecomposition ed = A.eig();
+        double[] rv = ed.getRealEigenvalues();
+        double sum = 0;
+
+        //positiv RV
+        Double[] prv = new Double[rv.length];
+        for (int i = 0; i < rv.length; i++) {
+            prv[i] = Math.abs(rv[i]);
+            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
+            sum += prv[i];
+        }
+
+        return sum;
+    }
+
+    /**
+     * Computes the eigen values
+     *
+     * @param A the given matrix
+     * @return the eigen values of A
+     */
     public static String getEigenValues(Matrix A) {
         EigenvalueDecomposition ed = A.eig();
         double[] rv = ed.getRealEigenvalues();
