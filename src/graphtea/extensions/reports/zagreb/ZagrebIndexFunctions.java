@@ -3,6 +3,8 @@
  import Jama.EigenvalueDecomposition;
  import Jama.Matrix;
  import graphtea.extensions.AlgorithmUtils;
+ import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
+ import graphtea.extensions.reports.others.Eccentricity;
  import graphtea.graph.graph.Edge;
  import graphtea.graph.graph.GraphModel;
  import graphtea.graph.graph.Vertex;
@@ -241,8 +243,7 @@ public class ZagrebIndexFunctions {
         }
         return ret;
     }
-    
-    
+
     public double getexpAugumentedZagrebIndex() {
         double ret = 0;
         for(Edge e : g.getEdges()) {
@@ -782,5 +783,27 @@ public class ZagrebIndexFunctions {
         double sum = 0;
         for(double d : eig) sum += d;
         return sum;
+    }
+
+    public double getFirstZagrebEccentricity(GraphModel g) {
+        double first_zagreb_eccentricity = 0;
+        FloydWarshall fw = new FloydWarshall();
+        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        for (Vertex v : g.vertices()) {
+            first_zagreb_eccentricity += Math.pow(Eccentricity.eccentricity(g, v.getId(), dist), 2);
+        }
+        return first_zagreb_eccentricity;
+    }
+
+    public double getSecondZagrebEccentricity(GraphModel g) {
+        double second_zagreb_eccentricity = 0;
+        FloydWarshall fw = new FloydWarshall();
+        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        for(Edge e : g.getEdges()) {
+                second_zagreb_eccentricity +=
+                        Eccentricity.eccentricity(g, e.source.getId(), dist)*
+                                Eccentricity.eccentricity(g, e.target.getId(), dist);
+        }
+        return second_zagreb_eccentricity;
     }
 }
