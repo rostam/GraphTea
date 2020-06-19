@@ -69,22 +69,22 @@ public class MM {
         boolean isSymmetric = false;
         do {
             line = sc.nextLine();
-            if(line.contains("symmetric")) isSymmetric=true;
-        }while(line.contains("%"));
+            if (line.contains("symmetric")) isSymmetric = true;
+        } while (line.contains("%"));
         Scanner sc2 = new Scanner(line);
         int rows = sc2.nextInt();
         int cols = sc2.nextInt();
         Matrix mm = new Matrix(rows, cols);
-        while(sc.hasNextLine()) {
+        while (sc.hasNextLine()) {
             line = sc.nextLine();
             Scanner sc3 = new Scanner(line);
-            mm.set(sc3.nextInt()-1,sc3.nextInt()-1,sc3.nextDouble());
+            mm.set(sc3.nextInt() - 1, sc3.nextInt() - 1, sc3.nextDouble());
         }
 
-        if(isSymmetric) {
-            for(int i=0;i<rows;i++) {
-                for(int j=0;j<cols;j++) {
-                    if(mm.get(i,j)!= 0) if(mm.get(j,i)==0) mm.set(j,i,mm.get(i,j));
+        if (isSymmetric) {
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    if (mm.get(i, j) != 0) if (mm.get(j, i) == 0) mm.set(j, i, mm.get(i, j));
                 }
             }
         }

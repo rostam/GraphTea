@@ -71,8 +71,7 @@ public class CmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
             Point[] p = PositionGenerators.circle(m, centerPoints[i].x, centerPoints[i].y, m);
             System.arraycopy(p, 0, ret, i * m, m);
         }
-
-
+        
         return ret;
     }
 
