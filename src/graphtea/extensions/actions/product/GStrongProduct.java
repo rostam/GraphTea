@@ -14,7 +14,7 @@ public class GStrongProduct extends GProduct {
                 && g2.isEdge(v1OfSecondG, v2OfSecondG))
                 || (v1OfSecondG == v2OfSecondG
                 && g1.isEdge(v1OfFirstG, v2OfFirstG)) ||
-                g1.isEdge(v1OfFirstG, v2OfFirstG) && g2.isEdge(v1OfSecondG, v2OfSecondG);
+                (g1.isEdge(v1OfFirstG, v2OfFirstG) && g2.isEdge(v1OfSecondG, v2OfSecondG));
     }
 
     @Override
