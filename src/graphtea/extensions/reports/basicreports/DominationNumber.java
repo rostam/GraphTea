@@ -20,6 +20,7 @@ public class DominationNumber implements GraphReportExtension<Integer> {
     public Integer calculate(GraphModel g) {
         return MaxIndependentSetReport.getMaxIndependentSetSize(g, false);
     }
+
     public String getName() {
         return "Graph Domination Number";
     }
@@ -28,9 +29,8 @@ public class DominationNumber implements GraphReportExtension<Integer> {
         return "Graph Domination Number";
     }
 
-
-	@Override
-	public String getCategory() {
-		return "General";
-	}
+    @Override
+    public String getCategory() {
+        return "General";
+    }
 }
