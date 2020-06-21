@@ -1,5 +1,6 @@
 
 import graphtea.extensions.generators.*;
+import graphtea.extensions.io.g6format.LoadGraph6Format;
 import graphtea.extensions.reports.*;
 import graphtea.extensions.reports.basicreports.*;
 import graphtea.extensions.reports.clique.*;
@@ -17,14 +18,30 @@ import org.junit.jupiter.api.Assertions;
 import graphtea.graph.graph.SubGraph;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class ReportsTest {
     GraphModel peterson = GeneralizedPetersonGenerator.generateGeneralizedPeterson(5,2);
+    GraphModel circle3 = CircleGenerator.generateCircle(3);
     GraphModel circle4 = CircleGenerator.generateCircle(4);
     GraphModel circle5 = CircleGenerator.generateCircle(5);
     GraphModel complete4 = CompleteGraphGenerator.generateCompleteGraph(4);
     GraphModel complete5 = CompleteGraphGenerator.generateCompleteGraph(5);
+
+    @Test
+    public void testMaxCliqueNumber() {
+        MaxCliqueSize mcs =  new MaxCliqueSize();
+        Assertions.assertEquals(mcs.calculate(circle3),3);
+        Assertions.assertEquals(mcs.calculate(circle4),2);
+        Assertions.assertEquals(mcs.calculate(circle5),2);
+        Assertions.assertEquals(mcs.calculate(complete4),4);
+        Assertions.assertEquals(mcs.calculate(complete5),5);
+        Assertions.assertEquals(mcs.calculate(peterson),2);
+        LoadGraph6Format loadGraph6Format = new LoadGraph6Format();
+        GraphModel g = loadGraph6Format.read(new File("examples/example.g6"));
+        Assertions.assertEquals(mcs.calculate(g),3);
+    }
 
     @Test
     public void testChromaticNumber() {

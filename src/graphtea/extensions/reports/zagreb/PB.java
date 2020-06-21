@@ -4,7 +4,7 @@ import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
-import graphtea.extensions.reports.clique.MaxCliqueExtension;
+import graphtea.extensions.reports.clique.MaxCliqueSize;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -169,7 +169,7 @@ public class PB implements GraphReportExtension<RenderTable> {
         double ISI=zif.getInverseSumIndegIndex();
         double chrome=ChromaticNumber.getChromaticNumber(g);
     //    double maxmat=MaxMatchingExtension.Max(g);
-        double clique=MaxCliqueExtension.maxCliqueSize(g);
+        double clique= MaxCliqueSize.maxCliqueSize(g);
         double ZEnergy=zif.getRandicEnergy(g);
         double VR=zif.getVariationRandicIndex();
         double check=zif.getCheck();

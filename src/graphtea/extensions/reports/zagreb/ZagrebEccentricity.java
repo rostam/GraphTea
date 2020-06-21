@@ -2,6 +2,7 @@ package graphtea.extensions.reports.zagreb;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.basicreports.GirthSize;
+import graphtea.extensions.reports.clique.MaxCliqueSize;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
@@ -35,7 +36,7 @@ public class ZagrebEccentricity implements GraphReportExtension<RenderTable> {
         titles.add(" n ");
         titles.add(" First Zagreb Eccentricity ");
         titles.add(" Second Zagreb Eccentricity ");
-
+        titles.add("Max Clique Size");
 
         ret.setTitles(titles);
 
@@ -85,6 +86,7 @@ public class ZagrebEccentricity implements GraphReportExtension<RenderTable> {
         v.add(n);
         v.add(zif.getFirstZagrebEccentricity(g));
         v.add(zif.getSecondZagrebEccentricity(g));
+        v.add(MaxCliqueSize.maxCliqueSize(g));
 
         ret.add(v);
         return ret;

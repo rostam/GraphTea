@@ -5,7 +5,7 @@ import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.RandomMatching;
 import graphtea.extensions.reports.basicreports.*;
-import graphtea.extensions.reports.clique.MaxCliqueExtension;
+import graphtea.extensions.reports.clique.MaxCliqueSize;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -200,7 +200,7 @@ public class Mere implements GraphReportExtension<RenderTable> {
         double AZI = zif.getAugumentedZagrebIndex();
         double ISI = zif.getInverseSumIndegIndex();
         double chrome = ChromaticNumber.getChromaticNumber(g);
-        double clique = MaxCliqueExtension.maxCliqueSize(g);
+        double clique = MaxCliqueSize.maxCliqueSize(g);
         double ZEnergy = zif.getRandicEnergy(g);
         double VR = zif.getVariationRandicIndex();
         double check = zif.getCheck();
