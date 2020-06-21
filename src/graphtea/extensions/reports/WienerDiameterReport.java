@@ -1,7 +1,7 @@
 package graphtea.extensions.reports;
 
 import graphtea.extensions.reports.basicreports.Diameter;
-import graphtea.extensions.reports.zagreb.WienerIndex;
+import graphtea.extensions.reports.topological.WienerIndex;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.plugins.reports.extension.GraphReportExtension;

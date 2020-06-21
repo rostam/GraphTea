@@ -23,8 +23,8 @@ public class Eccentricity implements GraphReportExtension<RenderTable> {
      * the maximum graph distance between v and any other vertex u of G.
      * For a disconnected graph, all vertices are defined to have infinite eccentricity
      *
-     * @param g the given graph
-     * @param v the given vertex
+     * @param g    the given graph
+     * @param v    the given vertex
      * @param dist All pair shortest path without considering weights
      * @return the eccentricity value
      */
@@ -61,5 +61,4 @@ public class Eccentricity implements GraphReportExtension<RenderTable> {
     public String getCategory() {
         return "OurWorks-Conjectures";
     }
-
 }

@@ -10,7 +10,7 @@ import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.extensions.reports.clique.MaxCliqueSize;
-import graphtea.extensions.reports.zagreb.ZagrebIndexFunctions;
+import graphtea.extensions.reports.topological.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;

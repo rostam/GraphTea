@@ -29,10 +29,10 @@ public class Radius implements GraphReportExtension<Integer> {
     public Integer calculate(GraphModel g) {
         FloydWarshall fw = new FloydWarshall();
         int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
-        int min = 2*g.numOfVertices();
-        for(Vertex v : g) {
+        int min = 2 * g.numOfVertices();
+        for (Vertex v : g) {
             int ecc = Eccentricity.eccentricity(g, v.getId(), dist);
-            if(min > ecc) {
+            if (min > ecc) {
                 min = ecc;
             }
         }
@@ -43,5 +43,4 @@ public class Radius implements GraphReportExtension<Integer> {
     public String getCategory() {
         return "OurWorks-Conjectures";
     }
-
 }
