@@ -34,12 +34,10 @@ public class EccentricConnectivityIndex implements GraphReportExtension<ArrayLis
 
         double sum = 0;
         for(Vertex it_v : g.getVertexArray()) {
-            //DijkstraDist.dijkstra(g, it_v);
             DijkstraNonNegative.dijkstra(g, it_v);
             double max = 0;
             for (Vertex v : g.getVertexArray()) {
-                double value = v.getUserDefinedAttribute(
-                        DijkstraNonNegative.Dist);
+                double value = v.getUserDefinedAttribute(DijkstraNonNegative.Dist);
                 if (value > max) {
                     max = value;
                 }

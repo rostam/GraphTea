@@ -13,7 +13,9 @@ import graphtea.extensions.reports.connectivity.*;
 import graphtea.extensions.reports.energy.*;
 import graphtea.extensions.reports.hamilton.*;
 import graphtea.extensions.reports.matching.*;
+import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.Vertex;
 import org.junit.jupiter.api.Assertions;
 import graphtea.graph.graph.SubGraph;
 import org.junit.jupiter.api.Test;
@@ -28,6 +30,12 @@ public class ReportsTest {
     GraphModel circle5 = CircleGenerator.generateCircle(5);
     GraphModel complete4 = CompleteGraphGenerator.generateCompleteGraph(4);
     GraphModel complete5 = CompleteGraphGenerator.generateCompleteGraph(5);
+    GraphModel TreeForRadiusDiameterTest1 =
+            new LoadGraph6Format()
+                    .read(new File("examples/tree_for_radius_diameter_test_1.g6"));
+    GraphModel TreeForRadiusDiameterTest2 =
+            new LoadGraph6Format()
+                    .read(new File("examples/tree_for_radius_diameter_test_2.g6"));
 
     @Test
     public void testMaxCliqueNumber() {
@@ -717,6 +725,16 @@ public class ReportsTest {
     }
 
     @Test
+    public void testRadius() {
+        Radius varRadius = new Radius();
+        Assertions.assertEquals(varRadius.calculate(TreeForRadiusDiameterTest1),2);
+        Assertions.assertEquals(varRadius.calculate(TreeForRadiusDiameterTest2),2);
+        Assertions.assertEquals(varRadius.calculate(circle5),2);
+        Assertions.assertEquals(varRadius.calculate(complete4), 1);
+        Assertions.assertEquals(varRadius.calculate(complete5), 1);
+    }
+
+    @Test
     public void testDiameter() {
         Diameter varDiameter = new Diameter();
         Assertions.assertEquals(varDiameter.calculate(peterson),2);
@@ -724,6 +742,8 @@ public class ReportsTest {
         Assertions.assertEquals(varDiameter.calculate(circle5),2);
         Assertions.assertEquals(varDiameter.calculate(complete4), 1);
         Assertions.assertEquals(varDiameter.calculate(complete5), 1);
+        Assertions.assertEquals(varDiameter.calculate(TreeForRadiusDiameterTest1),4);
+        Assertions.assertEquals(varDiameter.calculate(TreeForRadiusDiameterTest2),3);
     }
 
     @Test
@@ -927,11 +947,7 @@ public class ReportsTest {
         Assertions.assertEquals(varPiIndex.calculate(peterson),0);
     }
 
-    @Test
-    public void testRadius() {
-        Radius varRadius = new Radius();
-        Assertions.assertEquals(varRadius.calculate(peterson).iterator().next().get(0),0);
-    }
+
 
     @Test
     public void testHosayna() {
