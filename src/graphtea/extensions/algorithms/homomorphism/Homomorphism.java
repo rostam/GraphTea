@@ -38,7 +38,7 @@ public class Homomorphism {
      * @param colors      The coloring as a list of integers
      * @param numOfColors the number of colors
      */
-    Homomorphism(GraphModel domain, Vector<Integer> colors, int numOfColors) {
+    public Homomorphism(GraphModel domain, Vector<Integer> colors, int numOfColors) {
         if (Collections.max(colors) != numOfColors) {
             throw new InvalidParameterException("The given number of colors is not equal" +
                     "with the real existing number of colors inside the vector colors.");
