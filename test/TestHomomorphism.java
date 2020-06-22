@@ -6,9 +6,11 @@ import graphtea.extensions.generators.GeneralizedPetersonGenerator;
 import graphtea.extensions.reports.HeuristicGreedyColoring;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Vector;
 
 public class TestHomomorphism {
@@ -24,6 +26,22 @@ public class TestHomomorphism {
         int[][] dist = fw.getAllPairsShortestPathWithoutWeight(peterson);
         Vector<Integer> coloring = new HeuristicGreedyColoring().calculate(peterson);
         Homomorphism hm = new Homomorphism(peterson, coloring, Collections.max(coloring));
-//        for(Vertex v : )
+        HashMap<Vertex, Vertex> hmFunc = hm.getHomomorphism();
+        int[][] distPeterson = fw.getAllPairsShortestPathWithoutWeight(peterson);
+        int[][] distRange = fw.getAllPairsShortestPathWithoutWeight(hm.getRange());
+        Assertions.assertTrue(hm.isValid());
+
+        boolean isCorrect = false;
+        // Collary 1.2 from Pavol Hell Book
+        for(Vertex v : peterson) {
+            for(Vertex u : peterson) {
+                int d_peterson = distPeterson[v.getId()][u.getId()];
+                int d_range = distRange[hmFunc.get(v).getId()][hmFunc.get(u).getId()];
+                isCorrect = (d_range <= d_peterson);
+                if(!isCorrect)
+                    break;
+            }
+        }
+        Assertions.assertTrue(isCorrect);
     }
 }

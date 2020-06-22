@@ -46,7 +46,7 @@ public class Homomorphism {
         this.domain = domain;
         this.range = CompleteGraphGenerator.generateCompleteGraph(numOfColors);
         for (int i = 0; i < colors.size(); i++) {
-            homomorphism.put(this.domain.getVertex(i), this.range.getVertex(colors.get(i)));
+            homomorphism.put(this.domain.getVertex(i), this.range.getVertex(colors.get(i)-1));
         }
     }
 
