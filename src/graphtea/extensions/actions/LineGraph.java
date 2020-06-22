@@ -14,7 +14,6 @@ import graphtea.plugins.main.extension.GraphActionExtension;
  * @author Azin Azadi
  */
 public class LineGraph implements GraphActionExtension {
-
     public void action(GraphData graphData) {
         graphData.core.showGraph(AlgorithmUtils.createLineGraph(graphData.getGraph()));
     }
