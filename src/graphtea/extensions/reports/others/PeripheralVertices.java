@@ -41,7 +41,7 @@ public class PeripheralVertices implements GraphReportExtension<ArrayList<Vertex
 
     @Override
     public String getCategory() {
-		return "Topological Indices-Wiener Types ";
+		return "Topological Indices-Wiener Types";
     }
 
 }

@@ -170,6 +170,6 @@ public class SignlessLaplacianEstrada implements GraphReportExtension<RenderTabl
 
     @Override
     public String getCategory() {
-        return "OurWorks-Graph Energy";
+       return "Verification- Energy";
     }
 }

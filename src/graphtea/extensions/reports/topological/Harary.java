@@ -44,6 +44,6 @@ public class Harary implements GraphReportExtension<Double> {
 
 	@Override
 	public String getCategory() {
-		return "Topological Indices-Wiener Types ";
+		return "Topological Indices-Wiener Types";
 	}
 }

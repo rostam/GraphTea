@@ -180,7 +180,7 @@ public class NewLowerBounds implements GraphReportExtension{
 
     @Override
     public String getCategory() {
-        return "OurWorks-Graph Energy";
+       return "Verification- Energy";
     }
     
     public Object Energy(GraphModel g) {

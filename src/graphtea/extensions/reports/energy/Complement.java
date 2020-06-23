@@ -27,11 +27,11 @@ import java.util.Vector;
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
 public class Complement implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Complement";
+        return "Complement Energy";
     }
 
     public String getDescription() {
-        return "Complement";
+        return "Complement Energy";
     }
 
     public RenderTable calculate(GraphModel g) {
@@ -120,6 +120,6 @@ public class Complement implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Graph Energy";
+       return "Verification- Energy";
     }
 }
