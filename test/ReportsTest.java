@@ -36,6 +36,17 @@ public class ReportsTest {
                     .read(new File("examples/tree_for_radius_diameter_test_2.g6"));
 
     @Test
+    public void testGreedyColoring() {
+        HeuristicGreedyColoringNumber hgc = new HeuristicGreedyColoringNumber();
+        Assertions.assertEquals(hgc.calculate(circle3),3);
+        Assertions.assertEquals(hgc.calculate(circle4),2);
+        Assertions.assertEquals(hgc.calculate(circle5),3);
+        Assertions.assertEquals(hgc.calculate(complete4),4);
+        Assertions.assertEquals(hgc.calculate(complete5),5);
+        Assertions.assertEquals(hgc.calculate(peterson),3);
+    }
+
+    @Test
     public void testMaxCliqueNumber() {
         MaxCliqueSize mcs =  new MaxCliqueSize();
         Assertions.assertEquals(mcs.calculate(circle3),3);

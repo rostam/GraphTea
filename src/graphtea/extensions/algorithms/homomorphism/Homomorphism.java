@@ -29,8 +29,6 @@ public class Homomorphism {
         homomorphism.putAll(map);
     }
 
-    //
-
     /**
      * Building Homomorphism from coloring
      *
@@ -38,7 +36,7 @@ public class Homomorphism {
      * @param colors      The coloring as a list of integers
      * @param numOfColors the number of colors
      */
-    Homomorphism(GraphModel domain, Vector<Integer> colors, int numOfColors) {
+    public Homomorphism(GraphModel domain, Vector<Integer> colors, int numOfColors) {
         if (Collections.max(colors) != numOfColors) {
             throw new InvalidParameterException("The given number of colors is not equal" +
                     "with the real existing number of colors inside the vector colors.");
@@ -46,7 +44,7 @@ public class Homomorphism {
         this.domain = domain;
         this.range = CompleteGraphGenerator.generateCompleteGraph(numOfColors);
         for (int i = 0; i < colors.size(); i++) {
-            homomorphism.put(this.domain.getVertex(i), this.range.getVertex(colors.get(i)));
+            homomorphism.put(this.domain.getVertex(i), this.range.getVertex(colors.get(i)-1));
         }
     }
 
@@ -147,6 +145,13 @@ public class Homomorphism {
         return domain == range;
     }
 
+    /**
+     * Composes two homomorphisms
+     *
+     * @param h1 The first homomorphism
+     * @param h2 The second homomorphism
+     * @return the composed homomorphisms
+     */
     public static Homomorphism compose(Homomorphism h1, Homomorphism h2) {
         HashMap<Vertex, Vertex> composed = new HashMap<>();
         HashMap<Vertex, Vertex> H1function = h1.getHomomorphism();
@@ -156,4 +161,8 @@ public class Homomorphism {
         }
         return new Homomorphism(h1.getDomain(), h2.getRange(), composed);
     }
+
+//    public static Homomorphism findAHomomorphism(GraphModel g1, GraphModel g2) {
+//
+//    }
 }
