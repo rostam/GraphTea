@@ -1,18 +1,16 @@
+import graphtea.extensions.AllSetPartitions;
 import graphtea.extensions.algorithms.homomorphism.Homomorphism;
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.extensions.generators.CircleGenerator;
 import graphtea.extensions.generators.CompleteGraphGenerator;
 import graphtea.extensions.generators.GeneralizedPetersonGenerator;
 import graphtea.extensions.reports.HeuristicGreedyColoring;
-import graphtea.extensions.reports.Partitioner;
-import graphtea.extensions.reports.SubSetListener;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class TestHomomorphism {
     GraphModel peterson = GeneralizedPetersonGenerator.generateGeneralizedPeterson(5,2);
