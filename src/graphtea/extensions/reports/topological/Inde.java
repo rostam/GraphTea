@@ -26,11 +26,11 @@ import java.util.Vector;
 @CommandAttitude(name = "i(G)", abbreviation = "_i(G)")
 public class Inde implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "i(G)";
+        return "Inde-Wiener";
     }
 
     public String getDescription() {
-        return " i(G) ";
+        return " Inde-Wiener ";
     }
 
     public RenderTable calculate(GraphModel g) {
@@ -393,7 +393,7 @@ public class Inde implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+        return "Verification-Checking";
     }
 }
 

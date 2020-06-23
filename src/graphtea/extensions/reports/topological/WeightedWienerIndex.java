@@ -45,6 +45,6 @@ public class WeightedWienerIndex implements GraphReportExtension<Object> {
 
 	@Override
 	public String getCategory() {
-		return "Topological Indices";
+		return "Topological Indices-Wiener Types ";
 	}
 }

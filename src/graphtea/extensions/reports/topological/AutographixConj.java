@@ -45,6 +45,6 @@ public class AutographixConj implements GraphReportExtension<ArrayList<String>> 
 
     @Override
 	public String getCategory() {
-		return "OurWorks-Conjectures";
+        return "Verification-Degree";
 	}
 }

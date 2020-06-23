@@ -102,6 +102,6 @@ public class BalabanIndex implements GraphReportExtension<RenderTable> {
     @Override
     public String getCategory() {
         // TODO Auto-generated method stub
-        return "Topological Indices";
+        return "Topological Indices-Distance";
     }
 }

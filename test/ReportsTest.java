@@ -955,13 +955,4 @@ public class ReportsTest {
         PiIndex varPiIndex = new PiIndex();
         Assertions.assertEquals(varPiIndex.calculate(peterson),0);
     }
-
-
-
-    @Test
-    public void testHosayna() {
-        Hosayna varHosayna = new Hosayna();
-        Assertions.assertEquals(varHosayna.calculate(peterson).iterator().next().get(0),0);
-    }
-
 }

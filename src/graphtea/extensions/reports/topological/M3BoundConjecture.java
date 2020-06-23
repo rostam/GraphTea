@@ -113,6 +113,6 @@ public class M3BoundConjecture implements GraphReportExtension<RenderTable> {
     @Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "OurWorks-Conjectures";
+        return "Verification-Degree";
 	}
 }

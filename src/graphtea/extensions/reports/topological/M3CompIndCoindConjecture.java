@@ -93,6 +93,6 @@ public class M3CompIndCoindConjecture implements GraphReportExtension<RenderTabl
     @Override
 	public String getCategory() {
 		// TODO Auto-generated method stub
-		return "OurWorks-Conjectures";
+        return "Verification-Degree";
 	}
 }

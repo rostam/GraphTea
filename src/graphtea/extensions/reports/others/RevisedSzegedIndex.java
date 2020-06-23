@@ -48,6 +48,6 @@ public class RevisedSzegedIndex implements GraphReportExtension<Double> {
 
 	@Override
 	public String getCategory() {
-		return "Topological Indices";
+		return "Topological Indices-Distance";
 	}
 }

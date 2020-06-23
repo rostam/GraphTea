@@ -45,6 +45,6 @@ public class PiIndex implements GraphReportExtension<Integer> {
 
 	@Override
 	public String getCategory() {
-		return "Topological Indices";
+		return "Topological Indices-Distance";
 	}
 }

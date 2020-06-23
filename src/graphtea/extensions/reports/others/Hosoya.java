@@ -9,22 +9,22 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.Vector;
 
-@CommandAttitude(name = "HosaynaIndex", abbreviation = "_hosayna")
-public class Hosayna implements GraphReportExtension<RenderTable> {
+@CommandAttitude(name = "HosoyaIndex", abbreviation = "_hosoya")
+public class Hosoya implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Hosayna Index";
+        return "Hosaya Index";
     }
 
 
     public String getDescription() {
-        return "Hosayna Index";
+        return "Hosaya Index";
     }
 
     @Override
     public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
-        titles.add("Hosayna");
+        titles.add("Hosoya");
         ret.setTitles(titles);
         Vector<Object> v = new Vector<>();
         v.add(new NumOfIndSets().calculate(AlgorithmUtils.createLineGraph(g)));
@@ -34,6 +34,6 @@ public class Hosayna implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+		return "Topological Indices-Independent Set";
     }
 }

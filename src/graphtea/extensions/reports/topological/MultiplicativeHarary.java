@@ -47,6 +47,6 @@ public class MultiplicativeHarary implements GraphReportExtension<Double> {
 
 	@Override
 	public String getCategory() {
-		return "Topological Indices";
+        return "Topological Indices-Wiener Types";
 	}
 }

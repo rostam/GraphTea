@@ -47,7 +47,7 @@ public class PeripheralWienerIndex implements GraphReportExtension<Integer> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+		return "Topological Indices-Wiener Types ";
     }
 
 }

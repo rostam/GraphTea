@@ -98,6 +98,6 @@ public class InverseDegree implements GraphReportExtension<RenderTable> {
 
     @Override
 	public String getCategory() {
-        return "Topological Indices-Zagreb Indices";
+        return "Verification-Degree";
     }
 }

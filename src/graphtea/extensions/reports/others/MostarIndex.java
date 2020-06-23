@@ -43,6 +43,6 @@ public class MostarIndex implements GraphReportExtension<Integer> {
 
 	@Override
 	public String getCategory() {
-		return "Topological Indices";
+		return "Topological Indices-Degree Based";
 	}
 }

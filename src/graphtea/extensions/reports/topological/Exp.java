@@ -475,7 +475,7 @@ public class Exp implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+        return "Verification-Checking";
     }
 }
 

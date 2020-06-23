@@ -7,11 +7,15 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
+import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.plugins.reports.extension.GraphReportExtension;
+import graphtea.extensions.reports.topological.EccentricityConnectivityIndex;
+import graphtea.extensions.reports.basicreports.MaxOfIndSets;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
+
 
 /**
  * @author Ali Rostami
@@ -34,10 +38,19 @@ public class ZagrebEccentricity implements GraphReportExtension<RenderTable> {
 
         titles.add(" m ");
         titles.add(" n ");
-        titles.add(" First Zagreb Eccentricity ");
-        titles.add(" Second Zagreb Eccentricity ");
-        titles.add("Max Clique Size");
-
+        titles.add(" E1 ");
+        titles.add( " Thm 1.6 ");
+       //  titles.add(" E2 ");
+      //  titles.add(" E1/n ");
+      //  titles.add(" E2/m ");
+       // titles.add(" E1-R.H.S ");
+     //   titles.add(" E2-R.H.S ");
+      //titles.add(" E_1-Bar / n ");
+      //titles.add(" E_2-Bar / m-bar ");   
+     // titles.add(" Eccen ");
+    //  titles.add(" Diameter ");
+    //    titles.add(" alpha ");
+      //  titles.add("Max Clique Size");
         ret.setTitles(titles);
 
         double maxDeg = 0;
@@ -64,6 +77,7 @@ public class ZagrebEccentricity implements GraphReportExtension<RenderTable> {
 
         double m = g.getEdgesCount();
         double n = g.getVerticesCount();
+        double mbar = (m-(n*(n-1)/2));
         double M12=zif.getSecondZagreb(1);
         double M21=zif.getFirstZagreb(1);
         double M22=zif.getSecondZagreb(2);
@@ -78,15 +92,47 @@ public class ZagrebEccentricity implements GraphReportExtension<RenderTable> {
         double GA=zif.getGAindex();
         double ISI=zif.getInverseSumIndegIndex();
         int girth = (int) new GirthSize().calculate(g);
+        EccentricityConnectivityIndex eci = new EccentricityConnectivityIndex();
+        int diameter = (int) new Diameter().calculate(g);
+        double independenceNumber = (int)((new MaxOfIndSets()).calculate(g));
 
         Vector<Object> v = new Vector<>();
 
 
         v.add(m);
         v.add(n);
+        
+        // First zagreb Eccentricity Index
         v.add(zif.getFirstZagrebEccentricity(g));
-        v.add(zif.getSecondZagrebEccentricity(g));
+        
+        // Theorem 1.6
+       // v.add((4*n)-(3*minDeg));
+        
+        // Second Eccentricity Index
+      //  v.add(zif.getSecondZagrebEccentricity(g));
+    
+        // v.add(mbar);
+       // v.add(nbar);
+                
+     //   v.add((zif.getFirstZagrebEccentricity(g))/n);
+     //   v.add((zif.getSecondZagrebEccentricity(g))/m);
+        
+       // v.add((zif.getFirstZagrebEccentricity(AlgorithmUtils.createComplementGraph(g)))/n);
+       // v.add((zif.getSecondZagrebEccentricity(AlgorithmUtils.createComplementGraph(g)))/mbar);
+        
+        
+          //   eci.setA(0);
+         //    double dd = eci.calculate(g);
+        //     v.add(dd/(n*diameter));
+       //      v.add(diameter);
+        
+        // Clique        
         v.add(MaxCliqueSize.maxCliqueSize(g));
+       // Theorem 1.8 
+      //  v.add(n+(3*independenceNumber));
+        // Theorem 1.9 
+      //  v.add((2*independenceNumber*(n-independenceNumber)) + (((n-independenceNumber)*(n-independenceNumber-1))/2.0) );
+    //   v.add(independenceNumber);
 
         ret.add(v);
         return ret;
@@ -94,7 +140,7 @@ public class ZagrebEccentricity implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+        return "Verification-Checking";
     }
 }
 

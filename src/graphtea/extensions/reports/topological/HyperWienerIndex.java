@@ -44,6 +44,6 @@ public class HyperWienerIndex implements GraphReportExtension<Double> {
 
 	@Override
 	public String getCategory() {
-		return "Topological Indices";
+		return "Topological Indices-Wiener Types ";
 	}
 }

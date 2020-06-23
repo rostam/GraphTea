@@ -11,6 +11,7 @@ import graphtea.extensions.reports.clique.MaxCliqueSize;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
+import graphtea.extensions.reports.topological.EccentricDistanceSum;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -242,7 +243,7 @@ public class ECIConjecture implements GraphReportExtension<RenderTable> {
         Vector<Object> v = new Vector<>();
         v.add(m);
         v.add(n);
-        v.add(Math.floor(n/2));
+      //  v.add(Math.floor(n/2));
       //  v.add(R);
       //  v.add(H);
        // v.add(VR);
@@ -304,8 +305,10 @@ public class ECIConjecture implements GraphReportExtension<RenderTable> {
      //   eci.setA(2);
       //  v.add(eci.calculate(g));
         
-     //   eci.setA(1);
-     //   v.add(eci.calculate(g));
+     
+     // Eccentric Connectivity index.
+	 eci.setA(1);
+     v.add(eci.calculate(g));
         
    //     eci.setA(0.5);
    //     v.add(eci.calculate(g));
@@ -313,8 +316,8 @@ public class ECIConjecture implements GraphReportExtension<RenderTable> {
         eci.setA(0);
        double dd = eci.calculate(g);
         // Average Eccentricity.
-        v.add(dd/n);
-        v.add((Math.floor(5*n/2)) / n );
+       // v.add(dd/n);
+      //  v.add((Math.floor(5*n/2)) / n );
       //  v.add(n/5);
         
       //  int eccentricityComplexityIndex = (int)ecompi.calculate(g);
@@ -434,7 +437,7 @@ public class ECIConjecture implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+        return "Verification-Degree";
     }
 }
 

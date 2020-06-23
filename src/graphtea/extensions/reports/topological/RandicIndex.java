@@ -36,6 +36,6 @@ public class RandicIndex implements GraphReportExtension<ArrayList<String>> {
 
     @Override
     public String getCategory() {
-        return "Topological Indices-Zagreb Indices";
+        return "Topological Indices-Degree Based";
     }
 }

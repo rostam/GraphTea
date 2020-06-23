@@ -41,6 +41,6 @@ public class Radius implements GraphReportExtension<Integer> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+        return "General";
     }
 }

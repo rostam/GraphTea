@@ -32,16 +32,16 @@ public class WienerDiameterReport implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+        return "Verification-Checking";
     }
 
     @Override
     public String getName() {
-        return "Computed Wiener Index and Diagonal";
+        return "Wiener  Diagonal";
     }
 
     @Override
     public String getDescription() {
-        return "Computed Wiener Index and Diagonal";
+        return "Wiener  Diagonal";
     }
 }

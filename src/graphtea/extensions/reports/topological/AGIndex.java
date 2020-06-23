@@ -275,7 +275,7 @@ public class AGIndex implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+        return "Verification-Degree";
     }
 }
 

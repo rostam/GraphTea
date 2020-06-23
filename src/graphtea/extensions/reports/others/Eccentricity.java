@@ -59,6 +59,6 @@ public class Eccentricity implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+		return "General";
     }
 }

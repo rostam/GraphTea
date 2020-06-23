@@ -257,7 +257,7 @@ public class PB implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+        return "Topological Indices-Zagreb Indices";
     }
 }
 

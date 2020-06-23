@@ -52,6 +52,6 @@ public class ConnectiveEccentricIndex implements GraphReportExtension<ArrayList<
 
     @Override
     public String getCategory() {
-        return "Topological Indices-Zagreb Indices";
+        return "Topological Indices-Distance";
     }
 }

@@ -45,6 +45,6 @@ public class DistanceEnergyCompare implements GraphReportExtension<RenderTable> 
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+        return "Verification-Checking";
     }
 }

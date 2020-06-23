@@ -62,6 +62,6 @@ public class EccentricityConnectivityIndex implements GraphReportExtension<Doubl
 
 	@Override
 	public String getCategory() {
-		return "Topological Indices";
+		return "Topological Indices-Distance";
 	}
 }

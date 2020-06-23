@@ -47,6 +47,6 @@ public class EccentricConnectivityIndex implements GraphReportExtension<ArrayLis
 
     @Override
     public String getCategory() {
-        return "Topological Indices";
+        return "Topological Indices-Distance";
     }
 }

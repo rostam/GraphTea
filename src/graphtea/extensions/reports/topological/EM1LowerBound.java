@@ -136,7 +136,7 @@ public class EM1LowerBound implements GraphReportExtension<RenderTable> {
         v.add((maxDeg * maxDeg * maxDeg) + (minDeg * minDeg * minDeg) + (Zeta2) - (4 * M21) + (2 * M12) + (4 * m));
 
 
-        //Eps3
+         //Eps3
         v.add((maxDeg * maxDeg * maxDeg) + (maxDeg2 * maxDeg2 * maxDeg2) + (Eps3) - (4 * M21) + (2 * M12) + (4 * m));
 
         //Eps4
@@ -160,6 +160,6 @@ public class EM1LowerBound implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+        return "Verification-Degree";
     }
 }

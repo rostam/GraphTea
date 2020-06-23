@@ -177,6 +177,6 @@ public class EM2UpperBound implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Conjectures";
+        return "Verification-Degree";
     }
 }
