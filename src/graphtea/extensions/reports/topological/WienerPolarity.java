@@ -45,6 +45,6 @@ public class WienerPolarity implements GraphReportExtension<Integer> {
 
 	@Override
 	public String getCategory() {
-		return "Topological Indices-Wiener Types ";
+		return "Topological Indices-Wiener Types";
 	}
 }

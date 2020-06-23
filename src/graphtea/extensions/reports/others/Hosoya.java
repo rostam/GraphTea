@@ -12,12 +12,12 @@ import java.util.Vector;
 @CommandAttitude(name = "HosoyaIndex", abbreviation = "_hosoya")
 public class Hosoya implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Hosaya Index";
+        return "Hosoya Index";
     }
 
 
     public String getDescription() {
-        return "Hosaya Index";
+        return "Hosoya Index";
     }
 
     @Override

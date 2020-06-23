@@ -193,6 +193,6 @@ public class Estrada implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Graph Energy";
+       return "Verification- Energy";
     }
 }

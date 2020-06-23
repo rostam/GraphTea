@@ -158,6 +158,6 @@ public class LEL_vs_KF implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        return "OurWorks-Graph Energy";
+       return "Verification- Energy";
     }
 }
