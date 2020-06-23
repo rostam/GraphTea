@@ -64,7 +64,6 @@ public class MaxIndependentSetReport implements GraphReportExtension<Vector<SubG
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "General";
 	}
 

@@ -4,14 +4,15 @@ import graphtea.extensions.generators.CircleGenerator;
 import graphtea.extensions.generators.CompleteGraphGenerator;
 import graphtea.extensions.generators.GeneralizedPetersonGenerator;
 import graphtea.extensions.reports.HeuristicGreedyColoring;
+import graphtea.extensions.reports.Partitioner;
+import graphtea.extensions.reports.SubSetListener;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Vector;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class TestHomomorphism {
     GraphModel peterson = GeneralizedPetersonGenerator.generateGeneralizedPeterson(5,2);
@@ -44,4 +45,29 @@ public class TestHomomorphism {
         }
         Assertions.assertTrue(isCorrect);
     }
+
+    @Test
+    public void testPartitioner() {
+        GraphModel g = CircleGenerator.generateCircle(4);
+        List<List<List<Vertex>>> allpartitions = AllSetPartitions.partitions(Arrays.asList(g.getVertexArray()));
+        for (List<List<Vertex>> partitions : allpartitions) {
+            for(List<Vertex> l : partitions) {
+                for(Vertex v : l) {
+                    System.out.print(v.getId() + ",");
+                }
+                System.out.print("-");
+            }
+            System.out.println();
+        }
+        System.out.println(allpartitions.size());
+    }
 }
+//
+//class MySubSetListener implements SubSetListener {
+//
+//    @Override
+//    public boolean subsetFound(int t, ArrayDeque<Vertex> complement, ArrayDeque<Vertex> set) {
+//        System.out.println(set.size());
+//        return false;
+//    }
+//}

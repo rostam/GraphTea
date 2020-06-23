@@ -29,8 +29,6 @@ public class Homomorphism {
         homomorphism.putAll(map);
     }
 
-    //
-
     /**
      * Building Homomorphism from coloring
      *
@@ -147,6 +145,13 @@ public class Homomorphism {
         return domain == range;
     }
 
+    /**
+     * Composes two homomorphisms
+     *
+     * @param h1 The first homomorphism
+     * @param h2 The second homomorphism
+     * @return the composed homomorphisms
+     */
     public static Homomorphism compose(Homomorphism h1, Homomorphism h2) {
         HashMap<Vertex, Vertex> composed = new HashMap<>();
         HashMap<Vertex, Vertex> H1function = h1.getHomomorphism();
@@ -156,4 +161,8 @@ public class Homomorphism {
         }
         return new Homomorphism(h1.getDomain(), h2.getRange(), composed);
     }
+
+//    public static Homomorphism findAHomomorphism(GraphModel g1, GraphModel g2) {
+//
+//    }
 }
