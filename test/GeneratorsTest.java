@@ -586,7 +586,7 @@ public class GeneratorsTest {
 
     @Test
     public void testFlowerGraph() {
-        FlowerGraph.n = 10;
+        FlowerGraph.n = 3;
         FlowerGraph varFlowerGraph = new FlowerGraph();
         GraphModel g = varFlowerGraph.generateGraph();
         int n = FlowerGraph.n;
@@ -597,12 +597,12 @@ public class GeneratorsTest {
         int minDegree = maxAndMinDegree.get(1);
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
-        Assertions.assertEquals(girth, n);
-        Assertions.assertEquals(diameter, n);
-        Assertions.assertEquals(numOfVertices, n);
-        Assertions.assertEquals(numOfEdges, n);
-        Assertions.assertEquals(maxDegree, n);
-        Assertions.assertEquals(minDegree, n);
+        Assertions.assertEquals(numOfVertices, 2*n+1);
+        Assertions.assertEquals(numOfEdges, 4*n);
+        Assertions.assertEquals(maxDegree, 2*n);
+        Assertions.assertEquals(minDegree, 2);
+        Assertions.assertEquals(girth, 3);
+        Assertions.assertEquals(diameter, 2);
     }
 
 }

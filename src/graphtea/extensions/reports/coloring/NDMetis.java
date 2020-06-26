@@ -71,8 +71,8 @@ public class NDMetis {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ProcessBuilder process=null;
 
+        ProcessBuilder process=null;
         if(System.getProperty("os.name").contains("Win")) {
             System.out.println("This option works only in linux.");
         } else {
