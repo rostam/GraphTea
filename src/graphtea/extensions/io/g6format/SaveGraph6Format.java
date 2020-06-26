@@ -20,6 +20,8 @@ import java.io.IOException;
 
 public class SaveGraph6Format implements GraphWriterExtension {
 
+    public static boolean isAppend = true;
+
     public String getName() {
         return "Graph6 Format";
     }
@@ -31,7 +33,7 @@ public class SaveGraph6Format implements GraphWriterExtension {
     @Override
     public void write(File file, GraphModel graph) throws GraphIOException {
         try {
-            FileWriter fw = new FileWriter(file,true);
+            FileWriter fw = new FileWriter(file,isAppend);
             G6Format g6f = new G6Format();
             String s = G6Format.graphToG6(graph);
             fw.write(s);
