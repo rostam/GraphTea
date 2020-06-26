@@ -42,11 +42,11 @@ public class EccentricWienerIndex implements GraphReportExtension<Integer> {
             for (int u = v+1; u < g.numOfVertices(); u++) {
                 double eu = Eccentricity.eccentricity(g,u,dist);
                 double ev = Eccentricity.eccentricity(g,v,dist);
-                double epsilon = dist[v][u] == Math.max(eu,ev) ? dist[v][u] : 0;
+                double epsilon = dist[v][u] == Math.min(eu,ev) ? dist[v][u] : 0;
                 sum += epsilon;
             }
         }
-        return sum/2;
+        return sum;
     }
 
 	@Override
