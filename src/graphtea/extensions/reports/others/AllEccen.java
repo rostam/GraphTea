@@ -46,6 +46,7 @@ public class AllEccen implements GraphReportExtension<RenderTable>{
         ret.setTitles(titles);
 
         double m = g.getEdgesCount();
+        if(m==10) return null;
         double n = g.getVerticesCount();
 
         Vector<Object> v = new Vector<>();

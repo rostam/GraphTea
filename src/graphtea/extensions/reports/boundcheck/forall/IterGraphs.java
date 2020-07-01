@@ -121,8 +121,19 @@ public class IterGraphs {
         new GraphData(blackboard).core.showGraph(g);
     }
 
+    /**
+     * For each iteration, computes the report on the given graph and
+     * add the results (if not null) to a render table to gather all data
+     *
+     * @param f Report calculation to be called
+     * @param g Input graph
+     * @param count A count value which will be the count column
+     * @param mpq Resulting render table
+     * @param g6 Input G6 string
+     */
     private void getResIterLimited(ToCall f, GraphModel g, int count, RenderTable mpq, String g6) {
         RenderTable ret = (RenderTable) f.f(g);
+        if (ret == null) return;
         if (mpq.getTitles().size() == 0) {
             Vector<String> tts = new Vector<>();
             tts.add("Index");
