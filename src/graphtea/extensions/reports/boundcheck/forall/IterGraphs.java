@@ -135,6 +135,7 @@ public class IterGraphs {
      * @param g6 Input G6 string
      */
     static double maxValue = -100000;
+    static double minValue = 1000000;
     private void getResIterLimited(ToCall f, GraphModel g, int count, RenderTable mpq, String g6) {
         RenderTable ret = (RenderTable) f.f(g);
         if (ret == null) return;
@@ -185,6 +186,38 @@ public class IterGraphs {
                         mpq.clear();
                         mpq.add(data);
                     } else if (o.length() == maxValue) {
+                        mpq.add(data);
+                    }
+                }
+            }
+        } else if (ConjectureChecking.PostP.getValue().equals("Min Filter")) {
+            Object oo = data.get(columnID);
+            if(oo instanceof Double || oo instanceof Integer || oo instanceof String) {
+                if (oo instanceof Double) {
+                    double o = (Double) data.get(columnID);
+                    if (o < minValue) {
+                        minValue = o;
+                        mpq.clear();
+                        mpq.add(data);
+                    } else if (o == minValue) {
+                        mpq.add(data);
+                    }
+                } else if (oo instanceof Integer) {
+                    int o = (Integer) data.get(columnID);
+                    if (o < minValue) {
+                        minValue = o;
+                        mpq.clear();
+                        mpq.add(data);
+                    } else if (o == minValue) {
+                        mpq.add(data);
+                    }
+                } else {
+                    String o = (String) data.get(columnID);
+                    if (o.length() < minValue) {
+                        minValue = o.length();
+                        mpq.clear();
+                        mpq.add(data);
+                    } else if (o.length() == minValue) {
                         mpq.add(data);
                     }
                 }
