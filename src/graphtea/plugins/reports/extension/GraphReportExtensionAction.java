@@ -25,50 +25,52 @@ import java.io.FileWriter;
 
  */
 public class GraphReportExtensionAction extends AbstractExtensionAction {
-	protected GraphReportExtension mr;
-	public static IterGraphs ig=null;
+    protected GraphReportExtension mr;
+    public static IterGraphs ig = null;
 
-	public GraphReportExtensionAction(BlackBoard bb, GraphReportExtension gg) {
-		super(bb, gg);
-		this.mr = gg;
-	}
+    public GraphReportExtensionAction(BlackBoard bb, GraphReportExtension gg) {
+        super(bb, gg);
+        this.mr = gg;
+    }
 
-	public String getParentMenuName() {
-		return "Reports";
-	}
-	public Object performExtensionInCommandLine() {
-		return mr.calculate(new GraphData(blackboard).getGraph());
-	}
+    public String getParentMenuName() {
+        return "Reports";
+    }
 
-	Component rendererComponent;
-	Component ContentPane;
-	JDialog jd;
-	JFileChooser fileChooser;
+    public Object performExtensionInCommandLine() {
+        return mr.calculate(new GraphData(blackboard).getGraph());
+    }
 
-	public void performExtension() {
-		//        if (testAndSetParameters(gr)) {
-		new Thread() {
-			Object result = new Object();
-			public void run() {
-				if (ig!=null&&ig.activeConjCheck && !mr.getName().equals("Bound Check")) {
-					result=ig.wrapper(mr);
-				} else {
-					result = mr.calculate(new GraphData(blackboard).getGraph());
-				}
-				if (result == null)
-					return;
-				jd = new JDialog(UIUtils.getGFrame(blackboard));
-				jd.setVisible(true);
-				jd.setTitle(mr.getName());
-				jd.setLayout(new BorderLayout(3, 3));
-				jd.add(new JLabel(mr.getDescription()), BorderLayout.NORTH);
-				rendererComponent = GCellRenderer.getRendererFor(result);
-				rendererComponent.setEnabled(true);
-				jd.add(rendererComponent, BorderLayout.CENTER);
-				JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-				JButton recalc = new JButton("Recalculate");
-				panel.add(recalc, BorderLayout.SOUTH);
-				recalc.addActionListener(actionEvent -> {
+    Component rendererComponent;
+    Component ContentPane;
+    JDialog jd;
+    JFileChooser fileChooser;
+
+    public void performExtension() {
+        //        if (testAndSetParameters(gr)) {
+        new Thread() {
+            Object result = new Object();
+
+            public void run() {
+                if (ig != null && ig.activeConjCheck && !mr.getName().equals("Bound Check")) {
+                    result = ig.wrapper(mr);
+                } else {
+                    result = mr.calculate(new GraphData(blackboard).getGraph());
+                }
+                if (result == null)
+                    return;
+                jd = new JDialog(UIUtils.getGFrame(blackboard));
+                jd.setVisible(true);
+                jd.setTitle(mr.getName());
+                jd.setLayout(new BorderLayout(3, 3));
+                jd.add(new JLabel(mr.getDescription()), BorderLayout.NORTH);
+                rendererComponent = GCellRenderer.getRendererFor(result);
+                rendererComponent.setEnabled(true);
+                jd.add(rendererComponent, BorderLayout.CENTER);
+                JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                JButton recalc = new JButton("Recalculate");
+                panel.add(recalc, BorderLayout.SOUTH);
+                recalc.addActionListener(actionEvent -> {
                     Object result = mr.calculate(new GraphData(blackboard).getGraph());
                     jd.remove(rendererComponent);
                     rendererComponent = GCellRenderer.getRendererFor(result);
@@ -76,13 +78,12 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
                     jd.add(rendererComponent, BorderLayout.CENTER);
                     jd.pack();
                     jd.repaint();
-
                 });
 
-				fileChooser = new JFileChooser();
-				JButton save = new JButton("Save");
-				panel.add(save);
-				save.addActionListener(actionEvent -> {
+                fileChooser = new JFileChooser();
+                JButton save = new JButton("Save");
+                panel.add(save);
+                save.addActionListener(actionEvent -> {
 
                     fileChooser.addChoosableFileFilter(new FileFilter() {
 
@@ -107,7 +108,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
                         File curFile = fileChooser.getSelectedFile();
                         FileWriter fw = new FileWriter(curFile);
                         JViewport viewp = ((JScrollPane) rendererComponent).getViewport();
-                        if(viewp.getView() instanceof JTable) {
+                        if (viewp.getView() instanceof JTable) {
                             JTable table = (JTable) viewp.getView();
                             for (int row = 0; row < table.getRowCount(); row++) {
                                 for (int col = 0; col < table.getColumnCount(); col++) {
@@ -133,11 +134,11 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 
                 });
 
-				jd.add(panel, BorderLayout.SOUTH);
-				jd.setLocation(GFrameLocationProvider.getPopUpLocation());
-				jd.pack();
+                jd.add(panel, BorderLayout.SOUTH);
+                jd.setLocation(GFrameLocationProvider.getPopUpLocation());
+                jd.pack();
 
-			}
-		}.start();
-	}
+            }
+        }.start();
+    }
 }

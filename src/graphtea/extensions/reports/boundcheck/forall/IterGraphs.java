@@ -23,18 +23,19 @@ import java.util.Collections;
 import java.util.Vector;
 
 public class IterGraphs {
-    public boolean activeConjCheck = false;
-    public boolean iterative = false;
-    public String type = "";
-    public int size = 0;
-    public String bound = "";
-    public String gens = "";
-    public String postproc = "";
+    public boolean activeConjCheck;
+    public boolean iterative;
+    public String type;
+    public int size;
+    public String bound;
+    public String gens;
+    public String postproc;
+    public int columnID;
     public GraphFilter gf;
 
     public IterGraphs(boolean activeConjCheck, boolean iterative,
                       String type, int size, String bound, String gens,
-                      String postproc,GraphFilter gf) {
+                      String postproc,GraphFilter gf,int columnID) {
         this.activeConjCheck = activeConjCheck;
         this.iterative = iterative;
         this.type = type;
@@ -43,6 +44,7 @@ public class IterGraphs {
         this.gens = gens;
         this.postproc = postproc;
         this.gf=gf;
+        this.columnID = columnID;
     }
 
     public Vector<GraphModel> wrapper_generate() {
@@ -75,6 +77,7 @@ public class IterGraphs {
         ToCall f = mr::calculate;
         int[] res = null;
         RenderTable pq = new RenderTable();
+        IterGraphs.maxValue = -100000;
         while (it.hasNext()) {
             GraphModel g = it.next();
             if(gf!=null) if(!gf.filter(g)) continue;
@@ -131,6 +134,7 @@ public class IterGraphs {
      * @param mpq Resulting render table
      * @param g6 Input G6 string
      */
+    static double maxValue = -100000;
     private void getResIterLimited(ToCall f, GraphModel g, int count, RenderTable mpq, String g6) {
         RenderTable ret = (RenderTable) f.f(g);
         if (ret == null) return;
@@ -147,13 +151,47 @@ public class IterGraphs {
         data.add(count + "");
         data.addAll(ret.poll());
         if (ConjectureChecking.PostP.getValue().equals("Equality Filter")) {
-            Double toBeTruncated = (Double) data.get(1);
+            Double toBeTruncated = (Double) data.get(columnID);
             double o = new BigDecimal(toBeTruncated).setScale(8, BigDecimal.ROUND_HALF_UP).doubleValue();
 
             if (Double.parseDouble(ConjectureChecking.ppvalue) == o) {
                 mpq.add(data);
             }
-        } else mpq.add(data);
+        } else if (ConjectureChecking.PostP.getValue().equals("Max Filter")) {
+            Object oo = data.get(columnID);
+            if(oo instanceof Double || oo instanceof Integer || oo instanceof String) {
+                if (oo instanceof Double) {
+                    double o = (Double) data.get(columnID);
+                    if (o > maxValue) {
+                        maxValue = o;
+                        mpq.clear();
+                        mpq.add(data);
+                    } else if (o == maxValue) {
+                        mpq.add(data);
+                    }
+                } else if (oo instanceof Integer) {
+                    int o = (Integer) data.get(columnID);
+                    if (o > maxValue) {
+                        maxValue = o;
+                        mpq.clear();
+                        mpq.add(data);
+                    } else if (o == maxValue) {
+                        mpq.add(data);
+                    }
+                } else {
+                    String o = (String) data.get(columnID);
+                    if (o.length() > maxValue) {
+                        maxValue = o.length();
+                        mpq.clear();
+                        mpq.add(data);
+                    } else if (o.length() == maxValue) {
+                        mpq.add(data);
+                    }
+                }
+            }
+        } else {
+            mpq.add(data);
+        }
 
         ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
         Collections.sort(al);
