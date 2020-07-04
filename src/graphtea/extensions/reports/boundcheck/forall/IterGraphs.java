@@ -78,6 +78,7 @@ public class IterGraphs {
         int[] res = null;
         RenderTable pq = new RenderTable();
         IterGraphs.maxValue = -100000;
+        IterGraphs.minValue = 1000000;
         while (it.hasNext()) {
             GraphModel g = it.next();
             if(gf!=null) if(!gf.filter(g)) continue;
@@ -124,6 +125,8 @@ public class IterGraphs {
         new GraphData(blackboard).core.showGraph(g);
     }
 
+    static double maxValue = -100000;
+    static double minValue = 1000000;
     /**
      * For each iteration, computes the report on the given graph and
      * add the results (if not null) to a render table to gather all data
@@ -134,8 +137,6 @@ public class IterGraphs {
      * @param mpq Resulting render table
      * @param g6 Input G6 string
      */
-    static double maxValue = -100000;
-    static double minValue = 1000000;
     private void getResIterLimited(ToCall f, GraphModel g, int count, RenderTable mpq, String g6) {
         RenderTable ret = (RenderTable) f.f(g);
         if (ret == null) return;
