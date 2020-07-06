@@ -54,7 +54,7 @@ public class FindingHomomorphism {
                         }
                     }
                     Homomorphism h = new Homomorphism(G, H, homomorphism);
-                    System.out.println(h.isValid());
+                    return h;
                 }
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
@@ -71,11 +71,5 @@ public class FindingHomomorphism {
         } catch (GraphIOException e) {
             e.printStackTrace();
         }
-//
-//        try {
-//            new FindingHomomorphism().findAHomomorphism(circle3, peterson);
-//        } catch (GraphIOException e) {
-//            e.printStackTrace();
-//        }
     }
 }
