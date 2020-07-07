@@ -11,7 +11,6 @@ import graphtea.extensions.reports.clique.MaxCliqueSize;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.extensions.reports.topological.EccentricDistanceSum;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -230,7 +229,7 @@ public class ECIConjecture implements GraphReportExtension<RenderTable> {
 
         MWienerIndex mwi = new MWienerIndex();
         ConnectivityEccentricityIndex cei = new ConnectivityEccentricityIndex();
-        EccentricityConnectivityIndex eci = new EccentricityConnectivityIndex();
+        EccentricConnectiveIndex eci = new EccentricConnectiveIndex();
         EccentricityComplexityIndex   ecompi = new EccentricityComplexityIndex();
         DegreeDistance   			  degreeDistance = new DegreeDistance();
         ReciprocalDegreeDistance   	  RDD = new ReciprocalDegreeDistance();

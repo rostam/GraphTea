@@ -5,7 +5,9 @@
 package graphtea.extensions.reports.topological;
 
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
+import graphtea.extensions.reports.others.Eccentricity;
 import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -15,16 +17,16 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 
-@CommandAttitude(name = "eccentricityconnectivity_index", abbreviation = "_ECindex")
-public class EccentricityConnectivityIndex implements GraphReportExtension<Double> {
+@CommandAttitude(name = "eccentric_connective_index", abbreviation = "_ECindex")
+public class EccentricConnectiveIndex implements GraphReportExtension<Double> {
     private double a;
 
     public String getName() {
-        return "EC Index";
+        return "Eccnetric Connective Index";
     }
 
     public String getDescription() {
-        return "EC Index";
+        return "Eccnetric Connective Index";
     }
 
     public void setA(double value) {
@@ -33,30 +35,11 @@ public class EccentricityConnectivityIndex implements GraphReportExtension<Doubl
 
     public Double calculate(GraphModel g) {
         FloydWarshall fw = new FloydWarshall();
-        int[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
-
-    	double maxVUDistance;
+        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
     	double sum = 0;
-
-        for (int v = 0; v < g.numOfVertices(); v++) {
-        	maxVUDistance = 0;
-            for (int u = 0; u < g.numOfVertices(); u++) {
-            	if (v == u) {
-            		continue;
-            	}
-                if(spt[v][u] < g.numOfVertices() + 1) {
-                	double dist = spt[v][u];
-                    if(dist > maxVUDistance) {
-                    	maxVUDistance = dist;                    	
-                    }
-                }
-            }
-            
-            if (maxVUDistance > 0) {
-            	sum += Math.pow(g.getDegree(g.getVertex(v)), a) * maxVUDistance;
-            }
+        for (Vertex v : g) {
+        	sum += g.getDegree(v) * Eccentricity.eccentricity(g, v.getId(), dist);
         }
-
         return sum;
     }
 

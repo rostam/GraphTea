@@ -9,16 +9,6 @@ import graphtea.extensions.reports.clique.MaxCliqueSize;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.extensions.reports.others.PeripheralWienerIndex;
-import graphtea.extensions.reports.topological.WienerIndex;
-import graphtea.extensions.reports.topological.WienerPolarityIndex;
-import graphtea.extensions.reports.topological.WienerIndex;
-import graphtea.extensions.reports.topological.Harary;
-import graphtea.extensions.reports.topological.MWienerIndex;
-import graphtea.extensions.reports.topological.DegreeDistance;
-import graphtea.extensions.reports.topological.ReciprocalDegreeDistance;
-import graphtea.extensions.reports.topological.ConnectivityEccentricityIndex;
-import graphtea.extensions.reports.topological.EccentricityConnectivityIndex;
-import graphtea.extensions.reports.topological.EccentricDistanceSum;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -228,7 +218,7 @@ public class Mere implements GraphReportExtension<RenderTable> {
 		
 		MWienerIndex mwi = new MWienerIndex();
         ConnectivityEccentricityIndex cei = new ConnectivityEccentricityIndex();
-        EccentricityConnectivityIndex    eci = new EccentricityConnectivityIndex();
+        EccentricConnectiveIndex eci = new EccentricConnectiveIndex();
         EccentricityComplexityIndex   ecompi = new EccentricityComplexityIndex();
         DegreeDistance   			  degreeDistance = new DegreeDistance();
         ReciprocalDegreeDistance   	  RDD = new ReciprocalDegreeDistance();

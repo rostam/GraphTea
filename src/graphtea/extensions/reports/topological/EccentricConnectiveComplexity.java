@@ -5,38 +5,39 @@
 package graphtea.extensions.reports.topological;
 
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
-import graphtea.extensions.reports.DijkstraNonNegative;
 import graphtea.extensions.reports.others.Eccentricity;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * @author Ali Rostami
+ * @author azin azadi
 
  */
 
-@CommandAttitude(name = "connective_eccentric_index", abbreviation = "_connective_eccentric_index")
-public class ConnectiveEccentricIndex implements GraphReportExtension<Double> {
+
+@CommandAttitude(name = "eccentric_connective_complexity", abbreviation = "_ECComplexity")
+public class EccentricConnectiveComplexity implements GraphReportExtension<Integer> {
     public String getName() {
-        return "Connective Eccentric Index";
+        return "Eccentirc Connective Complexity";
     }
 
     public String getDescription() {
-        return "Connective Eccentric Index";
+        return "Eccentirc Connective Complexity";
     }
 
-    public Double calculate(GraphModel g) {
+    public Integer calculate(GraphModel g) {
         FloydWarshall fw = new FloydWarshall();
         int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
-        double sum = 0;
-        for (Vertex v : g.getVertexArray()) {
-            sum += g.getDegree(v) / (1.000 * Eccentricity.eccentricity(g, v, dist));
+        Set<Double> uniqueEccentricities = new HashSet<>();
+        for (Vertex v : g) {
+            uniqueEccentricities.add(g.getDegree(v) * 1.0 * Eccentricity.eccentricity(g, v, dist));
         }
-        return sum;
+        return uniqueEccentricities.size();
     }
 
     @Override

@@ -266,7 +266,7 @@ public class Exp implements GraphReportExtension<RenderTable> {
 
         MWienerIndex mwi = new MWienerIndex();
         ConnectivityEccentricityIndex cei = new ConnectivityEccentricityIndex();
-        EccentricityConnectivityIndex eci = new EccentricityConnectivityIndex();
+        EccentricConnectiveIndex eci = new EccentricConnectiveIndex();
         EccentricityComplexityIndex   ecompi = new EccentricityComplexityIndex();
         DegreeDistance   			  degreeDistance = new DegreeDistance();
         ReciprocalDegreeDistance   	  RDD = new ReciprocalDegreeDistance();

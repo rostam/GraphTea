@@ -9,7 +9,6 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-import graphtea.extensions.reports.topological.EccentricityConnectivityIndex;
 import graphtea.extensions.reports.basicreports.MaxOfIndSets;
 
 import java.util.ArrayList;
@@ -92,7 +91,7 @@ public class ZagrebEccentricity implements GraphReportExtension<RenderTable> {
         double GA=zif.getGAindex();
         double ISI=zif.getInverseSumIndegIndex();
         int girth = (int) new GirthSize().calculate(g);
-        EccentricityConnectivityIndex eci = new EccentricityConnectivityIndex();
+        EccentricConnectiveIndex eci = new EccentricConnectiveIndex();
         int diameter = (int) new Diameter().calculate(g);
         double independenceNumber = (int)((new MaxOfIndSets()).calculate(g));
 

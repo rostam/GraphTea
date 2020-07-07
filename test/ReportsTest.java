@@ -115,8 +115,8 @@ public class ReportsTest {
 
     @Test
     public void testEccentricConnectivityIndex() {
-        EccentricConnectivityIndex varEccentricConnectivityIndex = new EccentricConnectivityIndex();
-        Assertions.assertEquals(varEccentricConnectivityIndex.calculate(peterson).get(0),"");
+        EccentricConnectiveIndex varEccentricConnectivityIndex = new EccentricConnectiveIndex();
+        Assertions.assertEquals(varEccentricConnectivityIndex.calculate(peterson),"");
     }
 
     @Test
@@ -247,7 +247,7 @@ public class ReportsTest {
     @Test
     public void testConnectiveEccentricIndex() {
         ConnectiveEccentricIndex varConnectiveEccentricIndex = new ConnectiveEccentricIndex();
-        Assertions.assertEquals(varConnectiveEccentricIndex.calculate(peterson).get(0),"");
+        Assertions.assertEquals(varConnectiveEccentricIndex.calculate(peterson),"");
     }
 
     @Test
@@ -318,7 +318,7 @@ public class ReportsTest {
 
     @Test
     public void testEccentricityConnectivityIndex() {
-        EccentricityConnectivityIndex varEccentricityConnectivityIndex = new EccentricityConnectivityIndex();
+        EccentricConnectiveIndex varEccentricityConnectivityIndex = new EccentricConnectiveIndex();
         Assertions.assertEquals(varEccentricityConnectivityIndex.calculate(peterson),0);
     }
 

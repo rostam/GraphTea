@@ -4,7 +4,6 @@ package graphtea.extensions.reports.topological;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.RandomMatching;
-import graphtea.extensions.reports.basicreports.*;
 import graphtea.extensions.reports.clique.MaxCliqueSize;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -12,38 +11,15 @@ import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-import graphtea.extensions.reports.ChromaticNumber;
-import graphtea.extensions.reports.clique.MaxCliqueExtension;
-import graphtea.extensions.reports.matching.MaxMatchingExtension;
-import graphtea.extensions.reports.matching.MaximumMatching;
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RenderTable;
-import graphtea.graph.graph.Vertex;
-import graphtea.graph.graph.Edge;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.extensions.reports.basicreports.GirthSize;
-import graphtea.extensions.reports.topological.WienerIndex;
 import graphtea.extensions.reports.others.PeripheralWienerIndex;
 
-import graphtea.extensions.reports.topological.WienerPolarityIndex;
-import graphtea.extensions.reports.topological.WienerIndex;
-import graphtea.extensions.reports.topological.Harary;
-import graphtea.extensions.reports.topological.MWienerIndex;
-import graphtea.extensions.reports.topological.DegreeDistance;
-import graphtea.extensions.reports.topological.ReciprocalDegreeDistance;
-import graphtea.extensions.reports.topological.ConnectivityEccentricityIndex;
-import graphtea.extensions.reports.topological.EccentricityConnectivityIndex;
-import graphtea.extensions.reports.topological.EccentricDistanceSum;
-import graphtea.extensions.reports.RandomMatching;
-import graphtea.extensions.reports.basicreports.NumOfIndSets;
 import graphtea.extensions.reports.basicreports.MaxOfIndSets;
-import graphtea.extensions.reports.others.PeripheralWienerIndex;
 
 import java.util.ArrayList;
 import java.util.Vector;
-import java.util.List;
 import java.util.Collections;
 
 /**
@@ -261,7 +237,7 @@ public class Mere1 implements GraphReportExtension<RenderTable> {
 
         MWienerIndex mwi = new MWienerIndex();
         ConnectivityEccentricityIndex cei = new ConnectivityEccentricityIndex();
-        EccentricityConnectivityIndex    eci = new EccentricityConnectivityIndex();
+        EccentricConnectiveIndex eci = new EccentricConnectiveIndex();
         EccentricityComplexityIndex   ecompi = new EccentricityComplexityIndex();
         DegreeDistance   			  degreeDistance = new DegreeDistance();
         ReciprocalDegreeDistance   	  RDD = new ReciprocalDegreeDistance();
