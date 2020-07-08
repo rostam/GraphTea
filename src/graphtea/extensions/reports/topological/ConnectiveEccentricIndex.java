@@ -35,7 +35,6 @@ public class ConnectiveEccentricIndex implements GraphReportExtension<Double> {
         double sum = 0;
         for (Vertex v : g.getVertexArray()) {
             sum += g.getDegree(v) / (1.000 * Eccentricity.eccentricity(g, v, dist));
-            System.out.println(sum);
         }
         return sum;
     }

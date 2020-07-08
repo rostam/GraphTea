@@ -24,58 +24,30 @@ public class FloydWarshall {
      * @param graph The given graph
      * @return All shortest paths
      */
-    public int[][] getAllPairsShortestPath(final GraphModel graph) {
-        final int[][] dist = new int[graph.getVerticesCount()][graph.getVerticesCount()];
-        Iterator<Edge> iet = graph.edgeIterator();
-        Edge edge;
-        for (int[] integers : dist) Arrays.fill(integers, graph.numOfVertices() * 2);
-
-        for(Vertex v:graph)
-            dist[v.getId()][v.getId()] = 0;
-
-        while (iet.hasNext()) {
-            edge = iet.next();
-            dist[edge.target.getId()][edge.source.getId()] = edge.getWeight();
-            dist[edge.source.getId()][edge.target.getId()] = edge.getWeight();
-        }
-
-        for (Vertex w : graph)
-            for (Vertex u : graph)
-                for (Vertex v : graph) {
-                    if ((dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()]) < dist[v.getId()][u.getId()])
-                        dist[v.getId()][u.getId()] = dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()];
-                }
-
-        return dist;
-    }
-
-
-    /**
-     * @param graph The given graph
-     * @return All shortest paths
-     */
     public int[][] getAllPairsShortestPathWithoutWeight(final GraphModel graph) {
         final int[][] dist = new int[graph.getVerticesCount()][graph.getVerticesCount()];
-        Iterator<Edge> iet = graph.edgeIterator();
-        for(int i = 0; i < graph.getVerticesCount();i++)
-            for(int j = 0; j < graph.getVerticesCount();j++)
-                dist[i][j] = graph.numOfVertices();
-
-        for(Vertex v:graph)
-            dist[v.getId()][v.getId()] = 0;
-
-        while (iet.hasNext()) {
-            Edge edge = iet.next();
-            dist[edge.target.getId()][edge.source.getId()] = 1;
-            dist[edge.source.getId()][edge.target.getId()] = 1;
+        for (Vertex u : graph) {
+            for (Vertex v : graph) {
+                if (v.getId() == u.getId())
+                    dist[v.getId()][v.getId()] = 0;
+                else if (graph.isEdge(v, u)) {
+                    dist[v.getId()][u.getId()] = 1;
+                    dist[u.getId()][v.getId()] = 1;
+                } else {
+                    dist[v.getId()][u.getId()] = graph.numOfVertices() * 2;
+                    dist[u.getId()][v.getId()] = graph.numOfVertices() * 2;
+                }
+            }
         }
 
-        for (Vertex w : graph)
-            for (Vertex u : graph)
+        for (Vertex w : graph) {
+            for (Vertex u : graph) {
                 for (Vertex v : graph) {
                     if ((dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()]) < dist[v.getId()][u.getId()])
                         dist[v.getId()][u.getId()] = dist[v.getId()][w.getId()] + dist[w.getId()][u.getId()];
                 }
+            }
+        }
 
         return dist;
     }
