@@ -53,6 +53,7 @@ public class Eccentricity implements GraphReportExtension<RenderTable> {
         int v = vv.getId();
         int max_dist = 0;
         for (int j = 0; j < g.getVerticesCount(); j++) {
+            System.out.println(v + " " +max_dist);
             if (max_dist < dist[v][j]) {
                 max_dist = dist[v][j];
             }
