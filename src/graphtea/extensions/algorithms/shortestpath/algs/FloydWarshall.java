@@ -6,12 +6,8 @@
 package graphtea.extensions.algorithms.shortestpath.algs;
 
 
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-
-import java.util.Arrays;
-import java.util.Iterator;
 
 /**
  * This method finds the shortest paths between any two vertices of
