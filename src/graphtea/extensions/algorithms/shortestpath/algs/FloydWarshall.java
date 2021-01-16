@@ -13,7 +13,7 @@ import graphtea.graph.graph.Vertex;
  * This method finds the shortest paths between any two vertices of
  * a graph.
  *
- * @author Soroush Sabet, edited by Omid Aladini
+ * @author Soroush Sabet, edited by Omid Aladini, Ali Rostami
  */
 public class FloydWarshall {
     /**
