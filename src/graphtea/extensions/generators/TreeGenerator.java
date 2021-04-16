@@ -18,7 +18,7 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 import java.awt.*;
 
 /**
- * @author azin azadi, Hoshmand Hasannia
+ * @author azin azadi, Hoshmand Hasannia, Ali Rostami
  */
 //@CommandAttitude(name = "generate_tree" , abbreviation = "_g_t"
 //        ,description = "generate a tree with depth and degree")
