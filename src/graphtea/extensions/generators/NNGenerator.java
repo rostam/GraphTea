@@ -7,7 +7,6 @@ package graphtea.extensions.generators;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.ArrayX;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -69,8 +68,7 @@ public class NNGenerator implements GraphGeneratorExtension, Parametrizable, Sim
             }
         }
 
-        Edge[] ret = rets.toArray(new Edge[v.length]);
-        return ret;
+        return rets.toArray(new Edge[v.length]);
     }
 
     public Point[] getVertexPositions() {

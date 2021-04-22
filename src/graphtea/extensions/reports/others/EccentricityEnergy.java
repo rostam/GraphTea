@@ -4,14 +4,11 @@ import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Iterator;
 import java.util.Vector;
 
 @CommandAttitude(name = "EccentricityEnergy", abbreviation = "_eccentricity_index")

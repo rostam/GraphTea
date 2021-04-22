@@ -5,7 +5,6 @@
 
 package graphtea.extensions.reports.spectralreports;
 
-import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;

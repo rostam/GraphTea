@@ -1,6 +1,5 @@
 package graphtea.extensions.algorithms.homomorphism;
 
-import graphtea.extensions.AllSetPartitions;
 import graphtea.extensions.generators.CircleGenerator;
 import graphtea.extensions.generators.GeneralizedPetersonGenerator;
 import graphtea.extensions.io.g6format.SaveGraph6Format;
@@ -10,9 +9,7 @@ import graphtea.plugins.main.saveload.core.GraphIOException;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 public class FindingHomomorphism {

@@ -2,7 +2,6 @@ package graphtea.extensions.actions.product;
 
 import graphtea.extensions.algorithms.GraphJoin;
 import graphtea.extensions.algorithms.GraphSum;
-import graphtea.extensions.algorithms.GraphUnion;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.platform.parameter.Parameter;
