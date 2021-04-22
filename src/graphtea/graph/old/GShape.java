@@ -368,7 +368,7 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
     private static int[][] provideRegularPolygonPoints(int h, int w, int n) {
         int[] xPoints = new int[n];
         int[] yPoints = new int[n];
-        h = h < w ? h : w;
+        h = Math.min(h, w);
         for (int i = 0; i != n; i++) {
             if (n % 2 == 0) {
 

@@ -50,9 +50,7 @@ public class G6Format {
 
         int m = (n + WORDSIZE - 1) / WORDSIZE;
         int x=0;
-        long[] g = new long[m * n];
-        for (int ii = m * n; --ii > 0; ) g[ii] = 0;
-        g[0] = 0;
+
         int k = 1;
         int it = 0;
         for (int j = 1; j < n; ++j) {

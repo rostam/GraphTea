@@ -186,7 +186,7 @@ public static void sendGet(String host, String payload) {
 
         String url = host + "?" + payload;
 
-        System.out.println("*"+url+"*");
+//        System.out.println("*"+url+"*");
 
         URL myURL = null;
         try {

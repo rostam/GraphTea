@@ -161,15 +161,8 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
         isEdgesCurved = graph.isEdgesCurved();
         isDirected = graph.isDirected();
 
-        if (minx < 0) {
-            control.minx = minx;
-        } else {
-            control.minx = 0;
-        }
-        if (miny < 0) {
-            control.miny = miny;
-        } else
-            control.miny = 0;
+        control.minx = Math.min(minx, 0);
+        control.miny = Math.min(miny, 0);
 
         if (quickPaint) {
             fastpaintGraph(gg, drawExtras);
