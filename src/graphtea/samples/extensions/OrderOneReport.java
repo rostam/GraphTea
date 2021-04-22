@@ -9,7 +9,7 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-public class OrderOneReport implements GraphReportExtension {
+public class OrderOneReport implements GraphReportExtension<Integer> {
     public String getName() {
         return "order one";
     }
@@ -18,7 +18,7 @@ public class OrderOneReport implements GraphReportExtension {
         return "Number of vertices with degree 1";
     }
 
-    public Object calculate(GraphModel graph) {
+    public Integer calculate(GraphModel graph) {
         int ret = 0;
         for (Vertex v : graph) {
             if (graph.getInDegree(v) + graph.getOutDegree(v) == 1) {
@@ -30,7 +30,6 @@ public class OrderOneReport implements GraphReportExtension {
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
-		return null;
+		return "General";
 	}
 }

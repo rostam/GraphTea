@@ -8,7 +8,7 @@ package graphtea.samples.extensions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-public class HelloWorldReport implements GraphReportExtension {
+public class HelloWorldReport implements GraphReportExtension<String> {
     public String getName() {
         return "hello world";
     }
@@ -17,13 +17,12 @@ public class HelloWorldReport implements GraphReportExtension {
         return "just a hello world extension!";
     }
 
-    public Object calculate(GraphModel g) {
+    public String calculate(GraphModel g) {
     	return "Hello World2!";
     }
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
-		return null;
+		return "General";
 	}
 }

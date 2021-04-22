@@ -8,7 +8,7 @@ package graphtea.samples.extensions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-public class NumOfVerticesReport implements GraphReportExtension {
+public class NumOfVerticesReport implements GraphReportExtension<Integer> {
     public String getName() {
         return "num of vertices";
     }
@@ -17,13 +17,12 @@ public class NumOfVerticesReport implements GraphReportExtension {
         return "Number of vertices in graph";
     }
 
-    public Object calculate(GraphModel g) {
-        return 0;
+    public Integer calculate(GraphModel g) {
+        return g.numOfVertices();
     }
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
-		return null;
+		return "General";
 	}
 }
