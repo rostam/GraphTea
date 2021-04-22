@@ -504,12 +504,7 @@ public class AlgorithmUtils {
         }
         if(EigenValues.size() > 0) {
             res = "";
-            EigenValues.sort(new Comparator<Double>() {
-                @Override
-                public int compare(Double aDouble, Double t1) {
-                    return -aDouble.compareTo(t1);
-                }
-            });
+            EigenValues.sort((aDouble, t1) -> -aDouble.compareTo(t1));
             for (int i = 0; i < EigenValues.size(); i++) {
                 res += EigenValues.get(i);
                 if(i != EigenValues.size() - 1) {
