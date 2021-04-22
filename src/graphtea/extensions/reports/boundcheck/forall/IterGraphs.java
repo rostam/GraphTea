@@ -66,7 +66,7 @@ public class IterGraphs {
         return results;
     }
 
-    public RenderTable wrapper(final GraphReportExtension mr) {
+    public RenderTable wrapper(final GraphReportExtension<RenderTable> mr) {
         GraphModelIterator it;
         if (!gens.equals(GeneratorFilters.NoGenerator)) {
             it = new GraphGeneratorIterator(gens);
@@ -74,7 +74,7 @@ public class IterGraphs {
             it = new AllGraphIterator(type,size);
         }
 
-        ToCall f = mr::calculate;
+        ToCall<RenderTable> f = mr::calculate;
         int[] res = null;
         RenderTable pq = new RenderTable();
         IterGraphs.maxValue = -100000;
@@ -85,7 +85,7 @@ public class IterGraphs {
             if (iterative) {
                     getResIterLimited(f, g, it.getCount(), pq, it.getG6());
             } else {
-                RenderTable ret = (RenderTable) f.f(g);
+                RenderTable ret = f.f(g);
                 Vector<Object> vo = ret.poll();
                 if (res == null) {
                     Vector<String> tts = ret.getTitles();
@@ -137,7 +137,7 @@ public class IterGraphs {
      * @param mpq Resulting render table
      * @param g6 Input G6 string
      */
-    private void getResIterLimited(ToCall f, GraphModel g, int count, RenderTable mpq, String g6) {
+    private void getResIterLimited(ToCall<RenderTable> f, GraphModel g, int count, RenderTable mpq, String g6) {
         RenderTable ret = (RenderTable) f.f(g);
         if (ret == null) return;
         if (mpq.getTitles().size() == 0) {
