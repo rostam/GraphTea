@@ -36,7 +36,7 @@ public class LocalSF extends AbstractAction {
         stopbtn = (JButton) UIUtils.getComponent(bb, "stop");
         if (stopbtn != null)
             stopbtn.setVisible(false);
-        blackboard.addListener(stop, new Listener() {
+        blackboard.addListener(stop, new Listener<Object>() {
             public void performJob(String name) {
                 stopbtn = blackboard.getData(stop);
                 stopbtn.setVisible(false);
