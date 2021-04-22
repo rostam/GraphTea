@@ -47,7 +47,7 @@ public class DegreeKirchhoffIndex implements GraphReportExtension<String> {
                 if (Math.abs(round(value, 6)) != 0) {
                     sum += 1 / Math.abs(value);
                 }
-            sum *= g.numOfVertices();
+            sum *= 2*g.getEdgesCount();
             for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {

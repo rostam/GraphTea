@@ -11,7 +11,7 @@ import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-public class OrderKReport implements GraphReportExtension, Parametrizable {
+public class OrderKReport implements GraphReportExtension<Integer>, Parametrizable {
     //you can set a (display) name and a description for the parameter, this is optional.
     @Parameter(name = "k", description = "the degree of desired vertices")
     public int k;
@@ -31,7 +31,7 @@ public class OrderKReport implements GraphReportExtension, Parametrizable {
         return "Number of vertices with degree k";
     }
 
-    public Object calculate(GraphModel graph) {
+    public Integer calculate(GraphModel graph) {
         int ret = 0;
         for (Vertex v : graph) {
             if (graph.getInDegree(v) + graph.getOutDegree(v) == k) {
@@ -43,8 +43,7 @@ public class OrderKReport implements GraphReportExtension, Parametrizable {
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
-		return null;
+		return "General";
 	}
 
 }

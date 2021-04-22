@@ -27,7 +27,7 @@ public class DivideBigData extends JFrame {
                 tmp = tmp.substring(0,tmp.lastIndexOf("/")+1);
                 String tmp2 = file.getName().substring(0,file.getName().lastIndexOf("."));
                 tmp = tmp + tmp2 + +(i+1) + ".g6";
-                FileWriter fw = new FileWriter(new File(tmp));
+                FileWriter fw = new FileWriter(tmp);
                 for(int j=0;j < size;j++) {
                     if(sc.hasNext()) {
                         fw.write(sc.nextLine()+"\n");

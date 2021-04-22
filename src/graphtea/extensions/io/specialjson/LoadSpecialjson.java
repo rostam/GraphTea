@@ -163,7 +163,6 @@ public class LoadSpecialjson implements GraphReaderExtension {
                 gp.add(g.getVertex(ver).getLocation());
             }
             gp.multiply(1.0 / num);
-//            System.out.println(s + "  " + gp);
             g.getVertex(labelVertex.get(s)).setLocation(gp);
 //            g.getVertex(labelVertex.get(s)).setColor(50);
         }

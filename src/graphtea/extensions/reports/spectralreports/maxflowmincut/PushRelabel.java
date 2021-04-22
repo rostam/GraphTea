@@ -121,7 +121,7 @@ public class PushRelabel extends MaxFlow{
 
 	private void push(int u , int v)
 	{
-		int deltaF = (excess[u] < Cf(u,v) ? excess[u] : Cf(u,v));
+		int deltaF = Math.min(excess[u], Cf(u, v));
 		if(C[u][v]>0)
 			F[u][v] += deltaF;
 		else

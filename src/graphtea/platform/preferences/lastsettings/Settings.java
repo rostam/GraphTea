@@ -178,7 +178,7 @@ public class Settings implements AttributeListener {
         try {
             java.util.prefs.Preferences.userRoot().flush();
             graphPrefs.exportSubtree(new FileOutputStream(new File(file, "graph.xml")));
-            graphPrefs.exportNode(new FileOutputStream(new File("sgraph.xml")));
+            graphPrefs.exportNode(new FileOutputStream("sgraph.xml"));
         } catch (IOException | BackingStoreException e) {
             ExceptionHandler.catchException(e);
         }
