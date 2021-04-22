@@ -15,7 +15,8 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "graph_diameter", abbreviation = "_gd")
-public class Diameter implements GraphReportExtension<Integer> {
+public class
+Diameter implements GraphReportExtension<Integer> {
 
     public Integer calculate(GraphModel g) {
         FloydWarshall spt = new FloydWarshall();
