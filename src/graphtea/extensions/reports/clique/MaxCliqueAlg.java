@@ -24,7 +24,7 @@ class MaxCliqueAlg
 
     public Vector<Vector<Vertex>> allMaxCliques()
     {
-        maxCliques = new Vector<Vector<Vertex>>();
+        maxCliques = new Vector<>();
         List<Vertex> likelyC = new ArrayList<>();
         List<Vertex> searchC = new ArrayList<>();
         List<Vertex> found = new ArrayList<>();
@@ -38,7 +38,7 @@ class MaxCliqueAlg
         allMaxCliques();
 
         int maximum = 0;
-        Vector<Vector<Vertex>> greatest = new Vector<Vector<Vertex>>();
+        Vector<Vector<Vertex>> greatest = new Vector<>();
         for (Vector<Vertex> clique : maxCliques) {
             if (maximum < clique.size()) {
                 maximum = clique.size();
