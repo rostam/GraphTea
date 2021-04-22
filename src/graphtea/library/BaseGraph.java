@@ -413,7 +413,7 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
      * @see BaseGraph#lightEdgeIterator()
      */
     public Iterable<EdgeType> edges() {
-        return () -> lightEdgeIterator();
+        return this::lightEdgeIterator;
     }
 
     /**

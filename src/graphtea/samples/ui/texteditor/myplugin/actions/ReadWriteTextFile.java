@@ -18,7 +18,7 @@ public class ReadWriteTextFile {
      */
     static public String getContents(File aFile) {
         //...checks on aFile are elided
-        StringBuffer contents = new StringBuffer();
+        StringBuilder contents = new StringBuilder();
 
         //declared here only to make visible to finally clause
         BufferedReader input = null;
@@ -26,7 +26,7 @@ public class ReadWriteTextFile {
             //use buffering, reading one line at a time
             //FileReader always assumes default encoding is OK!
             input = new BufferedReader(new FileReader(aFile));
-            String line = null; //not declared within while loop
+            String line; //not declared within while loop
             /*
             * readLine is a bit quirky :
             * it returns the content of a line MINUS the newline.
@@ -34,8 +34,7 @@ public class ReadWriteTextFile {
             * it returns an empty String if two newlines appear in a row.
             */
             while ((line = input.readLine()) != null) {
-                contents.append(line);
-                contents.append(System.getProperty("line.separator"));
+                contents.append(line).append(System.getProperty("line.separator"));
             }
         } catch (IOException ex) {
             ex.printStackTrace();

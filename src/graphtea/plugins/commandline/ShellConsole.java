@@ -491,12 +491,12 @@ public class ShellConsole extends JScrollPane
 
         // Patch to handle Unicode characters
         // Submitted by Daniel Leuck
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         int lineLength = line.length();
         for (int i = 0; i < lineLength; i++) {
             String val = Integer.toString(line.charAt(i), 16);
             val = ZEROS.substring(0, 4 - val.length()) + val;
-            buf.append("\\u" + val);
+            buf.append("\\u").append(val);
         }
         line = buf.toString();
         // End unicode patch
