@@ -728,6 +728,54 @@ public class AlgorithmUtils {
         return D.minus(A);
     }
 
+    /**
+     * Normalized Laplacian.
+     *
+     * @param A the Adjacency matrix of the graph
+     * @return Laplacian of the graph
+     */
+    public static Matrix getNormalizedLaplacian(GraphModel g) {
+        Matrix D = new Matrix(g.numOfVertices(), g.numOfVertices(), 0);
+        for (int i = 0; i < g.numOfVertices(); i++) {
+            if (g.getDegree(g.getVertex(i)) != 0) {
+                D.set(i, i, 1);
+            }
+        }
+        for (int i = 0; i < g.numOfVertices(); i++) {
+            for (int j = 0; j < g.numOfVertices(); j++) {
+                if (i != j && g.isEdge(g.getVertex(i), g.getVertex(j))) {
+                    D.set(i, j, -1/Math.sqrt(g.getDegree(g.getVertex(i))
+                            * g.getDegree(g.getVertex(j))));
+                }
+            }
+        }
+
+        return D;
+    }
+
+    /**
+     * Normalized Laplacian.
+     *
+     * @param A the Adjacency matrix of the graph
+     * @return Laplacian of the graph
+     */
+    public static Matrix getLaplacian(GraphModel g) {
+        Matrix D = new Matrix(g.numOfVertices(), g.numOfVertices(), 0);
+        for (int i = 0; i < g.numOfVertices(); i++) {
+                D.set(i, i, g.getDegree(g.getVertex(i)));
+        }
+        for (int i = 0; i < g.numOfVertices(); i++) {
+            for (int j = 0; j < g.numOfVertices(); j++) {
+                if (i != j && g.isEdge(g.getVertex(i), g.getVertex(j))) {
+                    D.set(i, j, -1);
+                }
+            }
+        }
+
+        return D;
+    }
+
+
     public static Matrix getSignlessLaplacian(Matrix A) {
         //double[][] res=new double[g.numOfVertices()][g.numOfVertices()];
         int n = A.getArray().length;

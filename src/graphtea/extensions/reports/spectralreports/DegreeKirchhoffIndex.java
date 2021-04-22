@@ -17,8 +17,8 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  * @author M. Ali Rostami
  */
 
-@CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class KirchhoffIndex implements GraphReportExtension<String> {
+@CommandAttitude(name = "deg_kirshhoff_index", abbreviation = "_evs")
+public class DegreeKirchhoffIndex implements GraphReportExtension<String> {
 
     double round(double value, int decimalPlace) {
         double power_of_ten = 1;
@@ -30,7 +30,7 @@ public class KirchhoffIndex implements GraphReportExtension<String> {
 
     public String calculate(GraphModel g) {
         try {
-            Matrix A = AlgorithmUtils.getLaplacian(g);
+            Matrix A = AlgorithmUtils.getNormalizedLaplacian(g);
             EigenvalueDecomposition ed = A.eig();
             double[] rv = ed.getRealEigenvalues();
             double[] iv = ed.getImagEigenvalues();
@@ -74,11 +74,11 @@ public class KirchhoffIndex implements GraphReportExtension<String> {
     }
 
     public String getName() {
-        return "Kirchhoff Index";
+        return "Degree Kirchhoff Index";
     }
 
     public String getDescription() {
-        return "Kirchhoff Index";
+        return "Degree Kirchhoff Index";
     }
 
     @Override
