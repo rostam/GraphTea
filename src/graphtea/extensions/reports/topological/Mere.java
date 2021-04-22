@@ -298,7 +298,7 @@ public class Mere implements GraphReportExtension<RenderTable> {
           
           int wiener = (int) wi.calculate(g);
           
-          double ss = (double) 2*1.0/(diameter*(diameter+1)*1.0);
+          double ss = (double) 2 /(diameter*(diameter+1)*1.0);
           //double ss1 = (double) 2*1.0/((diameter*diameter)+(diameter)-2)*1.0);
           
 

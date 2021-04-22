@@ -29,15 +29,6 @@ import java.util.Vector;
 /**
  * @author Ali Rostami
  */
-
-
-
-
-/**
- * @author Ali Rostami
- */
-
-
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
 public class LEL_vs_KF implements GraphReportExtension<RenderTable> {
     public String getName() {

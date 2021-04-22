@@ -131,7 +131,7 @@ public class ZagrebIndexFunctions {
     public double getPBIndex() {
         double ret = 0;
         for(Edge e : g.getEdges()) {
-            ret +=  ((Math.sqrt(g.getDegree(e.source)*1.0)) + (Math.sqrt(g.getDegree(e.target))*1.0))*
+            ret +=  ((Math.sqrt(g.getDegree(e.source)*1.0)) + (Math.sqrt(g.getDegree(e.target))))*
             		(1.0/Math.sqrt(g.getDegree(e.source)*g.getDegree(e.target)*1.0))*(1.0/(Math.sqrt(g.getDegree(e.source) + g.getDegree(e.target) - 2))) ;
         }
         return ret;

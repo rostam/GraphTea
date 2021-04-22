@@ -16,6 +16,7 @@ import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * @author Rouzbeh Ebrahimi, Azin Azadi
@@ -52,7 +53,7 @@ public class DragEdge extends AbstractAction implements PaintHandler {
         if (!g.isEdgesCurved())
             return;
 //        gv = blackboard.getData(AbstractGraphRenderer.name);
-        if (eventName == EdgeEvent.EVENT_KEY) {
+        if (Objects.equals(eventName, EdgeEvent.EVENT_KEY)) {
             EdgeEvent ee = (EdgeEvent) value;
             edge = ee.e;
             if (ee.eventType == EdgeEvent.DRAGGING_STARTED) {

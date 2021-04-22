@@ -401,9 +401,9 @@ public class AlgorithmUtils {
 
     /**
      *
-     * @param value
-     * @param decimalPlace
-     * @return
+     * @param value the given value
+     * @param decimalPlace the decimal place
+     * @return the rounded value
      */
     public static double round(double value, int decimalPlace) {
         double power_of_ten = 1;
@@ -726,7 +726,7 @@ public class AlgorithmUtils {
     /**
      * Normalized Laplacian.
      *
-     * @param A the Adjacency matrix of the graph
+     * @param g the Adjacency matrix of the graph
      * @return Laplacian of the graph
      */
     public static Matrix getNormalizedLaplacian(GraphModel g) {
@@ -751,7 +751,7 @@ public class AlgorithmUtils {
     /**
      * Normalized Laplacian.
      *
-     * @param A the Adjacency matrix of the graph
+     * @param g the Adjacency matrix of the graph
      * @return Laplacian of the graph
      */
     public static Matrix getLaplacian(GraphModel g) {

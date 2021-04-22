@@ -24,18 +24,7 @@ public class AppVertexCover extends GraphAlgorithm implements AlgorithmExtension
     public AppVertexCover(BlackBoard blackBoard) {
         super(blackBoard);
     }
-
     /**
-     * @param graph The input graph
-     */
-//    public AppVertexCover(GraphModel graph) {
-//        super();
-//        this.graph = graph;
-//    }
-
-
-    /**
-     * @return Vector of vertices
      * @throws InvalidGraphException The graph is invalid
      * @throws InvalidVertexException The vertex is invalid
      */
@@ -97,27 +86,4 @@ public class AppVertexCover extends GraphAlgorithm implements AlgorithmExtension
     public String getDescription() {
         return "Vertex Cover";
     }
-
-//    public void doAlgorithm() {
-//        step("Start of the algorithm.") ;
-//        GraphModel graph = graphData.getGraph();
-//        BaseGraphRequest gr = new BaseGraphRequest();
-//        dispatchEvent(gr);
-//        BaseGraph<BaseVertex, BaseEdge<BaseVertex>> graph = gr.getGraph();
-//
-////        BaseVertexRequest vr = new BaseVertexRequest(graph);
-////        dispatchEvent(vr);
-//
-//        AppVertexCover vc = new AppVertexCover(graph, new BaseEdgeVertexCopier());
-//        vc.acceptEventDispatcher(getDispatcher());
-//
-//        Vector<Vertex> appCover = vc.findAppCover();
-//        for (Vertex v : appCover) {
-//            dispatchEvent(new VertexEvent<>(graph, v, VertexEvent.EventType.MARK));
-//        }
-////        BaseGraph<BaseVertex,BaseEdge<BaseVertex>> output =
-////            prim.findMinimumSpanningTree(vr.getVertex());
-//
-////        dispatchEvent(new BaseGraphEvent(output));
-//    }
 }
