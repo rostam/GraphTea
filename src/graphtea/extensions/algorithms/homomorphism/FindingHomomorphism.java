@@ -50,8 +50,7 @@ public class FindingHomomorphism {
                             homomorphism.put(G.getVertex(GV1), H.getVertex(j));
                         }
                     }
-                    Homomorphism h = new Homomorphism(G, H, homomorphism);
-                    return h;
+                    return new Homomorphism(G, H, homomorphism);
                 }
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();

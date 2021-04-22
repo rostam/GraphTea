@@ -24,7 +24,7 @@ public class ClearGraph extends graphtea.platform.core.AbstractAction {
 
     public void performAction(String eventName, Object value) {
         GraphModel g = blackboard.getData(GraphAttrSet.name);
-        if (true || JOptionPane.showConfirmDialog(null, "Current graph will be REMOVED from screen! Do you want to continue?",
+        if (JOptionPane.showConfirmDialog(null, "Current graph will be REMOVED from screen! Do you want to continue?",
                 "GraphTea", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
 
 //        UndoableActionOccuredData uaod=new UndoableActionOccuredData("Clear Graph", this) ;

@@ -45,7 +45,6 @@ public class GraphArtActionExtendTree
         }
 
     private void addChildren(GraphData graphData, Vertex p, Vertex v, double degree) {
-        AlgorithmUtils.getDistance(v, p);
         GPoint gv = GPoint.sub(p.getLocation(),v.getLocation());
         gv = PositionGenerators.rotate(gv, degree);
         gv = GPoint.div(gv,1.7);
