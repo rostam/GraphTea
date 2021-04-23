@@ -23,7 +23,7 @@ import java.util.Vector;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "ECI-Conjecture", abbreviation = "_Eci-Conjecture")
+@CommandAttitude(name = "ECIConjecture", abbreviation = "_EciConjecture")
 public class ECIConjecture implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "ECI-Conjecture";

@@ -23,7 +23,7 @@ import java.util.Vector;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "i(G)", abbreviation = "_i(G)")
+@CommandAttitude(name = "i_G", abbreviation = "_iG")
 public class Inde implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Inde-Wiener";
