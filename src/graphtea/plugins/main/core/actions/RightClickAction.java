@@ -33,53 +33,22 @@ import java.util.HashMap;
 /**
  * @author Azin Azadi
  */
-public class RightClickAction implements BasicExtension, Listener<Object> {
-    BlackBoard b;
-    GraphData gd;
+public class RightClickAction extends graphtea.platform.core.AbstractAction {
     private final JPopupMenu popup = new JPopupMenu();
     public HashMap<String, GraphActionInterface> menus = new HashMap<>();
-
+    GraphData gd;
     public RightClickAction(BlackBoard b) {
-        this.b = b;
-        gd = new GraphData(b);
+        super(b);
+        gd = new GraphData(blackboard);
+        listen4Event(VertexEvent.EVENT_KEY);
+        listen4Event(EdgeEvent.EVENT_KEY);
+//        listen4Event(GraphEvent.EVENT_KEY);
         //listening to G/V/E events
-        b.addListener(VertexEvent.EVENT_KEY, this);
-        b.addListener(EdgeEvent.EVENT_KEY, this);
-        b.addListener(GraphEvent.EVENT_KEY, this);
         fillPopupMenu();
-
     }
 
-    private void addToMenus(GraphActionExtension gae) {
-        menus.put(gae.getName(), gae);
-    }
-
-    public void fillPopupMenu() {
-        addToMenus(new MakeSelectionCompleteGraph());
-        addToMenus(new MakeSelectionComplementGraph());
-        addToMenus(new MakeSelectionEmptyGraph());
-        addToMenus(new DeleteSelected(b));
-        for (final String name : menus.keySet()) {
-            JMenuItem item = new JMenuItem(name);
-            item.addActionListener(new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent actionEvent) {
-                    menus.get(name).action(gd);
-                }
-            });
-            popup.add(item);
-        }
-//        JMenuItem item = new JMenuItem("Delete");
-//        item.addActionListener(new AbstractAction() {
-//            @Override
-//            public void actionPerformed(ActionEvent actionEvent) {
-//                gd.select.
-//            }
-//        });
-    }
-
-
-    public void keyChanged(String key, Object value) {
+    @Override
+    public void performAction(String key, Object value) {
         if (key.equals(VertexEvent.EVENT_KEY)) {
             VertexEvent ve = (VertexEvent) value;
             if (ve.eventType == VertexEvent.CLICKED && ve.mouseBtn == MouseEvent.BUTTON3) {
@@ -106,10 +75,65 @@ public class RightClickAction implements BasicExtension, Listener<Object> {
         }
     }
 
+    private void addToMenus(GraphActionExtension gae) {
+        menus.put(gae.getName(), gae);
+    }
+
+    public void fillPopupMenu() {
+        addToMenus(new MakeSelectionCompleteGraph());
+        addToMenus(new MakeSelectionComplementGraph());
+        addToMenus(new MakeSelectionEmptyGraph());
+        addToMenus(new DeleteSelected(blackboard));
+        for (final String name : menus.keySet()) {
+            JMenuItem item = new JMenuItem(name);
+            item.addActionListener(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    menus.get(name).action(gd);
+                }
+            });
+            popup.add(item);
+        }
+//        JMenuItem item = new JMenuItem("Delete");
+//        item.addActionListener(new AbstractAction() {
+//            @Override
+//            public void actionPerformed(ActionEvent actionEvent) {
+//                gd.select.
+//            }
+//        });
+    }
+//
+//
+//    public void keyChanged(String key, Object value) {
+//        if (key.equals(VertexEvent.EVENT_KEY)) {
+//            VertexEvent ve = (VertexEvent) value;
+//            if (ve.eventType == VertexEvent.CLICKED && ve.mouseBtn == MouseEvent.BUTTON3) {
+//                if (!gd.select.getSelectedVertices().contains(ve.v)) {
+//                    gd.select.setSelected(new Vertex[]{ve.v}, new Edge[]{});
+//                }
+//                showPopup(ve.posOnGraph());
+//            }
+//        }
+//        if (key.equals(EdgeEvent.EVENT_KEY)) {
+//            EdgeEvent ee = (EdgeEvent) value;
+//            if (ee.eventType == EdgeEvent.CLICKED && ee.mouseBtn == MouseEvent.BUTTON3) {
+//                if (!gd.select.getSelectedEdges().contains(ee.e)) {
+//                    gd.select.setSelected(new Vertex[]{}, new Edge[]{ee.e});
+//                }
+//                showPopup(ee.posOnGraph());
+//            }
+//        }
+//        if (key.equals(GraphEvent.EVENT_KEY)) {
+//            GraphEvent ge = (GraphEvent) value;
+//            if (ge.eventType == GraphEvent.CLICKED && ge.mouseBtn == MouseEvent.BUTTON3) {
+//                showPopup(ge.mousePos);
+//            }
+//        }
+//    }
+
     public void showPopup(GPoint p) {
-        AbstractGraphRenderer gv = b.getData(AbstractGraphRenderer.EVENT_KEY);
+        AbstractGraphRenderer gv = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
         Point vp = GraphUtils.createViewPoint(gd.getGraph(), p);
         popup.show(gv, vp.x, vp.y);
-
     }
 }

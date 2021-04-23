@@ -1943,11 +1943,11 @@
           <entry key="object" value="graphtea.plugins.commonplugin.help.actions.VisitGraphTeaHomePage"/>
         </map>
       </node>
-      <node name="graphtea.plugins.commonplugin.reporter.ReportUIAction">
-        <map>
-          <entry key="object" value="graphtea.plugins.commonplugin.reporter.ReportUIAction"/>
-        </map>
-      </node>
+<!--      <node name="graphtea.plugins.commonplugin.reporter.ReportUIAction">-->
+<!--        <map>-->
+<!--          <entry key="object" value="graphtea.plugins.commonplugin.reporter.ReportUIAction"/>-->
+<!--        </map>-->
+<!--      </node>-->
       <node name="graphtea.plugins.fun.extension.FunExtension">
         <map>
           <entry key="object" value="graphtea.plugins.fun.extension.FunExtension"/>

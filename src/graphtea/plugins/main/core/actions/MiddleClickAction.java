@@ -10,9 +10,8 @@ import graphtea.graph.event.GraphEvent;
 import graphtea.graph.event.VertexEvent;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
+import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
-import graphtea.platform.core.Listener;
-import graphtea.platform.extension.BasicExtension;
 import graphtea.plugins.main.GraphData;
 
 import java.awt.event.MouseEvent;
@@ -20,21 +19,21 @@ import java.awt.event.MouseEvent;
 /**
  * @author Azin Azadi
  */
-public class MiddleClickAction implements BasicExtension, Listener {
-    BlackBoard b;
+public class MiddleClickAction extends AbstractAction {
     GraphData gd;
 
     public MiddleClickAction(BlackBoard b) {
-        this.b = b;
+        super(b);
         gd = new GraphData(b);
         //listening to G/V/E events
-        b.addListener(VertexEvent.EVENT_KEY, this);
-        b.addListener(EdgeEvent.EVENT_KEY, this);
-        b.addListener(GraphEvent.EVENT_KEY, this);
+        listen4Event(VertexEvent.EVENT_KEY);
+        listen4Event(EdgeEvent.EVENT_KEY);
+//        listen4Event(GraphEvent.EVENT_KEY);
     }
 
-    public void keyChanged(String key, Object value) {
-        if (key == VertexEvent.EVENT_KEY) {
+    @Override
+    public void performAction(String key, Object value) {
+        if (key.equals(VertexEvent.EVENT_KEY)) {
             VertexEvent ve = (VertexEvent) value;
             if (ve.eventType == VertexEvent.CLICKED && ve.mouseBtn == MouseEvent.BUTTON2) {
                 ve.v.setMark(!ve.v.getMark());
@@ -45,13 +44,13 @@ public class MiddleClickAction implements BasicExtension, Listener {
                 }
             }
         }
-        if (key == EdgeEvent.EVENT_KEY) {
+        if (key.equals(EdgeEvent.EVENT_KEY)) {
             EdgeEvent ee = (EdgeEvent) value;
             if (ee.eventType == EdgeEvent.CLICKED && ee.mouseBtn == MouseEvent.BUTTON2) {
                 ee.e.setMark(!ee.e.getMark());
             }
         }
-        if (key == GraphEvent.EVENT_KEY) {
+        if (key.equals(GraphEvent.EVENT_KEY)) {
             GraphEvent ge = (GraphEvent) value;
             GraphModel g = ge.graph;
             if (ge.eventType == GraphEvent.MOUSE_WHEEL_MOVED) {
@@ -71,5 +70,4 @@ public class MiddleClickAction implements BasicExtension, Listener {
             }
         }
     }
-
 }
