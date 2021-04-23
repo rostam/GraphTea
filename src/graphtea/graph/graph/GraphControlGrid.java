@@ -121,7 +121,7 @@ public class GraphControlGrid implements GraphModelListener {
         if (minv == null)
             System.out.println("minv: null");
         else
-            System.out.println("minv: " + minv.toString());
+            System.out.println("minv: " + minv);
         return new Pair<>(minv, min);
     }
 

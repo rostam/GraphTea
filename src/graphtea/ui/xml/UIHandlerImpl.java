@@ -170,6 +170,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
             GMenuBar.insert(currentMenu, js, place);
             return;
         }
+        
         Pair<Integer, String> lInfo = extractLabelInfo(label);
         int index = lInfo.first;
         label = lInfo.second;

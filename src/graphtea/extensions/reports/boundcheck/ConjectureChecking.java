@@ -46,13 +46,13 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public ArrayX<String> gfilters;
     @Parameter(name = "Column ID for Filter")
     public int columnIDForFilter = 1;
-    @Parameter(name = "Graph Generators", description = "")
+    @Parameter(name = "Graph Generators", description = "Generators")
     public ArrayX<String> generators;
     @Parameter(name = "Bound Type", description = "The type of bound.")
     public ArrayX<String> boundType;
-    @Parameter(name="Iterative", description = "")
+    @Parameter(name="Iterative", description = "Is it iterative?")
     public boolean iterative = false;
-    @Parameter(name="Post Processing Type", description = "")
+    @Parameter(name="Post Processing Type", description = "The type of post processing")
     public static ArrayX<String> PostP;
     @Parameter(name="Post Processing Value",description = "This is the value" +
             "which the equality post-processing filter uses to compare.")

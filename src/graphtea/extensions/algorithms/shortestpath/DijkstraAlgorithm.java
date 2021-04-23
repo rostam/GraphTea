@@ -31,7 +31,7 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
      *
      * @param graph  Graph object to be searched.
      * @param vertex The source of the paths.
-     * @return Vector of vertices that for each i, it has a reference to
+     * Creates Vector of vertices that for each i, it has a reference to
      *         the vertex, before the vertex with ID number i in the shortest path
      *         from "vertex" to i, or null if there is no such vertex.
      * @throws InvalidVertexException if the supplied vertices are invalid.

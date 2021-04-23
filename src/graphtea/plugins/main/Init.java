@@ -76,7 +76,7 @@ public class Init implements PluginInterface, StorableOnExit {
         try { uid = getExternalIP(); } catch (Exception e) { e.printStackTrace();}
 
         blackboard.addListener("ATrack", (Listener<AEvent>) (key, event) -> {
-            System.out.println(event);
+//            System.out.println(event);
             tracks.add(event);
         });
 

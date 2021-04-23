@@ -35,7 +35,7 @@
         <action class="graphtea.plugins.main.core.actions.edge.EdgeSelectEvent"/>
         <action class="graphtea.plugins.main.core.actions.vertex.MoveVertex"/>
         <action class="graphtea.plugins.main.core.actions.RightClickAction"/>
-        <!--<action class="graphtea.plugins.main.core.actions.MiddleClickAction"/>-->
+        <action class="graphtea.plugins.main.core.actions.MiddleClickAction"/>
 
         <action class="graphtea.plugins.main.ccp.Paste" id="Paste"/>
         <action class="graphtea.plugins.main.ccp.Cut" id="Cut"/>

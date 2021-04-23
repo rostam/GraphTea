@@ -76,11 +76,10 @@ public class SignlessLaplacianEnergy implements GraphReportExtension<String> {
      * Pages 2664-2671,
      * ISSN 0012-365X,
      * https://doi.org/10.1016/j.disc.2016.04.022.
-     * @return
+     * @return the description
      */
     public String getDescription() {
-        return "Signless Laplacian Energy" +
-                "";
+        return "Signless Laplacian Energy";
     }
 
     @Override

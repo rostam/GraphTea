@@ -54,20 +54,22 @@ public class LibraryUtils {
     }
 
     /**
+     * Edge Induced
      *
-     * @param g
-     * @param S
-     * @return
+     * @param g the given graph
+     * @param S the collection of edges
+     * @return the edge induced graph
      */
     public static GraphModel edgeInduced(GraphModel g, Collection<Edge> S) {
         return EdgeInduced.edgeInduced(g, S);
     }
 
     /**
+     * Vertex Induced
      *
-     * @param g
-     * @param S
-     * @return
+     * @param g the given graph
+     * @param S the collection of vertices
+     * @return the edge induced graph
      */
     public static GraphModel induced(GraphModel g, Collection<Vertex> S) {
         return VertexInduced.induced(g, S);

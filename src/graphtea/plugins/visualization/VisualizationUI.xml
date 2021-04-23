@@ -14,21 +14,21 @@
         <action class="graphtea.plugins.visualization.treevisualizations.HierarchicalTreeVisualization" group=""
                 id="HierarchicalTreeVisualization"/>
         <action class="graphtea.plugins.visualization.treevisualizations.BackwardTrees" group="" id="BackwardTrees"/>
-        <action class="graphtea.plugins.visualization.localsfvis.circular" group="" id="circular"/>
-        <action class="graphtea.plugins.visualization.localsfvis.Random" group="" id="Random"/>
-        <action class="graphtea.plugins.visualization.LocalityLens" id="LocalityLenses"/>
+<!--        <action class="graphtea.extensions.actions.CircularVisualization" group="" id="circular"/>-->
+<!--        <action class="graphtea.extensions.actions.Random" group="" id="Random"/>-->
+<!--        <action class="graphtea.extensions.actions.LocalityLens" id="LocalityLenses"/>-->
     </actions>
     <ui>
         <menues>
             <submenu label="Visualization">
                 <!--<menu label="_Spring Force" action="Spring Force"/>-->
-                <menu label="_Circular" action="circular" place="1"/>
-                <menu label="_Random" action="Random" place="2"/>
+<!--                <menu label="_Circular" action="circular" place="1"/>-->
+<!--                <menu label="_Random" action="Random" place="2"/>-->
                 <menu label="_Local Spring Force" action="LocalSF" place="3"/>
-                <menu label="seperator_menu" place="40"/>
+<!--                <menu label="seperator_menu" place="40"/>-->
                 <menu label="_Hierarchical Tree" action="HierarchicalTreeVisualization" place="100"/>
                 <menu label="_Backward Tree" action="BackwardTrees" place="140"/>
-                <menu label="Locality Lenses" action="LocalityLenses"/>
+<!--                <menu label="Locality Lenses" action="LocalityLenses"/>-->
             </submenu>
 
         </menues>
