@@ -14,8 +14,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
-import graphtea.platform.core.Listener;
-import graphtea.platform.extension.BasicExtension;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.extension.GraphActionExtension;
 import graphtea.plugins.main.extension.GraphActionInterface;

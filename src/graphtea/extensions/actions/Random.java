@@ -4,16 +4,11 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.actions;
 
-import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GRect;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.Vertex;
-import graphtea.platform.core.AbstractAction;
-import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.extension.GraphActionExtension;
-import graphtea.ui.UIUtils;
 
 /**
  * @author houshmand hasannia
