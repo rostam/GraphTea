@@ -15,6 +15,8 @@ import java.util.List;
 
 /**
  * @author Mohammad Ali Rostami
+ *
+ * In graph theory, the girth of an undirected graph is the length of a shortest cycle contained in the graph.
  */
 
 @CommandAttitude(name = "girth_size", abbreviation = "_gs")

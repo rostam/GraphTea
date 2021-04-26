@@ -21,38 +21,39 @@ import java.awt.*;
 /**
  * Author: M. Ali Rostami
  *
- * https://mathworld.wolfram.com/WebGraph.html
+ * Modified version of https://mathworld.wolfram.com/WebGraph.html in which a central node is added
  */
 @CommandAttitude(name = "generate_webgraph", abbreviation = "_g_webg", description = "generates a Web graph of order n")
-public class WebGraph implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
+public class ModifiedGeneralizedWebGraph implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
 
 	@Parameter(name = "n")
 	public static int n = 4;
-	private final int t = 2;
+    @Parameter(name = "t")
+    public static int t = 2;
 
 	public String getName()
 	{
-		return "Web Graph";
+		return "Modified Generalized Web Graph";
 	}
 
 	public String getDescription()
 	{
-		return "Generate Web Graph";
+		return "Generate Modified Generalized Web Graph";
 	}
 
 	Vertex[] v;
 
 	public Vertex[] getVertices()
 	{
-		Vertex[] result = new Vertex[(t+1)*n];
-		for (int i = 0; i < (t+1)*n; i++)
+		Vertex[] result = new Vertex[((t+1)*n)+1];
+		for (int i = 0; i < (t+1)*n+1; i++)
 			result[i] = new Vertex();
 		v = result;
 		return result;
 	}
 
     public Edge[] getEdges() {
-        Edge[] result = new Edge[4*n];
+        Edge[] result = new Edge[(2*t*n)+n];
         int ecnt = 0;
 
         for(int j=1;j < t+1;j++) {
@@ -71,10 +72,10 @@ public class WebGraph implements GraphGeneratorExtension, Parametrizable, Simple
             }
         }
 
-//        for(int i=0;i < n;i++) {
-//            result[ecnt]=new Edge(v[t*n + i],v[(t+1)*n]);
-//            ecnt++;
-//        }
+        for(int i=0;i < n;i++) {
+            result[ecnt]=new Edge(v[t*n + i],v[(t+1)*n]);
+            ecnt++;
+        }
 
         return result;
     }
@@ -107,8 +108,8 @@ public class WebGraph implements GraphGeneratorExtension, Parametrizable, Simple
 	 */
 	public static GraphModel generateWeb(int n)
 	{
-		WebGraph.n = n;
-		return GraphGenerator.getGraph(false, new WebGraph());
+		ModifiedGeneralizedWebGraph.n = n;
+		return GraphGenerator.getGraph(false, new ModifiedGeneralizedWebGraph());
     }
 
     @Override

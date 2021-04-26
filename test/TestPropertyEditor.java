@@ -18,7 +18,7 @@ import java.util.Vector;
  * documented in GraphTea wiki: HowToUsePropertyEditor
  * @author Azin Azadi
  */
-public class tester {
+public class TestPropertyEditor {
 
     public static void main(String[] args) {
         PortableNotifiableAttributeSetImpl x = new PortableNotifiableAttributeSetImpl();
