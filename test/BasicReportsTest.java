@@ -68,8 +68,6 @@ public class BasicReportsTest {
         Assertions.assertEquals(numOfVerticesWithDegK.calculate(peterson),10);
     }
 
-    public static void main(String[] args) {
-    }
 //
 //    @Test
 //    public void testPathsOfL
