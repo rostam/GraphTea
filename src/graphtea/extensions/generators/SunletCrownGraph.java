@@ -12,68 +12,76 @@ import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
-import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 import java.awt.*;
 
 /**
- * Author: Ali Rostami
+ * Author: Mohsen Khaki
  *
- * https://mathworld.wolfram.com/CrownGraph.html
- * 
+ * https://mathworld.wolfram.com/SunletGraph.html
  */
-@CommandAttitude(name = "generate_crown", abbreviation = "_g_crown",
+@CommandAttitude(name = "generate_sunlet_crown", abbreviation = "_g_sunlet_crown",
         description = "generates a Crown graph of order n")
-public class CrownGraph implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
+public class SunletCrownGraph implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
 
 	@Parameter(name = "n")
 	public static int n = 3;
 
 	public String getName()
 	{
-		return "Crown Graph";
+		return "Sunlet Crown Graph";
 	}
 
 	public String getDescription()
 	{
-		return "Generate Crown Graph";
+		return "Generate Sunlet Crown Graph";
 	}
 
 	Vertex[] v;
 
 	public Vertex[] getVertices()
 	{
-		Vertex[] ret = new Vertex[n + n];
-		for (int i = 0; i < n + n; i++)
-			ret[i] = new Vertex();
-		v = ret;
-		return ret;
+		Vertex[] result = new Vertex[2*n];
+		for (int i = 0; i < 2*n; i++)
+			result[i] = new Vertex();
+		v = result;
+		return result;
 	}
 
 	public Edge[] getEdges() {
-		Edge[] ret = new Edge[n * (n-1)];
-		int cnt = 0;
-		for (int i = 0; i < n; i++)
-			for (int j = 0; j < n; j++) {
-				if (i != j) {
-					ret[cnt++] = new Edge(v[i], v[n + j]);
-				}
-			}
-		return ret;
+		Edge[] result = new Edge[3*n-n];
+        int ecnt = 0;
+		for (int i = 0; i < n; i++) {
+			result[ecnt] = new Edge(v[i], v[n+i]);
+            ecnt++;
+			//result[ecnt] = new Edge(v[n+i], v[2*n]);
+            //ecnt++;
+			result[ecnt] = new Edge(v[n+i],v[n+((i+1)%n)]);
+            ecnt++;
+		}
+
+        return result;
 	}
 
 	public Point[] getVertexPositions()
 	{
-		int w = 100;
-		int h = 100;
-		Point[] ret = new Point[n + n];
-		Point[] np = PositionGenerators.line(5, h / 4, w, 0, n);
-		Point[] mp = PositionGenerators.line(5, 3 * h / 4, w, 0, n);
-		System.arraycopy(np, 0, ret, 0, n);
-		System.arraycopy(mp, 0, ret, n, n);
-		return ret;
+		int w = 1000;
+		double mw = ((double)w)/2.0, qw = ((double)w)/4.0;
+		Point[] result = new Point[2*n];
+		//result[2*n] = new Point((int)(w/2), (int)(w/2));
+		double ang = Math.PI*2.0/n;
+		double offset = 0.0;
+		if ((n % 2) == 0)
+			offset = ang/2.0; 
+		for ( int i = 0 ; i < n ; i++ )
+		{
+			double angle = offset + i * ang;
+			result[i] = new Point((int)(mw + Math.sin(angle)* mw), (int)(mw - Math.cos(angle)* mw));
+			result[n+i] = new Point((int)(mw + Math.sin(angle)* qw), (int)(mw - Math.cos(angle)* qw));
+		}
+		return result;
 	}
 
 	public String checkParameters() {
@@ -92,8 +100,8 @@ public class CrownGraph implements GraphGeneratorExtension, Parametrizable, Simp
 	 */
 	public static GraphModel generateCrown(int n)
 	{
-		CrownGraph.n = n;
-		return GraphGenerator.getGraph(false, new CrownGraph());
+		SunletCrownGraph.n = n;
+		return GraphGenerator.getGraph(false, new SunletCrownGraph());
     }
 
 public static void main(String[] args) {

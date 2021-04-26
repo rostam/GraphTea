@@ -12,6 +12,8 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Mohammad Ali Rostami
+ *
+ *  The graph diameter is the greatest distance between any pair of vertices.
  */
 
 @CommandAttitude(name = "graph_diameter", abbreviation = "_gd")

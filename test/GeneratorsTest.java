@@ -33,11 +33,13 @@ public class GeneratorsTest {
     }
 
     @Test
-    public void testWebGraph() {
-        WebGraph.n = 10;
-        WebGraph varWebGraph = new WebGraph();
+    public void testModifiedGeneralizedWebGraph() {
+        ModifiedGeneralizedWebGraph.n = 4;
+        ModifiedGeneralizedWebGraph.t = 2;
+        ModifiedGeneralizedWebGraph varWebGraph = new ModifiedGeneralizedWebGraph();
         GraphModel g = varWebGraph.generateGraph();
-        int n = WebGraph.n;
+        int n = ModifiedGeneralizedWebGraph.n;
+        int t = ModifiedGeneralizedWebGraph.t;
         int numOfVertices = g.numOfVertices();
         int numOfEdges = g.getEdgesCount();
         ArrayList<Integer> maxAndMinDegree = new MaxAndMinDegree().calculate(g);
@@ -45,9 +47,30 @@ public class GeneratorsTest {
         int minDegree = maxAndMinDegree.get(1);
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
-        Assertions.assertEquals(girth, 4);
-        Assertions.assertEquals(diameter, 6);
-        Assertions.assertEquals(numOfVertices, 3*n);
+        Assertions.assertEquals(girth, 3);
+        Assertions.assertEquals(diameter, n/2 + 2);
+        Assertions.assertEquals(numOfVertices, (t+1)*n + 1);
+        Assertions.assertEquals(numOfEdges, (2*t*n)+n);
+        Assertions.assertEquals(maxDegree, 4);
+        Assertions.assertEquals(minDegree, 1);
+    }
+
+    @Test
+    public void testWebGraph() {
+        WebGraph.n = 4;
+        WebGraph varWebGraph = new WebGraph();
+        GraphModel g = varWebGraph.generateGraph();
+        int n = ModifiedGeneralizedWebGraph.n;
+        int numOfVertices = g.numOfVertices();
+        int numOfEdges = g.getEdgesCount();
+        ArrayList<Integer> maxAndMinDegree = new MaxAndMinDegree().calculate(g);
+        int maxDegree = maxAndMinDegree.get(0);
+        int minDegree = maxAndMinDegree.get(1);
+        int girth = new GirthSize().calculate(g);
+        int diameter = new Diameter().calculate(g);
+        Assertions.assertEquals(girth, n);
+        Assertions.assertEquals(diameter, n/2 + 2);
+        Assertions.assertEquals(numOfVertices, 3*n );
         Assertions.assertEquals(numOfEdges, 4*n);
         Assertions.assertEquals(maxDegree, 4);
         Assertions.assertEquals(minDegree, 1);
@@ -204,6 +227,28 @@ public class GeneratorsTest {
     }
 
     @Test
+    public void testSunletCrownGraph() {
+        SunletCrownGraph.n = 10;
+        SunletCrownGraph varCrownGraph = new SunletCrownGraph();
+        GraphModel g = varCrownGraph.generateGraph();
+        int n = SunletCrownGraph.n;
+        int numOfVertices = g.numOfVertices();
+        int numOfEdges = g.getEdgesCount();
+        ArrayList<Integer> maxAndMinDegree = new MaxAndMinDegree().calculate(g);
+        int maxDegree = maxAndMinDegree.get(0);
+        int minDegree = maxAndMinDegree.get(1);
+        int girth = new GirthSize().calculate(g);
+        int diameter = new Diameter().calculate(g);
+        //assume n >= 3
+        Assertions.assertEquals(girth, n);//???
+        Assertions.assertEquals(diameter, 2 + n/2);
+        Assertions.assertEquals(numOfVertices, 2*n);
+        Assertions.assertEquals(numOfEdges, 2*n);
+        Assertions.assertEquals(maxDegree, 3);
+        Assertions.assertEquals(minDegree, 1);
+    }
+
+    @Test
     public void testCrownGraph() {
         CrownGraph.n = 10;
         CrownGraph varCrownGraph = new CrownGraph();
@@ -217,8 +262,8 @@ public class GeneratorsTest {
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
         //assume n >= 3
-        if(n==3) Assertions.assertEquals(girth, 6);
-        else Assertions.assertEquals(girth, 4);//???
+        if(n == 3) Assertions.assertEquals(girth, 6);
+        else Assertions.assertEquals(girth, 4);
         Assertions.assertEquals(diameter, 3);
         Assertions.assertEquals(numOfVertices, 2*n);
         Assertions.assertEquals(numOfEdges, n*(n-1));
@@ -249,8 +294,8 @@ public class GeneratorsTest {
 
     @Test
     public void testBananaTreeGenerator() {
-        BananaTreeGenerator.n = 10;
-        BananaTreeGenerator.k = 4;
+        BananaTreeGenerator.n = 4;
+        BananaTreeGenerator.k = 10;
         BananaTreeGenerator varBananaTreeGenerator = new BananaTreeGenerator();
         GraphModel g = varBananaTreeGenerator.generateGraph();
         int n = BananaTreeGenerator.n;
@@ -262,11 +307,11 @@ public class GeneratorsTest {
         int minDegree = maxAndMinDegree.get(1);
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
-        Assertions.assertEquals(girth, n);
-        Assertions.assertEquals(diameter, n);
+        Assertions.assertEquals(girth, 0);
+        Assertions.assertEquals(diameter, 4);
         Assertions.assertEquals(numOfVertices, n*k + 1);
         Assertions.assertEquals(numOfEdges, n*k);
-        Assertions.assertEquals(maxDegree, n);
+        Assertions.assertEquals(maxDegree, Math.max(n,k));
         Assertions.assertEquals(minDegree, 1);
     }
 
@@ -396,7 +441,7 @@ public class GeneratorsTest {
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
         Assertions.assertEquals(girth, deg + 1);
-        Assertions.assertEquals(diameter, n);
+//        Assertions.assertEquals(diameter, n); ? do not know how to calculate
         Assertions.assertEquals(numOfVertices, n);
         Assertions.assertEquals(numOfEdges, (n*deg)/2);
         Assertions.assertEquals(maxDegree, deg);

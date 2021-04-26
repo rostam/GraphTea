@@ -14,6 +14,12 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 import java.awt.*;
 
+/**
+ * Author: Ali Rostami
+ *
+ * https://mathworld.wolfram.com/BananaTree.html
+ */
+
 @CommandAttitude(name = "generate_banana_tree", abbreviation = "_g_banana", description = "generates a Banana graph")
 public class BananaTreeGenerator implements GraphGeneratorExtension, Parametrizable {
 
@@ -26,7 +32,8 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
 
 
     public String checkParameters() {
-        if( n<0 || k<0 )return " Both k & n must be positive!";
+        if( n<0 || k<0 )
+            return "Both k & n must be positive!";
         else
             return null;    //the parameters are well defined.
     }
