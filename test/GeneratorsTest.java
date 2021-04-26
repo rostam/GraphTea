@@ -584,13 +584,13 @@ public class GeneratorsTest {
     }
 
     @Test
-    public void testKenserGraphGenerator() {
-        KenserGraphGenerator.n = 10;
-        KenserGraphGenerator.d = 4;
-        KenserGraphGenerator varKenserGraphGenerator = new KenserGraphGenerator();
-        GraphModel g = varKenserGraphGenerator.generateGraph();
-        int n = KenserGraphGenerator.n;
-        int d = KenserGraphGenerator.d;
+    public void testKndKneserGraphGenerator() {
+        KndKneserGraphGenerator.n = 10;
+        KndKneserGraphGenerator.d = 4;
+        KndKneserGraphGenerator varKndKneserGraphGenerator = new KndKneserGraphGenerator();
+        GraphModel g = varKndKneserGraphGenerator.generateGraph();
+        int n = KndKneserGraphGenerator.n;
+        int d = KndKneserGraphGenerator.d;
         int numOfVertices = g.numOfVertices();
         int numOfEdges = g.getEdgesCount();
         ArrayList<Integer> maxAndMinDegree = new MaxAndMinDegree().calculate(g);
@@ -604,6 +604,29 @@ public class GeneratorsTest {
         Assertions.assertEquals(numOfEdges, nCk(n,d)*nCk(n-d,d)/2);
 //        Assertions.assertEquals(maxDegree, n);
 //        Assertions.assertEquals(minDegree, n);
+    }
+
+    @Test
+    public void testKneserGraphGenerator() {
+        KneserGraphGenerator.n = 5;
+        KneserGraphGenerator.k = 2;
+        KneserGraphGenerator varKneserGraphGenerator = new KneserGraphGenerator();
+        GraphModel g = varKneserGraphGenerator.generateGraph();
+        int n = KneserGraphGenerator.n;
+        int k = KneserGraphGenerator.k;
+        int numOfVertices = g.numOfVertices();
+        int numOfEdges = g.getEdgesCount();
+        ArrayList<Integer> maxAndMinDegree = new MaxAndMinDegree().calculate(g);
+        int maxDegree = maxAndMinDegree.get(0);
+        int minDegree = maxAndMinDegree.get(1);
+        int girth = new GirthSize().calculate(g);
+        int diameter = new Diameter().calculate(g);
+//        Assertions.assertEquals(girth, n);
+        Assertions.assertEquals(diameter, Math.ceil((k-1)/(n-2*k)) + 1);
+        Assertions.assertEquals(numOfVertices, nCk(n,k));
+        Assertions.assertEquals(numOfEdges, nCk(n,k)*nCk(n-k,k)/2);
+        Assertions.assertEquals(maxDegree, nCk(n-k,k));
+        Assertions.assertEquals(minDegree, nCk(n-k,k));
     }
 
     @Test

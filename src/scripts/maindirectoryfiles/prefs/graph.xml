@@ -1453,11 +1453,11 @@
           <entry key="object" value="graphtea.extensions.generators.HelmGraph"/>
         </map>
       </node>
-      <node name="graphtea.extensions.generators.KenserGraphGenerator">
+      <node name="graphtea.extensions.generators.KndKneserGraphGenerator">
         <map>
           <entry key="d" value="3"/>
           <entry key="n" value="4"/>
-          <entry key="object" value="graphtea.extensions.generators.KenserGraphGenerator"/>
+          <entry key="object" value="graphtea.extensions.generators.KndKneserGraphGenerator"/>
         </map>
       </node>
       <node name="graphtea.extensions.generators.KmnGenerator">

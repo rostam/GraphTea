@@ -19,11 +19,12 @@ import java.awt.*;
 import java.util.Vector;
 
 /**
+ * Author: M. Ali Rostami
  *
  */
 
 @CommandAttitude(name = "generate_knd", abbreviation = "_g_knd")
-public class KenserGraphGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
+public class KndKneserGraphGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "D")
     public static Integer d = 3;
     @Parameter(name = "N")
@@ -47,7 +48,6 @@ public class KenserGraphGenerator implements GraphGeneratorExtension, Parametriz
             }
         }
         Edge[] ret1 = new Edge[ret.size()];
-
         for (int i = 0; i < ret.size(); i++) {
             ret1[i] = ret.get(i);
         }
@@ -79,12 +79,12 @@ public class KenserGraphGenerator implements GraphGeneratorExtension, Parametriz
     }
 
     /**
-     * generates a kenser Graph with given parameters
+     * generates a Kneser Graph with given parameters
      */
     public static GraphModel generateKenserGraph(int n, int d) {
-        KenserGraphGenerator.n = n;
-        KenserGraphGenerator.d = d;
-        return GraphGenerator.getGraph(false, new KenserGraphGenerator());
+        KndKneserGraphGenerator.n = n;
+        KndKneserGraphGenerator.d = d;
+        return GraphGenerator.getGraph(false, new KndKneserGraphGenerator());
     }
 
 
