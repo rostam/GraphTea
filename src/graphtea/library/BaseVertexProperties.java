@@ -23,6 +23,7 @@ public class BaseVertexProperties
     public BaseVertexProperties(BaseVertexProperties p) {
         color = p.color;
         mark = p.mark;
+        obj = p.obj;
     }
 
     public BaseVertexProperties(int color, boolean mark) {

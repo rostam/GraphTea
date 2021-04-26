@@ -48,7 +48,7 @@ public class VertexMoveEvent extends AbstractAction {
         }
     }
 
-    //it preserves the vertex selection consistant. if the vertex was selected before move it should be after and vice versa
+    //it preserves the vertex selection consistent. if the vertex was selected before move it should be after and vice versa
     private boolean isVertexSelected;
 
     private void dragging() {

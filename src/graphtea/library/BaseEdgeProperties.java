@@ -24,6 +24,7 @@ public class BaseEdgeProperties
         color = p.color;
         weight = p.weight;
         mark = p.mark;
+        obj = p.obj;
     }
 
     public BaseEdgeProperties(int color, int weight, boolean mark) {

@@ -81,7 +81,7 @@ public class AllEnergies implements GraphReportExtension<RenderTable> {
         double M22 = zif.getSecondZagreb(2);
         double Mm11 = zif.getFirstZagreb(-2);
 
-        int diameter = (int) new Diameter().calculate(g);
+        int diameter = new Diameter().calculate(g);
         
         
         Vector<Object> v = new Vector<>();

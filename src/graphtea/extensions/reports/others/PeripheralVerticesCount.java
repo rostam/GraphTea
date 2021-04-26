@@ -4,7 +4,7 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-@CommandAttitude(name = "PeripheralVerticesCount", abbreviation = "_peripheral_veritces_count")
+@CommandAttitude(name = "PeripheralVerticesCount", abbreviation = "_peripheral_vertices_count")
 public class PeripheralVerticesCount implements GraphReportExtension<Integer> {
     public String getName() {
         return "Peripheral vertices count";

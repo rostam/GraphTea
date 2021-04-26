@@ -298,7 +298,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
     }
 
     /**
-     * first checks if o instanceof Parametrizable if so, shows an
+     * first checks if o instanceof Parameterizable if so, shows an
      * editor for it's Parameters.
      *
      * @param o The object
@@ -314,7 +314,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
     }
 
     /**
-     * removes all UI Components that are created for the extension (menues, ...)
+     * removes all UI Components that are created for the extension (menus, ...)
      */
     public void removeCreatedUIComponents() {
         if (parentMenu != null && menuItem != null) {

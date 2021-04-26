@@ -10,7 +10,7 @@ package graphtea.platform.plugin;
  * in various parts of the plugin, they will be easily accessed by other
  * parts of program,
  * it is probable that useful tools created to work with this objects, and
- * automaize some processes of creating plugins, so we suggest that implement
+ * automize some processes of creating plugins, so we suggest that implement
  * this interface in your plugins,,, :D
  *
  * @author azin azadi

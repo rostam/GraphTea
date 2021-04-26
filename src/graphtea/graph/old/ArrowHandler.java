@@ -21,9 +21,9 @@ import java.util.Vector;
 
 
 public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, FromStringProvider<Arrow> {
-    //I thinked and decided to choose the base arrows to be Polygons. i think it will be enough for the most needs, but it can't handle more complex needs, like arrows that are images.
+    //I thought and decided to choose the base arrows to be Polygons. i think it will be enough for the most needs, but it can't handle more complex needs, like arrows that are images.
 
-    @UserModifiableProperty(displayName = "Default Arrwo Size for Edges")
+    @UserModifiableProperty(displayName = "Default Arrow Size for Edges")
     public static Integer arrowSize = 10;
 
 

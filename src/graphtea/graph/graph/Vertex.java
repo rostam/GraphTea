@@ -156,6 +156,9 @@ public class Vertex extends BaseVertex {
         for (String name : map.keySet()) {
             b.put(name, map.get(name));
         }
+        this.view = v.view;
+        this.isSelected = v.isSelected;
+        this.userDefinedAttributes = v.userDefinedAttributes;
     }
 
     public Vertex() {

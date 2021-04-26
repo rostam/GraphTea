@@ -14,7 +14,7 @@ import graphtea.platform.core.BlackBoard;
  */
 public class ClearSelection extends AbstractAction {
     /**
-     * indicates that wheter the last time GraphSelectPointData fired, it was originally cleared or not (it was cleared by this object)
+     * indicates that whether the last time GraphSelectPointData fired, it was originally cleared or not (it was cleared by this object)
      * the initially use was for AddVertex, because it only adds vertices on graphselectpoints and if the selection was empty,
      * so AddVertex and ClearSelection are both listening to GraphSelectPoint, so if
      * ClearSelection fired before AddVertex it clears the selection and then AddVertex adds the Vertex

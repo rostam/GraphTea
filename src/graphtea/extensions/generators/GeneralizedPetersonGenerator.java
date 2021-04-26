@@ -20,7 +20,7 @@ import java.awt.*;
 
 /**
  * @author Mohammad Ali Rostami
- * @email mamliam@gmail.com
+ * @email rostamiev@gmail.com
  */
 
 @CommandAttitude(name = "generate_generalized_peterson", abbreviation = "_g_p", description = "generalized peterson")

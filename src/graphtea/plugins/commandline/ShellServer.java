@@ -20,7 +20,7 @@ import java.net.Socket;
 
 /**
  * @author Mohamad Ali Rostami
- * @email mamaliam@gmail.com
+ * @email rostamiev@gmail.com
  */
 
 public class ShellServer {

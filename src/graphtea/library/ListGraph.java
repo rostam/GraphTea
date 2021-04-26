@@ -63,7 +63,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
      *
      * @param directed                 Indicated whether the graph is directed.
      * @param expectedNumberOfVertices Approximate number of vertices that will be
-     *                                 added to the graph. This paramether is optional and is available for performance
+     *                                 added to the graph. This parameter is optional and is available for performance
      *                                 reasons.
      */
     public ListGraph(boolean directed, int expectedNumberOfVertices) {
@@ -92,7 +92,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
     /**
      * Constructs a graph object that stores graph data using adjacency list data structure by importing
      * graph data from a pre-existing graph. A GraphConvertor object is passed as a parameter which is
-     * reponsible for duplication/type-convertion of graph elements.
+     * responsible for duplication/type-convertion of graph elements.
      *
      * @param <ImportVertexType> The type of vertex object which the input graph contain.
      * @param <ImportEdgeType>   The type of edge object which the input graph contain.

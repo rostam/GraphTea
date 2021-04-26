@@ -140,7 +140,7 @@ public class LEL_vs_KF implements GraphReportExtension<RenderTable> {
            //  Laplacian
             v.add(Double.parseDouble(le.calculate(g)));
             // Signless Laplacian
-            v.add(Double.parseDouble(sl.calculate(g).toString()));
+            v.add(Double.parseDouble(sl.calculate(g)));
            v.add(diameter);
          //  v.add( (((n*n*(n-1))-(2*m))/(2*m))+(((n-1)*(Math.sqrt(maxDeg)-Math.sqrt(minDeg))*(Math.sqrt(maxDeg)-Math.sqrt(minDeg)))/(2*maxDeg*minDeg)));
            ret.add(v);

@@ -58,7 +58,7 @@ public class Complement implements GraphReportExtension<RenderTable> {
         double sum=0;
         double detA = Math.abs(A.det());
 
-        //positiv RV
+        //positive RV
         Double[] prv = new Double[rv.length];
         for(int i=0;i<rv.length;i++) {
             prv[i] = Math.abs(rv[i]);

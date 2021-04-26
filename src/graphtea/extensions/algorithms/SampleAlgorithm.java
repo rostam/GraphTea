@@ -59,7 +59,7 @@ public class SampleAlgorithm extends GraphAlgorithm implements AlgorithmExtensio
         step("the graph matrix<br>" + getMatrixHTML(g));
 
         step("That's it!");
-        step("Start making your algorithm by modifing this file, and running make.sh");
+        step("Start making your algorithm by modifying this file, and running make.sh");
         step("have fun :)");
     }
 
