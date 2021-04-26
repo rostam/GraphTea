@@ -32,7 +32,7 @@ public class CircleGenerator implements GraphGeneratorExtension, Parametrizable,
     }
 
     public String getDescription() {
-        return "Genrates a Circle(Cn)";
+        return "Generates a Circle(Cn)";
     }
 
     @Override

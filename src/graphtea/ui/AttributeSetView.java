@@ -140,7 +140,7 @@ public class AttributeSetView {
      * set the index of the attribute, the lower index attributes are put before, in the getNames()
      */
     public void setIndex(String name, int atrIndex) {
-        //store indices in a seperate Map from string to int.
+        //store indices in a separate Map from string to int.
         indices.put(name, atrIndex);
 //        set(index, name, index + "");
     }

@@ -195,7 +195,7 @@ public class ExampleFileFilter extends FileFilter {
      * Determines whether the extension list (.jpg, .gif, etc) should
      * show up in the human readable defaultValue.
      * <p/>
-     * Only relevent if a defaultValue was provided in the constructor
+     * Only relevant if a defaultValue was provided in the constructor
      * or using setDescription();
      *
      * @see getDescription

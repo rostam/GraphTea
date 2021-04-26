@@ -33,7 +33,7 @@ class DialogLinkHandler implements HyperlinkHandler {
     }
 
     /**
-     * shows the givve page in a new dialog,
+     * shows the given page in a new dialog,
      * Note that the used html viewer is GHTMLPageComponent, which is internally
      * uses a JEditorPane,
      */

@@ -53,7 +53,7 @@ public class ZagrebIndexFunctions {
     double getInverseSumIndegCoindex() {
         double  InverseSumIndeg = 0;
 
-        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
+        GraphModel g2 = LibraryUtils.complement(g);
         for (Edge e : g2.getEdges()) {
             int v1 = g.getDegree(g.getVertex(e.source.getId()));
             int v2 = g.getDegree(g.getVertex(e.target.getId()));

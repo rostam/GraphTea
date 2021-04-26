@@ -29,8 +29,8 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
      * the shortest paths of all vertices of a graph from an arbitrary
      * given vertex.
      *
-     * @param graph  Graph object to be searched.
-     * @param vertex The source of the paths.
+     * graph  Graph object to be searched.
+     * vertex The source of the paths.
      * Creates Vector of vertices that for each i, it has a reference to
      *         the vertex, before the vertex with ID number i in the shortest path
      *         from "vertex" to i, or null if there is no such vertex.
@@ -99,7 +99,7 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
                 Vertex target = vMin == edge.source ? edge.target : edge.source;
                 int tmp = dist[vMin.getId()] + edge.getWeight();
                 if (!selectedVertices.contains(target)) {
-                    GraphUtils.setMessage("Currently computed distnace:"
+                    GraphUtils.setMessage("Currently computed distance:"
                                     + tmp,
                             graphData.getBlackboard(), true);
                     step("<br/>");
