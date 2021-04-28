@@ -192,10 +192,9 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
              */
             item.setText(label);
             //todo: BUG the mnemotic doesn't set
-            System.out.println(item + " " + index);
             KeyBoardShortCut shortcut = null;
             String desc =targetExt.getTarget().getDescription();
-            if(desc.contains("HotKey:(")) {
+            if(desc != null && desc.contains("HotKey:(")) {
                 String tmp = desc.substring(desc.indexOf("HotKey:(") + 1);
                 tmp = tmp.substring(0,tmp.indexOf(")"));
                 shortcut = KeyBoardShortCutProvider.registerKeyBoardShortcut(tmp, label, index);

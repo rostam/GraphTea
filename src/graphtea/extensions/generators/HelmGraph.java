@@ -18,7 +18,7 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 import java.awt.*;
 
 /**
- * Author: Mohsen Khaki
+ * Author: Mohsen Khaki, Ali Rostami
  * 
  */
 @CommandAttitude(name = "generate_helmn", abbreviation = "_g_helmn", description = "generates a Helm graph of order n")

@@ -210,7 +210,7 @@ public class BackwardTrees implements VisualizationExtension {
     }
 
     public String getDescription() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return "BackWard Tree Visualization";
     }/*
      @param g
     */
