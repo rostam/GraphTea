@@ -102,7 +102,9 @@ public class Mostar implements GraphReportExtension<RenderTable> {
         //titles.add("Wiener");
         //titles.add("Avg");
        // titles.add("Diameter");
-        titles.add("Mostar");
+      //  titles.add("Mostar");
+	  titles.add("Mo-irregular");
+	  	  titles.add("Mo-Albertson");
         //    titles.add("Clique Number");
 
         //     titles.add(" V. Degrees ");
@@ -183,6 +185,7 @@ public class Mostar implements GraphReportExtension<RenderTable> {
         double IED=zif.getEdgeDegree(-1);
         double SDD=zif.getSDDIndex();
         double Albertson=zif.getAlbertson();
+		double irregular=zif.getirregularity();
         double ID=zif.getFirstZagreb(-2);
         double AZI=zif.getAugumentedZagrebIndex();
         double ISI=zif.getInverseSumIndegIndex();
@@ -293,7 +296,9 @@ public class Mostar implements GraphReportExtension<RenderTable> {
         //  v.add(wi.calculate(g));
         //  v.add(Avg);
        // v.add(diameter);
-        v.add(mostar);
+	   v.add(mostar-irregular);
+	   	   v.add(mostar-Albertson);
+       // v.add(mostar);
         // v.add(MaxCliqueExtension.maxCliqueSize(g));
 
 

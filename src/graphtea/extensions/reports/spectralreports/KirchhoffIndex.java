@@ -30,7 +30,8 @@ public class KirchhoffIndex implements GraphReportExtension<String> {
 
     public String calculate(GraphModel g) {
         try {
-            Matrix A = AlgorithmUtils.getLaplacian(g);
+            Matrix B = g.getWeightedAdjacencyMatrix();
+            Matrix A = AlgorithmUtils.getLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
             double[] rv = ed.getRealEigenvalues();
             double[] iv = ed.getImagEigenvalues();
@@ -83,6 +84,6 @@ public class KirchhoffIndex implements GraphReportExtension<String> {
 
     @Override
     public String getCategory() {
-        return "Spectral";
+        return "Spectral- Energies";
     }
 }

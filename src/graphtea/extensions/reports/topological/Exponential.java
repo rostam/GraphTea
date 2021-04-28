@@ -72,20 +72,20 @@ public class Exponential implements GraphReportExtension<RenderTable> {
      // titles.add(" RDD(G) ");
      // titles.add(" Gut "); 
      // titles.add(" H(G) "); 
-         titles.add(" Exp-M1 ");
+    //     titles.add(" Exp-M1 ");
           titles.add(" Exp-M2 ");
      //   titles.add(" R(G) "); 
-          titles.add(" Exp-R ");
+     //     titles.add(" Exp-R ");
     //    titles.add(" H(G)  "); 
-          titles.add(" Exp-H ");
+   //       titles.add(" Exp-H ");
    //     titles.add(" Chi   ");
-          titles.add(" Exp-Chi ");
+  //        titles.add(" Exp-Chi ");
     //    titles.add(" GA   ");
-          titles.add(" Exp-GA ");
+  //        titles.add(" Exp-GA ");
     //    titles.add(" ABC ");
-          titles.add(" Exp-ABC ");
+  //        titles.add(" Exp-ABC ");
           titles.add(" Exp-AZI ");
-          titles.add(" Estarda ");
+ //         titles.add(" Estarda ");
   //      titles.add(" AZI ");
 
           //  titles.add(" GA ");
@@ -448,24 +448,24 @@ public class Exponential implements GraphReportExtension<RenderTable> {
     //    v.add(R);
         
         //       v.add(M21);
-        v.add(expM21);
+ //       v.add(expM21);
  //      v.add(M12);
         v.add(expM12);
         
-         v.add(expR);
+   //      v.add(expR);
    ///     v.add(H);
-         v.add(expH);
+    //     v.add(expH);
   //      v.add(chi);
-         v.add(expChi);
+  //       v.add(expChi);
  //       v.add(GA);
-         v.add(expGA);
+  //       v.add(expGA);
  //       v.add(ABC);
-         v.add(expABC);
+  //       v.add(expABC);
  //       v.add(AZI);
        v.add(expAZI);
 
          
-         v.add(estra);
+    //     v.add(estra);
       //  v.add(SDD);
       //  v.add(expSDD);
       //Maximum Matching    

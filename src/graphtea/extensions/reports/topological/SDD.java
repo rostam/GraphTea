@@ -5,8 +5,11 @@ import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.extensions.reports.basicreports.GirthSize;
+import graphtea.extensions.reports.RandomMatching;
+import graphtea.extensions.reports.matching.MaxMatchingExtension;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.extensions.reports.clique.MaxCliqueSize;
+import graphtea.extensions.reports.matching.MaximumMatching;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -43,15 +46,26 @@ public class SDD implements GraphReportExtension<RenderTable> {
       //    titles.add("(n/2)- R ");
      //     titles.add(" H ");
     //      titles.add(" VR ");
+        titles.add(" M2 ");
+        titles.add(" M1 ");
+        titles.add(" M2-M1 ");
+        
     //      titles.add(" f(G) ");
     //            titles.add(" VR ");
       //          titles.add("(n/2)- VR ");
-       //       titles.add(" GA "); 
+      //      titles.add(" GA "); 
+      //      titles.add(" RHS "); 
       //  titles.add(" chi "); 
-     //  titles.add("ID");
+     //     titles.add("Hyper");
+     //   titles.add("Sigma");
        // titles.add("MerreField-Simmons");
        //  titles.add("Hosaya");
-          titles.add(" SDD ");  
+      //     titles.add(" SDD ");  
+     //     titles.add(" R.H.S ");  
+      //    titles.add(" R.H.S.1 ");  
+        //  titles.add(" R.H.S1 ");  
+       //   titles.add("cor");  
+      //    titles.add(" m/2 ");  
      //   titles.add(" ISI ");  
       //  titles.add(" check ");  
      //   titles.add(" Rao Sir ");  
@@ -93,6 +107,9 @@ public class SDD implements GraphReportExtension<RenderTable> {
   //       titles.add(" chi-0.1 ");
       //   titles.add(" ISI ");
      //      titles.add("Chromatic number");
+    //    titles.add("f(n,m)");
+        titles.add("Matching");
+   //     titles.add("Matching-1");
          //   titles.add(" L.H.S ");
      //       titles.add(" R.H.S even ");
         //    titles.add(" R.H.S odd ");
@@ -101,7 +118,7 @@ public class SDD implements GraphReportExtension<RenderTable> {
     
         //titles.add("Wiener");
         //titles.add("Avg");
-       titles.add("Diameter");
+      // titles.add("Diameter");
      //    titles.add("Clique Number");
 
    //     titles.add(" V. Degrees ");
@@ -155,9 +172,7 @@ public class SDD implements GraphReportExtension<RenderTable> {
         else maxEdge2 = maxEdge;
         minEdge = all.get(0);
         
-        
-
-        
+                 
         double M12=zif.getSecondZagreb(1);
         double M21=zif.getFirstZagreb(1);
         double H=zif.getHarmonicIndex();
@@ -181,6 +196,8 @@ public class SDD implements GraphReportExtension<RenderTable> {
         double chi3=zif.getGeneralSumConnectivityIndex(3);
         double IED=zif.getEdgeDegree(-1);
         double SDD=zif.getSDDIndex();
+        double sigma=zif.getSigmaindex();
+        double Hyper=zif.getHyperZagrebIndex();
         double Albertson=zif.getAlbertson();
         double ID=zif.getFirstZagreb(-2);
         double AZI=zif.getAugumentedZagrebIndex();
@@ -192,6 +209,10 @@ public class SDD implements GraphReportExtension<RenderTable> {
         double check=zif.getCheck();
         //double S3=(M21-M3)/2;
         double RM2=zif.getRM2();
+        double minmax = (minDeg/maxDeg);
+        double maxmin = (maxDeg/minDeg);
+        double minmax1 = (minDeg2/maxDeg);
+        double maxmin1 = (maxDeg/minDeg2);
         
         double alpha=(1/m)*(Math.floor(m))*(1-((1/m)*(Math.floor(m/2))));
         double alpha1=(m)*(Math.floor(m/2))*(1-((1/m)*(Math.floor(m/2))));
@@ -200,29 +221,43 @@ public class SDD implements GraphReportExtension<RenderTable> {
         int girth = (int) new GirthSize().calculate(g);
         WienerIndex wi = new WienerIndex();
         double Avg=(n*(n-1)/2);
-
         Vector<Object> v = new Vector<>();
+        double maxMatching = new MaxMatchingExtension().numOfMatching(g);
+        double maxMatching1 = (new RandomMatching()).calculateMaxMatching(g);
         v.add(m);
         v.add(n);
-      
          // v.add(R);
+        v.add(M12);
+        v.add(M21);
+        v.add(M12-M21);
         //  v.add(H);
        //   v.add(VR);
-      //    v.add(GA);
+      //   v.add(GA);
+     //    v.add( ((2*p*Math.sqrt(maxDeg))/(minDeg2+1)) + ((m-p)*(maxDeg/minDeg2) ) );
      //     v.add(chi);
-    //      v.add(ID);
-            v.add(SDD);
-  //        v.add(ISI);
+         // v.add(Hyper);
+	     // v.add(p*(1+maxDeg)*(1+maxDeg));
+        
+       //    v.add(SDD); 
+       //     v.add(((1/(minDeg2*minDeg2))*(Hyper)) -(2*m)); 
+     //       v.add(((1/(minDeg2*minDeg2))*(M12)) -(2*m)); 
+         //    v.add(m*((maxDeg*maxDeg)+(minDeg*minDeg))/(maxDeg*minDeg)); 
+      //       v.add((p*(((maxDeg*maxDeg)+(1))/maxDeg))+((m-p)*(((maxDeg*maxDeg)+(minDeg2*minDeg2))/(maxDeg*minDeg2)))  ); 
+    //        v.add((p*(((maxDeg*maxDeg)+(1))/maxDeg))+ ((1/(minDeg2*minDeg2))*(Hyper - (p*(1+(minDeg2))*(1+(minDeg2))))) -(2*(m-p)) ); 
+     //  v.add((p*(((minDeg2*minDeg2)+1)/minDeg2))   + Math.sqrt( ( (Hyper-(p*(1+maxDeg)*(1+maxDeg)))* (n-(p*(maxDeg +(1/maxDeg)))) * (n-(p*(maxDeg +(1/maxDeg)))) /(m-p) )    -(4*(m-p)*(m-p)*(maxmin1-minmax1)*(maxmin1-minmax1))  ) -(2*(m-p))  );          
+    //   v.add(Math.sqrt( ((n*n*Hyper)/(m)) -(4*m*m*(maxmin-minmax)*(maxmin-minmax))  ) -(2*m)  );     
+       //    v.add(Math.sqrt( ((16*m*M12)/(maxDeg*maxDeg)) -(4*m*m*(maxmin-minmax)*(maxmin-minmax))  ) -(2*m)  );     
+        //    v.add(Math.sqrt( ((4*M21*M21)/(maxDeg*maxDeg)) -(4*m*m*(maxmin-minmax)*(maxmin-minmax))  ) -(2*m)  );            
+           //v.add(ISDD);
+          // v.add(m/2);
+     //      v.add(ISI);
 
    //      v.add((n/2)-R);
       
     //    v.add((n/2)-H);
   //       v.add(VR);
    //      v.add((n/2)-VR);
-      
-
-   //     
-      
+    
     //    v.add(SDD-(2*m));
         //rao sir
    //     v.add(((n-5)*((n*n)-(2*n)+2)/(n-1)) +(2*((n*n)-(2*n)+5)/(n-1)) +4 );
@@ -250,6 +285,7 @@ public class SDD implements GraphReportExtension<RenderTable> {
        // v.add(M21 +(2*maxDeg*minDeg*H)-(2*m*(maxDeg+minDeg)));
        // v.add(GA);
       //  v.add(HC);
+      //  v.add(sigma);
       // v.add(m-GA);
       //   v.add((n/2)-R);
       //  v.add(-(n/2)+chi);
@@ -289,7 +325,13 @@ public class SDD implements GraphReportExtension<RenderTable> {
       //  v.add(ID);
         //  v.add(wi.calculate(g));
         //  v.add(Avg);
-     v.add(diameter);
+     //v.add(diameter);
+        
+        //f(n,m)
+       // v.add(((n-maxMatching)*(maxMatching-2))-(2*(maxMatching-1)));
+        // Matching Number (or)  Maximum Matching.
+       v.add(maxMatching);
+     //  v.add(maxMatching1);
 
        // v.add(MaxCliqueExtension.maxCliqueSize(g));
 

@@ -19,14 +19,14 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 @CommandAttitude(name = "eccentric_connective_index", abbreviation = "_ECindex")
 public class EccentricConnectiveIndex implements GraphReportExtension<Double> {
-    private double a;
+    private double a=1;
 
     public String getName() {
-        return "Eccnetric Connective Index";
+        return "Eccentric Connective Index";
     }
 
     public String getDescription() {
-        return "Eccnetric Connective Index";
+        return "Eccentric Connective Index";
     }
 
     public void setA(double value) {
@@ -38,7 +38,7 @@ public class EccentricConnectiveIndex implements GraphReportExtension<Double> {
         int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
     	double sum = 0;
         for (Vertex v : g) {
-        	sum += g.getDegree(v) * Eccentricity.eccentricity(g, v.getId(), dist);
+        	sum += Math.pow(g.getDegree(v), a) * Eccentricity.eccentricity(g, v.getId(), dist);
         }
         return sum;
     }

@@ -23,7 +23,7 @@ import java.util.Vector;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "ECIConjecture", abbreviation = "_EciConjecture")
+@CommandAttitude(name = "ECI_Conjecture", abbreviation = "_Eci_Conjecture")
 public class ECIConjecture implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "ECI-Conjecture";
@@ -39,7 +39,7 @@ public class ECIConjecture implements GraphReportExtension<RenderTable> {
         Vector<String> titles = new Vector<>();
         titles.add(" m ");
         titles.add(" n ");
-        titles.add(" n/2 ");
+     //   titles.add(" n/2 ");
      //     titles.add(" R ");
         //    titles.add("(n/2)- R ");
      //       titles.add(" H ");
@@ -63,17 +63,21 @@ public class ECIConjecture implements GraphReportExtension<RenderTable> {
       //  titles.add(" i(G) ");
      //  titles.add(" W(G) ");
      // titles.add(" M-W(G) ");
-
-      // titles.add(" EC(3) ");
+   titles.add(" EC(-5) ");
+   titles.add(" EC(-4) ");
+   titles.add(" EC(-3) ");
+   titles.add(" EC(-2) ");
+   titles.add(" EC(-1) ");
+   titles.add(" EC(1) ");
     //   titles.add(" CE(G) ");
    //    titles.add(" Ind-set ");
     //  titles.add(" EC(-4) ");
     //  titles.add(" EC(2) ");
     //  titles.add(" EC(1) ");
     //  titles.add(" EC(0.5) ");
-      titles.add(" AVG-eccen ");
+    //  titles.add(" AVG-eccen ");
    //   titles.add(" odd ");
-      titles.add(" RHS ");
+   //   titles.add(" RHS ");
     // titles.add(" E-Comp ");
    //  titles.add(" alpha ");
      // titles.add(" DD(G) ");
@@ -295,8 +299,24 @@ public class ECIConjecture implements GraphReportExtension<RenderTable> {
      //   v.add(new  NumOfIndSets().calculate(g));
         
         
-       // eci.setA(-5);
-      //  v.add(eci.calculate(g));
+               
+         eci.setA(-5);
+         v.add(eci.calculate(g));
+        
+         eci.setA(-4);
+         v.add(eci.calculate(g));
+		 
+		 
+		          eci.setA(-3);
+        v.add(eci.calculate(g));
+        
+         eci.setA(-2);
+        v.add(eci.calculate(g));
+        
+     
+     // Eccentric Connectivity index.
+	 eci.setA(-1);
+     v.add(eci.calculate(g));
         
       //  eci.setA(-4);
       //  v.add(eci.calculate(g));

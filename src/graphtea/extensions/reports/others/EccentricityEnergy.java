@@ -4,11 +4,15 @@ import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
+import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
+import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.graph.graph.RenderTable;
+import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 @CommandAttitude(name = "EccentricityEnergy", abbreviation = "_eccentricity_index")
@@ -53,6 +57,7 @@ public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
         titles.add("n ");
         titles.add("Eccentricity Energy");
         titles.add("Eigen Values");
+		titles.add("Diameter");
         ret.setTitles(titles);
         FloydWarshall fw = new FloydWarshall();
         int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
@@ -61,8 +66,10 @@ public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
         EigenvalueDecomposition ed = m.eig();
         double[] rv = ed.getRealEigenvalues();
         double sum = 0;
+		
+		int diameter = (int) new Diameter().calculate(g);
 
-        //positive RV
+        //positiv RV
         Double[] prv = new Double[rv.length];
         for (int i = 0; i < rv.length; i++) {
             prv[i] = Math.abs(rv[i]);
@@ -74,6 +81,7 @@ public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
         v.add(g.getEdgesCount());
         v.add(sum);
         v.add(AlgorithmUtils.getEigenValues(m));
+		v.add(diameter);
         ret.add(v);
         return ret;
     }

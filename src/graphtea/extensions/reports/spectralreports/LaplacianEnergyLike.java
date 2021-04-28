@@ -71,6 +71,6 @@ public class LaplacianEnergyLike implements GraphReportExtension<String> {
 
     @Override
     public String getCategory() {
-        return "Spectral";
+        return "Spectral- Energies";
     }
 }

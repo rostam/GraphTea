@@ -8,6 +8,7 @@ import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.basicreports.Diameter;
+import graphtea.extensions.reports.basicreports.NumOfConnectedComponents;
 import graphtea.extensions.reports.topological.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -15,6 +16,12 @@ import graphtea.graph.graph.Vertex;
 import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
+import graphtea.library.algorithms.util.BipartiteChecker;
+import graphtea.extensions.reports.spectralreports.DistanceEnergy;
+import graphtea.extensions.reports.spectralreports.DistanceLaplacianEnergy;
+import graphtea.extensions.reports.spectralreports.DistanceSignlessLaplacianEnergy;
+import graphtea.extensions.reports.spectralreports.LaplacianEnergy;
+import graphtea.extensions.reports.spectralreports.SignlessLaplacianEnergy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,13 +49,23 @@ public class AllEnergies implements GraphReportExtension<RenderTable> {
 
     titles.add("m ");
     titles.add("n ");
-    titles.add(" Energy ");
-  //  titles.add(" Laplacian Energy ");
-  //  titles.add(" Signless-Laplacian Energy ");
+    titles.add("E ");
+  // titles.add("check ");
+    titles.add("LE ");
+    titles.add("SLE ");
+    titles.add("LE-Bar ");
+    titles.add("SLE-Bar ");
+    titles.add("DE");
+  	titles.add("DLE");
+    titles.add("DLSE");
+   	titles.add("DLE-Bar");
+    titles.add("DLSE-Bar");
+    titles.add("Bipartite");
+ //   titles.add(" Components ");
   //  titles.add(" Resolvent-Energy ");
   //  titles.add(" Diameter ");   
-    titles.add(" Matching "); 
-    titles.add("R.H.S");
+  //  titles.add(" Matching "); 
+  //  titles.add("R.H.S");
     ret.setTitles(titles);
 
         double maxDeg = 0;
@@ -80,18 +97,51 @@ public class AllEnergies implements GraphReportExtension<RenderTable> {
         double M21 = zif.getFirstZagreb(1);
         double M22 = zif.getSecondZagreb(2);
         double Mm11 = zif.getFirstZagreb(-2);
+        int comp = (int) new NumOfConnectedComponents().calculate(g);
+        
+        Matrix de = AlgorithmUtils.getDistanceAdjacencyMatrix(g);
+		Matrix dle = AlgorithmUtils.getDistanceLaplacianMatrix(g);
+		Matrix dlse = AlgorithmUtils.getDistanceSignlessLaplacianMatrix(g);
+		
+		double DE   = new DistanceEnergy().calculate(g);
+		double DLE  = new DistanceLaplacianEnergy().calculate(g);
+        double DSLE = new DistanceSignlessLaplacianEnergy().calculate(g);
+        double DLEC  = new DistanceLaplacianEnergy().calculate(AlgorithmUtils.createComplementGraph(g));
+        double DSLEC = new DistanceSignlessLaplacianEnergy().calculate(AlgorithmUtils.createComplementGraph(g));
+        Boolean t = BipartiteChecker.isBipartite(g);
+        LaplacianEnergy le = new LaplacianEnergy();
+        SignlessLaplacianEnergy sle = new SignlessLaplacianEnergy();
 
-        int diameter = new Diameter().calculate(g);
+        int diameter = (int) new Diameter().calculate(g);
+        
+		 double LE = Double.parseDouble(le.calculate(g));
+		 double SLE = Double.parseDouble(sle.calculate(g));
+		 
+		 // Complements
+		 double LEC = Double.parseDouble(le.calculate(AlgorithmUtils.createComplementGraph(g)));
+		 double SLEC = Double.parseDouble(sle.calculate(AlgorithmUtils.createComplementGraph(g)));
         
         
         Vector<Object> v = new Vector<>();
 
-        v.add(m);
-        v.add(n);
-        v.add(Energy(g));
-        
-      //  v.add(LaplacianEnergy(g));
-    //    v.add(SignlessLaplacianEnergy(g));
+         v.add(m);
+         v.add(n);
+		// if ((LE+LEC)==(SLE+SLEC)) v.add(1);
+		// else return null;
+          v.add(Energy(g));  
+          v.add(LE);
+          v.add(SLE);
+          v.add(LE+LEC);
+          v.add(SLE+SLEC);
+        // v.add(LaplacianEnergy(AlgorithmUtils.createComplementGraph(g)) + LaplacianEnergy(g));
+       //  v.add(SignlessLaplacianEnergy(AlgorithmUtils.createComplementGraph(g)) + SignlessLaplacianEnergy(g));
+         v.add(DE);
+         v.add(DLE);
+         v.add(DSLE);
+         v.add(DLE+DLEC);
+         v.add(DSLE+DSLEC);
+         v.add(t);  
+    //     v.add(comp);
      //   v.add(ResolventEnergy(g));
      //   v.add(diameter);
         

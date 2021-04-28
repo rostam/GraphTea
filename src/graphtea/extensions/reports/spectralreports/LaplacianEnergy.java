@@ -22,6 +22,8 @@ public class LaplacianEnergy implements GraphReportExtension<String> {
     public String calculate(GraphModel g) {
         double power = 1;
         try {
+			double m = g.getEdgesCount();
+            double n = g.getVerticesCount();
             Matrix B = g.getWeightedAdjacencyMatrix();
             Matrix A = AlgorithmUtils.getLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
@@ -36,7 +38,7 @@ public class LaplacianEnergy implements GraphReportExtension<String> {
             }
             double sum = 0;
             double sum_i = 0;
-            for (double v : rv) sum += Math.pow(Math.abs(v), power);
+            for (double v : rv) sum += Math.pow(Math.abs(v - ((2 * m) / n)), power);
             for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
@@ -72,6 +74,6 @@ public class LaplacianEnergy implements GraphReportExtension<String> {
 
     @Override
     public String getCategory() {
-        return "Spectral";
+        return "Spectral- Energies";
     }
 }

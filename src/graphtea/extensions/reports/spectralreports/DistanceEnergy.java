@@ -28,7 +28,7 @@ public class DistanceEnergy implements GraphReportExtension<Double> {
         Double[] prv = new Double[rv.length];
         for (int i = 0; i < rv.length; i++) {
             prv[i] = Math.abs(rv[i]);
-            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
+          //  prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
             sum += prv[i];
         }
         return sum;
@@ -44,6 +44,6 @@ public class DistanceEnergy implements GraphReportExtension<Double> {
 
     @Override
     public String getCategory() {
-        return "Spectral";
+        return "Spectral- Energies";
     }
 }

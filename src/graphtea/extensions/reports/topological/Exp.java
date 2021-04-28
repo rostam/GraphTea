@@ -37,6 +37,7 @@ public class Exp implements GraphReportExtension<RenderTable> {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
+        titles.add(" Exp-ABC ");
         titles.add(" m ");
         titles.add(" n ");
 
@@ -71,7 +72,10 @@ public class Exp implements GraphReportExtension<RenderTable> {
      // titles.add(" RDD(G) ");
      // titles.add(" Gut "); 
      // titles.add(" H(G) "); 
-      //  titles.add(" Exp-M1 ");
+     //   titles.add(" M1 ");
+   //    titles.add(" Exp-M1 ");
+  //     titles.add(" M2 ");
+   //   titles.add(" Exp-M2 ");
   //      titles.add(" R(G) "); 
  //       titles.add(" Exp-R ");
    //   titles.add(" H(G)  "); 
@@ -81,16 +85,16 @@ public class Exp implements GraphReportExtension<RenderTable> {
  //      titles.add(" expM1111 ");
    //   titles.add(" Exp-M2 ");
 
-   //     titles.add(" Chi   ");
-    //    titles.add(" Exp-Chi ");
-   //   titles.add(" GA   ");
-  //    titles.add(" Exp-GA ");
-    ///    titles.add(" ABC ");
-   //    titles.add(" Exp-ABC ");
+     //   titles.add(" Chi   ");
+    //   titles.add(" Exp-Chi ");
+  //    titles.add(" GA   ");
+ //   titles.add(" Exp-GA ");
+ //       titles.add(" ABC ");
+  //     titles.add(" Exp-ABC ");
    //    titles.add(" R.H.S ");
        
-  //      titles.add(" AZI ");
-     //   titles.add(" Exp-AZI ");
+   //      titles.add(" AZI ");
+   //     titles.add(" Exp-AZI ");
           //  titles.add(" GA ");
           //  titles.add(" Exp-GA ");
         
@@ -145,10 +149,10 @@ public class Exp implements GraphReportExtension<RenderTable> {
         //    titles.add(" R.H.S odd ");
 
         //   titles.add("R");
-        titles.add(" Exp-ABC ");
+     //   titles.add(" Exp-ABC ");
        // titles.add(" E-ABC   ");
       //  titles.add(" ABC     ");
-        titles.add(" RHS     ");
+     //   titles.add(" RHS     ");
       //  titles.add(" Diameter ");
         //titles.add(" n - p ");
         //titles.add("Wiener");
@@ -277,6 +281,7 @@ public class Exp implements GraphReportExtension<RenderTable> {
         double Avg = (n * (n - 1) / 2);
 
         Vector<Object> v = new Vector<>();
+        v.add(expABC);
         v.add(m);
         v.add(n);
       //  v.add(R);
@@ -434,12 +439,16 @@ public class Exp implements GraphReportExtension<RenderTable> {
     //  v.add(expH);
      //   v.add(chi);
     //    v.add(expChi);
- //      v.add(M12);
- //    v.add(expM12);
- //      v.add(GA);
- //      v.add(expGA);
-        v.add(expABC);
-        v.add( (maxDeg*(Math.exp( (Math.sqrt(2*(maxDeg-1))/maxDeg ) ) - Math.exp( (Math.sqrt(1-(1/maxDeg) ) ) ) ) ) + (m*(Math.exp(ABC/m)))  );
+    //    v.add(expABC);
+     //   v.add(M21);
+     //   v.add(expM21);
+    //  v.add(M12);
+    //  v.add(expM12);
+   //  v.add(GA);
+  //     v.add(expGA);
+   //    v.add(ABC);
+  //      v.add(expABC);
+       // v.add( (maxDeg*(Math.exp( (Math.sqrt(2*(maxDeg-1))/maxDeg ) ) - Math.exp( (Math.sqrt(1-(1/maxDeg) ) ) ) ) ) + (m*(Math.exp(ABC/m)))  );
        // v.add(Math.exp(ABC));
       //  v.add(ABC);
       //  v.add(expAZI);

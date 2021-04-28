@@ -6,9 +6,19 @@ import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.RandomMatching;
 import graphtea.extensions.reports.basicreports.*;
 import graphtea.extensions.reports.clique.MaxCliqueSize;
-import graphtea.extensions.reports.others.PeripheralWienerIndex;
+import graphtea.extensions.reports.others.Radius;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
+import graphtea.extensions.reports.others.PeripheralWienerIndex;
+import graphtea.extensions.reports.topological.WienerIndex;
+import graphtea.extensions.reports.topological.WienerPolarityIndex;
+import graphtea.extensions.reports.topological.Harary;
+import graphtea.extensions.reports.topological.MWienerIndex;
+import graphtea.extensions.reports.topological.DegreeDistance;
+import graphtea.extensions.reports.topological.ReciprocalDegreeDistance;
+import graphtea.extensions.reports.topological.ConnectiveEccentricIndex;
+import graphtea.extensions.reports.topological.EccentricConnectiveIndex;
+import graphtea.extensions.reports.topological.EccentricDistanceSum;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -36,8 +46,7 @@ public class Mere implements GraphReportExtension<RenderTable> {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
         Vector<String> titles = new Vector<>();
-        titles.add(" m ");
-        titles.add(" n ");
+
 
      //     titles.add(" R ");
         //    titles.add("(n/2)- R ");
@@ -59,13 +68,21 @@ public class Mere implements GraphReportExtension<RenderTable> {
         //  titles.add("(n/2)- chi ");
         //   titles.add(" W_p ");
         //   titles.add(" RM 2");
-        titles.add(" i(G) ");
-       titles.add(" W(G) ");
-	   titles.add(" PW(G) ");
+        titles.add(" m ");
+        titles.add(" n ");
+      //  titles.add(" EDS ");
+     //   titles.add(" EDSS-DD ");
+    //    titles.add(" (G) ");
+       titles.add(" i(G) ");
+
+    //    titles.add(" W(G) ");
+	    titles.add(" PW(G) ");
+	    titles.add(" i(G) - PW(G) ");
      // titles.add(" M-W(G) ");
-    //  titles.add(" CE(G) ");
+ // titles.add(" CE(G) ");
    //   titles.add(" EC(G) ");
-   //  titles.add(" E-Comp ");
+    // titles.add(" E-Comp ");
+        titles.add(" Wie-Comp ");
    //  titles.add(" alpha ");
      // titles.add(" DD(G) ");
      // titles.add(" RDD(G) ");
@@ -115,9 +132,10 @@ public class Mere implements GraphReportExtension<RenderTable> {
         //   titles.add("R");
 
         //titles.add("Wiener");
-        //titles.add("Avg");
-         titles.add("Diameter");
-         titles.add("Girth");
+    //     titles.add("Avg-Eccen");
+      //  titles.add("Diameter");
+     //   titles.add("Radius");
+       //  titles.add("Girth");
      //   titles.add("Max Matching");
         //    titles.add("Clique Number");
 
@@ -217,17 +235,18 @@ public class Mere implements GraphReportExtension<RenderTable> {
 		
 		
 		MWienerIndex mwi = new MWienerIndex();
-        ConnectivityEccentricityIndex cei = new ConnectivityEccentricityIndex();
-        EccentricConnectiveIndex eci = new EccentricConnectiveIndex();
+		ConnectiveEccentricIndex cei = new ConnectiveEccentricIndex();
+		EccentricConnectiveIndex   eci = new EccentricConnectiveIndex();
         EccentricityComplexityIndex   ecompi = new EccentricityComplexityIndex();
-        DegreeDistance   			  degreeDistance = new DegreeDistance();
+        DegreeDistance   			  ddist = new DegreeDistance();
         ReciprocalDegreeDistance   	  RDD = new ReciprocalDegreeDistance();
         GutmanIndex                   gutman = new GutmanIndex();
         WienerPolarityIndex           wp = new WienerPolarityIndex();
         PeripheralWienerIndex         Pw = new PeripheralWienerIndex();
         Harary                        Harary = new Harary();
 		EccentricDistanceSum          EDS = new EccentricDistanceSum();
-		
+		Radius                        Rad = new Radius();
+        WienerComplexIndex            WCI = new WienerComplexIndex();
 		
 		
 
@@ -236,6 +255,7 @@ public class Mere implements GraphReportExtension<RenderTable> {
         double Avg = (n * (n - 1) / 2);
 
         Vector<Object> v = new Vector<>();
+
         v.add(m);
         v.add(n);
       //  v.add(R);
@@ -262,26 +282,38 @@ public class Mere implements GraphReportExtension<RenderTable> {
         //     v.add(((p*minDeg2)/(maxDeg+1))+((m-p)*(Math.sqrt(  (2*maxDeg*Math.pow(minDeg2,6))/((Math.pow(maxDeg,6))+(2*Math.pow(minDeg2,5))+(4*Math.pow(minDeg2,2)*Math.pow(maxDeg,3))  )   ))));
         //  v.add(RM2);
         //  v.add(chi-(n/2));
+        
+
 
         // Mereffield-Simmons
-        v.add(new  NumOfIndSets().calculate(g));
-   
+      v.add(new  NumOfIndSets().calculate(g));
+        
+
+ 
+        
         // Hosaya
         // v.add((Integer) new NumOfIndSets().calculate(Utils.createLineGraph(g)));
         //wiener polarity index
        // v.add(wp.calculate(g));
         
         // Wiener Index
-          v.add(wi.calculate(g));    
+      //    v.add(wi.calculate(g));    
 		 
 		        // Pheriperal Wiener Index
-          v.add(Pw.calculate(g));   
+         v.add(Pw.calculate(g));   
+         
+         double i =new  NumOfIndSets().calculate(g);
+         
+	     double PW = Pw.calculate(g);
+	     
+         v.add(i-PW);   
+	     
          
          // M-Wiener Index
       //   v.add(mwi.calculate(g)); 
          
          // Connectivity Eccentricity Index
-      //   v.add(cei.calculate(g));
+      //  v.add(cei.calculate(g));
          
          //Eccentricity Connectivity  Index
 		// 	     eci.setA(1);
@@ -289,16 +321,30 @@ public class Mere implements GraphReportExtension<RenderTable> {
          
         
        
-        int eccentricityComplexityIndex = (int)ecompi.calculate(g);
+        int Ecomp = (int)ecompi.calculate(g);
 
-         //Eccentricity Complexity Index
-          v.add(eccentricityComplexityIndex);
+        int Wcomp  = (int)WCI.calculate(g);
+        
+         // Eccentricity Complexity Index
+         // v.add(Ecomp);
          
+          
+          // Wiener Complexity Index
+            v.add(Wcomp);
+          
+          
+        //  if(Ecomp == Wcomp)  v.add(1);
+      //    else  return null;
+          //  else if((E1/n) == (E2/m) && (E1bar/n) == (E2bar/mbar)) v.add(0);
+
+
+          
+          
           int independenceNumber = (int)((new MaxOfIndSets()).calculate(g));
           
           int wiener = (int) wi.calculate(g);
           
-          double ss = (double) 2 /(diameter*(diameter+1)*1.0);
+          double ss = (double) 2*1.0/(diameter*(diameter+1)*1.0);
           //double ss1 = (double) 2*1.0/((diameter*diameter)+(diameter)-2)*1.0);
           
 
@@ -306,7 +352,17 @@ public class Mere implements GraphReportExtension<RenderTable> {
         // v.add(independenceNumber);
          
          // Degree distance
-        // v.add(degreeDistance.calculate(g));
+        // v.add(ddist.calculate(g));
+          
+         double EDSS = EDS.calculate(g); 
+         // EccentricDistanceSum 
+        //  v.add(EDSS);
+          
+         double DD = ddist.calculate(g);          
+         // Degree distance
+          // v.add(DD);
+          
+     //     v.add(EDSS-DD);
          
          // Reciprocal Degree distance
        //  v.add(RDD.calculate(g));
@@ -318,7 +374,6 @@ public class Mere implements GraphReportExtension<RenderTable> {
         // v.add(Harary.calculate(g));
 
          
-         // surojit
         //  v.add( (ss*(wiener-m)) );
           
        //   v.add( (ss*(wiener-m)) );
@@ -389,9 +444,14 @@ public class Mere implements GraphReportExtension<RenderTable> {
         //  v.add(ID);
         //  v.add(wi.calculate(g));
         //  v.add(Avg);
+          
+        eci.setA(0);
+        double dd = eci.calculate(g);
+      //  v.add(dd/(n*diameter));
         
-       v.add(diameter);
-       v.add(girth); 
+     // v.add(diameter);
+     // v.add(Rad.calculate(g));
+      // v.add(girth); 
         // Matching Number
       //  v.add(new MaxMatchingExtension().numOfMatching(g));
 	  //clique number

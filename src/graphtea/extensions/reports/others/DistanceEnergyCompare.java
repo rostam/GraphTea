@@ -1,8 +1,11 @@
 package graphtea.extensions.reports.others;
 
+import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.spectralreports.DistanceEnergy;
+import graphtea.extensions.reports.spectralreports.DistanceLaplacianEnergy;
+import graphtea.extensions.reports.spectralreports.DistanceSignlessLaplacianEnergy;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
@@ -29,21 +32,39 @@ public class DistanceEnergyCompare implements GraphReportExtension<RenderTable> 
         Vector<String> titles = new Vector<>();
         titles.add("m ");
         titles.add("n ");
-        titles.add("Distance Energy");
-        titles.add("Eigen Values");
+	     titles.add("check");
+     //   titles.add("DE");
+	 //	titles.add("DLE");
+     //   titles.add("DLSE");
+     // titles.add("Eigen Values");
         ret.setTitles(titles);
-        Matrix m = AlgorithmUtils.getDistanceAdjacencyMatrix(g);
+        Matrix de = AlgorithmUtils.getDistanceAdjacencyMatrix(g);
+		Matrix dle = AlgorithmUtils.getDistanceLaplacianMatrix(g);
+		Matrix dlse = AlgorithmUtils.getDistanceSignlessLaplacianMatrix(g);
+		
+		double DE   = new DistanceEnergy().calculate(g);
+		double DLE  = new DistanceLaplacianEnergy().calculate(g);
+        double DLSE = new DistanceSignlessLaplacianEnergy().calculate(g);		
         Vector<Object> v = new Vector<>();
         v.add(g.getVerticesCount());
         v.add(g.getEdgesCount());
-        v.add(new DistanceEnergy().calculate(g));
-        v.add(AlgorithmUtils.getEigenValues(m));
+		 if(DLE==DLSE) v.add(1);
+		 else return null;
+     // v.add(DE);
+	  // v.add(DLE);
+      // v.add(DLSE);
+	   // Distance Energy Eignevalues	
+      //  v.add(AlgorithmUtils.getEigenValues(de));
+	   // Distance Laplacian Energy Eignevalues	
+      //  v.add(AlgorithmUtils.getEigenValues(dle));
+	   // Distance Signless Laplacian Energy Eignevalues	
+      //  v.add(AlgorithmUtils.getEigenValues(dlse));
         ret.add(v);
         return ret;
     }
 
     @Override
     public String getCategory() {
-        return "Verification-Checking";
+        return "Verification- Energy";
     }
 }

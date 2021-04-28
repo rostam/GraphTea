@@ -811,4 +811,75 @@ public class AlgorithmUtils {
         return ret;
     }
 
+    public static Matrix getDistanceLaplacianMatrix (GraphModel g) {
+        FloydWarshall fw = new FloydWarshall();
+        int sum;
+        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        Matrix adj = g.getAdjacencyMatrix();
+        for(int i=0;i < adj.getColumnDimension();i++) {
+            sum=0;
+            for(int j=0;j < adj.getRowDimension();j++) {
+                sum += dist[i][j];
+                adj.set(i,j, -dist[i][j]);
+            }
+            adj.set(i,i,sum);
+
+        }
+        return adj;
+    }
+
+    public static Matrix getDistanceSignlessLaplacianMatrix (GraphModel g) {
+        FloydWarshall fw = new FloydWarshall();
+        double sum;
+        int [][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        Matrix adj = g.getAdjacencyMatrix();
+        for(int i=0;i < adj.getColumnDimension();i++) {
+            sum=0;
+            for(int j=0;j < adj.getRowDimension();j++) {
+                //sum += dist[i][j]*0.5;
+                sum += dist[i][j];
+                //adj.set(i,j,(dist[i][j]*0.5));
+                adj.set(i,j,dist[i][j]);
+            }
+            adj.set(i,i,sum);
+
+        }
+        return adj;
+    }
+
+    public static Matrix getDiagonalTransMatrix (GraphModel g) {
+        FloydWarshall fw = new FloydWarshall();
+        int sum;
+        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        Matrix adj = g.getAdjacencyMatrix();
+        for(int i=0;i < adj.getColumnDimension();i++) {
+            sum=0;
+            for(int j=0;j < adj.getRowDimension();j++) {
+                sum += dist[i][j];
+                adj.set(i,j,0);
+            }
+            adj.set(i,i,sum);
+
+        }
+        return adj;
+    }
+
+    public static Matrix getAverageTransMatrix (GraphModel g) {
+        FloydWarshall fw = new FloydWarshall();
+        int sum; sum=0;
+        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        Matrix adj = g.getAdjacencyMatrix();
+        for(int i=0;i < adj.getColumnDimension();i++) {
+            for(int j=0;j < adj.getRowDimension();j++) {
+                sum += dist[i][j];
+
+            }
+            for(int j=0;j < adj.getRowDimension();j++) {
+                adj.set(i,j,sum);
+
+            }
+
+        }
+        return adj;
+    }
 }

@@ -19,11 +19,11 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 @CommandAttitude(name = "eccentric_adjacency_index", abbreviation = "_eccentric_adjacency_index")
 public class EccentricityAdjacencyIndex implements GraphReportExtension<Double> {
     public String getName() {
-        return "Eccentricity Adjacency Index";
+        return "Eccetricity Adjacency Index";
     }
 
     public String getDescription() {
-        return "Eccentricity Adjacency Index";
+        return "Eccetricity Adjacency Index";
     }
 
     public Double calculate(GraphModel g) {

@@ -5,6 +5,7 @@
 
 package graphtea.extensions.reports.spectralreports;
 
+import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
@@ -32,6 +33,6 @@ public class MaxDegreeEnergy implements GraphReportExtension<Double> {
 
     @Override
     public String getCategory() {
-        return "Spectral";
+        return "Spectral- Energies";
     }
 }

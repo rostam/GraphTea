@@ -50,7 +50,7 @@ public class Energy implements GraphReportExtension<RenderTable> {
     //    titles.add(" 1.6 ");
      //   titles.add(" 1.7 ");
      //   titles.add(" Estarda ");
-          titles.add(" Eigenvalues ");
+   //       titles.add(" Eigenvalues ");
    //     titles.add(" 2-degree sum ");
    //     titles.add("new query");
         ret.setTitles(titles);
@@ -110,7 +110,10 @@ public class Energy implements GraphReportExtension<RenderTable> {
         Vector<Object> v = new Vector<>();
         v.add(m);
         v.add(n);
-        v.add(energy);
+      //  v.add(energy);
+        
+        if(energy == n) v.add(1);
+        else return null;
     //  v.add(rv[]);
       //  v.add(n);
        // v.add(estra);
@@ -138,7 +141,7 @@ public class Energy implements GraphReportExtension<RenderTable> {
     //    v.add(Math.sqrt(2*m*n) - (up/down));
 
         //eigenvalues
-        v.add(AlgorithmUtils.getEigenValues(g));
+       // v.add(AlgorithmUtils.getEigenValues(g));
 
         //2-degree sum
      //   v.add(Utils.getDegreeSum(g,1));
@@ -162,6 +165,8 @@ public class Energy implements GraphReportExtension<RenderTable> {
 
        // double alpha_k=numOfNZEigenValue*Math.floor(numOfNZEigenValue/2)
          //       *(1-(1/numOfNZEigenValue)*Math.floor(numOfNZEigenValue/2));
+       // System.out.println(alpha_k + "  " + numOfNZEigenValue);
+     //   System.out.println(prv[0] + "  " + eigenVal_k);
     //    v.add(Math.sqrt(2*m*numOfNZEigenValue
    //             - (Math.pow((prv[0]-eigenVal_k),2)*alpha_k)));
 

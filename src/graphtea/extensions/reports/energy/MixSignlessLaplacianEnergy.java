@@ -124,7 +124,7 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension<Vector<S
 
     @Override
     public String getCategory() {
-        return "Spectral";
+        return "Spectral- Energy";
     }
 
     @Override

@@ -9,6 +9,7 @@ import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.extensions.reports.spectralreports.KirchhoffIndex;
+import graphtea.extensions.reports.spectralreports.DegreeKirchhoffIndex;
 import graphtea.extensions.reports.spectralreports.LaplacianEnergy;
 import graphtea.extensions.reports.spectralreports.LaplacianEnergyLike;
 import graphtea.extensions.reports.spectralreports.SignlessLaplacianEnergy;
@@ -47,10 +48,11 @@ public class LEL_vs_KF implements GraphReportExtension<RenderTable> {
         titles.add("m ");
         titles.add("n ");
         titles.add("KF");
-        titles.add("Wiener");
-        titles.add("Laplacian");
-        titles.add("Signless Laplacian");
-        titles.add("Diameter");
+		titles.add("DKF");
+        //titles.add("Wiener");
+       // titles.add("Laplacian");
+      //  titles.add("Signless Laplacian");
+      //  titles.add("Diameter");
         //titles.add("check");
        // 
        // titles.add("n ");
@@ -128,6 +130,7 @@ public class LEL_vs_KF implements GraphReportExtension<RenderTable> {
         SignlessLaplacianEnergy  sl = new SignlessLaplacianEnergy();
         LaplacianEnergy le = new LaplacianEnergy();
         KirchhoffIndex kf = new KirchhoffIndex();
+		DegreeKirchhoffIndex dkf = new DegreeKirchhoffIndex();
         WienerIndex wi = new WienerIndex();
         int diameter = new Diameter().calculate(g);
              //v.add(Double.parseDouble(lel.calculate(g).toString()));
@@ -135,13 +138,15 @@ public class LEL_vs_KF implements GraphReportExtension<RenderTable> {
            v.add(n);
            //Kirchhoff Index
            v.add(Double.parseDouble(kf.calculate(g)));
+		   //DegreeKirchhoff Index
+           v.add(Double.parseDouble(dkf.calculate(g)));
           // Wiener Index
-           v.add(wi.calculate(g));
+          // v.add(wi.calculate(g));
            //  Laplacian
-            v.add(Double.parseDouble(le.calculate(g)));
+         //   v.add(Double.parseDouble(le.calculate(g)));
             // Signless Laplacian
-            v.add(Double.parseDouble(sl.calculate(g)));
-           v.add(diameter);
+          //  v.add(Double.parseDouble(sl.calculate(g).toString()));
+          // v.add(diameter);
          //  v.add( (((n*n*(n-1))-(2*m))/(2*m))+(((n-1)*(Math.sqrt(maxDeg)-Math.sqrt(minDeg))*(Math.sqrt(maxDeg)-Math.sqrt(minDeg)))/(2*maxDeg*minDeg)));
            ret.add(v);
         return ret;

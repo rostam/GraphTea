@@ -24,7 +24,7 @@ public class ZagrebIndex implements GraphReportExtension<RenderTable>, Parametri
         return "All Zagreb Indices";
     }
 
-    @Parameter(name = "Alpha", description = "The alpha value")
+    @Parameter(name = "Alpha", description = "")
     public Double alpha = 1.0;
 
     public String getDescription() {

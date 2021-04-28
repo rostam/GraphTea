@@ -4,22 +4,48 @@ package graphtea.extensions.reports.topological;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.RandomMatching;
-import graphtea.extensions.reports.basicreports.Diameter;
-import graphtea.extensions.reports.basicreports.GirthSize;
-import graphtea.extensions.reports.basicreports.MaxOfIndSets;
-import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
+import graphtea.extensions.reports.basicreports.*;
 import graphtea.extensions.reports.clique.MaxCliqueSize;
-import graphtea.extensions.reports.others.PeripheralWienerIndex;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
+import graphtea.extensions.reports.ChromaticNumber;
+import graphtea.extensions.reports.clique.MaxCliqueExtension;
+import graphtea.extensions.reports.matching.MaxMatchingExtension;
+import graphtea.extensions.reports.matching.MaximumMatching;
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.RenderTable;
+import graphtea.graph.graph.Vertex;
+import graphtea.graph.graph.Edge;
+import graphtea.platform.lang.CommandAttitude;
+import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
+import graphtea.extensions.reports.basicreports.Diameter;
+import graphtea.extensions.reports.basicreports.GirthSize;
+import graphtea.extensions.reports.topological.WienerIndex;
+import graphtea.extensions.reports.others.PeripheralWienerIndex;
+import graphtea.extensions.reports.topological.EccentricWienerIndex;
+
+import graphtea.extensions.reports.topological.WienerPolarityIndex;
+import graphtea.extensions.reports.topological.WienerIndex;
+import graphtea.extensions.reports.topological.Harary;
+import graphtea.extensions.reports.topological.MWienerIndex;
+import graphtea.extensions.reports.topological.DegreeDistance;
+import graphtea.extensions.reports.topological.ReciprocalDegreeDistance;
+import graphtea.extensions.reports.topological.ConnectiveEccentricIndex;
+import graphtea.extensions.reports.topological.EccentricConnectiveIndex;
+import graphtea.extensions.reports.topological.EccentricDistanceSum;
+import graphtea.extensions.reports.RandomMatching;
+import graphtea.extensions.reports.basicreports.NumOfIndSets;
+import graphtea.extensions.reports.basicreports.MaxOfIndSets;
+import graphtea.extensions.reports.others.PeripheralWienerIndex;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Vector;
+import java.util.List;
+import java.util.Collections;
 
 /**
  * @author Ali Rostami
@@ -82,6 +108,9 @@ public class Mere1 implements GraphReportExtension<RenderTable> {
    //   titles.add(" CE(G) ");
        titles.add(" EC(G) ");
 	   titles.add(" EDS(G) ");
+       titles.add(" EDS-EC ");
+	   titles.add(" ECI/EDS ");
+	   titles.add(" EWI ");
    //   titles.add(" E-Comp ");
    //   titles.add(" alpha ");
      // titles.add(" DD(G) ");
@@ -235,17 +264,18 @@ public class Mere1 implements GraphReportExtension<RenderTable> {
         WienerIndex wi = new WienerIndex();
 
         MWienerIndex mwi = new MWienerIndex();
-        ConnectivityEccentricityIndex cei = new ConnectivityEccentricityIndex();
-        EccentricConnectiveIndex eci = new EccentricConnectiveIndex();
+        ConnectiveEccentricIndex cei = new ConnectiveEccentricIndex();
+        EccentricConnectiveIndex   eci = new EccentricConnectiveIndex();
         EccentricityComplexityIndex   ecompi = new EccentricityComplexityIndex();
-        DegreeDistance   			  degreeDistance = new DegreeDistance();
+        DegreeDistance   			  ddist = new DegreeDistance();
         ReciprocalDegreeDistance   	  RDD = new ReciprocalDegreeDistance();
         GutmanIndex                   gutman = new GutmanIndex();
         WienerPolarityIndex           wp = new WienerPolarityIndex();
         PeripheralWienerIndex         Pw = new PeripheralWienerIndex();
         Harary                        Harary = new Harary();
 		EccentricDistanceSum          EDS = new EccentricDistanceSum();
-        
+		EccentricWienerIndex          EWI = new EccentricWienerIndex();
+		
         double maxMatching = (new RandomMatching()).calculateMaxMatching(g);
         double Avg = (n * (n - 1) / 2);
 
@@ -338,12 +368,24 @@ public class Mere1 implements GraphReportExtension<RenderTable> {
          
       //  Eccentricity Connectivity  Index
 	     eci.setA(1);
-     v.add(eci.calculate(g));
+	     double ECI = eci.calculate(g);
+     v.add(ECI);
+     
+     double EDSS = EDS.calculate(g);
 	   
 	   // Eccentricity Distance Sum
-         v.add(EDS.calculate(g)); 
-        
+         v.add(EDSS); 
+    
+
        
+         v.add(EDSS-ECI); 
+         
+         v.add(ECI/EDSS); 
+         
+         // Eccentricity Wiener Index
+         v.add(EWI.calculate(g)); 
+        
+         
         int eccentricityComplexityIndex = (int)ecompi.calculate(g);
 
          //Eccentricity Complexity Index
@@ -355,7 +397,7 @@ public class Mere1 implements GraphReportExtension<RenderTable> {
           
           double harary = (double) Harary.calculate(g);
                     
-          double ss = (double) 2 /(diameter*(diameter+1)*1.0);
+          double ss = (double) 2*1.0/(diameter*(diameter+1)*1.0);
           //double ss1 = (double) 2*1.0/((diameter*diameter)+(diameter)-2)*1.0);
           
 

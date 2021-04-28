@@ -24,13 +24,13 @@ public class IncrementalZagrebCoindexSelectedEdges implements GraphReportExtensi
         return "Incremental Zagreb Coindices of Selected Edges";
     }
 
-    @Parameter(name = "Starting Value of Alpha", description = "Starting Value of Alpha")
+    @Parameter(name = "Starting Value of Alpha", description = "")
     public Double start_alpha = -10.0;
 
-    @Parameter(name = "End Value of Alpha", description = "End Value of Alpha")
+    @Parameter(name = "End Value of Alpha", description = "")
     public Double end_alpha = 10.0;
 
-    @Parameter(name = "Incremental Value", description = "Incremental Value")
+    @Parameter(name = "Incremental Value", description = "")
     public Double inc = 0.1;
 
     public String getDescription() {

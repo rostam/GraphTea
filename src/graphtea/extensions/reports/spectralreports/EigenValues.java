@@ -84,7 +84,7 @@ public class EigenValues implements GraphReportExtension<ArrayList<String>>,Para
 
 	@Override
 	public String getCategory() {
-		return "Spectral";
+		return "Spectral- Energies";
 	}
 
     @Override

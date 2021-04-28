@@ -53,7 +53,7 @@ public class ZagrebIndexFunctions {
     double getInverseSumIndegCoindex() {
         double  InverseSumIndeg = 0;
 
-        GraphModel g2 = LibraryUtils.complement(g);
+        GraphModel g2 = (GraphModel) LibraryUtils.complement(g);
         for (Edge e : g2.getEdges()) {
             int v1 = g.getDegree(g.getVertex(e.source.getId()));
             int v2 = g.getDegree(g.getVertex(e.target.getId()));
@@ -78,7 +78,16 @@ public class ZagrebIndexFunctions {
        
     
    
-    public double getAlbertson() {
+    public double getSigmaindex() {
+        double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret += ( ((g.getDegree(e.source)*1.0) - (g.getDegree(e.target)*1.0))*((g.getDegree(e.source)*1.0) - (g.getDegree(e.target)*1.0)) );
+        }
+        return ret;
+    }
+	
+	
+	    public double getAlbertson() {
         double ret = 0;
         for(Edge e : g.getEdges()) {
             ret += Math.abs(((g.getDegree(e.source)*g.getDegree(e.source)*1.0)) - ((g.getDegree(e.target)*g.getDegree(e.target)*1.0)) );
@@ -86,7 +95,13 @@ public class ZagrebIndexFunctions {
         return ret;
     }
     
-
+  public double getirregularity() {
+        double ret = 0;
+        for(Edge e : g.getEdges()) {
+            ret += Math.abs((g.getDegree(e.source)*1.0) - (g.getDegree(e.target)*1.0));
+        }
+        return ret;
+    }
 
     
     public double getAugumentedZagrebIndex() {
@@ -131,7 +146,7 @@ public class ZagrebIndexFunctions {
     public double getPBIndex() {
         double ret = 0;
         for(Edge e : g.getEdges()) {
-            ret +=  ((Math.sqrt(g.getDegree(e.source)*1.0)) + (Math.sqrt(g.getDegree(e.target))))*
+            ret +=  ((Math.sqrt(g.getDegree(e.source)*1.0)) + (Math.sqrt(g.getDegree(e.target))*1.0))*
             		(1.0/Math.sqrt(g.getDegree(e.source)*g.getDegree(e.target)*1.0))*(1.0/(Math.sqrt(g.getDegree(e.source) + g.getDegree(e.target) - 2))) ;
         }
         return ret;

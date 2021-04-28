@@ -8,7 +8,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.Vector;
 
-@CommandAttitude(name = "MerrifieldSimmons", abbreviation = "_merrifield")
+@CommandAttitude(name = "Merrifield_Simmons", abbreviation = "_merrifield")
 public class MerrifieldSimmons implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Merrifield-Simmons";

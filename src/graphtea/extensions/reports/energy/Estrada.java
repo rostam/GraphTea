@@ -182,6 +182,8 @@ public class Estrada implements GraphReportExtension<RenderTable> {
 
        // double alpha_k=numOfNZEigenValue*Math.floor(numOfNZEigenValue/2)
          //       *(1-(1/numOfNZEigenValue)*Math.floor(numOfNZEigenValue/2));
+       // System.out.println(alpha_k + "  " + numOfNZEigenValue);
+     //   System.out.println(prv[0] + "  " + eigenVal_k);
     //    v.add(Math.sqrt(2*m*numOfNZEigenValue
    //             - (Math.pow((prv[0]-eigenVal_k),2)*alpha_k)));
 

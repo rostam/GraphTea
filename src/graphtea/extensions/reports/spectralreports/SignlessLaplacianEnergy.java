@@ -23,6 +23,8 @@ public class SignlessLaplacianEnergy implements GraphReportExtension<String> {
     public String calculate(GraphModel g) {
         double power = 1;
         try {
+			double m = g.getEdgesCount();
+            double n = g.getVerticesCount();
             Matrix B = g.getWeightedAdjacencyMatrix();
             Matrix A = AlgorithmUtils.getSignlessLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
@@ -37,7 +39,7 @@ public class SignlessLaplacianEnergy implements GraphReportExtension<String> {
             }
             double sum = 0;
             double sum_i = 0;
-            for (double value : rv) sum += Math.pow(Math.abs(value), power);
+            for (double v : rv) sum += Math.pow(Math.abs(v - ((2 * m) / n)), power);
             for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
@@ -76,7 +78,7 @@ public class SignlessLaplacianEnergy implements GraphReportExtension<String> {
      * Pages 2664-2671,
      * ISSN 0012-365X,
      * https://doi.org/10.1016/j.disc.2016.04.022.
-     * @return the description
+     * @return
      */
     public String getDescription() {
         return "Signless Laplacian Energy";
@@ -84,6 +86,6 @@ public class SignlessLaplacianEnergy implements GraphReportExtension<String> {
 
     @Override
     public String getCategory() {
-        return "Spectral";
+        return "Spectral- Energies";
     }
 }

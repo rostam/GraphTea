@@ -1,15 +1,15 @@
 package graphtea.extensions.reports.topological;
 
 import graphtea.extensions.AlgorithmUtils;
-import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.extensions.reports.basicreports.GirthSize;
-import graphtea.extensions.reports.basicreports.MaxOfIndSets;
 import graphtea.extensions.reports.clique.MaxCliqueSize;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
+import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.plugins.reports.extension.GraphReportExtension;
+import graphtea.extensions.reports.basicreports.MaxOfIndSets;
 
 import java.util.ArrayList;
 import java.util.Collections;
