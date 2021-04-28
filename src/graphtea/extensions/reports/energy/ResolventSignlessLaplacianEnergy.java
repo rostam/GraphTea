@@ -18,14 +18,15 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class Energy implements GraphReportExtension<String> {
+public class ResolventSignlessLaplacianEnergy implements GraphReportExtension<String> {
 
     public String calculate(GraphModel g) {
         double power = 1;
         try {
 			double m = g.getEdgesCount();
             double n = g.getVerticesCount();
-            Matrix A = g.getWeightedAdjacencyMatrix();
+            Matrix B = g.getWeightedAdjacencyMatrix();
+            Matrix A = AlgorithmUtils.getSignlessLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
             double[] rv = ed.getRealEigenvalues();
             double[] iv = ed.getImagEigenvalues();
@@ -38,7 +39,7 @@ public class Energy implements GraphReportExtension<String> {
             }
             double sum = 0;
             double sum_i = 0;
-            for (double v : rv) sum += Math.pow(Math.abs(v), power);
+            for (double v : rv) sum += Math.pow((1/(((2*n)-1)-v)), power);
             for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
@@ -65,7 +66,7 @@ public class Energy implements GraphReportExtension<String> {
     }
 
     public String getName() {
-        return "Energy";
+        return "Resolvent Signless Laplacian Energy";
     }
 
     /**
@@ -80,7 +81,7 @@ public class Energy implements GraphReportExtension<String> {
      * @return
      */
     public String getDescription() {
-        return "Energy";
+        return "Resolvent Signless Laplacian Energy";
     }
 
     @Override

@@ -17,15 +17,20 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  * @author M. Ali Rostami
  */
 
-@CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class Energy implements GraphReportExtension<String> {
+@CommandAttitude(name = "deg_kirshhoff_index", abbreviation = "_evs")
+public class NormalizedLaplacianResolventEnergy implements GraphReportExtension<String> {
+
+    double round(double value, int decimalPlace) {
+        double power_of_ten = 1;
+        while (decimalPlace-- > 0)
+            power_of_ten *= 10.0;
+        return Math.round(value * power_of_ten)
+                / power_of_ten;
+    }
 
     public String calculate(GraphModel g) {
-        double power = 1;
         try {
-			double m = g.getEdgesCount();
-            double n = g.getVerticesCount();
-            Matrix A = g.getWeightedAdjacencyMatrix();
+            Matrix A = AlgorithmUtils.getNormalizedLaplacian(g);
             EigenvalueDecomposition ed = A.eig();
             double[] rv = ed.getRealEigenvalues();
             double[] iv = ed.getImagEigenvalues();
@@ -38,7 +43,11 @@ public class Energy implements GraphReportExtension<String> {
             }
             double sum = 0;
             double sum_i = 0;
-            for (double v : rv) sum += Math.pow(Math.abs(v), power);
+            for (double value : rv)
+                if (Math.abs(round(value, 6)) != 0) {
+                    sum += 1 /(3- Math.abs(value));
+                }
+            sum *= 2*g.getEdgesCount();
             for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
@@ -54,10 +63,10 @@ public class Energy implements GraphReportExtension<String> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 5) + " + "
-                        + AlgorithmUtils.round(num.im(), 5) + "i";
+                return "" + round(num.re(), 5) + " + "
+                        + round(num.im(), 5) + "i";
             } else {
-                return "" + AlgorithmUtils.round(sum, 5);
+                return "" + round(sum, 5);
             }
         } catch (Exception ignored) {
         }
@@ -65,22 +74,11 @@ public class Energy implements GraphReportExtension<String> {
     }
 
     public String getName() {
-        return "Energy";
+        return "Normalized Laplacian Resolvent Energy";
     }
 
-    /**
-     * Ivan Gutman, Luis Medina C, Pamela Pizarro, María Robbiano,
-     * Graphs with maximum Laplacian and signless Laplacian Estrada index,
-     * Discrete Mathematics,
-     * Volume 339, Issue 11,
-     * 2016,
-     * Pages 2664-2671,
-     * ISSN 0012-365X,
-     * https://doi.org/10.1016/j.disc.2016.04.022.
-     * @return
-     */
     public String getDescription() {
-        return "Energy";
+        return "Normalized Laplacian Resolvent Energy";
     }
 
     @Override

@@ -18,14 +18,14 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 
 @CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class Energy implements GraphReportExtension<String> {
-
+public class ResolventLaplacianEnergy implements GraphReportExtension<String> {
     public String calculate(GraphModel g) {
         double power = 1;
         try {
 			double m = g.getEdgesCount();
             double n = g.getVerticesCount();
-            Matrix A = g.getWeightedAdjacencyMatrix();
+            Matrix B = g.getWeightedAdjacencyMatrix();
+            Matrix A = AlgorithmUtils.getLaplacian(B);
             EigenvalueDecomposition ed = A.eig();
             double[] rv = ed.getRealEigenvalues();
             double[] iv = ed.getImagEigenvalues();
@@ -38,7 +38,7 @@ public class Energy implements GraphReportExtension<String> {
             }
             double sum = 0;
             double sum_i = 0;
-            for (double v : rv) sum += Math.pow(Math.abs(v), power);
+            for (double v : rv) sum += Math.pow((1/(n+1-v)), power);
             for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
@@ -46,14 +46,14 @@ public class Energy implements GraphReportExtension<String> {
                 System.out.println("imaginary part is available. So this function does not work.");
                 sum_i=0;
                 Complex num = new Complex(0,0);
-//                for(int i=0;i < iv.length;i++) {
-//                    Complex tmp = new Complex(rv[i], iv[i]);
-//                    System.out.println(tmp);
-//                    tmp.pow(new Complex(power,0));
-//                    System.out.println(power);
-//                    System.out.println(tmp);
-//                    num.plus(tmp);
-//                }
+                for(int i=0;i < iv.length;i++) {
+                    Complex tmp = new Complex(rv[i], iv[i]);
+                    System.out.println(tmp);
+                    tmp.pow(new Complex(power,0));
+                    System.out.println(power);
+                    System.out.println(tmp);
+                    num.plus(tmp);
+                }
                 return "" + AlgorithmUtils.round(num.re(), 5) + " + "
                         + AlgorithmUtils.round(num.im(), 5) + "i";
             } else {
@@ -65,22 +65,11 @@ public class Energy implements GraphReportExtension<String> {
     }
 
     public String getName() {
-        return "Energy";
+        return "Resolvent Laplacian Energy";
     }
 
-    /**
-     * Ivan Gutman, Luis Medina C, Pamela Pizarro, María Robbiano,
-     * Graphs with maximum Laplacian and signless Laplacian Estrada index,
-     * Discrete Mathematics,
-     * Volume 339, Issue 11,
-     * 2016,
-     * Pages 2664-2671,
-     * ISSN 0012-365X,
-     * https://doi.org/10.1016/j.disc.2016.04.022.
-     * @return
-     */
     public String getDescription() {
-        return "Energy";
+        return "Resolvent Laplacian Energy";
     }
 
     @Override
