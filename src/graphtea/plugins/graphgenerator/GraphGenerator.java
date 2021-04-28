@@ -137,10 +137,10 @@ public class GraphGenerator implements PluginMethods {
     }
 
     /**
-     * @see graphtea.extensions.generators.KenserGraphGenerator#generateKenserGraph(int,int)
+     * @see KndKneserGraphGenerator#generateKenserGraph(int,int)
      */
     public static GraphModel generateKenserGraph(int n, int d) {
-        return KenserGraphGenerator.generateKenserGraph(n, d);
+        return KndKneserGraphGenerator.generateKenserGraph(n, d);
     }
 
 

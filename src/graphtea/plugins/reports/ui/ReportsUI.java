@@ -73,7 +73,7 @@ public class ReportsUI {
         } catch (IOException e) {
             StaticUtils.addExceptionLog(e);
         }
-        System.out.println(h);
+//        System.out.println(h);
         html.setHTML(h);
     }
 }

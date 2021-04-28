@@ -209,17 +209,17 @@
             </fileset>
         </jar>
         
-        <jar destfile="${dist.dir}/plugins/connector.jar">
-            <manifest>
-                <attribute name="Built-By" value="${user.name}"/>
-                <attribute name="plugin-name" value="connector"/>
-                <attribute name="plugin-version" value="20060104"/>
-                <attribute name="plugin-depends" value="main 20060104"/>
-            </manifest>
-            <fileset dir="${build.dir}">
-                <include name="graphtea/plugins/connector/**/*.*"/>
-            </fileset>
-        </jar>
+<!--        <jar destfile="${dist.dir}/plugins/connector.jar">-->
+<!--            <manifest>-->
+<!--                <attribute name="Built-By" value="${user.name}"/>-->
+<!--                <attribute name="plugin-name" value="connector"/>-->
+<!--                <attribute name="plugin-version" value="20060104"/>-->
+<!--                <attribute name="plugin-depends" value="main 20060104"/>-->
+<!--            </manifest>-->
+<!--            <fileset dir="${build.dir}">-->
+<!--                <include name="graphtea/plugins/connector/**/*.*"/>-->
+<!--            </fileset>-->
+<!--        </jar>-->
         <jar destfile="${dist.dir}/lib/graphtea-ui-library.jar">
             <manifest>
                 <attribute name="Built-By" value="${user.name}"/>
