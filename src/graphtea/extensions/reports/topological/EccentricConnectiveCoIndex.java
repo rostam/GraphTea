@@ -1,0 +1,51 @@
+// GraphTea Project: http://github.com/graphtheorysoftware/GraphTea
+// Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
+// Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
+// Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
+package graphtea.extensions.reports.topological;
+
+import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
+import graphtea.extensions.reports.others.Eccentricity;
+import graphtea.graph.graph.GraphModel;
+import graphtea.graph.graph.Vertex;
+import graphtea.platform.lang.CommandAttitude;
+import graphtea.plugins.reports.extension.GraphReportExtension;
+
+/**
+ * @author azin azadi
+
+ */
+
+
+@CommandAttitude(name = "eccentric_connective_co_index", abbreviation = "_ECcoindex")
+public class EccentricConnectiveCoIndex implements GraphReportExtension<Double> {
+    private double a=1;
+
+    public String getName() {
+        return "Eccentric Connective Co-Index";
+    }
+
+    public String getDescription() {
+        return "Eccentric Connective Co-Index";
+    }
+
+    public void setA(double value) {
+        a = value;
+    }
+
+    public Double calculate(GraphModel g) {
+        FloydWarshall fw = new FloydWarshall();
+        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+    	double sum = 0;
+		double n = g.getVerticesCount();
+        for (Vertex v : g) {
+        	sum += Math.pow(g.getDegree(v), a) * (n-1-Eccentricity.eccentricity(g, v.getId(), dist));
+        }
+        return sum;
+    }
+
+	@Override
+	public String getCategory() {
+		return "Topological Indices-Distance";
+	}
+}
