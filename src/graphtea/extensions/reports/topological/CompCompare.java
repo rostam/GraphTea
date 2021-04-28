@@ -32,7 +32,7 @@ import java.util.Vector;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "Mere", abbreviation = "_Mere")
+@CommandAttitude(name = "Complexity_Compare", abbreviation = "_Complexity_Compare")
 public class CompCompare implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Complexity-Compare";
