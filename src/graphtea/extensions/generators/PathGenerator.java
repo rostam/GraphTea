@@ -5,6 +5,7 @@
 package graphtea.extensions.generators;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -14,8 +15,6 @@ import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
-
-import java.awt.*;
 
 /**
  * @author azin azadi
@@ -52,7 +51,7 @@ public class PathGenerator implements GraphGeneratorExtension, Parametrizable, S
         return ret;
     }
 
-    public Point[] getVertexPositions() {
+    public GPoint[] getVertexPositions() {
         return PositionGenerators.line(5, 5, 10000, 10000, n);
     }
 

@@ -133,7 +133,6 @@ public class UpperBounds implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        // TODO Auto-generated method stub
        return "Verification- Energy";
     }
 

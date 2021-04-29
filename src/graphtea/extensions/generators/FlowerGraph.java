@@ -6,6 +6,7 @@
 package graphtea.extensions.generators;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -14,8 +15,6 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
-
-import java.awt.*;
 
 /**
  * Author: Mohsen Khaki
@@ -64,12 +63,12 @@ public class FlowerGraph implements GraphGeneratorExtension, Parametrizable, Sim
         return result;
 	}
 
-	public Point[] getVertexPositions()
+	public GPoint[] getVertexPositions()
 	{
 		int w = 1000;
 		double mw = ((double)w)/2.0, qw = ((double)w)/4.0;
-		Point[] result = new Point[2*n+1];
-		result[2*n] = new Point(w/2, w/2);
+		GPoint[] result = new GPoint[2*n+1];
+		result[2*n] = new GPoint(w/2, w/2);
 		double ang = Math.PI*2.0/n;
 		double offset = 0.0;
 		if ((n % 2) == 0)
@@ -78,8 +77,8 @@ public class FlowerGraph implements GraphGeneratorExtension, Parametrizable, Sim
 		{
 			double angle = offset + i * ang;
             double angle2 = angle + ang/6;
-			result[i] = new Point((int)(mw + Math.sin(angle2)* mw), (int)(mw - Math.cos(angle2)* mw));
-			result[n+i] = new Point((int)(mw + Math.sin(angle)* qw), (int)(mw - Math.cos(angle)* qw));
+			result[i] = new GPoint((int)(mw + Math.sin(angle2)* mw), (int)(mw - Math.cos(angle2)* mw));
+			result[n+i] = new GPoint((int)(mw + Math.sin(angle)* qw), (int)(mw - Math.cos(angle)* qw));
 		}
 		return result;
 	}

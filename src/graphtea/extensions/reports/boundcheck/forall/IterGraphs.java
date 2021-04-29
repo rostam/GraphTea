@@ -8,6 +8,7 @@ import graphtea.extensions.reports.boundcheck.forall.filters.GeneratorFilters;
 import graphtea.extensions.reports.boundcheck.forall.iterators.AllGraphIterator;
 import graphtea.extensions.reports.boundcheck.forall.iterators.GraphGeneratorIterator;
 import graphtea.extensions.reports.boundcheck.forall.iterators.GraphModelIterator;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
@@ -16,7 +17,6 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.awt.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -114,7 +114,7 @@ public class IterGraphs {
     public void showWrapper(BlackBoard blackboard) {
         AllGraphIterator agi = new AllGraphIterator(type, size);
         GraphModel g = agi.next();
-        Point[] pp = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
+        GPoint[] pp = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
         int tmpcnt = 0;
         for (Vertex v : g) {

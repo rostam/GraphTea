@@ -9,8 +9,6 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
-import java.awt.*;
-
 public class CircularVisualization implements GraphActionExtension {
     private static void circularVisualize(GraphModel g) {
         GRect b = g.getAbsBounds();
@@ -29,7 +27,7 @@ public class CircularVisualization implements GraphActionExtension {
         int i = 0;
         for (Vertex vm : g)
             v[i++] = vm;
-        Point[] p = PositionGenerators.circle(25, 25, w + 25, h + 25, n);
+        GPoint[] p = PositionGenerators.circle(25, 25, w + 25, h + 25, n);
         for (i = 0; i < n; i++) {
             v[i].setLocation(new GPoint(p[i].x, p[i].y));
         }
@@ -41,7 +39,7 @@ public class CircularVisualization implements GraphActionExtension {
         int i = 0;
         for (Vertex vm : g.vertices)
             v[i++] = vm;
-        Point[] p = PositionGenerators.circle(r, x, y, n);
+        GPoint[] p = PositionGenerators.circle(r, x, y, n);
         for (i = 0; i < n; i++) {
             v[i].setLocation(new GPoint(p[i].x, p[i].y));
         }
@@ -78,7 +76,7 @@ public class CircularVisualization implements GraphActionExtension {
             h = 300;
 
         int n = g.getVerticesCount();
-        Point[] p = PositionGenerators.circle(25, 25, w + 25, h + 25, n);
+        GPoint[] p = PositionGenerators.circle(25, 25, w + 25, h + 25, n);
         for (int i = 0; i < n; i++) {
             g.getVertex(i).setLocation(new GPoint(p[i].x, p[i].y));
         }

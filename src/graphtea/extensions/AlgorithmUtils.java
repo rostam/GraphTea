@@ -12,7 +12,6 @@ import graphtea.graph.graph.*;
 import graphtea.library.Path;
 import graphtea.library.algorithms.LibraryUtils;
 
-import java.awt.*;
 import java.math.BigInteger;
 import java.util.*;
 
@@ -628,14 +627,14 @@ public class AlgorithmUtils {
        return g2;
     }
 
-    public static Point[] computeRandomPositions(int numOfVertices) {
-        Point[] ret = new Point[numOfVertices];
+    public static GPoint[] computeRandomPositions(int numOfVertices) {
+        GPoint[] ret = new GPoint[numOfVertices];
         int w = 100;
         int h = 100;
         for (int i = 0; i < numOfVertices; i++) {
             int x = (int) (Math.random() * w);
             int y = (int) (Math.random() * h);
-            ret[i] = new Point(x, y);
+            ret[i] = new GPoint(x, y);
         }
         return ret;
     }

@@ -7,13 +7,13 @@ package graphtea.extensions.io;
 
 import Jama.Matrix;
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.saveload.SaveLoadPluginMethods;
 import graphtea.plugins.main.saveload.core.extension.GraphReaderExtension;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -53,7 +53,7 @@ public class LoadMtx implements GraphReaderExtension {
                     }
                 }
             }
-            Point[] pp = PositionGenerators.circle(420, 300, 250, g.numOfVertices());
+            GPoint[] pp = PositionGenerators.circle(420, 300, 250, g.numOfVertices());
 
             int tmpcnt = 0;
             for (Vertex v : g) {

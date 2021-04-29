@@ -6,6 +6,7 @@
 package graphtea.extensions.actions.g6;
 
 import graphtea.extensions.G6Format;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.parameter.Parameter;
@@ -15,7 +16,6 @@ import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -62,7 +62,7 @@ public class G6CSVStringLoader implements GraphActionExtension, Parametrizable {
             }
             if(!g6.equals("")) {
                 GraphModel g = G6Format.stringToGraphModel(g6);
-                Point[] pp = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
+                GPoint[] pp = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
                 int tmpcnt = 0;
                 for (Vertex v : g) {

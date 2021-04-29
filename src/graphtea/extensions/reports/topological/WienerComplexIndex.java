@@ -4,12 +4,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological;
 
-import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
-import graphtea.extensions.reports.topological.WienerIndex;
-import graphtea.extensions.reports.others.Eccentricity;
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.Vertex;
 import Jama.Matrix;
+import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
+import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 

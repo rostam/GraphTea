@@ -77,7 +77,7 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
                 if(cnt < 10 )
                   distance = Integer.parseInt(command.substring(9, command.lastIndexOf('m')));
                 else distance = Integer.parseInt(command.substring(10, command.lastIndexOf('m')));
-                Point[] ps = PositionGenerators.circle(distance*3,(int)center.x,(int)center.y,maxNumNodesInLevel);
+                GPoint[] ps = PositionGenerators.circle(distance*3,(int)center.x,(int)center.y,maxNumNodesInLevel);
                 while(forbiddenIndex.contains(randInd)) {
                     randInd = (int) (Math.random() * maxNumNodesInLevel);
                 }

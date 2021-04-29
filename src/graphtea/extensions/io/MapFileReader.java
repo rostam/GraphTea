@@ -71,7 +71,6 @@ public class MapFileReader {
 
 		} catch (DOMException | ParserConfigurationException | SAXException
 				| IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

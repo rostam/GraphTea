@@ -170,7 +170,6 @@ public class Linear implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        // TODO Auto-generated method stub
        return "Verification- Energy";
     }
 

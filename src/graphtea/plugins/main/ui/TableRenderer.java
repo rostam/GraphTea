@@ -6,6 +6,7 @@
 package graphtea.plugins.main.ui;
 
 import graphtea.extensions.G6Format;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
@@ -57,7 +58,7 @@ public class TableRenderer implements GBasicCellRenderer<RenderTable> {
                 if (event.getValueIsAdjusting()) {
                     GraphModel g = G6Format.stringToGraphModel(table.getValueAt(table.getSelectedRow(),
                             sd.getTitles().size() - 1).toString());
-                    Point[] pp = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
+                    GPoint[] pp = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
                     int tmpcnt = 0;
                     for (Vertex v : g) {

@@ -75,7 +75,6 @@ public class RandomMatching implements GraphReportExtension<Vector<Object>> {
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "General";
 	}
 

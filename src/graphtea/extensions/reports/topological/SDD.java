@@ -3,13 +3,12 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
+import graphtea.extensions.reports.RandomMatching;
 import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.extensions.reports.basicreports.GirthSize;
-import graphtea.extensions.reports.RandomMatching;
-import graphtea.extensions.reports.matching.MaxMatchingExtension;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.extensions.reports.clique.MaxCliqueSize;
-import graphtea.extensions.reports.matching.MaximumMatching;
+import graphtea.extensions.reports.matching.MaxMatchingExtension;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;

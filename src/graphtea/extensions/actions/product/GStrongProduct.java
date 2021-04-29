@@ -5,8 +5,6 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 
-import java.awt.*;
-
 public class GStrongProduct extends GProduct {
     @Override
     public boolean compare(Vertex v1OfFirstG, Vertex v2OfFirstG, Vertex v1OfSecondG, Vertex v2OfSecondG) {
@@ -20,7 +18,7 @@ public class GStrongProduct extends GProduct {
     @Override
     public void setPositions(GraphModel g) {
         int n = g.getVerticesCount();
-        Point[] ps = PositionGenerators.circle(250, 300, 300, n);
+        GPoint[] ps = PositionGenerators.circle(250, 300, 300, n);
         setProductLabel(g);
         int count = 0;
         for (Vertex v : g) {

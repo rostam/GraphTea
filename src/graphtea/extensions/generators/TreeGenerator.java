@@ -5,6 +5,7 @@
 package graphtea.extensions.generators;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.ArrayX;
@@ -14,8 +15,6 @@ import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
-
-import java.awt.*;
 
 /**
  * @author azin azadi, Hoshmand Hasannia, Ali Rostami
@@ -78,9 +77,9 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
         return ret;
     }
 
-    public Point[] getVertexPositionsBackward() {
-        Point[] ret = new Point[n];
-        ret[0] = new Point(20000 / 2, 20000 / 2);
+    public GPoint[] getVertexPositionsBackward() {
+        GPoint[] ret = new GPoint[n];
+        ret[0] = new GPoint(20000 / 2, 20000 / 2);
         int last = 1;
         int ww = 20000;
         int hh = 20000;
@@ -88,14 +87,14 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
         for (int i = 0; i < n - Math.pow(degree, depth); i++) {
             int h = (int) ((Math.log((i + 1) * (degree - 1))) / Math.log(degree));
             int rad = (i == 0 ? rad0 : (int) (rad0 / Math.pow(2.5, h)));
-            Point[] _p = PositionGenerators.circle(rad, ret[i].x, ret[i].y, degree);
+            GPoint[] _p = PositionGenerators.circle(rad, ret[i].x, ret[i].y, degree);
             System.arraycopy(_p, 0, ret, last, degree);
             last += degree;
         }
         return ret;
     }
 
-    public Point[] getVertexPositions() {
+    public GPoint[] getVertexPositions() {
         String positioning = m.getValue();
         n = (int) ((Math.pow(degree, depth + 1) - 1) / (degree - 1));
         if (positioning.equals("Backward")) {
@@ -107,8 +106,8 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
     }
 
 
-    private Point[] getVertexPositionUpdown() {
-        Point[] ret = new Point[n];
+    private GPoint[] getVertexPositionUpdown() {
+        GPoint[] ret = new GPoint[n];
         double vwidth = 200;
         double vheight = 200;
         double yratio = vheight / depth;
@@ -123,19 +122,19 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
 
             for (int j = 1; j <= vertexnInRow; j++) {
                 double x = j * xratio;
-                ret[firstInRow + j - 2] = new Point((int) x, (int) yratio * i);
+                ret[firstInRow + j - 2] = new GPoint((int) x, (int) yratio * i);
             }
         }
         return ret;
     }
 
-    public Point[] getVertexPositionsCircular() {
-        Point[] ret = new Point[n];
-        ret[0] = new Point(0, 0);
+    public GPoint[] getVertexPositionsCircular() {
+        GPoint[] ret = new GPoint[n];
+        ret[0] = new GPoint(0, 0);
         int last = 1;
         for (int h = 1; h <= depth; h++) {
             int n = (int) Math.pow(degree, h);
-            Point[] p = PositionGenerators.circle(30 * h * h, 0, 0, n);
+            GPoint[] p = PositionGenerators.circle(30 * h * h, 0, 0, n);
             System.arraycopy(p, 0, ret, last, n);
             last += n;
         }

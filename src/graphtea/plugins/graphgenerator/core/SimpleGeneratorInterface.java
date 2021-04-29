@@ -5,9 +5,8 @@
 package graphtea.plugins.graphgenerator.core;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.Vertex;
-
-import java.awt.*;
 
 /**
  * a helper interface to generate graphs easily, historically the base version of graph generator extension
@@ -21,6 +20,5 @@ public interface SimpleGeneratorInterface {
 
     Edge[] getEdges();
 
-    //todo: make it return GPoint
-    Point[] getVertexPositions();
+    GPoint[] getVertexPositions();
 }

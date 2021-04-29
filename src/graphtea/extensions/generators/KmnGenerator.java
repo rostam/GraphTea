@@ -5,6 +5,7 @@
 package graphtea.extensions.generators;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -14,8 +15,6 @@ import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
-
-import java.awt.*;
 
 /**
  * User: root
@@ -68,12 +67,12 @@ public class KmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
         return ret;
     }
 
-    public Point[] getVertexPositions() {
+    public GPoint[] getVertexPositions() {
         int w = 100;
         int h = 100;
-        Point[] ret = new Point[m + n];
-        Point[] np = PositionGenerators.line(5, h / 4, w, 0, n);
-        Point[] mp = PositionGenerators.line(5, 3 * h / 4, w, 0, m);
+        GPoint[] ret = new GPoint[m + n];
+        GPoint[] np = PositionGenerators.line(5, h / 4, w, 0, n);
+        GPoint[] mp = PositionGenerators.line(5, 3 * h / 4, w, 0, m);
         System.arraycopy(np, 0, ret, 0, n);
         System.arraycopy(mp, 0, ret, n, m);
         return ret;

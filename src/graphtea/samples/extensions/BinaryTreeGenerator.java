@@ -13,8 +13,6 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-import java.awt.*;
-
 public class BinaryTreeGenerator implements GraphGeneratorExtension, Parametrizable {
 
     //the depth should be positive, and also if it is very large the
@@ -40,12 +38,12 @@ public class BinaryTreeGenerator implements GraphGeneratorExtension, Parametriza
     }
 
     public GPoint[] getVertexPositions() {
-        Point[] r = new Point[n];
-        r[0] = new Point(0, 0);
+        GPoint[] r = new GPoint[n];
+        r[0] = new GPoint(0, 0);
         int last = 1;
         for (int h = 1; h <= d; h++) {
             int nh = (int) Math.pow(2, h);      //num of vertices at height h.
-            Point[] p = PositionGenerators.circle(30 * h * h, 0, 0, nh);
+            GPoint[] p = PositionGenerators.circle(30 * h * h, 0, 0, nh);
             System.arraycopy(p, 0, r, last, nh);
             last += nh;
         }

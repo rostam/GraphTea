@@ -5,8 +5,6 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 
-import java.awt.*;
-
 public class GSymmDiff extends GProduct {
     @Override
     public boolean compare(Vertex v1OfFirstG, Vertex v2OfFirstG, Vertex v1OfSecondG, Vertex v2OfSecondG) {
@@ -19,7 +17,7 @@ public class GSymmDiff extends GProduct {
     @Override
     public void setPositions(GraphModel g) {
         int n = g.getVerticesCount();
-        Point[] ps = PositionGenerators.circle(200, 300, 300, n);
+        GPoint[] ps = PositionGenerators.circle(200, 300, 300, n);
         int count = 0;
         for (Vertex v : g) {
             v.setLocation(new GPoint(ps[count].x, ps[count].y));

@@ -6,6 +6,7 @@ package graphtea.extensions.generators;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -14,8 +15,6 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
-
-import java.awt.*;
 
 /**
  * User: root
@@ -58,7 +57,7 @@ public class RandomTreeGenerator implements GraphGeneratorExtension, Parametriza
         return ret;
     }
 
-    public Point[] getVertexPositions() {
+    public GPoint[] getVertexPositions() {
         return AlgorithmUtils.computeRandomPositions(n);
     }
 

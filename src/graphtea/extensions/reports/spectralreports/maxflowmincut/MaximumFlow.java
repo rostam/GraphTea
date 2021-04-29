@@ -42,7 +42,6 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 	}
 
 	public int doAlgorithm() {
-		// TODO Auto-generated method stub
 		resetGraphTeaels();
 		GraphRequest<BaseVertex, BaseEdge<BaseVertex>> gr = new GraphRequest<>();
 		try{

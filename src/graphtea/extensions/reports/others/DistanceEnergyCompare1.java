@@ -1,6 +1,5 @@
 package graphtea.extensions.reports.others;
 
-import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.spectralreports.DistanceEnergy;

@@ -14,8 +14,6 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-import java.awt.*;
-
 @CommandAttitude(name = "generate_helmn", abbreviation = "_g_prism", description = "generates a Prism graph of order n")
 public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
 
@@ -79,9 +77,9 @@ public class PrismGraph implements GraphGeneratorExtension, Parametrizable {
     }
 
     static GPoint[] computePrismCoords(int n) {
-        Point[] r = new Point[2 * n];
-        Point[] p1 = PositionGenerators.circle(20000, 10000, 10000,  n);
-        Point[] p2 = PositionGenerators.circle(30000, 10000, 10000,  n);
+        GPoint[] r = new GPoint[2 * n];
+        GPoint[] p1 = PositionGenerators.circle(20000, 10000, 10000,  n);
+        GPoint[] p2 = PositionGenerators.circle(30000, 10000, 10000,  n);
 
         for (int i = 0; i < n; i++) {
             r[i] = p1[i];

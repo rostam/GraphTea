@@ -11,13 +11,13 @@ package graphtea.extensions.io.g6format;
 
 import graphtea.extensions.G6Format;
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.main.saveload.SaveLoadPluginMethods;
 import graphtea.plugins.main.saveload.core.extension.GraphReaderExtension;
 
-import java.awt.*;
 import java.io.*;
 import java.util.Scanner;
 
@@ -47,7 +47,7 @@ public class LoadGraph6Format implements GraphReaderExtension {
         }
 
         GraphModel g = G6Format.stringToGraphModel(g6);
-        Point[] pp = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
+        GPoint[] pp = PositionGenerators.circle(200, 400, 250, g.numOfVertices());
 
         int tmpcnt = 0;
         for (Vertex v : g) {

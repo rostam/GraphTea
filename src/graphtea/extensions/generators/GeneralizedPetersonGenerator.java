@@ -6,6 +6,7 @@
 package graphtea.extensions.generators;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -15,8 +16,6 @@ import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
-
-import java.awt.*;
 
 /**
  * @author Mohammad Ali Rostami
@@ -65,10 +64,10 @@ public class GeneralizedPetersonGenerator implements GraphGeneratorExtension, Pa
         return ret;
     }
 
-    public Point[] getVertexPositions() {
-        Point[] p = new Point[2 * n];
-        Point[] p1 = PositionGenerators.circle(300, 200, 200, n);
-        Point[] p2 = PositionGenerators.circle(600, 200, 200, n);
+    public GPoint[] getVertexPositions() {
+        GPoint[] p = new GPoint[2 * n];
+        GPoint[] p1 = PositionGenerators.circle(300, 200, 200, n);
+        GPoint[] p2 = PositionGenerators.circle(600, 200, 200, n);
         for (int i = 0; i < n; i++) {
             p[i] = p2[i];
             p[i + n] = p1[i];

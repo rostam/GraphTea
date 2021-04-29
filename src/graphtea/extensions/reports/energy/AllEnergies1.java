@@ -9,19 +9,15 @@ import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.extensions.reports.basicreports.NumOfConnectedComponents;
+import graphtea.extensions.reports.spectralreports.*;
 import graphtea.extensions.reports.topological.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
+import graphtea.library.algorithms.util.BipartiteChecker;
 import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-import graphtea.library.algorithms.util.BipartiteChecker;
-import graphtea.extensions.reports.spectralreports.DistanceEnergy;
-import graphtea.extensions.reports.spectralreports.DistanceLaplacianEnergy;
-import graphtea.extensions.reports.spectralreports.DistanceSignlessLaplacianEnergy;
-import graphtea.extensions.reports.spectralreports.LaplacianEnergy;
-import graphtea.extensions.reports.spectralreports.SignlessLaplacianEnergy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -188,7 +184,6 @@ public class AllEnergies1 implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getCategory() {
-        // TODO Auto-generated method stub
         return "Verification- Energy";
     }
     

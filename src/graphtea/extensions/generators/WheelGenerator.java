@@ -6,6 +6,7 @@
 package graphtea.extensions.generators;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -15,8 +16,6 @@ import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
-
-import java.awt.*;
 
 /**
  * @author Mohammad Ali Rostami
@@ -64,10 +63,10 @@ public class WheelGenerator implements GraphGeneratorExtension, Parametrizable, 
         return ret;
     }
 
-    public Point[] getVertexPositions() {
-        Point[] p = new Point[n];
-        Point[] p1 = PositionGenerators.circle(50000, 200, 200, n - 1);
-        Point p2 = new Point(200, 200);
+    public GPoint[] getVertexPositions() {
+        GPoint[] p = new GPoint[n];
+        GPoint[] p1 = PositionGenerators.circle(50000, 200, 200, n - 1);
+        GPoint p2 = new GPoint(200, 200);
         System.arraycopy(p1, 0, p, 1, n - 1);
         p[0] = p2;
         return p;

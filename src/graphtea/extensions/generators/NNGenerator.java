@@ -5,6 +5,7 @@
 package graphtea.extensions.generators;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.parameter.Parameter;
@@ -14,7 +15,6 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-import java.awt.*;
 import java.util.Vector;
 
 /**
@@ -71,16 +71,16 @@ public class NNGenerator implements GraphGeneratorExtension, Parametrizable, Sim
         return rets.toArray(new Edge[v.length]);
     }
 
-    public Point[] getVertexPositions() {
+    public GPoint[] getVertexPositions() {
         int w = 100;
         int h = 100;
-        Point[] ret = new Point[hiddenSize * hidden + 2];
-        ret[0] = new Point(5,h/2);
-        Point[] np = PositionGenerators.line(15, h / 4, 0, h, hiddenSize);
-        Point[] mp = PositionGenerators.line(25, h / 4,   0, h, hiddenSize);
+        GPoint[] ret = new GPoint[hiddenSize * hidden + 2];
+        ret[0] = new GPoint(5,h/2);
+        GPoint[] np = PositionGenerators.line(15, h / 4, 0, h, hiddenSize);
+        GPoint[] mp = PositionGenerators.line(25, h / 4,   0, h, hiddenSize);
         System.arraycopy(np, 0, ret, 1, hiddenSize);
         System.arraycopy(mp, 0, ret, hiddenSize + 1, hiddenSize);
-        ret[ret.length - 1] = new Point(35,h/2);
+        ret[ret.length - 1] = new GPoint(35,h/2);
         return ret;
     }
 

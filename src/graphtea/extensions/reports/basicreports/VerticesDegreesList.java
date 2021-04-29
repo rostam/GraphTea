@@ -36,7 +36,6 @@ public class VerticesDegreesList implements GraphReportExtension<ArrayList<Integ
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "General";
 	}
 }

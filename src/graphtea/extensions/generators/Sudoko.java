@@ -5,6 +5,7 @@
 package graphtea.extensions.generators;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -14,7 +15,6 @@ import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-import java.awt.*;
 import java.util.Vector;
 
 /**
@@ -69,8 +69,8 @@ public class Sudoko implements GraphGeneratorExtension, Parametrizable, SimpleGe
         return ret;
     }
 
-    public Point[] getVertexPositions() {
-        Vector<Point> vs = new Vector<>();
+    public GPoint[] getVertexPositions() {
+        Vector<GPoint> vs = new Vector<>();
         int baseX = 210;int distX = 60;
         int baseY = 210;int distY = 60;
 
@@ -78,13 +78,13 @@ public class Sudoko implements GraphGeneratorExtension, Parametrizable, SimpleGe
             for (int k2 = 0; k2 < Math.sqrt(n); k2++) {
                 for (int i = 0; i < Math.sqrt(n); i++) {
                     for (int j = 0; j < Math.sqrt(n); j++) {
-                        vs.add(new Point(k2*baseX + j * distX, k1*baseY + i * distY));
+                        vs.add(new GPoint(k2*baseX + j * distX, k1*baseY + i * distY));
                     }
                 }
             }
         }
 
-        Point[] ret = new Point[vs.size()];
+        GPoint[] ret = new GPoint[vs.size()];
         for(int i=0;i<vs.size();i++) ret[i] = vs.get(i);
         return ret;
     }

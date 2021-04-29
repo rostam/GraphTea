@@ -6,6 +6,7 @@
 package graphtea.extensions.generators;
 
 import graphtea.graph.graph.Edge;
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -14,8 +15,6 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
-
-import java.awt.*;
 
 /**
  * Author: Mohsen Khaki
@@ -65,11 +64,11 @@ public class SunletCrownGraph implements GraphGeneratorExtension, Parametrizable
         return result;
 	}
 
-	public Point[] getVertexPositions()
+	public GPoint[] getVertexPositions()
 	{
 		int w = 1000;
 		double mw = ((double)w)/2.0, qw = ((double)w)/4.0;
-		Point[] result = new Point[2*n];
+		GPoint[] result = new GPoint[2*n];
 		//result[2*n] = new Point((int)(w/2), (int)(w/2));
 		double ang = Math.PI*2.0/n;
 		double offset = 0.0;
@@ -78,8 +77,8 @@ public class SunletCrownGraph implements GraphGeneratorExtension, Parametrizable
 		for ( int i = 0 ; i < n ; i++ )
 		{
 			double angle = offset + i * ang;
-			result[i] = new Point((int)(mw + Math.sin(angle)* mw), (int)(mw - Math.cos(angle)* mw));
-			result[n+i] = new Point((int)(mw + Math.sin(angle)* qw), (int)(mw - Math.cos(angle)* qw));
+			result[i] = new GPoint((int)(mw + Math.sin(angle)* mw), (int)(mw - Math.cos(angle)* mw));
+			result[n+i] = new GPoint((int)(mw + Math.sin(angle)* qw), (int)(mw - Math.cos(angle)* qw));
 		}
 		return result;
 	}
