@@ -35,7 +35,7 @@ public class BellmanFord extends GraphAlgorithm implements AutomatedAlgorithm {
     /**
      * A graph with a negative cycle is not well defined
      * as the input of a shortest path algorithm. Bellman-Ford
-     * algorithms checks for this inconvenienc, along with
+     * algorithms checks for this inconvenience, along with
      * solving the single source shortest path algorithm.
      *
      * @param graph  with arbitrary edge weights.

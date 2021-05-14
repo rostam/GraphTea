@@ -95,7 +95,7 @@ public class ExtensionLoader implements StorableOnExit {
         try {
             if (Extension.class.isAssignableFrom(extensionClass)) {
                 Constructor<Extension>[] cs = (Constructor<Extension>[]) extensionClass.getConstructors();
-                for (Constructor c : cs) {
+                for (Constructor<Extension> c : cs) {
                     Class[] p = c.getParameterTypes();
                     if (p.length == 1 && p[0].equals(BlackBoard.class)) {
                         ret = extensionClass.getConstructor(BlackBoard.class).newInstance(Application.blackboard);

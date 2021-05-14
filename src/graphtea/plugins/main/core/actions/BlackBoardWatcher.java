@@ -56,7 +56,7 @@ class BlackBoardDebug extends BlackBoard {
     }
 
     /**
-     * searchs in the stackTrace and returns the
+     * searches in the stackTrace and returns the
      * first nonblackboard classname.callingmethod.linenumber
      */
     private StackTraceElement getCallingMethod() {

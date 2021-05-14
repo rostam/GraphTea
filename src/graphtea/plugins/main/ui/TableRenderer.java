@@ -18,6 +18,7 @@ import graphtea.ui.components.gpropertyeditor.GBasicCellRenderer;
 import javax.swing.*;
 import java.awt.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Vector;
 
 /**
@@ -42,7 +43,7 @@ public class TableRenderer implements GBasicCellRenderer<RenderTable> {
                 if(o instanceof Double && !o.toString().equals("NaN")) {
                     Double toBeTruncated = (Double) o;
                     o = new BigDecimal(toBeTruncated).
-                            setScale(12, BigDecimal.ROUND_HALF_UP).doubleValue();
+                            setScale(12, RoundingMode.HALF_UP).doubleValue();
                 }
 
                 data[i][j] = o;

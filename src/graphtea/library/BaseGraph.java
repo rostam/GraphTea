@@ -110,10 +110,10 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
 
     /**
      * Returns true if there is an edge between specified vertices (direction considered for directed graphs).
-     * * @param Source of the edge for existance check.
+     * * @param Source of the edge for existence check.
      *
      * @param source of the desired edges.
-     * @param target of the edge for existance check.
+     * @param target of the edge for existence check.
      * @return true if there is an edge between specified vertices (direction considered for directed graphs).
      * @throws InvalidVertexException if supplied source or target are invalid.
      */
@@ -260,7 +260,7 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
     /**
      * This method returns true if the graph contains the specified vertex, false otherwise.
      *
-     * @param v Vertex to check existance.
+     * @param v Vertex to check existence.
      * @return True if the graph contains the specified vertex, false otherwise.
      */
     public abstract boolean containsVertex(VertexType v);

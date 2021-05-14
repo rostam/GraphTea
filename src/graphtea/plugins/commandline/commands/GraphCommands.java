@@ -177,7 +177,7 @@ public class GraphCommands {
             , @Parameter(name = "vertices")Object[] c) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
         resetGraph();
-        HashSet hs = new HashSet();
+        HashSet<Vertex> hs = new HashSet<>();
 
         for (Object vm : c) {
             hs.add(getVertexById((Integer) vm, g));
@@ -198,7 +198,7 @@ public class GraphCommands {
     @CommandAttitude(name = "edge_induced", abbreviation = "_e_induce", description = "Edge Induced subgraph of selected edges")
     public GraphModel edge_induced(@Parameter(name = "graph")GraphModel g) {
         GTabbedGraphPane gtp = bb.getData(GTabbedGraphPane.NAME);
-        HashSet hs = datas.select.getSelectedEdges();
+        HashSet<Edge> hs = datas.select.getSelectedEdges();
         resetGraph();
         GraphModel gm = EdgeInduced.edgeInduced(g, hs);
         gm.setDirected(g.isDirected());

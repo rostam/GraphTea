@@ -45,24 +45,17 @@ public class KneserGraphGenerator implements GraphGeneratorExtension, Parametriz
         }
         java.util.List<String> combinations = list.stream()
                 .reduce(Collections.<String>emptyList(),
-                        (sets, item) -> {
-                            return Stream.of(
-                                    sets.stream(),
-                                    Stream.of(item),
-                                    sets.stream().map(str->str+"-"+item)
-                            ).flatMap(x->x)
-                                    .collect(Collectors.toList());
-                        },
+                        (sets, item) -> Stream.of(
+                                sets.stream(),
+                                Stream.of(item),
+                                sets.stream().map(str->str+"-"+item)
+                        ).flatMap(x->x)
+                                .collect(Collectors.toList()),
                         (sets, sets2) -> {
                             throw new UnsupportedOperationException(
                                     "Impossible error in sequential streams");
                         }
-                ).stream().filter(new Predicate<String>() {
-            @Override
-            public boolean test(String s) {
-                return s.chars().filter(ch -> ch == '-').count() == (k/2);
-            }
-        }).collect(Collectors.toList());
+                ).stream().filter(s -> s.chars().filter(ch -> ch == '-').count() == (k/2)).collect(Collectors.toList());
 
         Vector<HashSet<Integer>> vs = new Vector<>();
         for(String s : combinations) {
@@ -94,7 +87,7 @@ public class KneserGraphGenerator implements GraphGeneratorExtension, Parametriz
             for(int j=i+1;j < computedVertices.size();j++) {
                 HashSet<Integer> s1 = computedVertices.get(i);
                 HashSet<Integer> s2 = computedVertices.get(j);
-                Set<Integer> intersection = new HashSet<Integer>(s1);
+                Set<Integer> intersection = new HashSet<>(s1);
                 intersection.retainAll(s2);
                 if(intersection.size() == 0) ret.add(new Edge(v[i], v[j]));
             }

@@ -18,6 +18,7 @@ import graphtea.plugins.main.GraphData;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Vector;
@@ -138,7 +139,7 @@ public class IterGraphs {
      * @param g6 Input G6 string
      */
     private void getResIterLimited(ToCall<RenderTable> f, GraphModel g, int count, RenderTable mpq, String g6) {
-        RenderTable ret = (RenderTable) f.f(g);
+        RenderTable ret = f.f(g);
         if (ret == null) return;
         if (mpq.getTitles().size() == 0) {
             Vector<String> tts = new Vector<>();
@@ -154,7 +155,7 @@ public class IterGraphs {
         data.addAll(ret.poll());
         if (ConjectureChecking.PostP.getValue().equals("Equality Filter")) {
             Double toBeTruncated = (Double) data.get(columnID);
-            double o = new BigDecimal(toBeTruncated).setScale(8, BigDecimal.ROUND_HALF_UP).doubleValue();
+            double o = new BigDecimal(toBeTruncated).setScale(8, RoundingMode.HALF_UP).doubleValue();
 
             if (Double.parseDouble(ConjectureChecking.ppvalue) == o) {
                 mpq.add(data);

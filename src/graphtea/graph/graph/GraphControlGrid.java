@@ -57,7 +57,7 @@ public class GraphControlGrid implements GraphModelListener {
         fakeEdge = new Edge(fakeVertex, _fakeVertex);
     }
 
-    public Pair mindiste(GraphModel g, GPoint p) {
+    public Pair<Edge,Double> minDistance(GraphModel g, GPoint p) {
         if (refresh) {
             refresh();
             refresh = false;

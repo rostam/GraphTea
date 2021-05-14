@@ -18,7 +18,7 @@ import java.util.Iterator;
 import java.util.Vector;
 
 /**
- * This Algorithm computes the lenght of the shortest
+ * This Algorithm computes the length of the shortest
  * path between any two arbitrary vertices.
  * This method is usually used for sparse graphs.
  *

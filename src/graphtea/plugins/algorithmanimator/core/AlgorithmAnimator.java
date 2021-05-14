@@ -27,7 +27,7 @@ import java.util.Vector;
  * @author Azin Azadi
  */
 public class AlgorithmAnimator implements EventDispatcher, ActionListener {
-    static Vector<AtomAnimator> animators = new Vector<>();
+    static Vector<AtomAnimator<Event>> animators = new Vector<>();
     BlackBoard blackboard;
     private boolean paused = true;
     /**
@@ -55,7 +55,7 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
     }
 
     public Event animateEvent(Event ae) {
-        for (AtomAnimator animator : animators)
+        for (AtomAnimator<Event> animator : animators)
             if (animator.isAnimatable(ae)) {
                 return animator.animate(ae, blackboard);
             }

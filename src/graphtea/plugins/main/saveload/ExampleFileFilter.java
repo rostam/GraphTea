@@ -38,7 +38,7 @@ public class ExampleFileFilter extends FileFilter {
     private static final String TYPE_UNKNOWN = "Type Unknown";
     private static final String HIDDEN_FILE = "Hidden File";
 
-    private Hashtable filters = null;
+    private Hashtable<String, FileFilter> filters;
     private String description = null;
     private String fullDescription = null;
     private boolean useExtensionsInDescription = true;
@@ -50,7 +50,7 @@ public class ExampleFileFilter extends FileFilter {
      * @see #addExtension
      */
     public ExampleFileFilter() {
-        this.filters = new Hashtable();
+        this.filters = new Hashtable<>();
     }
 
     /**
@@ -142,7 +142,7 @@ public class ExampleFileFilter extends FileFilter {
      */
     public void addExtension(String extension) {
         if (filters == null) {
-            filters = new Hashtable(5);
+            filters = new Hashtable<>(5);
         }
         filters.put(extension.toLowerCase(), this);
         fullDescription = null;
@@ -153,9 +153,9 @@ public class ExampleFileFilter extends FileFilter {
      * Returns the human readable defaultValue of this filter. For
      * example: "JPEG and GIF Image Files (*.jpg, *.gif)"
      *
-     * @see setDescription
-     * @see setExtensionListInDescription
-     * @see isExtensionListInDescription
+     * @see this.setDescription
+     * @see this.setExtensionListInDescription
+     * @see this.isExtensionListInDescription
      * @see FileFilter#getDescription
      */
     public String getDescription() {
@@ -163,7 +163,7 @@ public class ExampleFileFilter extends FileFilter {
             if (description == null || isExtensionListInDescription()) {
                 fullDescription = description == null ? "(" : description + " (";
                 // build the defaultValue from the extension list
-                Enumeration extensions = filters.keys();
+                Enumeration<String> extensions = filters.keys();
                 if (extensions != null) {
                     fullDescription += "." + extensions.nextElement();
                     while (extensions.hasMoreElements()) {
@@ -182,9 +182,9 @@ public class ExampleFileFilter extends FileFilter {
      * Sets the human readable defaultValue of this filter. For
      * example: filter.setDescription("Gif and JPG Images");
      *
-     * @see setDescription
-     * @see setExtensionListInDescription
-     * @see isExtensionListInDescription
+     * @see this.setDescription
+     * @see this.setExtensionListInDescription
+     * @see this.isExtensionListInDescription
      */
     public void setDescription(String description) {
         this.description = description;
@@ -198,9 +198,9 @@ public class ExampleFileFilter extends FileFilter {
      * Only relevant if a defaultValue was provided in the constructor
      * or using setDescription();
      *
-     * @see getDescription
-     * @see setDescription
-     * @see isExtensionListInDescription
+     * @see this.getDescription
+     * @see this.setDescription
+     * @see this.isExtensionListInDescription
      */
     public void setExtensionListInDescription(boolean b) {
         useExtensionsInDescription = b;
@@ -214,9 +214,9 @@ public class ExampleFileFilter extends FileFilter {
      * Only relevent if a defaultValue was provided in the constructor
      * or using setDescription();
      *
-     * @see getDescription
-     * @see setDescription
-     * @see setExtensionListInDescription
+     * @see this.getDescription
+     * @see this.setDescription
+     * @see this.setExtensionListInDescription
      */
     public boolean isExtensionListInDescription() {
         return useExtensionsInDescription;

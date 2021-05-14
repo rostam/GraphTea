@@ -69,7 +69,7 @@ public class GraphGeneratorIterator extends GraphModelIterator {
                 , JOptionPane.OK_CANCEL_OPTION);
         if (output == JOptionPane.OK_OPTION) {
             Vector<Pair<Integer, Integer>> res = new Vector<>();
-            Iterator it = names.iterator();
+            Iterator<String> it = names.iterator();
             for (JTextField aV : v) {
                 if (it.next().equals("n")) {
                     Scanner sc = new Scanner(aV.getText());

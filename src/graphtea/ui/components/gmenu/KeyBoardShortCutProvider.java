@@ -20,16 +20,14 @@ public class KeyBoardShortCutProvider {
         //int mod = extractModifiers(accelerator);
         int mne = extractMnemonics(label, ind);
         ind = Math.max(ind, 0);
-        boolean isAccel = true;
         KeyBoardShortCut k;
         if (accelerator == null) {
-            isAccel = false;
-            k = new KeyBoardShortCut(mne, ind, isAccel);
+            k = new KeyBoardShortCut(mne, ind, false);
 
         } else {
             int mod = extractModifiers(accelerator);
             int keyEvent = extractKeyEvent(accelerator);
-            k = new KeyBoardShortCut(keyEvent, mod, ind, isAccel, mne);
+            k = new KeyBoardShortCut(keyEvent, mod, ind, true, mne);
         }
 
         shortCuts.put(label, k);
@@ -41,9 +39,9 @@ public class KeyBoardShortCutProvider {
         boolean isControl = Acc.contains("control");
         boolean isShift = Acc.contains("shift");
         boolean isAlt = Acc.contains("alt");
-        int control = (isControl ? InputEvent.CTRL_MASK : 0);
-        int shift = (isShift ? InputEvent.SHIFT_MASK : 0);
-        int alt = (isAlt ? InputEvent.ALT_MASK : 0);
+        int control = (isControl ? InputEvent.CTRL_DOWN_MASK : 0);
+        int shift = (isShift ? InputEvent.SHIFT_DOWN_MASK : 0);
+        int alt = (isAlt ? InputEvent.ALT_DOWN_MASK : 0);
         return control + alt + shift;
     }
 
@@ -51,7 +49,9 @@ public class KeyBoardShortCutProvider {
         return priLabel.charAt(index);
     }
 
-    //todo: provide the way that defining accelerator for keys like delete, insert, ... be possible, by iterating over integers and KeyEvent.getKeyText, or probably the reflection
+    //todo: provide the way that defining accelerator
+    // for keys like delete, insert, ... be possible, by iterating over integers
+    // and KeyEvent.getKeyText, or probably the reflection
     static int extractKeyEvent(String accelerator) {
         if (!accelerator.equals("+")) {
             int i = accelerator.lastIndexOf('+') + 1;

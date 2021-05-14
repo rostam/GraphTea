@@ -273,7 +273,7 @@ public class Plugger {
                 String cName = initializer.get(name);
                 if (cName == null)
                     cName = prefix + name + postfix;
-                PluginInterface init = (PluginInterface) classLoader.loadClass(cName).newInstance();
+                PluginInterface init = (PluginInterface) classLoader.loadClass(cName).getDeclaredConstructor().newInstance();
                 init.init(blackboard);
             } catch (ClassNotFoundException cnfe) {
                 String confixml = configxml.get(name);
@@ -283,7 +283,9 @@ public class Plugger {
                 PluginHandlerInterface init = null;
                 while (init == null) {
                     try {
-                        init = (PluginHandlerInterface) classLoader.loadClass(prefix + it.next()[0].toString() + handler_postfix).newInstance();
+                        init = (PluginHandlerInterface) classLoader
+                                .loadClass(prefix + it.next()[0].toString() + handler_postfix)
+                                .getDeclaredConstructor().newInstance();
                         init.init(confixml, blackboard);
                     } catch (ClassNotFoundException cnfe2) {
                         StaticUtils.addExceptiontoLog(cnfe2, blackboard);

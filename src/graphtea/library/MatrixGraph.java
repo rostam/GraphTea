@@ -598,7 +598,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
     }
 
     public Iterable<EdgeType> edges() {
-        return () -> edgeIterator();
+        return this::edgeIterator;
     }
 
     /* (non-Javadoc)

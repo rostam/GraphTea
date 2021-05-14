@@ -51,7 +51,7 @@ public class ShellConsole extends JScrollPane
     }
 
     private int cmdStart = 0;
-    private final Vector history = new Vector();
+    private final Vector<String> history = new Vector<>();
     private String startedLine;
     private int histLine = 0;
 
@@ -213,7 +213,7 @@ public class ShellConsole extends JScrollPane
                 break;
 
             case(KeyEvent.VK_U):    // clear line
-                if ((e.getModifiers() & InputEvent.CTRL_MASK) > 0) {
+                if ((e.getModifiersEx() & InputEvent.CTRL_DOWN_MASK) > 0) {
                     replaceRange("", cmdStart, textLength());
                     histLine = 0;
                     e.consume();
@@ -249,7 +249,7 @@ public class ShellConsole extends JScrollPane
                 // Control-C
             case(KeyEvent.VK_C):
                 if (text.getSelectedText() == null) {
-                    if (((e.getModifiers() & InputEvent.CTRL_MASK) > 0)
+                    if (((e.getModifiersEx() & InputEvent.CTRL_DOWN_MASK) > 0)
                             && (e.getID() == KeyEvent.KEY_PRESSED)) {
                         append("^C");
                     }
@@ -267,9 +267,9 @@ public class ShellConsole extends JScrollPane
 
             default:
                 if (
-                        (e.getModifiers() &
-                                (InputEvent.CTRL_MASK
-                                        | InputEvent.ALT_MASK | InputEvent.META_MASK)) == 0) {
+                        (e.getModifiersEx() &
+                                (InputEvent.CTRL_DOWN_MASK
+                                        | InputEvent.ALT_DOWN_MASK | InputEvent.META_DOWN_MASK)) == 0) {
                     // plain character
                     forceCaretMoveToEnd();
                 }
@@ -320,7 +320,7 @@ public class ShellConsole extends JScrollPane
         if (index <= 0) index = 0;
         else index = Math.max(bk.lastIndexOf("bsh % ") + 6, bk.lastIndexOf(">>  ") + 4);
         String ret = bk.substring(index, i + 1);
-        ret.trim();
+        ret = ret.trim();
         // no completion
         String[] complete = nameCompletion.completeName(part);
         if (complete.length == 0) {
@@ -360,7 +360,7 @@ public class ShellConsole extends JScrollPane
         // Show ambiguous
         StringBuffer sb = new StringBuffer("\n");
         for (i = 0; i < complete.length && i < SHOW_AMBIG_MAX; i++)
-            sb.append(complete[i] + "\n");
+            sb.append(complete[i]).append("\n");
         if (i == SHOW_AMBIG_MAX)
             sb.append("...\n");
 
@@ -453,13 +453,13 @@ public class ShellConsole extends JScrollPane
     }
 
     private void showHistoryLine() {
-        String showline;
+        String showLine;
         if (histLine == 0)
-            showline = startedLine;
+            showLine = startedLine;
         else
-            showline = (String) history.elementAt(history.size() - histLine);
+            showLine = history.elementAt(history.size() - histLine);
 
-        replaceRange(showline, cmdStart, textLength());
+        replaceRange(showLine, cmdStart, textLength());
         text.setCaretPosition(textLength());
         text.repaint();
     }
@@ -538,14 +538,6 @@ public class ShellConsole extends JScrollPane
 
     public Color getResultColor() {
         return Color.blue;
-    }
-
-    public void printResult(Object s) {
-        print(s, getResultColor());
-    }
-
-    public void printlnResult(Object s) {
-        println(s, getResultColor());
     }
 
     /**

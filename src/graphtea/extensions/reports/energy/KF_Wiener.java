@@ -27,12 +27,7 @@ import java.util.*;
 
 /**
  * @author Ali Rostami
- * @author Ali Rostami
  */
-/**
- * @author Ali Rostami
- */
-
 
 @CommandAttitude(name = "newInvs", abbreviation = "_newInv")
 public class KF_Wiener implements GraphReportExtension<RenderTable> {
