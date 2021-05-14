@@ -34,7 +34,7 @@ public @interface ExtensionExternalData {
      * a URL which locates the source code for the extension, it
      * will be then accessible by the user.
      * <p/>
-     * this field will be setted on extension load automatically if it hasn't been setted,
+     * this field will be set on extension load automatically if it hasn't been setted,
      * on this case it will be locate the file of extension.
      * automatically setting the sourceCodeURL will be done only when the extension source code
      * is not a .class file.

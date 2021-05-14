@@ -12,7 +12,7 @@ package graphtea.platform.core;
 public interface Listener<T> {
 
     /**
-     * Event occured, Go and call the listeners to do the Job
+     * Event occurred, Go and call the listeners to do the Job
      *
      * @param key The key
      */

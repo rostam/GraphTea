@@ -150,10 +150,10 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
         HierarchicalTreeVisualization.g = g;
     }
 
-    @UserModifiableProperty(displayName = "Hierachical Tree Visualization Width", obeysAncestorCategory = false
+    @UserModifiableProperty(displayName = "Hierarchical Tree Visualization Width", obeysAncestorCategory = false
             , category = "Visualization Options")
     public static Integer width = 600;
-    @UserModifiableProperty(displayName = "Hierachical Tree Visualization : Each Level's height", obeysAncestorCategory = false
+    @UserModifiableProperty(displayName = "Hierarchical Tree Visualization : Each Level's height", obeysAncestorCategory = false
             , category = "Visualization Options")
     public static Integer eachLevelHeigh = 50;
 

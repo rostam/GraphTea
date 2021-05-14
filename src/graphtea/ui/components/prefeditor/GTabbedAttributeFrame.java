@@ -113,7 +113,7 @@ public class GTabbedAttributeFrame extends JDialog {
     }
 
     /**
-     * return the GProertyEditor which is the main editor of notifiableAttributeSet
+     * return the GPropertyEditor which is the main editor of notifiableAttributeSet
      */
     public GPropertyEditor getPropertyEditor() {
         return table;

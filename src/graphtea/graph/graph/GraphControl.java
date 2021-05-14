@@ -222,7 +222,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
     }
 
     /**
-     * @return the minimum distanse edge and its distance to the given GPoint,
+     * @return the minimum distance edge and its distance to the given GPoint,
      *         If edges are curved the distance will be calculated to Curve Control Points
      */
     public static Pair<Edge, Double> mindiste(GraphModel g, GPoint p) {

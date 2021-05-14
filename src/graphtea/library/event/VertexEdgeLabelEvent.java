@@ -9,7 +9,7 @@ import graphtea.library.BaseEdge;
 import graphtea.library.BaseVertex;
 
 /**
- * Happens wheever we want to put labels on vertices or edges (now just for debugging, we don't have label for basevertex/edge yet)
+ * Happens whenever we want to put labels on vertices or edges (now just for debugging, we don't have label for basevertex/edge yet)
  *
  * @author azin azadi
  */

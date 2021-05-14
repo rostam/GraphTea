@@ -88,7 +88,7 @@ public class GCellEditor extends AbstractCellEditor implements TableCellEditor, 
                 editor = knownEditors.get(cc[i]);
         }
         if (editor == null) {
-            //no editor was defiend for this Class
+            //no editor was defined for this Class
             //take the last chance
             try {
                 if (StaticUtils.fromString(value.getClass().getName(), value.toString()) != null) {

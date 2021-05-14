@@ -29,10 +29,10 @@ public class EdgeEvent<VertexType extends BaseVertex, EdgeType extends BaseEdge<
     }
 
     /**
-     * Constructs an event that means an event is occured on a specified edge.
+     * Constructs an event that means an event is occurred on a specified edge.
      *
      * @param edge The edge which the event occurs on it.
-     * @param et   Type of the event occured on the first parameter <code>edge</code>;
+     * @param et   Type of the event occurred on the first parameter <code>edge</code>;
      * @throws NullPointerException if <code>edge</code> is null.
      */
     public EdgeEvent(BaseGraph<VertexType, EdgeType> graph, EdgeType edge, EventType et) {

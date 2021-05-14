@@ -20,7 +20,7 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
  * Author: Mohsen Khaki
  * 
  */
-@CommandAttitude(name = "generate_felower", abbreviation = "_g_flower", description = "generates a Helm graph of order n")
+@CommandAttitude(name = "generate_flower", abbreviation = "_g_flower", description = "generates a Helm graph of order n")
 public class FlowerGraph implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
 	@Parameter(name = "n")
 	public static int n = 3;

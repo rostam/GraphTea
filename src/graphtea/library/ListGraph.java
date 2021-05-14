@@ -92,7 +92,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
     /**
      * Constructs a graph object that stores graph data using adjacency list data structure by importing
      * graph data from a pre-existing graph. A GraphConvertor object is passed as a parameter which is
-     * responsible for duplication/type-convertion of graph elements.
+     * responsible for duplication/type-conversion of graph elements.
      *
      * @param <ImportVertexType> The type of vertex object which the input graph contain.
      * @param <ImportEdgeType>   The type of edge object which the input graph contain.

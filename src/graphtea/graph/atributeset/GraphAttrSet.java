@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * this class provides a way to have a Graph object as a NotifiableAttributeSet
- * this is usefull whenever some one wants to work blindly with graph attributes
+ * this is useful whenever some one wants to work blindly with graph attributes
  * for example on saving graph to a gml xml file it is important to have all attributes
  * saved, the meaning of values of attributes is not important, or when a property editor
  * wants to show and edit the attributes of graph to the user, at that time it can use

@@ -35,7 +35,7 @@ public class EdgeCommands {
             AddEdge.doJob(bb.getData(GraphAttrSet.name), getVertexByLabel(label1), getVertexByLabel(label2));
         } catch (NullPointerException e) {
             throw new ShellCommandException("your entered vertex label doesnt exist");
-//            Init.run.ext_console.error("your entered vertex label doesnt exist!");
+//            Init.run.ext_console.error("your entered vertex label doesn't exist!");
         }
     }
 

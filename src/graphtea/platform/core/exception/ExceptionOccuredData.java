@@ -5,12 +5,12 @@
 package graphtea.platform.core.exception;
 
 /**
- * The base class which stores information about occcured exceptions in application.
+ * The base class which stores information about occurred exceptions in application.
  *
  * @author  Ruzbeh ebrahimi
  */
 public class ExceptionOccuredData {
-    public final static String EVENT_KEY = "Bug.occured";
+    public final static String EVENT_KEY = "Bug.occurred";
     public Throwable e;
 
     public ExceptionOccuredData(Throwable e) {

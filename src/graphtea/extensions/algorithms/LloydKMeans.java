@@ -31,7 +31,7 @@ public class LloydKMeans {
 		Arrays.fill(parent, -1);
 
 		// find an initial "fair" placement for the k clusters
-		// places them radialy around the centroid
+		// places them radially around the centroid
 		GPoint point = new GPoint(0, 0);
 		for (GPoint aP : p) point.add(aP.x, aP.y);
 		point.multiply(((double) 1) / p.length);

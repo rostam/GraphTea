@@ -477,7 +477,7 @@ abstract public class BaseGraph<VertexType extends BaseVertex, EdgeType extends 
     }
 
     /**
-     * this method is usefull in directed graphs which you want to know which vertices are sources of v(as target)
+     * this method is useful in directed graphs which you want to know which vertices are sources of v(as target)
      *
      * @param vertex The given vertex
      * @return an Iterable object which can be iterated trough all neighbours of the given vertex using lightEdgeIterator(vertex, false)

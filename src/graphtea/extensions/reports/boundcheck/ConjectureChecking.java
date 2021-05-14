@@ -76,7 +76,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
             RenderTable.noFilter=true;
         }
         if(GraphType.getValue().equals("custom")) {
-            currentType=JOptionPane.showInputDialog("Please enter the cutom graph6 format file:");
+            currentType=JOptionPane.showInputDialog("Please enter the custom graph6 format file:");
             size= Integer.parseInt(JOptionPane.showInputDialog("Please enter the number of graphs in file:"));
         } else {
             currentType=GraphType.getValue();
@@ -90,7 +90,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
                     size,boundType.getValue(),generators.getValue(), PostP.getValue(),
                     Filters.getCorrectFilter(gfilters), columnIDForFilter);
             Vector<GraphModel> gs = itg.wrapper_generate();
-            String nameOfFile = JOptionPane.showInputDialog("Please enter tthe name of a file in which the " +
+            String nameOfFile = JOptionPane.showInputDialog("Please enter the name of a file in which the " +
                     "graphs will be saved.:");
             SaveGraph6Format sgf = new SaveGraph6Format();
             File f = new File(nameOfFile);
@@ -110,7 +110,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
                 Filters.getCorrectFilter(gfilters), columnIDForFilter);
 
         if(conjCheck) return "Conjecture Checking is enabled.";
-        return "Conjecture Checkign is disabled.";
+        return "Conjecture Checking is disabled.";
     }
 
     @Override

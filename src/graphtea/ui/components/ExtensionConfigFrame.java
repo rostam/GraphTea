@@ -10,7 +10,7 @@ import graphtea.platform.extension.ExtensionExternalData;
 import javax.swing.*;
 
 /**
- * this is a frame fo showing the confiurations before running an Extension
+ * this is a frame fo showing the configurations before running an Extension
  *
  * @author azin azadi
  * @see graphtea.ui.extension.AbstractExtensionAction

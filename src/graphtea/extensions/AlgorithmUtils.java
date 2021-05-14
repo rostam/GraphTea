@@ -43,7 +43,7 @@ public class AlgorithmUtils {
     }
 
     /**
-     * determines wether g is connected or not
+     * determines whether g is connected or not
      */
     public static boolean isConnected(GraphModel g) {
         ArrayList<Integer> vs = new ArrayList<>();
@@ -54,7 +54,7 @@ public class AlgorithmUtils {
     }
 
     /**
-     * determines wether g is complete or not
+     * determines whether g is complete or not
      */
     public static 
     boolean isCompleteGraph(GraphModel g) {
@@ -245,7 +245,7 @@ public class AlgorithmUtils {
     }
 
     /**
-     * retunrs the degree of vertex (indegree + outdegree)
+     * returns the degree of vertex (indegree + outdegree)
      */
     public static int getTotalDegree(GraphModel g, Vertex v) {
         return g.getOutDegree(v) + g.getInDegree(v);
@@ -351,14 +351,14 @@ public class AlgorithmUtils {
     }
 
     /**
-     * locations v in a r-teta cordination
+     * locations v in a r-teta coordination
      */
     public static void setLocation(Vertex v, GPoint center, double radius, double ang) {
         v.setLocation(new GPoint(center.x + radius * Math.cos(ang), center.y + radius * Math.sin(ang)));
     }
 
     /**
-     * @return the bounding rectangle arround vertices
+     * @return the bounding rectangle around vertices
      */
     public static GRect getBoundingRegion(Collection<Vertex> vertices) {
         GRect ret = new GRect();

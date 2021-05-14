@@ -19,7 +19,7 @@ import java.util.Vector;
 
 /**
  * The base class for loading extensions.
- * This class performs loading and reloading of extensions,  (from their source (.class or anyother format) files)
+ * This class performs loading and reloading of extensions,  (from their source (.class or another format) files)
  *
  * @author Azin Azadi
  */
@@ -107,7 +107,7 @@ public class ExtensionLoader implements StorableOnExit {
                 }
             }
             if (ret != null) {
-                SETTINGS.registerSetting(ret, "Extention Options");
+                SETTINGS.registerSetting(ret, "Extension Options");
             }
             return ret;
         } catch (Exception e) {
@@ -119,7 +119,7 @@ public class ExtensionLoader implements StorableOnExit {
     }
 
     /**
-     * returns an instance of extensionClsas if the given extensionClass implements Extension, otherwise it returns null
+     * returns an instance of extensionClass if the given extensionClass implements Extension, otherwise it returns null
      *
      * @param unknownFile The given unknown extension
      */

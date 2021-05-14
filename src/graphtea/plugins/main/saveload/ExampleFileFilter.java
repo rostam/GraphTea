@@ -19,9 +19,9 @@ import java.util.Hashtable;
  * all files except for those type extensions that it knows about.
  * <p/>
  * Extensions are of the type ".foo", which is typically found on
- * Windows and Unix boxes, but not on Macinthosh. Case is ignored.
+ * Windows and Unix boxes, but not on Macintosh. Case is ignored.
  * <p/>
- * Example - create a new filter that filerts out all files
+ * Example - create a new filter that filters out all files
  * but gif and jpg image files:
  * <p/>
  * JFileChooser chooser = new JFileChooser();
@@ -211,7 +211,7 @@ public class ExampleFileFilter extends FileFilter {
      * Returns whether the extension list (.jpg, .gif, etc) should
      * show up in the human readable defaultValue.
      * <p/>
-     * Only relevent if a defaultValue was provided in the constructor
+     * Only relevant if a defaultValue was provided in the constructor
      * or using setDescription();
      *
      * @see this.getDescription

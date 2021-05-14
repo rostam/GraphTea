@@ -29,10 +29,10 @@ class animatorLSF extends Thread {
     private final GraphModel g;
     private final AbstractGraphRenderer gv;
     private Vertex[] v;
-    private GRect[] vRects;  //represents the rectangle arround each vertex
+    private GRect[] vRects;  //represents the rectangle around each vertex
     private GPoint[] verPos; //fresh generated vertex positions!
     private GPoint[] velocity;
-    private GPoint[] prevVerPos; //refferes to previous state of vertex positions, for finding vertices that moved by anything else
+    private GPoint[] prevVerPos; //refers to previous state of vertex positions, for finding vertices that moved by anything else
     //    private final double neighborRadius = 300;
     private double stres = 10;
     private double springK = 0.7;

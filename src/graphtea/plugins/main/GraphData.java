@@ -18,7 +18,7 @@ import graphtea.plugins.main.select.SelectPluginMethods;
 import graphtea.ui.UIUtils;
 
 /**
- * This class provides usefull information and methods all in one place
+ * This class provides useful information and methods all in one place
  * @author azin azadi
  */
 public class GraphData {

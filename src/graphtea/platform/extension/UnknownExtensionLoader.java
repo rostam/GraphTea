@@ -10,7 +10,7 @@ import graphtea.platform.core.BlackBoard;
 import java.io.File;
 
 /**
- * An ExtensionHandler which handles not .class files as extension. for exaple .m Matlab files and ...
+ * An ExtensionHandler which handles not .class files as extension. for example .m Matlab files and ...
  *
  * @author Azin Azadi
  */

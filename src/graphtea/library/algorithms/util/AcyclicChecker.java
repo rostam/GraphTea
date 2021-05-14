@@ -25,7 +25,7 @@ import graphtea.library.exceptions.InvalidGraphException;
  * The above statement returns true if the graph is acyclic. The graph
  * parameter is your graph object. Note that there is no need to explicitly
  * parameterize the generic method isGraphAcyclic. Types are automatically
- * deduced from the supplied graph object with no java unchecked convertion warning.
+ * deduced from the supplied graph object with no java unchecked conversion warning.
  *
  * @author Omid Aladini
  */

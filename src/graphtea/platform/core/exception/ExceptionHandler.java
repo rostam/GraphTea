@@ -20,7 +20,7 @@ public class ExceptionHandler implements UncaughtExceptionHandler {
     }
 
     public void uncaughtException(Thread t, Throwable e) {
-        System.err.println("Exception Occured: " + e.toString());
+        System.err.println("Exception Occurred: " + e.toString());
         e.printStackTrace();
         StaticUtils.addExceptiontoLog(e, blackBoard);
     }

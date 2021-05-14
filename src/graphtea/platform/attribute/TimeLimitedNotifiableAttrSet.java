@@ -34,7 +34,7 @@ public class TimeLimitedNotifiableAttrSet<T extends AttributeSet> implements Run
     }
 
     /**
-     * starts firinig listeners to this class
+     * starts firing listeners to this class
      */
     public void start() {
         started = true;

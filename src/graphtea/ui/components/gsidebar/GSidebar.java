@@ -74,7 +74,7 @@ public class GSidebar extends JPanel {
 }
 
 /**
- * java currently (now we have jdk 1.5) does not supporots "Vertical Text"
+ * java currently (now we have jdk 1.5) does not supports "Vertical Text"
  * yes, yes, i know that it's a shame for java.
  * i searched the internet for some hours to find that how can i write a String vertically in any way on the screen
  * you know that the side bar buttons are vertically, and the texts in JButtons is aligned vertically
@@ -83,20 +83,20 @@ public class GSidebar extends JPanel {
  * we used this method in hour vertices to color out texts.
  * so if we have the ability of writing text vertically in HTML, then we can use this to have the vertical buttons,
  * i had sawn vertical texts, in some pages using Internet Explorer. but when i search for such a future , it seems
- * that this feautre is not a standard HTML feature, and just supported by IE.
- * 2- we can build a system from base, like the current system. current sytem write horizentally, and we can build our
+ * that this feature is not a standard HTML feature, and just supported by IE.
+ * 2- we can build a system from base, like the current system. current system write horizontally, and we can build our
  * system writing vertically, independent of the old system.
  * this way is hard to implement. it needs a great amount of work to support all the features of such a system.
  * when i was searching the internet for finding a solution, i find a project for writing the texts vertically , and
  * it used the way i said above, and also it was free!
- * but i didn't like to use the system in GraphTea project. because i think that it adds too complexitiy to GraphTea
+ * but i didn't like to use the system in GraphTea project. because i think that it adds too complexity to GraphTea
  * and also i think that the one that should do the jub is SUN. so i think that it is better that wait until the sun
- * implement this feature, and i preffered a third solution.
+ * implement this feature, and i preferred a third solution.
  * 3- our slide bar button will not more than 10. so simply we can just take a picture from input and display it
  * , so the user can put every thing on the picture including vertical texts.
  * 4- and there is another way , that i think it is a hack!
  * we can write the texts horizontally , then take a picture of it, and then simply rotate the text. :D
- * but in graphtea i preffer to use the 3rd way because of its simplicity.
+ * but in graphtea i prefer to use the 3rd way because of its simplicity.
  * --------------
  * 5- roozbeh suggests a solution for the problem. he shows the Sun Java 2D demos, that are in the JDK Demos. there
  * was a demo of fonts in java2d. it seems that it can be very simple to rotate the texts in java2d.

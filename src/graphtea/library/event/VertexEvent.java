@@ -32,7 +32,7 @@ public class VertexEvent<VertexType extends BaseVertex, EdgeType extends BaseEdg
     }
 
     /**
-     * Constructs an event that means an event is occured on a specified vertex.
+     * Constructs an event that means an event is occurred on a specified vertex.
      *
      * @param vertex The vertex which the event occurs on it.
      * @param et     Type of the event occured on the first parameter <code>vertex</code>;

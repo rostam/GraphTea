@@ -18,7 +18,7 @@ public class ClearSelection extends AbstractAction {
      * the initially use was for AddVertex, because it only adds vertices on graphselectpoints and if the selection was empty,
      * so AddVertex and ClearSelection are both listening to GraphSelectPoint, so if
      * ClearSelection fired before AddVertex it clears the selection and then AddVertex adds the Vertex
-     * but it shouldn't do that, because at the click time the selection wasn'nt clear
+     * but it shouldn't do that, because at the click time the selection wasn't clear
      * and it is a mistake (bug) from users point of view,....
      */
     public static final String lastTimeGraphWasClear = "last time graph was cleared";

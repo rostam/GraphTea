@@ -66,7 +66,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
      *
      * @param directed                 Indicated whether the graph is directed.
      * @param expectedNumberOfVertices Approximate number of vertices that will be
-     *                                 added to the graph. This paramether is optional and is available for performance
+     *                                 added to the graph. This parameter is optional and is available for performance
      *                                 reasons.
      */
     public MatrixGraph(boolean directed, int expectedNumberOfVertices) {
@@ -107,7 +107,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
     /**
      * Constructs a graph object that stores graph data using adjacency matrix data structure by importing
      * graph data from a pre-existing graph. A GraphConvertor object is passed as a parameter which is
-     * reponsible for duplication/type-convertion of graph elements.
+     * responsible for duplication/type-conversion of graph elements.
      *
      * @param <ImportVertexType> The type of vertex object which the input graph contain.
      * @param <ImportEdgeType>   The type of edge object which the input graph contain.
@@ -182,7 +182,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
     }
 
     /**
-     * Lables the vertices using their internal Id property by the index they live inside the graph.
+     * Labels the vertices using their internal Id property by the index they live inside the graph.
      */
     private void setVertexIds() {
         try {
@@ -365,7 +365,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
      */
     public boolean isGraphAcyclic() {
         try {
-            //Soooo easy to use!
+            //So easy to use!
             return graphtea.library.algorithms.util.AcyclicChecker.isGraphAcyclic(this);
         } catch (InvalidGraphException e) {
             //Generally should not happen. So I don't bother the user by

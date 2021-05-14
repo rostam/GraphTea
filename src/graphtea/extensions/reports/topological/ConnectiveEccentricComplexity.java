@@ -27,7 +27,7 @@ public class ConnectiveEccentricComplexity implements GraphReportExtension<Integ
     }
 
     public String getDescription() {
-        return "Connectiv Eccentric Complexity";
+        return "Connective Eccentric Complexity";
     }
 
     public Integer calculate(GraphModel g) {

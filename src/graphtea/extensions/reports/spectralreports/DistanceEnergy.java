@@ -24,7 +24,7 @@ public class DistanceEnergy implements GraphReportExtension<Double> {
         double[] rv = ed.getRealEigenvalues();
         double sum = 0;
 
-        //positiv RV
+        //positive RV
         Double[] prv = new Double[rv.length];
         for (int i = 0; i < rv.length; i++) {
             prv[i] = Math.abs(rv[i]);

@@ -137,9 +137,9 @@ public class Homomorphism {
     }
 
     /**
-     * Check if this homomorphism is an auotmorphism
+     * Check if this homomorphism is an automorphism
      *
-     * @return true if this homomorphism is an auotmorphism
+     * @return true if this homomorphism is an automorphism
      */
     boolean isAutomorphism() {
         return domain == range;

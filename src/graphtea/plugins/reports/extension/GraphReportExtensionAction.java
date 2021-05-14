@@ -126,7 +126,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
                             fw.write(list.toString());
                             fw.close();
                         }
-                        JOptionPane.showMessageDialog(jd, "Saved to file successfuly.");
+                        JOptionPane.showMessageDialog(jd, "Saved to file successfully.");
 
                     } catch (Exception e) {
                         e.printStackTrace();

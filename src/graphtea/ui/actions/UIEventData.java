@@ -5,7 +5,7 @@
 package graphtea.ui.actions;
 
 /**
- * This kind of Object will be send to blackboard whenever any ui action's(i.e. menu pressing) occurd
+ * This kind of Object will be send to blackboard whenever any ui action's(i.e. menu pressing) occurred
  *
  * @author Azin Azadi
  */

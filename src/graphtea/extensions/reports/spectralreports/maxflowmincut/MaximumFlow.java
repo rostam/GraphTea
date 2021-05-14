@@ -37,7 +37,7 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 	public Object calculate(GraphModel g) {
 		//AlgorithmAnimator algorithmAnimator = new AlgorithmAnimator( gd.getBlackboard());
 		//acceptEventDispatcher(algorithmAnimator);
-		//JOptionPane.showMessageDialog(null, "Maxmimum flow between source and sink:" + doAlgorithm());
+		//JOptionPane.showMessageDialog(null, "Maximum flow between source and sink:" + doAlgorithm());
 		return null;
 	}
 
