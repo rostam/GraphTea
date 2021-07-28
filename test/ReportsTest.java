@@ -35,6 +35,8 @@ public class ReportsTest {
             new LoadGraph6Format()
                     .read(new File("examples/tree_for_radius_diameter_test_2.g6"));
 
+    GraphModel antiprism3 = AntiprismGraph.generateAntiprismGraph(3);
+
     @Test
     public void testGreedyColoring() {
         HeuristicGreedyColoringNumber hgc = new HeuristicGreedyColoringNumber();
@@ -325,7 +327,12 @@ public class ReportsTest {
     @Test
     public void testWienerIndex() {
         WienerIndex varWienerIndex = new WienerIndex();
-        Assertions.assertEquals(varWienerIndex.calculate(peterson),0);
+        Assertions.assertEquals(varWienerIndex.calculate(circle3),3);
+        Assertions.assertEquals(varWienerIndex.calculate(circle4),8);
+        Assertions.assertEquals(varWienerIndex.calculate(circle5),15);
+        Assertions.assertEquals(varWienerIndex.calculate(complete4),6);
+        Assertions.assertEquals(varWienerIndex.calculate(complete5),10);
+        Assertions.assertEquals(varWienerIndex.calculate(antiprism3),18);
     }
 
     @Test

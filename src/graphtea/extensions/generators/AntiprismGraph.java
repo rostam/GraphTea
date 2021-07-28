@@ -84,4 +84,9 @@ public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
     public String getCategory() {
         return "Prism Graphs";
     }
+
+    public static GraphModel generateAntiprismGraph(int n) {
+        AntiprismGraph.n = n;
+        return new AntiprismGraph().generateGraph();
+    }
 }
