@@ -77,7 +77,7 @@ public class LD implements GraphReportExtension<Integer> {
             }
         }
 
-        int delta_T = eccL_T()
+        int delta_T = eccL_T();
         return max1;
     }
 
