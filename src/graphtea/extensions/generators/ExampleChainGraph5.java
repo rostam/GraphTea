@@ -20,33 +20,33 @@ import java.util.Arrays;
 import java.util.Vector;
 
 /**
- * @author azin azadi
+ * @author Ali Rostami
 
  */
 @CommandAttitude(name = "generate_pn", abbreviation = "_g_pn")
-public class ExampleChainGraph2 implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
+public class ExampleChainGraph5 implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "N")
-    public static Integer n = 9;
+    public static Integer n = 5;
     Vertex[] v;
 
     public String getName() {
-        return "Chain Graph 2";
+        return "Chain Graph 5";
     }
 
     public String getDescription() {
-        return "Chain Graph 2";
+        return "Chain Graph 5";
     }
 
     public Vertex[] getVertices() {
-        Vertex[] ret = new Vertex[2*n];
-        for (int i = 0; i < 2*n; i++)
+        Vertex[] ret = new Vertex[3 * n - 1];
+        for (int i = 0; i < 3 * n - 1; i++)
             ret[i] = new Vertex();
         v = ret;
         return ret;
     }
 
     public Edge[] getEdges() {
-        Vector<Edge> ret = new Vector<>(); //new Edge[2 * n - 2 + n/3 + 2];
+        Vector<Edge> ret = new Vector<>();
         for (int i = 0; i < n - 1; i++) {
             ret.add(new Edge(v[i], v[i + 1]));
         }
@@ -55,8 +55,16 @@ public class ExampleChainGraph2 implements GraphGeneratorExtension, Parametrizab
             ret.add(new Edge(v[i + n], v[i + 1 + n]));
         }
 
-        for (int i = 0; i < n; i = i + 2) {
+        for (int i = 0; i < n; i++) {
             ret.add(new Edge(v[i], v[n + i]));
+        }
+
+        for (int i = 0; i < n-1; i++) {
+            ret.add(new Edge(v[i], v[2*n + i]));
+        }
+
+        for (int i = 0; i < n-1; i++) {
+            ret.add(new Edge(v[i+n], v[2*n + i]));
         }
 
         Edge[] ee = new Edge[ret.size()];
@@ -72,8 +80,9 @@ public class ExampleChainGraph2 implements GraphGeneratorExtension, Parametrizab
 
     public GPoint[] getVertexPositions() {
         GPoint[] p1 = PositionGenerators.line(5, 5, 10000, 10000, n);
-        GPoint[] p2 = PositionGenerators.line(1000, 5, 10000, 10000, n);
-        return concatWithArrayCopy(p1,p2);
+        GPoint[] p2 = PositionGenerators.line(4000, 5, 10000, 10000, n);
+        GPoint[] p3 = PositionGenerators.line(2000, 800, 10000, 10000, n-1);
+        return concatWithArrayCopy(concatWithArrayCopy(p1,p2), p3);
     }
 
     public String checkParameters() {
@@ -91,8 +100,8 @@ public class ExampleChainGraph2 implements GraphGeneratorExtension, Parametrizab
      * generates a Path Graph with given parameters
      */
     public static GraphModel generatePath(int n) {
-        ExampleChainGraph2.n = n;
-        return GraphGenerator.getGraph(false, new ExampleChainGraph2());
+        ExampleChainGraph5.n = n;
+        return GraphGenerator.getGraph(false, new ExampleChainGraph5());
     }
 
     @Override
@@ -101,6 +110,6 @@ public class ExampleChainGraph2 implements GraphGeneratorExtension, Parametrizab
     }
 
     public static void main(String[] args) {
-        new ExampleChainGraph2().generateGraph();
+        new ExampleChainGraph5().generateGraph();
     }
 }
