@@ -1,8 +1,9 @@
-package graphtea.extensions.reports.topological;
+package graphtea.extensions.reports.topological.Irr;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.basicreports.NumOfTriangles;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
+import graphtea.extensions.reports.topological.ZagrebIndexFunctions;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -19,15 +20,50 @@ import java.util.Vector;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "Irr_t_G", abbreviation = "_Irr_t_G")
-public class Irr_t_G implements GraphReportExtension<RenderTable> {
+@CommandAttitude(name = "Irr_G", abbreviation = "_Irr_G")
+public class Irr_G implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Irr_t_G";
+        return "Irr_G";
     }
 
 
     public String getDescription() {
-        return "Irr_t_G";
+        return "Irr_G";
+    }
+
+    public static int deg_e(GraphModel g, Vertex u) {
+        int ret = 0;
+        Vector<Vertex> neighbors = new Vector<>();
+        for (Vertex v : g.directNeighbors(u)) {
+            ret += g.getDegree(v);
+            neighbors.add(v);
+        }
+
+
+        int conn = 0;
+        for (int i = 0; i < neighbors.size(); i++) {
+            for (int j = i + 1; j < neighbors.size(); j++) {
+                if (g.isEdge(neighbors.get(i),neighbors.get(j))) {
+                    conn++;
+                }
+            }
+        }
+
+        return ret - conn;
+    }
+
+    public static int irr_ev_G(GraphModel graph) {
+        int sum = 0;
+        for (Vertex i : graph) {
+            for (Vertex j : graph.directNeighbors(i)) {
+                if(i.getId() > j.getId()) {
+                    if (graph.isEdge(i, j)) {
+                        sum += Math.abs(deg_e(graph,i) - deg_e(graph,j));
+                    }
+                }
+            }
+        }
+        return sum;
     }
 
     public RenderTable calculate(GraphModel g) {
@@ -41,7 +77,7 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
         titles.add(" Zagreb ");
         titles.add(" Ve ");
         titles.add(" t ");
-        titles.add(" Irr_t_G ");
+        titles.add(" Irr_G ");
         titles.add(" V. Degrees ");
 
         ret.setTitles(titles);
@@ -65,7 +101,7 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
         double d=0;
         int p = NumOfVerticesWithDegK.numOfVerticesWithDegK(g, 1);
         int t = NumOfTriangles.getNumOfTriangles(g);
-        int VE = (int)zif.getFirstZagreb(1) - t;
+        int irr_ev_g = irr_ev_G(g);
         for(Vertex v : g) {
             if(g.getDegree(v)==maxDeg) a++;
             if(g.getDegree(v)==minDeg) b++;
@@ -136,7 +172,7 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
         v.add(M21-(3*t));
 
         v.add(t);
-        v.add(VE);
+        v.add(irr_ev_g);
         v.add(al.toString());
 
         ret.add(v);
@@ -146,6 +182,30 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
     @Override
     public String getCategory() {
         return "Verification-Degree";
+    }
+
+    public static void main(String[] args) {
+        GraphModel g= new GraphModel();
+        for (int i=0;i < 8;i++) {
+            g.addVertex(new Vertex());
+        }
+
+        g.addEdge(new Edge(g.getVertex(0), g.getVertex(1)));
+        g.addEdge(new Edge(g.getVertex(0), g.getVertex(2)));
+        g.addEdge(new Edge(g.getVertex(0), g.getVertex(3)));
+        g.addEdge(new Edge(g.getVertex(0), g.getVertex(7)));
+
+        g.addEdge(new Edge(g.getVertex(1), g.getVertex(2)));
+        g.addEdge(new Edge(g.getVertex(1), g.getVertex(3)));
+        g.addEdge(new Edge(g.getVertex(1), g.getVertex(6)));
+
+        g.addEdge(new Edge(g.getVertex(2), g.getVertex(4)));
+//        g.addEdge(new Edge(g.getVertex(2), g.getVertex(6)));
+
+        g.addEdge(new Edge(g.getVertex(3), g.getVertex(5)));
+
+        System.out.println(deg_e(g, g.getVertex(0)));
+
     }
 }
 

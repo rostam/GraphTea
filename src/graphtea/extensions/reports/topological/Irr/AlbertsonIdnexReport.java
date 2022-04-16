@@ -1,8 +1,9 @@
-package graphtea.extensions.reports.topological;
+package graphtea.extensions.reports.topological.Irr;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.basicreports.NumOfTriangles;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
+import graphtea.extensions.reports.topological.ZagrebIndexFunctions;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
