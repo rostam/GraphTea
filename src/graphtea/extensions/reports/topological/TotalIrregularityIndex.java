@@ -28,19 +28,21 @@ public class TotalIrregularityIndex implements GraphReportExtension<Integer> {
     public static int computeAlbertsonIndex(GraphModel graph) {
         int sum = 0;
         for (Vertex i : graph) {
-            for (Vertex j : graph.directNeighbors(i)) {
-                sum += Math.abs(graph.getDegree(i) - graph.getDegree(j));
+            for (Vertex j : graph) {
+                if (i.getId() > j.getId()) {
+                    sum += Math.abs(graph.getDegree(i) - graph.getDegree(j));
+                }
             }
         }
-        return sum/2;
+        return sum;
     }
 
     public Integer calculate(GraphModel graph) {
         return computeAlbertsonIndex(graph);
     }
 
-	@Override
-	public String getCategory() {
-		return "Topological Indices-Irregularities";
-	}
+    @Override
+    public String getCategory() {
+        return "Topological Indices-Irregularities";
+    }
 }
