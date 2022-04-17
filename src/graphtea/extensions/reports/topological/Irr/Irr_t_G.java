@@ -48,17 +48,20 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
             }
         }
 
-        return ret - conn/2;
+        return ret - conn;
     }
 
     public static int irr_t_ev_G(GraphModel graph) {
         int sum = 0;
         for (Vertex i : graph) {
-            for (Vertex j : graph.directNeighbors(i)) {
-                sum += Math.abs(deg_e(graph,i) - deg_e(graph,j));
+            for (Vertex j : graph) {
+                if (i.getId() > j.getId())
+                {
+                    sum += Math.abs(deg_e(graph,i) - deg_e(graph,j) );
+                }
             }
         }
-        return sum/2;
+        return sum;
     }
 
     public RenderTable calculate(GraphModel g) {
@@ -72,7 +75,7 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
         titles.add(" Zagreb ");
         titles.add(" Ve ");
         titles.add(" t ");
-        titles.add(" Irr_t_G ");
+        titles.add(" Total-ev-Irr(G) ");
         titles.add(" V. Degrees ");
 
         ret.setTitles(titles);
@@ -203,6 +206,5 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
 
     }
 }
-
 
 

@@ -77,7 +77,7 @@ public class Irr_G implements GraphReportExtension<RenderTable> {
         titles.add(" Zagreb ");
         titles.add(" Ve ");
         titles.add(" t ");
-        titles.add(" Irr_G ");
+        titles.add(" ve-Irr(G) ");
         titles.add(" V. Degrees ");
 
         ret.setTitles(titles);
@@ -208,6 +208,5 @@ public class Irr_G implements GraphReportExtension<RenderTable> {
 
     }
 }
-
 
 
