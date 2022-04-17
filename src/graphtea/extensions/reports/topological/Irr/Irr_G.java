@@ -52,6 +52,14 @@ public class Irr_G implements GraphReportExtension<RenderTable> {
         return ret - conn;
     }
 
+    public static Vector<Integer> list_deg_e(GraphModel g) {
+        Vector<Integer> ret = new Vector<>();
+        for(Vertex v : g) {
+            ret.add(deg_e(g, v));
+        }
+        return ret;
+    }
+
     public static int irr_ev_G(GraphModel graph) {
         int sum = 0;
         for (Vertex i : graph) {
@@ -79,6 +87,7 @@ public class Irr_G implements GraphReportExtension<RenderTable> {
         titles.add(" t ");
         titles.add(" ve-Irr(G) ");
         titles.add(" V. Degrees ");
+        titles.add("ve Degrees");
 
         ret.setTitles(titles);
 
@@ -174,8 +183,10 @@ public class Irr_G implements GraphReportExtension<RenderTable> {
         v.add(t);
         v.add(irr_ev_g);
         v.add(al.toString());
+        v.add(list_deg_e(g));
 
         ret.add(v);
+
         return ret;
     }
 

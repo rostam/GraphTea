@@ -77,6 +77,7 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
         titles.add(" t ");
         titles.add(" Total-ev-Irr(G) ");
         titles.add(" V. Degrees ");
+        titles.add("ve Degrees");
 
         ret.setTitles(titles);
 
@@ -172,6 +173,7 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
         v.add(t);
         v.add(irr_t_ev_g);
         v.add(al.toString());
+        v.add(Irr_G.list_deg_e(g));
 
         ret.add(v);
         return ret;
