@@ -29,12 +29,12 @@ public class GStroke implements Serializable,  FromStringProvider<GStroke> {
     public static GStroke empty = new GStroke("Empty", 0, new float[]{0, 100000000f});
     public static GStroke simple = new GStroke("simple", 1, new float[]{1, 0});
     public static GStroke solid = new GStroke("solid", new float[]{1, 0});
-    public static GStroke strong = new GStroke("strong", 4, new float[]{1, 0});
+    public static GStroke strong = new GStroke("strong", 10, new float[]{1, 0});
     public static GStroke dashed = new GStroke("dashed", new float[]{6, 2});
     public static GStroke dotted = new GStroke("dotted", new float[]{2, 4});
     public static GStroke dashed_dotted = new GStroke("dashed-dotted", new float[]{6, 2, 2, 6});
     public static GStroke dashed_dotted_dotted = new GStroke("dashed-dotted-dotted", new float[]{6, 2, 2, 6, 2, 6});
-    public static GStroke dashed_dashed_dotted = new GStroke("dashed-dashed-dotted", new float[]{6, 2, 6, 2, 2, 4});
+    public static GStroke dashed_dashed_dotted = new GStroke("dashed-dashed-dotted", 15, new float[]{6, 2, 6, 2, 2, 4});
 
     public String name;
     public BasicStroke stroke;
