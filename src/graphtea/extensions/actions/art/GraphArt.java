@@ -141,6 +141,8 @@ class Painter implements PaintHandler {
                     //fill the curve
                     gr.fill(gp);
 
+
+
 //                        double c11 =  m1.x - startWidth * Math.sin(teta1);
 //                        double c22 =  m1.y + startWidth * Math.cos(teta1);
 
