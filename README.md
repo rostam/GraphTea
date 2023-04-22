@@ -74,7 +74,7 @@ Look at GTea (https:/github.com/rostam/GTea).
 ### Credits
 
 - Current Developers:
-  - Mohammad Ali Rostami ali [at] c3e [dot] de
+  - Mohammad Ali Rostami rostamiev [at] gmail [dot] com
   - Azin Azadi aazadi [at] gmail [dot] com
   - E. Suresh  sureshkako [at] gmail [dot] com
 
