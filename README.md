@@ -3,7 +3,7 @@
 
 
 # GraphTea
-GraphTea is a software framework to work on graphs and social networks. 
+[GraphTea](http://graphtheorysoftware.com) is a software framework to work on graphs and social networks. 
 It helps you to:
 - draw a graph
 - get reports about it
