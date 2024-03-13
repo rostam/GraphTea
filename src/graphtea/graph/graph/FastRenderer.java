@@ -37,7 +37,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 
     private static final GStroke markedStroke = GStroke.strong;
     @UserModifiableProperty(displayName = "Default Edge Stroke")
-    public static GStroke defaultStroke = GStroke.strong;
+    public static GStroke defaultStroke = GStroke.dashed_dashed_dotted;
     @UserModifiableProperty(displayName = "Default Vertex Shape")
     public static GShape defaultVertexShape = GShape.OVAL;
     @UserModifiableProperty(displayName = "Default Vertex Color")
@@ -254,6 +254,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 
                 gg.setColor(c);
                 if (!e.isLoop()) {
+                    gg.setStroke(new BasicStroke(3));
                     gg.drawLine((int) (l.x * zoomFactor), (int) (l.y * zoomFactor), (int) (r.x * zoomFactor), (int) (r.y * zoomFactor));
                 } else {
                    //Drawing loops
@@ -337,6 +338,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
             else
                 color = GraphModel.getColor(model.getColor());
             BasicStroke stroke = model.getStroke().stroke;
+
             GPoint src = model.source.getLocation();
             GPoint trg = model.target.getLocation();
 
@@ -374,6 +376,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
                     g.setColor(c1);
                     g.setStroke(stroke);
                     if (ctrlPnt.x == 0 && ctrlPnt.y == 0) {
+                        g.setStroke(new BasicStroke(3));
                         g.drawLine(x1z, y1z, x2z, y2z);
                     } else {
                         //the control point of the curve is put another place so that the curve hits the real control point.
