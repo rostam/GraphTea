@@ -59,27 +59,42 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
                 }
                 if (result == null)
                     return;
+// Your existing code...
                 jd = new JDialog(UIUtils.getGFrame(blackboard));
                 jd.setVisible(true);
                 jd.setTitle(mr.getName());
-                jd.setLayout(new BorderLayout(3, 3));
-                jd.add(new JLabel(mr.getDescription()), BorderLayout.NORTH);
+                jd.setLayout(new BorderLayout());
+
+// Create a JPanel with padding
+                JPanel contentPanel = new JPanel(new BorderLayout());
+                contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));  // Set padding (top, left, bottom, right)
+
+// Add components to the contentPanel
+                contentPanel.add(new JLabel(mr.getDescription() + ':'), BorderLayout.NORTH);
                 rendererComponent = GCellRenderer.getRendererFor(result);
                 rendererComponent.setEnabled(true);
-                jd.add(rendererComponent, BorderLayout.CENTER);
+// Add vertical spacing above the rendererComponent
+                contentPanel.add(Box.createRigidArea(new Dimension(100, 10)));  // Same spacing above result
+
+// Add the rendererComponent directly to contentPanel
+                contentPanel.add(rendererComponent, BorderLayout.CENTER);
+// Add the contentPanel to the dialog
+                jd.add(contentPanel, BorderLayout.CENTER);
+
                 JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
                 JButton recalc = new JButton("Recalculate");
-                panel.add(recalc, BorderLayout.SOUTH);
+                panel.add(recalc);
+                contentPanel.add(panel, BorderLayout.SOUTH);  // Add the button panel to the contentPanel
+
                 recalc.addActionListener(actionEvent -> {
                     Object result = mr.calculate(new GraphData(blackboard).getGraph());
-                    jd.remove(rendererComponent);
+                    contentPanel.remove(rendererComponent);
                     rendererComponent = GCellRenderer.getRendererFor(result);
                     rendererComponent.setEnabled(true);
-                    jd.add(rendererComponent, BorderLayout.CENTER);
-                    jd.pack();
+                    contentPanel.add(rendererComponent, BorderLayout.CENTER);
+                    jd.pack();  // Resize the dialog to fit the new contents
                     jd.repaint();
                 });
-
                 fileChooser = new JFileChooser();
                 JButton save = new JButton("Save");
                 panel.add(save);

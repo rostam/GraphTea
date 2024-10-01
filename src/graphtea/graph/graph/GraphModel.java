@@ -30,7 +30,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 		SETTINGS.registerSetting(this, "Graph Drawings");
 	}
 
-	private Font font = new Font("Arial", Font.BOLD, 24);
+	private Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 14);
 	@UserModifiableProperty(displayName = "Show Edge Labels")
 	public static boolean showEdgeWeights = false;
 	@UserModifiableProperty(displayName = "Show Vertex Labels")

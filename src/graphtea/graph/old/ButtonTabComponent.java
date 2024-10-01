@@ -41,7 +41,7 @@ public class ButtonTabComponent extends JPanel {
 
         add(label);
         //add more space between the label and the button
-        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
         //tab button
         JButton button = new graphtea.graph.old.ButtonTabComponent.TabButton();
         add(button);

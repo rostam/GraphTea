@@ -92,7 +92,7 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
         if (shapeName.equals(RECTANGLE.name)) {
             g.drawRect(0, 0, w - 1, h - 1);
         } else if (shapeName.equals(OVAL.name)) {
-            g.drawOval(0, 0, w - 1, h - 1);
+            g.drawOval(0, 0, w, h);
         } else if (shapeName.equals(ROUNDRECT.name)) {
             g.drawRoundRect(0, 0, w - 1, h - 1, w / 2, h / 2);
         } else if (shapeName.equals(LEFTWARDTTRIANGLE.name)) {

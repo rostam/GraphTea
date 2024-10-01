@@ -175,7 +175,7 @@ public class GTabbedGraphPane extends GTabbedPane {
     }
 
     static String htmlFormat(String message) {
-        return "<HTML><BODY><CENTER><h1>" + message + "</h1></CENTER></BODY></HTML>";
+        return "<HTML><BODY><CENTER><p style='font-face: sans-serif'>" + message + "</p></CENTER></BODY></HTML>";
     }
 
     //------------------------------------------------
