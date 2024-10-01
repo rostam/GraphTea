@@ -18,6 +18,7 @@ import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.QuadCurve2D;
+import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
 /**
@@ -45,7 +46,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
     @UserModifiableProperty(displayName = "Default Vertex Stroke")
     public static GStroke defaultBorderStroke = GStroke.strong;
     @UserModifiableProperty(displayName = "Default Size of Vertices")
-    public static Dimension defaultShapeDimension = new Dimension(50, 50);
+    public static Dimension defaultShapeDimension = new Dimension(25, 25);
     @UserModifiableProperty(displayName = "Default Edge Color")
     public static Color defaultEdgeColor = new Color(130,130,130);
 
@@ -100,6 +101,13 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
         g.fillRect(100, 100, 100, 100);               // Start drawing with it
         */
+
+        // Enable anti-aliasing for smoother edges
+        gg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        // Enable high-quality rendering (optional, improves text and general rendering)
+        gg.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        gg.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 
         if (quickPaint) {
             gg.setRenderingHint(RenderingHints.KEY_RENDERING,
@@ -204,25 +212,16 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
                 String s = v.getLabel();
                 if (s == null)
                     s = "";
-                int labelLength = 0;
-                for(int i=0;i < s.length();i++) {
-                    labelLength += gg.getFontMetrics().charWidth(s.charAt(i));
-                }
 
-                Font f = gg.getFont();
-                int fontH = (int)Math.floor(f.createGlyphVector(
-                        gg.getFontMetrics().getFontRenderContext(),
-                        s).getVisualBounds().getHeight());
+// Get FontMetrics for measuring the text width
+                FontMetrics fm = gg.getFontMetrics();
+                int labelLength = fm.stringWidth(s); // Use stringWidth to get the correct length
+
+// Now, center the label horizontally by subtracting half the label's width
                 paint((Graphics2D) gg, v,
                         zm(l.x) - v.getCenter().x, zm(l.y) - v.getCenter().y,
-                        zm(l.x) - labelLength/2, zm(l.y) +
-                        vertexRadius/2,
-                        //fontH/2,
+                        zm(l.x) - labelLength / 2, zm(l.y) + vertexRadius / 2,
                         drawExtras);
-
-                //paint((Graphics2D) gg, v,
-                //        zm(l.x) - v.getCenter().x, zm(l.y) - v.getCenter().y,
-                //        zm(l.x) - dl, zm(l.y) + vertexRadius / 2, drawExtras);
             }
         } catch (Exception e) {
             repaint();
@@ -463,13 +462,37 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 //            if (labelSize.width == 0)
 //                updateLabelSize();
 //            g.drawString(model.getLabel(), w / 2 - labelSize.width / 2, h / 2 + labelSize.height / 2);  //dirty formula
+
         if (drawVertexLabels) {
-            GPoint ll = model.getLabelLocation();
             String l = model.getLabel();
-            if (l != null) {
-                g.drawString(l, (int) (labelx + ll.x), (int) (labely + ll.y));  //dirty formula
+            if (l != null && !l.isEmpty()) {
+                // Get the FontMetrics to calculate the string bounds
+                FontMetrics fm = g.getFontMetrics();
+                Rectangle2D labelBounds = fm.getStringBounds(l, g);
+
+                int labelWidth = (int) labelBounds.getWidth();
+                int labelHeight = (int) labelBounds.getHeight();
+
+                // Get font ascent and descent for better positioning
+                int ascent = fm.getAscent();
+                int descent = fm.getDescent();
+
+                // Calculate the center of the shape
+                int shapeCenterX = x + w / 2;
+                int shapeCenterY = y + h / 2;
+
+                // Adjust the label position to be horizontally centered and vertically centered
+                int labelX = shapeCenterX - labelWidth / 2;
+                int labelY = shapeCenterY  + (labelHeight / 2);  // Centering using ascent and label height
+
+                // Draw the label at the adjusted position
+                g.setColor(Color.BLACK);  // Set color back to black for the text
+                g.drawString(l, labelX, labelY-3);
             }
         }
+
+
+
     }
 
     public void vertexAdded(Vertex v) {

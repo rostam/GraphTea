@@ -34,7 +34,7 @@ public class GraphGenerator implements PluginMethods {
         blackboard.setData(AddVertex.DISABLE, true);
 
         //select a region and then generate the graph
-        GTabbedGraphPane.showNotificationMessage("<HTML><BODY><Center><h1>Please select a region to put the generated graph.</h1></center></body></html>", blackboard, true);
+        GTabbedGraphPane.showNotificationMessage("Please select a region to put the generated graph.", blackboard, true);
 //        JOptionPane.showMessageDialog(null, "Please select a region to put the generated graph");
         new GraphRectRegionSelect(blackboard) {
 
