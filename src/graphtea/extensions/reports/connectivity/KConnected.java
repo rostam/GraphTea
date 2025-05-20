@@ -68,11 +68,11 @@ public class KConnected implements GraphReportExtension<Integer> {
             for (int j = 0; j < k; j++)
                 popped.add(karray.get(j));
 
-            for (int j = 0; remain.size() == 0; j++)
+            for (int j = 0; remain.isEmpty(); j++)
                 if (!popped.contains(j))
                     remain.add(j);
 
-            while (remain.size() > 0) {
+            while (!remain.isEmpty()) {
                 Vertex n = g.getVertex(remain.poll());
                 Integer index;
 

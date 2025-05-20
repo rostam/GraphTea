@@ -93,7 +93,7 @@ public class Vertex extends BaseVertex {
      */
     public void removeUserDefinedAttribute(String name) {
         userDefinedAttributes.remove(name);
-        if (userDefinedAttributes.size() == 0)
+        if (userDefinedAttributes.isEmpty())
             userDefinedAttributes = null;
     }
 
@@ -123,7 +123,7 @@ public class Vertex extends BaseVertex {
      */
     public static void removeGlobalUserDefinedAttribute(String name) {
         globalUserDefinedAttributes.remove(name);
-        if (globalUserDefinedAttributes.size() == 0)
+        if (globalUserDefinedAttributes.isEmpty())
             globalUserDefinedAttributes = null;
     }
 

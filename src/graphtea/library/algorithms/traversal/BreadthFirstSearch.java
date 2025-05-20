@@ -55,7 +55,7 @@ public class BreadthFirstSearch<VertexType extends BaseVertex, EdgeType extends 
         queue.offer(vertex);
         roots.offer(vertex);
         try {
-            while (queue.size() != 0) {
+            while (!queue.isEmpty()) {
                 VertexType index = queue.poll();
                 VertexType root = roots.poll();
 

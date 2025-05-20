@@ -32,12 +32,6 @@ public class Prim extends Algorithm implements AutomatedAlgorithm {
      */
     final GraphModel graph;
     /**
-     * Reference to a GraphConverter object which is responsible for duplication
-     * of the graph elements, because graph edges and vertices are going to be
-     * copied to the newly created spanning tree.
-     */
-    private final EdgeVertexCopier<Vertex, Edge> gc;
-    /**
      * Priority queue implemented as a binary heap to store edges, sorted according
      * to their weights.
      */
@@ -73,7 +67,11 @@ public class Prim extends Algorithm implements AutomatedAlgorithm {
         //	throw new NullPointerException();
 
         this.graph = graph;
-        this.gc = gc;
+        /**
+         * Reference to a GraphConverter object which is responsible for duplication
+         * of the graph elements, because graph edges and vertices are going to be
+         * copied to the newly created spanning tree.
+         */
         this.ec = new DefaultEdgeComparator();
     }
 

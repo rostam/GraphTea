@@ -36,7 +36,7 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
                 v.setMark(true);
             }
 
-        while (alv.size() != 0) {
+        while (!alv.isEmpty()) {
             Vertex v = alv.remove(0);
             out.add(v);
 

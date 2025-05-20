@@ -58,7 +58,7 @@ public class ExtensionClassLoader extends ClassLoader {
             else if (file1.getName().endsWith(".class"))
                 try {
                     String name;
-                    if (pack.length() > 0)
+                    if (!pack.isEmpty())
                         name = pack.substring(1) + ".";
                     else
                         name = "";

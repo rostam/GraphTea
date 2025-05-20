@@ -913,7 +913,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
     public boolean isEdge(VertexType source, VertexType target)
             throws InvalidVertexException {
         AbstractList<EdgeType> edges = getEdges(source, target);
-        return (edges != null) && (edges.size() != 0);
+        return (edges != null) && (!edges.isEmpty());
     }
     
     /* (non-Javadoc)

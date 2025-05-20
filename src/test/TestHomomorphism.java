@@ -1,3 +1,5 @@
+package test;
+
 import graphtea.extensions.AllSetPartitions;
 import graphtea.extensions.algorithms.homomorphism.Homomorphism;
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
@@ -7,8 +9,8 @@ import graphtea.extensions.generators.GeneralizedPetersonGenerator;
 import graphtea.extensions.reports.HeuristicGreedyColoring;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.util.*;
 
@@ -28,7 +30,7 @@ public class TestHomomorphism {
         HashMap<Vertex, Vertex> hmFunc = hm.getHomomorphism();
         int[][] distPeterson = fw.getAllPairsShortestPathWithoutWeight(peterson);
         int[][] distRange = fw.getAllPairsShortestPathWithoutWeight(hm.getRange());
-        Assertions.assertTrue(hm.isValid());
+        Assert.assertTrue(hm.isValid());
 
         boolean isCorrect = false;
         // Collary 1.2 from Pavol Hell Book
@@ -41,7 +43,7 @@ public class TestHomomorphism {
                     break;
             }
         }
-        Assertions.assertTrue(isCorrect);
+        Assert.assertTrue(isCorrect);
     }
 
     @Test
@@ -60,12 +62,3 @@ public class TestHomomorphism {
         System.out.println(allpartitions.size());
     }
 }
-//
-//class MySubSetListener implements SubSetListener {
-//
-//    @Override
-//    public boolean subsetFound(int t, ArrayDeque<Vertex> complement, ArrayDeque<Vertex> set) {
-//        System.out.println(set.size());
-//        return false;
-//    }
-//}

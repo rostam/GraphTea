@@ -36,14 +36,14 @@ public class SubGraphRenderer implements GBasicCellRenderer<SubGraph> {
             txt += "<B>" + mysd.label + ": </B><BR>";
         }
 
-        if (mysd.vertices != null && mysd.vertices.size() > 0) {
+        if (mysd.vertices != null && !mysd.vertices.isEmpty()) {
             txt = txt + "<B>V: </B> {";
             for (Vertex v : mysd.vertices) {
                 txt = txt + v.getLabel() + ", ";
             }
             txt = txt.substring(0, txt.length() - 2) + "}";
         }
-        if (mysd.edges != null && mysd.edges.size() > 0) {
+        if (mysd.edges != null && !mysd.edges.isEmpty()) {
             txt += "<BR><B>E: </B> {";
             for (Edge e : mysd.edges) {
                 txt = txt + e.source.getLabel() + "-"+ e.target.getLabel() + ", ";

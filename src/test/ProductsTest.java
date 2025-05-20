@@ -1,3 +1,5 @@
+package test;
+
 import graphtea.extensions.actions.product.GStrongProduct;
 import graphtea.extensions.generators.CircleGenerator;
 import graphtea.extensions.generators.CompleteGraphGenerator;
@@ -5,8 +7,9 @@ import graphtea.extensions.generators.GeneralizedPetersonGenerator;
 import graphtea.extensions.generators.PathGenerator;
 import graphtea.extensions.reports.basicreports.*;
 import graphtea.graph.graph.GraphModel;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
+
 
 import java.util.ArrayList;
 
@@ -31,11 +34,11 @@ public class ProductsTest {
         int minDegree = maxAndMinDegree.get(1);
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
-        Assertions.assertEquals(girth, 3);
-        Assertions.assertEquals(numOfVertices, n*m);
-        Assertions.assertEquals(numOfEdges, 4*m*n - 3*(n+m) + 2);
-        Assertions.assertEquals(maxDegree, 8);
-        Assertions.assertEquals(minDegree, 3);
+        Assert.assertEquals(3, girth);
+        Assert.assertEquals(n*m, numOfVertices);
+        Assert.assertEquals(4*m*n - 3*(n+m) + 2, numOfEdges);
+        Assert.assertEquals(8, maxDegree);
+        Assert.assertEquals(3, minDegree);
     }
 
 }

@@ -75,7 +75,7 @@ public class CircularTreeVisualization implements VisualizationExtension {
             }
         }
         maxLevel++;
-        if (nextLevel.size() != 0) {
+        if (!nextLevel.isEmpty()) {
             return maxHeight(nextLevel, maxLevel);
         } else {
             return maxLevel;

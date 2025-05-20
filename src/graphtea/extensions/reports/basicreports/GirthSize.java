@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author Mohammad Ali Rostami
  *
- * In graph theory, the girth of an undirected graph is the length of a shortest cycle contained in the graph.
+ * In graph theory, the girth of an undirected graph is the length of the shortest cycle contained in the graph.
  */
 
 @CommandAttitude(name = "girth_size", abbreviation = "_gs")
@@ -34,7 +34,7 @@ public class GirthSize implements GraphReportExtension<Integer> {
         baba[start] = -1;
         List<Integer> ll = new ArrayList<>();
         ll.add(start);
-        while (ll.size() > 0) {
+        while (!ll.isEmpty()) {
             int currentNode = ll.remove(0);
             for (int j = 0; j < cc; j++)
                 if (mat[currentNode][j] == 1)
@@ -63,9 +63,9 @@ public class GirthSize implements GraphReportExtension<Integer> {
         double[][] mat = graph.getAdjacencyMatrix().getArray();
         int girth = AlgorithmUtils.Max_Int;
         for (int i = 0; i < size; i++) {
-            int sizeofsmallestcycle = bfs(i, mat, size, girth);
-            if (sizeofsmallestcycle != AlgorithmUtils.Max_Int && girth > sizeofsmallestcycle)
-                girth = sizeofsmallestcycle;
+            int sizeOfSmallestCycle = bfs(i, mat, size, girth);
+            if (sizeOfSmallestCycle != AlgorithmUtils.Max_Int && girth > sizeOfSmallestCycle)
+                girth = sizeOfSmallestCycle;
         }
         if (girth == AlgorithmUtils.Max_Int) return 0;
         return girth;

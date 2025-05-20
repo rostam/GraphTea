@@ -13,8 +13,8 @@ import java.util.LinkedList;
 
 /**
  * The details of the algorithm used here can be found at:
- * http://www.cs.auckland.ac.nz/~ute/220ft/graphalg/node15.html#SECTION00033000000000000000
- * 
+ * <a href="http://www.cs.auckland.ac.nz/~ute/220ft/graphalg/node15.html#SECTION00033000000000000000">...</a>
+ *
  * @author Hooman Mohajeri Moghaddam
  *
  */
@@ -42,7 +42,7 @@ public class BipartiteChecker extends Algorithm implements AutomatedAlgorithm {
 			v.color = 1;
 			queue.offer(v);
 
-			while (queue.size() != 0) {	
+			while (!queue.isEmpty()) {
 				cv = queue.poll();
 				for (ColorableVertex<VertexType> next : CVArray) {
 					if (graph.isEdge(cv.vm, next.vm)) 

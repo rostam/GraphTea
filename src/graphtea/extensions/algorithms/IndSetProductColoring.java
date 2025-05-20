@@ -131,7 +131,7 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
                         break;
                     }
                 }
-                if (!sameItem && tmp.size() != 0 && integers.size() != 0) {
+                if (!sameItem && !tmp.isEmpty() && !integers.isEmpty()) {
                     tmp.add(-1);
                     tmp.addAll(integers);
                 }

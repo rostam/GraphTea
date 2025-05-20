@@ -19,11 +19,9 @@ public class GStatusBar extends JPanel {
      *
      */
     private static final long serialVersionUID = 7638151469264118382L;
-    private final BlackBoard blackboard;
 
     public GStatusBar(BlackBoard blackboard) {
         super();
-        this.blackboard = blackboard;
         FlowLayout l = new FlowLayout(FlowLayout.LEFT, 1, 1);
         setLayout(l);
         setBorder(new EmptyBorder(1, 1, 0, 1));

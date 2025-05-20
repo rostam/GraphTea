@@ -69,14 +69,14 @@ public class SubGraph {
         if (label != null && !label.equals("")) {
             txt += label + ": \n";
         }
-        if (vertices != null && vertices.size() > 0) {
+        if (vertices != null && !vertices.isEmpty()) {
             txt = txt + "V: {";
             for (Vertex v : vertices) {
                 txt = txt + v.getLabel() + ", ";
             }
             txt = txt.substring(0, txt.length() - 2) + "}";
         }
-        if (edges != null && edges.size() > 0) {
+        if (edges != null && !edges.isEmpty()) {
             txt += "\nE: {";
             for (Edge e : edges) {
                 txt = txt + e + ", ";

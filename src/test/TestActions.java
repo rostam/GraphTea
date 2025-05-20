@@ -1,3 +1,5 @@
+package test;
+
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.generators.CircleGenerator;
 import graphtea.extensions.generators.CompleteGraphGenerator;
@@ -6,8 +8,8 @@ import graphtea.extensions.generators.PathGenerator;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TestActions {
     GraphModel peterson = GeneralizedPetersonGenerator.generateGeneralizedPeterson(5,2);
@@ -36,6 +38,6 @@ public class TestActions {
             if(!isCorrect)
                 break;
         }
-        Assertions.assertTrue(isCorrect);
+        Assert.assertTrue(isCorrect);
     }
 }

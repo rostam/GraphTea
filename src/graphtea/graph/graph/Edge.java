@@ -99,7 +99,7 @@ public class Edge extends BaseEdge<Vertex> {
      */
     public void removeUserDefinedAttribute(String name) {
         userDefinedAttributes.remove(name);
-        if (userDefinedAttributes.size() == 0)
+        if (userDefinedAttributes.isEmpty())
             userDefinedAttributes = null;
     }
 
@@ -129,7 +129,7 @@ public class Edge extends BaseEdge<Vertex> {
      */
     public static void removeGlobalUserDefinedAttribute(String name) {
         globalUserDefinedAttributes.remove(name);
-        if (globalUserDefinedAttributes.size() == 0)
+        if (globalUserDefinedAttributes.isEmpty())
             globalUserDefinedAttributes = null;
     }
 
@@ -347,8 +347,6 @@ public class Edge extends BaseEdge<Vertex> {
         String _label;
         if (!isShowWeight())
             _label = label;
-        else if (isShowWeight())
-            _label = String.valueOf(super.getWeight());
         else
             _label = label + "," + super.getWeight();
         this.text = _label;

@@ -25,7 +25,6 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
 
     public GraphModel g;
     private Vertex curv = null;
-    private Edge cure = null;
     public BlackBoard bb;
     private VertexAttrSet curvAS;
     private EdgeAttrSet cureAS;
@@ -85,7 +84,6 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
         //todo: the id can not be setted (it's a fix value)
 //        e.setID(meta.getValue(Edge.ID));
         g.insertEdge(e);
-        cure = e;
         cureAS = new EdgeAttrSet(e);
         if (DEBUG) System.err.println("start_edge: " + meta);
     }

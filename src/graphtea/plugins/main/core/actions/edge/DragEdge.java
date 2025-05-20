@@ -44,7 +44,7 @@ public class DragEdge extends AbstractAction implements PaintHandler {
     //    protected int y1;
     //    protected int cx;
     //    protected int cy;
-    private GPoint lastPos, firstPos, cpfirstPos;
+    private GPoint lastPos;
     private GPoint clickPos;
 
     public void track(){}
@@ -59,8 +59,8 @@ public class DragEdge extends AbstractAction implements PaintHandler {
             if (ee.eventType == EdgeEvent.DRAGGING_STARTED) {
 //                if (ee.mouseBtn == MouseEvent.BUTTON3) {
                 lastPos = ee.mousePos;
-                firstPos = ee.mousePos;
-                cpfirstPos = edge.getCurveControlPoint();
+                GPoint firstPos = ee.mousePos;
+                GPoint cpfirstPos = edge.getCurveControlPoint();
 //                startPainting(ee.e);
 //                }
 //                else {

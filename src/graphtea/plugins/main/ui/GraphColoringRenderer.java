@@ -34,13 +34,13 @@ public class GraphColoringRenderer implements GBasicCellRenderer<GraphColoring> 
         if (myColoring.label != null && !myColoring.label.equals("")) {
             txt = txt + "<B>" + myColoring.label + ":  </B>";
         }
-        if (myColoring.vertexColors != null && myColoring.vertexColors.size() > 0) {
+        if (myColoring.vertexColors != null && !myColoring.vertexColors.isEmpty()) {
             txt = txt + "<B>Vertex colors: </B> ";
             for (Map.Entry<Vertex, Integer> p : myColoring.vertexColors.entrySet()) {
                 txt = txt + p.getKey().getLabel() + ":" + p.getValue() + " , ";
             }
         }
-        if (myColoring.edgeColors != null && myColoring.edgeColors.size() > 0) {
+        if (myColoring.edgeColors != null && !myColoring.edgeColors.isEmpty()) {
             txt = txt + "<br/><B>Edge colors: </B> ";
             for (Map.Entry<Edge, Integer> p : myColoring.edgeColors.entrySet()) {
                 txt = txt + p.getKey().getLabel() + ":" + p.getValue() + " , ";

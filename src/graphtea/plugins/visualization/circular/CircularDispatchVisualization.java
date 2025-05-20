@@ -114,7 +114,7 @@ public class CircularDispatchVisualization implements VisualizationExtension {
             }
         }
 
-        if (nextLevel.size() != 0) {
+        if (!nextLevel.isEmpty()) {
             findCycle(nextLevel, minLength, color + 1);
         } else {
             return;
@@ -136,7 +136,7 @@ public class CircularDispatchVisualization implements VisualizationExtension {
             }
         }
         maxLevel++;
-        if (nextLevel.size() != 0) {
+        if (!nextLevel.isEmpty()) {
             return maxHeight(nextLevel, maxLevel);
         } else {
             return maxLevel;

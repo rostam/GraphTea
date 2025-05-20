@@ -74,7 +74,7 @@ public class BendedTrees extends AbstractAction {
             }
         }
         maxLevel++;
-        if (nextLevel.size() != 0) {
+        if (!nextLevel.isEmpty()) {
             return BFS(marked, nextLevel, maxLevel);
         } else {
             return maxLevel;

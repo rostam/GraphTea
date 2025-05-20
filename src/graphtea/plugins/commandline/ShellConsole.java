@@ -57,7 +57,6 @@ public class ShellConsole extends JScrollPane
 
     private final JPopupMenu menu;
     private final JTextPane text;
-    private final DefaultStyledDocument doc;
 
     NameCompletion nameCompletion;
     final int SHOW_AMBIG_MAX = 15;
@@ -84,6 +83,7 @@ public class ShellConsole extends JScrollPane
 
         // Special TextPane which catches for cut and paste, both L&F keys and
         // programmatic	behaviour
+        DefaultStyledDocument doc;
         text = new JTextPane(doc = new DefaultStyledDocument()) {
             public void cut() {
                 if (text.getCaretPosition() < cmdStart) {
@@ -312,7 +312,7 @@ public class ShellConsole extends JScrollPane
 
 
         part = part.substring(i + 1);
-        if (part.length() < 1)  // reasonable completion length
+        if (part.isEmpty())  // reasonable completion length
             return;
 
 
@@ -409,7 +409,7 @@ public class ShellConsole extends JScrollPane
     private void enter() {
         String s = getCmd();
 
-        if (s.length() == 0)    // special hack	for empty return!
+        if (s.isEmpty())    // special hack	for empty return!
             s = ";\n";
         else {
             history.addElement(s);
@@ -434,7 +434,7 @@ public class ShellConsole extends JScrollPane
     }
 
     private void historyUp() {
-        if (history.size() == 0)
+        if (history.isEmpty())
             return;
         if (histLine == 0)  // save current line
             startedLine = getCmd();

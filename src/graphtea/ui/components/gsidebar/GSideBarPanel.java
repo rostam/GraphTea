@@ -33,9 +33,10 @@ public class GSideBarPanel extends javax.swing.JPanel {
     }
 
     private void initComponents() {
-        jPanel1 = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        // Variables declaration - do not modify
+        javax.swing.JButton jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setLayout(new java.awt.BorderLayout());
@@ -75,10 +76,7 @@ public class GSideBarPanel extends javax.swing.JPanel {
     }
 
 
-    // Variables declaration - do not modify
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     // End of variables declaration
 

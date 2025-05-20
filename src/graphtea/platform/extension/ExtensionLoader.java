@@ -102,8 +102,8 @@ public class ExtensionLoader implements StorableOnExit {
                         break;
                     }
                 }
-                if (ret == null && extensionClass.getConstructor() != null) {
-                    ret = extensionClass.newInstance();
+                if (ret == null) {
+                    ret = (Extension) extensionClass.getConstructors()[0].newInstance();
                 }
             }
             if (ret != null) {

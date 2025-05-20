@@ -35,13 +35,13 @@ public class GraphColoring {
         if (label != null && !label.equals("")) {
             txt = txt + label + ":  \n";
         }
-        if (vertexColors != null && vertexColors.size() > 0) {
+        if (vertexColors != null && !vertexColors.isEmpty()) {
             txt = txt + "Vertex colors: ";
             for (Map.Entry<Vertex, Integer> p : vertexColors.entrySet()) {
                 txt = txt + p.getKey().getLabel() + ":" + p.getValue() + " , ";
             }
         }
-        if (edgeColors != null && edgeColors.size() > 0) {
+        if (edgeColors != null && !edgeColors.isEmpty()) {
             txt = txt + "\nEdge colors: ";
             for (Map.Entry<Edge, Integer> p : edgeColors.entrySet()) {
                 txt = txt + p.getKey().getLabel() + ":" + p.getValue() + " , ";
@@ -51,12 +51,12 @@ public class GraphColoring {
     }
 
     public void applyColoring() {
-        if (vertexColors != null && vertexColors.size() > 0) {
+        if (vertexColors != null && !vertexColors.isEmpty()) {
             for (Map.Entry<Vertex, Integer> p : vertexColors.entrySet()) {
                 p.getKey().setColor(p.getValue());
             }
         }
-        if (edgeColors != null && edgeColors.size() > 0) {
+        if (edgeColors != null && !edgeColors.isEmpty()) {
             for (Map.Entry<Edge, Integer> p : edgeColors.entrySet()) {
                 p.getKey().setColor(p.getValue());
             }

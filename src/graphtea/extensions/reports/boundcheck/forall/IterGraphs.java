@@ -141,7 +141,7 @@ public class IterGraphs {
     private void getResIterLimited(ToCall<RenderTable> f, GraphModel g, int count, RenderTable mpq, String g6) {
         RenderTable ret = f.f(g);
         if (ret == null) return;
-        if (mpq.getTitles().size() == 0) {
+        if (mpq.getTitles().isEmpty()) {
             Vector<String> tts = new Vector<>();
             tts.add("Index");
             tts.addAll(ret.getTitles());

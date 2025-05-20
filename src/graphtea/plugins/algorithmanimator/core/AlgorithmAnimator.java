@@ -19,6 +19,7 @@ import graphtea.plugins.algorithmanimator.core.atoms.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 import java.util.Vector;
 
 /**
@@ -105,7 +106,7 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
         showMessageFor(html, event);
 
         Event output = animateEvent(event);
-        if (event.getMessage() != output.getMessage())
+        if (!Objects.equals(event.getMessage(), output.getMessage()))
             showMessageFor(html, output);
 
         if (oneStep && event instanceof AlgorithmStep) {
@@ -123,7 +124,7 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
     }
 
     private void showMessageFor(GHTMLPageComponent html, Event event1) {
-        if (event1 != null && event1.getMessage() != null && event1.getMessage() != "") {
+        if (event1 != null && event1.getMessage() != null && !Objects.equals(event1.getMessage(), "")) {
             html.appendHTML(event1.getMessage());
         }
     }

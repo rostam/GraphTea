@@ -1,4 +1,4 @@
-// GraphTea Project: http://github.com/graphtheorysoftware/GraphTea
+package test;// GraphTea Project: http://github.com/graphtheorysoftware/GraphTea
 // Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
@@ -18,7 +18,6 @@ import java.util.Vector;
 
 /**
  * TestListGraph.java
- *
  * Created on November 15, 2004, 4:30 AM
  * @author Omid Aladini
  */
@@ -231,7 +230,7 @@ public class TestListGraph {
             Iterator<BaseEdge<BaseVertex>> eIterator = myList.edgeIterator();
             System.out.print('\n');
             while (eIterator.hasNext()) {
-                BaseEdge e = eIterator.next();
+                BaseEdge<BaseVertex> e = eIterator.next();
                 System.out.println("An Edge from:" + e.source.getId() + " to:" + e.target.getId());
             }
 
@@ -250,7 +249,6 @@ public class TestListGraph {
 
         } catch (Exception e) {
             System.out.println("Noooooo:");
-            e.printStackTrace();
         }
     }
 

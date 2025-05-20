@@ -103,6 +103,6 @@ public class ShellServerCommands {
                 , description = "")
 
     public void exit() {
-        thread.stop();
+        thread.interrupt();
     }
 }

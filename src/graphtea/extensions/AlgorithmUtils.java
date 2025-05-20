@@ -132,7 +132,7 @@ public class AlgorithmUtils {
     }
 
     /**
-     * returns the subtree rooted by subTreeRoot in the rooted tree tree with the root treeRoot
+     * returns the subtree rooted by subTreeRoot in the rooted tree with the root treeRoot
      * the vertices are ordered by their distances to subTreeRoot
      * the exact distance is placed in v.getProp().obj as an Integer, starting distance is 0 which is subTreeRoot
      */
@@ -144,6 +144,7 @@ public class AlgorithmUtils {
         clearVertexMarks(tree);
 
 //close the path to tree root
+        assert pathToRoot != null;
         for (Vertex vertex : pathToRoot) {
             vertex.setMark(true);
         }
@@ -351,7 +352,7 @@ public class AlgorithmUtils {
     }
 
     /**
-     * locations v in a r-teta coordination
+     * locations v in an r-teta coordination
      */
     public static void setLocation(Vertex v, GPoint center, double radius, double ang) {
         v.setLocation(new GPoint(center.x + radius * Math.cos(ang), center.y + radius * Math.sin(ang)));
@@ -426,17 +427,17 @@ public class AlgorithmUtils {
         EigenvalueDecomposition ed = A.eig();
         double[] rv = ed.getRealEigenvalues();
         double[] iv = ed.getImagEigenvalues();
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res +="" + AlgorithmUtils.round(rv[i],10) + " + " + AlgorithmUtils.round(iv[i],10) + "i";
+                res.append(AlgorithmUtils.round(rv[i], 10)).append(" + ").append(AlgorithmUtils.round(iv[i], 10)).append("i");
             else
-                res += "" + AlgorithmUtils.round(rv[i],10);
+                res.append(AlgorithmUtils.round(rv[i], 10));
             if(i!=rv.length-1) {
-                res += ",";
+                res.append(",");
             }
         }
-        return res;
+        return res.toString();
     }
 
     /**
@@ -493,25 +494,25 @@ public class AlgorithmUtils {
         EigenvalueDecomposition ed = A.eig();
         double[] rv = ed.getRealEigenvalues();
         double[] iv = ed.getImagEigenvalues();
-        String res = "";
+        StringBuilder res = new StringBuilder();
         Vector<Double> EigenValues = new Vector<>();
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res +="" + AlgorithmUtils.round(rv[i],10) + " + " + AlgorithmUtils.round(iv[i],10) + "i";
+                res.append(AlgorithmUtils.round(rv[i], 10)).append(" + ").append(AlgorithmUtils.round(iv[i], 10)).append("i");
             else
                 EigenValues.add(AlgorithmUtils.round(rv[i],10));
         }
-        if(EigenValues.size() > 0) {
-            res = "";
+        if(!EigenValues.isEmpty()) {
+            res = new StringBuilder();
             EigenValues.sort((aDouble, t1) -> -aDouble.compareTo(t1));
             for (int i = 0; i < EigenValues.size(); i++) {
-                res += EigenValues.get(i);
+                res.append(EigenValues.get(i));
                 if(i != EigenValues.size() - 1) {
-                    res+=",";
+                    res.append(",");
                 }
             }
         }
-        return res;
+        return res.toString();
     }
 
     // get kth minimum degree
@@ -541,7 +542,7 @@ public class AlgorithmUtils {
     public static double getDegreeSum(GraphModel g, double alpha) {
         int sum = 0;
         for(Vertex v: g) {
-            sum+=getDegreeSumOfVertex(g,alpha,v);
+            sum+= (int) getDegreeSumOfVertex(g,alpha,v);
         }
         return sum;
     }
@@ -677,7 +678,7 @@ public class AlgorithmUtils {
     /**
      * Distance adjacency matrix
      * Distance Energy based on
-     * Gopalapillai Indulal,a Ivan Gutmanb and Vijayakumarc
+     * Gopalapillai Indulal,an Ivan Gutmanb and Vijayakumarc
      * ON DISTANCE ENERGY OF GRAPHS
      * MATCH Commun. Math. Comput. Chem. 60 (2008) 461-472.
      *
@@ -714,7 +715,7 @@ public class AlgorithmUtils {
         for (int i = 0; i < n; i++) {
             sum = 0;
             for (int j = 0; j < n; j++) {
-                sum += ATemp[j][i];
+                sum += (int) ATemp[j][i];
             }
             DTemp[i][i] = sum;
         }
@@ -781,7 +782,7 @@ public class AlgorithmUtils {
         for (int i = 0; i < n; i++) {
             sum = 0;
             for (int j = 0; j < n; j++) {
-                sum += ATemp[j][i];
+                sum += (int) ATemp[j][i];
             }
             DTemp[i][i] = sum;
         }

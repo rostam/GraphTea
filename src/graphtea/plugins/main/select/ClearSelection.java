@@ -36,16 +36,14 @@ public class ClearSelection extends AbstractAction {
     }
     public void track(){}
 
-    private SubGraph sd;
-
     public void performAction(String eventName, Object value) {
         GraphEvent gpd = (GraphEvent) value;
         if (gpd.eventType != GraphEvent.CLICKED) {
             return;
         }
 
-        sd = Select.getSelection(blackboard);
-        if (sd.vertices.size() != 0 || sd.edges.size() != 0) {
+        SubGraph sd = Select.getSelection(blackboard);
+        if (!sd.vertices.isEmpty() || !sd.edges.isEmpty()) {
             blackboard.setData(lastTimeGraphWasClear, false);
             clearSelected(blackboard);
             super.track();

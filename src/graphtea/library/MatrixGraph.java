@@ -841,7 +841,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
     @Override
     public boolean isEdge(VertexType source, VertexType target)
             throws InvalidVertexException {
-        return (getEdges(source, target) != null) && (getEdges(source, target).size() != 0);
+        return (getEdges(source, target) != null) && (!getEdges(source, target).isEmpty());
     }
 
 //    @Override
@@ -885,7 +885,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
             ArrayList<Integer> temp = new ArrayList<>();
 
             for (ArrayList<EdgeType> alet : ll) {
-                if (alet != null && alet.size() != 0)
+                if (alet != null && !alet.isEmpty())
                     temp.add(j++);
             }
 

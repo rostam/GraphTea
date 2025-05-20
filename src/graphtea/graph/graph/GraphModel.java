@@ -134,7 +134,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	 */
 	public void removeUserDefinedAttribute(String name) {
 		userDefinedAttributes.remove(name);
-		if (userDefinedAttributes.size() == 0)
+		if (userDefinedAttributes.isEmpty())
 			userDefinedAttributes = null;
 	}
 
@@ -164,7 +164,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	 */
 	public static void removeGlobalUserDefinedAttribute(String name) {
 		globalUserDefinedAttributes.remove(name);
-		if (globalUserDefinedAttributes.size() == 0)
+		if (globalUserDefinedAttributes.isEmpty())
 			globalUserDefinedAttributes = null;
 	}
 

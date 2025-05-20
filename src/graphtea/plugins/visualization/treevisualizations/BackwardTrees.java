@@ -74,7 +74,7 @@ public class BackwardTrees implements VisualizationExtension {
             }
         }
         maxLevel++;
-        if (nextLevel.size() != 0) {
+        if (!nextLevel.isEmpty()) {
             return BFS(nextLevel, maxLevel);
         } else {
             return maxLevel;
@@ -83,7 +83,7 @@ public class BackwardTrees implements VisualizationExtension {
 
     public Vector<Vertex> findNextLevelChildren(Vector<Vertex> currentLevelVertices) {
         Vector<Vertex> newChildren = new Vector<>();
-        if (currentLevelVertices.size() != 0) {
+        if (!currentLevelVertices.isEmpty()) {
             for (Vertex v : currentLevelVertices) {
                 Iterator<Edge> e = g.edgeIterator(v);
                 while (e.hasNext()) {

@@ -31,7 +31,7 @@ public class TopologicalSort extends Algorithm implements AutomatedAlgorithm {
             if (graph.getInDegree(v) == 0)
                 alv.add(v);
 
-        while (alv.size() != 0) {
+        while (!alv.isEmpty()) {
             Vertex v = alv.remove(0);
             out.add(v);
 

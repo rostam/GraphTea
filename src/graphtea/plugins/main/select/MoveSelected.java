@@ -40,7 +40,6 @@ public class MoveSelected extends AbstractAction {
     
 
     GraphData gd;
-    private GPoint[] verticesPositionsBackUp;
 
     public void performAction(String eventName, Object value) {
         gv = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
@@ -56,7 +55,7 @@ public class MoveSelected extends AbstractAction {
             if (sd.vertices.contains(vdd.v))   //start if the vertex selected
             {
                 if (vdd.eventType == VertexEvent.DRAGGING_STARTED) {
-                    verticesPositionsBackUp = new GPoint[gd.getGraph().getVerticesCount()];
+                    GPoint[] verticesPositionsBackUp = new GPoint[gd.getGraph().getVerticesCount()];
                     for (Vertex vertex : gd.getGraph()) {
                         verticesPositionsBackUp[vertex.getId()] = vertex.getLocation();
                     }

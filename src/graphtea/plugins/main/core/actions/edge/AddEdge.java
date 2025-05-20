@@ -28,7 +28,6 @@ public class AddEdge extends AbstractAction implements PaintHandler {
     //    private double lasty;
     //    private double lastx;
     private GPoint lastPos;
-    private final SelectPluginMethods selMethods;
 
     /**
      * constructor
@@ -37,7 +36,7 @@ public class AddEdge extends AbstractAction implements PaintHandler {
      */
     public AddEdge(BlackBoard bb) {
         super(bb);
-        selMethods = new SelectPluginMethods(bb);
+        SelectPluginMethods selMethods = new SelectPluginMethods(bb);
         listen4Event(VertexEvent.EVENT_KEY);
 //        listen4Event(GraphEvent.name);
 //        listen4Event(VertexDropData.event);

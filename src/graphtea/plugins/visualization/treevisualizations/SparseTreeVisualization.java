@@ -67,7 +67,7 @@ public class SparseTreeVisualization implements VisualizationExtension {
             }
         }
         maxLevel++;
-        if (nextLevel.size() != 0) {
+        if (!nextLevel.isEmpty()) {
             return BFS(nextLevel, maxLevel);
         } else {
             return maxLevel;

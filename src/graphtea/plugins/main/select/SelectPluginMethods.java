@@ -76,7 +76,7 @@ public class SelectPluginMethods implements PluginMethods {
     }
 
     public boolean isSelectionEmpty() {
-        return getSelectedEdges().size() == 0 && getSelectedVertices().size() == 0;
+        return getSelectedEdges().isEmpty() && getSelectedVertices().isEmpty();
     }
 
     public void clearSelection() {

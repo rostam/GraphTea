@@ -15,10 +15,6 @@ import graphtea.plugins.algorithmanimator.core.AtomAnimator;
  * @author Azin Azadi
  */
 public class GraphSelect implements AtomAnimator<GraphRequest> {
-///    public boolean isAnimatable(Event event) {
-//        return event instanceof VertexRequest;
-//    }
-
     public boolean isAnimatable(Event e) {
         return e instanceof GraphRequest;
     }

@@ -21,7 +21,6 @@ import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
  */
 public class GraphIOExtensionHandler implements ExtensionHandler, StorableOnExit {
     private final boolean handlingReaders;
-    private AbstractAction a = null;
 
     {
         SETTINGS.registerSetting(this, "Only Storable");
@@ -43,7 +42,7 @@ public class GraphIOExtensionHandler implements ExtensionHandler, StorableOnExit
      * @return null if ext doesn't implements GraphReaderExtension
      */
     public AbstractAction handle(BlackBoard b, Object ext) {
-        a = null;
+        AbstractAction a = null;
         if (!handlingReaders) {
             if (ext instanceof GraphWriterExtension) {
                 try {

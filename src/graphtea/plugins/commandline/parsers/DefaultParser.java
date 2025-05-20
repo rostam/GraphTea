@@ -171,7 +171,7 @@ public class DefaultParser implements ExtParser {
             int bracketIndex = statement.indexOf("[");
             String p = statement.substring(0, bracketIndex);
             p = p.trim();
-            if (p.length() != 0) {
+            if (!p.isEmpty()) {
                 if (p.charAt(p.length() - 1) == '='
                         || p.charAt(p.length() - 1) == '(' || p.charAt(p.length() - 1) == ',') {
                     int rbracet = eatExtraBracket(statement, bracketIndex);

@@ -19,12 +19,9 @@ import java.util.StringTokenizer;
  * @author Mohammad Ali Rostami
  */
 public class NativeCommands {
-    private final BlackBoard bb;
-    private final GraphData datas;
 
     public NativeCommands(BlackBoard bb) {
-        this.bb = bb;
-        datas = new GraphData(bb);
+        GraphData datas = new GraphData(bb);
     }
 
     private native String homomorph(String graph_format1, String graph_format2);

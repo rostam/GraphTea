@@ -86,10 +86,9 @@ public class GTabbedAttributeFrame extends JDialog {
     }
 
     private boolean status = false;
-    private boolean finished = false;
 
     private void closeDialog() {
-        finished = true;
+        boolean finished = true;
     }
 
     private void finished(boolean status) {

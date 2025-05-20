@@ -34,7 +34,7 @@ public class ReadWriteTextFile {
             * it returns an empty String if two newlines appear in a row.
             */
             while ((line = input.readLine()) != null) {
-                contents.append(line).append(System.getProperty("line.separator"));
+                contents.append(line).append(System.lineSeparator());
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -84,7 +84,7 @@ public class ReadWriteTextFile {
         try {
             //use buffering
             //FileWriter always assumes default encoding is OK!
-            aContents = aContents.replaceAll("\n", System.getProperty("line.separator"));
+            aContents = aContents.replaceAll("\n", System.lineSeparator());
             output = new BufferedWriter(new FileWriter(aFile));
             output.write(aContents);
         }

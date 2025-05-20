@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * http://frodriguez.webs.com/Java%20Algo/kmeans.txt
- *
+ * <a href="http://frodriguez.webs.com/Java%20Algo/kmeans.txt">...</a>
+ * <p>
  * Lloyd's Algorithm - A greedy approximation to the kmeans clustering problem (NP-HARD), this is similar to
  *                     finding the centers of the voronoi cells of a tessellation that has the input points
  *                     distributed as evenly as possible throughout the cells.
- *
+ * <p>
  * Steps:
  * 		1) It guesses an initial location for the center of each cluster
  * 		2) It assigns each input point to one cluster (the one with the closest center)
  *			3) For each cluster, move its center to the centroid of all its assigned points.
  *			4) Repeat steps 2-3 until no change occurs.
- *
+ * <p>
  * Returns: An array of Clusters. If you need exactly k clusters you may have to run it several times since
  *          some clusters may die out during the algorithm, this shouldn't be a problem because this function
  *          usually runs very fast.
@@ -89,7 +89,7 @@ public class LloydKMeans {
 
 		// remove all empty clusters (due to bad initial placement)
 		for (int i = 0; i < ret.size(); i++)
-			if (ret.get(i).getMembers().size() == 0)
+			if (ret.get(i).getMembers().isEmpty())
 				ret.remove(i--);
 
 		return ret.toArray(new Cluster[0]); // the result may not have exactly k

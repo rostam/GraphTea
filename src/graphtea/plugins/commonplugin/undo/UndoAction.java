@@ -28,7 +28,7 @@ public class UndoAction extends AbstractAction {
 
         redoers.put(g, new Stack<>());  //reset redo for this graph
 
-        if (undoers.get(g) == null || undoers.get(g).size() == 0) {
+        if (undoers.get(g) == null || undoers.get(g).isEmpty()) {
             undoers.put(g, new Stack<>());
             undoers.get(g).push(gso);
             return;
@@ -57,7 +57,7 @@ public class UndoAction extends AbstractAction {
 
     public GraphSaveObject popUndo(GraphModel label) {
         if (undoers.get(label) == null) return null;
-        if (undoers.get(label).size() == 0) return null;
+        if (undoers.get(label).isEmpty()) return null;
         GraphSaveObject temp = undoers.get(label).pop();
         redoers.putIfAbsent(label, new Stack<>());
         redoers.get(label).push(temp);
@@ -66,7 +66,7 @@ public class UndoAction extends AbstractAction {
 
     public GraphSaveObject popRedo(GraphModel label) {
         if (redoers.get(label) == null) return null;
-        if (redoers.get(label).size() == 0) return null;
+        if (redoers.get(label).isEmpty()) return null;
         GraphSaveObject temp = redoers.get(label).pop();
         if (undoers.get(label) != null) undoers.get(label).push(temp);
         return temp;

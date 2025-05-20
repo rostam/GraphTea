@@ -59,7 +59,7 @@ public class AddVertex extends AbstractAction {
         if (aBoolean == null)
             return;
         boolean b = aBoolean;
-        if (b && (sd == null || (sd.vertices.size() == 0 && sd.edges.size() == 0))) {
+        if (b && (sd == null || (sd.vertices.isEmpty() && sd.edges.isEmpty()))) {
             GraphEvent gpd = blackboard.getData(GraphEvent.EVENT_KEY);
             if (gpd.eventType != GraphEvent.CLICKED || gpd.mouseBtn != MouseEvent.BUTTON1) {
                 return;

@@ -27,6 +27,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 
 import static graphtea.platform.StaticUtils.addExceptionLog;
@@ -126,7 +127,7 @@ public class Init implements PluginInterface, StorableOnExit {
     static LinkedList<AEvent> tracks = new LinkedList<>();
     public static String encode(String in){
         try{
-            return URLEncoder.encode(in, "UTF-8").replace("+", "%20");
+            return URLEncoder.encode(in, StandardCharsets.UTF_8).replace("+", "%20");
         } catch (Exception e) {e.printStackTrace(); return in;}
     }
     public static void sendEvent(AEvent e) {

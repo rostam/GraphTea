@@ -30,7 +30,6 @@ public class GPrefPane extends GFrame {
     private final GPropertyEditor tabPane;
     private final JButton ok;
     private final JButton cancel;
-    private final JButton apply;
     private final JLabel label;
 // End of variables declaration
 
@@ -49,7 +48,7 @@ public class GPrefPane extends GFrame {
 
         cancel = new JButton("Cancel");
         cancel.addActionListener(e -> closeDialog());
-        apply = new JButton("Apply");
+        JButton apply = new JButton("Apply");
         label = new JLabel("Preferences:");
 
         setLayout(new java.awt.GridBagLayout());
@@ -186,16 +185,12 @@ public class GPrefPane extends GFrame {
         setTab();
     }
 
-    private boolean status = false;
-    private boolean finished = false;
-
     private void closeDialog() {
-        finished = true;
+        boolean finished = true;
         dispose();
     }
 
     private void finished(boolean status) {
-        this.status = status;
         closeDialog();
         dispose();
     }

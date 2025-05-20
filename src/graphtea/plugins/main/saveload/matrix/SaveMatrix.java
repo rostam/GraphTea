@@ -49,7 +49,7 @@ public class SaveMatrix implements GraphWriterExtension {
 
     public static void saveMatrixes(File file, GraphModel g, boolean isDirected) throws IOException {
         FileWriter output = new FileWriter(file,true);
-        output.append(System.getProperty("line.separator"));
+        output.append(System.lineSeparator());
         output.append(Matrix.Matrix2String(Matrix.graph2Matrix(g)));
         output.close();
     }

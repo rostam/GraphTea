@@ -20,7 +20,6 @@ import java.util.Collection;
  * @author Azin Azadi
  */
 public class PrePostWork implements AtomAnimator<Event> {
-    private PostWorkEvent t;
     PreWorkEvent tt;
 
     public boolean isAnimatable(Event event) {
@@ -34,7 +33,7 @@ public class PrePostWork implements AtomAnimator<Event> {
             return tt;
         }
         if (event instanceof PostWorkEvent) {
-            t = (PostWorkEvent) event;
+            PostWorkEvent t = (PostWorkEvent) event;
             leave(t.to);
             return t;
         }

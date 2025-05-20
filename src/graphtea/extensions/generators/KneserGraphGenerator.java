@@ -89,7 +89,7 @@ public class KneserGraphGenerator implements GraphGeneratorExtension, Parametriz
                 HashSet<Integer> s2 = computedVertices.get(j);
                 Set<Integer> intersection = new HashSet<>(s1);
                 intersection.retainAll(s2);
-                if(intersection.size() == 0) ret.add(new Edge(v[i], v[j]));
+                if(intersection.isEmpty()) ret.add(new Edge(v[i], v[j]));
             }
         }
         Edge[] ret1 = new Edge[ret.size()];

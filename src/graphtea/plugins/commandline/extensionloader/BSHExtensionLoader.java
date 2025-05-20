@@ -38,11 +38,11 @@ public class BSHExtensionLoader implements UnknownExtensionLoader {
             System.err.println("File not Found");
         }
         do {
+            assert s != null;
             String line = s.nextLine();
 
             if (!lineComment) {
                 if (line.contains("/*")) {
-                    if (!lineComment)
                         line = line.substring(0, line.indexOf("/*"));
                     lineComment = true;
                 }

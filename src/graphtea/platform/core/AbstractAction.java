@@ -6,17 +6,17 @@ package graphtea.platform.core;
 
 /**
  * AbstractAction itself is a wrapper for the interface Action.
- * As you see in the source, it contains only two methods to implement. The first one is the action that must be done by this action, performAction() gets the event(key) that has caused this action to be run. This helps if an action is result of multiple events or when event handling must be coped with in the implementation itself.
+ * As you see in the source, it contains only two methods to implement. The first one is the action that must be done by this action; performAction() gets the event(key) that has caused this action to be run. This helps if an action is a result of multiple events or when event handling must be coped with in the implementation itself.
  * <p/>
- * The abstract class, AbstractAction is the minimal implementation of an Action in a class. It integrates the Action with the GraphTea structure. As a result any recognized AbstractAction in the GraphTea ui is Runnable. The introducing procedure is done via Xml files.
+ * The abstract class, AbstractAction is the minimal implementation of an Action in a class. It integrates the Action with the GraphTea structure. As a result, any recognized AbstractAction in the GraphTea ui is Runnable. The introducing procedure is done via XML files.
  * <p/>
- * There is no default constructor, so every descendant of AbstractAction needs to call the super constructor in its constructor first. It is because the constructor of the AbstractAction assures that the action is registered in a BlackBoard and it is enabled. Method enable() and disable() are designated to control enablity of Action groups.
+ * There is no default constructor, so every descendant of AbstractAction needs to call the super constructor in its constructor first. It is because the constructor of the AbstractAction assures that the action is registered in a BlackBoard, and it is enabled. Method enable() and disable() are designated to control the enablity of Action groups.
  * <p/>
- * As you can see AbstractAction has implemented The interface Listener. It is easy to see why! Every action is a reaction to event(key change) that is called from a user or program itself. so every AbstractAction is listening to it's relevant event to be fired. Methods listen4Event() and unListenEvent() are designed to handle the relevant events.
+ * As you can see AbstractAction has implemented The interface Listener. It is easy to see why! Every action is a reaction to an event (key change) that is called from a user or program itself. so every AbstractAction is listening to it's relevant event to be fired. Methods listen4Event() and unListenEvent() are designed to handle the relevant events.
  * <p/>
  * Basically if you want to do anything in GraphTea, you need to extend AbstractAction. Looking at it's code might help.
  * <p/>
- * note: As you may see working with AbstractAction to handle UI events is not so simple, Also there are many classes in !GraphTea that use AbstractAction. But this is not advised to you, It is easier to use Extensions whenever you want to interact with user interface. (basically UIActionExtension, but almost every extensions are welcome!)
+ * note: As you may see working with AbstractAction to handle UI events is not so simple, Also there are many classes in !GraphTea that use AbstractAction. But this is not advised to you, It is easier to use Extensions whenever you want to interact with the user interface. (basically UIActionExtension, but almost every extension is welcome!)
  *
  * @author rouzbeh ebrahimi
  * @author Azin Azadi

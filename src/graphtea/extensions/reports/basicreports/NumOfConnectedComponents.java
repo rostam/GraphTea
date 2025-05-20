@@ -11,6 +11,7 @@ import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author Mohammad Ali Rostami
@@ -35,11 +36,10 @@ public class NumOfConnectedComponents implements GraphReportExtension<Integer> {
 
         ArrayList<ArrayList<Integer>> comps = new ArrayList<>();
         int[] parent = new int[size];
-        for (int i = 0; i < size; i++)
-            parent[i] = -1;
+        Arrays.fill(parent, -1);
 
         ArrayList<Integer> visit;
-        for (; untraversed.size() > 0; untraversed.removeAll(visit)) {
+        for (; !untraversed.isEmpty(); untraversed.removeAll(visit)) {
             visit = new ArrayList<>();
             int currentNode = untraversed.get(0);
             parent[currentNode] = currentNode;

@@ -31,7 +31,7 @@ public class ExtractSubGraph implements GraphActionExtension {
 
         SubGraph sg = SubGraphRenderer.sgbck;
         HashMap<Integer,Integer> idid= new HashMap<>();
-        if(sg.vertices.size()!=0) {
+        if(!sg.vertices.isEmpty()) {
             for(Vertex v : sg.vertices) {
                 Vertex tmp = new Vertex();
                 tmp.setLabel(v.getLabel());

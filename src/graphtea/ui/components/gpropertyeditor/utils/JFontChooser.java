@@ -24,9 +24,6 @@ public class JFontChooser extends JComponent {
     private final JCheckBox cbItalic;
     private final JTextArea txtSample;
 
-    private final String[] sizes = new String[]
-            {"2", "4", "6", "8", "10", "12", "13", "14", "16", "18", "20", "22", "24", "30", "36", "48", "72"};
-
     public JFontChooser() {
         // create all components
 
@@ -41,6 +38,8 @@ public class JFontChooser extends JComponent {
         fontList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 
+        String[] sizes = new String[]
+                {"2", "4", "6", "8", "10", "12", "13", "14", "16", "18", "20", "22", "24", "30", "36", "48", "72"};
         sizeList = new JList<String>(sizes) {
             private static final long serialVersionUID = -2474666139561694389L;
 

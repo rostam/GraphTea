@@ -73,11 +73,9 @@ public class GToolbar extends JComponent {
 }
 
 class pair implements Comparator<pair> {
-    private final JToolBar b;
     private final Integer index;
 
     public pair(JToolBar j, Integer index) {
-        this.b = j;
         this.index = index;
     }
 

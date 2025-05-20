@@ -67,13 +67,14 @@ public class ExtensionConfigFrame extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        JPanel jPanel1 = new JPanel();
+        JLabel jLabel1 = new JLabel();
         extensionParametersPanel = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        JPanel jPanel2 = new JPanel();
         helpBtn = new javax.swing.JButton();
         sourceCodeBtn = new javax.swing.JButton();
-        descriptionLabel = new javax.swing.JLabel();
+        // Variables declaration - do not modify
+        JLabel descriptionLabel = new JLabel();
 
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -127,13 +128,8 @@ public class ExtensionConfigFrame extends javax.swing.JFrame {
     }// </editor-fold>
 
 
-    // Variables declaration - do not modify
-    private javax.swing.JLabel descriptionLabel;
     private javax.swing.JPanel extensionParametersPanel;
     private javax.swing.JButton helpBtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton sourceCodeBtn;
     // End of variables declaration
 

@@ -23,7 +23,6 @@ import java.util.Map;
  */
 public class TimeLimitedNotifiableAttrSet<T extends AttributeSet> implements Runnable, NotifiableAttributeSet {
     private boolean started = false;
-    private final long millis = 100;
     Thread thread;
     private final T inp;
     NotifiableAttributeSetImpl as = new NotifiableAttributeSetImpl();
@@ -59,6 +58,7 @@ public class TimeLimitedNotifiableAttrSet<T extends AttributeSet> implements Run
             fireChange(old, _new);
             try {
                 old = inp.getAttrs();
+                long millis = 100;
                 Thread.sleep(millis);
             } catch (InterruptedException e1) {
                 e1.printStackTrace();

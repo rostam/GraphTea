@@ -156,7 +156,7 @@ public class Partitioner {
     }
 
     public boolean findAllPartitioningsRecursively(final int tt, final ColoringListener listener, final ArrayDeque<Vertex> v) {
-        if (tt == 0 || v.size() == 0) {
+        if (tt == 0 || v.isEmpty()) {
             return listener.coloringFound(tt);
         }
         Vertex fv = v.removeFirst();
@@ -170,7 +170,7 @@ public class Partitioner {
     }
 
     private boolean findAllSubsetsRecursively(final int t, SubSetListener listener, ArrayDeque<Vertex> v, ArrayDeque<Vertex> set, ArrayDeque<Vertex> complement) {
-        if (t == 0 || v.size() == 0) {
+        if (t == 0 || v.isEmpty()) {
             //all colorings of valid and checked before except the remaining vertices which all have color 0
             for (Vertex Vertex : v) {
                 for (int i : edgeArray[Vertex.getId()])
