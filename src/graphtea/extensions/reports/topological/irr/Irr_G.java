@@ -1,4 +1,4 @@
-package graphtea.extensions.reports.topological.Irr;
+package graphtea.extensions.reports.topological.irr;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.basicreports.NumOfTriangles;
