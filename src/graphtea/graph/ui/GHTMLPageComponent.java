@@ -27,7 +27,7 @@ import java.util.HashMap;
  * It is also possible to add other modes, for example when the
  * link address is: "command?handler=BSH" it is possible to run the command,
  * for this a HyperlinkHandler should be registered.
- * One simple handler is also added, if the link address is "http://www.google.com/search?q=Graph&handler=external", google(your url)
+ * One simple handler is also added, if the link address is "<a href="http://www.google.com/search?q=Graph&handler=external">...</a>", google(your url)
  * will be opened in an external viewer like FireFox
  * another added handler is the "yoururl.com,yourtitle?handler=dialog" which opens your url in a new dialog! which
  * the dialog title is yourtitle

@@ -218,7 +218,7 @@ public class NewLowerBounds implements GraphReportExtension{
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 10) + " + "
+                return AlgorithmUtils.round(num.re(), 10) + " + "
                         + AlgorithmUtils.round(num.im(), 10) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 10);
@@ -268,7 +268,7 @@ public class NewLowerBounds implements GraphReportExtension{
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                return AlgorithmUtils.round(num.re(), 12) + " + "
                         + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 12);
@@ -317,7 +317,7 @@ public class NewLowerBounds implements GraphReportExtension{
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                return AlgorithmUtils.round(num.re(), 12) + " + "
                         + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 12);

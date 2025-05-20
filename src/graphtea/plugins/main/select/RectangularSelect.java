@@ -69,8 +69,7 @@ public class RectangularSelect extends AbstractAction {
         SubGraph selection = RectangularSelect.calculateSelected(g, graphRectRegionSelector.getCurrentRect().getBounds());
         if (!deleteOlderSelections) {
             SubGraph sd = Select.getSelection(blackboard);
-            for (Vertex v : sd.vertices)
-                selection.vertices.add(v);
+            selection.vertices.addAll(sd.vertices);
             for (Edge e : sd.edges)
                 selection.edges.add(e);
         }

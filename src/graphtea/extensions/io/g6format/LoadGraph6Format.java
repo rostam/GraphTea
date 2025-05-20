@@ -58,26 +58,26 @@ public class LoadGraph6Format implements GraphReaderExtension {
     }
 
     public GraphModel next(BufferedReader bri) {
-        String g = "";
+        StringBuilder g = new StringBuilder();
         try {
             bri.readLine();
-            g=bri.readLine();
+            g = new StringBuilder(bri.readLine());
         } catch (IOException e) {
             e.printStackTrace();
         }
         String tmp = g.substring(g.indexOf("order"));
         tmp = tmp.substring(tmp.indexOf(" "),tmp.length()-1);
         int numOfVertices = Integer.parseInt(tmp.trim());
-        g+= "\n";
+        g.append("\n");
         for (int i = 0; i < numOfVertices; i++) {
             try {
-                g += bri.readLine() + "\n";
+                g.append(bri.readLine()).append("\n");
             } catch (IOException e) {
                 e.printStackTrace();
                 return new GraphModel();
             }
         }
-        return parseGraph(new Scanner(g));
+        return parseGraph(new Scanner(g.toString()));
     }
 
     public String getDescription() {

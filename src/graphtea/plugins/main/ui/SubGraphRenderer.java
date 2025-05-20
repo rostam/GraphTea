@@ -30,27 +30,7 @@ public class SubGraphRenderer implements GBasicCellRenderer<SubGraph> {
         mysd.vertices = new HashSet<>(sd.vertices);
         mysd.edges = new HashSet<>(sd.edges);
         mysd.label = sd.label;
-        String txt;
-        txt = "<HTML><BODY>";
-        if (mysd.label != null && !mysd.label.equals("")) {
-            txt += "<B>" + mysd.label + ": </B><BR>";
-        }
-
-        if (mysd.vertices != null && !mysd.vertices.isEmpty()) {
-            txt = txt + "<B>V: </B> {";
-            for (Vertex v : mysd.vertices) {
-                txt = txt + v.getLabel() + ", ";
-            }
-            txt = txt.substring(0, txt.length() - 2) + "}";
-        }
-        if (mysd.edges != null && !mysd.edges.isEmpty()) {
-            txt += "<BR><B>E: </B> {";
-            for (Edge e : mysd.edges) {
-                txt = txt + e.source.getLabel() + "-"+ e.target.getLabel() + ", ";
-            }
-            txt = txt.substring(0, txt.length() - 2) + "}";
-        }
-        txt = txt + "</BODY></HTML>";
+        String txt = getHTMLForSubGraph(mysd);
         JLabel l = new JLabel(txt) {
             @Override
             public void setForeground(Color fg) {
@@ -67,6 +47,31 @@ public class SubGraphRenderer implements GBasicCellRenderer<SubGraph> {
 
         );
         return l;
+    }
+
+    private static String getHTMLForSubGraph(SubGraph mysd) {
+        StringBuilder txt;
+        txt = new StringBuilder("<HTML><BODY>");
+        if (mysd.label != null && !mysd.label.isEmpty()) {
+            txt.append("<B>").append(mysd.label).append(": </B><BR>");
+        }
+
+        if (mysd.vertices != null && !mysd.vertices.isEmpty()) {
+            txt.append("<B>V: </B> {");
+            for (Vertex v : mysd.vertices) {
+                txt.append(v.getLabel()).append(", ");
+            }
+            txt = new StringBuilder(txt.substring(0, txt.length() - 2) + "}");
+        }
+        if (mysd.edges != null && !mysd.edges.isEmpty()) {
+            txt.append("<BR><B>E: </B> {");
+            for (Edge e : mysd.edges) {
+                txt.append(e.source.getLabel()).append("-").append(e.target.getLabel()).append(", ");
+            }
+            txt = new StringBuilder(txt.substring(0, txt.length() - 2) + "}");
+        }
+        txt.append("</BODY></HTML>");
+        return txt.toString();
     }
 
     private void showOnGraph(SubGraph mysd) {

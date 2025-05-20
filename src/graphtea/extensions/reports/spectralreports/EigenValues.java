@@ -59,7 +59,7 @@ public class EigenValues implements GraphReportExtension<ArrayList<String>>,Para
                 Complex.pow(new Complex(power,0));
                 num.plus(tmp);
             }
-            res.add("" + AlgorithmUtils.round(num.re(), 10) + " + "
+            res.add(AlgorithmUtils.round(num.re(), 10) + " + "
                     + AlgorithmUtils.round(num.im(), 10) + "i");
         } else {
             res.add("" + AlgorithmUtils.round(sum, 10));
@@ -67,7 +67,7 @@ public class EigenValues implements GraphReportExtension<ArrayList<String>>,Para
         res.add("Eigen Values");
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
-                res.add("" + AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i");
+                res.add(AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i");
             else
                 res.add("" + AlgorithmUtils.round(rv[i], 10));
         }

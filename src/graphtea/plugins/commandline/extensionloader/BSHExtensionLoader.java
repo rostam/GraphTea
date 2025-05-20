@@ -28,7 +28,7 @@ public class BSHExtensionLoader implements UnknownExtensionLoader {
 
     public Extension ExtensionLoader(String extFileName) {
 //        this.extFileName = extFileName;
-        String eval = "";
+        StringBuilder eval = new StringBuilder();
         Scanner s = null;
         int bracketCount = 0;
         boolean lineComment = false;
@@ -56,14 +56,14 @@ public class BSHExtensionLoader implements UnknownExtensionLoader {
                     line = line.substring(12); // removing public class
                     StringTokenizer st = new StringTokenizer(line, " ,");
                     while (!st.nextToken().equals("implements")) ;
-                    eval += "ex = new " + st.nextToken() + " ()";
+                    eval.append("ex = new ").append(st.nextToken()).append(" ()");
                     while (st.hasMoreTokens()) {
-                        eval += " " + st.nextToken();
+                        eval.append(" ").append(st.nextToken());
                     }
-                    eval += "\n";
+                    eval.append("\n");
 //                    eval = eval.replaceFirst("{","(){");
                 } else
-                    eval += line + "\n";
+                    eval.append(line).append("\n");
 
             }
             if (line.contains("*/")) {
@@ -74,28 +74,28 @@ public class BSHExtensionLoader implements UnknownExtensionLoader {
                 } else if (line.startsWith("public class")) {
                     line = line.substring(12); // removing public class
                     StringTokenizer st = new StringTokenizer(line, " ");
-                    eval += "ex = new " + st.nextToken() + " ()";
+                    eval.append("ex = new ").append(st.nextToken()).append(" ()");
                     while (st.hasMoreTokens()) {
-                        eval += " " + st.nextToken();
+                        eval.append(" ").append(st.nextToken());
                     }
-                    eval += "\n";
+                    eval.append("\n");
 //                        eval = eval.replaceFirst("{","(){");
                 } else
-                    eval += line + "\n";
+                    eval.append(line).append("\n");
             }
         }
         while (s.hasNextLine());
 //        eval+=";";
-        String other = "";
-        s = new Scanner(eval);
-        String assignment = "";
+        StringBuilder other = new StringBuilder();
+        s = new Scanner(eval.toString());
+        StringBuilder assignment = new StringBuilder();
         boolean isAssignment = false;
         int i = 0;
         while (s.hasNextLine()) {
             String l = s.nextLine();
             if ((l.contains("ex = new") && bracketCount == 0) || (isAssignment)) {
-                if (!l.equals(""))
-                    assignment += l + "\n";
+                if (!l.isEmpty())
+                    assignment.append(l).append("\n");
                 if (!isAssignment) {
                     i = bracketCount + countBrackets(l);
                     isAssignment = true;
@@ -104,8 +104,8 @@ public class BSHExtensionLoader implements UnknownExtensionLoader {
                 if (i > bracketCount)
                     isAssignment = false;
             } else {
-                if (!l.equals(""))
-                    other += l + "\n";
+                if (!l.isEmpty())
+                    other.append(l).append("\n");
                 bracketCount += countBrackets(l);
 
             }
@@ -117,7 +117,7 @@ public class BSHExtensionLoader implements UnknownExtensionLoader {
 //        System.err.println("*******\n" + assignment + "\n*******");
 //        System.out.println("eval ******* \n " + eval);
 
-        shell.evaluate(other);
+        shell.evaluate(other.toString());
         shell.evaluate(assignment + ";");
         shell.evaluate("import graphtea.ui.extension.*;");
         return (Extension) shell.evaluate("return (Extension)ex;");

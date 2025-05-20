@@ -23,9 +23,4 @@ public class ScaleInSelection extends ScaleOutSelection {
     protected void setNewLocation(Vertex v, GPoint loc, double x, double y) {
         v.setLocation(new GPoint(loc.x + x * scale, loc.y + y * scale));
     }
-
-    @Override
-    public String getCategory() {
-        return "Basic Operations";
-    }
 }

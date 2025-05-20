@@ -43,7 +43,7 @@ public class EccentricWienerIndex implements GraphReportExtension<Integer> {
                 double eu = Eccentricity.eccentricity(g,u,dist);
                 double ev = Eccentricity.eccentricity(g,v,dist);
                 double epsilon = dist[v][u] == Math.min(eu,ev) ? dist[v][u] : 0;
-                sum += epsilon;
+                sum += (int) epsilon;
             }
         }
         return sum;

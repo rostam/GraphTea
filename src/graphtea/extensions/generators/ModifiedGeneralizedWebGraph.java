@@ -19,8 +19,8 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 /**
  * Author: M. Ali Rostami
- *
- * Modified version of https://mathworld.wolfram.com/WebGraph.html in which a central node is added
+ * <p>
+ * Modified version<a href=" of <a href="https://mathworld.wolfram.com/">...</a>WebGraph.html">...</a> in which a central node is added
  */
 @CommandAttitude(name = "generate_webgraph", abbreviation = "_g_webg", description = "generates a Web graph of order n")
 public class ModifiedGeneralizedWebGraph implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {

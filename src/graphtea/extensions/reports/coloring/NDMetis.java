@@ -34,13 +34,13 @@ public class NDMetis {
             FileWriter fw = new FileWriter("mats/"+name);
             fw.write(g.numOfVertices()+ " " + g.getEdgesCount() + "\n");
             for(int i=0;i<g.numOfVertices();i++) {
-                String tmp = "";
+                StringBuilder tmp = new StringBuilder();
                 for(int j=0;j<g.numOfVertices();j++) {
                     if(g.isEdge(g.getVertex(i),g.getVertex(j))) {
-                        tmp += (j+1) + " ";
+                        tmp.append((j + 1)).append(" ");
                     }
                 }
-                if(!tmp.equals("")) {
+                if(!tmp.toString().isEmpty()) {
                     fw.write(tmp.substring(0,tmp.length()-1));
                 }
                 fw.write("\n");

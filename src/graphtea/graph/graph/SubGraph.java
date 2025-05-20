@@ -65,25 +65,25 @@ public class SubGraph {
 
     @Override
     public String toString() {
-        String txt = "";
-        if (label != null && !label.equals("")) {
-            txt += label + ": \n";
+        StringBuilder txt = new StringBuilder();
+        if (label != null && !label.isEmpty()) {
+            txt.append(label).append(": \n");
         }
         if (vertices != null && !vertices.isEmpty()) {
-            txt = txt + "V: {";
+            txt.append("V: {");
             for (Vertex v : vertices) {
-                txt = txt + v.getLabel() + ", ";
+                txt.append(v.getLabel()).append(", ");
             }
-            txt = txt.substring(0, txt.length() - 2) + "}";
+            txt = new StringBuilder(txt.substring(0, txt.length() - 2) + "}");
         }
         if (edges != null && !edges.isEmpty()) {
-            txt += "\nE: {";
+            txt.append("\nE: {");
             for (Edge e : edges) {
-                txt = txt + e + ", ";
+                txt.append(e).append(", ");
             }
-            txt = txt.substring(0, txt.length() - 2) + "}";
+            txt = new StringBuilder(txt.substring(0, txt.length() - 2) + "}");
         }
-        return txt;
+        return txt.toString();
     }
 
     /**

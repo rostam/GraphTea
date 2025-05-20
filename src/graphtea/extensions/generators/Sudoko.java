@@ -61,8 +61,6 @@ public class Sudoko implements GraphGeneratorExtension, Parametrizable, SimpleGe
         }
 
         for (int i = 0; i < Math.sqrt(n) * n * (Math.sqrt(n) - 1); i++) vs.add(new Edge(v[i], v[(int) (i + Math.sqrt(n) * n)]));
-        for (int i = 0; i < Math.sqrt(n); i++) {
-        }
 
         Edge[] ret = new Edge[vs.size()];
         for (int i = 0; i < vs.size(); i++) ret[i] = vs.get(i);

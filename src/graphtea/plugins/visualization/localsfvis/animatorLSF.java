@@ -32,7 +32,7 @@ class animatorLSF extends Thread {
     private GRect[] vRects;  //represents the rectangle around each vertex
     private GPoint[] verPos; //fresh generated vertex positions!
     private GPoint[] velocity;
-    private GPoint[] prevVerPos; //refers to previous state of vertex positions, for finding vertices that moved by anything else
+    private GPoint[] prevVerPos; //refers to the previous state of vertex positions, for finding vertices that moved by anything else
     //    private final double neighborRadius = 300;
     private double stres = 10;
     private double springK = 0.7;
@@ -298,7 +298,9 @@ class animatorLSF extends Thread {
         }
         int i = 0;
         for (Vertex vm : g) {
+            assert v != null;
             v[i] = vm;
+            assert verPos != null;
             verPos[i] = vm.getLocation();
             velocity[i] = new GPoint();
             vRects[i] = new GRect(vm.getBounds().getBounds().x,vm.getBounds().getBounds().y,
@@ -369,8 +371,8 @@ class animatorLSF extends Thread {
             }
 
             int e = 5;
-            verPos[i].x += fx / e;
-            verPos[i].y += fy / e;
+            verPos[i].x += (double) fx / e;
+            verPos[i].y += (double) fy / e;
 //            velocity[i].x += fx;
 //            velocity[i].y += fy;
 //            verPos[i].x += (fx + velocity[i].x)/E;

@@ -82,22 +82,22 @@ public class CodeCompletionUtils {
             }
 
             for (Method m : ms) {
-                String result = "";
-                result += part;
+                StringBuilder result = new StringBuilder();
+                result.append(part);
                 if (m.getName().equals(part.substring(part.lastIndexOf(".") + 1, part.length() - 1))) {
                     for (Class c : m.getParameterTypes())
-                        result += (c.getSimpleName() + ",");
-                    if (!result.equals(part))
-                        result = result.substring(0, result.length() - 1) + ");";
-                    else result += ");";
-                    ret.add(result);
+                        result.append(c.getSimpleName()).append(",");
+                    if (!result.toString().equals(part))
+                        result = new StringBuilder(result.substring(0, result.length() - 1) + ");");
+                    else result.append(");");
+                    ret.add(result.toString());
                 }
             }
         } else {
             if (commands.containsKey(part.substring(0, part.length() - 1))) {
                 for (String t : commands.keySet()) {
-                    String result = "";
-                    result += part;
+                    StringBuilder result = new StringBuilder();
+                    result.append(part);
                     if (t.equals(part.substring(0, part.length() - 1))) {
                         Method method = commands.get(t);
                         Annotation[][] pA = method.getParameterAnnotations();
@@ -108,24 +108,24 @@ public class CodeCompletionUtils {
                                     Parameter pn = (Parameter) a;
 
                                     String type = method.getParameterTypes()[index].getSimpleName();
-                                    result += (pn.name() + "(" + type + "), ");
+                                    result.append(pn.name()).append("(").append(type).append("), ");
                                 }
                             }
                             index++;
                         }
 
-                        if (!result.equals(part)) {
-                            result = result.substring(0, result.length() - 1);
-                            result = result.substring(0, result.length() - 1) + ");";
-                        } else result += ");";
-                        ret.add(result);
+                        if (!result.toString().equals(part)) {
+                            result = new StringBuilder(result.substring(0, result.length() - 1));
+                            result = new StringBuilder(result.substring(0, result.length() - 1) + ");");
+                        } else result.append(");");
+                        ret.add(result.toString());
                     }
                 }
 
             } else {
                 Vector<String> ret1 = new Vector<>();
                 for (String t : ext_commands.keySet()) {
-                    String result = part;
+                    StringBuilder result = new StringBuilder(part);
 
                     if (ext_commands.get(t) == null) {
                         if (t.startsWith(part))
@@ -137,15 +137,15 @@ public class CodeCompletionUtils {
                             Parameter p = f.getAnnotation(Parameter.class);
                             if (p != null) {
                                 String type = f.getType().getSimpleName();
-                                result += (p.name() + "(" + type + "), ");
+                                result.append(p.name()).append("(").append(type).append("), ");
                             }
                         }
 
-                        if (!result.equals(part)) {
-                            result = result.substring(0, result.length() - 1);
-                            result = result.substring(0, result.length() - 1) + ");";
-                        } else result += ");";
-                        ret1.add(result);
+                        if (!result.toString().equals(part)) {
+                            result = new StringBuilder(result.substring(0, result.length() - 1));
+                            result = new StringBuilder(result.substring(0, result.length() - 1) + ");");
+                        } else result.append(");");
+                        ret1.add(result.toString());
                     }
                 }
                 ret.addAll(ret1);

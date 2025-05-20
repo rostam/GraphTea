@@ -30,7 +30,7 @@ public abstract class MaxFlow {
 		int res=0;
 		for(int i=0; i<n ; i++)
 		{
-			res+= F[i][t];
+			res+= (int) F[i][t];
 		}
 		return res;
 			

@@ -14,9 +14,9 @@ constructs a message
 */
         public Msg(String routine, String txt) {
                 _routine = "(routine)";
-                if(null != routine && !routine.equals("")) _routine = routine;
+                if(null != routine && !routine.isEmpty()) _routine = routine;
                 _errortxt = "(errortext)";
-                if(null != txt && !txt.equals("")) _errortxt = txt;
+                if(null != txt && !txt.isEmpty()) _errortxt = txt;
         }
 
 /**

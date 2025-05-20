@@ -44,7 +44,7 @@ public class WienerIndex implements GraphReportExtension<Integer> {
                 if(dist[v][u] < g.numOfVertices()) {
                     double distance = dist[u][v];
                     if(distance > max) {
-                        sum += distance;
+                        sum += (int) distance;
                     }
                 }
             }

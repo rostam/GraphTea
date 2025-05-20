@@ -96,7 +96,7 @@ public class GTabbedGraphPane extends GTabbedPane {
     private void updateTitle(String newVal, JComponent c) {
         for (int i = 0; i < jtp.getTabCount(); i++) {
             if (jtp.getComponentAt(i) == c) {
-                jtp.setTitleAt(i, newVal + "");
+                jtp.setTitleAt(i, newVal);
                 if (jtp.getTabComponentAt(i) instanceof ButtonTabComponent) {
                     ButtonTabComponent buttonTabComponent = (ButtonTabComponent) jtp.getTabComponentAt(i);
                     JLabel l = buttonTabComponent.label;

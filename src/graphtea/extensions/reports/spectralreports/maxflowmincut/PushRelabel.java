@@ -100,7 +100,7 @@ public class PushRelabel extends MaxFlow{
 		{
 			F[s][v]=C[s][v];
 			excess[v]=(int)C[s][v];
-			excess[s]-=C[s][v];
+			excess[s]-= (int) C[s][v];
 		}
 		//makeLabels();
 	}

@@ -8,7 +8,7 @@ package graphtea.platform.lang;
 /**
  * provides a "From String" for a given String, which means to create an object
  * from it's toString string.
- *
+ * <p>
  * This is GraphTea's standard way of loading objects from strings.
  */
 public interface FromStringProvider<t> {

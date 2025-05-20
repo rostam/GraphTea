@@ -19,12 +19,12 @@ public class GTextFileRendererComponent extends JScrollPane {
         try {
             JTextArea jta = new JTextArea();
             Scanner sc = new Scanner(f);
-            String s = "";
+            StringBuilder s = new StringBuilder();
             JViewport jvp = new JViewport();
 
             while (sc.hasNextLine())
-                s += sc.nextLine() + "\n";
-            jta.setText(s);
+                s.append(sc.nextLine()).append("\n");
+            jta.setText(s.toString());
             jta.setBackground(new Color(200, 200, 255));
             jta.setEditable(false);
             jta.setFont(new Font("Sans Roman", 0, 14));

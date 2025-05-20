@@ -34,7 +34,7 @@ public class SpectraofAvgTransmissionMatrix implements GraphReportExtension<Arra
         double[] iv = ed.getImagEigenvalues();
         for (int i = 0; i < rv.length; i++)
             if (iv[i] != 0)
-                res.add("" + AlgorithmUtils.round(rv[i], 5) + " + " + AlgorithmUtils.round(iv[i], 5) + "i");
+                res.add(AlgorithmUtils.round(rv[i], 5) + " + " + AlgorithmUtils.round(iv[i], 5) + "i");
             else
                 res.add("" + AlgorithmUtils.round(rv[i], 5));
         res.add("Eigen Vectors:\n");

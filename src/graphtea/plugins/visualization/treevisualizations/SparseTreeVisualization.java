@@ -116,9 +116,6 @@ public class SparseTreeVisualization implements VisualizationExtension {
         int nextLevelCount = nextLevel.size();
         int horizontalDist = width / (currentLevelCount + nextLevelCount);
 
-        for (Vertex x : currentLevelVertices) {
-
-        }
         for (Vertex v : currentLevelVertices) {
             if (nextLevelCount != 0) {
                 GPoint newPoint = new GPoint(horizontalDist * (i + 1) + width / (nextLevelCount + currentLevelCount), LevelHeight);

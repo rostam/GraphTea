@@ -24,13 +24,13 @@ public class IncrementalVariableZagrebIndex implements GraphReportExtension<Rend
         return "Incremental Variable Zagreb Indices";
     }
 
-    @Parameter(name = "Starting Value of Alpha", description = "")
+    @Parameter(name = "Starting Value of Alpha", description = "Starting Value of Alpha")
     public Double start_alpha = -10.0;
 
-    @Parameter(name = "End Value of Alpha", description = "")
+    @Parameter(name = "End Value of Alpha", description = "End Value of Alpha")
     public Double end_alpha = 10.0;
 
-    @Parameter(name = "Incremental Value", description = "")
+    @Parameter(name = "Incremental Value", description = "Incremental Value")
     public Double inc = 0.1;
 
     public String getDescription() {

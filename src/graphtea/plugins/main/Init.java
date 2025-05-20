@@ -84,16 +84,16 @@ public class Init implements PluginInterface, StorableOnExit {
     }
 
     public static String getLatestExceptionStackStrace(BlackBoard blackboard) {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         ExceptionOccuredData exceptionData = blackboard.getData(ExceptionOccuredData.EVENT_KEY);
         if (exceptionData != null) {
             StackTraceElement[] ee = exceptionData.e.getStackTrace();
-            s = exceptionData.e.toString() + "\n";
+            s = new StringBuilder(exceptionData.e.toString() + "\n");
             for (StackTraceElement element : ee) {
-                s += "\tat " + element.toString() + "\n";
+                s.append("\tat ").append(element.toString()).append("\n");
             }
         }
-        return s;
+        return s.toString();
     }
 
     public static String getExternalIP(){

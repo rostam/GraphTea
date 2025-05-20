@@ -126,29 +126,29 @@ public class G6Format {
     }
 
     public static String createAdjMatrix (Matrix m){
-        String result="";
+        StringBuilder result= new StringBuilder();
 
         for (int i = 1, k = 1; k < m.getColumnDimension(); i++, k++) {
             for (int j = 0; j < i; j++) {
-                if (m.get(j,i) != 0) result += "1";
-                else result += "0";
+                if (m.get(j,i) != 0) result.append("1");
+                else result.append("0");
             }
         }
-        return result;
+        return result.toString();
     }
 
 
     public static String encodeGraph(int NoNodes, String adjmatrix) {
-        String rv = "";
+        StringBuilder rv = new StringBuilder();
         int[] nn = encodeN(NoNodes);
         int[] adj = encodeR(adjmatrix);
         int[] res = new int[nn.length + adj.length];
         System.arraycopy(nn, 0, res, 0, nn.length);
         System.arraycopy(adj, 0, res, nn.length, adj.length);
         for (int re : res) {
-            rv = rv + (char) re;
+            rv.append((char) re);
         }
-        return rv;
+        return rv.toString();
     }
 
     private static int[] encodeN(long i) {
@@ -196,9 +196,9 @@ public class G6Format {
     }
 
     private static String padL(String str, int h) {
-        String retval = "";
+        StringBuilder retval = new StringBuilder();
         for (int i = 0; i < h - str.length(); i++) {
-            retval += "0";
+            retval.append("0");
         }
         return retval + str;
     }

@@ -36,9 +36,9 @@ import java.util.HashMap;
 import java.util.Vector;
 
 /**
- * the base class for creating extension handlers
+ * the base class for creating extension handlers,
  * the implementing class will have a menu assigned to it automatically the name of the menu will be
- * from the constructors parameter(sp) and the will also listen to UI.getUIEvent(sp.getName())
+ * from the constructors parameter(sp), and they will also listen to UI.getUIEvent(sp.getName())
  *
  * @author azin azadi
  */
@@ -73,7 +73,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
         String name = getMenuNamePrefix() + sp.getName();
         actionId = name + sp.getDescription() + target.getClass().getName();
         listen4Event(UIUtils.getUIEventKey(actionId));
-        if (!name.equals("")) {
+        if (!name.isEmpty()) {
             menuItem = createMenuItem(name, actionId, bb);
             parentMenu = getParentMenu();
             if (parentMenu.getText().equalsIgnoreCase("reports")) {
@@ -180,7 +180,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
                 public Dimension getPreferredSize() {
                     Dimension preferredSize = super.getPreferredSize();
                     Dimension bps = extraButton.getPreferredSize();
-                    preferredSize.width += bps.getWidth() + 4;
+                    preferredSize.width += (int) (bps.getWidth() + 4);
                     preferredSize.height = (int) Math.max(preferredSize.height, bps.getHeight()) + 1;
                     return preferredSize;
                 }
@@ -241,7 +241,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
         final t trgClass = target;
         final CommandAttitude comati = trgClass.getClass().getAnnotation(CommandAttitude.class);
 
-        String command = "";
+        StringBuilder command = new StringBuilder();
         String cname;
         String abrv;
         String desc;
@@ -250,34 +250,27 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
             cname = comati.name();
             abrv = comati.abbreviation();
             desc = comati.description();
-            if (desc == null || desc.equals(""))
+            if (desc == null || desc.isEmpty())
                 desc = target.getDescription();
         } else {
             cname = target.getClass().getSimpleName();
             abrv = "";
             desc = target.getDescription();
         }
-        command += cname + "(";
-        String help = "";
+        command.append(cname).append("(");
+        StringBuilder help = new StringBuilder();
 
         for (Field f : target.getClass().getFields()) {
             if (f.getAnnotation(Parameter.class) != null) {
-                command += f.getType().getName()
-                        + " "
-                        + f.getName() + ",";
-                help += "_" + target.getClass().getSimpleName()
-                        + "."
-                        + f.getName()
-                        + " = "
-                        + f.getName()
-                        + ";\n";
+                command.append(f.getType().getName()).append(" ").append(f.getName()).append(",");
+                help.append("_").append(target.getClass().getSimpleName()).append(".").append(f.getName()).append(" = ").append(f.getName()).append(";\n");
             }
         }
-        if (command.endsWith(","))
-            command = command.substring(0, command.length() - 1);
-        command += ")\n{";
+        if (command.toString().endsWith(","))
+            command = new StringBuilder(command.substring(0, command.length() - 1));
+        command.append(")\n{");
         //        System.out.println(command);
-        ExtensionShellCommandProvider.addCommand(ths, trgClass, cname, abrv, command, desc, help);
+        ExtensionShellCommandProvider.addCommand(ths, trgClass, cname, abrv, command.toString(), desc, help.toString());
 
     }
 

@@ -14,7 +14,7 @@ import java.util.*;
 /**
  *  This method finds the shortest path from a vertex to all vertices
  *  of a graph.
- *
+ * <p>
  * Created by rostam on 06.03.15.
  * @author M. Ali Rostami
  */
@@ -25,11 +25,11 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
 
     /**
      * This method finds a reference array using Dijkstra algorithm
-     * from which, one can find
+     * from which one can find
      * the shortest paths of all vertices of a graph from an arbitrary
      * given vertex.
-     *
-     * graph  Graph object to be searched.
+     * <p>
+     * graph Graph object to be searched.
      * vertex The source of the paths.
      * Creates Vector of vertices that for each i, it has a reference to
      *         the vertex, before the vertex with ID number i in the shortest path

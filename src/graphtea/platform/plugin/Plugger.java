@@ -124,7 +124,7 @@ public class Plugger {
                     ExceptionHandler.catchException(e);
                 }
                 classLoader = new URLClassLoader(urls);
-                System.out.println("" + i + " jar file(s) loaded.");
+                System.out.println(i + " jar file(s) loaded.");
                 System.out.println("------------------------------------------------------------");
                 dfs(first);
             } else

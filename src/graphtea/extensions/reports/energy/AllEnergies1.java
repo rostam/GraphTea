@@ -40,29 +40,7 @@ public class AllEnergies1 implements GraphReportExtension<RenderTable> {
 
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
-
-    titles.add("m ");
-    titles.add("n ");
-     titles.add("E ");
-     titles.add("SLE -LE");
-    // titles.add("check ");
-   //  titles.add("LE ");
-  //   titles.add("SLE ");
-  //   titles.add("LE-Bar ");
- //    titles.add("SLE-Bar ");
-  //   titles.add("DE");
- //	   titles.add("DLE");
-//     titles.add("DLSE");
-    
-    titles.add("Bipartite");
- //   titles.add(" Components ");
-  //  titles.add(" Resolvent-Energy ");
-  //  titles.add(" Diameter ");   
-  //  titles.add(" Matching "); 
-  //  titles.add("R.H.S");
-    ret.setTitles(titles);
+        RenderTable ret = getVectors();
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -182,6 +160,33 @@ public class AllEnergies1 implements GraphReportExtension<RenderTable> {
         return ret;
     }
 
+    private static RenderTable getVectors() {
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+
+        titles.add("m ");
+        titles.add("n ");
+        titles.add("E ");
+        titles.add("SLE -LE");
+        // titles.add("check ");
+        //  titles.add("LE ");
+        //   titles.add("SLE ");
+        //   titles.add("LE-Bar ");
+        //    titles.add("SLE-Bar ");
+        //   titles.add("DE");
+        //	   titles.add("DLE");
+//     titles.add("DLSE");
+
+        titles.add("Bipartite");
+        //   titles.add(" Components ");
+        //  titles.add(" Resolvent-Energy ");
+        //  titles.add(" Diameter ");   
+        //  titles.add(" Matching "); 
+        //  titles.add("R.H.S");
+        ret.setTitles(titles);
+        return ret;
+    }
+
     @Override
     public String getCategory() {
         return "Verification- Energy";
@@ -225,7 +230,7 @@ public class AllEnergies1 implements GraphReportExtension<RenderTable> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                return AlgorithmUtils.round(num.re(), 12) + " + "
                         + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 12);
@@ -270,7 +275,7 @@ public class AllEnergies1 implements GraphReportExtension<RenderTable> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 22) + " + "
+                return AlgorithmUtils.round(num.re(), 22) + " + "
                         + AlgorithmUtils.round(num.im(), 22) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 12);
@@ -316,7 +321,7 @@ public class AllEnergies1 implements GraphReportExtension<RenderTable> {
 //                     System.out.println(tmp);
 //                     num.plus(tmp);
 //                 }
-                 return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                 return AlgorithmUtils.round(num.re(), 12) + " + "
                          + AlgorithmUtils.round(num.im(), 12) + "i";
              } else {
                  return "" + AlgorithmUtils.round(sum, 12);
@@ -372,7 +377,7 @@ public class AllEnergies1 implements GraphReportExtension<RenderTable> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                return AlgorithmUtils.round(num.re(), 12) + " + "
                         + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 12);

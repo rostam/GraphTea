@@ -22,35 +22,9 @@ import java.util.HashMap;
  * @author Azin Azadi
  */
 public class IndSetColoringRenderer implements GBasicCellRenderer<IndSubGraphs> {
-//    public IndSetColoringRenderer() {
-//        super();
-//        backupColoring();
- //   }
+
     public Component getRendererComponent(final IndSubGraphs res) {
-        String txt;
-        GraphData gd = new GraphData(Application.getBlackBoard());
-        boolean hasAllVSet = true;
-
-        for(int i=0;i<gd.getGraph().getVerticesCount();i++) {
-          if(!res.contains(i)) {
-             hasAllVSet = false;
-             break;
-          }
-        }
-
-        txt = "<HTML><BODY>";
-            txt += "<B>V:</B>{";
-            if(hasAllVSet) txt+="<B>";
-        for (int tmp : res) {
-            if (tmp == -1) txt += "},{";
-            else txt += tmp + ",";
-        }
-            if(hasAllVSet) txt+="</B>";
-
-            txt += "}<BR>";
-
-
-        txt = txt + "</BODY></HTML>";
+        String txt = getHTMLFromIndSetColoring(res);
         //System.out.println(txt);
         JLabel l = new JLabel(txt) {
             @Override
@@ -68,6 +42,34 @@ public class IndSetColoringRenderer implements GBasicCellRenderer<IndSubGraphs> 
 
         );
         return l;
+    }
+
+    private static String getHTMLFromIndSetColoring(IndSubGraphs res) {
+        StringBuilder txt;
+        GraphData gd = new GraphData(Application.getBlackBoard());
+        boolean hasAllVSet = true;
+
+        for(int i=0;i<gd.getGraph().getVerticesCount();i++) {
+          if(!res.contains(i)) {
+             hasAllVSet = false;
+             break;
+          }
+        }
+
+        txt = new StringBuilder("<HTML><BODY>");
+        txt.append("<B>V:</B>{");
+        if(hasAllVSet) txt.append("<B>");
+        for (int tmp : res) {
+            if (tmp == -1) txt.append("},{");
+            else txt.append(tmp).append(",");
+        }
+        if(hasAllVSet) txt.append("</B>");
+
+        txt.append("}<BR>");
+
+
+        txt.append("</BODY></HTML>");
+        return txt.toString();
     }
 
     private void showOnGraph(IndSubGraphs res) {
@@ -99,8 +101,7 @@ public class IndSetColoringRenderer implements GBasicCellRenderer<IndSubGraphs> 
     }
 
     public void resetColoring() {
-        GraphData gd = new GraphData(Application.getBlackBoard());
-        for(Vertex v:vertexColors.keySet()) {
+        for(Vertex v: vertexColors.keySet()) {
             v.setColor(vertexColors.get(v));
         }
 

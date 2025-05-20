@@ -42,9 +42,7 @@ public class Energy implements GraphReportExtension<String> {
             for (double v : iv) sum_i += Math.abs(v);
 
             if (sum_i != 0) {
-                //here is completely false
                 System.out.println("imaginary part is available. So this function does not work.");
-                sum_i=0;
                 Complex num = new Complex(0,0);
 //                for(int i=0;i < iv.length;i++) {
 //                    Complex tmp = new Complex(rv[i], iv[i]);
@@ -54,7 +52,7 @@ public class Energy implements GraphReportExtension<String> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 5) + " + "
+                return AlgorithmUtils.round(num.re(), 5) + " + "
                         + AlgorithmUtils.round(num.im(), 5) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 5);
@@ -76,8 +74,8 @@ public class Energy implements GraphReportExtension<String> {
      * 2016,
      * Pages 2664-2671,
      * ISSN 0012-365X,
-     * https://doi.org/10.1016/j.disc.2016.04.022.
-     * @return
+     * <a href="<a">href="https://doi.org/10.1016/j.disc.20</a>16.04.022">...</a>.
+     * @return the description
      */
     public String getDescription() {
         return "Energy";

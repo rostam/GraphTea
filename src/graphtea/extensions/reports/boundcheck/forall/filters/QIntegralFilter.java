@@ -21,7 +21,7 @@ public class QIntegralFilter implements GraphFilter {
         for (int i = 0; i < n; i++) {
             sum = 0;
             for (int j = 0; j < n; j++) {
-                sum += ATemp[j][i];
+                sum += (int) ATemp[j][i];
             }
             DTemp[i][i] = sum;
         }

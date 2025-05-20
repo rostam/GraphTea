@@ -97,7 +97,7 @@ public class HelmGraph implements GraphGeneratorExtension, Parametrizable, Simpl
 
 	/**
 	 * generates a Helm Graph with given parameters
-	 *
+	 * <p>
 	 * A helm graph, denoted Hn is a graph obtained by attaching a single
 	 * edge and node to each node of the outer circuit of a wheel graph Wn.
 	 *

@@ -57,9 +57,10 @@ public class LoadMatrix implements GraphReaderExtension {
 		
 		FileReader in = new FileReader(selectedFile);
 		BufferedReader br = new BufferedReader(in);
-		String s1, s = "";
-		while ((s1 = br.readLine()) != null) s += s1 + "\n";
-		Matrix.Matrix2Graph(Matrix.String2Matrix(s), g);
+		String s1;
+        StringBuilder s = new StringBuilder();
+        while ((s1 = br.readLine()) != null) s.append(s1).append("\n");
+		Matrix.Matrix2Graph(Matrix.String2Matrix(s.toString()), g);
 		return g;
 	}
 
@@ -67,9 +68,10 @@ public class LoadMatrix implements GraphReaderExtension {
 		GraphModel g = new GraphModel(isDirected);
 		FileReader in = new FileReader(selectedFile);
 		BufferedReader br = new BufferedReader(in);
-		String s1, s = "";
-		while ((s1 = br.readLine()) != null) s += s1 + "\n";
-		Matrix.Matrix2Graph(Matrix.String2Matrix(s), g);
+		String s1;
+        StringBuilder s = new StringBuilder();
+        while ((s1 = br.readLine()) != null) s.append(s1).append("\n");
+		Matrix.Matrix2Graph(Matrix.String2Matrix(s.toString()), g);
 		return g;
 	}
 
@@ -77,18 +79,18 @@ public class LoadMatrix implements GraphReaderExtension {
 		Vector<GraphModel> gs = new Vector<>();
 		Scanner sc =new Scanner(selectedFile);
 		sc.nextLine();
-		String g="";
+		StringBuilder g= new StringBuilder();
 
 		while (sc.hasNextLine()) {
 			String l = sc.nextLine();
-			if(!l.equals("")){
-				g+=l+"\n";
+			if(!l.isEmpty()){
+				g.append(l).append("\n");
 			} else {
-				if(!g.equals("")) {
+				if(!g.toString().isEmpty()) {
 					GraphModel tmp = new GraphModel(isDirected);
-					Matrix.Matrix2Graph(Matrix.String2Matrix(g), tmp);
+					Matrix.Matrix2Graph(Matrix.String2Matrix(g.toString()), tmp);
 					gs.add(tmp);
-					g = "";
+					g = new StringBuilder();
 				}
 			}
 		}

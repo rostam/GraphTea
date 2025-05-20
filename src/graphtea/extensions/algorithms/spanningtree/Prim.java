@@ -67,11 +67,6 @@ public class Prim extends Algorithm implements AutomatedAlgorithm {
         //	throw new NullPointerException();
 
         this.graph = graph;
-        /**
-         * Reference to a GraphConverter object which is responsible for duplication
-         * of the graph elements, because graph edges and vertices are going to be
-         * copied to the newly created spanning tree.
-         */
         this.ec = new DefaultEdgeComparator();
     }
 

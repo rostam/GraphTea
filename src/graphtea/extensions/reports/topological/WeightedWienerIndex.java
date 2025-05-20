@@ -35,7 +35,7 @@ public class WeightedWienerIndex implements GraphReportExtension<Object> {
                     if(dist > max) {
                     	int degreeOfU = g.getDegree(g.getVertex(u));
                     	int degreeOfV = g.getDegree(g.getVertex(v));
-                        sum += (degreeOfU + degreeOfV)*dist;
+                        sum += (int) ((degreeOfU + degreeOfV)*dist);
                     }
                 }
             }

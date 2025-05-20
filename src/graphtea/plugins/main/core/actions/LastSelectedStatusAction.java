@@ -60,13 +60,13 @@ public class LastSelectedStatusAction extends graphtea.platform.core.AbstractAct
     public void performAction(String eventName, Object value) {
         l = label();
         handleMouseListener();
-        if (eventName == VertexSelectData.EVENT_KEY) {
+        if (eventName.equals(VertexSelectData.EVENT_KEY)) {
             VertexSelectData last = blackboard.getData(VertexSelectData.EVENT_KEY);
             Vertex v = last.v;
             l.setText("Vertex :: " + (v.getLabel()));
             this.last = v;
         }
-        if (eventName == EdgeSelectData.EVENT_KEY) {
+        if (eventName.equals(EdgeSelectData.EVENT_KEY)) {
             Edge e = ((EdgeSelectData) blackboard.getData(EdgeSelectData.EVENT_KEY)).edge;
             l.setText("Edge :: " + (e.source.getLabel()) + "-->"
                     + (e.target.getLabel()));

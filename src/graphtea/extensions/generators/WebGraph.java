@@ -19,8 +19,8 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 /**
  * Author: M. Ali Rostami
- *
- * https://mathworld.wolfram.com/WebGraph.html
+ * <p><a href="
+ ">* <a href="https://mathworld.wolfram.com/</a>WebGraph.html">...</a>
  */
 @CommandAttitude(name = "generate_webgraph", abbreviation = "_g_webg", description = "generates a Web graph of order n")
 public class WebGraph implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {

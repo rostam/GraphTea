@@ -35,7 +35,7 @@ public class WienerPolarity implements GraphReportExtension<Integer> {
                 if(spt[v][u] < g.numOfVertices() + 1) {
                     double dist = spt[u][v];
                     if(dist > max) {
-                        sum += dist;
+                        sum += (int) dist;
                     }
                 }
             }

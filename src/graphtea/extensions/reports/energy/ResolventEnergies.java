@@ -243,7 +243,7 @@ public class ResolventEnergies implements GraphReportExtension<RenderTable> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                return AlgorithmUtils.round(num.re(), 12) + " + "
                         + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 12);
@@ -288,7 +288,7 @@ public class ResolventEnergies implements GraphReportExtension<RenderTable> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 22) + " + "
+                return AlgorithmUtils.round(num.re(), 22) + " + "
                         + AlgorithmUtils.round(num.im(), 22) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 12);
@@ -334,7 +334,7 @@ public class ResolventEnergies implements GraphReportExtension<RenderTable> {
 //                     System.out.println(tmp);
 //                     num.plus(tmp);
 //                 }
-                 return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                 return AlgorithmUtils.round(num.re(), 12) + " + "
                          + AlgorithmUtils.round(num.im(), 12) + "i";
              } else {
                  return "" + AlgorithmUtils.round(sum, 12);
@@ -390,7 +390,7 @@ public class ResolventEnergies implements GraphReportExtension<RenderTable> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 12) + " + "
+                return AlgorithmUtils.round(num.re(), 12) + " + "
                         + AlgorithmUtils.round(num.im(), 12) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 12);

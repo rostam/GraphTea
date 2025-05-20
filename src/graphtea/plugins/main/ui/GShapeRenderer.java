@@ -29,7 +29,7 @@ public class GShapeRenderer implements ValueSet, GBasicCellRenderer<GShape> {
             public void paint(Graphics g) {
                 super.paint(g);
                 int h = getHeight();
-                g.drawString(value.name + "", h + 4, (h - 2) / 2 + 8);
+                g.drawString(value.name, h + 4, (h - 2) / 2 + 8);
                 g.setColor(Color.lightGray);
                 GShape.fillShape(value.name, g, h - 1, h - 1);
                 g.setColor(Color.darkGray);

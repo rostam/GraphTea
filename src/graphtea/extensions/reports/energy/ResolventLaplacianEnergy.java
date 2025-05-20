@@ -44,17 +44,16 @@ public class ResolventLaplacianEnergy implements GraphReportExtension<String> {
             if (sum_i != 0) {
                 //here is completely false
                 System.out.println("imaginary part is available. So this function does not work.");
-                sum_i=0;
                 Complex num = new Complex(0,0);
                 for(int i=0;i < iv.length;i++) {
                     Complex tmp = new Complex(rv[i], iv[i]);
                     System.out.println(tmp);
-                    tmp.pow(new Complex(power,0));
+                    Complex.pow(new Complex(power,0));
                     System.out.println(power);
                     System.out.println(tmp);
                     num.plus(tmp);
                 }
-                return "" + AlgorithmUtils.round(num.re(), 5) + " + "
+                return AlgorithmUtils.round(num.re(), 5) + " + "
                         + AlgorithmUtils.round(num.im(), 5) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 5);

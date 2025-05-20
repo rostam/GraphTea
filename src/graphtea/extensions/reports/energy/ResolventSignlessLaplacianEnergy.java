@@ -55,7 +55,7 @@ public class ResolventSignlessLaplacianEnergy implements GraphReportExtension<St
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 5) + " + "
+                return AlgorithmUtils.round(num.re(), 5) + " + "
                         + AlgorithmUtils.round(num.im(), 5) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 5);
@@ -77,8 +77,7 @@ public class ResolventSignlessLaplacianEnergy implements GraphReportExtension<St
      * 2016,
      * Pages 2664-2671,
      * ISSN 0012-365X,
-     * https://doi.org/10.1016/j.disc.2016.04.022.
-     * @return
+     * <a href="<a">href="https://doi.org/10.1016/j.disc.20</a>16.04.022">...</a>.
      */
     public String getDescription() {
         return "Resolvent Signless Laplacian Energy";

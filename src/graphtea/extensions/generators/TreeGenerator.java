@@ -116,7 +116,7 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
             double xratio = vwidth / (vertexnInRow + 1);
             int firstInRow = 0;
             for (int j = 0; j <= i - 1; j++) {
-                firstInRow += Math.pow(degree, j);
+                firstInRow += (int) Math.pow(degree, j);
             }
             firstInRow++;
 

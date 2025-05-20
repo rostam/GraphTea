@@ -125,7 +125,7 @@ public class ExtensionClassLoader extends ClassLoader {
 
 
     /**
-     * this part of code has get from: http://www.devx.com/getHelpOn/10MinuteSolution/20447
+     * this part of code has get from: <a href="http://www.devx.com/getHelpOn/10MinuteSolution/20447">...</a>
      * @param zipFileName The given zipped file name
      */
     public static void unZip(String zipFileName, String destDir) {

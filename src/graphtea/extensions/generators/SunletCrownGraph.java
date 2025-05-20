@@ -18,8 +18,8 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 /**
  * Author: Mohsen Khaki
- *
- * https://mathworld.wolfram.com/SunletGraph.html
+ * <p><a href="
+ ">* <a href="https://mathworld.wolfram.com/Sun</a>letGraph.html">...</a>
  */
 @CommandAttitude(name = "generate_sunlet_crown", abbreviation = "_g_sunlet_crown",
         description = "generates a Crown graph of order n")

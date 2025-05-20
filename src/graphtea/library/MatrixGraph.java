@@ -29,7 +29,7 @@ import java.util.Iterator;
 
 /**
  * Adjacency Matrix Graph.
- * For information about Adjacency Matrix refer to http://en.wikipedia.org/wiki/Adjacency_matrix 
+ * For information about Adjacency Matrix refer to <a href="http://en.wikipedia.org/wiki/Adjacency_matrix">...</a>
  *
  * @author Hooman Mohajeri Moghaddam, added weighted version of weightOfEdge method
  * @author Omid Aladini

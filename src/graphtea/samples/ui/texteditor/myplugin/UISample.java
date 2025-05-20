@@ -18,7 +18,7 @@ import java.io.IOException;
 /**
  * The main class of GraphTea notepad sample.
  * <p/>
- * see http://graphtea.sharif.ir/trac/wiki/XMLBasedUI todo: [tea] link to be updated
+ * see <a href="http://graphtea.sharif.ir/trac/wiki/XMLBasedUI">...</a> todo: [tea] link to be updated
  * @author Azin Azadi aazadi@gmail.com
  */
 public class UISample {

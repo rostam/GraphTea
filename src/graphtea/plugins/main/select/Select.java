@@ -49,7 +49,7 @@ public class Select extends AbstractAction {
             selectVertex();
 
         }
-        if (eventName == EdgeSelectData.EVENT_KEY)
+        if (eventName.equals(EdgeSelectData.EVENT_KEY))
             selectEdge();
     }
 

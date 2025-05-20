@@ -52,7 +52,7 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension<Vector<S
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 5) + " + "
+                return AlgorithmUtils.round(num.re(), 5) + " + "
                         + AlgorithmUtils.round(num.im(), 5) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 5);
@@ -98,7 +98,7 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension<Vector<S
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 5) + " + "
+                return AlgorithmUtils.round(num.re(), 5) + " + "
                         + AlgorithmUtils.round(num.im(), 5) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 5);

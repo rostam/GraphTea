@@ -54,7 +54,7 @@ public class ResolventEnergy implements GraphReportExtension<String> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + AlgorithmUtils.round(num.re(), 5) + " + "
+                return AlgorithmUtils.round(num.re(), 5) + " + "
                         + AlgorithmUtils.round(num.im(), 5) + "i";
             } else {
                 return "" + AlgorithmUtils.round(sum, 5);
@@ -76,7 +76,7 @@ public class ResolventEnergy implements GraphReportExtension<String> {
      * 2016,
      * Pages 2664-2671,
      * ISSN 0012-365X,
-     * https://doi.org/10.1016/j.disc.2016.04.022.
+     * <a href="https://doi.org/10.1016/j.disc.2016.04.022">...</a>.
      * @return
      */
     public String getDescription() {

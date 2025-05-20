@@ -12,7 +12,7 @@ package graphtea.platform.extension;
  *
  * If an extension only implements this interface it will be loaded with its constructor
  * getting the blackboard or with its default constructor.
- *
+ * <p>
  * This extension is useful for doing initialization on application loading, or background
  * functionalities without any UI components.
  *

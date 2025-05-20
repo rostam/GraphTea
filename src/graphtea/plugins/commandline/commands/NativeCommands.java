@@ -29,10 +29,10 @@ public class NativeCommands {
     @CommandAttitude(name = "ghomomorph", abbreviation = "_ghom", description = "check homomorphism")
     public String ghomomorph(@Parameter(name = "first_graph")GraphModel g1,
                              @Parameter(name = "second_graph")GraphModel g2) {
-        String graph1 = "";
-        String graph2 = "";
-        graph1 += g1.getVerticesCount() + "\n";
-        graph2 += g2.getVerticesCount() + "\n";
+        StringBuilder graph1 = new StringBuilder();
+        StringBuilder graph2 = new StringBuilder();
+        graph1.append(g1.getVerticesCount()).append("\n");
+        graph2.append(g2.getVerticesCount()).append("\n");
         Iterator<Edge> it1 = g1.edgeIterator();
         Iterator<Edge> it2 = g2.edgeIterator();
 
@@ -48,7 +48,7 @@ public class NativeCommands {
 
         while (it1.hasNext()) {
             Edge e = it1.next();
-            graph1 += map.get(e.source.getId()) + " " + map.get(e.target.getId()) + "\n";
+            graph1.append(map.get(e.source.getId())).append(" ").append(map.get(e.target.getId())).append("\n");
         }
 
         map = new HashMap<>();
@@ -60,19 +60,18 @@ public class NativeCommands {
 
         while (it2.hasNext()) {
             Edge e = it2.next();
-            graph2 += map.get(e.source.getId()) + " " + map.get(e.target.getId()) + "\n";
+            graph2.append(map.get(e.source.getId())).append(" ").append(map.get(e.target.getId())).append("\n");
         }
 
-        String s = homomorph(graph1, graph2);
+        String s = homomorph(graph1.toString(), graph2.toString());
         double time = Double.parseDouble(s.substring(0, s.indexOf("\n")));
         s = s.substring(s.indexOf("\n") + 1);
         if (s.equals("false")) return "time : " + time + ".\nNo homomorphism exists.";
-        String result = "";
+        StringBuilder result = new StringBuilder();
         StringTokenizer stk2 = new StringTokenizer(s);
         while (stk2.hasMoreElements()) {
             String temp = (String) stk2.nextElement();
-            result = result + nmap.get(Integer.parseInt(temp.substring(0, temp.indexOf("-")))) + "->"
-                    + nmap.get(Integer.parseInt(temp.substring(temp.indexOf(">") + 1))) + "\n";
+            result.append(nmap.get(Integer.parseInt(temp.substring(0, temp.indexOf("-"))))).append("->").append(nmap.get(Integer.parseInt(temp.substring(temp.indexOf(">") + 1)))).append("\n");
         }
 
         return "time : " + time + ".\nFounded Homomorphism is:\n" + result;

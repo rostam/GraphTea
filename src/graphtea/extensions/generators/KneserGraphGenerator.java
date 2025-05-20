@@ -17,15 +17,14 @@ import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
  * Author: M. Ali Rostami
- *
- * https://en.wikipedia.org/wiki/Kneser_graph
+ * <p><a href="
+ ">* <a href="https://en.wikipedia.org/wiki</a>/Kneser_graph">...</a>
  *
  */
 

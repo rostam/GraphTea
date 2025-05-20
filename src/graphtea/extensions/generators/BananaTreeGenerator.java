@@ -14,8 +14,8 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 /**
  * Author: Ali Rostami
- *
- * https://mathworld.wolfram.com/BananaTree.html
+ * <p><a href="
+ ">* <a href="https://mathworld.wolfram.com/Ba</a>nanaTree.html">...</a>
  */
 
 @CommandAttitude(name = "generate_banana_tree", abbreviation = "_g_banana", description = "generates a Banana graph")

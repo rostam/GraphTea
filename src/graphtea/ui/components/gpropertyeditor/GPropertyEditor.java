@@ -31,8 +31,8 @@ import java.awt.event.MouseListener;
 import java.io.File;
 
 /**
- * see http://graphtea.sharif.ir/trac/wiki/PropertyEditor for documentations. todo: [tea] link to be updated
- * @author  Azin Azadi
+ * see <a href="http://graphtea.sharif.ir/trac/wiki/PropertyEditor">...</a> for documentations. todo: [tea] link to be updated
+ * @author Azin Azadi
  * @email :   aazadi@gmail.com
  */
 
@@ -166,7 +166,7 @@ public class GPropertyEditor extends JComponent {
             if (scc != -1) {
                 String name = target.getView().getNameAt(scc);
                 String desc = target.getView().getDescription(name);
-                if (desc == null || desc.equals("")) {
+                if (desc == null || desc.isEmpty()) {
                     desc = name;
                 }
                 desc += ": " + target.getView().getAttribute().get(name);

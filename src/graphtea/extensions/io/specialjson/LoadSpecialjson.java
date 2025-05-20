@@ -132,21 +132,7 @@ public class LoadSpecialjson implements GraphReaderExtension {
             Component rendererComponent = GCellRenderer.getRendererFor(rt);
             rendererComponent.setEnabled(true);
             jd.add(rendererComponent, BorderLayout.CENTER);
-            Button bt = new Button("Show settlements without coordinates");
-            bt.addActionListener(actionEvent -> {
-                int i1 = 0;
-                for(Vertex v : g) {
-                    if(sttlWithoutCoordinates.contains(v.getLabel())) {
-//                            v.setColor(3);
-                        //v.setLocation(new GPoint(200,200 + i*20));
-                        i1++;
-                    } else {
-                        v.setLocation(new GPoint(100,100));
-                        v.setColor(0);
-                    }
-                }
-            });
-            bt.setSize(new Dimension(200,50));
+            Button bt = createButtonWithAction(g, sttlWithoutCoordinates);
             jd.add(bt, BorderLayout.SOUTH);
             jd.pack();
             jd.setVisible(true);
@@ -184,6 +170,25 @@ public class LoadSpecialjson implements GraphReaderExtension {
         g.removeVertex(g.getVertex(0));
         g.setDrawVertexLabels(false);
         return g;
+    }
+
+    private static Button createButtonWithAction(GraphModel g, Vector<String> sttlWithoutCoordinates) {
+        Button bt = new Button("Show settlements without coordinates");
+        bt.addActionListener(actionEvent -> {
+            int i1 = 0;
+            for(Vertex v : g) {
+                if(sttlWithoutCoordinates.contains(v.getLabel())) {
+//                            v.setColor(3);
+                    //v.setLocation(new GPoint(200,200 + i*20));
+                    i1++;
+                } else {
+                    v.setLocation(new GPoint(100,100));
+                    v.setColor(0);
+                }
+            }
+        });
+        bt.setSize(new Dimension(200,50));
+        return bt;
     }
 
     GPoint convertLatLonToXY(double lat, double lon) {

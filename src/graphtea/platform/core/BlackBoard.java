@@ -173,7 +173,7 @@ public class BlackBoard {
     }
 
     //todo: agar vasat e fire kardan iek thread e dige set kard oon name ro chekar baiad kard?
-    private class Couple<A, B> {
+    private static class Couple<A, B> {
         public A a;
         public B b;
 

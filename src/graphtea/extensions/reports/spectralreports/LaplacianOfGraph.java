@@ -45,7 +45,7 @@ public class LaplacianOfGraph implements GraphReportExtension<ArrayList<String>>
 				sum = 0 ;
 				for(int j=0; j<n ; j++)
 				{
-					sum+=ATemp[j][i];
+					sum+= (int) ATemp[j][i];
 				}
 				DTemp[i][i]=sum;
 			}
@@ -57,7 +57,7 @@ public class LaplacianOfGraph implements GraphReportExtension<ArrayList<String>>
 				sum = 0 ;
 				for(int j=0; j<n ; j++)
 				{
-					sum+=ATemp[i][j];
+					sum+= (int) ATemp[i][j];
 				}
 				DTemp[i][i]=sum;
 			}
@@ -96,7 +96,7 @@ public class LaplacianOfGraph implements GraphReportExtension<ArrayList<String>>
 		double[] iv = ed.getImagEigenvalues();
 		for (int i = 0; i < rv.length; i++)
 			if (iv[i] != 0)
-				result.add("" + AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i");
+				result.add(AlgorithmUtils.round(rv[i], 10) + " + " + AlgorithmUtils.round(iv[i], 10) + "i");
 			else
 				result.add("" + AlgorithmUtils.round(rv[i], 10));
 		result.add("Eigen Vectors:\n");

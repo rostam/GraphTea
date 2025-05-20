@@ -56,7 +56,6 @@ public class Johnson extends GraphAlgorithm {
         if (sp.computePaths(g, u) != null) {
             Vector<Vertex> pd = sp.computePaths(g, u);
             for (Vertex v : g) {
-
                 int dd = 0;
                 Edge h;
                 while (v != u) {

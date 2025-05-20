@@ -19,9 +19,8 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 /**
  * Author: Ali Rostami
+ * <a <a href="href="https://mathworld.wolfram.com/CrownGrap">...</a>h.html">...</a>
  *
- * https://mathworld.wolfram.com/CrownGraph.html
- * 
  */
 @CommandAttitude(name = "generate_crown", abbreviation = "_g_crown",
         description = "generates a Crown graph of order n")

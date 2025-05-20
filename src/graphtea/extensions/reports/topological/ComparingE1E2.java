@@ -34,49 +34,7 @@ public class ComparingE1E2 implements GraphReportExtension<RenderTable> {
 
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
-        titles.add(" m ");
-        titles.add(" n ");
-      // titles.add(" ECI ");
-     //  titles.add(" E1 ");
-    //   titles.add(" E2 ");
-     //  titles.add(" EDS ");
-     //  titles.add(" EDS-ECI");
-         titles.add(" EDS-E1");
-         titles.add(" EDS-E2");
-   //    titles.add(" ECI/EDS ");
-      // titles.add(" EAI ");
-        //titles.add(" i(G) ");
-        //titles.add(" i(G-Bar) ");
-       // titles.add(" i(G)+i(G-Bar) ");
-      //    titles.add(" EDS-E1 ");
-     //   titles.add(" E1/EDS ");
-     //     titles.add(" EDS-E2 ");
-//        titles.add(" E2/EDS ");
-        //titles.add(" G-comp ");
-       // titles.add(" E1/n ");
-      //  titles.add(" E2/m ");
-     //   titles.add(" CE-comp ");
-    //    titles.add(" EC-comp ");
-   //     titles.add(" E1 ");
-  //      titles.add(" E2 ");
- //       titles.add( " Thm 1.6 ");
-//         titles.add( " Thm 1.6 ");
-
-      //  titles.add(" E1-R.H.S ");
-     //   titles.add(" E2-R.H.S ");
-    //    titles.add(" E_1-Bar / n ");
-   //     titles.add(" E_2-Bar / m-bar ");   
-  //      titles.add(" Eccen ");
- //         titles.add(" Diameter ");
-  //      titles.add(" DiamComp ");        
-    //    titles.add(" alpha ");
-     //   titles.add("Chromatic number");
-    //      titles.add("Alpha");
-     //     titles.add("MinDeg");
-      //  titles.add("Max Clique Size");
-        ret.setTitles(titles);
+        RenderTable ret = getVectors();
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -275,6 +233,53 @@ public class ComparingE1E2 implements GraphReportExtension<RenderTable> {
           
       //  v.add(chrome);
         ret.add(v);
+        return ret;
+    }
+
+    private static RenderTable getVectors() {
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add(" m ");
+        titles.add(" n ");
+        // titles.add(" ECI ");
+        //  titles.add(" E1 ");
+        //   titles.add(" E2 ");
+        //  titles.add(" EDS ");
+        //  titles.add(" EDS-ECI");
+        titles.add(" EDS-E1");
+        titles.add(" EDS-E2");
+        //    titles.add(" ECI/EDS ");
+        // titles.add(" EAI ");
+        //titles.add(" i(G) ");
+        //titles.add(" i(G-Bar) ");
+        // titles.add(" i(G)+i(G-Bar) ");
+        //    titles.add(" EDS-E1 ");
+        //   titles.add(" E1/EDS ");
+        //     titles.add(" EDS-E2 ");
+//        titles.add(" E2/EDS ");
+        //titles.add(" G-comp ");
+        // titles.add(" E1/n ");
+        //  titles.add(" E2/m ");
+        //   titles.add(" CE-comp ");
+        //    titles.add(" EC-comp ");
+        //     titles.add(" E1 ");
+        //      titles.add(" E2 ");
+        //       titles.add( " Thm 1.6 ");
+//         titles.add( " Thm 1.6 ");
+
+        //  titles.add(" E1-R.H.S ");
+        //   titles.add(" E2-R.H.S ");
+        //    titles.add(" E_1-Bar / n ");
+        //     titles.add(" E_2-Bar / m-bar ");
+        //      titles.add(" Eccen ");
+        //         titles.add(" Diameter ");
+        //      titles.add(" DiamComp ");
+        //    titles.add(" alpha ");
+        //   titles.add("Chromatic number");
+        //      titles.add("Alpha");
+        //     titles.add("MinDeg");
+        //  titles.add("Max Clique Size");
+        ret.setTitles(titles);
         return ret;
     }
 

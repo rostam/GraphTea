@@ -83,21 +83,21 @@ public class one {
       fmt.setMaximumFractionDigits(d);
       fmt.setMinimumFractionDigits(d);
       fmt.setGroupingUsed(false);
-      String s = fmt.format(x);
+      StringBuilder s = new StringBuilder(fmt.format(x));
       while (s.length() < w) {
-         s = " " + s;
+         s.insert(0, " ");
       }
-      return s;
+      return s.toString();
    }
 
    /** Format integer with Iw. **/
 
    public static String fixedWidthIntegertoString (int n, int w) {
-      String s = Integer.toString(n);
+      StringBuilder s = new StringBuilder(Integer.toString(n));
       while (s.length() < w) {
-         s = " " + s;
+         s.insert(0, " ");
       }
-      return s;
+      return s.toString();
    }
 
 

@@ -157,7 +157,7 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
         prosheet = (GPropertyEditor) UIUtils.getComponent(blackboard,
                 "property editor");
         if (getTarget() != null)
-            if (eventName == Select.EVENT_KEY) {
+            if (eventName.equals(Select.EVENT_KEY)) {
                 if (!spm.isSelectionEmpty()) {
                     updatePropertyEditor_selected();
 //                    viewer = selectView;
@@ -184,7 +184,7 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
 //                }
 //            }
 //        }
-        if (eventName == GraphSelectData.EVENT_KEY) {
+        if (eventName.equals(GraphSelectData.EVENT_KEY)) {
             setTarget(new GraphNotifiableAttrSet(lastGraph()));
             viewer = graphView;
         }

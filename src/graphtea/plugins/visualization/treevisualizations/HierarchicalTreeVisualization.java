@@ -111,7 +111,6 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
                     }
                 }
             }
-        } else {
         }
         return newChildren;
     }

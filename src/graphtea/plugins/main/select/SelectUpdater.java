@@ -13,7 +13,7 @@ import graphtea.platform.core.BlackBoard;
 import java.util.Vector;
 
 /**
- * this class is do the update of the graph after the selection changes, it sets the selection of vertices and edges, and
+ * this class is do the update of the graph after the selection changes, it sets the selection of vertices and edges and
  * repaints the graph if necessary
  *
  * @author Azin Azadi
@@ -47,7 +47,7 @@ public class SelectUpdater extends AbstractAction {
                 deselect(v);
                 rm.add(v);
             }
-        last.vertices.removeAll(rm);
+        rm.forEach(last.vertices::remove);
         for (Edge e : sd.edges)
             if (!last.edges.contains(e)) {
                 select(e);
@@ -59,10 +59,7 @@ public class SelectUpdater extends AbstractAction {
                 deselect(e);
                 rme.add(e);
             }
-        last.edges.removeAll(rme);
-        //last=sd;
-        //last.vertices=(HashSet<Vertex>) sd.vertices.clone();
-        //last.edges=(HashSet<Edge>) sd.edges.clone();
+        rme.forEach(last.edges::remove);
     }
 
     private void deselect(Edge e) {

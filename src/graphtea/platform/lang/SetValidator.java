@@ -36,14 +36,14 @@ public class SetValidator<t> implements Validator<t> {
     }
 
     public String toString() {
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
         if (vals.isEmpty())
             return " #$%# ";
         Object[] valar = vals.toArray();
-        ret = ret + valar[0].getClass().getName() + " #$%# " + valar[0];
+        ret.append(valar[0].getClass().getName()).append(" #$%# ").append(valar[0]);
         for (int i = 1; i < valar.length; i++) {
-            ret = ret + " #$%# " + valar[i].getClass().getName() + " #$%# " + valar[i].toString();
+            ret.append(" #$%# ").append(valar[i].getClass().getName()).append(" #$%# ").append(valar[i].toString());
         }
-        return ret;
+        return ret.toString();
     }
 }

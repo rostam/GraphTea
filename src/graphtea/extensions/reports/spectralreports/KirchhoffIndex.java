@@ -64,7 +64,7 @@ public class KirchhoffIndex implements GraphReportExtension<String> {
 //                    System.out.println(tmp);
 //                    num.plus(tmp);
 //                }
-                return "" + round(num.re(), 5) + " + "
+                return round(num.re(), 5) + " + "
                         + round(num.im(), 5) + "i";
             } else {
                 return "" + round(sum, 5);

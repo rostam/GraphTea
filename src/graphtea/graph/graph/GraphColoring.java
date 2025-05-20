@@ -31,23 +31,23 @@ public class GraphColoring {
 
     @Override
     public String toString() {
-        String txt = "";
-        if (label != null && !label.equals("")) {
-            txt = txt + label + ":  \n";
+        StringBuilder txt = new StringBuilder();
+        if (label != null && !label.isEmpty()) {
+            txt.append(label).append(":  \n");
         }
         if (vertexColors != null && !vertexColors.isEmpty()) {
-            txt = txt + "Vertex colors: ";
+            txt.append("Vertex colors: ");
             for (Map.Entry<Vertex, Integer> p : vertexColors.entrySet()) {
-                txt = txt + p.getKey().getLabel() + ":" + p.getValue() + " , ";
+                txt.append(p.getKey().getLabel()).append(":").append(p.getValue()).append(" , ");
             }
         }
         if (edgeColors != null && !edgeColors.isEmpty()) {
-            txt = txt + "\nEdge colors: ";
+            txt.append("\nEdge colors: ");
             for (Map.Entry<Edge, Integer> p : edgeColors.entrySet()) {
-                txt = txt + p.getKey().getLabel() + ":" + p.getValue() + " , ";
+                txt.append(p.getKey().getLabel()).append(":").append(p.getValue()).append(" , ");
             }
         }
-        return txt;
+        return txt.toString();
     }
 
     public void applyColoring() {

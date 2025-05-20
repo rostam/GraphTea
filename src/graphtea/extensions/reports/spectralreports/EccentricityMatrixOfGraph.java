@@ -49,7 +49,7 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension<ArrayList
 		double[] iv = ed.getImagEigenvalues();
 		for (int i = 0; i < rv.length; i++)
 			if (iv[i] != 0)
-				result.add("" + AlgorithmUtils.round(rv[i], 5) + " + " + AlgorithmUtils.round(iv[i], 5) + "i");
+				result.add(AlgorithmUtils.round(rv[i], 5) + " + " + AlgorithmUtils.round(iv[i], 5) + "i");
 			else
 				result.add("" + AlgorithmUtils.round(rv[i], 5));
 		result.add("Eigen Vectors:\n");

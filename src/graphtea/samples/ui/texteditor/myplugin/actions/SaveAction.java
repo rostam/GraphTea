@@ -18,7 +18,7 @@ public class SaveAction implements UIActionExtension {
     public void actionPerformed(BlackBoard blackBoard) {
         String path = blackBoard.getData("last file");
 
-        if (path == null || path.equals("")) {
+        if (path == null || path.isEmpty()) {
             JFileChooser jfc = new JFileChooser();
             jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
             jfc.setMultiSelectionEnabled(false);

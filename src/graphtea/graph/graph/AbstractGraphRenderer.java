@@ -55,7 +55,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
     }
 
     /**
-     * adds ph to Pre Paint Handlers which means that ph.paint will be called before each rendering of graph
+     * adds ph to Pre Paint Handlers, which means that ph. Paint will be called before each rendering of the graph
      *
      * @param ph The paint handler
      */
@@ -64,7 +64,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
     }
 
     /**
-     * removes ph from both pre and post paint handlers and then repaints the graph
+     * removes ph from both pre- and post-paint handlers and then repaints the graph
      *
      * @param ph The paint handler
      */
@@ -114,6 +114,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
                     lastWidth = w;
                     lastHeight = h;
                 }
+                assert bi != null;
                 Graphics bufferedG = bi.getGraphics();
                 doRender(bufferedG, w, h, mainG, drawExtras);
 

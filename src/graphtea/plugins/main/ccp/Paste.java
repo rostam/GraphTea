@@ -150,9 +150,7 @@ public class Paste extends AbstractAction {
         //        ClearSelection.clearSelected(g.blackboard);
         //selects the inserted edges & vertices
         SubGraph sd = new SubGraph();
-        for (Vertex v : toBeSelectedVertices) {
-            sd.vertices.add(v);
-        }
+        sd.vertices.addAll(toBeSelectedVertices);
         for (Edge e : toBeSelectedEdges) {
             sd.edges.add(e);
         }

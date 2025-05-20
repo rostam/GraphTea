@@ -55,7 +55,7 @@ public class InwardCommandParser {
         } catch (EvalError evalError) {
             evalError.printStackTrace();
         }
-        String h = "";
+        StringBuilder h = new StringBuilder();
         Vector<String> hh = new Vector<>();
 
         for (String s : commands.keySet()) {
@@ -71,10 +71,10 @@ public class InwardCommandParser {
 
 
         for (String s : hh)
-            h += s;
+            h.append(s);
 
         try {
-            ((ShellConsole) interpreter.get("console")).println(h, Color.blue);
+            ((ShellConsole) interpreter.get("console")).println(h.toString(), Color.blue);
         } catch (EvalError evalError) {
             evalError.printStackTrace();
         }
@@ -154,27 +154,7 @@ public class InwardCommandParser {
                 abbrs.put(cm.abbreviation(), cm.name());
                 methodObjects.put(m, o);
 
-                String evaluation = cm.name() + "(";
-
-                String temp = "";
-                if (m.getParameterTypes().length != 0)
-                    temp = "Object[] o = new Object[" + m.getParameterTypes().length + "];";
-
-                int i = 0;
-                for (Class c : m.getParameterTypes()) {
-                    i++;
-                    evaluation += c.getSimpleName() + " x" + i + "  ,";
-                    temp += "o[" + (i - 1) + "] = x" + i + ";";
-                }
-
-                evaluation = (m.getParameterTypes().length == 0 ?
-                        evaluation : evaluation.substring(0, evaluation.length() - 1))
-                        + ")";
-
-                if (m.getParameterTypes().length == 0)
-                    evaluation += "{" + temp + "me.parseShell(\"" + cm.name() + "\"" + ",null,current_interpreter);}";
-                else
-                    evaluation += "{" + temp + "me.parseShell(\"" + cm.name() + "\"" + ",o,current_interpreter);}";
+                StringBuilder evaluation = getStringBuilder(m, cm);
                 evaluations += evaluation + "\n";
             }
         }
@@ -183,6 +163,31 @@ public class InwardCommandParser {
         } catch (EvalError evalError) {
             evalError.printStackTrace();
         }
+    }
+
+    private static StringBuilder getStringBuilder(Method m, CommandAttitude cm) {
+        StringBuilder evaluation = new StringBuilder(cm.name() + "(");
+
+        StringBuilder temp = new StringBuilder();
+        if (m.getParameterTypes().length != 0)
+            temp = new StringBuilder("Object[] o = new Object[" + m.getParameterTypes().length + "];");
+
+        int i = 0;
+        for (Class c : m.getParameterTypes()) {
+            i++;
+            evaluation.append(c.getSimpleName()).append(" x").append(i).append("  ,");
+            temp.append("o[").append(i - 1).append("] = x").append(i).append(";");
+        }
+
+        evaluation = new StringBuilder((m.getParameterTypes().length == 0 ?
+                evaluation.toString() : evaluation.substring(0, evaluation.length() - 1))
+                + ")");
+
+        if (m.getParameterTypes().length == 0)
+            evaluation.append("{").append(temp).append("me.parseShell(\"").append(cm.name()).append("\"").append(",null,current_interpreter);}");
+        else
+            evaluation.append("{").append(temp).append("me.parseShell(\"").append(cm.name()).append("\"").append(",o,current_interpreter);}");
+        return evaluation;
     }
 
     public Object parseShell(String command, Object[] ps, Interpreter in) throws ShellCommandException {

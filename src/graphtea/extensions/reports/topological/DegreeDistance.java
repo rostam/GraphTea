@@ -38,7 +38,7 @@ public class DegreeDistance implements GraphReportExtension<Integer> {
                     	int degreeOfU = g.getDegree(g.getVertex(u));
                     	int degreeOfV = g.getDegree(g.getVertex(v));
 
-                    	sum += (degreeOfU + degreeOfV) * UVdist;
+                    	sum += (int) ((degreeOfU + degreeOfV) * UVdist);
                     }
                 }
             }

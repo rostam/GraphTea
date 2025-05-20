@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 /**
  *
  * Bron-Kerbosch clique detection algorithm
- *
+ * <p>
  * Samudrala R.,Moult J.:A Graph-theoretic Algorithm for
  * comparative Modeling of Protein Structure; J.Mol. Biol. (1998); vol 279; pp.
  * 287-302

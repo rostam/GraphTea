@@ -61,17 +61,17 @@ public class GraphCommands {
             , description = "the weighted matrix related to the graph (with MatLab matrix format)")
     public String weightMatrix() {
         GraphModel g = datas.getGraph();
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
         for (Vertex v : g) {
             for (Vertex w : g) {
                 Edge e = g.getEdge(v, w);
-                ret += " " + (e == null ? "0" : e.getWeight()) + " ,";
+                ret.append(" ").append(e == null ? "0" : e.getWeight()).append(" ,");
             }
-            ret = ret.substring(0, ret.length() - 1);
-            ret += ";";
+            ret = new StringBuilder(ret.substring(0, ret.length() - 1));
+            ret.append(";");
         }
         if (g.getVerticesCount() > 0)
-            ret = ret.substring(0, ret.length() - 1);
+            ret = new StringBuilder(ret.substring(0, ret.length() - 1));
         return "[" + ret + "]";
     }
 
@@ -79,18 +79,18 @@ public class GraphCommands {
             , description = "the weighted matrix related to the graph (with MatLab matrix format)")
     public String matlabMatrix() {
         GraphModel g = datas.getGraph();
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
         for (Vertex v : g) {
             for (Vertex w : g) {
                 Edge e = g.getEdge(v, w);
-                ret += " " + (e == null ? "0" : "1") + " ,";
+                ret.append(" ").append(e == null ? "0" : "1").append(" ,");
             }
-            ret = ret.substring(0, ret.length() - 1);
-            ret += ";";
+            ret = new StringBuilder(ret.substring(0, ret.length() - 1));
+            ret.append(";");
         }
 
         if (g.getVerticesCount() > 0)
-            ret = ret.substring(0, ret.length() - 1);
+            ret = new StringBuilder(ret.substring(0, ret.length() - 1));
         return "[" + ret + "]";
     }
 

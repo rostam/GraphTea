@@ -29,6 +29,25 @@ public class GraphColoringRenderer implements GBasicCellRenderer<GraphColoring> 
         myColoring.vertexColors = new HashMap<>(coloring.vertexColors);
         myColoring.edgeColors = new HashMap<>(coloring.edgeColors);
         myColoring.label = coloring.label;
+        String txt = getHTMLFromColoring(myColoring);
+
+        JLabel l = new JLabel(txt){
+            @Override
+            public void setForeground(Color fg) {
+                super.setForeground(fg);
+                if (fg== GCellRenderer.SELECTED_COLOR)
+                    showOnGraph(myColoring);
+            }
+        };
+        l.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                showOnGraph(myColoring);
+            }
+        });
+        return l;
+    }
+
+    private static String getHTMLFromColoring(GraphColoring myColoring) {
         String txt = "";
         txt = "<HTML><BODY>";
         if (myColoring.label != null && !myColoring.label.equals("")) {
@@ -47,21 +66,7 @@ public class GraphColoringRenderer implements GBasicCellRenderer<GraphColoring> 
             }
         }
         txt = txt + "</BODY></HTML>";
-        
-        JLabel l = new JLabel(txt){
-            @Override
-            public void setForeground(Color fg) {
-                super.setForeground(fg);
-                if (fg== GCellRenderer.SELECTED_COLOR)
-                    showOnGraph(myColoring);
-            }
-        };
-        l.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                showOnGraph(myColoring);
-            }
-        });
-        return l;
+        return txt;
     }
 
     private void showOnGraph(GraphColoring myColoring) {

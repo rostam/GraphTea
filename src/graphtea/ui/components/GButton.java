@@ -59,7 +59,7 @@ public class GButton extends JButton implements ActionListener {
 
     private ImageIcon loadIcon(String iconFileName) {
         ImageIcon icon = null;
-        if (iconFileName != null && !iconFileName.equals("")) {
+        if (iconFileName != null && !iconFileName.isEmpty()) {
             icon = new ImageIcon(iconFileName);
             if (icon.getIconWidth() < 1) {
                 //solving the problem between GraphTea and GraphTeaDebugger

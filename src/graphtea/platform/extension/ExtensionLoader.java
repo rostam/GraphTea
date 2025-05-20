@@ -60,9 +60,9 @@ public class ExtensionLoader implements StorableOnExit {
     /**
      * gets e as an extension and tries to create Its relating AbstractAction
      * using registered ExtensionHandlers
-     *
-     * This should be the only place to handle extensions otherwise we are in problem,
-     * because here we keep list of handled extensions for further uses. everything else will
+     * <p>
+     * This should be the only place to handle extensions otherwise we are in a problem,
+     * because here we keep a list of handled extensions for further uses. everything else will
      * not be in this list.
      */
     public static AbstractAction handleExtension(BlackBoard b, Extension e) {
