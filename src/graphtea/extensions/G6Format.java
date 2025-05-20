@@ -189,9 +189,7 @@ public class G6Format {
 
     private static String padR(String str) {
         int padwith = 6 - (str.length() % 6);
-        for (int i = 0; i < padwith; i++) {
-            str += "0";
-        }
+        str = str + "0".repeat(padwith);
         return str;
     }
 

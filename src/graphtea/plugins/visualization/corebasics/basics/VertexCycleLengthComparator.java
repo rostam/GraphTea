@@ -11,22 +11,18 @@ import java.util.Comparator;
 /**
  * @author Rouzbeh Ebrahimi
  */
-public class VertexCycleLengthComparator implements Comparator {
+public class VertexCycleLengthComparator implements Comparator<Vertex> {
     public VertexCycleLengthComparator() {
 
     }
 
-    public int compare(Object o1, Object o2) {
-        Vertex v1 = (Vertex) o1;
-        Vertex v2 = (Vertex) o2;
+    public int compare(Vertex v1, Vertex v2) {
         int v1i1 = ((PathProperties) v1.getProp().obj).getFirstColor();
         int v1i2 = ((PathProperties) v1.getProp().obj).getSecondColor();
         Integer v1i = v1i1 + v1i2;
         Integer v2i1 = ((PathProperties) v2.getProp().obj).getFirstColor();
         Integer v2i2 = ((PathProperties) v2.getProp().obj).getSecondColor();
         Integer v2i = v2i1 + v2i2;
-
         return v1i.compareTo(v2i);
-
     }
 }

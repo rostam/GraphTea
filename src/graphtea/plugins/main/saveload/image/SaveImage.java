@@ -42,7 +42,7 @@ public class SaveImage implements GraphWriterExtension, Parametrizable {
         return extension;
     }
 
-    public void write(File file, GraphModel graph) throws GraphIOException {
+    public void write(File file, GraphModel graph) {
         saveImage(graph, file, extension);
     }
 

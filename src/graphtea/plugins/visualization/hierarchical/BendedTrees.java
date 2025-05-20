@@ -143,11 +143,11 @@ public class BendedTrees extends AbstractAction {
 
         for (Vertex v : currentLevelVertices) {
             if (nextLevelCount != 0) {
-                GPoint newPoint = new GPoint(horizontalDist * (i + 1) + width / (nextLevelCount + currentLevelCount), currentLevelHeight);
+                GPoint newPoint = new GPoint(horizontalDist * (i + 1) + (double) width / (nextLevelCount + currentLevelCount), currentLevelHeight);
                 vertexPlaces.put(v, newPoint);
                 i += g.getInDegree(v);
             } else {
-                GPoint newPoint = new GPoint(horizontalDist * (i) + width / (currentLevelCount), currentLevelHeight);
+                GPoint newPoint = new GPoint(horizontalDist * (i) + (double) width / (currentLevelCount), currentLevelHeight);
                 vertexPlaces.put(v, newPoint);
                 i++;
             }
@@ -156,8 +156,6 @@ public class BendedTrees extends AbstractAction {
         if (!nextLevel.isEmpty()) {
             visitedVertices.addAll(nextLevel);
             locateAllVertices(nextLevel, width, currentLevelHeight + 30);
-        } else {
-            return;
         }
     }
 }

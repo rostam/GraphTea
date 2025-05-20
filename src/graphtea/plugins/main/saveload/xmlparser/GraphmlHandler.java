@@ -15,26 +15,26 @@ public interface GraphmlHandler {
      * @param data value or null
      * @param meta attributes
      */
-    void handle_key(final java.lang.String data, final Attributes meta) throws SAXException;
+    void handle_key(final java.lang.String data, final Attributes meta);
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    void start_edge(final Attributes meta) throws SAXException;
+    void start_edge(final Attributes meta);
 
     /**
      * A container element end event handling method.
      */
-    void end_edge() throws SAXException;
+    void end_edge();
 
     /**
      * An empty element event handling method.
      *
      * @param meta value or null
      */
-    void handle_locator(final Attributes meta) throws SAXException;
+    void handle_locator(final Attributes meta);
 
     /**
      * A data element event handling method.
@@ -42,79 +42,79 @@ public interface GraphmlHandler {
      * @param data value or null
      * @param meta attributes
      */
-    void handle_data(final java.lang.String data, final Attributes meta) throws SAXException;
+    void handle_data(final java.lang.String data, final Attributes meta);
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    void start_node(final Attributes meta) throws SAXException;
+    void start_node(final Attributes meta);
 
     /**
      * A container element end event handling method.
      */
-    void end_node() throws SAXException;
+    void end_node();
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    void start_graph(final Attributes meta) throws SAXException;
+    void start_graph(final Attributes meta);
 
     /**
      * A container element end event handling method.
      */
-    void end_graph() throws SAXException;
+    void end_graph();
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    void start_endpoint(final Attributes meta) throws SAXException;
+    void start_endpoint(final Attributes meta);
 
     /**
      * A container element end event handling method.
      */
-    void end_endpoint() throws SAXException;
+    void end_endpoint();
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    void start_graphml(final Attributes meta) throws SAXException;
+    void start_graphml(final Attributes meta);
 
     /**
      * A container element end event handling method.
      */
-    void end_graphml() throws SAXException;
+    void end_graphml();
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    void start_hyperedge(final Attributes meta) throws SAXException;
+    void start_hyperedge(final Attributes meta);
 
     /**
      * A container element end event handling method.
      */
-    void end_hyperedge() throws SAXException;
+    void end_hyperedge();
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    void start_port(final Attributes meta) throws SAXException;
+    void start_port(final Attributes meta);
 
     /**
      * A container element end event handling method.
      */
-    void end_port() throws SAXException;
+    void end_port();
 
     /**
      * A data element event handling method.
@@ -122,5 +122,5 @@ public interface GraphmlHandler {
      * @param data value or null
      * @param meta attributes
      */
-    void handle_desc(final java.lang.String data, final Attributes meta) throws SAXException;
+    void handle_desc(final java.lang.String data, final Attributes meta);
 }

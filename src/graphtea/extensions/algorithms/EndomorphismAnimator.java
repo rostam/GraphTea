@@ -42,7 +42,6 @@ public class EndomorphismAnimator extends GraphAlgorithm implements AlgorithmExt
 
         boolean[] isThere = new boolean[mapSize];
         int numOfThere = 0;
-        for(int i=0;i < mapSize;i++) isThere[i]=false;
         for(int j=0;j < 100;j++) {
             if(numOfThere == mapSize) break;
             step(j+"th step");

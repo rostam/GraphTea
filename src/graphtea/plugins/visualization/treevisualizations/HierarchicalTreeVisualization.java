@@ -122,7 +122,7 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
         Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
 
         for (Vertex v : currentLevelVertices) {
-            GPoint newPoint = new GPoint(horizontalDist * i + width / (currentLevelCount + 1), currentLevelHeight);
+            GPoint newPoint = new GPoint(horizontalDist * i + (double) width / (currentLevelCount + 1), currentLevelHeight);
             vertexPlaces.put(v, newPoint);
             i++;
         }

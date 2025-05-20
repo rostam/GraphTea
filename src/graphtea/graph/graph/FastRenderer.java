@@ -268,8 +268,8 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
                     double t = Math.atan2(vertexRadius * Math.sin(angle), vertexRadius * Math.cos(angle));
 
                     GPoint loc = e.target.getLocation();
-                    int x2 = (int) (loc.x + (vertexRadius / 2) * Math.cos(t));
-                    int y2 = (int) (loc.y + (vertexRadius / 2) * Math.sin(t));
+                    int x2 = (int) (loc.x + ((double) vertexRadius / 2) * Math.cos(t));
+                    int y2 = (int) (loc.y + ((double) vertexRadius / 2) * Math.sin(t));
 
                     gg.translate(x2 * zoomFactor, y2 * zoomFactor);
                     gg.rotate(angle + Math.PI);
@@ -317,7 +317,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
                         int dl = (s.length() + 1 / 2) * 4;
                         gg.setColor(c.darker().darker());
                         GPoint ll = v.getLabelLocation();
-                        gg.drawString(s, (int) ((l.x - dl + ll.x) * zoomFactor), (int) ((l.y + vertexRadius / 2 + ll.y) * zoomFactor));
+                        gg.drawString(s, (int) ((l.x - dl + ll.x) * zoomFactor), (int) ((l.y + (double) vertexRadius / 2 + ll.y) * zoomFactor));
                     }
                 }
                 gg.setColor(Color.DARK_GRAY);
@@ -376,7 +376,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
                         g.drawLine(x1z, y1z, x2z, y2z);
                     } else {
                         //the control point of the curve is put another place so that the curve hits the real control point.
-                        QuadCurve2D.Double curve = new QuadCurve2D.Double(x1z, y1z, (4 * ctrlPntViewX - x1z - x2z) / 2, (4 * ctrlPntViewY - y1z - y2z) / 2, x2z, y2z);
+                        QuadCurve2D.Double curve = new QuadCurve2D.Double(x1z, y1z, (double) (4 * ctrlPntViewX - x1z - x2z) / 2, (double) (4 * ctrlPntViewY - y1z - y2z) / 2, x2z, y2z);
                         g.draw(curve);
                     }
 

@@ -158,7 +158,7 @@ public class EM2UpperBound implements GraphReportExtension<RenderTable> {
 
         
         //Zhou2
-        v.add(((M21/2)-m)*Math.pow(Math.sqrt(M21-(2*m)+(1/4))-(1/2),2)); 
+        v.add(((M21/2)-m)*Math.pow(Math.sqrt(M21-(2*m)+((double) 1 /4))-((double) 1 /2),2));
         
         //Zhou3
         v.add(Math.pow(M21-(2*m),2)*(maxDeg-1)/(2*maxDeg)); 

@@ -536,10 +536,6 @@ public class ShellConsole extends JScrollPane
         });
     }
 
-    public Color getResultColor() {
-        return Color.blue;
-    }
-
     /**
      * Prints "\\n" (i.e. newline)
      */

@@ -64,8 +64,8 @@ public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, From
         int h = (int) v2ShapeSize.getY();
         double t = Math.atan2(w * Math.sin(angle), h * Math.cos(angle));
         GPoint loc = e.target.getLocation();
-        int x2 = (int) ((zoomFactor * loc.x) + ((w / 2) * Math.cos(t)));
-        int y2 = (int) ((zoomFactor * loc.y) + ((h / 2) * Math.sin(t)));
+        int x2 = (int) ((zoomFactor * loc.x) + (((double) w / 2) * Math.cos(t)));
+        int y2 = (int) ((zoomFactor * loc.y) + (((double) h / 2) * Math.sin(t)));
 //        g.drawLine((int)loc.x-30, (int)loc.y-30, (int)loc.x+30, (int)loc.y+30);
         g.translate(x2 + 1, y2 + 1);
         g.rotate(angle + Math.PI);

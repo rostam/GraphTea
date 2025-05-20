@@ -56,7 +56,7 @@ public class GraphWriterExtensionAction extends AbstractExtensionAction {
     IOException ee;
     GraphIOException gioe;
 
-    private void exportGraph() throws IOException {
+    private void exportGraph() {
         g = blackboard.getData(GraphAttrSet.name);
         JFileChooser fileChooser = new JFileChooser();
         ExampleFileFilter fileFilter = new ExampleFileFilter(ge.getExtension(), ge.getName());

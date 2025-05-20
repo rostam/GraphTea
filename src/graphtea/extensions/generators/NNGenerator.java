@@ -75,12 +75,12 @@ public class NNGenerator implements GraphGeneratorExtension, Parametrizable, Sim
         int w = 100;
         int h = 100;
         GPoint[] ret = new GPoint[hiddenSize * hidden + 2];
-        ret[0] = new GPoint(5,h/2);
+        ret[0] = new GPoint(5, (double) h /2);
         GPoint[] np = PositionGenerators.line(15, h / 4, 0, h, hiddenSize);
         GPoint[] mp = PositionGenerators.line(25, h / 4,   0, h, hiddenSize);
         System.arraycopy(np, 0, ret, 1, hiddenSize);
         System.arraycopy(mp, 0, ret, hiddenSize + 1, hiddenSize);
-        ret[ret.length - 1] = new GPoint(35,h/2);
+        ret[ret.length - 1] = new GPoint(35, (double) h /2);
         return ret;
     }
 

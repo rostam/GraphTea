@@ -101,7 +101,7 @@ class BlackBoardDebug extends BlackBoard {
 
 	public <t> t getData(String name) {
         addEdge(getCallingMethod(), name, false, false);
-        return (t) super.getData(name);
+        return super.getData(name);
     }
 
     private Vertex getLogVertex(String name) {

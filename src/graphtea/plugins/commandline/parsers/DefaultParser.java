@@ -25,7 +25,6 @@ public class DefaultParser implements ExtParser {
         this.shell = shell;
     }
 
-
     public String getName() {
         return "default parser";
     }

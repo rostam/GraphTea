@@ -14,88 +14,88 @@ public interface UIHandler {
      *
      * @param meta value or null
      */
-    void handle_sidebar(final Attributes meta) throws SAXException;
+    void handle_sidebar(final Attributes meta);
 
     /**
      * An empty element event handling method.
      *
      * @param meta value or null
      */
-    void handle_action(final Attributes meta) throws SAXException;
+    void handle_action(final Attributes meta);
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    void start_submenu(final Attributes meta) throws SAXException;
+    void start_submenu(final Attributes meta);
 
     /**
      * A container element end event handling method.
      */
-    void end_submenu() throws SAXException;
+    void end_submenu();
 
     /**
      * An empty element event handling method.
      *
      * @param meta value or null
      */
-    void handle_bar(final Attributes meta) throws SAXException;
+    void handle_bar(final Attributes meta);
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    void start_toolbar(final Attributes meta) throws SAXException;
+    void start_toolbar(final Attributes meta);
 
     /**
      * A container element end event handling method.
      */
-    void end_toolbar() throws SAXException;
+    void end_toolbar();
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    void start_toolbars(final Attributes meta) throws SAXException;
+    void start_toolbars(final Attributes meta);
 
     /**
      * A container element end event handling method.
      */
-    void end_toolbars() throws SAXException;
+    void end_toolbars();
 
     /**
      * An empty element event handling method.
      *
      * @param meta value or null
      */
-    void handle_tool(final Attributes meta) throws SAXException;
+    void handle_tool(final Attributes meta);
 
     /**
      * An empty element event handling method.
      *
      * @param meta value or null
      */
-    void handle_menu(final Attributes meta) throws SAXException;
+    void handle_menu(final Attributes meta);
 
     /**
      * A container element start event handling method.
      *
      * @param meta attributes
      */
-    void start_menues(final Attributes meta) throws SAXException;
+    void start_menues(final Attributes meta);
 
     /**
      * A container element end event handling method.
      */
-    void end_menues() throws SAXException;
+    void end_menues();
 
     /**
      * An empty element event handling method.
      *
      * @param meta value or null
      */
-    void handle_body(final Attributes meta) throws SAXException;
+    void handle_body(final Attributes meta);
 }

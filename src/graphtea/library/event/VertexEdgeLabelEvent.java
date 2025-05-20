@@ -13,7 +13,7 @@ import graphtea.library.BaseVertex;
  *
  * @author azin azadi
  */
-public class VertexEdgeLabelEvent<VertexType extends BaseVertex, EdgeType extends BaseEdge> implements Event {
+public class VertexEdgeLabelEvent<VertexType extends BaseVertex, EdgeType extends BaseEdge<VertexType>> implements Event {
     public String label;
     public VertexType v;
     public EdgeType e;

@@ -42,7 +42,7 @@ public class StarGenerator implements GraphGeneratorExtension, Parametrizable, S
         GPoint[] ret = new GPoint[n];
         GPoint[] points = PositionGenerators.circle(5, 5, 10000, 10000, n - 1);
         System.arraycopy(points, 0, ret, 1, n - 1);
-        ret[0] = new GPoint(10000 / 2, 10000 / 2);
+        ret[0] = new GPoint((double) 10000 / 2, (double) 10000 / 2);
         return ret;
     }
 

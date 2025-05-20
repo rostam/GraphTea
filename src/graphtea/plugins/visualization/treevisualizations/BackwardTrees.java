@@ -117,7 +117,7 @@ public class BackwardTrees implements VisualizationExtension {
                 int j = 0;
 
                 double phase;
-                phase = 360 / (degree);
+                phase = (double) (double) 360 / (degree);
                 GPoint[] circle = PositionGenerators.convert(PositionGenerators.circle((int) v.getLocation().getX(), (int) v.getLocation().getY(), radius, radius, degree));
 
                 int t = 0;

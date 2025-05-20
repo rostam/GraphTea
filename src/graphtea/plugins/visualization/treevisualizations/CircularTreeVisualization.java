@@ -181,7 +181,7 @@ try {
         int currentLevelCount = currentLevelVertices.size();
         Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
         int nextLevelCount = nextLevel.size();
-        double degree = 360 / currentLevelCount;
+        double degree = (double) 360 / currentLevelCount;
         int j = 0;
         if (currentLevelCount == 1 && currentLevelVertices.elementAt(0).equals(root)) {
             GPoint newPoint = new GPoint(350, 350);

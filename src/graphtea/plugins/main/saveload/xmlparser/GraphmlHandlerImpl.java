@@ -59,7 +59,7 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
     public static HashMap<String, String> graphMLVertexKeys = new HashMap<>();
     public static HashMap<String, String> graphMLEdgeKeys = new HashMap<>();
 
-    public void handle_key(final java.lang.String data, final Attributes meta) throws SAXException {
+    public void handle_key(final java.lang.String data, final Attributes meta) {
         String s = meta.getValue("for");
         String id = meta.getValue("id");
         String attrname = meta.getValue("attr.name");
@@ -74,7 +74,7 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
         if (DEBUG) System.err.println("handle_key: " + data + "," + id + "," + s);
     }
 
-    public void start_edge(final Attributes meta) throws SAXException {
+    public void start_edge(final Attributes meta) {
         Vertex v1 = vByID.get(meta.getValue("source"));
         Vertex v2 = vByID.get(meta.getValue("target"));
 
@@ -88,17 +88,17 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
         if (DEBUG) System.err.println("start_edge: " + meta);
     }
 
-    public void end_edge() throws SAXException {
+    public void end_edge() {
 
         if (DEBUG) System.err.println("end_edge()");
     }
 
-    public void handle_locator(final Attributes meta) throws SAXException {
+    public void handle_locator(final Attributes meta) {
 
         if (DEBUG) System.err.println("handle_locator: " + meta);
     }
 
-    public void handle_data(final java.lang.String data, final Attributes meta) throws SAXException {
+    public void handle_data(final java.lang.String data, final Attributes meta) {
         String s1 = meta.getValue("key");
         if (s1.charAt(0) == 'g') {
             String ss = graphMLGraphKeys.get(s1.substring(2));
@@ -115,7 +115,7 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
         if (DEBUG) System.err.println("handle_data: " + data + "," + s1);
     }
 
-    public void start_node(final Attributes meta) throws SAXException {
+    public void start_node(final Attributes meta) {
         String id = meta.getValue("id");
         Vertex v = new Vertex();
         vByID.put(id, v);
@@ -127,13 +127,13 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
         if (DEBUG) System.err.println("start_node: " + meta);
     }
 
-    public void end_node() throws SAXException {
+    public void end_node() {
         g.insertVertex(curv);
 
         if (DEBUG) System.err.println("end_node()");
     }
 
-    public void start_graph(final Attributes meta) throws SAXException {
+    public void start_graph(final Attributes meta) {
         if (g == null) {
 //todo
             g = new GraphModel(meta.getValue("edgedefault").equals("directed"));
@@ -143,52 +143,52 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
         if (DEBUG) System.err.println("start_graph: " + meta);
     }
 
-    public void end_graph() throws SAXException {
+    public void end_graph() {
 
         if (DEBUG) System.err.println("end_graph()");
     }
 
-    public void start_endpoint(final Attributes meta) throws SAXException {
+    public void start_endpoint(final Attributes meta) {
 
         if (DEBUG) System.err.println("start_endpoint: " + meta);
     }
 
-    public void end_endpoint() throws SAXException {
+    public void end_endpoint() {
 
         if (DEBUG) System.err.println("end_endpoint()");
     }
 
-    public void start_graphml(final Attributes meta) throws SAXException {
+    public void start_graphml(final Attributes meta) {
 
         if (DEBUG) System.err.println("start_graphml: " + meta);
     }
 
-    public void end_graphml() throws SAXException {
+    public void end_graphml() {
 
         if (DEBUG) System.err.println("end_graphml()");
     }
 
-    public void start_hyperedge(final Attributes meta) throws SAXException {
+    public void start_hyperedge(final Attributes meta) {
 
         if (DEBUG) System.err.println("start_hyperedge: " + meta);
     }
 
-    public void end_hyperedge() throws SAXException {
+    public void end_hyperedge() {
 
         if (DEBUG) System.err.println("end_hyperedge()");
     }
 
-    public void start_port(final Attributes meta) throws SAXException {
+    public void start_port(final Attributes meta) {
 
         if (DEBUG) System.err.println("start_port: " + meta);
     }
 
-    public void end_port() throws SAXException {
+    public void end_port() {
 
         if (DEBUG) System.err.println("end_port()");
     }
 
-    public void handle_desc(final java.lang.String data, final Attributes meta) throws SAXException {
+    public void handle_desc(final java.lang.String data, final Attributes meta) {
 
         if (DEBUG) System.err.println("handle_desc: " + data);
     }

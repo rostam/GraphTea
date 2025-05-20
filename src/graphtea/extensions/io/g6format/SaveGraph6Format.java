@@ -31,7 +31,7 @@ public class SaveGraph6Format implements GraphWriterExtension {
     }
 
     @Override
-    public void write(File file, GraphModel graph) throws GraphIOException {
+    public void write(File file, GraphModel graph) {
         try {
             FileWriter fw = new FileWriter(file,isAppend);
             G6Format g6f = new G6Format();

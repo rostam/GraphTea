@@ -372,13 +372,13 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
         for (int i = 0; i != n; i++) {
             if (n % 2 == 0) {
 
-                xPoints[i] = (int) (((h - 1) / 2) * Math.cos((i) * Math.PI * 2 / n) + (h - 1) / 2);
-                yPoints[i] = (int) (((h - 1) / 2) * Math.sin((i) * Math.PI * 2 / n) + (h - 1) / 2);
+                xPoints[i] = (int) (((double) (h - 1) / 2) * Math.cos((i) * Math.PI * 2 / n) + (double) (h - 1) / 2);
+                yPoints[i] = (int) (((double) (h - 1) / 2) * Math.sin((i) * Math.PI * 2 / n) + (double) (h - 1) / 2);
 
             } else {
 
-                xPoints[i] = (int) (((h - 1) / 2) * Math.cos((i) * (Math.PI * 2) / n + Math.PI / 2) + (h - 1) / 2);
-                yPoints[i] = (int) (((h - 1) / 2) * Math.sin((i) * (Math.PI * 2) / n + Math.PI / 2) + (h - 1) / 2);
+                xPoints[i] = (int) (((double) (h - 1) / 2) * Math.cos((i) * (Math.PI * 2) / n + Math.PI / 2) + (double) (h - 1) / 2);
+                yPoints[i] = (int) (((double) (h - 1) / 2) * Math.sin((i) * (Math.PI * 2) / n + Math.PI / 2) + (double) (h - 1) / 2);
 
             }
         }
@@ -395,15 +395,15 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
 //        h = h < w ? h : w;
         for (int i = 0; i != n; i++) {
             if (n % 2 == 0) {
-                xInnerPoints[i] = (int) (((w - 1) / 5) * Math.cos((i) * (Math.PI * 2) / n + (n - 1) * Math.PI / n) + (w - 1) / 2);
-                xOuterPoints[i] = (int) (((w - 1) / 2) * Math.cos((i) * (Math.PI * 2) / n) + (w - 1) / 2);
-                yInnerPoints[i] = (int) (((h - 1) / 5) * Math.sin((i) * (Math.PI * 2) / n + (n - 1) * Math.PI / n) + (h - 1) / 2);
-                yOuterPoints[i] = (int) (((h - 1) / 2) * Math.sin((i) * (Math.PI * 2) / n) + (h - 1) / 2);
+                xInnerPoints[i] = (int) (((double) (w - 1) / 5) * Math.cos((i) * (Math.PI * 2) / n + (n - 1) * Math.PI / n) + (double) (w - 1) / 2);
+                xOuterPoints[i] = (int) (((double) (w - 1) / 2) * Math.cos((i) * (Math.PI * 2) / n) + (double) (w - 1) / 2);
+                yInnerPoints[i] = (int) (((double) (h - 1) / 5) * Math.sin((i) * (Math.PI * 2) / n + (n - 1) * Math.PI / n) + (double) (h - 1) / 2);
+                yOuterPoints[i] = (int) (((double) (h - 1) / 2) * Math.sin((i) * (Math.PI * 2) / n) + (double) (h - 1) / 2);
             } else {
-                xInnerPoints[i] = (int) (((w - 1) / 5) * Math.cos((i) * (Math.PI * 2) / n + Math.PI / 2) + (w - 1) / 2);
-                xOuterPoints[i] = (int) (((w - 1) / 2) * Math.cos((i) * (Math.PI * 2) / n - Math.PI / 2) + (w - 1) / 2);
-                yInnerPoints[i] = (int) (((h - 1) / 5) * Math.sin((i) * (Math.PI * 2) / n + Math.PI / 2) + (h - 1) / 2);
-                yOuterPoints[i] = (int) (((h - 1) / 2) * Math.sin((i) * (Math.PI * 2) / n - Math.PI / 2) + (h - 1) / 2);
+                xInnerPoints[i] = (int) (((double) (w - 1) / 5) * Math.cos((i) * (Math.PI * 2) / n + Math.PI / 2) + (double) (w - 1) / 2);
+                xOuterPoints[i] = (int) (((double) (w - 1) / 2) * Math.cos((i) * (Math.PI * 2) / n - Math.PI / 2) + (double) (w - 1) / 2);
+                yInnerPoints[i] = (int) (((double) (h - 1) / 5) * Math.sin((i) * (Math.PI * 2) / n + Math.PI / 2) + (double) (h - 1) / 2);
+                yOuterPoints[i] = (int) (((double) (h - 1) / 2) * Math.sin((i) * (Math.PI * 2) / n - Math.PI / 2) + (double) (h - 1) / 2);
             }
 
         }
@@ -432,10 +432,10 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
 //       h = h < w ? h : w;
         for (int i = 0; i != n; i++) {
 //            if (n % 2 == 0) {
-            xInnerPoints[i] = (int) (((w - 1) / 5) * Math.cos((i) * (Math.PI * 2) / n) + (w - 1) / 2);
-            xOuterPoints[i] = (int) (((w - 1) / 2) * Math.cos((i) * (Math.PI * 2) / n) + (w - 1) / 2);
-            yInnerPoints[i] = (int) (((h - 1) / 5) * Math.sin((i) * (Math.PI * 2) / n) + (h - 1) / 2);
-            yOuterPoints[i] = (int) (((h - 1) / 2) * Math.sin((i) * (Math.PI * 2) / n) + (h - 1) / 2);
+            xInnerPoints[i] = (int) (((double) (w - 1) / 5) * Math.cos((i) * (Math.PI * 2) / n) + (double) (w - 1) / 2);
+            xOuterPoints[i] = (int) (((double) (w - 1) / 2) * Math.cos((i) * (Math.PI * 2) / n) + (double) (w - 1) / 2);
+            yInnerPoints[i] = (int) (((double) (h - 1) / 5) * Math.sin((i) * (Math.PI * 2) / n) + (double) (h - 1) / 2);
+            yOuterPoints[i] = (int) (((double) (h - 1) / 2) * Math.sin((i) * (Math.PI * 2) / n) + (double) (h - 1) / 2);
 //            } else {
 //                xInnerPoints[i] = (int) (((h - 1) / 5) * Math.cos((i) * (Math.PI * 2) / n ) + (h - 1) / 2);
 //                xOuterPoints[i] = (int) (((h - 1) / 2) * Math.cos((i) * (Math.PI * 2) / n  ) + (h - 1) / 2);

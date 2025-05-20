@@ -118,11 +118,11 @@ public class SparseTreeVisualization implements VisualizationExtension {
 
         for (Vertex v : currentLevelVertices) {
             if (nextLevelCount != 0) {
-                GPoint newPoint = new GPoint(horizontalDist * (i + 1) + width / (nextLevelCount + currentLevelCount), LevelHeight);
+                GPoint newPoint = new GPoint(horizontalDist * (i + 1) + (double) width / (nextLevelCount + currentLevelCount), LevelHeight);
                 vertexPlaces.put(v, newPoint);
                 i += graph.getOutDegree(v);
             } else {
-                GPoint newPoint = new GPoint(horizontalDist * (i) + width / (currentLevelCount), LevelHeight);
+                GPoint newPoint = new GPoint(horizontalDist * (i) + (double) width / (currentLevelCount), LevelHeight);
                 vertexPlaces.put(v, newPoint);
                 i++;
             }

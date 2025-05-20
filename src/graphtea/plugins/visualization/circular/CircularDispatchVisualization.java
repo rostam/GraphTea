@@ -15,10 +15,8 @@ import graphtea.plugins.visualization.corebasics.basics.VertexCycleLengthCompara
 import graphtea.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphtea.ui.UIUtils;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Rouzbeh Ebrahimi
@@ -53,9 +51,10 @@ public class CircularDispatchVisualization implements VisualizationExtension {
                 vertexCycleLength.put(v, i);
             }
         }
+
         Object[] verticeArray = vertexCycleLength.keySet().toArray();
-        Arrays.sort(verticeArray, new VertexCycleLengthComparator());
-        Vertex maxLengthCycle = (Vertex) verticeArray[0];
+        List<Vertex> l = vertexCycleLength.keySet().parallelStream().sorted(new VertexCycleLengthComparator()).collect(Collectors.toList());
+        Vertex maxLengthCycle = l.get(0);
         return new Cycle();
     }
 
@@ -116,8 +115,6 @@ public class CircularDispatchVisualization implements VisualizationExtension {
 
         if (!nextLevel.isEmpty()) {
             findCycle(nextLevel, minLength, color + 1);
-        } else {
-            return;
         }
     }
 
@@ -183,7 +180,7 @@ public class CircularDispatchVisualization implements VisualizationExtension {
         int currentLevelCount = currentLevelVertices.size();
         Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
         int nextLevelCount = nextLevel.size();
-        double degree = 360 / currentLevelCount;
+        double degree = (double) 360 / currentLevelCount;
         int j = 0;
         if (currentLevelCount == 1 && currentLevelVertices.elementAt(0).equals(root)) {
             GPoint newPoint = new GPoint(350, 350);
@@ -203,8 +200,6 @@ public class CircularDispatchVisualization implements VisualizationExtension {
         if (!nextLevel.isEmpty()) {
             visitedVertices.addAll(nextLevel);
             locateAll(nextLevel, width, radius + radius * 3 / 8);
-        } else {
-            return;
         }
     }
 

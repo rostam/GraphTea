@@ -128,8 +128,4 @@ public abstract class GraphRectRegionSelect implements Listener, PaintHandler {
         Rectangle _rect = GraphUtils.createViewRectangle(gv.getGraph(), rect);
         g.drawRoundRect(_rect.x, _rect.y, _rect.width, _rect.height, 5, 5);
     }
-
-    public boolean isEnable() {
-        return true;
-    }
 }

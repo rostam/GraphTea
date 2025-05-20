@@ -72,7 +72,7 @@ public class HelmGraph implements GraphGeneratorExtension, Parametrizable, Simpl
 		int w = 1000;
 		double mw = ((double) w) / 2.0, qw = ((double) w) / 4.0;
 		GPoint[] result = new GPoint[2 * n + 1];
-		result[2 * n] = new GPoint(w / 2, w / 2);
+		result[2 * n] = new GPoint((double) w / 2, (double) w / 2);
 		double ang = Math.PI * 2.0 / n;
 		double offset = 0.0;
 		if ((n % 2) == 0)

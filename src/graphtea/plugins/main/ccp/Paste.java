@@ -151,9 +151,7 @@ public class Paste extends AbstractAction {
         //selects the inserted edges & vertices
         SubGraph sd = new SubGraph();
         sd.vertices.addAll(toBeSelectedVertices);
-        for (Edge e : toBeSelectedEdges) {
-            sd.edges.add(e);
-        }
+        sd.edges.addAll(toBeSelectedEdges);
         Select.setSelection(blackboard, sd);
 
 //        if the prev. operation was cut, the clipboard should be cleand

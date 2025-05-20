@@ -47,7 +47,7 @@ public class ColoringReport implements GraphReportExtension<Vector<GraphColoring
         found = true;
         GraphColoring coloring = new GraphColoring();
         for (int i = 0; i < p.vertices.length; i++) {
-            coloring.vertexColors.put((Vertex) p.vertices[i], p.color[i]);
+            coloring.vertexColors.put(p.vertices[i], p.color[i]);
         }
         colorings.add(coloring);
         return !allColorings;

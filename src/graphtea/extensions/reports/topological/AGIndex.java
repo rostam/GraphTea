@@ -36,7 +36,47 @@ public class AGIndex implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(AlgorithmUtils.createLineGraph(g));
-        RenderTable ret = getVectors();
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+        titles.add(" m ");
+       // titles.add(" Max Planar ");
+        titles.add(" n ");
+        //        titles.add(" Min ");
+       // titles.add(" Lanzhou ");
+         titles.add(" R ");
+         titles.add(" GA ");
+         titles.add(" AG ");
+         titles.add(" SDD ");
+      //  titles.add(" R-min ");
+      //  titles.add(" HM2 ");
+      //  titles.add(" EM2 ");
+     //   titles.add(" Hyper ");
+     //   titles.add(" M2-M1 ");
+    //    titles.add(" milo ");
+   //     titles.add(" Inverse Sum Indeg ");
+       // titles.add(" SDD ");
+       //   titles.add(" R.H.S ");
+     //   titles.add(" max ");
+    //    titles.add(" min ");
+       //  titles.add(" Hyper ");
+       // titles.add("Th 7 "); 
+       // titles.add("check"); 
+    // titles.add("Correct"); 
+      //      titles.add(" matching ");
+        //      titles.add(" GA/x ");
+     //         titles.add(" Wp ");
+     //         titles.add(" chrome ");
+    //          titles.add(" chrome ");
+        //   titles.add(" Lz ");
+        //   titles.add(" Lz-Bar ");
+
+        //   titles.add(" R.H.S ");
+      //   titles.add("Diameter");
+        //    titles.add("Clique Number");
+
+        titles.add(" V. Degrees ");
+
+        ret.setTitles(titles);
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -230,51 +270,6 @@ public class AGIndex implements GraphReportExtension<RenderTable> {
         v.add(al.toString());
 
         ret.add(v);
-        return ret;
-    }
-
-    private static RenderTable getVectors() {
-        RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
-        titles.add(" m ");
-        // titles.add(" Max Planar ");
-        titles.add(" n ");
-        //        titles.add(" Min ");
-        // titles.add(" Lanzhou ");
-        titles.add(" R ");
-        titles.add(" GA ");
-        titles.add(" AG ");
-        titles.add(" SDD ");
-        //  titles.add(" R-min ");
-        //  titles.add(" HM2 ");
-        //  titles.add(" EM2 ");
-        //   titles.add(" Hyper ");
-        //   titles.add(" M2-M1 ");
-        //    titles.add(" milo ");
-        //     titles.add(" Inverse Sum Indeg ");
-        // titles.add(" SDD ");
-        //   titles.add(" R.H.S ");
-        //   titles.add(" max ");
-        //    titles.add(" min ");
-        //  titles.add(" Hyper ");
-        // titles.add("Th 7 "); 
-        // titles.add("check"); 
-        // titles.add("Correct"); 
-        //      titles.add(" matching ");
-        //      titles.add(" GA/x ");
-        //         titles.add(" Wp ");
-        //         titles.add(" chrome ");
-        //          titles.add(" chrome ");
-        //   titles.add(" Lz ");
-        //   titles.add(" Lz-Bar ");
-
-        //   titles.add(" R.H.S ");
-        //   titles.add("Diameter");
-        //    titles.add("Clique Number");
-
-        titles.add(" V. Degrees ");
-
-        ret.setTitles(titles);
         return ret;
     }
 

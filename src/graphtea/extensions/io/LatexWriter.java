@@ -29,7 +29,7 @@ public class LatexWriter implements GraphWriterExtension{
     }
 
 
-    public void write(File file, GraphModel graph) throws GraphIOException {
+    public void write(File file, GraphModel graph) {
         FileWriter output;
         try {
             output = new FileWriter(file);

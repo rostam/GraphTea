@@ -52,7 +52,6 @@ public class VertexCommands {
             , description = "shows the vertex is selected or not")
     public Boolean isSelected(@Parameter(name = "vertex label:")String label) {
         Vertex v = getVertexByLabel(label);
-//        //Init.run.ext_console.println(v.isSelected(), Init.run.ext_console.getResultColor());
         return v.isSelected();
     }
 

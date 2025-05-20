@@ -77,7 +77,6 @@ public class ResolventEnergy implements GraphReportExtension<String> {
      * Pages 2664-2671,
      * ISSN 0012-365X,
      * <a href="https://doi.org/10.1016/j.disc.2016.04.022">...</a>.
-     * @return
      */
     public String getDescription() {
         return "Resolvent Energy";

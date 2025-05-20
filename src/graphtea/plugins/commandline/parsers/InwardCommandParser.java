@@ -154,7 +154,27 @@ public class InwardCommandParser {
                 abbrs.put(cm.abbreviation(), cm.name());
                 methodObjects.put(m, o);
 
-                StringBuilder evaluation = getStringBuilder(m, cm);
+                StringBuilder evaluation = new StringBuilder(cm.name() + "(");
+
+                StringBuilder temp = new StringBuilder();
+                if (m.getParameterTypes().length != 0)
+                    temp = new StringBuilder("Object[] o = new Object[" + m.getParameterTypes().length + "];");
+
+                int i = 0;
+                for (Class c : m.getParameterTypes()) {
+                    i++;
+                    evaluation.append(c.getSimpleName()).append(" x").append(i).append("  ,");
+                    temp.append("o[").append(i - 1).append("] = x").append(i).append(";");
+                }
+
+                evaluation = new StringBuilder((m.getParameterTypes().length == 0 ?
+                        evaluation.toString() : evaluation.substring(0, evaluation.length() - 1))
+                        + ")");
+
+                if (m.getParameterTypes().length == 0)
+                    evaluation.append("{").append(temp).append("me.parseShell(\"").append(cm.name()).append("\"").append(",null,current_interpreter);}");
+                else
+                    evaluation.append("{").append(temp).append("me.parseShell(\"").append(cm.name()).append("\"").append(",o,current_interpreter);}");
                 evaluations += evaluation + "\n";
             }
         }
@@ -165,32 +185,7 @@ public class InwardCommandParser {
         }
     }
 
-    private static StringBuilder getStringBuilder(Method m, CommandAttitude cm) {
-        StringBuilder evaluation = new StringBuilder(cm.name() + "(");
-
-        StringBuilder temp = new StringBuilder();
-        if (m.getParameterTypes().length != 0)
-            temp = new StringBuilder("Object[] o = new Object[" + m.getParameterTypes().length + "];");
-
-        int i = 0;
-        for (Class c : m.getParameterTypes()) {
-            i++;
-            evaluation.append(c.getSimpleName()).append(" x").append(i).append("  ,");
-            temp.append("o[").append(i - 1).append("] = x").append(i).append(";");
-        }
-
-        evaluation = new StringBuilder((m.getParameterTypes().length == 0 ?
-                evaluation.toString() : evaluation.substring(0, evaluation.length() - 1))
-                + ")");
-
-        if (m.getParameterTypes().length == 0)
-            evaluation.append("{").append(temp).append("me.parseShell(\"").append(cm.name()).append("\"").append(",null,current_interpreter);}");
-        else
-            evaluation.append("{").append(temp).append("me.parseShell(\"").append(cm.name()).append("\"").append(",o,current_interpreter);}");
-        return evaluation;
-    }
-
-    public Object parseShell(String command, Object[] ps, Interpreter in) throws ShellCommandException {
+    public Object parseShell(String command, Object[] ps, Interpreter in) {
         Method m = commands.get(command);
         Object o = null;
         if (m != null) {

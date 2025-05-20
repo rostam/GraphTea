@@ -47,10 +47,9 @@ public class CodeCompletionUtils {
             try {
                 Class c = interpreter.get(part.substring(0, part.lastIndexOf("."))).getClass();
                 String t = part.substring(part.indexOf(".") + 1);
-                if (c.getMethods() != null)
-                    for (Method m : c.getMethods())
-                        if (m.getName().startsWith(t))
-                            ret.add(part.substring(0, part.lastIndexOf(".")) + "." + m.getName());
+                for (Method m : c.getMethods())
+                    if (m.getName().startsWith(t))
+                        ret.add(part.substring(0, part.lastIndexOf(".")) + "." + m.getName());
             } catch (Exception e) {
                 //evalError.printStackTrace();
             }

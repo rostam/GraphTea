@@ -40,7 +40,29 @@ public class AllEnergies1 implements GraphReportExtension<RenderTable> {
 
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        RenderTable ret = getVectors();
+        RenderTable ret = new RenderTable();
+        Vector<String> titles = new Vector<>();
+
+    titles.add("m ");
+    titles.add("n ");
+     titles.add("E ");
+     titles.add("SLE -LE");
+    // titles.add("check ");
+   //  titles.add("LE ");
+  //   titles.add("SLE ");
+  //   titles.add("LE-Bar ");
+ //    titles.add("SLE-Bar ");
+  //   titles.add("DE");
+ //	   titles.add("DLE");
+//     titles.add("DLSE");
+    
+    titles.add("Bipartite");
+ //   titles.add(" Components ");
+  //  titles.add(" Resolvent-Energy ");
+  //  titles.add(" Diameter ");   
+  //  titles.add(" Matching "); 
+  //  titles.add("R.H.S");
+    ret.setTitles(titles);
 
         double maxDeg = 0;
         double maxDeg2 = 0;
@@ -71,7 +93,7 @@ public class AllEnergies1 implements GraphReportExtension<RenderTable> {
         double M21 = zif.getFirstZagreb(1);
         double M22 = zif.getSecondZagreb(2);
         double Mm11 = zif.getFirstZagreb(-2);
-        int comp = (int) new NumOfConnectedComponents().calculate(g);
+        int comp = new NumOfConnectedComponents().calculate(g);
         
         Matrix de = AlgorithmUtils.getDistanceAdjacencyMatrix(g);
 		Matrix dle = AlgorithmUtils.getDistanceLaplacianMatrix(g);
@@ -84,7 +106,7 @@ public class AllEnergies1 implements GraphReportExtension<RenderTable> {
         LaplacianEnergy le = new LaplacianEnergy();
         SignlessLaplacianEnergy sle = new SignlessLaplacianEnergy();
 
-        int diameter = (int) new Diameter().calculate(g);
+        int diameter = new Diameter().calculate(g);
         
 		 double LE = Double.parseDouble(le.calculate(g));
 		 double SLE = Double.parseDouble(sle.calculate(g));
@@ -157,33 +179,6 @@ public class AllEnergies1 implements GraphReportExtension<RenderTable> {
         //v.add((1.21)*n-3.23);
         ret.add(v);
 
-        return ret;
-    }
-
-    private static RenderTable getVectors() {
-        RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
-
-        titles.add("m ");
-        titles.add("n ");
-        titles.add("E ");
-        titles.add("SLE -LE");
-        // titles.add("check ");
-        //  titles.add("LE ");
-        //   titles.add("SLE ");
-        //   titles.add("LE-Bar ");
-        //    titles.add("SLE-Bar ");
-        //   titles.add("DE");
-        //	   titles.add("DLE");
-//     titles.add("DLSE");
-
-        titles.add("Bipartite");
-        //   titles.add(" Components ");
-        //  titles.add(" Resolvent-Energy ");
-        //  titles.add(" Diameter ");   
-        //  titles.add(" Matching "); 
-        //  titles.add("R.H.S");
-        ret.setTitles(titles);
         return ret;
     }
 

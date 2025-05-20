@@ -95,11 +95,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
             SaveGraph6Format sgf = new SaveGraph6Format();
             File f = new File(nameOfFile);
             for(GraphModel gg : gs) {
-                try {
-                    sgf.write(f, gg);
-                } catch (GraphIOException e) {
-                    e.printStackTrace();
-                }
+                sgf.write(f, gg);
             }
             return "The bound check is disabled. " +
                     "The graphs are generated and saved in the file " + nameOfFile;

@@ -9,7 +9,7 @@ import graphtea.platform.lang.Validator;
 import java.io.Serializable;
 
 /**
- * the place holder for a single validable attribute
+ * the placeholder for a single avoidable attribute
  *
  * @author Azin Azadi
  */

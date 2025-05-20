@@ -48,25 +48,25 @@ public class GraphColoringRenderer implements GBasicCellRenderer<GraphColoring> 
     }
 
     private static String getHTMLFromColoring(GraphColoring myColoring) {
-        String txt = "";
-        txt = "<HTML><BODY>";
-        if (myColoring.label != null && !myColoring.label.equals("")) {
-            txt = txt + "<B>" + myColoring.label + ":  </B>";
+        StringBuilder txt = new StringBuilder();
+        txt = new StringBuilder("<HTML><BODY>");
+        if (myColoring.label != null && !myColoring.label.isEmpty()) {
+            txt.append("<B>").append(myColoring.label).append(":  </B>");
         }
         if (myColoring.vertexColors != null && !myColoring.vertexColors.isEmpty()) {
-            txt = txt + "<B>Vertex colors: </B> ";
+            txt.append("<B>Vertex colors: </B> ");
             for (Map.Entry<Vertex, Integer> p : myColoring.vertexColors.entrySet()) {
-                txt = txt + p.getKey().getLabel() + ":" + p.getValue() + " , ";
+                txt.append(p.getKey().getLabel()).append(":").append(p.getValue()).append(" , ");
             }
         }
         if (myColoring.edgeColors != null && !myColoring.edgeColors.isEmpty()) {
-            txt = txt + "<br/><B>Edge colors: </B> ";
+            txt.append("<br/><B>Edge colors: </B> ");
             for (Map.Entry<Edge, Integer> p : myColoring.edgeColors.entrySet()) {
-                txt = txt + p.getKey().getLabel() + ":" + p.getValue() + " , ";
+                txt.append(p.getKey().getLabel()).append(":").append(p.getValue()).append(" , ");
             }
         }
-        txt = txt + "</BODY></HTML>";
-        return txt;
+        txt.append("</BODY></HTML>");
+        return txt.toString();
     }
 
     private void showOnGraph(GraphColoring myColoring) {

@@ -77,7 +77,6 @@ public class RectangularSelect extends AbstractAction {
     }
 
     void _onDrop(GraphEvent data) {
-//        if (isEnable())
         graphRectRegionSelector.startSelectingRegion();
     }
 

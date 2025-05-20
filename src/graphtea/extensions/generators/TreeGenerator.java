@@ -79,7 +79,7 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
 
     public GPoint[] getVertexPositionsBackward() {
         GPoint[] ret = new GPoint[n];
-        ret[0] = new GPoint(20000 / 2, 20000 / 2);
+        ret[0] = new GPoint((double) 20000 / 2, (double) 20000 / 2);
         int last = 1;
         int ww = 20000;
         int hh = 20000;

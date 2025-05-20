@@ -80,8 +80,8 @@ constructs a complex number from radius/magnitude and argument.
   }
 /**
 @return true, if imaginary part of complex number is (numerically) zero.*/
-  public boolean isReal() {
-    return 1.E-12 > Math.abs(im());
+  public boolean isNotReal() {
+    return !(1.E-12 > Math.abs(im()));
   }
 /**
 @return magnitude of complex number.
@@ -91,23 +91,19 @@ constructs a complex number from radius/magnitude and argument.
   }
 
         public double doubleValue() {
-                if(!isReal()) return 0.0;
-                 // better:  throw new Msg("Complex.doubleValue","must be  pure real");
+                if(isNotReal()) return 0.0;
                 return re();
         }
         public float floatValue() {
-                if(!isReal()) return 0.0f;
-                 //  throw new Msg("Complex.doubleValue","must be pure real");
+                if(isNotReal()) return 0.0f;
                 return (float)re();
         }
         public long longValue() {
-                if(!isReal()) return 0;
-                 //  throw new Msg("Complex.doubleValue","must be pure real");
+                if(isNotReal()) return 0;
                 return (long)re();
         }
         public int intValue() {
-                        if(!isReal()) return 0;
-                 //  throw new Msg("Complex.doubleValue","must be pure real");
+                        if(isNotReal()) return 0;
                 return (int)re();
 }
 
@@ -123,8 +119,8 @@ constructs a complex number from radius/magnitude and argument.
         return result;
   }
 /**
- * Provides sum of this and right hand side.
- * @param z right hand side
+ * Provides a sum of this and right hand side.
+ * @param z right-hand side
  * @return sum of this and z
  */
   public Complex plus (Complex z) {
@@ -134,8 +130,8 @@ constructs a complex number from radius/magnitude and argument.
           return new Complex(re()+x,im());
           }
 /**
- * Provides difference of this and right hand side.
- * @param z right hand side
+ * Provides difference of this and right-hand side.
+ * @param z right-hand side
  * @return difference of this and z
  */
   public Complex minus (Complex z) {
@@ -145,16 +141,16 @@ constructs a complex number from radius/magnitude and argument.
           return new Complex(re()-x,im());
           }
 /**
- * Provides product of this and complex right hand side.
- * @param z right hand side
+ * Provides product of this and complex right-hand side.
+ * @param z right-hand side
  * @return product of this and z
  */
   public Complex times (Complex z) {
     return new Complex(u*z.re() - v*z.im(),u*z.im() + v*z.re());
   }
 /**
- * Provides product of this and float right hand side.
- * @param x right hand side
+ * Provides product of this and float right-hand side.
+ * @param x right-hand side
  * @return product of this and z
  */
   public Complex times(double x) {
@@ -162,7 +158,7 @@ constructs a complex number from radius/magnitude and argument.
         }
 /**
  * Computes fraction between this und rhs.
- * @param z complex right hand side
+ * @param z complex right-hand side
  * @return fraction of this and z
  * @throws Msg if mag(z) == 0
  */

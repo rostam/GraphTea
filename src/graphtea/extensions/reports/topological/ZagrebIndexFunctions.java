@@ -57,7 +57,7 @@ public class ZagrebIndexFunctions {
         for (Edge e : g2.getEdges()) {
             int v1 = g.getDegree(g.getVertex(e.source.getId()));
             int v2 = g.getDegree(g.getVertex(e.target.getId()));
-           InverseSumIndeg += ( (v1 * v2)/(v1  +  v2));
+           InverseSumIndeg += ( (double) (v1 * v2) /(v1  +  v2));
         }
 
         return InverseSumIndeg;
@@ -146,7 +146,7 @@ public class ZagrebIndexFunctions {
     public double getPBIndex() {
         double ret = 0;
         for(Edge e : g.getEdges()) {
-            ret +=  ((Math.sqrt(g.getDegree(e.source)*1.0)) + (Math.sqrt(g.getDegree(e.target))*1.0))*
+            ret +=  ((Math.sqrt(g.getDegree(e.source)*1.0)) + (Math.sqrt(g.getDegree(e.target))))*
             		(1.0/Math.sqrt(g.getDegree(e.source)*g.getDegree(e.target)*1.0))*(1.0/(Math.sqrt(g.getDegree(e.source) + g.getDegree(e.target) - 2))) ;
         }
         return ret;

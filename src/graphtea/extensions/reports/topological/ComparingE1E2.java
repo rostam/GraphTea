@@ -75,7 +75,7 @@ public class ComparingE1E2 implements GraphReportExtension<RenderTable> {
         double SDD=zif.getSDDIndex();
         double GA=zif.getGAindex();
         double ISI=zif.getInverseSumIndegIndex();
-        int girth = (int) new GirthSize().calculate(g);
+        int girth = new GirthSize().calculate(g);
              int diameter = (int) new Diameter().calculate(g);
         int diacomp  = (int) new Diameter().calculate(AlgorithmUtils.createComplementGraph(g));
         double independenceNumber = (int)((new MaxOfIndSets()).calculate(g));
