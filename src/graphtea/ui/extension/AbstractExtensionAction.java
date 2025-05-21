@@ -37,8 +37,8 @@ import java.util.Vector;
 
 /**
  * the base class for creating extension handlers,
- * the implementing class will have a menu assigned to it automatically the name of the menu will be
- * from the constructors parameter(sp), and they will also listen to UI.getUIEvent(sp.getName())
+ * the implementing class will have a menu assigned to it automatically, the name of the menu will be
+ * from the constructor parameter(sp), and they will also listen to UI.getUIEvent(sp.getName())
  *
  * @author azin azadi
  */

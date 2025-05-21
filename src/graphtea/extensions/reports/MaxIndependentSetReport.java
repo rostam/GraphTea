@@ -22,12 +22,6 @@ import java.util.stream.Collectors;
 
 @CommandAttitude(name = "maximum_independent_set", abbreviation = "_mis")
 public class MaxIndependentSetReport implements GraphReportExtension<Vector<SubGraph>> {
-//    @Parameter(name = "Lower Bound", description = "Lower Bound for the number of independent set members, This will make the search Interval smaller")
-//    public Integer lowerBound = 1;
-//
-//    @Parameter(name = "All Independent Sets", description = "Create a list of all independent sets of graph using minimum number of members")
-//    public Boolean allColorings = false;
-//
 
     public String getName() {
         return "Max Independent Set";

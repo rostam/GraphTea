@@ -324,8 +324,6 @@ public class GeneratorsTest {
         GeneralizedPetersonGenerator.k = 2;
         GeneralizedPetersonGenerator varGeneralizedPetersonGenerator = new GeneralizedPetersonGenerator();
         GraphModel g = varGeneralizedPetersonGenerator.generateGraph();
-        int n = GeneralizedPetersonGenerator.n;
-        int k = GeneralizedPetersonGenerator.k;
         int numOfVertices = g.numOfVertices();
         int numOfEdges = g.getEdgesCount();
         ArrayList<Integer> maxAndMinDegree = new MaxAndMinDegree().calculate(g);
@@ -446,7 +444,7 @@ public class GeneratorsTest {
         int girth = new GirthSize().calculate(g);
         int diameter = new Diameter().calculate(g);
         Assert.assertEquals(girth, deg + 1);
-//        Assert.assertEquals(diameter, n); ? do not know how to calculate
+        //Assert.assertEquals(diameter, n);
         Assert.assertEquals(numOfVertices, n);
         Assert.assertEquals(numOfEdges, ((long) n *deg)/2);
         Assert.assertEquals(maxDegree, deg);
@@ -567,7 +565,7 @@ public class GeneratorsTest {
         } else if(n >= m && n >= o) {
             maxdeg = n + Math.max(m,o);
             mindeg = m + o;
-        } else if(o > n && o > m) {
+        } else {
             maxdeg = o + Math.max(n,m);
             mindeg = n + m;
         }
