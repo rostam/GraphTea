@@ -201,8 +201,6 @@ try {
         if (!nextLevel.isEmpty()) {
             visitedVertices.addAll(nextLevel);
             locateAll(nextLevel, width, radius + radius * 3 / 8);
-        } else {
-            return;
         }
     }
 

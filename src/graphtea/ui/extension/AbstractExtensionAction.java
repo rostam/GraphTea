@@ -203,7 +203,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
     }
 
     /**
-     * determines whether to insert an extra button at the right side of menu item,
+     * determines whether to insert an extra button on the right side of menu item,
      * normally this is true whenever the target extension implements Parameterizable (have some parameters)
      * on this mode on pressing the button a dialog for setting the parameters will be shown, and then
      * it will be executed, if the user clicks the menu item directly the extension will be
@@ -219,7 +219,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
      * @see graphtea.plugins.algorithmanimator.extension.AlgorithmExtensionAction
      */
     protected boolean isInsertExtraButtonToMenuItem() {
-        return false; //target instanceof Parameterizable; we don't want this button for now. just go with the simple interface
+        return false; //target instanceof Parameterizable; we don't want this button for now. go with the simple interface
     }
 
     /**

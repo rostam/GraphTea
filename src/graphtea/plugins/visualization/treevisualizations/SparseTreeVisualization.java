@@ -131,8 +131,6 @@ public class SparseTreeVisualization implements VisualizationExtension {
         if (!nextLevel.isEmpty()) {
             visitedVertices.addAll(nextLevel);
             locateAll(nextLevel, width, LevelHeight + eachLevelHeigh);
-        } else {
-            return;
         }
     }
 

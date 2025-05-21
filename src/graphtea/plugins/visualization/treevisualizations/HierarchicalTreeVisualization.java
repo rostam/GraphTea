@@ -68,9 +68,7 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
 
     private Vertex findAppropriateRoot(GraphModel g) {
         Vertex root = g.getAVertex();
-        Iterator<Vertex> ei = g.iterator();
-        while (ei.hasNext()) {
-            Vertex e = ei.next();
+        for (Vertex e : g) {
             root = findHigherVertex(e, root);
         }
         return root;
@@ -130,8 +128,6 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
         if (!nextLevel.isEmpty()) {
             visitedVertices.addAll(nextLevel);
             locateAll(nextLevel, width, currentLevelHeight + eachLevelHeigh);
-        } else {
-            return;
         }
     }
 

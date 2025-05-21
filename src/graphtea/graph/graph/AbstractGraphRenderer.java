@@ -55,7 +55,7 @@ public abstract class AbstractGraphRenderer extends JPanel implements GraphModel
     }
 
     /**
-     * adds ph to Pre Paint Handlers, which means that ph. Paint will be called before each rendering of the graph
+     * Adds ph to PrePaint Handlers, which means that ph. Paint will be called before each rendering of the graph
      *
      * @param ph The paint handler
      */

@@ -11,9 +11,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author azin azadi
-
  */
-
 
 @CommandAttitude(name = "degree_distance", abbreviation = "_ddistance")
 public class DegreeDistance implements GraphReportExtension<Integer> {
