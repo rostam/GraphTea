@@ -13,7 +13,6 @@ import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.ui.UIUtils;
 
-import java.util.Iterator;
 
 /**
  * @author Rouzbeh Ebrahimi
@@ -31,20 +30,14 @@ public class InvertSelection extends AbstractAction {
     public void performAction(String eventName, Object value) {
         GraphModel g = blackboard.getData(GraphAttrSet.name);
         SubGraph sd = getSelection();
-        Iterator<Vertex> vertices = g.iterator();
-        Iterator<Edge> edges = g.lightEdgeIterator();
-        while (vertices.hasNext()) {
-
-            Vertex vertex = vertices.next();
+        for (Vertex vertex : g) {
             if (sd.vertices.contains(vertex)) {
                 sd.vertices.remove(vertex);
             } else
                 sd.vertices.add(vertex);
 
         }
-        while (edges.hasNext()) {
-
-            Edge edge = edges.next();
+        for (Edge edge : g.getEdges()) {
             if (sd.edges.contains(edge)) {
                 sd.edges.remove(edge);
             } else {

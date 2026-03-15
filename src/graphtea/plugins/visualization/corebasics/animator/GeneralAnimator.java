@@ -8,9 +8,9 @@ import graphtea.graph.graph.*;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * @author Rouzbeh Ebrahimi  Ebrahimi ruzbehus@yahoo.com
@@ -18,7 +18,7 @@ import java.util.Vector;
 public class GeneralAnimator implements Runnable {
 
     public HashMap<Vertex, GPoint> vertexDestinations = new HashMap<>();
-    public HashMap<Edge, Vector<GPoint>> edgeBendPoints = new HashMap<>();
+    public HashMap<Edge, List<GPoint>> edgeBendPoints = new HashMap<>();
     public boolean supportBendedEdge;
 
     GraphModel g;
@@ -32,7 +32,7 @@ public class GeneralAnimator implements Runnable {
         this.blackboard = blackboard;
     }
 
-    public GeneralAnimator(HashMap<Vertex, GPoint> vertexDestinations, HashMap<Edge, Vector<GPoint>> edgeBendPoints, GraphModel g, BlackBoard blackboard) {
+    public GeneralAnimator(HashMap<Vertex, GPoint> vertexDestinations, HashMap<Edge, List<GPoint>> edgeBendPoints, GraphModel g, BlackBoard blackboard) {
         this.vertexDestinations = vertexDestinations;
         this.edgeBendPoints = edgeBendPoints;
         this.g = g;
@@ -53,11 +53,9 @@ public class GeneralAnimator implements Runnable {
 
     public void run() {
         final Thread current = Thread.currentThread();
-        Iterator<Vertex> v = vertexDestinations.keySet().iterator();
-        final Vector<GPoint> movements = new Vector<>();
-        final Vector<GPoint> initials = new Vector<>();
-        while (v.hasNext()) {
-            Vertex vertex = v.next();
+        final List<GPoint> movements = new ArrayList<>();
+        final List<GPoint> initials = new ArrayList<>();
+        for (Vertex vertex : vertexDestinations.keySet()) {
             double initalX = vertex.getLocation().getX();
             GPoint GPoint = vertexDestinations.get(vertex);
             double totalXMovement = (GPoint.getX() - initalX);
@@ -67,8 +65,6 @@ public class GeneralAnimator implements Runnable {
             movements.add(new GPoint(totalXMovement, totalYMovement));
         }
 
-        Iterator<GPoint> m;
-        Iterator<GPoint> i;
         final int k = 21;
         for (int j = 1; j != k; j++) {
             AbstractGraphRenderer ren = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
@@ -80,18 +76,12 @@ public class GeneralAnimator implements Runnable {
         }
     }
 
-    private void doAnimateStep(Vector<GPoint> movements, Vector<GPoint> initials, int j, int k, Thread current) {
-        Iterator<Vertex> v;
-        Iterator<GPoint> m;
-        Iterator<GPoint> i;
-        v = vertexDestinations.keySet().iterator();
-
-        m = movements.iterator();
-        i = initials.iterator();
-        while (v.hasNext()) {
-            Vertex vertex = v.next();
-            GPoint movement = m.next();
-            GPoint initial = i.next();
+    private void doAnimateStep(List<GPoint> movements, List<GPoint> initials, int j, int k, Thread current) {
+        int idx = 0;
+        for (Vertex vertex : vertexDestinations.keySet()) {
+            GPoint movement = movements.get(idx);
+            GPoint initial = initials.get(idx);
+            idx++;
             //                vertex.setLabel(initial.getY()+"");
             vertex.setLocation(new GPoint(initial.getX() + j * movement.getX() / k, initial.getY() + j * movement.getY() / k));
 
@@ -108,9 +98,7 @@ public class GeneralAnimator implements Runnable {
     }
 
     public void paintEdges() {
-        Iterator<Edge> ei = g.edgeIterator();
-        while (ei.hasNext()) {
-            Edge e = ei.next();
+        for (Edge e : g.getEdges()) {
 //            e.view.ssetBendedEdge(true);
 //            e.view.setBendPoints(edgeBendPoints.get(e));
         }
