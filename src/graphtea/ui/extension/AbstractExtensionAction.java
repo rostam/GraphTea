@@ -73,7 +73,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
         String name = getMenuNamePrefix() + sp.getName();
         actionId = name + sp.getDescription() + target.getClass().getName();
         listen4Event(UIUtils.getUIEventKey(actionId));
-        if (!name.equals("")) {
+        if (!name.isEmpty()) {
             menuItem = createMenuItem(name, actionId, bb);
             parentMenu = getParentMenu();
             if (parentMenu.getText().equalsIgnoreCase("reports")) {
@@ -250,7 +250,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
             cname = comati.name();
             abrv = comati.abbreviation();
             desc = comati.description();
-            if (desc == null || desc.equals(""))
+            if (desc == null || desc.isEmpty())
                 desc = target.getDescription();
         } else {
             cname = target.getClass().getSimpleName();

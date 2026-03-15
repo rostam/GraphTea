@@ -32,7 +32,7 @@ public class SubGraphRenderer implements GBasicCellRenderer<SubGraph> {
         mysd.label = sd.label;
         String txt;
         txt = "<HTML><BODY>";
-        if (mysd.label != null && !mysd.label.equals("")) {
+        if (mysd.label != null && !mysd.label.isEmpty()) {
             txt += "<B>" + mysd.label + ": </B><BR>";
         }
 

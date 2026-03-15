@@ -40,7 +40,7 @@ public class NDMetis {
                         tmp += (j+1) + " ";
                     }
                 }
-                if(!tmp.equals("")) {
+                if(!tmp.isEmpty()) {
                     fw.write(tmp.substring(0,tmp.length()-1));
                 }
                 fw.write("\n");

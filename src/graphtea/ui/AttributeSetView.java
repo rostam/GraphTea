@@ -68,7 +68,7 @@ public class AttributeSetView {
 
     public String getDisplayName(String name) {
         String s = get(dname, name);
-        if (s.equals(""))
+        if (s.isEmpty())
             return name;
         return s;
     }

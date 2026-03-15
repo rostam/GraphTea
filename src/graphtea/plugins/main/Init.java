@@ -27,6 +27,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 
 import static graphtea.platform.StaticUtils.addExceptionLog;
@@ -83,28 +84,24 @@ public class Init implements PluginInterface, StorableOnExit {
     }
 
     public static String getLatestExceptionStackStrace(BlackBoard blackboard) {
-        String s = "";
         ExceptionOccuredData exceptionData = blackboard.getData(ExceptionOccuredData.EVENT_KEY);
-        if (exceptionData != null) {
-            StackTraceElement[] ee = exceptionData.e.getStackTrace();
-            s = exceptionData.e.toString() + "\n";
-            for (StackTraceElement element : ee) {
-                s += "\tat " + element.toString() + "\n";
-            }
+        if (exceptionData == null) return "";
+        StringBuilder sb = new StringBuilder(exceptionData.e.toString()).append("\n");
+        for (StackTraceElement element : exceptionData.e.getStackTrace()) {
+            sb.append("\tat ").append(element).append("\n");
         }
-        return s;
+        return sb.toString();
     }
 
-    public static String getExternalIP(){
-        String ip;
-        try{
+    public static String getExternalIP() {
+        try {
             URL whatismyip = new URL("http://checkip.amazonaws.com");
-            BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
-
-            ip = in.readLine(); //you get the IP as a String
-        } catch (Exception e) { ip = "couldnt find out the ip :(!";}
-
-        return ip;
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()))) {
+                return in.readLine();
+            }
+        } catch (Exception e) {
+            return "couldnt find out the ip :(!";
+        }
     }
 
     public static void track(String category, String action) {
@@ -124,10 +121,8 @@ public class Init implements PluginInterface, StorableOnExit {
 
 
     static LinkedList<AEvent> tracks = new LinkedList<>();
-    public static String encode(String in){
-        try{
-            return URLEncoder.encode(in, "UTF-8").replace("+", "%20");
-        } catch (Exception e) {e.printStackTrace(); return in;}
+    public static String encode(String in) {
+        return URLEncoder.encode(in, StandardCharsets.UTF_8).replace("+", "%20");
     }
     public static void sendEvent(AEvent e) {
         try {
@@ -139,158 +134,55 @@ public class Init implements PluginInterface, StorableOnExit {
             // String encode = URLEncoder.encode(params, "UTF-8");
             // encode = encode.replace("+", "%20");
             sendGet("https://www.google-analytics.com/collect", params);
-            // return;
-/*
-            params = params.replace(" ", "-");
-            // params = URLEncoder.encode(params, "UTF-8");
-            System.out.println(params);
-            URL obj = new URL(params);
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-            con.setDoInput(true);
-            con.setDoOutput(true);
-            con.setRequestMethod("GET");
-            con.setRequestProperty("Accept-Charset", "UTF-8");
-            // con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            con.setRequestProperty("charset", "UTF-8");
-    
-            // DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-
-            // wr.writeBytes(params);
-            // wr.flush();
-            // wr.close();
-
-            int responseCode = con.getResponseCode();
-           System.out.println("Response Code : " + responseCode);
-
-           BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-
-        //print result
-        System.out.println(response.toString());
-        
-*/
         }
         catch (Exception ex) {
             System.out.println("Err "+ ex);
         }
     }
-public static void sendGet(String host, String payload) {
-
+    public static void sendGet(String host, String payload) {
         String url = host + "?" + payload;
-
-//        System.out.println("*"+url+"*");
-
-        URL myURL = null;
-        try {
-            myURL = new URL(url);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-
         HttpURLConnection urlConnection = null;
-        BufferedReader bufferedReader = null;
         try {
-            urlConnection = (HttpURLConnection) myURL.openConnection();
+            urlConnection = (HttpURLConnection) new URL(url).openConnection();
             urlConnection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 5.1; rv:19.0) Gecko/20100101 Firefox/19.0");
             urlConnection.setDoOutput(false);
             urlConnection.setDoInput(true);
             urlConnection.setRequestMethod("GET");
-
-            bufferedReader = new BufferedReader(
-                    new InputStreamReader(urlConnection.getInputStream()));
-            while (bufferedReader.readLine() != null) {
-                /*
-                 * Reading returned stuff just to ensure that http connection is going to be closed - Java SE bug...
-                 *
-                 */
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()))) {
+                while (br.readLine() != null) { /* drain to allow connection reuse */ }
             }
             int code = urlConnection.getResponseCode();
             if (code != 200) {
-                throw new RuntimeException("The request wasn't successful - please revisit payload for url: "
-                        + url);
+                throw new RuntimeException("The request wasn't successful - please revisit payload for url: " + url);
             }
-            bufferedReader.close();
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+            if (urlConnection != null) urlConnection.disconnect();
         }
-
-
-}
+    }
     public static void sendPost(String host, String payload) {
         System.out.println(host + payload);
-        URL myURL = null;
-        try {
-            myURL = new URL(host);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-
         HttpURLConnection urlConnection = null;
-        BufferedReader bufferedReader = null;
-        DataOutputStream wr = null;
         try {
-            urlConnection = (HttpURLConnection) myURL.openConnection();
+            urlConnection = (HttpURLConnection) new URL(host).openConnection();
             urlConnection.setDoInput(true);
             urlConnection.setRequestMethod("POST");
-
-            // Send post request
             urlConnection.setDoOutput(true);
-            wr = new DataOutputStream(urlConnection.getOutputStream());
-            wr.writeBytes(payload);
-            wr.flush();
-            wr.close();
-
-            bufferedReader = new BufferedReader(
-                    new InputStreamReader(urlConnection.getInputStream()));
-            while (bufferedReader.readLine() != null) {
-                /*
-                 * Reading returned stuff just to ensure that http connection is going to be closed - Java SE bug...
-                 *
-                 */
+            try (DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream())) {
+                wr.writeBytes(payload);
+            }
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()))) {
+                while (br.readLine() != null) { /* drain to allow connection reuse */ }
             }
             int code = urlConnection.getResponseCode();
             if (code != 200) {
-                throw new RuntimeException("The request wasn't successful - please revisit payload for payload: "
-                        + payload);
+                throw new RuntimeException("The request wasn't successful - please revisit payload for payload: " + payload);
             }
-            bufferedReader.close();
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-            try {
-                if (wr != null) {
-                    wr.close();
-                }
-                if (bufferedReader != null) {
-                    bufferedReader.close();
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            if (urlConnection != null) urlConnection.disconnect();
         }
     }
 }

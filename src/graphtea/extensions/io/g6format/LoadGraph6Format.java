@@ -2,10 +2,6 @@
 // Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
-// GraphTea Project: http://github.com/graphtheorysoftware/GraphTea
-// Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
-// Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
-// Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.io.g6format;
 
@@ -129,13 +125,14 @@ public class LoadGraph6Format implements GraphReaderExtension {
             String tmp = sc.nextLine();
             int first = Integer.parseInt(tmp.substring(0,tmp.indexOf(":")-1).trim());
             tmp = tmp.substring(tmp.indexOf(":") + 1);
-            Scanner sc2 = new Scanner(tmp.trim());
-            while (sc2.hasNext()) {
-                String num = sc2.next();
-                if (num.contains(";")) num = num.substring(0, num.indexOf(";"));
-                int id = Integer.parseInt(num.trim());
-                if (!g.isEdge(g.getVertex(first), g.getVertex(id))) {
-                    g.addEdge(new Edge(g.getVertex(first), g.getVertex(id)));
+            try (Scanner sc2 = new Scanner(tmp.trim())) {
+                while (sc2.hasNext()) {
+                    String num = sc2.next();
+                    if (num.contains(";")) num = num.substring(0, num.indexOf(";"));
+                    int id = Integer.parseInt(num.trim());
+                    if (!g.isEdge(g.getVertex(first), g.getVertex(id))) {
+                        g.addEdge(new Edge(g.getVertex(first), g.getVertex(id)));
+                    }
                 }
             }
         }
