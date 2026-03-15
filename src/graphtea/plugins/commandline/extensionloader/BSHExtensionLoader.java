@@ -28,97 +28,77 @@ public class BSHExtensionLoader implements UnknownExtensionLoader {
     }
 
     public Extension ExtensionLoader(String extFileName) {
-//        this.extFileName = extFileName;
-        String eval = "";
+        StringBuilder eval = new StringBuilder();
         int bracketCount = 0;
         boolean lineComment = false;
         try (Scanner s = new Scanner(new File(extFileName))) {
             do {
-            String line = s.nextLine();
-
-            if (!lineComment) {
-                if (line.contains("/*")) {
-                    if (!lineComment)
+                String line = s.nextLine();
+                if (!lineComment) {
+                    if (line.contains("/*")) {
                         line = line.substring(0, line.indexOf("/*"));
-                    lineComment = true;
-                }
-                if (line.contains("//")) {
-                    if (!lineComment)
+                        lineComment = true;
+                    }
+                    if (line.contains("//")) {
                         line = line.substring(0, line.indexOf("//"));
+                    }
+                    if (line.startsWith("package")) {
+                        // do nothing
+                    } else if (line.startsWith("public class")) {
+                        line = line.substring(12); // removing "public class"
+                        StringTokenizer st = new StringTokenizer(line, " ,");
+                        while (!st.nextToken().equals("implements")) ;
+                        eval.append("ex = new ").append(st.nextToken()).append(" ()");
+                        while (st.hasMoreTokens()) eval.append(" ").append(st.nextToken());
+                        eval.append("\n");
+                    } else {
+                        eval.append(line).append("\n");
+                    }
                 }
-                if (line.startsWith("package")) {
-                    // do nothing
-                } else if (line.startsWith("public class")) {
-                    line = line.substring(12); // removing public class
-                    StringTokenizer st = new StringTokenizer(line, " ,");
-                    while (!st.nextToken().equals("implements")) ;
-                    eval += "ex = new " + st.nextToken() + " ()";
-                    while (st.hasMoreTokens()) {
-                        eval += " " + st.nextToken();
+                if (line.contains("*/")) {
+                    lineComment = false;
+                    line = line.substring(line.indexOf("*/") + 2);
+                    if (line.startsWith("package")) {
+                        // do nothing
+                    } else if (line.startsWith("public class")) {
+                        line = line.substring(12); // removing "public class"
+                        StringTokenizer st = new StringTokenizer(line, " ");
+                        eval.append("ex = new ").append(st.nextToken()).append(" ()");
+                        while (st.hasMoreTokens()) eval.append(" ").append(st.nextToken());
+                        eval.append("\n");
+                    } else {
+                        eval.append(line).append("\n");
                     }
-                    eval += "\n";
-//                    eval = eval.replaceFirst("{","(){");
-                } else
-                    eval += line + "\n";
-
-            }
-            if (line.contains("*/")) {
-                lineComment = false;
-                line = line.substring(line.indexOf("*/") + 2);
-                if (line.startsWith("package")) {
-                    // do nothing
-                } else if (line.startsWith("public class")) {
-                    line = line.substring(12); // removing public class
-                    StringTokenizer st = new StringTokenizer(line, " ");
-                    eval += "ex = new " + st.nextToken() + " ()";
-                    while (st.hasMoreTokens()) {
-                        eval += " " + st.nextToken();
-                    }
-                    eval += "\n";
-//                        eval = eval.replaceFirst("{","(){");
-                } else
-                    eval += line + "\n";
-            }
-            }
-            while (s.hasNextLine());
+                }
+            } while (s.hasNextLine());
         } catch (FileNotFoundException e) {
             System.err.println("File not Found");
         }
-//        eval+=";";
-        String other = "";
-        String assignment = "";
+
+        StringBuilder other = new StringBuilder();
+        StringBuilder assignment = new StringBuilder();
         boolean isAssignment = false;
         int i = 0;
-        try (Scanner s = new Scanner(eval)) {
-        while (s.hasNextLine()) {
-            String l = s.nextLine();
-            if ((l.contains("ex = new") && bracketCount == 0) || (isAssignment)) {
-                if (!l.equals(""))
-                    assignment += l + "\n";
-                if (!isAssignment) {
-                    i = bracketCount + countBrackets(l);
-                    isAssignment = true;
+        try (Scanner s = new Scanner(eval.toString())) {
+            while (s.hasNextLine()) {
+                String l = s.nextLine();
+                if ((l.contains("ex = new") && bracketCount == 0) || isAssignment) {
+                    if (!l.isEmpty()) assignment.append(l).append("\n");
+                    if (!isAssignment) {
+                        i = bracketCount + countBrackets(l);
+                        isAssignment = true;
+                    }
+                    bracketCount += countBrackets(l);
+                    if (i > bracketCount) isAssignment = false;
+                } else {
+                    if (!l.isEmpty()) other.append(l).append("\n");
+                    bracketCount += countBrackets(l);
                 }
-                bracketCount += countBrackets(l);
-                if (i > bracketCount)
-                    isAssignment = false;
-            } else {
-                if (!l.equals(""))
-                    other += l + "\n";
-                bracketCount += countBrackets(l);
-
             }
-
         }
-        } // end try (Scanner s = new Scanner(eval))
-//        System.err.println("Other");
-//        System.err.println("*******\n" + other + "\n*******");
-//        System.err.println("Assignment");
-//        System.err.println("*******\n" + assignment + "\n*******");
-//        System.out.println("eval ******* \n " + eval);
 
-        shell.evaluate(other);
-        shell.evaluate(assignment + ";");
+        shell.evaluate(other.toString());
+        shell.evaluate(assignment.toString() + ";");
         shell.evaluate("import graphtea.ui.extension.*;");
         return (Extension) shell.evaluate("return (Extension)ex;");
     }

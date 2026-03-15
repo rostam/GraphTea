@@ -32,7 +32,7 @@ public class GraphColoring {
     @Override
     public String toString() {
         String txt = "";
-        if (label != null && !label.equals("")) {
+        if (label != null && !label.isEmpty()) {
             txt = txt + label + ":  \n";
         }
         if (vertexColors != null && vertexColors.size() > 0) {

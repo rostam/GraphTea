@@ -39,7 +39,7 @@ public final class Ellipsoid {
         _name = n;
         _a = a;
         _f = f;
-        if (null == n || n.equals(""))
+        if (null == n || n.isEmpty())
             throw new Msg(r, "name must not be empty");
         if (Math.abs(a - 6365.E3) > 5.E3)
             throw new Msg(r, String.format("invalid semimajor axis a= %.3f m", a));

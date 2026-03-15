@@ -20,35 +20,13 @@ public class ReadWriteTextFile {
         //...checks on aFile are elided
         StringBuilder contents = new StringBuilder();
 
-        //declared here only to make visible to finally clause
-        BufferedReader input = null;
-        try {
-            //use buffering, reading one line at a time
-            //FileReader always assumes default encoding is OK!
-            input = new BufferedReader(new FileReader(aFile));
-            String line; //not declared within while loop
-            /*
-            * readLine is a bit quirky :
-            * it returns the content of a line MINUS the newline.
-            * it returns null only for the END of the stream.
-            * it returns an empty String if two newlines appear in a row.
-            */
+        try (BufferedReader input = new BufferedReader(new FileReader(aFile))) {
+            String line;
             while ((line = input.readLine()) != null) {
-                contents.append(line).append(System.getProperty("line.separator"));
+                contents.append(line).append(System.lineSeparator());
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-        }
-        finally {
-            try {
-                if (input != null) {
-                    //flush and close both "input" and its underlying FileReader
-                    input.close();
-                }
-            }
-            catch (IOException ex) {
-                ex.printStackTrace();
-            }
         }
         return contents.toString();
     }
@@ -79,18 +57,9 @@ public class ReadWriteTextFile {
             throw new IllegalArgumentException("File cannot be written: " + aFile);
         }
 
-        //declared here only to make visible to finally clause; generic reference
-        Writer output = null;
-        try {
-            //use buffering
-            //FileWriter always assumes default encoding is OK!
-            aContents = aContents.replaceAll("\n", System.getProperty("line.separator"));
-            output = new BufferedWriter(new FileWriter(aFile));
+        aContents = aContents.replaceAll("\n", System.lineSeparator());
+        try (Writer output = new BufferedWriter(new FileWriter(aFile))) {
             output.write(aContents);
-        }
-        finally {
-            //flush and close both "output" and its underlying FileWriter
-            if (output != null) output.close();
         }
     }
 }

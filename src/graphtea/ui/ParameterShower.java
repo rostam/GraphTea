@@ -134,7 +134,7 @@ public class ParameterShower implements AttributeListener {
             }
         } else {
             p.put(f.getName(), f.get(o));
-            if (!name.equals(""))
+            if (!name.isEmpty())
                 p.getView().setDisplayName(f.getName(), name);
             p.getView().setDescription(f.getName(), desc);
         }

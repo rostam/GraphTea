@@ -66,7 +66,7 @@ public class SubGraph {
     @Override
     public String toString() {
         String txt = "";
-        if (label != null && !label.equals("")) {
+        if (label != null && !label.isEmpty()) {
             txt += label + ": \n";
         }
         if (vertices != null && vertices.size() > 0) {

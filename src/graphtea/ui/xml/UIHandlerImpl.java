@@ -85,7 +85,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         if (resourceClass != null && icon != null)
             System.out.println("[handle_tool]" + icon + " : " + resourceClass.getResource(icon));
 
-        if (icon == null || icon.equals("") || resourceClass == null ||
+        if (icon == null || icon.isEmpty() || resourceClass == null ||
                 resourceClass.getResource(icon) == null)
             b = new GButton(label, icon, blackboard, action);
         else
@@ -310,9 +310,9 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
     }
 
     private void addAction(String id, graphtea.platform.core.AbstractAction x, String group) {
-        if ((id != null) && !id.equals(""))
+        if ((id != null) && !id.isEmpty())
             actions.put(id, x);
-//        if (group != null && !group.equals("")) {
+//        if (group != null && !group.isEmpty()) {
 //            //configuration age group vojood nadashte bashe khodesh ijadesh mikone. inja be ghole omid "error prone hast"
 //            //todo: bara hamin be zehnam resid ke biaim bebinim esme gorooha masalan age kamtar az 2harf ekhtelaf daran, pas ehtemalan eshtebahe typi boode , ie jooraii kashf konim eroro :D
 //            conf.addToGroup(group, x);
@@ -348,7 +348,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
 //************** utilities +++++++++++++++++++++
 
     AbstractAction loadAbstractAction(String abstractActionclazz) {
-        if (!(abstractActionclazz == null) && !(abstractActionclazz.equals(""))) {
+        if (!(abstractActionclazz == null) && !(abstractActionclazz.isEmpty())) {
             Class t = clazz2Class(abstractActionclazz);
             if (graphtea.platform.core.AbstractAction.class.isAssignableFrom(t)) {
                 Object[] o = {blackboard};
@@ -369,7 +369,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
 
     //todo: it is possible to also get a component from xml by it's direct class name, like javax.swing.JLabel . but i decided not to do it for cleaner codes! i am not sure is it good or not?
     Component getComponent(String GComponentInterfaceClassName) {
-        if (!(GComponentInterfaceClassName == null) && !(GComponentInterfaceClassName.equals(""))) {
+        if (!(GComponentInterfaceClassName == null) && !(GComponentInterfaceClassName.isEmpty())) {
             Class t = clazz2Class(GComponentInterfaceClassName);
             Constructor c = null;
             Object[] o = {blackboard};

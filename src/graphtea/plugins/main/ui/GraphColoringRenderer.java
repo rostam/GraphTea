@@ -31,7 +31,7 @@ public class GraphColoringRenderer implements GBasicCellRenderer<GraphColoring> 
         myColoring.label = coloring.label;
         String txt = "";
         txt = "<HTML><BODY>";
-        if (myColoring.label != null && !myColoring.label.equals("")) {
+        if (myColoring.label != null && !myColoring.label.isEmpty()) {
             txt = txt + "<B>" + myColoring.label + ":  </B>";
         }
         if (myColoring.vertexColors != null && myColoring.vertexColors.size() > 0) {
