@@ -73,7 +73,7 @@ public class Plugger {
             directory = new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile();
             System.out.println(directory);
         } catch (Exception e1) {
-            e1.printStackTrace();
+            ExceptionHandler.catchException(e1);
         }
 
         File f = new File(directory, "plugins");
@@ -175,7 +175,7 @@ public class Plugger {
             initializer.put(name, jf.getManifest().getMainAttributes().getValue("plugin-initializer"));
             configxml.put(name, jf.getManifest().getMainAttributes().getValue("plugin-configxml"));
         } catch (Exception ex) {
-            ex.printStackTrace();
+            ExceptionHandler.catchException(ex);
         }
 
     }
@@ -292,7 +292,7 @@ public class Plugger {
             }
             System.out.println("Loaded : " + name + ".");
         } catch (Exception ex) {
-            ex.printStackTrace();
+            ExceptionHandler.catchException(ex);
         }
     }
 

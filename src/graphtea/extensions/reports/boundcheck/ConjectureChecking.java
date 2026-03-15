@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.reports.boundcheck;
+import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.extensions.io.g6format.SaveGraph6Format;
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
 import graphtea.extensions.reports.boundcheck.forall.Sizes;
@@ -98,7 +99,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
                 try {
                     sgf.write(f, gg);
                 } catch (GraphIOException e) {
-                    e.printStackTrace();
+                    ExceptionHandler.catchException(e);
                 }
             }
             return "The bound check is disabled. " +

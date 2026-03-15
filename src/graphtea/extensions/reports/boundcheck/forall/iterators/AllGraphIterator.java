@@ -1,4 +1,5 @@
 package graphtea.extensions.reports.boundcheck.forall.iterators;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.extensions.G6Format;
 import graphtea.extensions.reports.boundcheck.forall.IterProgressBar;
@@ -24,7 +25,7 @@ public class AllGraphIterator extends GraphModelIterator {
         try {
             g_iters = new Scanner(new File("graphs/"+fileSize+".g6"));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         //bri = ShowG.showG(fileSize,from,to);
         pb = new IterProgressBar(size);

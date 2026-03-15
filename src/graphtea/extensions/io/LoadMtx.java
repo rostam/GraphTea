@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.io;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import Jama.Matrix;
 import graphtea.graph.graph.Edge;
@@ -62,7 +63,7 @@ public class LoadMtx implements GraphReaderExtension {
             }
             return g;
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         return null;
     }

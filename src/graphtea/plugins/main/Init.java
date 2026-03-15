@@ -3,6 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.main;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -57,7 +58,7 @@ public class Init implements PluginInterface, StorableOnExit {
         try {
             GTabbedGraphPane.getCurrentGHTMLPageComponent(blackboard).setPage(new URL(Application.WELCOME_URL));
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
 
 
@@ -74,7 +75,7 @@ public class Init implements PluginInterface, StorableOnExit {
 
             } catch (Exception e) { addExceptionLog(e); } }
         }).start();
-        try { uid = getExternalIP(); } catch (Exception e) { e.printStackTrace();}
+        try { uid = getExternalIP(); } catch (Exception e) { ExceptionHandler.catchException(e);}
 
         blackboard.addListener("ATrack", (Listener<AEvent>) (key, event) -> {
 //            System.out.println(event);

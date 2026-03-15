@@ -44,7 +44,7 @@ public class InwardCommandParser {
             interpreter.eval("help(command) { me.help(command);}");
             evaluations = shell.getEvaluations();
         } catch (EvalError evalError) {
-            evalError.printStackTrace();
+            ExceptionHandler.catchException(evalError);
         }
     }
 
@@ -53,7 +53,7 @@ public class InwardCommandParser {
             ((ShellConsole) interpreter.get("console")).print("\nTo see details of commands (arguments , full description) run command: help(\"command\")\n\n"
                     , Color.red);
         } catch (EvalError evalError) {
-            evalError.printStackTrace();
+            ExceptionHandler.catchException(evalError);
         }
         String h = "";
         Vector<String> hh = new Vector<>();
@@ -76,7 +76,7 @@ public class InwardCommandParser {
         try {
             ((ShellConsole) interpreter.get("console")).println(h, Color.blue);
         } catch (EvalError evalError) {
-            evalError.printStackTrace();
+            ExceptionHandler.catchException(evalError);
         }
     }
 
@@ -85,7 +85,7 @@ public class InwardCommandParser {
         try {
             ((ShellConsole) interpreter.get("console")).println(h, Color.blue);
         } catch (EvalError evalError) {
-            evalError.printStackTrace();
+            ExceptionHandler.catchException(evalError);
         }
     }
 
@@ -122,7 +122,7 @@ public class InwardCommandParser {
         try {
             return interpreter.eval(s);
         } catch (EvalError evalError) {
-            evalError.printStackTrace();
+            ExceptionHandler.catchException(evalError);
         }
         return null;
     }
@@ -144,7 +144,7 @@ public class InwardCommandParser {
             evaluations = "import graphtea.graph.graph.*;" + evaluations;
             evaluations = "import graphtea.ui.lang.*;" + evaluations;
         } catch (EvalError evalError) {
-            evalError.printStackTrace();
+            ExceptionHandler.catchException(evalError);
         }
         Class clazz = o.getClass();
         for (Method m : clazz.getMethods()) {
@@ -181,7 +181,7 @@ public class InwardCommandParser {
         try {
             interpreter.eval(evaluations);
         } catch (EvalError evalError) {
-            evalError.printStackTrace();
+            ExceptionHandler.catchException(evalError);
         }
     }
 

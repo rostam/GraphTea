@@ -3,6 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.graph.ui;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.JGraph;
 import graphtea.graph.atributeset.GraphAttrSet;
@@ -168,7 +169,7 @@ public class GTabbedGraphPane extends GTabbedPane {
                 Thread.sleep(timeMillis + 10000);
                 hideNotificationMessage(b);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                ExceptionHandler.catchException(e);
             }
         }).start();
 

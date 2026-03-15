@@ -1,4 +1,5 @@
 package graphtea.extensions.algorithms.homomorphism;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.extensions.generators.CircleGenerator;
 import graphtea.extensions.generators.GeneralizedPetersonGenerator;
@@ -53,7 +54,7 @@ public class FindingHomomorphism {
                     return new Homomorphism(G, H, homomorphism);
                 }
             } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
+                ExceptionHandler.catchException(e);
             }
         }
         return null;
@@ -65,7 +66,7 @@ public class FindingHomomorphism {
         try {
             new FindingHomomorphism().findAHomomorphism(peterson, circle3);
         } catch (GraphIOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
     }
 }

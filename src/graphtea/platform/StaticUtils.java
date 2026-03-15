@@ -3,6 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionOccuredData;

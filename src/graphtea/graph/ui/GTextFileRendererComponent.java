@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.graph.ui;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,7 +32,7 @@ public class GTextFileRendererComponent extends JScrollPane {
             jvp.add(jta);
             this.setViewport(jvp);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
 
     }

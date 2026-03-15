@@ -3,6 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.graph.graph;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.event.*;
 import graphtea.graph.old.ArrowHandler;
@@ -185,14 +186,14 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
             }
         } catch (Exception ex) {
             System.err.println("(FastPaint: Paint Error:");
-            ex.printStackTrace();
+            ExceptionHandler.catchException(ex);
             try {
                 Thread.sleep(100);
                 for (Edge e : getGraph().getEdges()) {
                     paint((Graphics2D) gg, e, getGraph(), drawExtras);
                 }
             } catch (Exception e1) {
-                e1.printStackTrace();
+                ExceptionHandler.catchException(e1);
                 StaticUtils.addExceptiontoLog(e1, Application.blackboard);
             }
 //            repaint();

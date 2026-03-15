@@ -1,4 +1,5 @@
 package graphtea.extensions.reports.boundcheck.forall.filters;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.extensions.reports.boundcheck.forall.IterProgressBar;
 import graphtea.extensions.reports.boundcheck.forall.ToCall;
@@ -100,7 +101,7 @@ public class GeneratorFilters {
                     results.addAll(ret.poll());
                     retForm.add(results);
                 } catch (IllegalAccessException | NoSuchFieldException e) {
-                    e.printStackTrace();
+                    ExceptionHandler.catchException(e);
                 }
             }
         }

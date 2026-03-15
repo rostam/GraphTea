@@ -1,4 +1,5 @@
 package graphtea.extensions.reports.spectralreports.maxflowmincut;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -30,7 +31,7 @@ public class GomoryHuTree implements GraphReportExtension  {
 	    	//gtgp.addGraph(GGHT.GHTree);
 	    	//GGHT.perform();
 		} catch (Exception e) {
-			e.printStackTrace();
+			ExceptionHandler.catchException(e);
 		}
 
 		return null;

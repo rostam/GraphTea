@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.graph.old;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -56,7 +57,7 @@ public class SuperAcceleratedRenderer extends AcceleratedRenderer {
             Thread.sleep(Math.max(0, difference));
         }
         catch (InterruptedException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
     }
 

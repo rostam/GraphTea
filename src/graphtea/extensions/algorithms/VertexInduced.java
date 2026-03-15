@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.algorithms;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -41,7 +42,7 @@ public class VertexInduced {
                 try {
                     baseGraph.removeVertex(hm.get(v));
                 } catch (InvalidVertexException e) {
-                    e.printStackTrace();
+                    ExceptionHandler.catchException(e);
                 }
             }
         }

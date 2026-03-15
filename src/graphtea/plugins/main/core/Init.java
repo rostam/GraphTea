@@ -76,7 +76,7 @@ public class Init implements graphtea.platform.plugin.PluginInterface, StorableO
                             graphtea.plugins.main.Init.track("App", "Closed");
                             SETTINGS.saveSettings();
                         } catch (Exception e1) {
-                            e1.printStackTrace();
+                            ExceptionHandler.catchException(e1);
                         }
                         System.exit(0);
                     }

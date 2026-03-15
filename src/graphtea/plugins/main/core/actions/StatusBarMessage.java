@@ -3,6 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.main.core.actions;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
@@ -73,7 +74,7 @@ public class StatusBarMessage extends AbstractAction implements GComponentInterf
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                ExceptionHandler.catchException(e);
             }
             l.repaint();
             l.setOpaque(false);

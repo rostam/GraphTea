@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.samples.ui.texteditor.myplugin.actions;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import java.io.*;
 
@@ -26,7 +27,7 @@ public class ReadWriteTextFile {
                 contents.append(line).append(System.lineSeparator());
             }
         } catch (IOException ex) {
-            ex.printStackTrace();
+            ExceptionHandler.catchException(ex);
         }
         return contents.toString();
     }

@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.graph.ui;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.main.GraphData;
@@ -68,7 +69,7 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
         try {
             jta.setPage(page);
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
     }
 

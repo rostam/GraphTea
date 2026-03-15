@@ -3,6 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.graph.old;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
@@ -114,7 +115,7 @@ public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, From
         try {
             objectValues.put(this.getClass().getField("arrowSize"), t);
         } catch (NoSuchFieldException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
 
         return objectValues;

@@ -1,4 +1,5 @@
 package graphtea.extensions.algorithms;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.extensions.reports.Partitioner;
 import graphtea.extensions.reports.SubSetListener;
@@ -45,7 +46,7 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
         try {
             url = Paths.get("binary/zeta.jpg").toUri().toURL();
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
 
         GraphUtils.setMessage("<p><h1>The Zeta transformation of I is computed. <br/> " +

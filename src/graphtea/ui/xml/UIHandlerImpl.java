@@ -381,7 +381,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
                     o = new Object[]{};
                 } catch (NoSuchMethodException e1) {
                     System.err.println("the clazz " + GComponentInterfaceClassName + "does not have a constructor(blackboard) or constructor(), how can i load it?");
-                    e1.printStackTrace();
+                    ExceptionHandler.catchException(e1);
                 }
 //                ExceptionHandler.catchException(e);
             }

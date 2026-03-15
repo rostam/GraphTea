@@ -53,7 +53,7 @@ public class Shell {
         try {
             return main_interpreter.eval(s);
         } catch (EvalError evalError) {
-            evalError.printStackTrace();
+            ExceptionHandler.catchException(evalError);
         }
         return null;
     }
@@ -70,7 +70,7 @@ public class Shell {
         try {
             main_interpreter.set(s, o);
         } catch (EvalError evalError) {
-            evalError.printStackTrace();
+            ExceptionHandler.catchException(evalError);
         }
     }
 
@@ -78,7 +78,7 @@ public class Shell {
         try {
             return main_interpreter.get(s);
         } catch (EvalError evalError) {
-            evalError.printStackTrace();
+            ExceptionHandler.catchException(evalError);
         }
         return null;
     }
@@ -100,7 +100,7 @@ public class Shell {
             try {
                 main_interpreter.set(gm.getLabel(), gm);
             } catch (EvalError evalError) {
-                evalError.printStackTrace();
+                ExceptionHandler.catchException(evalError);
             }
         });
         evaluations += "clr(){console.clear();}";
@@ -133,7 +133,7 @@ public class Shell {
                 main_interpreter.eval(evaluations);
             }
             catch (EvalError evalError) {
-                evalError.printStackTrace();
+                ExceptionHandler.catchException(evalError);
             }
             main_interpreter.run();
 

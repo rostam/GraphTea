@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.io.g6format;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.extensions.G6Format;
 import graphtea.graph.graph.Edge;
@@ -38,7 +39,7 @@ public class LoadGraph6Format implements GraphReaderExtension {
         try (Scanner sc = new Scanner(file)) {
             g6 = sc.nextLine();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
 
         GraphModel g = G6Format.stringToGraphModel(g6);
@@ -58,7 +59,7 @@ public class LoadGraph6Format implements GraphReaderExtension {
             bri.readLine();
             g=bri.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         String tmp = g.substring(g.indexOf("order"));
         tmp = tmp.substring(tmp.indexOf(" "),tmp.length()-1);
@@ -68,7 +69,7 @@ public class LoadGraph6Format implements GraphReaderExtension {
             try {
                 g += bri.readLine() + "\n";
             } catch (IOException e) {
-                e.printStackTrace();
+                ExceptionHandler.catchException(e);
                 return new GraphModel();
             }
         }
@@ -84,7 +85,7 @@ public class LoadGraph6Format implements GraphReaderExtension {
         try {
             cur = new java.io.File(".").getCanonicalPath();
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         ProcessBuilder process;
 
@@ -105,7 +106,7 @@ public class LoadGraph6Format implements GraphReaderExtension {
             Process p = process.start();
             return new BufferedReader(new InputStreamReader(p.getInputStream()));
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         return null;
     }

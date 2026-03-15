@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.io;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -77,7 +78,7 @@ public class LoadSpecialGML implements GraphReaderExtension {
                 }
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         return g;
     }
@@ -91,7 +92,7 @@ public class LoadSpecialGML implements GraphReaderExtension {
             new LoadSpecialGML()
                     .read(new File("/home/rostam/kara/GD2018/got-graph.graphml"));
         } catch (GraphIOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
     }
 }

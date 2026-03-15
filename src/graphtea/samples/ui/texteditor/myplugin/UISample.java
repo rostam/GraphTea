@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.samples.ui.texteditor.myplugin;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.platform.core.BlackBoard;
 import graphtea.samples.ui.texteditor.myplugin.actions.Utils;
@@ -44,7 +45,7 @@ public class UISample {
                 int col = caretPosition - editor.getLineStartOffset(line);
                 lbl.setText(line + ":" + col);
             } catch (BadLocationException e1) {
-                e1.printStackTrace();
+                ExceptionHandler.catchException(e1);
             }
         });
         u.getGFrame().setVisible(true);

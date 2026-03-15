@@ -1,4 +1,5 @@
 package graphtea.extensions.reports.coloring;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.GraphModel;
 
@@ -47,7 +48,7 @@ public class NDMetis {
             }
             fw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
     }
 
@@ -59,7 +60,7 @@ public class NDMetis {
                 ret.add(sc.nextInt());
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         return ret;
     }
@@ -69,7 +70,7 @@ public class NDMetis {
         try {
             cur = new java.io.File(".").getCanonicalPath();
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
 
         ProcessBuilder process=null;
@@ -83,7 +84,7 @@ public class NDMetis {
                 p = process.start();
                 p.waitFor();
             } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
+                ExceptionHandler.catchException(e);
             }
         }
         return process;
