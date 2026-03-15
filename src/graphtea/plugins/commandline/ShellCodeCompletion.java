@@ -10,8 +10,9 @@ import bsh.util.NameCompletion;
 import graphtea.plugins.commandline.util.codecompletionutils.CodeCompletionUtils;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Vector;
+import java.util.List;
 
 
 /**
@@ -36,7 +37,7 @@ public class ShellCodeCompletion implements NameCompletion {
     }
 
     public String[] completeName(String part) {
-        Vector<String> ret = new Vector<>();
+        List<String> ret = new ArrayList<>();
         if (part.startsWith("_")) {
             ret = CodeCompletionUtils.complete(abbrs, part);
         } else if (part.endsWith("(")) {

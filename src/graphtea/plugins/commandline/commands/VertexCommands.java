@@ -15,8 +15,9 @@ import graphtea.platform.parameter.Parameter;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.core.actions.vertex.AddVertex;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * @author amir khosrowshahi , Mohammad Ali Rostami
@@ -86,7 +87,7 @@ public class VertexCommands {
     @CommandAttitude(name = "select_vertex", abbreviation = "_sv")
     public void selectVertex(@Parameter(name = "vertex label :")String label) throws ShellCommandException {
         Vertex v = getVertexByLabel(label);
-        Vector<Vertex> vertices = new Vector<>();
+        List<Vertex> vertices = new ArrayList<>();
         vertices.add(v);
 
         if (v != null) datas.select.setSelectedVertices(vertices);

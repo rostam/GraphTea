@@ -19,7 +19,8 @@ import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.*;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShellConsole extends JScrollPane
         implements GUIConsoleInterface, Runnable, KeyListener,
@@ -51,7 +52,7 @@ public class ShellConsole extends JScrollPane
     }
 
     private int cmdStart = 0;
-    private final Vector<String> history = new Vector<>();
+    private final List<String> history = new ArrayList<>();
     private String startedLine;
     private int histLine = 0;
 
@@ -412,7 +413,7 @@ public class ShellConsole extends JScrollPane
         if (s.length() == 0)    // special hack	for empty return!
             s = ";\n";
         else {
-            history.addElement(s);
+            history.add(s);
             s = s + "\n";
         }
 
@@ -457,7 +458,7 @@ public class ShellConsole extends JScrollPane
         if (histLine == 0)
             showLine = startedLine;
         else
-            showLine = history.elementAt(history.size() - histLine);
+            showLine = history.get(history.size() - histLine);
 
         replaceRange(showLine, cmdStart, textLength());
         text.setCaretPosition(textLength());

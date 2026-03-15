@@ -17,8 +17,9 @@ import graphtea.platform.preferences.lastsettings.StorableOnExit;
 import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Vector;
+import java.util.List;
 
 
 public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, FromStringProvider<Arrow> {
@@ -86,7 +87,7 @@ public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, From
         PolygonArrow ar4 = new PolygonArrow(new Polygon(new int[]{0, -15, -10, -15}, new int[]{0, -7, 0, 7}, 4), "Narrow");
         PolygonArrow ar2 = new PolygonArrow(new Polygon(new int[]{0, -15, -5, -15}, new int[]{0, -7, 0, 7}, 4), "Very Narrow");
         PolygonArrow ar3 = new PolygonArrow(new Polygon(new int[]{0, -15, -30, -15}, new int[]{0, -7, 0, 7}, 4), "Box");
-        knownArrows = new Vector<>();
+        knownArrows = new ArrayList<>();
         registerArrow(defaultArrow);
         registerArrow(ar1);
         registerArrow(ar2);
@@ -95,7 +96,7 @@ public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, From
 
     }
 
-    public static Vector<Arrow> knownArrows;
+    public static List<Arrow> knownArrows;
 
     public static void registerArrow(Arrow arrow) {
         knownArrows.add(arrow);

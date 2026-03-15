@@ -10,7 +10,8 @@ import graphtea.platform.lang.FromStringProvider;
 import java.awt.*;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.awt.BasicStroke.CAP_BUTT;
 import static java.awt.BasicStroke.JOIN_MITER;
@@ -25,7 +26,7 @@ public class GStroke implements Serializable,  FromStringProvider<GStroke> {
 
     private static final
     long serialVersionUID = 1699990527314740484L;
-    static Vector<GStroke> strokes = new Vector<>();
+    static List<GStroke> strokes = new ArrayList<>();
     public static GStroke empty = new GStroke("Empty", 0, new float[]{0, 100000000f});
     public static GStroke simple = new GStroke("simple", 1, new float[]{1, 0});
     public static GStroke solid = new GStroke("solid", new float[]{1, 0});

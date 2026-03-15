@@ -19,7 +19,8 @@ import graphtea.plugins.algorithmanimator.core.atoms.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Actually the class which animates the algorithms!
@@ -27,7 +28,7 @@ import java.util.Vector;
  * @author Azin Azadi
  */
 public class AlgorithmAnimator implements EventDispatcher, ActionListener {
-    static Vector<AtomAnimator<Event>> animators = new Vector<>();
+    static List<AtomAnimator<Event>> animators = new ArrayList<>();
     BlackBoard blackboard;
     private boolean paused = true;
     /**

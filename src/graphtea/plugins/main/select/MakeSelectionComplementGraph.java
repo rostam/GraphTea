@@ -11,9 +11,10 @@ import graphtea.graph.graph.Vertex;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * @author Azin Azadi
@@ -55,8 +56,8 @@ public class MakeSelectionComplementGraph implements GraphActionExtension {
         }
     }
 
-    public static Vector<Edge> fillUndoEdges(HashMap<String, Object> properties, GraphData gd, String lbl) {
-        Vector<Edge> edges = new Vector<>();
+    public static List<Edge> fillUndoEdges(HashMap<String, Object> properties, GraphData gd, String lbl) {
+        List<Edge> edges = new ArrayList<>();
         HashSet<Vertex> V = gd.select.getSelectedVertices();
         GraphModel g = gd.getGraph();
         for (Vertex v : V) {
