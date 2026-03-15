@@ -13,14 +13,13 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
  */
 
 @CommandAttitude(name = "maxium_matching", abbreviation = "_max_match")
-public class MaxMatchingExtension implements GraphReportExtension<Vector<Object>> {
+public class MaxMatchingExtension implements GraphReportExtension<List<Object>> {
     public String getName() {
         return "Maximum Matching";
     }
@@ -29,7 +28,7 @@ public class MaxMatchingExtension implements GraphReportExtension<Vector<Object>
         return "Maximum Matching";
     }
 
-    public Vector<Object> calculate(GraphModel gg) {
+    public List<Object> calculate(GraphModel gg) {
         SubGraph sg = new SubGraph();
         List<Integer>[] g = new List[gg.getVerticesCount()];
         for (int i = 0; i < gg.getVerticesCount(); i++) {
@@ -56,7 +55,7 @@ public class MaxMatchingExtension implements GraphReportExtension<Vector<Object>
                         gg.getVertex(match[i])));
         }
 
-        Vector<Object> ret = new Vector<>();
+        List<Object> ret = new ArrayList<>();
         ret.add("Number of Matching:" + sg.edges.size());
         ret.add(sg);
 

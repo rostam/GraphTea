@@ -6,6 +6,8 @@
 package graphtea.extensions.algorithms.shortestpath.algs;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -35,10 +37,10 @@ public class AcyclicSP extends GraphAlgorithm implements AutomatedAlgorithm {
 //        this.gc = gc;
 //    }
 
-    public Vector<Vertex> acyclicSP(GraphModel g, Vertex v) throws InvalidVertexException {
+    public List<Vertex> acyclicSP(GraphModel g, Vertex v) throws InvalidVertexException {
         GraphModel gcopy = (GraphModel) g.copy(gc);
         final Integer[] dist = new Integer[g.getVerticesCount()];
-        Vector<Vertex> prev = new Vector<>();
+        List<Vertex> prev = new ArrayList<>();
         Queue<Vertex> Q = new LinkedList<>();
         HashMap<Vertex, Vertex> gcopy2g = new HashMap<>();
         HashMap<Integer, Vertex> t = new HashMap<>();

@@ -13,7 +13,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Renders any Iterable object( including vcollections, ectors, sets, ...)
@@ -27,12 +28,12 @@ public class IterableRenderer implements GBasicCellRenderer<Iterable> {
         int w = Integer.MIN_VALUE;
         int h = 0;
 //        final JPanel p = new JPanel(layout);
-        Vector v = new Vector();
+        List<Object> v = new ArrayList<>();
         for (Object o : value) {
             v.add(o);
             n++;
         }
-        final JList ret = new JList(v);
+        final JList<Object> ret = new JList<>(v.toArray());
         final GCellRenderer renderer = new GCellRenderer();
         ret.setCellRenderer(renderer);
         if (n > 0)

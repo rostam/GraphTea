@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological;
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.DijkstraNonNegative;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
@@ -15,7 +16,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -34,7 +34,7 @@ public class BalabanIndex implements GraphReportExtension<RenderTable> {
 
     public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" m ");
         titles.add(" n ");
         titles.add(" Balaban Index ");
@@ -71,7 +71,7 @@ public class BalabanIndex implements GraphReportExtension<RenderTable> {
         double n = g.getVerticesCount();
 
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
 
       v.add(m);
         v.add(n);

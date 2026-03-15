@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological;
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -14,7 +15,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami 
@@ -39,7 +39,7 @@ public class EM1UpperBound implements GraphReportExtension<RenderTable> {
 
         RenderTable ret = new RenderTable();
 
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
        //  titles.add(" M^3_1(G) ");
       //  titles.add("Psi1 ");
      //   titles.add("Psi2");
@@ -123,7 +123,7 @@ public class EM1UpperBound implements GraphReportExtension<RenderTable> {
                 + Math.sqrt((2*m-maxDeg-minDeg)
                 *(Mm11-((1/maxDeg)+(1/minDeg))))),2)/(n-2));
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         
       // Milo Errors 2018
        // v.add(m*minEdge);

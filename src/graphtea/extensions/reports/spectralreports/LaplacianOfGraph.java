@@ -1,4 +1,5 @@
 package graphtea.extensions.reports.spectralreports;
+import java.util.List;
 import graphtea.platform.core.exception.ExceptionHandler;
 
 import Jama.EigenvalueDecomposition;

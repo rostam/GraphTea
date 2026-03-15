@@ -5,6 +5,8 @@
 
 package graphtea.extensions.algorithms;
 
+import java.util.ArrayList;
+import java.util.List;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -238,14 +240,14 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
      * finds all paths in the given DAG from src to trg.
      */
     public static
-    Vector<Deque<Vertex>> findAllPaths(GraphModel dag, Vertex src, Vertex trg) {
-        Vector<Deque<Vertex>> ret = new Vector<>();
+    List<Deque<Vertex>> findAllPaths(GraphModel dag, Vertex src, Vertex trg) {
+        List<Deque<Vertex>> ret = new ArrayList<>();
         findAllPathsRec(dag, src, trg, ret, new ArrayDeque<>());
         return ret;
     }
 
     private static
-    void findAllPathsRec(GraphModel graph, Vertex src, Vertex trg, Vector<Deque<Vertex>> ret, Deque<Vertex> currentPath) {
+    void findAllPathsRec(GraphModel graph, Vertex src, Vertex trg, List<Deque<Vertex>> ret, Deque<Vertex> currentPath) {
         currentPath.push(src);
         if (src == trg) {
             ret.add(new ArrayDeque<>(currentPath));
@@ -262,8 +264,8 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
      * closer ancestors to src come first in returned vector
      */
     public static 
-    Vector<Vertex> findAllAncestors(GraphModel dag, Vertex src) {
-        Vector<Vertex> ret = new Vector<>();
+    List<Vertex> findAllAncestors(GraphModel dag, Vertex src) {
+        List<Vertex> ret = new ArrayList<>();
         Queue<Vertex> q = new LinkedList<>();
         q.add(src);
         while (!q.isEmpty()) {

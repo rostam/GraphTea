@@ -48,7 +48,7 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
             unMarkVertices();
             locateAll(visitedVertices, 600, 50);
         } catch (NullPointerException e) {
-            System.out.println("Graph is Empty");
+
 //            ExceptionHandler.catchException(e);
         }
 
@@ -161,7 +161,7 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
             unMarkVertices();
             locateAll(visitedVertices, width, eachLevelHeigh);
         } catch (NullPointerException e) {
-            System.out.println("Graph is Empty");
+
 //            ExceptionHandler.catchException(e);
         }
         return vertexPlaces;

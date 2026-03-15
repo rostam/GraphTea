@@ -4,6 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.energy;
 
+import java.util.ArrayList;
+import java.util.List;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
@@ -42,7 +44,7 @@ public class KF_Wiener implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
        // titles.add(" LEL ");
         titles.add("m ");
         titles.add("n ");
@@ -135,7 +137,7 @@ public class KF_Wiener implements GraphReportExtension<RenderTable> {
 
 
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         LaplacianEnergyLike lel = new LaplacianEnergyLike();
         SignlessLaplacianEnergy  sl = new SignlessLaplacianEnergy();
         LaplacianEnergy le = new LaplacianEnergy();

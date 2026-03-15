@@ -10,10 +10,11 @@ import graphtea.library.util.Complex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 @CommandAttitude(name = "mix_eig_values", abbreviation = "_mevs")
-public class MixSignlessLaplacianEnergy implements GraphReportExtension<Vector<String>> {
+public class MixSignlessLaplacianEnergy implements GraphReportExtension<List<String>> {
     String signlessLaplacianEnergy(GraphModel g) {
         double power = 1;
         try {
@@ -108,13 +109,13 @@ public class MixSignlessLaplacianEnergy implements GraphReportExtension<Vector<S
 
 
     @Override
-    public Vector<String> calculate(GraphModel g) {
+    public List<String> calculate(GraphModel g) {
         RenderTable rt = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add("Laplacian Energy");
         titles.add("Signless Laplacian Energy");
         rt.setTitles(titles);
-        Vector<String> results = new Vector<>();
+        List<String> results = new ArrayList<>();
         results.add(laplacianEnergy(g));
         results.add(signlessLaplacianEnergy(g));
         return results;

@@ -10,7 +10,8 @@ import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 @CommandAttitude(name = "DistanceEnergyCompare", abbreviation = "_distance_energy_compare")
 public class DistanceEnergyCompare implements GraphReportExtension<RenderTable> {
@@ -28,7 +29,7 @@ public class DistanceEnergyCompare implements GraphReportExtension<RenderTable> 
     @Override
     public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add("m ");
         titles.add("n ");
 	     titles.add("check");
@@ -44,7 +45,7 @@ public class DistanceEnergyCompare implements GraphReportExtension<RenderTable> 
 		double DE   = new DistanceEnergy().calculate(g);
 		double DLE  = new DistanceLaplacianEnergy().calculate(g);
         double DLSE = new DistanceSignlessLaplacianEnergy().calculate(g);		
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(g.getVerticesCount());
         v.add(g.getEdgesCount());
 		 if(DLE==DLSE) v.add(1);

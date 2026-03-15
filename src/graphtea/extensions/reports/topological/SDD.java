@@ -1,6 +1,7 @@
 package graphtea.extensions.reports.topological;
 
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.RandomMatching;
@@ -18,7 +19,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -37,7 +37,7 @@ public class SDD implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" m ");
         titles.add(" n ");
 
@@ -220,7 +220,7 @@ public class SDD implements GraphReportExtension<RenderTable> {
         int girth = (int) new GirthSize().calculate(g);
         WienerIndex wi = new WienerIndex();
         double Avg=(n*(n-1)/2);
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         double maxMatching = new MaxMatchingExtension().numOfMatching(g);
         double maxMatching1 = (new RandomMatching()).calculateMaxMatching(g);
         v.add(m);

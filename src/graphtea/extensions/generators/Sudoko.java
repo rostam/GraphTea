@@ -15,7 +15,8 @@ import graphtea.plugins.graphgenerator.GraphGenerator;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author  M. Ali Rostami
@@ -43,7 +44,7 @@ public class Sudoko implements GraphGeneratorExtension, Parametrizable, SimpleGe
     }
 
     public Edge[] getEdges() {
-        Vector<Edge> vs = new Vector<>();
+        List<Edge> vs = new ArrayList<>();
 
         for(int k=0;k < n;k++) {
             for (int i = k * n; i < (k + 1) * n; i++)
@@ -70,7 +71,7 @@ public class Sudoko implements GraphGeneratorExtension, Parametrizable, SimpleGe
     }
 
     public GPoint[] getVertexPositions() {
-        Vector<GPoint> vs = new Vector<>();
+        List<GPoint> vs = new ArrayList<>();
         int baseX = 210;int distX = 60;
         int baseY = 210;int distY = 60;
 

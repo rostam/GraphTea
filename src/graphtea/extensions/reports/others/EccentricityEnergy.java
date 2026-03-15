@@ -10,7 +10,8 @@ import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 @CommandAttitude(name = "EccentricityEnergy", abbreviation = "_eccentricity_index")
 public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
@@ -49,7 +50,7 @@ public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
     @Override
     public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add("m ");
         titles.add("n ");
         titles.add("Eccentricity Energy");
@@ -73,7 +74,7 @@ public class EccentricityEnergy implements GraphReportExtension<RenderTable> {
             prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
             sum += prv[i];
         }
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(g.getVerticesCount());
         v.add(g.getEdgesCount());
         v.add(sum);

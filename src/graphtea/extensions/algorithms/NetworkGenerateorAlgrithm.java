@@ -17,7 +17,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.util.Scanner;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * author: rostam
@@ -53,7 +54,7 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
         int scNum = 0;
         int cnt = 0;
         int maxNumNodesInLevel = 30;
-        Vector<Integer> forbiddenIndex = null;
+        List<Integer> forbiddenIndex = null;
         GPoint center = new GPoint(500,300);
         Vertex cent = new Vertex();
         cent.setLocation(center);
@@ -61,7 +62,7 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
         cent.setSize(new GPoint(0, 0));
         cent.setLabelLocation(new GPoint(0,-1));
         g.addVertex(cent);
-        forbiddenIndex = new Vector<>();
+        forbiddenIndex = new ArrayList<>();
         while(fread.hasNextLine()) {
             String command = fread.nextLine();
             step(command);
@@ -83,7 +84,7 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
                     randInd = (int) (Math.random() * maxNumNodesInLevel);
                 }
                 forbiddenIndex.add(randInd);
-                if(forbiddenIndex.size() > (maxNumNodesInLevel * 2/3)) forbiddenIndex = new Vector<>();
+                if(forbiddenIndex.size() > (maxNumNodesInLevel * 2/3)) forbiddenIndex = new ArrayList<>();
                 v.setColor(1);
                 v.setLocation(new GPoint(ps[randInd].x, ps[randInd].y));
                 v.setShapeStroke(GStroke.empty);

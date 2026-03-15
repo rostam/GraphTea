@@ -337,7 +337,6 @@ public class GShape implements Serializable, FromStringProvider<GShape> {
             return NICETENPOINTSTAR;
 
 
-        System.out.println("this shape isn't a member of default shapes :" + data);
         return ROUNDRECT;
     }
 

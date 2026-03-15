@@ -12,14 +12,15 @@ import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Azin Azadi
  */
-public class ColoringReport implements GraphReportExtension<Vector<GraphColoring>>, ColoringListener, Parametrizable {
+public class ColoringReport implements GraphReportExtension<List<GraphColoring>>, ColoringListener, Parametrizable {
     Partitioner p;
-    Vector<GraphColoring> colorings;
+    List<GraphColoring> colorings;
     boolean found;
 
     @Parameter(name = "Lower Bound", description = "Lower Bound for the number of colors, This will make the search Interval smaller")
@@ -28,9 +29,9 @@ public class ColoringReport implements GraphReportExtension<Vector<GraphColoring
     @Parameter(name = "All Colorings", description = "Create a list of all colorings of graph using minimum number of colors")
     public Boolean allColorings=false;
 
-    public Vector<GraphColoring> calculate(GraphModel g) {
+    public List<GraphColoring> calculate(GraphModel g) {
         p = new Partitioner(g);
-        colorings = new Vector<>(1);
+        colorings = new ArrayList<>();
         int ct = lowerBound;
         found = false;
         while (!found) {

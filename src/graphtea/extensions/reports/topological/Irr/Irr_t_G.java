@@ -14,7 +14,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -68,7 +67,7 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(AlgorithmUtils.createLineGraph(g));
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" m ");
         // titles.add(" Max Planar ");
         titles.add(" n ");
@@ -163,7 +162,7 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
         }
 
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(m);
 
         v.add(n);

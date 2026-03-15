@@ -1,5 +1,6 @@
 package graphtea.extensions.algorithms;
 
+import java.util.List;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -7,8 +8,7 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
-import java.util.Vector;
-
+import java.util.ArrayList;
 /**
  * author: rostam
  * author: azin
@@ -24,7 +24,7 @@ public class CholeskyFactorizationExtension extends GraphAlgorithm implements Al
         while(g.getEdgesCount() > 0) {
             Vertex v1 = requestVertex(g, "select a vertex");
             step("Clique on neighbours");
-            Vector<Vertex> vs = new Vector<>(g.directNeighbors(v1));
+            List<Vertex> vs = new ArrayList<>(g.directNeighbors(v1));
             for(Vertex vv1 : vs)
                 for(Vertex vv2 : vs)
                     g.addEdge(new Edge(vv1,vv2));

@@ -13,7 +13,8 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
  */
 
 @CommandAttitude(name = "maxium_matching", abbreviation = "_max_match")
-public class RandomMatching implements GraphReportExtension<Vector<Object>> {
+public class RandomMatching implements GraphReportExtension<List<Object>> {
     public String getName() {
         return "Random Matching";
     }
@@ -32,11 +33,11 @@ public class RandomMatching implements GraphReportExtension<Vector<Object>> {
 
     private final Random r = new Random();
     private final Random r2 = new Random(10);
-    public Vector<Object> calculate(GraphModel g) {
+    public List<Object> calculate(GraphModel g) {
         SubGraph sg = new SubGraph();
         int limit=r2.nextInt(g.getEdgesCount());
 
-        Vector<Integer> vi = new Vector<>();
+        List<Integer> vi = new ArrayList<>();
         HashMap<Vertex,Vertex> vv= new HashMap<>();
         for(int i=0;i<g.getVerticesCount();i++) {
             vi.add(i);
@@ -66,7 +67,7 @@ public class RandomMatching implements GraphReportExtension<Vector<Object>> {
 
         sg.edges.addAll(vv.keySet().stream().map(v -> g.getEdge(v, vv.get(v))).collect(Collectors.toList()));
 
-        Vector<Object> ret = new Vector<>();
+        List<Object> ret = new ArrayList<>();
         ret.add("Number of Matching:" + sg.edges.size());
         ret.add(sg);
 
@@ -88,8 +89,8 @@ public class RandomMatching implements GraphReportExtension<Vector<Object>> {
     }
 
     public double calculateMaxMatching(GraphModel g) {
-        Vector<Object> result = calculate(g);
-        SubGraph maxMatching = (SubGraph)result.elementAt(1);
+        List<Object> result = calculate(g);
+        SubGraph maxMatching = (SubGraph)result.get(1);
         return maxMatching.edges.size();
     }
 }

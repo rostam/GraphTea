@@ -22,7 +22,6 @@ public class Init implements graphtea.platform.plugin.PluginInterface {
 
         } catch (IOException e) {
             ExceptionHandler.catchException(e);
-            System.out.println("xml file was not found , or IO error");
         } catch (Exception e) {
             ExceptionHandler.catchException(e);
         }

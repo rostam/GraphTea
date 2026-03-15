@@ -12,7 +12,8 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import static graphtea.extensions.AlgorithmUtils.choose;
 
@@ -24,7 +25,7 @@ import static graphtea.extensions.AlgorithmUtils.choose;
 public class SubTreeCounting implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable(2);
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
 
         double maxDeg = 0;
         for(Vertex v : g) {
@@ -40,7 +41,7 @@ public class SubTreeCounting implements GraphReportExtension<RenderTable> {
         ret.setTitles(titles);
 
         for(int i=1;i<=maxDeg;i++) {
-            Vector<Object> tmp = new Vector<>();
+            List<Object> tmp = new ArrayList<>();
             tmp.add(i+"");
             for(int j=1;j<=maxDeg;j++) {
                 int sum = countSubtrees(g, i, j);

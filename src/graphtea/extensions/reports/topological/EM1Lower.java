@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological;
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -13,7 +14,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -37,7 +37,7 @@ public class EM1Lower implements GraphReportExtension<RenderTable> {
         );
 
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" EM1(G) ");
         // titles.add("Z1");
         //  titles.add("Z2");
@@ -145,7 +145,7 @@ public class EM1Lower implements GraphReportExtension<RenderTable> {
 
 
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(EM1);
         
         v.add((M21*M21/(2*m))+(4*m)+(2*M12)-(4*M21)+((m*(maxDeg-minDeg)*(maxDeg-minDeg))/2));

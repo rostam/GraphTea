@@ -5,6 +5,7 @@
 
 package graphtea.extensions.algorithms.homomorphism;
 
+import java.util.List;
 import graphtea.extensions.generators.CompleteGraphGenerator;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -36,7 +37,7 @@ public class Homomorphism {
      * @param colors      The coloring as a list of integers
      * @param numOfColors the number of colors
      */
-    public Homomorphism(GraphModel domain, Vector<Integer> colors, int numOfColors) {
+    public Homomorphism(GraphModel domain, List<Integer> colors, int numOfColors) {
         if (Collections.max(colors) != numOfColors) {
             throw new InvalidParameterException("The given number of colors is not equal" +
                     "with the real existing number of colors inside the vector colors.");
@@ -98,13 +99,13 @@ public class Homomorphism {
         GraphModel quotient = new GraphModel();
         for (Vertex v : this.range) {
             Vertex u = new Vertex();
-            u.getProp().obj = new Vector<Integer>();
+            u.getProp().obj = new ArrayList<>();
             quotient.addVertex(u);
         }
 
         for (Vertex key : homomorphism.keySet()) {
             Vertex value = homomorphism.get(key);
-            ((Vector<Integer>) quotient.getVertex(value.getId()).getProp().obj).add(key.getId());
+            ((List<Integer>) quotient.getVertex(value.getId()).getProp().obj).add(key.getId());
         }
 
         for (Vertex v : quotient) {

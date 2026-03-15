@@ -12,8 +12,9 @@ package graphtea.ui.components;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * @author azin azadi
@@ -26,7 +27,7 @@ public class GToolbar extends JComponent {
 
     private JToolBar lastToolbar;
 
-    Vector<pair> indices = new Vector<>();
+    List<pair> indices = new ArrayList<>();
 
     public Component addIndexed(JToolBar comp, int index) {
         pair o = new pair(comp, index);

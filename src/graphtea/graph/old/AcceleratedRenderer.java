@@ -53,7 +53,7 @@ public class AcceleratedRenderer extends FastRenderer {
     }
 
     public void paint(Graphics2D g, boolean drawExtras) {
-        System.out.println("paint");
+
 //        new RuntimeException().printStackTrace();
         // create the hardware accelerated image.
         createBackBuffer();

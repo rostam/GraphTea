@@ -1,5 +1,7 @@
 package graphtea.extensions.algorithms;
 
+import java.util.ArrayList;
+import java.util.List;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -39,8 +41,8 @@ public class PrimAlgorithm extends GraphAlgorithm implements AlgorithmExtension 
         }
 
 //               graph.checkVertex(v);
-        Vector<Vertex> oVertices = new Vector<>();
-        Vector<Edge> oEdges = new Vector<>();
+        List<Vertex> oVertices = new ArrayList<>();
+        List<Edge> oEdges = new ArrayList<>();
 
         //dispatchEvent(new GraphEvent<VertexType,EdgeType>(oGraph));
 
@@ -87,7 +89,7 @@ public class PrimAlgorithm extends GraphAlgorithm implements AlgorithmExtension 
     }
 
     private Pair<Edge, Vertex>
-    getNewEdgeForSpanningTree(Vector<Vertex> vertices) {
+    getNewEdgeForSpanningTree(List<Vertex> vertices) {
         ArrayList<Edge> tempEdgeArray = new ArrayList<>();
 
         try {

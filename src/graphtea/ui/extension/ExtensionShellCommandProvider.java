@@ -8,7 +8,8 @@ package graphtea.ui.extension;
 import graphtea.platform.extension.Extension;
 
 import java.util.HashMap;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * a class for holding added commands
  */
@@ -20,7 +21,7 @@ public class ExtensionShellCommandProvider {
     public String desc;
     public String help;
     public static HashMap<String, ExtensionShellCommandProvider> commandsDict = new HashMap<>();
-    public static Vector<ExtensionShellCommandProvider> commands = new Vector<>();
+    public static List<ExtensionShellCommandProvider> commands = new ArrayList<>();
     public String name;
 
     public ExtensionShellCommandProvider(AbstractExtensionAction ths, Extension trgClass, String name, String abrv, String command, String desc, String help) {

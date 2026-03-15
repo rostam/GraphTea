@@ -179,7 +179,6 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
                 paint((Graphics2D) gg, e, getGraph(), drawExtras);
             }
         } catch (Exception ex) {
-            System.err.println("(FastPaint: Paint Error:");
             ExceptionHandler.catchException(ex);
             try {
                 Thread.sleep(100);

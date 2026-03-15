@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological;
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -13,7 +14,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -37,7 +37,7 @@ public class EM2LowerBound implements GraphReportExtension<RenderTable> {
         );
 
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" EM2(G) ");
         titles.add("Psi1");
         titles.add("Psi2");
@@ -96,7 +96,7 @@ public class EM2LowerBound implements GraphReportExtension<RenderTable> {
                 + Math.sqrt((2 * m - maxDeg - minDeg)
                 * (Mm11 - ((1 / maxDeg) + (1 / minDeg))))), 2) / (n - 2));
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
 
         v.add(zifL.getSecondZagreb(1));
 

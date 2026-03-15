@@ -7,7 +7,8 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * author: rostam
@@ -25,8 +26,8 @@ public class ILU extends GraphAlgorithm implements AlgorithmExtension {
         int fillin = 0;
         while(cont) {
             Vertex v1 = requestVertex(g, "select a vertex");
-            Vector<Vertex> InV = new Vector<>();
-            Vector<Vertex> OutV = new Vector<>();
+            List<Vertex> InV = new ArrayList<>();
+            List<Vertex> OutV = new ArrayList<>();
             for(Vertex v : g) {
                 if(g.isEdge(v,v1)) InV.add(v);
                 if(g.isEdge(v1,v)) OutV.add(v);

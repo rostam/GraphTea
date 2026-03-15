@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological;
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.graph.graph.GraphModel;
@@ -14,7 +15,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -36,7 +36,7 @@ public class HyperCheck implements GraphReportExtension<RenderTable> {
         ZagrebIndexFunctions zifL = new ZagrebIndexFunctions(AlgorithmUtils.createLineGraph(g));
 
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" Hyper ");
         titles.add(" T-1 ");
         titles.add(" T-2-HyHyper ");
@@ -82,7 +82,7 @@ public class HyperCheck implements GraphReportExtension<RenderTable> {
         double Mm11=zif.getFirstZagreb(-2);
         double chi=zif.getGeneralSumConnectivityIndex(2);
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(chi);
         v.add((2*(maxDeg+minDeg)*M21) -(4*m*maxDeg*minDeg));
         v.add((2*(maxDeg+minDeg)*M21) -(4*m*maxDeg*minDeg) + M21 +(2*maxDeg*minDeg*H)-(2*m*(maxDeg+minDeg)));

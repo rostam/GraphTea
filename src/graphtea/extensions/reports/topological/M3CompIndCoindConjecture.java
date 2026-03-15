@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological;
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.algorithms.GraphComplement;
 import graphtea.graph.graph.GraphModel;
@@ -14,7 +15,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -38,7 +38,7 @@ public class M3CompIndCoindConjecture implements GraphReportExtension<RenderTabl
 
 
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" M^3_1(G) + Mco^3_1(G) ");
         titles.add(" 1 ");
         titles.add(" 2 ");
@@ -75,7 +75,7 @@ public class M3CompIndCoindConjecture implements GraphReportExtension<RenderTabl
         double Mc31=zif.getFirstZagrebCoindex(2);
         double Mc31gc=zifc.getFirstZagrebCoindex(2);
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(M31gc + Mc31gc);
         //1
         v.add(n * Math.pow(n - 1, 3) - 4 * m * (n - 1) * (n - 1)

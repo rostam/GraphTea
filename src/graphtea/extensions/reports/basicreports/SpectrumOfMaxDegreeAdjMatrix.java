@@ -5,6 +5,7 @@
 
 package graphtea.extensions.reports.basicreports;
 
+import java.util.List;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;

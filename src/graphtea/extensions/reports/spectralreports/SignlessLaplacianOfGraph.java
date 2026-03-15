@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.spectralreports;
 
+import java.util.List;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;

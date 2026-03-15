@@ -23,7 +23,7 @@ public class TestHomomorphism {
     public void testDegreeHomomorphism() {
         FloydWarshall fw = new FloydWarshall();
         int[][] dist = fw.getAllPairsShortestPathWithoutWeight(peterson);
-        Vector<Integer> coloring = new HeuristicGreedyColoring().calculate(peterson);
+        List<Integer> coloring = new HeuristicGreedyColoring().calculate(peterson);
         Homomorphism hm = new Homomorphism(peterson, coloring, Collections.max(coloring));
         HashMap<Vertex, Vertex> hmFunc = hm.getHomomorphism();
         int[][] distPeterson = fw.getAllPairsShortestPathWithoutWeight(peterson);

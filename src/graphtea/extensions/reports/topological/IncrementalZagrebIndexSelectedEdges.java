@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological;
 
+import java.util.List;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
@@ -12,7 +13,6 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -41,7 +41,7 @@ public class IncrementalZagrebIndexSelectedEdges implements GraphReportExtension
     public RenderTable calculate(GraphModel g) {
         ArrayList<String> out = new ArrayList<>();
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add("Alpha");
         titles.add("First General Zagreb Index");
         titles.add("Second General Zagreb Index");
@@ -51,7 +51,7 @@ public class IncrementalZagrebIndexSelectedEdges implements GraphReportExtension
 
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
-            Vector<Object> v = new Vector<>();
+            List<Object> v = new ArrayList<>();
             v.add(alpha);
             v.add(zif.getFirstZagrebSelectedEdges(alpha));
             v.add(zif.getSecondZagrebSelectedEdges(alpha));

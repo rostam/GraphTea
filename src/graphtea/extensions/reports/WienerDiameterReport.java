@@ -6,7 +6,8 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rostami on 26.04.17.
@@ -16,13 +17,13 @@ public class WienerDiameterReport implements GraphReportExtension<RenderTable> {
     @Override
     public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" Wiener ");
         titles.add(" Diagonal ");
 
         WienerIndex wi = new WienerIndex();
         Diameter d = new Diameter();
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(wi.calculate(g));
         v.add(d.calculate(g));
         ret.setTitles(titles);

@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.visualization.corebasics.basics;
 
+import java.util.List;
 import graphtea.graph.graph.Vertex;
 
 import java.util.ArrayList;

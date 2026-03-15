@@ -1,17 +1,17 @@
 package graphtea.extensions.reports.coloring;
 
+import java.util.ArrayList;
 import Jama.Matrix;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.Vector;
 
 /**
  * Created by rostam on 21.01.16.
  *
  */
-public class SpMat extends Vector<HashSet<Integer>> {
+public class SpMat extends ArrayList<HashSet<Integer>> {
     private final int rows;
     private final int cols;
 

@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.spectralreports.maxflowmincut;
 
+import java.util.List;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 

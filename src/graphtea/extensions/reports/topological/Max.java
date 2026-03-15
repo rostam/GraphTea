@@ -6,7 +6,8 @@ import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Ali Rostami
@@ -25,7 +26,7 @@ public class Max implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" m ");
         titles.add(" n ");
         titles.add(" Max ");
@@ -38,7 +39,7 @@ public class Max implements GraphReportExtension<RenderTable> {
         double M12 = zif.getSecondZagreb(1);
         double M21 = zif.getFirstZagreb(1);
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(m);
         v.add(n);
 

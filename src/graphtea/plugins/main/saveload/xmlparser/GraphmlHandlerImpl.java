@@ -19,7 +19,6 @@ import java.util.HashMap;
 
 public class GraphmlHandlerImpl implements GraphmlHandler {
 
-    public static final boolean DEBUG = false;
     public HashMap<String, Vertex> vByID = new HashMap<>();
 
 
@@ -72,32 +71,26 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
         } else {
             graphMLEdgeKeys.put(attrname, attrtype);
         }
-        if (DEBUG) System.err.println("handle_key: " + data + "," + id + "," + s);
     }
 
     public void start_edge(final Attributes meta) throws SAXException {
         Vertex v1 = vByID.get(meta.getValue("source"));
         Vertex v2 = vByID.get(meta.getValue("target"));
 
-        if (DEBUG)
-            System.out.println("Edge between : (" + meta.getValue(EdgeAttrSet.SOURCE) + ")" + v1 + ",(" + meta.getValue(EdgeAttrSet.TARGET) + ")" + v2);
         Edge e = new Edge(v1, v2);
         //todo: the id can not be setted (it's a fix value)
 //        e.setID(meta.getValue(Edge.ID));
         g.insertEdge(e);
         cure = e;
         cureAS = new EdgeAttrSet(e);
-        if (DEBUG) System.err.println("start_edge: " + meta);
     }
 
     public void end_edge() throws SAXException {
 
-        if (DEBUG) System.err.println("end_edge()");
     }
 
     public void handle_locator(final Attributes meta) throws SAXException {
 
-        if (DEBUG) System.err.println("handle_locator: " + meta);
     }
 
     public void handle_data(final java.lang.String data, final Attributes meta) throws SAXException {
@@ -114,7 +107,6 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
             String ss = graphMLEdgeKeys.get(s1.substring(2));
             cureAS.put(s1.substring(2), StaticUtils.fromString(ss, data));
         }
-        if (DEBUG) System.err.println("handle_data: " + data + "," + s1);
     }
 
     public void start_node(final Attributes meta) throws SAXException {
@@ -123,16 +115,12 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
         vByID.put(id, v);
         curv = v;
         curvAS = new VertexAttrSet(curv);
-        if (DEBUG)
-            System.out.println("Vertex added : " + v);
 
-        if (DEBUG) System.err.println("start_node: " + meta);
     }
 
     public void end_node() throws SAXException {
         g.insertVertex(curv);
 
-        if (DEBUG) System.err.println("end_node()");
     }
 
     public void start_graph(final Attributes meta) throws SAXException {
@@ -142,56 +130,45 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
         }
         g.setLabel(meta.getValue("id"));
 
-        if (DEBUG) System.err.println("start_graph: " + meta);
     }
 
     public void end_graph() throws SAXException {
 
-        if (DEBUG) System.err.println("end_graph()");
     }
 
     public void start_endpoint(final Attributes meta) throws SAXException {
 
-        if (DEBUG) System.err.println("start_endpoint: " + meta);
     }
 
     public void end_endpoint() throws SAXException {
 
-        if (DEBUG) System.err.println("end_endpoint()");
     }
 
     public void start_graphml(final Attributes meta) throws SAXException {
 
-        if (DEBUG) System.err.println("start_graphml: " + meta);
     }
 
     public void end_graphml() throws SAXException {
 
-        if (DEBUG) System.err.println("end_graphml()");
     }
 
     public void start_hyperedge(final Attributes meta) throws SAXException {
 
-        if (DEBUG) System.err.println("start_hyperedge: " + meta);
     }
 
     public void end_hyperedge() throws SAXException {
 
-        if (DEBUG) System.err.println("end_hyperedge()");
     }
 
     public void start_port(final Attributes meta) throws SAXException {
 
-        if (DEBUG) System.err.println("start_port: " + meta);
     }
 
     public void end_port() throws SAXException {
 
-        if (DEBUG) System.err.println("end_port()");
     }
 
     public void handle_desc(final java.lang.String data, final Attributes meta) throws SAXException {
 
-        if (DEBUG) System.err.println("handle_desc: " + data);
     }
 }

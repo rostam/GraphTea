@@ -87,7 +87,7 @@ public class SelectPluginMethods implements PluginMethods {
     //selection modification methods
 //    private void shrinkSelection() {
 //        SubGraph selection = getSelected();
-//        Vector<Vertex> toSelect = new Vector<Vertex>();
+//        List<Vertex> toSelect = new List<Vertex>();
 //
 //        for (Vertex v : selection.vertices) {
 //            if (selection.getNeighbors(v).size() > 1)

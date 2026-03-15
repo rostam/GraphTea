@@ -8,7 +8,8 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Ali Rostami
@@ -37,7 +38,7 @@ public class AllEccen implements GraphReportExtension<RenderTable>{
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" m ");
         titles.add(" n ");
         titles.add(" total eccentricity ");
@@ -49,7 +50,7 @@ public class AllEccen implements GraphReportExtension<RenderTable>{
         if(m==10) return null;
         double n = g.getVerticesCount();
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(m);
         v.add(n);
 

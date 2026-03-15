@@ -96,7 +96,7 @@ public class BendedTrees extends AbstractAction {
             GeneralAnimator t = new GeneralAnimator(vertexPlaces, edgeBendPoints, g, blackboard);
             t.start();
         } catch (NullPointerException e) {
-            System.out.println("Graph is Empty");
+
 //            ExceptionHandler.catchException(e);
         }
 

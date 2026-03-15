@@ -5,6 +5,8 @@
 
 package graphtea.extensions.algorithms.spanningtree;
 
+import java.util.ArrayList;
+import java.util.List;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -86,7 +88,7 @@ public class Prim extends Algorithm implements AutomatedAlgorithm {
      * @return The spanning tree graph.
      * @throws InvalidGraphException if the supplied vertex is invalid.
      */
-    public Pair<Vector<Vertex>, Vector<Edge>>
+    public Pair<List<Vertex>, List<Edge>>
     findMinimumSpanningTree(Vertex v, Comparator<Edge> comparator)
             throws InvalidGraphException, InvalidVertexException {
         if (comparator == null)
@@ -106,7 +108,7 @@ public class Prim extends Algorithm implements AutomatedAlgorithm {
      * @return The spanning tree graph.
      * @throws InvalidGraphException if the supplied vertex is invalid.
      */
-    public Pair<Vector<Vertex>, Vector<Edge>>
+    public Pair<List<Vertex>, List<Edge>>
     findMinimumSpanningTree(Vertex v)
             throws InvalidGraphException, InvalidVertexException {
         graph.checkVertex(v);
@@ -114,8 +116,8 @@ public class Prim extends Algorithm implements AutomatedAlgorithm {
 //        GraphModel gCopy = graph.copy(gc);
 //        gCopy = graph;
 
-        Vector<Vertex> oVertices = new Vector<>();
-        Vector<Edge> oEdges = new Vector<>();
+        List<Vertex> oVertices = new ArrayList<>();
+        List<Edge> oEdges = new ArrayList<>();
 
         //dispatchEvent(new GraphEvent<Vertex,Edge>(oGraph));
 
@@ -157,7 +159,7 @@ public class Prim extends Algorithm implements AutomatedAlgorithm {
 
 
     private Pair<Edge, Vertex>
-    getNewEdgeForSpanningTree(Vector<Vertex> vertices, Vector<Edge> edges) {
+    getNewEdgeForSpanningTree(List<Vertex> vertices, List<Edge> edges) {
         ArrayList<Edge> tempEdgeArray = new ArrayList<>();
 
         try {

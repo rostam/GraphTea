@@ -17,7 +17,8 @@ import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 import java.util.Arrays;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Ali Rostami
@@ -46,7 +47,7 @@ public class ExampleChainGraph5 implements GraphGeneratorExtension, Parametrizab
     }
 
     public Edge[] getEdges() {
-        Vector<Edge> ret = new Vector<>();
+        List<Edge> ret = new ArrayList<>();
         for (int i = 0; i < n - 1; i++) {
             ret.add(new Edge(v[i], v[i + 1]));
         }

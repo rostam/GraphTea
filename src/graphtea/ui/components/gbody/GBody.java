@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.ui.components.gbody;
 
+import java.util.List;
 import graphtea.platform.lang.Pair;
 import graphtea.ui.components.gsidebar.GSideBarPanel;
 

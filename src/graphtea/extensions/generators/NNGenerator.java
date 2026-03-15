@@ -15,7 +15,8 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Ali Rostami
@@ -51,7 +52,7 @@ public class NNGenerator implements GraphGeneratorExtension, Parametrizable, Sim
     }
 
     public Edge[] getEdges() {
-        Vector<Edge> rets = new Vector<>();
+        List<Edge> rets = new ArrayList<>();
         for(int i=1;i<hiddenSize + 1;i++) {
             rets.add(new Edge(v[0], v[i]));
         }

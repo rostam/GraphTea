@@ -5,7 +5,7 @@
 package graphtea.platform.attribute;
 
 import java.util.Collection;
-import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Default implementation for the NotifiableAttributeSet
@@ -15,7 +15,7 @@ import java.util.Vector;
  */
 public class NotifiableAttributeSetImpl extends AttributeSetImpl implements NotifiableAttributeSet {
 
-    Vector<AttributeListener> globalListeners = new Vector<>();
+    CopyOnWriteArrayList<AttributeListener> globalListeners = new CopyOnWriteArrayList<>();
 
 
     public void put(String name, Object value) {

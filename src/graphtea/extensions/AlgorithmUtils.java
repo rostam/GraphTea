@@ -5,6 +5,8 @@
 
 package graphtea.extensions;
 
+import java.util.ArrayList;
+import java.util.List;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
@@ -73,7 +75,7 @@ public class AlgorithmUtils {
     Path<Vertex> getPath(GraphModel g, Vertex source, Vertex dest) {
         boolean[] vertexMarksBackup = LibraryUtils.getVertexMarks(g);
         clearVertexMarks(g);
-        Vector<Vertex> q = new Vector<>();
+        List<Vertex> q = new ArrayList<>();
         q.add(source);
         source.setMark(true);
 
@@ -494,7 +496,7 @@ public class AlgorithmUtils {
         double[] rv = ed.getRealEigenvalues();
         double[] iv = ed.getImagEigenvalues();
         String res = "";
-        Vector<Double> EigenValues = new Vector<>();
+        List<Double> EigenValues = new ArrayList<>();
         for (int i = 0; i < rv.length; i++) {
             if (iv[i] != 0)
                 res +="" + AlgorithmUtils.round(rv[i],10) + " + " + AlgorithmUtils.round(iv[i],10) + "i";

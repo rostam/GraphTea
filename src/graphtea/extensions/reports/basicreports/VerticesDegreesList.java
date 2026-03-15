@@ -5,6 +5,7 @@
 
 package graphtea.extensions.reports.basicreports;
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;

@@ -11,7 +11,8 @@ import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Ali Rostami
@@ -33,7 +34,7 @@ public class ZagrebIndex implements GraphReportExtension<RenderTable>, Parametri
 
     public RenderTable calculate(GraphModel g) {
         RenderTable renderTable = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add("First General Zagreb Index");
         titles.add("Second General Zagreb Index");
         titles.add("First Reformulated Zagreb Index");
@@ -41,7 +42,7 @@ public class ZagrebIndex implements GraphReportExtension<RenderTable>, Parametri
         renderTable.setTitles(titles);
 
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        Vector<Object> values = new Vector<>();
+        List<Object> values = new ArrayList<>();
         values.add(zif.getFirstZagreb(alpha));
         values.add(zif.getSecondZagreb(alpha));
         values.add(zif.getFirstReZagreb(alpha));

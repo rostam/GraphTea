@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.energy;
 
+import java.util.List;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
@@ -21,7 +22,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -39,7 +39,7 @@ public class LEL_vs_KF implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
        // titles.add(" LEL ");
         titles.add("m ");
         titles.add("n ");
@@ -121,7 +121,7 @@ public class LEL_vs_KF implements GraphReportExtension<RenderTable> {
 
 
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         LaplacianEnergyLike lel = new LaplacianEnergyLike();
         SignlessLaplacianEnergy  sl = new SignlessLaplacianEnergy();
         LaplacianEnergy le = new LaplacianEnergy();

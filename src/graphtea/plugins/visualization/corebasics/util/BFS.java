@@ -8,8 +8,8 @@ package graphtea.plugins.visualization.corebasics.util;
  * @author Rouzbeh Ebrahimi
  */
 public class BFS {
-//       private static int BFS( Vector<Vertex> currentLevel, int maxLevel) {
-//        Vector<Vertex> nextLevel = new Vector<Vertex>();
+//       private static int BFS( List<Vertex> currentLevel, int maxLevel) {
+//        List<Vertex> nextLevel = new List<Vertex>();
 //        for (Vertex v : currentLevel) {
 //            v.setMark(true);
 //            Iterator<Edge> em = this.;
