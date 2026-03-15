@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.plugins.algorithmanimator.extension;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.platform.StaticUtils;
 import graphtea.platform.core.AbstractAction;
@@ -21,7 +22,7 @@ public class AlgorithmExtensionHandler implements ExtensionHandler {
                 AlgorithmExtension vm = (AlgorithmExtension) ext;
                 a = new AlgorithmExtensionAction(b, vm);
             } catch (Exception e) {
-                e.printStackTrace();
+                ExceptionHandler.catchException(e);
                 StaticUtils.addExceptiontoLog(e, b);
             }
         }

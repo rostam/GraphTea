@@ -3,6 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.algorithmanimator.core.atoms;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.Vertex;
@@ -62,7 +63,7 @@ public class PrePostWork implements AtomAnimator<Event> {
 //            Thread.sleep(100);
 //            wait(400);
 //        } catch (Exception e) {
-//            e.printStackTrace();
+//            ExceptionHandler.catchException(e);
 //        }
     }
 
@@ -77,7 +78,7 @@ public class PrePostWork implements AtomAnimator<Event> {
             Thread.sleep(100);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
     }
 

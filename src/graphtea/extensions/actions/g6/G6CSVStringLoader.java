@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.actions.g6;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.extensions.G6Format;
 import graphtea.graph.graph.GPoint;
@@ -50,7 +51,7 @@ public class G6CSVStringLoader implements GraphActionExtension, Parametrizable {
             try {
                 file_scan = new Scanner(curFile);
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                ExceptionHandler.catchException(e);
             }
 
             int given_id = sc.nextInt();

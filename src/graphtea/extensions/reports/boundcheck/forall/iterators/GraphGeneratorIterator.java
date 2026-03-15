@@ -1,4 +1,5 @@
 package graphtea.extensions.reports.boundcheck.forall.iterators;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.extensions.G6Format;
 import graphtea.extensions.reports.boundcheck.forall.IterProgressBar;
@@ -124,7 +125,7 @@ public class GraphGeneratorIterator extends GraphModelIterator {
                 g = ((GraphGeneratorExtension) ext).generateGraph();
 
         } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         cnt++;
         pb.setValue(cnt);

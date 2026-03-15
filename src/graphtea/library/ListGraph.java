@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
 package graphtea.library;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 
 import Jama.Matrix;
@@ -832,7 +833,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
             for (int i = 0; i < getVerticesCount(); i++)
                 setId(getVertex(i), i);
         } catch (InvalidVertexException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
     }
 
@@ -863,7 +864,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
                 oGraph.insertEdge(gc.convert(edge, alvt.get(getId(edge.source)),
                         alvt.get(getId(edge.target))));
             } catch (InvalidVertexException ex) {
-                ex.printStackTrace();
+                ExceptionHandler.catchException(ex);
                 throw new InvalidGraphException();
             }
         }

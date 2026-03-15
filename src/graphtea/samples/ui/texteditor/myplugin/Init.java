@@ -48,7 +48,7 @@ public class Init implements PluginInterface {
                 int col = caretPosition - editor.getLineStartOffset(line);
                 lbl.setText(line + ":" + col);
             } catch (BadLocationException e1) {
-                e1.printStackTrace();
+                ExceptionHandler.catchException(e1);
             }
         });
 

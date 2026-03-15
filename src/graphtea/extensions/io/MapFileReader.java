@@ -1,4 +1,5 @@
 package graphtea.extensions.io;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
@@ -71,7 +72,7 @@ public class MapFileReader {
 
 		} catch (DOMException | ParserConfigurationException | SAXException
 				| IOException e) {
-			e.printStackTrace();
+			ExceptionHandler.catchException(e);
 		}
 	}
 

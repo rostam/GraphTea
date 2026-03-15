@@ -1,4 +1,5 @@
 package graphtea.extensions.algorithms;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
@@ -42,7 +43,7 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
             File selectedFile = fileChooser.getSelectedFile();
             fread = new Scanner(selectedFile);
             } catch (Exception e) {
-                e.printStackTrace();
+                ExceptionHandler.catchException(e);
             }
         }
 

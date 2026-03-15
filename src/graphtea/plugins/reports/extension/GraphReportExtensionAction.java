@@ -3,6 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.reports.extension;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
 import graphtea.platform.core.BlackBoard;
@@ -141,7 +142,7 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
                         JOptionPane.showMessageDialog(jd, "Saved to file successfully.");
 
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        ExceptionHandler.catchException(e);
                     }
 
                 });

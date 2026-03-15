@@ -11,6 +11,7 @@
  */
 
 package graphtea.library;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 
 import Jama.Matrix;
@@ -190,7 +191,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
                 getVertex(i).setId(i);
         } catch (InvalidVertexException e) {
             System.out.println("NEVER-HAPPENS EXCEPTION");
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
     }
 
@@ -353,7 +354,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
         } catch (InvalidGraphException e) {
             //Generally should not happen. So I don't bother the user by
             //adding throws declaration.
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
             return false;
         }
     }
@@ -370,7 +371,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
         } catch (InvalidGraphException e) {
             //Generally should not happen. So I don't bother the user by
             //adding throws declaration.
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
             return false;
         }
     }
@@ -581,7 +582,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
                 removeEdge(lastEdge);
             } catch (InvalidEdgeException e) {
                 System.out.println("Invalid remove operation.");
-                e.printStackTrace();
+                ExceptionHandler.catchException(e);
             }
         }
 
@@ -644,7 +645,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
         } catch (Exception e) {
             //never happens
             System.out.println("NEVER-HAPPENS-BUG:getAdjMatrix:");
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         return matrix;
     }
@@ -670,7 +671,7 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
         } catch (Exception e) {
             //never happens
             System.out.println("NEVER-HAPPENS-BUG:getAdjMatrix:");
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         return matrix;
     }

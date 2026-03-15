@@ -1,4 +1,5 @@
 package graphtea.extensions.reports.spectralreports;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
@@ -82,7 +83,7 @@ public class EccentricityMatrixOfGraph implements GraphReportExtension<ArrayList
 			calc.addAll(getEigenValuesAndVectors(A));
 			return(calc);
 		} catch (Exception e) {
-			e.printStackTrace();
+			ExceptionHandler.catchException(e);
 		}
 		return null;
 

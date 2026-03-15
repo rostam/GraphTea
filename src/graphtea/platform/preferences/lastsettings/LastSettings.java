@@ -158,7 +158,7 @@ public class LastSettings implements AttributeListener {
             graphPrefs.exportSubtree(new FileOutputStream(new File(file, "graph.xml")));
 //            graphPrefs.exportNode(new FileOutputStream(new File("/graph.xml")));
         } catch (IOException | BackingStoreException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
 
     }

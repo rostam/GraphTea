@@ -3,6 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform.core;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.platform.StaticUtils;
 
@@ -133,7 +134,7 @@ public class BlackBoard {
                 try {
                     listener.keyChanged(key, newValue);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    ExceptionHandler.catchException(e);
                     StaticUtils.addExceptiontoLog(e, this);
                 }
 //                }

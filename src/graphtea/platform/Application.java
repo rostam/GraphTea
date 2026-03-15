@@ -96,7 +96,7 @@ public class Application implements StorableOnExit {
             path = new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParent();
             System.out.println(path);
         } catch (Exception e1) {
-            e1.printStackTrace();
+            ExceptionHandler.catchException(e1);
         }
 
         ExtensionClassLoader e = new ExtensionClassLoader(path + File.separator + "extensions");
@@ -109,7 +109,7 @@ public class Application implements StorableOnExit {
                     ExtensionLoader.handleExtension(blackboard, extension);
                 }
             } catch (ClassNotFoundException e1) {
-                e1.printStackTrace();
+                ExceptionHandler.catchException(e1);
                 StaticUtils.addExceptiontoLog(e1, blackboard);
             }
         }

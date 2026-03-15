@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.io;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.*;
 import graphtea.plugins.main.saveload.core.GraphIOException;
@@ -143,7 +144,7 @@ public class LatexWriter implements GraphWriterExtension{
             output.flush();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
     }
 

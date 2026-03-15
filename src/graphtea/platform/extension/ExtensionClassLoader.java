@@ -157,7 +157,7 @@ public class ExtensionClassLoader extends ClassLoader {
         zipFile.close();
       } catch (IOException ioe) {
         System.err.println("Unhandled exception:");
-        ioe.printStackTrace();
+        ExceptionHandler.catchException(ioe);
       }
     }
 

@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.algorithms;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -63,7 +64,7 @@ public class GraphJoin extends GraphAlgorithm {
             try {
                 g.insertEdge(e);
             } catch (InvalidVertexException e1) {
-                e1.printStackTrace();
+                ExceptionHandler.catchException(e1);
             }
         }
         return g;

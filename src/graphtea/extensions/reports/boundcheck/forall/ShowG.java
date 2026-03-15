@@ -1,4 +1,5 @@
 package graphtea.extensions.reports.boundcheck.forall;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -17,7 +18,7 @@ public class ShowG {
         try {
             cur = new java.io.File(".").getCanonicalPath();
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
 
         if(System.getProperty("os.name").contains("Win")) {
@@ -34,7 +35,7 @@ public class ShowG {
         try {
             cur = new java.io.File(".").getCanonicalPath();
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
 
         if(System.getProperty("os.name").contains("Win")) {
@@ -51,7 +52,7 @@ public class ShowG {
         try {
             cur = new java.io.File(".").getCanonicalPath();
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         ProcessBuilder process;
         String parameter1="-p"+from+":"+to;
@@ -73,7 +74,7 @@ public class ShowG {
         try {
             cur = new java.io.File(".").getCanonicalPath();
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         ProcessBuilder process;
 
@@ -94,7 +95,7 @@ public class ShowG {
             Process p = process.start();
             return new BufferedReader(new InputStreamReader(p.getInputStream()));
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         return null;
     }

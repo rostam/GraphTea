@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.plugins.algorithmanimator.core.atoms.extension;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.platform.StaticUtils;
 import graphtea.platform.core.AbstractAction;
@@ -23,7 +24,7 @@ public class AtomAnimatorExtensionHandler implements ExtensionHandler {
                 a = new AtomAnimatorExtensionAction(b, vm);
                 AlgorithmAnimator.registerAtomAnimation(vm);
             } catch (Exception e) {
-                e.printStackTrace();
+                ExceptionHandler.catchException(e);
                 StaticUtils.addExceptiontoLog(e, b);
             }
         }

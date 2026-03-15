@@ -3,6 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.algorithmanimator.core.atoms;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Vertex;
 import graphtea.graph.ui.GTabbedGraphPane;
@@ -72,7 +73,7 @@ abstract class aa extends AbstractAction {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                ExceptionHandler.catchException(e);
             }
         disable();
     }

@@ -8,6 +8,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.io.specialjson;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.*;
 import graphtea.plugins.main.saveload.SaveLoadPluginMethods;
@@ -151,7 +152,7 @@ public class LoadSpecialjson implements GraphReaderExtension {
             jd.pack();
             jd.setVisible(true);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
 //
         for(String s : sttlWithoutCoordinates) {

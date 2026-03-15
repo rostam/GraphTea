@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.platform.attribute;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import java.util.Collection;
 import java.util.Map;
@@ -61,7 +62,7 @@ public class TimeLimitedNotifiableAttrSet<T extends AttributeSet> implements Run
                 old = inp.getAttrs();
                 Thread.sleep(millis);
             } catch (InterruptedException e1) {
-                e1.printStackTrace();
+                ExceptionHandler.catchException(e1);
             }
         }
     }

@@ -1,4 +1,5 @@
 package graphtea.extensions.io;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -57,7 +58,7 @@ public class GraphSaveObject implements Serializable {
             oop.flush();
             oop.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         return bout.toByteArray();
     }
@@ -70,7 +71,7 @@ public class GraphSaveObject implements Serializable {
             oop.flush();
             oop.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         return bout.toByteArray();
     }
@@ -93,7 +94,7 @@ public class GraphSaveObject implements Serializable {
                     new ByteArrayInputStream(b));
             return (GraphSaveObject) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         return null;
 

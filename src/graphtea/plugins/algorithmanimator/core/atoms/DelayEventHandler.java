@@ -3,6 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.algorithmanimator.core.atoms;
+import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.library.event.DelayEvent;
 import graphtea.library.event.Event;
@@ -22,7 +23,7 @@ public class DelayEventHandler implements AtomAnimator<DelayEvent> {
         try {
             Thread.sleep(300);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         return event;
     }
