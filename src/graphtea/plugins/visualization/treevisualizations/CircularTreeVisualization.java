@@ -92,7 +92,7 @@ try {
     visitedVertices.add(root);
     locateAll(visitedVertices, 800, 80);
     *//*BaseVertexProperties properties = new BaseVertexProperties(root.getColor(), root.getMark());
-            properties.obj = new Double(2*Math.PI);
+            properties.obj = Double.valueOf(2*Math.PI);
             root.setProp(properties);
             locateAllSubTrees(root, 40, 0);*//*
             GeneralAnimator t = new GeneralAnimator(vertexPlaces, g, blackboard);
@@ -222,7 +222,7 @@ try {
             visitedVertices.add(root);
             locateAll(visitedVertices, 800, radius);
             /*BaseVertexProperties properties = new BaseVertexProperties(root.getColor(), root.getMark());
-            properties.obj = new Double(2*Math.PI);
+            properties.obj = Double.valueOf(2*Math.PI);
             root.setProp(properties);
             locateAllSubTrees(root, 40, 0);*/
 
