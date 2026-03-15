@@ -18,7 +18,6 @@ import graphtea.library.BaseVertex;
 import graphtea.library.algorithms.util.EventUtils;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * @see AlgorithmUtils
@@ -27,10 +26,7 @@ public class LibraryUtils {
 
     public static boolean falsifyEdgeMarks(GraphModel g) {
         boolean flag = false;
-        Edge e;
-        Iterator<Edge> iet = g.edgeIterator();
-        while (iet.hasNext()) {
-            e = iet.next();
+        for (Edge e : g.edges()) {
             flag |= e.getMark();
             e.setMark(false);
         }
