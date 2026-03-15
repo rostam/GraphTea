@@ -12,10 +12,11 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.plugin.PluginMethods;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * @author azin azadi
@@ -102,7 +103,7 @@ public class SelectPluginMethods implements PluginMethods {
     public void expandSelection() {
         GraphModel g = b.getData(GraphAttrSet.name);
         HashSet<Vertex> sV = getSelectedVertices();
-        Vector<Vertex> toSelect = new Vector<>();
+        List<Vertex> toSelect = new ArrayList<>();
 
         for (Vertex v : sV) {
             for (Vertex nv : g.getNeighbors(v))

@@ -10,7 +10,8 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * this class is do the update of the graph after the selection changes, it sets the selection of vertices and edges, and
@@ -41,7 +42,7 @@ public class SelectUpdater extends AbstractAction {
                 select(v);
                 last.vertices.add(v);
             }
-        Vector<Vertex> rm = new Vector<>();
+        List<Vertex> rm = new ArrayList<>();
         for (Vertex v : last.vertices)
             if (!sd.vertices.contains(v)) {
                 deselect(v);
@@ -53,7 +54,7 @@ public class SelectUpdater extends AbstractAction {
                 select(e);
                 last.edges.add(e);
             }
-        Vector<Edge> rme = new Vector<>();
+        List<Edge> rme = new ArrayList<>();
         for (Edge e : last.edges)
             if (!sd.edges.contains(e)) {
                 deselect(e);

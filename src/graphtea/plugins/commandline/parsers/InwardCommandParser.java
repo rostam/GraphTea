@@ -17,10 +17,11 @@ import graphtea.ui.extension.ExtensionShellCommandProvider;
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 /**
  * @author Mohammad Ali Rostatmi
@@ -56,7 +57,7 @@ public class InwardCommandParser {
             ExceptionHandler.catchException(evalError);
         }
         String h = "";
-        Vector<String> hh = new Vector<>();
+        List<String> hh = new ArrayList<>();
 
         for (String s : commands.keySet()) {
             hh.add(getHelpString(s));
