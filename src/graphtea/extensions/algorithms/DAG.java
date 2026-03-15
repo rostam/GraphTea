@@ -237,18 +237,18 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
     /**
      * finds all paths in the given DAG from src to trg.
      */
-    public static 
-    Vector<Stack<Vertex>> findAllPaths(GraphModel dag, Vertex src, Vertex trg) {
-        Vector<Stack<Vertex>> ret = new Vector<>();
-        findAllPathsRec(dag, src, trg, ret, new Stack<>());
+    public static
+    Vector<Deque<Vertex>> findAllPaths(GraphModel dag, Vertex src, Vertex trg) {
+        Vector<Deque<Vertex>> ret = new Vector<>();
+        findAllPathsRec(dag, src, trg, ret, new ArrayDeque<>());
         return ret;
     }
 
-    private static 
-    void findAllPathsRec(GraphModel graph, Vertex src, Vertex trg, Vector<Stack<Vertex>> ret, Stack<Vertex> currentPath) {
+    private static
+    void findAllPathsRec(GraphModel graph, Vertex src, Vertex trg, Vector<Deque<Vertex>> ret, Deque<Vertex> currentPath) {
         currentPath.push(src);
         if (src == trg) {
-            ret.add((Stack<Vertex>) currentPath.clone());
+            ret.add(new ArrayDeque<>(currentPath));
         } else {
             for (Vertex v : graph.getNeighbors(src)) {
                 findAllPathsRec(graph, v, trg, ret, currentPath);
