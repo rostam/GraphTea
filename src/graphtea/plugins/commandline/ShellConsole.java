@@ -358,7 +358,7 @@ public class ShellConsole extends JScrollPane
         String prompt = ">>  ";//line.substring( i+1, cmdStart );
 
         // Show ambiguous
-        StringBuffer sb = new StringBuffer("\n");
+        StringBuilder sb = new StringBuilder("\n");
         for (i = 0; i < complete.length && i < SHOW_AMBIG_MAX; i++)
             sb.append(complete[i]).append("\n");
         if (i == SHOW_AMBIG_MAX)

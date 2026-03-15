@@ -12,24 +12,25 @@ import graphtea.platform.core.Listener;
 import graphtea.plugins.main.GraphData;
 import graphtea.ui.UIUtils;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
-import java.util.Stack;
 
 public class UndoAction extends AbstractAction {
     public static final String UNDO_EVENT = UIUtils.getUIEventKey("Undo Action");
     public static final String REDO_EVENT = UIUtils.getUIEventKey("Redo Action");
-    private final HashMap<GraphModel, Stack<GraphSaveObject>> undoers = new HashMap<>();
-    private final HashMap<GraphModel, Stack<GraphSaveObject>> redoers = new HashMap<>();
+    private final HashMap<GraphModel, Deque<GraphSaveObject>> undoers = new HashMap<>();
+    private final HashMap<GraphModel, Deque<GraphSaveObject>> redoers = new HashMap<>();
 
     public void pushUndo(GraphModel g) {
         if (g == null) return;
 
         GraphSaveObject gso = new GraphSaveObject(g);
 
-        redoers.put(g, new Stack<>());  //reset redo for this graph
+        redoers.put(g, new ArrayDeque<>());  //reset redo for this graph
 
         if (undoers.get(g) == null || undoers.get(g).size() == 0) {
-            undoers.put(g, new Stack<>());
+            undoers.put(g, new ArrayDeque<>());
             undoers.get(g).push(gso);
             return;
         }
@@ -59,7 +60,7 @@ public class UndoAction extends AbstractAction {
         if (undoers.get(label) == null) return null;
         if (undoers.get(label).size() == 0) return null;
         GraphSaveObject temp = undoers.get(label).pop();
-        redoers.putIfAbsent(label, new Stack<>());
+        redoers.putIfAbsent(label, new ArrayDeque<>());
         redoers.get(label).push(temp);
         return temp;
     }

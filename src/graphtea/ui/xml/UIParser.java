@@ -18,7 +18,7 @@ import org.xml.sax.*;
  */
 public class UIParser implements ContentHandler {
 
-    private final java.lang.StringBuffer buffer;
+    private final java.lang.StringBuilder buffer;
 
     private final UIHandler handler;
 
@@ -37,7 +37,7 @@ public class UIParser implements ContentHandler {
 
         this.handler = handler;
         this.resolver = resolver;
-        buffer = new StringBuffer(111);
+        buffer = new StringBuilder(111);
         context = new java.util.Stack();
     }
 
