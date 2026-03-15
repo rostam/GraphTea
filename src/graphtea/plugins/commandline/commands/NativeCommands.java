@@ -13,7 +13,6 @@ import graphtea.platform.parameter.Parameter;
 import graphtea.plugins.main.GraphData;
 
 import java.util.HashMap;
-import java.util.Iterator;
 /**
  * @author Mohammad Ali Rostami
  */
@@ -35,33 +34,26 @@ public class NativeCommands {
         String graph2 = "";
         graph1 += g1.getVerticesCount() + "\n";
         graph2 += g2.getVerticesCount() + "\n";
-        Iterator<Edge> it1 = g1.edgeIterator();
-        Iterator<Edge> it2 = g2.edgeIterator();
 
         HashMap<Integer, Integer> map = new HashMap<>();
         HashMap<Integer, Integer> nmap = new HashMap<>();
-        Iterator<Vertex> vm = g1.iterator();
         int counter = 0;
-        while (vm.hasNext()) {
-            Vertex vv = vm.next();
+        for (Vertex vv : g1) {
             map.put(vv.getId(), counter);
             nmap.put(counter++, vv.getId());
         }
 
-        while (it1.hasNext()) {
-            Edge e = it1.next();
+        for (Edge e : g1.getEdges()) {
             graph1 += map.get(e.source.getId()) + " " + map.get(e.target.getId()) + "\n";
         }
 
         map = new HashMap<>();
-        vm = g2.iterator();
         counter = 0;
 
-        while (vm.hasNext())
-            map.put(vm.next().getId(), counter++);
+        for (Vertex vv : g2)
+            map.put(vv.getId(), counter++);
 
-        while (it2.hasNext()) {
-            Edge e = it2.next();
+        for (Edge e : g2.getEdges()) {
             graph2 += map.get(e.source.getId()) + " " + map.get(e.target.getId()) + "\n";
         }
 

@@ -12,7 +12,6 @@ import graphtea.ui.components.utils.GFrameLocationProvider;
 import javax.swing.*;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -56,31 +55,20 @@ public class GTabbedAttributePane extends JTabbedPane {
         setPreferredSize(GFrameLocationProvider.getPrefSize());
         setLocation(GFrameLocationProvider.getPrefLocation());
         setName("Preferences");
-        Iterator<String> iter;
         if (!isComplicatedForm) {
-            iter = tabs.keySet().iterator();
-        } else {
-            iter = complicatedTabs.keySet().iterator();
-        }
-        while (iter.hasNext()) {
-            if (!isComplicatedForm) {
-                String title = iter.next();
+            for (String title : tabs.keySet()) {
                 GPropertyEditor gp = new GPropertyEditor();
                 gp.connect(tabs.get(title).attributeSet);
                 gp.setVisible(true);
                 addTab(title, gp);
-            } else {
-                String title = iter.next();
+            }
+        } else {
+            for (String title : complicatedTabs.keySet()) {
                 GPropertyEditor gp = new GPropertyEditor();
-                Iterator<AbstractPreference> i = complicatedTabs.get(title).iterator();
                 NotifiableAttributeSetImpl attributeSet = new NotifiableAttributeSetImpl();
-                while (i.hasNext()) {
-                    AbstractPreference ap = i.next();
-
+                for (AbstractPreference ap : complicatedTabs.get(title)) {
                     Map<String, Object> attributeMap = ap.attributeSet.getAttrs();
-                    Iterator<String> j = attributeMap.keySet().iterator();
-                    while (j.hasNext()) {
-                        String name = j.next();
+                    for (String name : attributeMap.keySet()) {
                         Object o = attributeMap.get(name);
                         attributeSet.put(ap.preferenceName + ":   " + name, o);
                     }

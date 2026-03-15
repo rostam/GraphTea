@@ -13,7 +13,6 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * @author Mohammad Ali Rostami
@@ -35,9 +34,7 @@ public class VertexCorona extends GraphAlgorithm {
             g.insertVertex(vt);
         }
 
-        Iterator<Edge> iet = g1.lightEdgeIterator();
-        while (iet.hasNext()) {
-            Edge e = iet.next();
+        for (Edge e : g1.getEdges()) {
             g.insertEdge(e.getCopy(temp1.get(e.source), temp1.get(e.target)));
         }
 
@@ -53,9 +50,7 @@ public class VertexCorona extends GraphAlgorithm {
 
             }
 
-            iet = g2.lightEdgeIterator();
-            while (iet.hasNext()) {
-                Edge e = iet.next();
+            for (Edge e : g2.getEdges()) {
                 g.addEdge(e.getCopy(temp2.get(e.source), temp2.get(e.target)));
             }
 

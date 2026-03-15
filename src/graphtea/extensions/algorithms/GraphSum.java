@@ -15,7 +15,6 @@ import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 
 /**
  * @author Mohammad Ali Rostami
@@ -43,16 +42,12 @@ public class GraphSum extends GraphAlgorithm {
             g.insertVertex(vt);
         }
 
-        Iterator<Edge> iet = g1.lightEdgeIterator();
-        while (iet.hasNext()) {
-            Edge e = iet.next();
+        for (Edge e : g1.getEdges()) {
             E.add(e.getCopy(temp.get(e.source), temp.get(e.target)));
-            //E.add(iet.next());
+            //E.add(e);
         }
 
-        iet = g2.lightEdgeIterator();
-        while (iet.hasNext()) {
-            Edge e = iet.next();
+        for (Edge e : g2.getEdges()) {
             E.add(e.getCopy(temp.get(e.source), temp.get(e.target)));
         }
 

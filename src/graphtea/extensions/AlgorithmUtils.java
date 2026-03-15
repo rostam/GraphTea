@@ -586,13 +586,8 @@ public class AlgorithmUtils {
             g2.insertVertex(v);
         }
         for (Vertex v : g1) {
-            Iterator<Edge> ie = g1.lightEdgeIterator(v);
-
-            while (ie.hasNext()) {
-                Edge e = ie.next();
-                Iterator<Edge> ie2 = g1.lightEdgeIterator(v);
-                while (ie2.hasNext()) {
-                    Edge e2 = ie2.next();
+            for (Edge e : g1.edges(v)) {
+                for (Edge e2 : g1.edges(v)) {
                     if (e != e2) {
                         Edge ne = new Edge((Vertex) e.getProp().obj, (Vertex) e2.getProp().obj);
                         g2.insertEdge(ne);

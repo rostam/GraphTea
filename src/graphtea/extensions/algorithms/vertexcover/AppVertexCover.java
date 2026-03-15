@@ -37,10 +37,9 @@ public class AppVertexCover extends GraphAlgorithm implements AlgorithmExtension
         List<Vertex> C = new ArrayList<>();
         List<Vertex> D = new ArrayList<>();
         List<Vertex> marked = new ArrayList<>();
-        Iterator<Edge> i;
         //cleat marks
-        for (Iterator<Edge> ie = graph.edgeIterator(); ie.hasNext();)
-            ie.next().setMark(false);
+        for (Edge edge : graph.getEdges())
+            edge.setMark(false);
         Edge e;
 
         Iterator<Edge> iet = graph.edgeIterator();
@@ -51,15 +50,12 @@ public class AppVertexCover extends GraphAlgorithm implements AlgorithmExtension
                 step("");
                 C.add(e.source);
                 C.add(e.target);
-                            i = graph.edgeIterator(e.source);
-                            while(i.hasNext()){
-                                gCopy.removeEdge(i.next());
-
+                            for (Edge edge : graph.edges(e.source)) {
+                                gCopy.removeEdge(edge);
                             }
 
-                            i= gCopy.edgeIterator(e.target);
-                            while(i.hasNext()){
-                                gCopy.removeEdge(i.next());
+                            for (Edge edge : gCopy.edges(e.target)) {
+                                gCopy.removeEdge(edge);
                             }
                             iet = gCopy.edgeIterator();
             }
