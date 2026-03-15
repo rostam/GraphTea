@@ -7,7 +7,8 @@ import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 @CommandAttitude(name = "HosoyaIndex", abbreviation = "_hosoya")
 public class Hosoya implements GraphReportExtension<RenderTable> {
@@ -23,10 +24,10 @@ public class Hosoya implements GraphReportExtension<RenderTable> {
     @Override
     public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add("Hosoya");
         ret.setTitles(titles);
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(new NumOfIndSets().calculate(AlgorithmUtils.createLineGraph(g)));
         ret.add(v);
         return ret;

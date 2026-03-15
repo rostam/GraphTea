@@ -23,7 +23,6 @@ import graphtea.plugins.reports.extension.GraphReportExtensionAction;
 import javax.swing.*;
 import java.io.File;
 import java.util.List;
-import java.util.Vector;
 
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
     public ConjectureChecking() {

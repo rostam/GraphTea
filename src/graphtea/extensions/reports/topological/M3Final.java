@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological;
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -13,7 +14,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -37,7 +37,7 @@ public class M3Final implements GraphReportExtension<RenderTable> {
         );
 
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" M^3_1(G) ");
         titles.add("1 ");
         titles.add("2");
@@ -95,7 +95,7 @@ public class M3Final implements GraphReportExtension<RenderTable> {
         double Mm31=zif.getFirstZagreb(-4);
         double Mm11=zif.getFirstZagreb(-2);
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
 
         v.add(zif.getFirstZagreb(2));
 

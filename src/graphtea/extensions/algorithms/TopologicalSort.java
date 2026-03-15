@@ -5,6 +5,7 @@
 
 package graphtea.extensions.algorithms;
 
+import java.util.List;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;

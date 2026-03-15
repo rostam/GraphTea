@@ -11,6 +11,7 @@
  */
 
 package graphtea.library;
+import java.util.List;
 import graphtea.platform.core.exception.ExceptionHandler;
 
 

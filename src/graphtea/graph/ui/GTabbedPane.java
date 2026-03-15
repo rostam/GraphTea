@@ -72,7 +72,7 @@ public class GTabbedPane {
             } catch (Exception e) {
                 ExceptionHandler.catchException(e);
             }
-        } else System.err.println("Error in type");
+        }
     }
 
     public void registerType(Class clazz, Class<? extends JComponent> jcclazz) {

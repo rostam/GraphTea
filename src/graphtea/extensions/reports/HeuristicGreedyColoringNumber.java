@@ -10,7 +10,8 @@ import graphtea.graph.graph.Vertex;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.Collections;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Azin Azadi
@@ -28,7 +29,7 @@ public class HeuristicGreedyColoringNumber implements GraphReportExtension<Integ
     @Override
     public Integer calculate(GraphModel g) {
         HeuristicGreedyColoring.heuristicColoring(g);
-        Vector<Integer> ret = new Vector<>();
+        List<Integer> ret = new ArrayList<>();
         for(Vertex v : g) {
             ret.add(v.getColor());
         }

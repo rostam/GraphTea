@@ -13,7 +13,8 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
  */
 
 @CommandAttitude(name = "maximum_independent_set", abbreviation = "_mis")
-public class MaxIndependentSetReport implements GraphReportExtension<Vector<SubGraph>> {
+public class MaxIndependentSetReport implements GraphReportExtension<List<SubGraph>> {
 //    @Parameter(name = "Lower Bound", description = "Lower Bound for the number of independent set members, This will make the search Interval smaller")
 //    public Integer lowerBound = 1;
 //
@@ -38,9 +39,9 @@ public class MaxIndependentSetReport implements GraphReportExtension<Vector<SubG
     }
 
 
-    public Vector<SubGraph> calculate(GraphModel g) {
-        Vector<ArrayDeque<Vertex>> maxsets = getMaxIndependentSet(g);
-        Vector<SubGraph> ret = new Vector<>();
+    public List<SubGraph> calculate(GraphModel g) {
+        List<ArrayDeque<Vertex>> maxsets = getMaxIndependentSet(g);
+        List<SubGraph> ret = new ArrayList<>();
         for (ArrayDeque<Vertex> maxset : maxsets) {
             SubGraph sd = new SubGraph(g);
             sd.vertices = new HashSet<>();
@@ -50,11 +51,11 @@ public class MaxIndependentSetReport implements GraphReportExtension<Vector<SubG
         return ret;
     }
 
-    public static Vector<ArrayDeque<Vertex>> getMaxIndependentSet(GraphModel graph) {
+    public static List<ArrayDeque<Vertex>> getMaxIndependentSet(GraphModel graph) {
         Partitioner p = new Partitioner(graph);
         MaxIndSetSubSetListener l = new MaxIndSetSubSetListener();
         p.findAllSubsets(l);
-        return l.maxsets.stream().filter(set -> set.size() == l.max).collect(Collectors.toCollection(Vector::new));
+        return l.maxsets.stream().filter(set -> set.size() == l.max).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public static int getMaxIndependentSetSize(GraphModel graph, boolean putFirstVertexInSet) {
@@ -70,7 +71,7 @@ public class MaxIndependentSetReport implements GraphReportExtension<Vector<SubG
 }
 
 class MaxIndSetSubSetListener implements SubSetListener {
-    Vector<ArrayDeque<Vertex>> maxsets = new Vector<>();
+    List<ArrayDeque<Vertex>> maxsets = new ArrayList<>();
     int max = -1;
 
     public boolean subsetFound(int t, ArrayDeque<Vertex> complement, ArrayDeque<Vertex> set) {

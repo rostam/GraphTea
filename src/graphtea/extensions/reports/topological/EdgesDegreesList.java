@@ -5,6 +5,7 @@
 
 package graphtea.extensions.reports.topological;
 
+import java.util.List;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;

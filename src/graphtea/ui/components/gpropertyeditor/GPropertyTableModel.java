@@ -5,7 +5,8 @@
 package graphtea.ui.components.gpropertyeditor;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * it is the Table Model which is used to create a property editor. it has t columns and multiple rows,
@@ -45,8 +46,8 @@ public class GPropertyTableModel extends AbstractTableModel {
         return 2;
     }
 
-    Vector values = new Vector();
-    Vector names = new Vector();
+    List<Object> values = new ArrayList<>();
+    List<Object> names = new ArrayList<>();
 
     /**
      * clears all values ans names of the table

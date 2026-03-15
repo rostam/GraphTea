@@ -5,6 +5,7 @@
 
 package graphtea.extensions.reports.connectivity;
 
+import java.util.List;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;

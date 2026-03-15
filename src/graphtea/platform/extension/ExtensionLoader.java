@@ -13,9 +13,10 @@ import graphtea.platform.preferences.lastsettings.StorableOnExit;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * The base class for loading extensions.
@@ -28,7 +29,7 @@ public class ExtensionLoader implements StorableOnExit {
     private static final HashSet<UnknownExtensionLoader> registeredUnknownExtensionLoaders = new HashSet<>();
     // categorises the known extensions on their type. The type (eg report, generator, ...) is identified
     // by the respective ExtensionHandler
-    public static HashMap<Class<? extends ExtensionHandler>, Vector<Extension>> extensionsList = new HashMap<>();
+    public static HashMap<Class<? extends ExtensionHandler>, List<Extension>> extensionsList = new HashMap<>();
     // maps an extension class (eg GeneratePath), to the loaded AbstractAction
     public static HashMap<String, AbstractAction> loadedInstances = new HashMap<>();
 
@@ -74,7 +75,7 @@ public class ExtensionLoader implements StorableOnExit {
                     a = ret;
                 }
                 if (!extensionsList.containsKey(handler.getClass())){
-                    extensionsList.put(handler.getClass(), new Vector<>());
+                    extensionsList.put(handler.getClass(), new ArrayList<>());
                 }
                 extensionsList.get(handler.getClass()).add(e);
                 loadedInstances.put(e.getClass().getName(), a);

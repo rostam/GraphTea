@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.topological;
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -9,7 +10,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -28,7 +28,7 @@ public class FinalNewM2Lower implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" M^2_1(G) ");
         titles.add(" SR4 max ");
         titles.add(" SR4 min ");
@@ -73,7 +73,7 @@ public class FinalNewM2Lower implements GraphReportExtension<RenderTable> {
         double M22=zif.getSecondZagreb(2);
         double Mm11=zif.getFirstZagreb(-2);
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(M21);
 
 //SR4 max

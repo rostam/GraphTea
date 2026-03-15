@@ -8,7 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rostam on 15.02.16.
@@ -24,7 +25,7 @@ public class NDMetis {
         this.g=g;
     }
 
-    public Vector<Integer> getOrder() {
+    public List<Integer> getOrder() {
         writeGraphForMetis(g);
         ndmetis(name);
         return readOrder(name);
@@ -52,8 +53,8 @@ public class NDMetis {
         }
     }
 
-    public Vector<Integer> readOrder(String name) {
-        Vector<Integer> ret = new Vector<>();
+    public List<Integer> readOrder(String name) {
+        List<Integer> ret = new ArrayList<>();
         try {
             Scanner sc = new Scanner(new File("mats/"+name + ".iperm"));
             while (sc.hasNext()) {

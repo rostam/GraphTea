@@ -16,7 +16,7 @@ import java.net.URL;
 class ExternalLinkHandler implements HyperlinkHandler {
 
     public void handle(String url, BlackBoard b, URL currentURL) {
-        System.out.println(url);
+
         StaticUtils.browse(url);
     }
 }

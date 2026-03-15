@@ -7,7 +7,8 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 @CommandAttitude(name = "Eccentricity", abbreviation = "_eccentricity")
 public class Eccentricity implements GraphReportExtension<RenderTable> {
@@ -64,7 +65,7 @@ public class Eccentricity implements GraphReportExtension<RenderTable> {
     @Override
     public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add("Vertex");
         titles.add("Eccentricity");
         ret.setTitles(titles);
@@ -72,7 +73,7 @@ public class Eccentricity implements GraphReportExtension<RenderTable> {
         FloydWarshall fw = new FloydWarshall();
         int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
         for (int i = 0; i < g.getVerticesCount(); i++) {
-            Vector<Object> v = new Vector<>();
+            List<Object> v = new ArrayList<>();
             v.add(i);
             v.add(eccentricity(g, i, dist));
             ret.add(v);

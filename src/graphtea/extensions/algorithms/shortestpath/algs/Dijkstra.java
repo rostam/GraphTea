@@ -5,6 +5,9 @@
 
 package graphtea.extensions.algorithms.shortestpath.algs;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -37,7 +40,7 @@ public class Dijkstra extends Algorithm implements AutomatedAlgorithm {
      * @throws InvalidVertexException if the supplied vertices are invalid.
      */
 
-    public Vector<Vertex>
+    public List<Vertex>
     getShortestPath(final GraphModel graph,
                     Vertex vertex)
             throws InvalidVertexException {
@@ -46,7 +49,7 @@ public class Dijkstra extends Algorithm implements AutomatedAlgorithm {
         final Integer[] dist = new Integer[graph.getVerticesCount()];
         //the edge connected to i'th vertex
         final HashMap<Vertex, Edge> edges = new HashMap<>();
-        Vector<Vertex> prev = new Vector<>();
+        List<Vertex> prev = new ArrayList<>(Collections.nCopies(graph.getVerticesCount(), null));
 
         Arrays.fill(dist, Integer.MAX_VALUE);
 
@@ -94,7 +97,7 @@ public class Dijkstra extends Algorithm implements AutomatedAlgorithm {
                         target.setMark(true);
                         target.setColor(5);
                         Q.add(target);
-                        prev.add(edge.source.getId(), edge.target);
+                        prev.set(edge.source.getId(), edge.target);
                     }
                 }
             }

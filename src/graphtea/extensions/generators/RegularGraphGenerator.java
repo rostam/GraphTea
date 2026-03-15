@@ -16,7 +16,8 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: root
@@ -51,7 +52,7 @@ public class RegularGraphGenerator implements GraphGeneratorExtension, Parametri
     public Edge[] getEdges() {
         Edge[] ret = new Edge[(n*deg) / 2];
         int t = 0;
-        Vector<String> cach = new Vector<>();
+        List<String> cach = new ArrayList<>();
         if(deg%2 == 0) {
             for (int i = 0; i < n; i++) {
                 for (int j = i + 1; j < i+(deg / 2) + 1; j++) {

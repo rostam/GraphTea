@@ -139,10 +139,10 @@ public class CircularDispatchVisualization implements VisualizationExtension {
 
     static GraphModel g;
     /* public void performJob(Event eventName, Object value) {
-        System.out.println("hello");
-        visitedVertices=new Vector<Vertex>();
+
+        visitedVertices=new List<Vertex>();
         vertexPlaces=new HashMap<Vertex, Point2D>();
-        children=new Vector<Vertex>();
+        children=new List<Vertex>();
         g = ((GraphModel) (blackboard.getData(GraphAttrSet.name)));
         try {
             Cycle c = FindMainCycle(g);
@@ -151,7 +151,7 @@ public class CircularDispatchVisualization implements VisualizationExtension {
             GeneralAnimator t = new GeneralAnimator(vertexPlaces, g, blackboard);
             t.start();
         } catch (NullPointerException e) {
-            System.out.println("Graph is Empty");
+
 //            ExceptionHandler.catchException(e);
         }
 

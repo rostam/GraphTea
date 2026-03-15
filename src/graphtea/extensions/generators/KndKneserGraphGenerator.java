@@ -16,7 +16,8 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Author: M. Ali Rostami
@@ -41,7 +42,7 @@ public class KndKneserGraphGenerator implements GraphGeneratorExtension, Paramet
     }
 
     public Edge[] getEdges() {
-        Vector<Edge> ret = new Vector<>();
+        List<Edge> ret = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             for (int j = i; j < (Math.min(n, i + d)); j++) {
                 ret.add(new Edge(v[i], v[j]));

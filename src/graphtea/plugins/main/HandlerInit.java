@@ -24,11 +24,9 @@ public class HandlerInit implements PluginHandlerInterface {
     public void init(String path, BlackBoard blackboard) {
         UI ui = blackboard.getData(UI.name);
         try {
-            System.err.println(path);
             ui.addXML(path, getClass());
         } catch (IOException e) {
             ExceptionHandler.catchException(e);
-            System.err.println("xml file was not found , or IO error");
         } catch (SAXException e) {
             ExceptionHandler.catchException(e);
         }

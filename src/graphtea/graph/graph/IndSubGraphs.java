@@ -1,6 +1,6 @@
 package graphtea.graph.graph;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,5 +9,5 @@ import java.util.Vector;
  * Time: 9:53 AM
  * To change this template use File | Settings | File Templates.
  */
-public class IndSubGraphs extends Vector<Integer> {
+public class IndSubGraphs extends ArrayList<Integer> {
 }

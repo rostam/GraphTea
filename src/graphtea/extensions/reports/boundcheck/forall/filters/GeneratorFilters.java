@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Vector;
 
 /**
  * Created by rostam on 14.10.15.
@@ -93,12 +92,12 @@ public class GeneratorFilters {
                     pb.validate();
                     RenderTable ret=(RenderTable)f.f(g);
                     if(retForm.size()==1) {
-                        Vector<String> tts = new Vector<>();
+                        List<String> tts = new ArrayList<>();
                         tts.add(fieldName);
                         tts.addAll(ret.getTitles());
                         retForm.setTitles(tts);
                     }
-                    Vector<Object> results = new Vector<>();
+                    List<Object> results = new ArrayList<>();
                     results.add(i);
                     results.addAll(ret.poll());
                     retForm.add(results);

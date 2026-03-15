@@ -6,7 +6,8 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 
 import java.util.HashMap;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rostam on 2/11/17.
@@ -40,9 +41,9 @@ public class G6Format {
     }
 
 
-    public static HashMap<Integer, Vector<Integer>> stringToGraph(String g6) {
+    public static HashMap<Integer, List<Integer>> stringToGraph(String g6) {
         int n = graphsize(g6);
-        HashMap<Integer, Vector<Integer>> graph = new HashMap<>();
+        HashMap<Integer, List<Integer>> graph = new HashMap<>();
         String p = g6;
         if (g6.charAt(0) == ':' || g6.charAt(0) == '&')
             p = g6.substring(1);
@@ -62,7 +63,7 @@ public class G6Format {
                 }
                 if ((x & TOPBIT6) != 0) {
                     if (!graph.containsKey(i)) {
-                        graph.put(i, new Vector<>());
+                        graph.put(i, new ArrayList<>());
                     }
                     graph.get(i).add(j);
                 }
@@ -126,29 +127,28 @@ public class G6Format {
     }
 
     public static String createAdjMatrix (Matrix m){
-        String result="";
+        StringBuilder result = new StringBuilder();
 
         for (int i = 1, k = 1; k < m.getColumnDimension(); i++, k++) {
             for (int j = 0; j < i; j++) {
-                if (m.get(j,i) != 0) result += "1";
-                else result += "0";
+                result.append(m.get(j, i) != 0 ? '1' : '0');
             }
         }
-        return result;
+        return result.toString();
     }
 
 
     public static String encodeGraph(int NoNodes, String adjmatrix) {
-        String rv = "";
         int[] nn = encodeN(NoNodes);
         int[] adj = encodeR(adjmatrix);
         int[] res = new int[nn.length + adj.length];
         System.arraycopy(nn, 0, res, 0, nn.length);
         System.arraycopy(adj, 0, res, nn.length, adj.length);
+        StringBuilder rv = new StringBuilder();
         for (int re : res) {
-            rv = rv + (char) re;
+            rv.append((char) re);
         }
-        return rv;
+        return rv.toString();
     }
 
     private static int[] encodeN(long i) {
@@ -189,16 +189,17 @@ public class G6Format {
 
     private static String padR(String str) {
         int padwith = 6 - (str.length() % 6);
+        StringBuilder sb = new StringBuilder(str);
         for (int i = 0; i < padwith; i++) {
-            str += "0";
+            sb.append('0');
         }
-        return str;
+        return sb.toString();
     }
 
     private static String padL(String str, int h) {
-        String retval = "";
+        StringBuilder retval = new StringBuilder();
         for (int i = 0; i < h - str.length(); i++) {
-            retval += "0";
+            retval.append('0');
         }
         return retval + str;
     }

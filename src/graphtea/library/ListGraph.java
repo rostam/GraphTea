@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU Lesser General Public License (LGPL): http://www.gnu.org/licenses/
 
 package graphtea.library;
+import java.util.List;
 import graphtea.platform.core.exception.ExceptionHandler;
 
 

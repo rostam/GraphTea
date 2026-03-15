@@ -66,7 +66,6 @@ class BlackBoardDebug extends BlackBoard {
         String c = st.getClassName();
         
         while (c.contains("BlackBoard") || c.contains("AbstractAction")) {
-           System.out.println(stackTrace[n]);
             ++n;
             c = stackTrace[n].getClassName();
         }

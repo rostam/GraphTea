@@ -1,6 +1,7 @@
 package graphtea.extensions.reports.topological;
 
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.basicreports.NumOfVerticesWithDegK;
 import graphtea.graph.graph.Edge;
@@ -12,7 +13,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -31,7 +31,7 @@ public class Complex implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
 
 
           titles.add(" vertices ");
@@ -95,7 +95,7 @@ public class Complex implements GraphReportExtension<RenderTable> {
 
 
  
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
 
         v.add(n);
         v.add(m);

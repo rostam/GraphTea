@@ -4,6 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.generators;
 
+import java.util.ArrayList;
+import java.util.List;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
@@ -36,9 +38,9 @@ public class KneserGraphGenerator implements GraphGeneratorExtension, Parametriz
     @Parameter(name = "n")
     public static Integer n = 5;
 
-    private Vector<HashSet<Integer>> computedVertices;
+    private List<HashSet<Integer>> computedVertices;
 
-    private static Vector<HashSet<Integer>> ComputeVertices(int n, int k) {
+    private static List<HashSet<Integer>> ComputeVertices(int n, int k) {
         List<String> list = new ArrayList<>();
         for(int i : IntStream.rangeClosed(0, n-1).toArray()) {
             list.add(i+"");
@@ -57,12 +59,12 @@ public class KneserGraphGenerator implements GraphGeneratorExtension, Parametriz
                         }
                 ).stream().filter(s -> s.chars().filter(ch -> ch == '-').count() == (k/2)).collect(Collectors.toList());
 
-        Vector<HashSet<Integer>> vs = new Vector<>();
+        List<HashSet<Integer>> vs = new ArrayList<>();
         for(String s : combinations) {
             vs.add(new HashSet<>());
             String[] splitted = s.split("-");
             for(String ss : splitted) {
-                vs.lastElement().add(Integer.parseInt(ss));
+                vs.get(vs.size() - 1).add(Integer.parseInt(ss));
             }
         }
 //        System.out.println(vs);
@@ -82,7 +84,7 @@ public class KneserGraphGenerator implements GraphGeneratorExtension, Parametriz
     }
 
     public Edge[] getEdges() {
-        Vector<Edge> ret = new Vector<>();
+        List<Edge> ret = new ArrayList<>();
         for(int i=0;i < computedVertices.size();i++) {
             for(int j=i+1;j < computedVertices.size();j++) {
                 HashSet<Integer> s1 = computedVertices.get(i);

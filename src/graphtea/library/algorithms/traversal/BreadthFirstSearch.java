@@ -11,6 +11,7 @@
 
 package graphtea.library.algorithms.traversal;
 
+import java.util.List;
 import graphtea.library.BaseEdge;
 import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;

@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Vector;
 
 import static graphtea.platform.Application.blackboard;
 
@@ -61,7 +60,7 @@ public class LoadSpecialjson implements GraphReaderExtension {
             int i = 0;
             FastRenderer.defaultVertexRadius = 12;
             RenderTable rt = new RenderTable();
-            Vector<String> titles = new Vector<>();
+            List<String> titles = new ArrayList<>();
             titles.add("Settlements");
             titles.add("Vertex");
             titles.add("processed");
@@ -84,7 +83,7 @@ public class LoadSpecialjson implements GraphReaderExtension {
                         lng = Double.parseDouble(str_lng);
                     } else {
                         sttlWithoutCoordinates.add(id);
-                        Vector<Object> vs = new Vector<>();
+                        List<Object> vs = new ArrayList<>();
                         vs.add(id);
                         vs.add((double) i);
                         vs.add("No");
@@ -170,7 +169,7 @@ public class LoadSpecialjson implements GraphReaderExtension {
         }
 //
 //        for(String s : sttlWithoutCoordinates) {
-//            Vector<GPoint> vs = new Vector<>();
+//            Vector<GPoint> vs = new ArrayList<>();
 //            for(Vertex n : g.getNeighbors(g.getVertex(labelVertex.get(s)))) {
 //                if(!sttlWithoutCoordinates.contains(n.getLabel())) {
 //                    vs.add(n.getLocation());

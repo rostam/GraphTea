@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.others;
 
+import java.util.List;
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;

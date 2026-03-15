@@ -5,6 +5,7 @@
 
 package graphtea.library;
 
+import java.util.List;
 import graphtea.library.exceptions.InvalidVertexException;
 
 import java.util.ArrayList;

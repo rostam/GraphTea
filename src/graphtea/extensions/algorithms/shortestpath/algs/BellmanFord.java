@@ -13,7 +13,8 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 
 import java.util.Arrays;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This method finds the shortest path from a source vertex v, to all
@@ -43,14 +44,14 @@ public class BellmanFord extends GraphAlgorithm implements AutomatedAlgorithm {
      *         and the vector of predecessors, otherwise.
      */
 
-    public Vector<Vertex> computePaths
+    public List<Vertex> computePaths
             (final GraphModel graph, Vertex Vertex) {
 
 //        graph.checkVertex(Vertex);
 
         Integer[] dist;
         dist = new Integer[graph.getVerticesCount()];
-        Vector<Vertex> ret = new Vector<>();
+        List<Vertex> ret = new ArrayList<>();
 
 
         Arrays.fill(dist, Integer.MAX_VALUE);
@@ -81,7 +82,7 @@ public class BellmanFord extends GraphAlgorithm implements AutomatedAlgorithm {
 //        this.graph = gr.getGraph();
 //        VertexRequest<Vertex, Edge> vr = new VertexRequest<>(graph, "Please choose a vertex for the BellmanFord algorithm.");
 //        dispatchEvent(vr);
-//        Vector<Vertex> vv = this.computePaths(graph, vr.getVertex());
+//        List<Vertex> vv = this.computePaths(graph, vr.getVertex());
 //        for (Vertex v : vv)
 //            v.setColor(v.getColor() + 1);
 //        //how to show the results??

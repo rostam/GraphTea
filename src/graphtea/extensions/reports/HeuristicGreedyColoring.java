@@ -10,12 +10,13 @@ import graphtea.graph.graph.Vertex;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.Collections;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Azin Azadi
  */
-public class HeuristicGreedyColoring implements GraphReportExtension<Vector<Integer>> {
+public class HeuristicGreedyColoring implements GraphReportExtension<List<Integer>> {
 
     public String getName() {
         return "Heuristic Greedy Coloring";
@@ -31,7 +32,7 @@ public class HeuristicGreedyColoring implements GraphReportExtension<Vector<Inte
 
         for(Vertex v : g) {
             if(v.getColor() == 0) {
-                Vector<Integer> colors = new Vector<>();
+                List<Integer> colors = new ArrayList<>();
                 for(Vertex u : g.directNeighbors(v))
                     colors.add(u.getColor());
                 for(int i = 1;i < g.getVerticesCount();i++) {
@@ -48,9 +49,9 @@ public class HeuristicGreedyColoring implements GraphReportExtension<Vector<Inte
     }
 
     @Override
-    public Vector<Integer> calculate(GraphModel g) {
+    public List<Integer> calculate(GraphModel g) {
         heuristicColoring(g);
-        Vector<Integer> ret = new Vector<>();
+        List<Integer> ret = new ArrayList<>();
         for(Vertex v : g) {
             ret.add(v.getColor());
         }

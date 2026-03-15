@@ -554,7 +554,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 		}
 		catch(Exception e)
 		{
-			System.out.println("Error loading image file");
+			ExceptionHandler.catchException(e);
 		}
 		fireGraphChange(REPAINT_GRAPH_GRAPH_CHANGE, null, null);
 	}

@@ -11,16 +11,17 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Mohammad Ali Rostami
  */
 
 @CommandAttitude(name = "total_num_of_stars", abbreviation = "_tnoss")
-public class TotalNumOfStars implements GraphReportExtension<Vector<String>> {
-    public Vector<String> calculate(GraphModel g) {
-        Vector<String> ret = new Vector<>();
+public class TotalNumOfStars implements GraphReportExtension<List<String>> {
+    public List<String> calculate(GraphModel g) {
+        List<String> ret = new ArrayList<>();
         for(int i = 0; i< AlgorithmUtils.getMaxDegree(g); i++) {
             int sum = 0;
             for (Vertex v : g) {

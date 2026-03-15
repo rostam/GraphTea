@@ -86,55 +86,53 @@ public class LatexWriter implements GraphWriterExtension{
                             "%\n" +
                             "%Vertices\n");
 
-            String vertices = " ";
+            StringBuilder vertices = new StringBuilder(" ");
             for (Vertex vm : graph)
-                vertices += "\\put("
-                        + (vm.getLocation().getX() / r.getMaxX()) * 100
-                        + ","
-                        + (vm.getLocation().getY() / r.getMaxY()) * 100
-                        + "){\\circle*{2}}\n";
-            output.write(vertices);
+                vertices.append("\\put(")
+                        .append((vm.getLocation().getX() / r.getMaxX()) * 100)
+                        .append(",")
+                        .append((vm.getLocation().getY() / r.getMaxY()) * 100)
+                        .append("){\\circle*{2}}\n");
+            output.write(vertices.toString());
 
-            String edges = "";
+            StringBuilder edges = new StringBuilder();
             Iterator<Edge> em = graph.edgeIterator();
             while (em.hasNext()) {
                 Edge e = em.next();
                 final GPoint sx = e.source.getLocation();
                 if (!graph.isEdgesCurved()) {
-                    edges += "%Edge Label:" + e.getLabel() + "\n";
-                    edges += "\\emline{" +
-                            (sx.getX() / r.getMaxX()) * 100
-                            + "}{" +
-                            (sx.getY() / r.getMaxY()) * 100
-                            + "}{1}{" +
-
-                            (e.target.getLocation().getX() / r.getMaxX()) * 100
-                            + "}{" +
-                            (e.target.getLocation().getY() / r.getMaxY()) * 100
-                            + "}{2}\n";
+                    edges.append("%Edge Label:").append(e.getLabel()).append("\n");
+                    edges.append("\\emline{")
+                            .append((sx.getX() / r.getMaxX()) * 100)
+                            .append("}{")
+                            .append((sx.getY() / r.getMaxY()) * 100)
+                            .append("}{1}{")
+                            .append((e.target.getLocation().getX() / r.getMaxX()) * 100)
+                            .append("}{")
+                            .append((e.target.getLocation().getY() / r.getMaxY()) * 100)
+                            .append("}{2}\n");
                 } else {
-                    edges += "%Edge Label:" + e.getLabel() + "\n";
-                    double centerx, centery;
-                    centerx = (sx.getX() + e.target.getLocation().getX()) / 2;
-                    centery = (sx.getY() + e.target.getLocation().getY()) / 2;
+                    edges.append("%Edge Label:").append(e.getLabel()).append("\n");
+                    double centerx = (sx.getX() + e.target.getLocation().getX()) / 2;
+                    double centery = (sx.getY() + e.target.getLocation().getY()) / 2;
                     double cx = ((centerx + e.getCurveControlPoint().getX()) / r.getMaxX()) * 100;
                     double cy = ((e.getCurveControlPoint().getY() + centery) / r.getMaxY()) * 100;
-                    edges += "\\bezier{500}(" +
-                            (sx.getX() / r.getMaxX()) * 100
-                            + "," +
-                            (sx.getY() / r.getMaxY()) * 100
-                            + ")(" +
-                            +cx
-                            + "," +
-                            cy
-                            + ")(" +
-                            (e.target.getLocation().getX() / r.getMaxX()) * 100
-                            + "," +
-                            (e.target.getLocation().getY() / r.getMaxY()) * 100
-                            + ")\n";
+                    edges.append("\\bezier{500}(")
+                            .append((sx.getX() / r.getMaxX()) * 100)
+                            .append(",")
+                            .append((sx.getY() / r.getMaxY()) * 100)
+                            .append(")(")
+                            .append(cx)
+                            .append(",")
+                            .append(cy)
+                            .append(")(")
+                            .append((e.target.getLocation().getX() / r.getMaxX()) * 100)
+                            .append(",")
+                            .append((e.target.getLocation().getY() / r.getMaxY()) * 100)
+                            .append(")\n");
                 }
             }
-            output.write(edges);
+            output.write(edges.toString());
             output.write("\n" +
                     "\\end{picture}\n" +
                     "\\end{figure}\n" +

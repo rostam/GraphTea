@@ -29,7 +29,6 @@ public class Init implements PluginInterface {
             ui.addXML("/graphtea/plugins/visualization/VisualizationUI.xml", getClass());
         } catch (IOException e) {
             ExceptionHandler.catchException(e);
-            System.out.println("xml file was not found , or IO error");
 
         } catch (SAXException e) {
             ExceptionHandler.catchException(e);

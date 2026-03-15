@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.energy;
 
+import java.util.List;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
@@ -18,7 +19,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Vector;
 
 
 /**
@@ -39,7 +39,7 @@ public class NewLowerBounds implements GraphReportExtension{
     public Object calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" m ");
         titles.add(" n ");
        // titles.add(" E(G) ");
@@ -109,7 +109,7 @@ public class NewLowerBounds implements GraphReportExtension{
         double M22=zif.getSecondZagreb(2);
         double Mm11=zif.getFirstZagreb(-2);
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(m);
         v.add(n);
         v.add(Energy(g));

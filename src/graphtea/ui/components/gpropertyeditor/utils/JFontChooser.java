@@ -5,6 +5,7 @@
 
 package graphtea.ui.components.gpropertyeditor.utils;
 
+import java.util.List;
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;

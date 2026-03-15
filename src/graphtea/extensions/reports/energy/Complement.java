@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.energy;
 
+import java.util.List;
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
@@ -17,7 +18,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -41,7 +41,7 @@ public class Complement implements GraphReportExtension<RenderTable> {
         ZagrebIndexFunctions zifCL = new ZagrebIndexFunctions(AlgorithmUtils.createComplementGraph(AlgorithmUtils.createLineGraph(g)));
         //ZagrebIndexFunctions zifLC = new ZagrebIndexFunctions(Utils.createLineGraph(Utils.createComplementGraph(g)));
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
 
         titles.add(" m ");
         titles.add(" n ");
@@ -100,7 +100,7 @@ public class Complement implements GraphReportExtension<RenderTable> {
         double CE = zifC.getEnegry();
         double CLE = zifCL.getEnegry();
        //double LCE = zifLC.getEnegry();
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
 
         v.add(m);
         v.add(n);

@@ -1,6 +1,7 @@
 package graphtea.extensions.reports.topological;
 
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.basicreports.Diameter;
@@ -15,7 +16,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 /**
  * @author Ali Rostami
@@ -34,7 +34,7 @@ public class AllCheck implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" m ");
         titles.add(" n ");
 
@@ -200,7 +200,7 @@ public class AllCheck implements GraphReportExtension<RenderTable> {
         WienerIndex wi = new WienerIndex();
         double Avg=(n*(n-1)/2);
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
         v.add(m);
         v.add(n);
       

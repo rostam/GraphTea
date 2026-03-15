@@ -4,6 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform.extension;
 
+import java.util.ArrayList;
+import java.util.List;
 import graphtea.platform.StaticUtils;
 import graphtea.platform.core.exception.ExceptionHandler;
 

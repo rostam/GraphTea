@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Vector;
 
 
 /**
@@ -54,7 +53,7 @@ public class ReportsUI {
     public void initTable() {
         String h = "";
         HashMap<String, Object> model = new HashMap<>();
-        Vector<Extension> reports = ExtensionLoader.extensionsList.get(GraphReportExtensionHandler.class);
+        List<Extension> reports = ExtensionLoader.extensionsList.get(GraphReportExtensionHandler.class);
         HashSet<String> categories = new HashSet<>();
         HashMap<String, List<GraphReportExtension>> categoryLists = new HashMap<>();
         for (Extension r : reports) {

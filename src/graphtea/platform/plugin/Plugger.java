@@ -10,6 +10,7 @@
  */
 package graphtea.platform.plugin;
 
+import java.util.List;
 import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;

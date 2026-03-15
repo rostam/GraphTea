@@ -68,6 +68,7 @@
             <include name="TestChemicalGraphIndices.java"/>
             <include name="TestHomomorphism.java"/>
             <include name="TestNewEdge.java"/>
+            <include name="AlgorithmsTest.java"/>
         </javac>
         <junitlauncher haltOnFailure="false" printSummary="true">
             <classpath>
@@ -95,6 +96,7 @@
                     <include name="TestChemicalGraphIndices.class"/>
                     <include name="TestHomomorphism.class"/>
                     <include name="TestNewEdge.class"/>
+                    <include name="AlgorithmsTest.class"/>
                 </fileset>
                 <listener type="legacy-xml" outputdir="${basedir}/build/test-classes" sendSysOut="true" sendSysErr="true"/>
                 <listener type="legacy-plain" sendSysOut="true"/>

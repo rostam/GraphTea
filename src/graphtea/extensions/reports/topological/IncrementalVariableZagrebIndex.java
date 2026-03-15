@@ -11,7 +11,8 @@ import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Ali Rostami
@@ -39,14 +40,14 @@ public class IncrementalVariableZagrebIndex implements GraphReportExtension<Rend
 
     public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add("Alpha");
         titles.add("First Variable Zagreb Index");
         titles.add("Second Variable Zagreb Index");
         ret.setTitles(titles);
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
-            Vector<Object> v = new Vector<>();
+            List<Object> v = new ArrayList<>();
             v.add(alpha);
             v.add(zif.getFirstVariableZagrebIndex(alpha));
             v.add(zif.getSecondVariableZagrebIndex(alpha));

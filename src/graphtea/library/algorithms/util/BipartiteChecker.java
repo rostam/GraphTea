@@ -1,5 +1,6 @@
 package graphtea.library.algorithms.util;
 
+import java.util.List;
 import graphtea.library.BaseEdge;
 import graphtea.library.BaseGraph;
 import graphtea.library.BaseVertex;

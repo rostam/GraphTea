@@ -5,6 +5,7 @@
 
 package graphtea.ui.components.prefeditor;
 
+import java.util.List;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.preferences.AbstractPreference;
 import graphtea.ui.components.GFrame;
@@ -14,7 +15,7 @@ import graphtea.ui.components.utils.GFrameLocationProvider;
 import javax.swing.*;
 import java.util.HashMap;
 import java.util.Objects;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -56,7 +57,7 @@ public class GPrefPane extends GFrame {
 
 //        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTab();
-        Vector<String> refined = items.keySet().stream().filter(s -> !Objects.equals(s, "Only Storable")).collect(Collectors.toCollection(Vector::new));
+        List<String> refined = items.keySet().stream().filter(s -> !Objects.equals(s, "Only Storable")).collect(Collectors.toCollection(ArrayList::new));
         final String[] strs = refined.toArray(new String[refined.size()]);
 
         list.setModel(new javax.swing.AbstractListModel() {

@@ -1,5 +1,6 @@
 package graphtea.extensions.algorithms;
 
+import java.util.List;
 import graphtea.graph.graph.GPoint;
 
 import java.util.ArrayList;

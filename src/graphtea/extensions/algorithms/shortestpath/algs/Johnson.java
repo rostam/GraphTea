@@ -5,6 +5,7 @@
 
 package graphtea.extensions.algorithms.shortestpath.algs;
 
+import java.util.List;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -15,7 +16,6 @@ import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Vector;
 
 /**
  * This Algorithm computes the length of the shortest
@@ -54,7 +54,7 @@ public class Johnson extends GraphAlgorithm {
         BellmanFord sp = new BellmanFord(blackBoard);
 
         if (sp.computePaths(g, u) != null) {
-            Vector<Vertex> pd = sp.computePaths(g, u);
+            List<Vertex> pd = sp.computePaths(g, u);
             for (Vertex v : g) {
 
                 int dd = 0;
@@ -77,7 +77,7 @@ public class Johnson extends GraphAlgorithm {
 
             for (Vertex v : g) {
                 Dijkstra dj = new Dijkstra();
-                Vector<Vertex> pdj = dj.getShortestPath(g, v);
+                List<Vertex> pdj = dj.getShortestPath(g, v);
                 for (Vertex z : g) {
                     int dd = 0;
                     Edge f;

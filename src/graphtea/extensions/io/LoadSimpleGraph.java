@@ -5,6 +5,7 @@
 
 package graphtea.extensions.io;
 
+import java.util.List;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;

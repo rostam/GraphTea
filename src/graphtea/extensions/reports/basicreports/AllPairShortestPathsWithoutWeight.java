@@ -5,7 +5,8 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AllPairShortestPathsWithoutWeight implements GraphReportExtension<RenderTable> {
 
@@ -21,7 +22,7 @@ public class AllPairShortestPathsWithoutWeight implements GraphReportExtension<R
     @Override
     public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add("Vertex 1");
         titles.add("Vertex 2");
         titles.add("Distance");
@@ -30,7 +31,7 @@ public class AllPairShortestPathsWithoutWeight implements GraphReportExtension<R
         final int[][] dist = getAllPairsShortestPathWithoutWeight(g);
         for (int i = 0; i < dist.length; i++) {
             for (int j = i + 1; j < dist[i].length; j++) {
-                Vector<Object> v = new Vector<>();
+                List<Object> v = new ArrayList<>();
                 v.add(i);
                 v.add(j);
                 v.add(dist[i][j]);

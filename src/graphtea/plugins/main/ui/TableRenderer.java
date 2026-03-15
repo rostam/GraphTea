@@ -5,6 +5,7 @@
 
 package graphtea.plugins.main.ui;
 
+import java.util.List;
 import graphtea.extensions.G6Format;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
@@ -36,7 +37,7 @@ public class TableRenderer implements GBasicCellRenderer<RenderTable> {
         Object[][] data = new Object[sd.size()][sd.getTitles().size()];
         int i=0;
         while(!sd.isEmpty()) {
-            Vector<Object> row = sd.poll();
+            List<Object> row = sd.poll();
             for(int j=0;j < row.size();j++) {
                 Object o = row.get(j);
 

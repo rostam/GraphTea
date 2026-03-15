@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.topological;
 
+import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.ChromaticNumber;
 import graphtea.extensions.reports.basicreports.Diameter;
@@ -15,7 +16,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 
 /**
@@ -35,7 +35,7 @@ public class ComparingE1E2 implements GraphReportExtension<RenderTable> {
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         RenderTable ret = new RenderTable();
-        Vector<String> titles = new Vector<>();
+        List<String> titles = new ArrayList<>();
         titles.add(" m ");
         titles.add(" n ");
       // titles.add(" ECI ");
@@ -139,7 +139,7 @@ public class ComparingE1E2 implements GraphReportExtension<RenderTable> {
 		ConnectiveEccentricComplexity CEcomp = new ConnectiveEccentricComplexity();
 		EccentricConnectiveComplexity ECcomp = new EccentricConnectiveComplexity();
 
-        Vector<Object> v = new Vector<>();
+        List<Object> v = new ArrayList<>();
 
         v.add(m);
         v.add(n);

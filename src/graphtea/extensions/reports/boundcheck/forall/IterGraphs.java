@@ -22,7 +22,6 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Vector;
 
 public class IterGraphs {
     public boolean activeConjCheck;
@@ -88,9 +87,9 @@ public class IterGraphs {
                     getResIterLimited(f, g, it.getCount(), pq, it.getG6());
             } else {
                 RenderTable ret = f.f(g);
-                Vector<Object> vo = ret.poll();
+                List<Object> vo = ret.poll();
                 if (res == null) {
-                    Vector<String> tts = ret.getTitles();
+                    List<String> tts = ret.getTitles();
                     tts.add("Num of Filtered Graphs");
                     pq.setTitles(tts);
                     res = new int[vo.size()];
@@ -102,7 +101,7 @@ public class IterGraphs {
         }
 
         if (!iterative) {
-            Vector<Object> result = new Vector<>();
+            List<Object> result = new ArrayList<>();
             for (int re : res) {
                 result.add(re);
             }
@@ -143,7 +142,7 @@ public class IterGraphs {
         RenderTable ret = f.f(g);
         if (ret == null) return;
         if (mpq.getTitles().size() == 0) {
-            Vector<String> tts = new Vector<>();
+            List<String> tts = new ArrayList<>();
             tts.add("Index");
             tts.addAll(ret.getTitles());
             tts.add("Degree Sequence");
@@ -151,7 +150,7 @@ public class IterGraphs {
             mpq.setTitles(tts);
         }
 
-        Vector<Object> data = new Vector<>();
+        List<Object> data = new ArrayList<>();
         data.add(count + "");
         data.addAll(ret.poll());
         if (ConjectureChecking.PostP.getValue().equals("Equality Filter")) {
@@ -235,7 +234,7 @@ public class IterGraphs {
         data.add(g6);
     }
 
-    public void checkTypeOfBounds(Vector<Object> vo, int[] res, int i, String bound) {
+    public void checkTypeOfBounds(List<Object> vo, int[] res, int i, String bound) {
         switch (bound) {
             case Bounds.Upper:
                 if ((double) vo.get(0) >= (double) vo.get(i)) {

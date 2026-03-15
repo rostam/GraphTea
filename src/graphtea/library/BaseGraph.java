@@ -11,6 +11,7 @@
 
 package graphtea.library;
 
+import java.util.List;
 import Jama.Matrix;
 import graphtea.library.exceptions.InvalidEdgeException;
 import graphtea.library.exceptions.InvalidGraphException;
