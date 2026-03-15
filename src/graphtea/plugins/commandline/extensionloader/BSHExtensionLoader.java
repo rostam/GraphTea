@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import java.util.StringTokenizer;
 
 /**
  * This class loads extensions from .bsh files in extensions folder.
@@ -46,10 +45,14 @@ public class BSHExtensionLoader implements UnknownExtensionLoader {
                         // do nothing
                     } else if (line.startsWith("public class")) {
                         line = line.substring(12); // removing "public class"
-                        StringTokenizer st = new StringTokenizer(line, " ,");
-                        while (!st.nextToken().equals("implements")) ;
-                        eval.append("ex = new ").append(st.nextToken()).append(" ()");
-                        while (st.hasMoreTokens()) eval.append(" ").append(st.nextToken());
+                        String[] tokens = line.split("[\\s,]+");
+                        int ti = 0;
+                        while (ti < tokens.length && !tokens[ti].equals("implements")) ti++;
+                        ti++; // skip "implements" token
+                        if (ti < tokens.length) {
+                            eval.append("ex = new ").append(tokens[ti++]).append(" ()");
+                            while (ti < tokens.length) eval.append(" ").append(tokens[ti++]);
+                        }
                         eval.append("\n");
                     } else {
                         eval.append(line).append("\n");
@@ -62,9 +65,12 @@ public class BSHExtensionLoader implements UnknownExtensionLoader {
                         // do nothing
                     } else if (line.startsWith("public class")) {
                         line = line.substring(12); // removing "public class"
-                        StringTokenizer st = new StringTokenizer(line, " ");
-                        eval.append("ex = new ").append(st.nextToken()).append(" ()");
-                        while (st.hasMoreTokens()) eval.append(" ").append(st.nextToken());
+                        String[] parts = line.split(" +");
+                        int pi = 0;
+                        if (pi < parts.length) {
+                            eval.append("ex = new ").append(parts[pi++]).append(" ()");
+                            while (pi < parts.length) eval.append(" ").append(parts[pi++]);
+                        }
                         eval.append("\n");
                     } else {
                         eval.append(line).append("\n");

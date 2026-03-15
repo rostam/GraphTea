@@ -16,7 +16,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelListener;
-import java.util.Iterator;
 
 /**
  * @author Azin Azadi, roozbeh ebrahimi, Ali Ershadi
@@ -229,10 +228,8 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
         double min = 100000;
         boolean loopDetected = false;
         Edge mine = null;
-        Iterator<Edge> ei = g.lightEdgeIterator();
         if (g.isEdgesCurved()) {
-            while (ei.hasNext()) {
-                Edge e = ei.next();
+            for (Edge e : g.getEdges()) {
                 GPoint cnp = e.getCurveControlPoint();
                 GPoint s = e.source.getLocation();
                 GPoint t = e.target.getLocation();
@@ -249,8 +246,7 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
                 min = 0;
             }
         } else {
-            while (ei.hasNext()) {
-                Edge e = ei.next();
+            for (Edge e : g.getEdges()) {
                 if (!isInBounds(e, p) && !e.isLoop())
                     continue;
                 GPoint sloc = e.source.getLocation();

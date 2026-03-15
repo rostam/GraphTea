@@ -19,7 +19,6 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.QuadCurve2D;
 import java.awt.geom.Rectangle2D;
-import java.util.Iterator;
 
 /**
  * @author Hooman Mohajeri Moghaddam - added image load capability.
@@ -69,8 +68,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
         for (Vertex v : g) {
             v.setVertexListener(this);
         }
-        for (Iterator<Edge> ie = g.edgeIterator(); ie.hasNext();) {
-            Edge e = ie.next();
+        for (Edge e : g.getEdges()) {
             e.setEdgeListener(this);
         }
     }
@@ -181,10 +179,8 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 
     public void nicepaintGraph(Graphics gg, Boolean drawExtras) {
         lastpaintTime = System.currentTimeMillis();
-        Iterator<Edge> ie = getGraph().edgeIterator();
         try {
-            while (ie.hasNext()) {
-                Edge e = ie.next();
+            for (Edge e : getGraph().getEdges()) {
                 paint((Graphics2D) gg, e, getGraph(), drawExtras);
             }
         } catch (Exception ex) {
@@ -192,9 +188,7 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
             ex.printStackTrace();
             try {
                 Thread.sleep(100);
-                ie = getGraph().lightEdgeIterator();
-                while (ie.hasNext()) {
-                    Edge e = ie.next();
+                for (Edge e : getGraph().getEdges()) {
                     paint((Graphics2D) gg, e, getGraph(), drawExtras);
                 }
             } catch (Exception e1) {
@@ -231,10 +225,8 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
     public void fastpaintGraph(Graphics g, Boolean drawExtras) {
         Graphics2D gg = (Graphics2D) g;
         lastpaintTime = System.currentTimeMillis();
-        Iterator<Edge> ie = getGraph().lightEdgeIterator();
         try {
-            while (ie.hasNext()) {
-                Edge e = ie.next();
+            for (Edge e : getGraph().getEdges()) {
                 GPoint l, r;
                 l = e.source.getLocation();
                 r = e.target.getLocation();

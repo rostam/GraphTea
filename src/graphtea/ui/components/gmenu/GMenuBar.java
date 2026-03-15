@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.StringTokenizer;
 
 /**
  * this class is the menu bar of GFrame. it has a difference with JMenuBar which is, if you add 2 menu bars with the
@@ -115,9 +114,8 @@ public class GMenuBar extends javax.swing.JMenuBar {
      * if some place was given for path before, the older value will discarded.
      */
     public JMenu getUniqueMenu(String path, int place) {
-        StringTokenizer s = new StringTokenizer(path, ".");
-//            Scanner s = new Scanner(mname);
-//            s.useDelimiter(".");
+        String[] pathTokens = path.split("\\.");
+        int pathIdx = 0;
         if (!path.contains(".")) {       //if it is only a first level menu
             JMenu ret = requestMenu(path);
             insert(this, ret, place);
@@ -125,11 +123,11 @@ public class GMenuBar extends javax.swing.JMenuBar {
 
         }                               //other wise we have more things to do ...
         JMenu mnu = new JMenu("---");
-        if (s.hasMoreTokens()) {
-            mnu = requestMenu(s.nextToken());
+        if (pathIdx < pathTokens.length) {
+            mnu = requestMenu(pathTokens[pathIdx++]);
             boolean dontSearch_YouCantFindIt = false;
-            while (s.hasMoreTokens()) {             //each token is a level in menu tree
-                String ss = s.nextToken();
+            while (pathIdx < pathTokens.length) {             //each token is a level in menu tree
+                String ss = pathTokens[pathIdx++];
                 JMenu _mnu = null;
                 if (!dontSearch_YouCantFindIt) {   //try to find the next level of the menu
                     for (int i = 0; i < mnu.getMenuComponentCount(); i++) {
@@ -147,10 +145,10 @@ public class GMenuBar extends javax.swing.JMenuBar {
                     _mnu = new JMenu(ss);
                     dontSearch_YouCantFindIt = true;   //the next levels are also can't be found, so don;t search for them
                     //so create the next levels
-                    if (s.hasMoreTokens()) mnu.add(_mnu);
+                    if (pathIdx < pathTokens.length) mnu.add(_mnu);
                     else
                         insert(mnu, _mnu, place);   //the given place applied to last level.
-                } else if (!s.hasMoreTokens())
+                } else if (pathIdx >= pathTokens.length)
                     insert(mnu, _mnu, place);   //the given place applied to last level.
 
 //                else {
