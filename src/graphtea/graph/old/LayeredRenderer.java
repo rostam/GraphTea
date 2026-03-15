@@ -13,7 +13,6 @@ import graphtea.platform.core.BlackBoard;
 
 import java.awt.*;
 import java.awt.image.VolatileImage;
-import java.util.Iterator;
 
 /**
  * @author azin azadi
@@ -60,9 +59,8 @@ public class LayeredRenderer extends AcceleratedRenderer {
     public void repaintELayer() {
         eLayer = createTransparentBuffer();
         Graphics2D graphics = eLayer.createGraphics();
-        Iterator<Edge> ie = getGraph().edgeIterator();
-        while (ie.hasNext()) {
-            repaint(ie.next(), graphics);
+        for (Edge e : getGraph().getEdges()) {
+            repaint(e, graphics);
         }
         graphics.dispose();
     }

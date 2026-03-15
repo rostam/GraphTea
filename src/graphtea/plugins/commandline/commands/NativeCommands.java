@@ -14,7 +14,6 @@ import graphtea.plugins.main.GraphData;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.StringTokenizer;
 /**
  * @author Mohammad Ali Rostami
  */
@@ -71,9 +70,7 @@ public class NativeCommands {
         s = s.substring(s.indexOf("\n") + 1);
         if (s.equals("false")) return "time : " + time + ".\nNo homomorphism exists.";
         String result = "";
-        StringTokenizer stk2 = new StringTokenizer(s);
-        while (stk2.hasMoreElements()) {
-            String temp = (String) stk2.nextElement();
+        for (String temp : s.trim().split("\\s+")) {
             result = result + nmap.get(Integer.parseInt(temp.substring(0, temp.indexOf("-")))) + "->"
                     + nmap.get(Integer.parseInt(temp.substring(temp.indexOf(">") + 1))) + "\n";
         }

@@ -8,7 +8,6 @@ package graphtea.graph.graph;
 import graphtea.graph.event.GraphModelListener;
 import graphtea.library.util.Pair;
 
-import java.util.Iterator;
 
 //todo: it can not handle the cas hat vertex positions are changed. unusable
 /**
@@ -137,9 +136,7 @@ public class GraphControlGrid implements GraphModelListener {
         }
 
         edgesGrid = new Edge[planeDivisions][planeDivisions][0];
-        Iterator<Edge> ie = g.edgeIterator();
-        while (ie.hasNext()) {
-            Edge e = ie.next();
+        for (Edge e : g.getEdges()) {
             addEdgeToGrid(e);
         }
 

@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
-import java.util.StringTokenizer;
 import java.util.jar.JarFile;
 
 
@@ -161,11 +160,10 @@ public class Plugger {
             }
             ArrayList<Object[]> dependsArray = new ArrayList<>();
             if (dependsStr != null) {
-                StringTokenizer st = new StringTokenizer(dependsStr);
-                while (st.hasMoreElements()) {
-                    String depName = st.nextToken();
-                    String depVerStr = st.nextToken();
-                    long depVer = Long.parseLong(depVerStr);
+                String[] depTokens = dependsStr.trim().split("\\s+");
+                for (int di = 0; di + 1 < depTokens.length; di += 2) {
+                    String depName = depTokens[di];
+                    long depVer = Long.parseLong(depTokens[di + 1]);
                     dependsArray.add(new Object[]{depName, depVer});
                 }
             }
