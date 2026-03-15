@@ -104,7 +104,7 @@ public class StaticUtils {
 
         if (BigInteger.class.getName().equals(classname)) return new BigInteger(data);
 
-        if (Double.class.getName().equals(classname)) return new Double(data);
+        if (Double.class.getName().equals(classname)) return Double.valueOf(data);
 
         if (Character.class.getName().equals(classname)) return data.charAt(0);
 

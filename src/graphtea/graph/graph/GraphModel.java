@@ -17,7 +17,12 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
 
 /**
@@ -121,10 +126,11 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 	 * @param name The name of the attribute
 	 * @return The specific user defined attribute
 	 */
-	public <t> t getUserDefinedAttribute(String name) {
+	@SuppressWarnings("unchecked")
+	public <T> T getUserDefinedAttribute(String name) {
 		if (userDefinedAttributes == null)
 			return null;
-		return (t) userDefinedAttributes.get(name);
+		return (T) userDefinedAttributes.get(name);
 	}
 
 	/**
@@ -433,10 +439,8 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 			insertVertex(vm);
 			vm.setLocation(new GPoint(((p.x - bounds1.x) * kx + rect.x), (int) ((p.y - bounds1.y) * ky + rect.y)));
 		}
-		Iterator<Edge> eiter = graph.lightEdgeIterator();
-		while (eiter.hasNext()) {
-			Edge edge = eiter.next();
-			insertEdge(edge);
+		for (Iterator<Edge> eiter = graph.lightEdgeIterator(); eiter.hasNext(); ) {
+			insertEdge(eiter.next());
 		}
 	}
 
@@ -589,19 +593,15 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 		return g;
 	}
 
-	public Vector<Vertex> directNeighbors(Vertex v) {
-		Iterator<Edge> eit = this.edgeIterator();
-		Vector<Vertex> vs = new Vector<>();
-		while (eit.hasNext()) {
-			Edge e = eit.next();
+	public List<Vertex> directNeighbors(Vertex v) {
+		List<Vertex> vs = new ArrayList<>();
+		for (Edge e : getEdges()) {
 			if (e.source.getId() == v.getId()) {
-				if(!vs.contains(e.target)) {
+				if (!vs.contains(e.target))
 					vs.add(e.target);
-				}
 			} else if (e.target.getId() == v.getId()) {
-				if(!vs.contains(e.source)) {
+				if (!vs.contains(e.source))
 					vs.add(e.source);
-				}
 			}
 		}
 		return vs;

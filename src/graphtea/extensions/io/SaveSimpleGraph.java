@@ -15,7 +15,6 @@ import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;
 
 import java.awt.*;
 import java.io.*;
-import java.util.Iterator;
 
 public class SaveSimpleGraph implements GraphWriterExtension {
 
@@ -37,8 +36,7 @@ public class SaveSimpleGraph implements GraphWriterExtension {
     }
 
     public void write(File file, GraphModel graph) throws GraphIOException {
-        try {
-            PrintWriter o = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+        try (PrintWriter o = new PrintWriter(new BufferedWriter(new FileWriter(file)))) {
             o.println("graph:");
             if (graph.isDirected())
                 o.println("directed");
@@ -63,14 +61,12 @@ public class SaveSimpleGraph implements GraphWriterExtension {
 
             //output edges
             o.println("begin edges");
-            for (Iterator<Edge> ie = graph.edgeIterator(); ie.hasNext();) {
-                Edge e = ie.next();
+            for (Edge e : graph.getEdges()) {
                 o.println(e.source.getId() + " -> " + e.target.getId());
                 o.println("label " + e.getLabel());
                 o.println("color " + e.getColor());
                 o.println("weight " + e.getWeight());
             }
-            o.close();
         } catch (IOException e) {
             throw new GraphIOException(e.getMessage());
         }

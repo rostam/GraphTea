@@ -65,7 +65,7 @@
           target: compile
          ================================= -->
     <target name="compile" depends="depends" description="--> The ant build file of GraphTea Project.">
-        <javac srcdir="${src.dir}" destdir="${build.dir}">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" source="11" target="11" includeantruntime="false">
             <classpath>
                 <path refid="project.lib"/>
             </classpath>

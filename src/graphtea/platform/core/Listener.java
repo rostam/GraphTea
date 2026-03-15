@@ -9,6 +9,7 @@ package graphtea.platform.core;
  *
  * @author Azin Azadi
  */
+@FunctionalInterface
 public interface Listener<T> {
 
     /**

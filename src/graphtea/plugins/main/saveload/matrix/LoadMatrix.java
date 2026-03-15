@@ -14,8 +14,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import java.util.Vector;
 
 /**
  * @author Hooman Mohajeri Moghaddam
@@ -55,40 +56,42 @@ public class LoadMatrix implements GraphReaderExtension {
 		else
 			g= new GraphModel(false);
 		
-		FileReader in = new FileReader(selectedFile);
-		BufferedReader br = new BufferedReader(in);
-		String s1, s = "";
-		while ((s1 = br.readLine()) != null) s += s1 + "\n";
-		Matrix.Matrix2Graph(Matrix.String2Matrix(s), g);
+		try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
+			StringBuilder sb = new StringBuilder();
+			String s1;
+			while ((s1 = br.readLine()) != null) sb.append(s1).append("\n");
+			Matrix.Matrix2Graph(Matrix.String2Matrix(sb.toString()), g);
+		}
 		return g;
 	}
 
 	public static GraphModel loadMatrix(File selectedFile, boolean isDirected) throws IOException {
 		GraphModel g = new GraphModel(isDirected);
-		FileReader in = new FileReader(selectedFile);
-		BufferedReader br = new BufferedReader(in);
-		String s1, s = "";
-		while ((s1 = br.readLine()) != null) s += s1 + "\n";
-		Matrix.Matrix2Graph(Matrix.String2Matrix(s), g);
+		try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
+			StringBuilder sb = new StringBuilder();
+			String s1;
+			while ((s1 = br.readLine()) != null) sb.append(s1).append("\n");
+			Matrix.Matrix2Graph(Matrix.String2Matrix(sb.toString()), g);
+		}
 		return g;
 	}
 
-	public static Vector<GraphModel> loadMatrixes(File selectedFile, boolean isDirected) throws IOException {
-		Vector<GraphModel> gs = new Vector<>();
-		Scanner sc =new Scanner(selectedFile);
-		sc.nextLine();
-		String g="";
-
-		while (sc.hasNextLine()) {
-			String l = sc.nextLine();
-			if(!l.equals("")){
-				g+=l+"\n";
-			} else {
-				if(!g.equals("")) {
-					GraphModel tmp = new GraphModel(isDirected);
-					Matrix.Matrix2Graph(Matrix.String2Matrix(g), tmp);
-					gs.add(tmp);
-					g = "";
+	public static List<GraphModel> loadMatrixes(File selectedFile, boolean isDirected) throws IOException {
+		List<GraphModel> gs = new ArrayList<>();
+		try (Scanner sc = new Scanner(selectedFile)) {
+			sc.nextLine();
+			StringBuilder g = new StringBuilder();
+			while (sc.hasNextLine()) {
+				String l = sc.nextLine();
+				if (!l.isEmpty()) {
+					g.append(l).append("\n");
+				} else {
+					if (g.length() > 0) {
+						GraphModel tmp = new GraphModel(isDirected);
+						Matrix.Matrix2Graph(Matrix.String2Matrix(g.toString()), tmp);
+						gs.add(tmp);
+						g.setLength(0);
+					}
 				}
 			}
 		}

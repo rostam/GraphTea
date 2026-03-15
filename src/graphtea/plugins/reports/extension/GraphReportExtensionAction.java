@@ -48,10 +48,8 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
 
     public void performExtension() {
         //        if (testAndSetParameters(gr)) {
-        new Thread() {
-            Object result = new Object();
-
-            public void run() {
+        new Thread(() -> {
+                Object result;
                 if (ig != null && ig.activeConjCheck && !mr.getName().equals("Bound Check")) {
                     result = ig.wrapper(mr);
                 } else {
@@ -87,9 +85,9 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
                 contentPanel.add(panel, BorderLayout.SOUTH);  // Add the button panel to the contentPanel
 
                 recalc.addActionListener(actionEvent -> {
-                    Object result = mr.calculate(new GraphData(blackboard).getGraph());
+                    Object recalcResult = mr.calculate(new GraphData(blackboard).getGraph());
                     contentPanel.remove(rendererComponent);
-                    rendererComponent = GCellRenderer.getRendererFor(result);
+                    rendererComponent = GCellRenderer.getRendererFor(recalcResult);
                     rendererComponent.setEnabled(true);
                     contentPanel.add(rendererComponent, BorderLayout.CENTER);
                     jd.pack();  // Resize the dialog to fit the new contents
@@ -121,25 +119,24 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
                     fileChooser.showSaveDialog(jd);
                     try {
                         File curFile = fileChooser.getSelectedFile();
-                        FileWriter fw = new FileWriter(curFile);
-                        JViewport viewp = ((JScrollPane) rendererComponent).getViewport();
-                        if (viewp.getView() instanceof JTable) {
-                            JTable table = (JTable) viewp.getView();
-                            for (int row = 0; row < table.getRowCount(); row++) {
-                                for (int col = 0; col < table.getColumnCount(); col++) {
-                                    if (col != table.getColumnCount() - 1) {
-                                        fw.write(table.getValueAt(row, col) + ",");
-                                    } else {
-                                        fw.write(table.getValueAt(row, col).toString());
+                        try (FileWriter fw = new FileWriter(curFile)) {
+                            JViewport viewp = ((JScrollPane) rendererComponent).getViewport();
+                            if (viewp.getView() instanceof JTable) {
+                                JTable table = (JTable) viewp.getView();
+                                for (int row = 0; row < table.getRowCount(); row++) {
+                                    for (int col = 0; col < table.getColumnCount(); col++) {
+                                        if (col != table.getColumnCount() - 1) {
+                                            fw.write(table.getValueAt(row, col) + ",");
+                                        } else {
+                                            fw.write(table.getValueAt(row, col).toString());
+                                        }
                                     }
+                                    fw.write("\n");
                                 }
-                                fw.write("\n");
+                            } else {
+                                JList list = (JList) viewp.getView();
+                                fw.write(list.toString());
                             }
-                            fw.close();
-                        } else {
-                            JList list = (JList) viewp.getView();
-                            fw.write(list.toString());
-                            fw.close();
                         }
                         JOptionPane.showMessageDialog(jd, "Saved to file successfully.");
 
@@ -152,8 +149,6 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
                 jd.add(panel, BorderLayout.SOUTH);
                 jd.setLocation(GFrameLocationProvider.getPopUpLocation());
                 jd.pack();
-
-            }
-        }.start();
+        }).start();
     }
 }

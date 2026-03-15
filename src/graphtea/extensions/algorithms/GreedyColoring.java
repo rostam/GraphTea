@@ -10,8 +10,7 @@ import graphtea.plugins.main.core.actions.ResetGraph;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * Created by rostam on 06.03.15.
@@ -35,7 +34,7 @@ public class GreedyColoring extends GraphAlgorithm implements AlgorithmExtension
         step("Move over the vertices one by one and find all the colors that the neighbors are colored by.");
         for(Vertex v : g) {
             if(v.getColor() == 0) {
-                Vector<Integer> colors = new Vector<>();
+                List<Integer> colors = new ArrayList<>();
                 for(Vertex u : g.directNeighbors(v))
                     colors.add(u.getColor());
                 for(int i = 1;i < g.getVerticesCount();i++) {

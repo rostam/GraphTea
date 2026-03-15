@@ -39,8 +39,7 @@ public class LoadGraph6Format implements GraphReaderExtension {
     @Override
     public GraphModel read(File file) {
         String g6 = "";
-        try {
-            Scanner sc = new Scanner(file);
+        try (Scanner sc = new Scanner(file)) {
             g6 = sc.nextLine();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

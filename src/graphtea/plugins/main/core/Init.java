@@ -15,7 +15,6 @@ import graphtea.graph.old.PolygonArrow;
 import graphtea.platform.Application;
 import graphtea.platform.StaticUtils;
 import graphtea.platform.core.BlackBoard;
-import graphtea.platform.core.Listener;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.preferences.lastsettings.StorableOnExit;
 import graphtea.plugins.main.ui.*;
@@ -44,17 +43,15 @@ public class Init implements graphtea.platform.plugin.PluginInterface, StorableO
                 ExceptionHandler.catchException(e);
             }
             UI ui = new UI(blackboard);
-            blackboard.addListener(Application.POST_INIT_EVENT, new Listener() {
-                public void keyChanged(String key, Object value) {
-                    GFrame frame = UIUtils.getGFrame(blackboard);
-                    URL resource = getClass().getResource("/images/Icon.ICO");
-                    if (resource != null) {
-                        ImageIcon icon = new ImageIcon(resource);
-                        frame.setIconImage(icon.getImage());
-                    }
-                    frame.validate();
-                    UIUtils.getGFrame(blackboard).setVisible(true);
+            blackboard.addListener(Application.POST_INIT_EVENT, (key, value) -> {
+                GFrame frame = UIUtils.getGFrame(blackboard);
+                URL resource = getClass().getResource("/images/Icon.ICO");
+                if (resource != null) {
+                    ImageIcon icon = new ImageIcon(resource);
+                    frame.setIconImage(icon.getImage());
                 }
+                frame.validate();
+                UIUtils.getGFrame(blackboard).setVisible(true);
             });
             ui.loadXML("/graphtea/plugins/main/core/SampleUI.xml", getClass());
             UIUtils.registerRenderer(PolygonArrow.class, new ArrowRenderer());

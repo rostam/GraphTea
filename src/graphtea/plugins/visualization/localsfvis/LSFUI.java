@@ -19,22 +19,11 @@ public class LSFUI extends JPanel implements ActionListener {
 
     private LocalSF target;
 
-    private final Listener n = new Listener() {
-        //todo: what does this performJob do (Rouzbeh)?
-        public void performJob(String name) {
-            animatorLSF a = target.getCurrentAnimator();
-            if (a != null)
-                dynamic.setSelected(a.isDynamic);
-        }
-
+    private final Listener<Object> n = new Listener<Object>() {
         public void keyChanged(String name, Object value) {
             animatorLSF a = target.getCurrentAnimator();
             if (a != null)
                 dynamic.setSelected(a.isDynamic);
-        }
-
-        public boolean isEnable() {
-            return isVisible();
         }
     };
 

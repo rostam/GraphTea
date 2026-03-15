@@ -64,8 +64,7 @@ public class LoadSimpleGraph implements GraphReaderExtension {
     }
 
     public GraphModel read(File file) throws GraphIOException {
-        try {
-            Scanner sc = new Scanner(file);
+        try (Scanner sc = new Scanner(file)) {
             String l = sc.nextLine();
             if (!l.equals("graph:"))
                 throw new GraphIOException("Incorrect Format(in the first line)");

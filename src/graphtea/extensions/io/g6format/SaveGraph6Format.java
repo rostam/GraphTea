@@ -32,14 +32,10 @@ public class SaveGraph6Format implements GraphWriterExtension {
 
     @Override
     public void write(File file, GraphModel graph) throws GraphIOException {
-        try {
-            FileWriter fw = new FileWriter(file,isAppend);
-            G6Format g6f = new G6Format();
+        try (FileWriter fw = new FileWriter(file, isAppend)) {
             String s = G6Format.graphToG6(graph);
             fw.write(s);
             fw.write(System.lineSeparator());
-            fw.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }

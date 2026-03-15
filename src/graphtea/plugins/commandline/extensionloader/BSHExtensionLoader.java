@@ -12,6 +12,7 @@ import graphtea.plugins.commandline.Shell;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
 import java.util.StringTokenizer;
 
 /**
@@ -29,15 +30,10 @@ public class BSHExtensionLoader implements UnknownExtensionLoader {
     public Extension ExtensionLoader(String extFileName) {
 //        this.extFileName = extFileName;
         String eval = "";
-        Scanner s = null;
         int bracketCount = 0;
         boolean lineComment = false;
-        try {
-            s = new Scanner(new File(extFileName));
-        } catch (FileNotFoundException e) {
-            System.err.println("File not Found");
-        }
-        do {
+        try (Scanner s = new Scanner(new File(extFileName))) {
+            do {
             String line = s.nextLine();
 
             if (!lineComment) {
@@ -83,14 +79,17 @@ public class BSHExtensionLoader implements UnknownExtensionLoader {
                 } else
                     eval += line + "\n";
             }
+            }
+            while (s.hasNextLine());
+        } catch (FileNotFoundException e) {
+            System.err.println("File not Found");
         }
-        while (s.hasNextLine());
 //        eval+=";";
         String other = "";
-        s = new Scanner(eval);
         String assignment = "";
         boolean isAssignment = false;
         int i = 0;
+        try (Scanner s = new Scanner(eval)) {
         while (s.hasNextLine()) {
             String l = s.nextLine();
             if ((l.contains("ex = new") && bracketCount == 0) || (isAssignment)) {
@@ -111,6 +110,7 @@ public class BSHExtensionLoader implements UnknownExtensionLoader {
             }
 
         }
+        } // end try (Scanner s = new Scanner(eval))
 //        System.err.println("Other");
 //        System.err.println("*******\n" + other + "\n*******");
 //        System.err.println("Assignment");
