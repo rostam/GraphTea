@@ -14,8 +14,9 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * @author Soroush Sabet
@@ -33,9 +34,9 @@ public class AppVertexCover extends GraphAlgorithm implements AlgorithmExtension
         step("Start of the algorithm.") ;
         GraphModel graph = graphData.getGraph();
         GraphModel gCopy = graph.getCopy();
-        Vector<Vertex> C = new Vector<>();
-        Vector<Vertex> D = new Vector<>();
-        Vector<Vertex> marked = new Vector<>();
+        List<Vertex> C = new ArrayList<>();
+        List<Vertex> D = new ArrayList<>();
+        List<Vertex> marked = new ArrayList<>();
         Iterator<Edge> i;
         //cleat marks
         for (Iterator<Edge> ie = graph.edgeIterator(); ie.hasNext();)

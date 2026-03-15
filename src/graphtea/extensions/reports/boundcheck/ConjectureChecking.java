@@ -22,6 +22,7 @@ import graphtea.plugins.reports.extension.GraphReportExtensionAction;
 
 import javax.swing.*;
 import java.io.File;
+import java.util.List;
 import java.util.Vector;
 
 public class ConjectureChecking implements GraphReportExtension, Parametrizable {
@@ -90,7 +91,7 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
             IterGraphs itg=new IterGraphs(conjCheck,iterative,currentType,
                     size,boundType.getValue(),generators.getValue(), PostP.getValue(),
                     Filters.getCorrectFilter(gfilters), columnIDForFilter);
-            Vector<GraphModel> gs = itg.wrapper_generate();
+            List<GraphModel> gs = itg.wrapper_generate();
             String nameOfFile = JOptionPane.showInputDialog("Please enter the name of a file in which the " +
                     "graphs will be saved.:");
             SaveGraph6Format sgf = new SaveGraph6Format();

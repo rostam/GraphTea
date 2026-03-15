@@ -21,6 +21,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
 
 public class IterGraphs {
@@ -48,7 +49,7 @@ public class IterGraphs {
         this.columnID = columnID;
     }
 
-    public Vector<GraphModel> wrapper_generate() {
+    public List<GraphModel> wrapper_generate() {
         GraphModelIterator it;
         if (!gens.equals(GeneratorFilters.NoGenerator)) {
             it = new GraphGeneratorIterator(gens);
@@ -56,7 +57,7 @@ public class IterGraphs {
             it = new AllGraphIterator(type,size);
         }
 
-        Vector<GraphModel> results = new Vector<>();
+        List<GraphModel> results = new ArrayList<>();
         while (it.hasNext()) {
             GraphModel g = it.next();
             if(gf!=null) if(!gf.filter(g)) continue;

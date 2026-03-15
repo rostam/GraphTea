@@ -11,14 +11,15 @@ import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Ali Rostami
  */
 
 @CommandAttitude(name = "mst_prim", abbreviation = "_max_c")
-public class MaxCliqueExtension implements GraphReportExtension<Vector<SubGraph>> {
+public class MaxCliqueExtension implements GraphReportExtension<List<SubGraph>> {
     public String getName() {
         return "Maximal Cliques";
     }
@@ -27,11 +28,11 @@ public class MaxCliqueExtension implements GraphReportExtension<Vector<SubGraph>
         return "Maximal Cliques";
     }
 
-    public Vector<SubGraph> calculate(GraphModel g) {
-        Vector<SubGraph> ret = new Vector<>();
+    public List<SubGraph> calculate(GraphModel g) {
+        List<SubGraph> ret = new ArrayList<>();
         MaxCliqueAlg mca = new MaxCliqueAlg(g);
-        Vector<Vector<Vertex>> mcs = mca.allMaxCliques();
-        for(Vector<Vertex> ss : mcs) {
+        List<List<Vertex>> mcs = mca.allMaxCliques();
+        for(List<Vertex> ss : mcs) {
             SubGraph sg = new SubGraph(g);
             sg.vertices.addAll(ss);
             ret.add(sg);

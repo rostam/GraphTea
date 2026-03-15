@@ -5,7 +5,6 @@ import graphtea.graph.graph.Vertex;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import java.util.stream.Collectors;
 
 /**
@@ -22,9 +21,9 @@ class MaxCliqueAlg
         this.g = g;
     }
 
-    public Vector<Vector<Vertex>> allMaxCliques()
+    public List<List<Vertex>> allMaxCliques()
     {
-        maxCliques = new Vector<>();
+        maxCliques = new ArrayList<>();
         List<Vertex> likelyC = new ArrayList<>();
         List<Vertex> searchC = new ArrayList<>();
         List<Vertex> found = new ArrayList<>();
@@ -33,18 +32,18 @@ class MaxCliqueAlg
         return maxCliques;
     }
 
-    public Vector<Vector<Vertex>> GreatestOne()
+    public List<List<Vertex>> GreatestOne()
     {
         allMaxCliques();
 
         int maximum = 0;
-        Vector<Vector<Vertex>> greatest = new Vector<>();
-        for (Vector<Vertex> clique : maxCliques) {
+        List<List<Vertex>> greatest = new ArrayList<>();
+        for (List<Vertex> clique : maxCliques) {
             if (maximum < clique.size()) {
                 maximum = clique.size();
             }
         }
-        for (Vector<Vertex> clique : maxCliques) {
+        for (List<Vertex> clique : maxCliques) {
             if (maximum == clique.size()) {
                 greatest.add(clique);
             }
@@ -65,7 +64,7 @@ class MaxCliqueAlg
                 List<Vertex> new_candidates = C.stream().filter(new_candidate -> g.isEdge(candidate, new_candidate)).collect(Collectors.toList());
                 List<Vertex> new_already_found = F.stream().filter(new_found -> g.isEdge(candidate, new_found)).collect(Collectors.toList());
                 if (new_candidates.isEmpty() && new_already_found.isEmpty()) {
-                    maxCliques.add(new Vector<>(likelyC));
+                    maxCliques.add(new ArrayList<>(likelyC));
                 }
                 else {
                     cliques(
@@ -99,7 +98,7 @@ class MaxCliqueAlg
     }
 
     private final GraphModel g;
-    private Vector<Vector<Vertex>> maxCliques;
+    private List<List<Vertex>> maxCliques;
 
 }
 

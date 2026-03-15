@@ -19,7 +19,9 @@ import graphtea.ui.extension.AbstractExtensionAction;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -46,10 +48,10 @@ public class GeneratorFilters {
         RenderTable retForm = new RenderTable();
         Extension ext = ((AbstractExtensionAction) hm.get(
                 nameToClass.get(name))).getTarget();
-        Vector<JTextField> v = new Vector<>();
+        List<JTextField> v = new ArrayList<>();
         JPanel myPanel = new JPanel();
         Parametrizable o = (Parametrizable) ext;
-        Vector<String> names = new Vector<>();
+        List<String> names = new ArrayList<>();
         String fieldName = "";
         for (Field ff : o.getClass().getFields()) {
             Parameter anot = ff.getAnnotation(Parameter.class);
@@ -65,7 +67,7 @@ public class GeneratorFilters {
         int output = JOptionPane.showConfirmDialog(null, myPanel,
                 "Please enter bound values for graph vertices:", JOptionPane.OK_CANCEL_OPTION);
         if (output == JOptionPane.OK_OPTION) {
-            Vector<Pair<Integer, Integer>> res = new Vector<>();
+            List<Pair<Integer, Integer>> res = new ArrayList<>();
             for (int i = 0; i < v.size(); i++) {
                 Scanner sc = new Scanner(v.get(i).getText());
                 if(i==0) {

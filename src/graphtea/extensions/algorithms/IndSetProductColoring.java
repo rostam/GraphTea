@@ -19,8 +19,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * author: rostam
@@ -31,11 +32,11 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
         super(blackBoard);
     }
 
-    public static Vector<ArrayDeque<Vertex>> getAllIndependentSets(GraphModel graph) {
+    public static List<ArrayDeque<Vertex>> getAllIndependentSets(GraphModel graph) {
         Partitioner p = new Partitioner(graph);
         AllIndSetSubSetListener l = new AllIndSetSubSetListener();
         p.findAllSubsets(l);
-        return new Vector<>(l.maxsets);
+        return new ArrayList<>(l.maxsets);
     }
 
     @Override
@@ -68,8 +69,8 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
         //       "</tr>");
 
         GraphModel g = graphData.getGraph();
-        Vector<ArrayDeque<Vertex>> maxsets = getAllIndependentSets(g);
-        Vector<SubGraph> ret = new Vector<>();
+        List<ArrayDeque<Vertex>> maxsets = getAllIndependentSets(g);
+        List<SubGraph> ret = new ArrayList<>();
         for (ArrayDeque<Vertex> maxset : maxsets) {
             SubGraph sd = new SubGraph(g);
             sd.vertices = new HashSet<>();
@@ -77,10 +78,10 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
             ret.add(sd);
         }
 
-        Vector<Vector<Integer>> ind_sets= new Vector<>();
+        List<List<Integer>> ind_sets= new ArrayList<>();
         for (SubGraph subGraph : ret) {
             HashSet<Vertex> ind_set = subGraph.vertices;
-            Vector<Integer> indset = new Vector<>();
+            List<Integer> indset = new ArrayList<>();
             for (Vertex vid : ind_set)
                 indset.add(vid.getId());
             ind_sets.add(indset);
@@ -91,13 +92,13 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
         step("<BR>Now, the nth power of I is computed in each step, until " +
                 "all vertices of G are seen.");
 
-        Vector<Vector<Integer>> ind_sets2= new Vector<>(ind_sets);
+        List<List<Integer>> ind_sets2= new ArrayList<>(ind_sets);
         for(int i=0;i<3;i++) {
             ind_sets2=setproduct(ind_sets2,ind_sets,i+1);
             IndSetsDialog isd = new IndSetsDialog(ind_sets2,"I^"+(i+2),"");
 
             boolean hasAllVSets = true;
-            for (Vector<Integer> integers : ind_sets2) {
+            for (List<Integer> integers : ind_sets2) {
                 hasAllVSets = true;
                 for (int j = 0; j < g.getVerticesCount(); j++) {
                     if (!integers.contains(j)) {
@@ -118,11 +119,11 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
 
     }
 
-    public Vector<Vector<Integer>> setproduct(Vector<Vector<Integer>> set1,Vector<Vector<Integer>> set2,int minuscount) {
-        Vector<Vector<Integer>> ret = new Vector<>();
-        for (Vector<Integer> tt : set1) {
-            for (Vector<Integer> integers : set2) {
-                Vector<Integer> tmp = new Vector<>(tt);
+    public List<List<Integer>> setproduct(List<List<Integer>> set1,List<List<Integer>> set2,int minuscount) {
+        List<List<Integer>> ret = new ArrayList<>();
+        for (List<Integer> tt : set1) {
+            for (List<Integer> integers : set2) {
+                List<Integer> tmp = new ArrayList<>(tt);
                 boolean sameItem = false;
 
                 for (Integer aTt2 : integers) {
@@ -161,7 +162,7 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
 }
 
 class AllIndSetSubSetListener implements SubSetListener {
-    Vector<ArrayDeque<Vertex>> maxsets = new Vector<>();
+    List<ArrayDeque<Vertex>> maxsets = new ArrayList<>();
     public boolean subsetFound(int t, ArrayDeque<Vertex> complement, ArrayDeque<Vertex> set) {
         maxsets.add(new ArrayDeque<>(set));
         return false;
@@ -169,15 +170,15 @@ class AllIndSetSubSetListener implements SubSetListener {
 }
 
 class IndSetsDialog extends JDialog {
-    public IndSetsDialog(Vector<Vector<Integer>> ind_sets,
+    public IndSetsDialog(List<List<Integer>> ind_sets,
                          String name, String description) {
         this.setVisible(true);
         this.setTitle(name);
         this.setSize(new Dimension(200,400));
         //jdd.setLayout(new BorderLayout(3, 3));
         this.add(new JLabel(description), BorderLayout.NORTH);
-        Vector<IndSubGraphs> isg = new Vector<>();
-        for (Vector<Integer> ind_set : ind_sets) {
+        List<IndSubGraphs> isg = new ArrayList<>();
+        for (List<Integer> ind_set : ind_sets) {
             IndSubGraphs isgs = new IndSubGraphs();
             isgs.addAll(ind_set);
             isg.add(isgs);
