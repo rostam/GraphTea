@@ -34,8 +34,7 @@ public class MM {
             nnz+=diagNonZero;
         } else s += " general";
 
-        FileOutputStream fos = new FileOutputStream(out);
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(out)))) {
         bw.write(s);
         bw.newLine();
         bw.write(m.getRowDimension() + " " + m.getColumnDimension() + " "+nnz);
@@ -60,25 +59,28 @@ public class MM {
                 }
             }
         }
-        bw.close();
+        }
     }
 
     public static Matrix loadMatrixFromSPARSE(File inputFile) throws IOException {
-        Scanner sc = new Scanner(inputFile);
         String line;
         boolean isSymmetric = false;
-        do {
-            line = sc.nextLine();
-            if (line.contains("symmetric")) isSymmetric = true;
-        } while (line.contains("%"));
-        Scanner sc2 = new Scanner(line);
-        int rows = sc2.nextInt();
-        int cols = sc2.nextInt();
-        Matrix mm = new Matrix(rows, cols);
-        while (sc.hasNextLine()) {
-            line = sc.nextLine();
-            Scanner sc3 = new Scanner(line);
-            mm.set(sc3.nextInt() - 1, sc3.nextInt() - 1, sc3.nextDouble());
+        int rows, cols;
+        Matrix mm;
+        try (Scanner sc = new Scanner(inputFile)) {
+            do {
+                line = sc.nextLine();
+                if (line.contains("symmetric")) isSymmetric = true;
+            } while (line.contains("%"));
+            Scanner sc2 = new Scanner(line);
+            rows = sc2.nextInt();
+            cols = sc2.nextInt();
+            mm = new Matrix(rows, cols);
+            while (sc.hasNextLine()) {
+                line = sc.nextLine();
+                Scanner sc3 = new Scanner(line);
+                mm.set(sc3.nextInt() - 1, sc3.nextInt() - 1, sc3.nextDouble());
+            }
         }
 
         if (isSymmetric) {
@@ -96,8 +98,7 @@ public class MM {
     public static void saveMtxFormat(File out, SpMat m) throws IOException {
         String s = "%%MatrixMarket matrix coordinate real general";
         int nnz = m.nnz();
-        FileOutputStream fos = new FileOutputStream(out);
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(out)))) {
         bw.write(s);
         bw.newLine();
         bw.write(m.rows() + " " + m.rows() + " " + nnz);
@@ -108,6 +109,6 @@ public class MM {
                 bw.newLine();
             }
         }
-        bw.close();
+        }
     }
 }

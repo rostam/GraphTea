@@ -33,9 +33,8 @@ public class LoadGraph implements GraphReaderExtension {
     }
 
     public GraphModel read(File file) {
-        try {
-            ObjectInputStream in = new ObjectInputStream(
-                    new FileInputStream(file));
+        try (ObjectInputStream in = new ObjectInputStream(
+                new FileInputStream(file))) {
             GraphSaveObject gso = (GraphSaveObject) in.readObject();
             return gso.getG();
         } catch (IOException | ClassNotFoundException e) {

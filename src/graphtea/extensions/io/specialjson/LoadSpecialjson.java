@@ -56,9 +56,9 @@ public class LoadSpecialjson implements GraphReaderExtension {
         HashMap<String,Integer> labelVertex = new HashMap<>();
         HashMap<String,List<Integer>> regionVertices = new HashMap<>();
         HashMap<Integer, String> verticesRegion = new HashMap<>();
-        try {
+        try (Scanner sc = new Scanner(file);
+             Scanner sc2 = new Scanner(file)) {
             int i = 0;
-            Scanner sc = new Scanner(file);
             FastRenderer.defaultVertexRadius = 12;
             RenderTable rt = new RenderTable();
             Vector<String> titles = new Vector<>();
@@ -107,7 +107,6 @@ public class LoadSpecialjson implements GraphReaderExtension {
                 }
             }
 
-            Scanner sc2 = new Scanner(file);
             while (sc2.hasNext()) {
                 String line = sc2.nextLine();
                 if (line.contains("source")) {

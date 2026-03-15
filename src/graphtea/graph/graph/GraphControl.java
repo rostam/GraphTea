@@ -149,7 +149,6 @@ public class GraphControl implements MouseListener, MouseWheelListener, MouseMot
         int mbuton = mouseEvent.getModifiersEx();
         if (v != null && isPointOnVertex(g, v, mousePos)) {
             sendEventToBlackBoard(VertexEvent.draggingStarted(v, mousePos(mouseEvent, v), mouseEvent.getButton(), mbuton));
-            if (lastVertexPressed != null) System.err.println("last = " + lastVertexPressed.getLabel());
             lastVertexPressed = v;
             return;
         }

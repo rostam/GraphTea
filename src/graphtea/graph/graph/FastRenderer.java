@@ -95,12 +95,6 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
         this.zoomFactor = getGraph().getZoomFactor();
 
         boolean quickPaint = forceQuickPaint || ((getGraph().getVerticesCount() + getGraph().getEdgesCount()) >= 500);
-        /*this is for , if we want to the graph has a transparency over it's background image (if it has any one).
-        // Get and install an AlphaComposite to do transparent drawing
-        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
-        g.fillRect(100, 100, 100, 100);               // Start drawing with it
-        */
-
         // Enable anti-aliasing for smoother edges
         gg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -624,20 +618,8 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
 
         ignoreRapaints = false;
         setIgnoreRepaint(false);
-//commented for debugging purposes
-//        } else {
-//            if (!(bounds.x < 0 || bounds.y < 0)) {
-////                            System.out.println("2");
-//                Rectangle b = bounds.getBounds();
-//                b.width += Math.abs(b.x);
-//                b.height += Math.abs(b.y);
-//                setPreferredSize(b.getSize());
-//                revalidate();
-//            }
-//        }
         updateBounds = false;
         ignoreRapaints = false;
-//        System.out.println("finished");
     }
 
     public void calculateSize() {

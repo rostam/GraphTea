@@ -34,14 +34,13 @@ public class EdgeInduced {
         }
 
         for (Edge ee : S) {
-            Vertex v1 = ee.source;
-            Vertex v2 = ee.target;
+            Vertex v1 = vv.get(ee.source);
+            Vertex v2 = vv.get(ee.target);
+            ret.removeEdge(ret.getEdges(v1, v2).get(0));
             if (ret.getInDegree(v1) + ret.getOutDegree(v1) == 0)
                 ret.removeVertex(v1);
-            else if (ret.getInDegree(v2) + ret.getOutDegree(v2) == 0)
+            if (v2 != v1 && ret.getInDegree(v2) + ret.getOutDegree(v2) == 0)
                 ret.removeVertex(v2);
-            else
-                ret.removeEdge(ret.getEdges(vv.get(ee.source), vv.get(ee.target)).get(0));
         }
         return ret;
     }

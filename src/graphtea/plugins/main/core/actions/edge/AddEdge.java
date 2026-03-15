@@ -57,22 +57,6 @@ public class AddEdge extends AbstractAction implements PaintHandler {
 
     public void track(){}
     public void performAction(String eventName, Object value) {
-// our old lovely Add Edge
-//        if (name == VertexSelectData.name) {
-//            VertexSelectData vsd = blackboard.getLog(VertexSelectData.name).getLast();
-//            if (!isClick) {
-//                vc1 = vsd.v;
-//                v1=vc1;
-//                startPainting();
-//            } else {
-//                Vertex v2=vsd.v;
-//                Edge e = doJob(v2.g, v2, vc1);
-//                addUndoData(e);
-//                stopPainting();
-//            }
-//            isClick=true;
-//            isDrag=false;
-//        }
         VertexEvent ve = blackboard.getData(VertexEvent.EVENT_KEY);
 
         if ((ve.modifiers & MouseEvent.SHIFT_DOWN_MASK) == MouseEvent.SHIFT_DOWN_MASK)

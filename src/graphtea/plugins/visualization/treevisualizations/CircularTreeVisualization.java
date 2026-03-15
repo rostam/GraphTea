@@ -9,6 +9,7 @@ import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseVertexProperties;
+import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 import graphtea.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphtea.ui.UIUtils;
@@ -79,29 +80,6 @@ public class CircularTreeVisualization implements VisualizationExtension {
     }
 
     static GraphModel g;
-
-    /* public void performJob(Event eventName, Object value) {
-visitedVertices = new Vector<Vertex>();
-vertexPlaces = new HashMap<Vertex, GPoint>();
-children = new Vector<Vertex>();
-placedVertices = new HashSet<Vertex>();
-
-try {
-    root = findAppropriateRoot(g);
-    unMarkVertices();
-    visitedVertices.add(root);
-    locateAll(visitedVertices, 800, 80);
-    *//*BaseVertexProperties properties = new BaseVertexProperties(root.getColor(), root.getMark());
-            properties.obj = Double.valueOf(2*Math.PI);
-            root.setProp(properties);
-            locateAllSubTrees(root, 40, 0);*//*
-            GeneralAnimator t = new GeneralAnimator(vertexPlaces, g, blackboard);
-            t.start();
-        } catch (NullPointerException e) {
-//            ExceptionHandler.catchException(e);
-        }
-
-    }*/
 
     public void locateAllSubTrees(Vertex v, double radius, double offSet) {
         if (placedVertices.contains(root)) {
@@ -221,14 +199,8 @@ try {
             unMarkVertices();
             visitedVertices.add(root);
             locateAll(visitedVertices, 800, radius);
-            /*BaseVertexProperties properties = new BaseVertexProperties(root.getColor(), root.getMark());
-            properties.obj = Double.valueOf(2*Math.PI);
-            root.setProp(properties);
-            locateAllSubTrees(root, 40, 0);*/
-
         } catch (NullPointerException e) {
-            System.out.println("Graph is Empty");
-//            ExceptionHandler.catchException(e);
+            ExceptionHandler.catchException(e);
         }
         return vertexPlaces;
     }

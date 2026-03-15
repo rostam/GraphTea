@@ -11,8 +11,7 @@ package graphtea.plugins.main.saveload;
 
 import javax.swing.filechooser.FileFilter;
 import java.io.File;
-import java.util.Enumeration;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 /**
  * A convenience implementation of FileFilter that filters out
@@ -38,7 +37,7 @@ public class ExampleFileFilter extends FileFilter {
     private static final String TYPE_UNKNOWN = "Type Unknown";
     private static final String HIDDEN_FILE = "Hidden File";
 
-    private Hashtable<String, FileFilter> filters;
+    private HashMap<String, FileFilter> filters;
     private String description = null;
     private String fullDescription = null;
     private boolean useExtensionsInDescription = true;
@@ -50,7 +49,7 @@ public class ExampleFileFilter extends FileFilter {
      * @see #addExtension
      */
     public ExampleFileFilter() {
-        this.filters = new Hashtable<>();
+        this.filters = new HashMap<>();
     }
 
     /**
@@ -142,7 +141,7 @@ public class ExampleFileFilter extends FileFilter {
      */
     public void addExtension(String extension) {
         if (filters == null) {
-            filters = new Hashtable<>(5);
+            filters = new HashMap<>();
         }
         filters.put(extension.toLowerCase(), this);
         fullDescription = null;
@@ -163,11 +162,13 @@ public class ExampleFileFilter extends FileFilter {
             if (description == null || isExtensionListInDescription()) {
                 fullDescription = description == null ? "(" : description + " (";
                 // build the defaultValue from the extension list
-                Enumeration<String> extensions = filters.keys();
-                if (extensions != null) {
-                    fullDescription += "." + extensions.nextElement();
-                    while (extensions.hasMoreElements()) {
-                        fullDescription += ", ." + extensions.nextElement();
+                boolean first = true;
+                for (String ext : filters.keySet()) {
+                    if (first) {
+                        fullDescription += "." + ext;
+                        first = false;
+                    } else {
+                        fullDescription += ", ." + ext;
                     }
                 }
                 fullDescription += ")";

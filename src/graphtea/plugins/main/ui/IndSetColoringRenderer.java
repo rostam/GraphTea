@@ -38,19 +38,15 @@ public class IndSetColoringRenderer implements GBasicCellRenderer<IndSubGraphs> 
           }
         }
 
-        txt = "<HTML><BODY>";
-            txt += "<B>V:</B>{";
-            if(hasAllVSet) txt+="<B>";
+        StringBuilder sb = new StringBuilder("<HTML><BODY><B>V:</B>{");
+        if (hasAllVSet) sb.append("<B>");
         for (int tmp : res) {
-            if (tmp == -1) txt += "},{";
-            else txt += tmp + ",";
+            if (tmp == -1) sb.append("},{");
+            else sb.append(tmp).append(",");
         }
-            if(hasAllVSet) txt+="</B>";
-
-            txt += "}<BR>";
-
-
-        txt = txt + "</BODY></HTML>";
+        if (hasAllVSet) sb.append("</B>");
+        sb.append("}<BR></BODY></HTML>");
+        txt = sb.toString();
         //System.out.println(txt);
         JLabel l = new JLabel(txt) {
             @Override

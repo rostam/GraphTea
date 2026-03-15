@@ -36,8 +36,7 @@ public class LoadSpecialGML implements GraphReaderExtension {
 
     public GraphModel read(File file) throws GraphIOException {
         GraphModel g = new GraphModel();
-        try {
-            Scanner sc = new Scanner(file);
+        try (Scanner sc = new Scanner(file)) {
             while (sc.hasNext()) {
                 String line = sc.nextLine();
                 if(line.contains("<node")) {

@@ -50,7 +50,6 @@ public class StaticUtils {
     }
 
     public static void putInJar(File directory, JarOutputStream jos, String prefix) throws Exception {
-        FileInputStream fis;
         File[] files = directory.listFiles();
 
         for (File file : files) {
@@ -59,26 +58,23 @@ public class StaticUtils {
                 putInJar(file, jos, prefix + file.getName() + "/");
             } else {
                 jos.putNextEntry(new JarEntry(prefix + file.getName()));
-                fis = new FileInputStream(file);
-
-                copyStream(fis, jos);
-
-                fis.close();
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    copyStream(fis, jos);
+                }
                 jos.closeEntry();
             }
         }
     }
 
     public static void copyFile(File in, File out) throws Exception {
-        FileInputStream fis = new FileInputStream(in);
-        FileOutputStream fos = new FileOutputStream(out);
-        byte[] buf = new byte[1024];
-        int i = 0;
-        while ((i = fis.read(buf)) != -1) {
-            fos.write(buf, 0, i);
+        try (FileInputStream fis = new FileInputStream(in);
+             FileOutputStream fos = new FileOutputStream(out)) {
+            byte[] buf = new byte[1024];
+            int i;
+            while ((i = fis.read(buf)) != -1) {
+                fos.write(buf, 0, i);
+            }
         }
-        fis.close();
-        fos.close();
     }
 
     public static void copyStream(InputStream is, OutputStream out) throws Exception {

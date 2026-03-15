@@ -9,6 +9,7 @@ import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.BaseVertexProperties;
+import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.plugins.visualization.corebasics.basics.Cycle;
 import graphtea.plugins.visualization.corebasics.basics.PathProperties;
 import graphtea.plugins.visualization.corebasics.basics.VertexCycleLengthComparator;
@@ -51,9 +52,9 @@ public class CircularDispatchVisualization implements VisualizationExtension {
                 vertexCycleLength.put(v, i);
             }
         }
-        Object[] verticeArray = vertexCycleLength.keySet().toArray();
+        Vertex[] verticeArray = vertexCycleLength.keySet().toArray(new Vertex[0]);
         Arrays.sort(verticeArray, new VertexCycleLengthComparator());
-        Vertex maxLengthCycle = (Vertex) verticeArray[0];
+        Vertex maxLengthCycle = verticeArray[0];
         return new Cycle();
     }
 
@@ -225,8 +226,7 @@ public class CircularDispatchVisualization implements VisualizationExtension {
 //            GeneralAnimator t = new GeneralAnimator(vertexPlaces, g, blackboard);
 //            t.start();
         } catch (NullPointerException e) {
-            System.out.println("Graph is Empty");
-//            ExceptionHandler.catchException(e);
+            ExceptionHandler.catchException(e);
         }
         return vertexPlaces;
     }
