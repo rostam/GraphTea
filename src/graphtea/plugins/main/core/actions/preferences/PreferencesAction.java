@@ -14,7 +14,6 @@ import graphtea.ui.UIUtils;
 import graphtea.ui.components.prefeditor.GPrefPane;
 
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * @author Rouzbeh Ebrahimi
@@ -40,10 +39,7 @@ public class PreferencesAction extends AbstractAction implements StorableOnExit 
 
     private void managePrefUI() {
         HashMap<String, AbstractPreference> tabs = new HashMap<>();
-        Iterator<AbstractPreference> iterator = pref.set.iterator();
-
-        while (iterator.hasNext()) {
-            AbstractPreference ap = iterator.next();
+        for (AbstractPreference ap : pref.set) {
             tabs.put(ap.preferenceName, ap);
         }
 

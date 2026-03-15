@@ -14,7 +14,6 @@ import graphtea.platform.preferences.Preferences;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.InvalidPreferencesFormatException;
@@ -141,9 +140,7 @@ public class Settings implements AttributeListener {
     private NotifiableAttributeSetImpl refactorSerializables(NotifiableAttributeSetImpl x) {
         NotifiableAttributeSetImpl y = new NotifiableAttributeSetImpl();
         Map<String, Object> map = x.getAttrs();
-        Iterator<String> iterator = map.keySet().iterator();
-        while (iterator.hasNext()) {
-            String key = iterator.next();
+        for (String key : map.keySet()) {
             Object value = map.get(key);
             if (value instanceof Serializable) {
                 y.put(key, value);

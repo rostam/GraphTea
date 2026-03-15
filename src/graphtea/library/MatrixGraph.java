@@ -136,12 +136,8 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
             tempAL.add(gc.convert(v));
         }
 
-        Iterator<ImportEdgeType> iet = graph.edgeIterator();
-
-        ImportEdgeType edge;
         try {
-            while (iet.hasNext()) {
-                edge = iet.next();
+            for (ImportEdgeType edge : graph.edges()) {
                 insertEdge(gc.convert(edge, tempAL.get(edge.source.getId()), tempAL.get(edge.target.getId())));
             }
         } catch (InvalidVertexException e) {
@@ -801,17 +797,12 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
             tempAL.add(tempVertex);
         }
 
-        Iterator<EdgeType> iet = edgeIterator();
-
-        EdgeType edge;
         try {
-            while (iet.hasNext()) {
-                edge = iet.next();
+            for (EdgeType edge : edges()) {
                 oGraph.insertEdge(gc.convert(edge, tempAL.get(edge.source.getId()), tempAL.get(edge.target.getId())));
             }
         } catch (InvalidVertexException e) {
             throw new InvalidGraphException();
-
         }
 
         return oGraph;

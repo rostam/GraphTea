@@ -20,7 +20,6 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.AtomAnimator;
 
 import java.util.HashMap;
-import java.util.Iterator;
 
 import static graphtea.library.event.GraphEvent.EventType.NEW_GRAPH;
 
@@ -53,9 +52,7 @@ public class NewGraph implements AtomAnimator<BaseGraphEvent> {
             g.insertVertex(vv);
             vv.setLocation(new GPoint(Math.random() * 200, Math.random() * 200));
         }
-        Iterator<BaseEdge<BaseVertex>> ie = event.graph.edgeIterator();
-        while (ie.hasNext()) {
-            BaseEdge e = ie.next();
+        for (BaseEdge e : event.graph.edges()) {
             Vertex src = map.get(e.source);
             Vertex dest = map.get(e.target);
             Edge ee = new Edge(src, dest);
