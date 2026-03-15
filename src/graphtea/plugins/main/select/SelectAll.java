@@ -13,7 +13,6 @@ import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.ui.UIUtils;
 
-import java.util.Iterator;
 
 /**
  * @author Ruzbeh Ebrahimi
@@ -30,11 +29,7 @@ public class SelectAll extends AbstractAction {
     public void performAction(String eventName, Object value) {
         GraphModel g = blackboard.getData(GraphAttrSet.name);
         SubGraph sd = getSelection();
-        Iterator<Vertex> vertices = g.iterator();
-        Iterator<Edge> edges = g.lightEdgeIterator();
-        while (vertices.hasNext()) {
-
-            Vertex vertex = vertices.next();
+        for (Vertex vertex : g) {
 //            if (vertex.view.isSelected) {
 //                //vertex.view.isSelected = false;
 //                sd.vertices.remove(vertex);
@@ -42,9 +37,7 @@ public class SelectAll extends AbstractAction {
             sd.vertices.add(vertex);
 
         }
-        while (edges.hasNext()) {
-
-            Edge edge = edges.next();
+        for (Edge edge : g.getEdges()) {
 //            if (edge.view.isSelected){
 //            sd.edges.remove(edge);
 //            //edge.view.isSelected=false;

@@ -13,9 +13,9 @@ import graphtea.plugins.main.extension.GraphActionExtension;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * User: root
@@ -65,11 +65,10 @@ public class DeleteSelected implements GraphActionExtension {
         HashSet<Edge> edges = new HashSet<>(selection.edges);
         HashSet<Vertex> vertices = new HashSet<>(selection.vertices);
         selection.edges.forEach(g::removeEdge);
-        Vector<Edge> ed = new Vector<>();
+        List<Edge> ed = new ArrayList<>();
         for (Vertex v : selection.vertices) {
-            Iterator<Edge> ie = g.edgeIterator(v);
-            while (ie.hasNext()) {
-                ed.add(ie.next());
+            for (Edge e : g.edges(v)) {
+                ed.add(e);
             }
 //            for (Edge e : v.control)
 //                ed.add(e);

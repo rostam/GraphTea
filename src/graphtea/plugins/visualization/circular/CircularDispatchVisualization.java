@@ -15,20 +15,20 @@ import graphtea.plugins.visualization.corebasics.basics.VertexCycleLengthCompara
 import graphtea.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphtea.ui.UIUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * @author Rouzbeh Ebrahimi
  */
 public class CircularDispatchVisualization implements VisualizationExtension {
     String event = UIUtils.getUIEventKey("CircularTreeVisualization");
-    public Vector<Vertex> visitedVertices = new Vector<>();
+    public List<Vertex> visitedVertices = new ArrayList<>();
     public HashMap<Vertex, GPoint> vertexPlaces = new HashMap<>();
     Vertex root;
-    public Vector<Vertex> children = new Vector<>();
+    public List<Vertex> children = new ArrayList<>();
     public HashMap<Vertex, Integer> vertexHeights = new HashMap<>();
 
     public HashMap<Vertex, Integer> vertexCycleLength = new HashMap<>();
@@ -36,13 +36,11 @@ public class CircularDispatchVisualization implements VisualizationExtension {
 
     private Cycle FindMainCycle(GraphModel g) {
         Vertex root = g.getAVertex();
-        Iterator<Vertex> ei = g.iterator();
-        while (ei.hasNext()) {
-            Vertex e = ei.next();
+        for (Vertex e : g) {
             root = findHigherVertex(e, root);
         }
 
-        Vector<Vertex> t1 = new Vector<>();
+        List<Vertex> t1 = new ArrayList<>();
         t1.add(root);
         findCycle(t1, vertexHeights.get(root), 0);
         for (Vertex v : g) {
@@ -60,8 +58,8 @@ public class CircularDispatchVisualization implements VisualizationExtension {
     }
 
     private Vertex findHigherVertex(Vertex v1, Vertex v2) {
-        Vector<Vertex> t1 = new Vector<>();
-        Vector<Vertex> t2 = new Vector<>();
+        List<Vertex> t1 = new ArrayList<>();
+        List<Vertex> t2 = new ArrayList<>();
         t1.add(v1);
         t2.add(v2);
         int i = maxHeight(t1, 0);
@@ -75,14 +73,11 @@ public class CircularDispatchVisualization implements VisualizationExtension {
         }
     }
 
-    private void findCycle(Vector<Vertex> currentLevel, int minLength, int color) {
-        Vector<Vertex> nextLevel = new Vector<>();
+    private void findCycle(List<Vertex> currentLevel, int minLength, int color) {
+        List<Vertex> nextLevel = new ArrayList<>();
         for (Vertex v : currentLevel) {
             v.setMark(true);
-            Iterator<Edge> em = g.edgeIterator(v);
-
-            while (em.hasNext()) {
-                Edge e = em.next();
+            for (Edge e : g.edges(v)) {
                 Vertex v2 = e.source;
                 String vPathName = ((PathProperties) v.getProp().obj).getName();
                 Object obj = v2.getProp().obj;
@@ -121,13 +116,11 @@ public class CircularDispatchVisualization implements VisualizationExtension {
         }
     }
 
-    private int maxHeight(Vector<Vertex> currentLevel, int maxLevel) {
-        Vector<Vertex> nextLevel = new Vector<>();
+    private int maxHeight(List<Vertex> currentLevel, int maxLevel) {
+        List<Vertex> nextLevel = new ArrayList<>();
         for (Vertex v : currentLevel) {
             v.setMark(true);
-            Iterator<Edge> em = g.edgeIterator(v);
-            while (em.hasNext()) {
-                Edge e = em.next();
+            for (Edge e : g.edges(v)) {
                 Vertex v2 = e.source;
                 if (!v2.getMark()) {
                     nextLevel.add(v2);
@@ -164,12 +157,10 @@ public class CircularDispatchVisualization implements VisualizationExtension {
     }*/
 
 
-    public Vector<Vertex> findNextLevelChildren(Vector<Vertex> currentLevelVertices) {
-        Vector<Vertex> newChildren = new Vector<>();
+    public List<Vertex> findNextLevelChildren(List<Vertex> currentLevelVertices) {
+        List<Vertex> newChildren = new ArrayList<>();
         for (Vertex v : currentLevelVertices) {
-            Iterator<Edge> e = g.edgeIterator(v);
-            while (e.hasNext()) {
-                Edge ed = e.next();
+            for (Edge ed : g.edges(v)) {
                 Vertex dest = ed.source;
                 if (!visitedVertices.contains(dest)) {
                     newChildren.add(dest);
@@ -179,13 +170,13 @@ public class CircularDispatchVisualization implements VisualizationExtension {
         return newChildren;
     }
 
-    public void locateAll(Vector<Vertex> currentLevelVertices, int width, int radius) {
+    public void locateAll(List<Vertex> currentLevelVertices, int width, int radius) {
         int currentLevelCount = currentLevelVertices.size();
-        Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
+        List<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
         int nextLevelCount = nextLevel.size();
         double degree = 360 / currentLevelCount;
         int j = 0;
-        if (currentLevelCount == 1 && currentLevelVertices.elementAt(0).equals(root)) {
+        if (currentLevelCount == 1 && currentLevelVertices.get(0).equals(root)) {
             GPoint newPoint = new GPoint(350, 350);
             vertexPlaces.put(root, newPoint);
 
@@ -223,9 +214,9 @@ public class CircularDispatchVisualization implements VisualizationExtension {
     }
 
     public HashMap<Vertex, GPoint> getNewVertexPlaces() {
-        visitedVertices = new Vector<>();
+        visitedVertices = new ArrayList<>();
         vertexPlaces = new HashMap<>();
-        children = new Vector<>();
+        children = new ArrayList<>();
 //        g = ((GraphModel) (blackboard.getData(GraphAttrSet.name)));
         try {
             Cycle c = FindMainCycle(g);

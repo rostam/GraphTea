@@ -12,7 +12,6 @@ import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.ui.UIUtils;
 
-import java.util.Iterator;
 
 /**
  * @author azin azadi
@@ -46,9 +45,7 @@ public class ResetGraph extends AbstractAction {
             v.setMark(false);
             v.setColor(1);
         }
-        Iterator<Edge> ie = g.edgeIterator();
-        while (ie.hasNext()) {
-            Edge e = ie.next();
+        for (Edge e : g.getEdges()) {
             e.setMark(false);
             //            e.model.setWeight(0);
             e.setColor(0);

@@ -12,18 +12,18 @@ import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 import graphtea.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphtea.ui.UIUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * @author Rouzbeh Ebrahimi
  */
 public class HierarchicalTreeVisualization implements VisualizationExtension {
     public static final String event = UIUtils.getUIEventKey("HierarchicalTreeVisualization");
-    public Vector<Vertex> visitedVertices = new Vector<>();
+    public List<Vertex> visitedVertices = new ArrayList<>();
     public HashMap<Vertex, GPoint> vertexPlaces = new HashMap<>();
-    public Vector<Vertex> children = new Vector<>();
+    public List<Vertex> children = new ArrayList<>();
 
     private void unMarkVertices() {
         for (Vertex v : g) {
@@ -39,9 +39,9 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
      * @param value The value
      */
     public void performJob(String eventName, Object value) {
-        visitedVertices = new Vector<>();
+        visitedVertices = new ArrayList<>();
         vertexPlaces = new HashMap<>();
-        children = new Vector<>();
+        children = new ArrayList<>();
         try {
             Vertex root = findAppropriateRoot(g);
             visitedVertices.add(root);
@@ -55,8 +55,8 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
     }
 
     private Vertex findHigherVertex(Vertex v1, Vertex v2) {
-        Vector<Vertex> t1 = new Vector<>();
-        Vector<Vertex> t2 = new Vector<>();
+        List<Vertex> t1 = new ArrayList<>();
+        List<Vertex> t2 = new ArrayList<>();
         t1.add(v1);
         t2.add(v2);
         if (BFS(t1, 0) > BFS(t2, 0)) {
@@ -68,21 +68,17 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
 
     private Vertex findAppropriateRoot(GraphModel g) {
         Vertex root = g.getAVertex();
-        Iterator<Vertex> ei = g.iterator();
-        while (ei.hasNext()) {
-            Vertex e = ei.next();
+        for (Vertex e : g) {
             root = findHigherVertex(e, root);
         }
         return root;
     }
 
-    private int BFS(Vector<Vertex> currentLevel, int maxLevel) {
-        Vector<Vertex> nextLevel = new Vector<>();
+    private int BFS(List<Vertex> currentLevel, int maxLevel) {
+        List<Vertex> nextLevel = new ArrayList<>();
         for (Vertex v : currentLevel) {
             v.setMark(true);
-            Iterator<Edge> em = g.edgeIterator(v);
-            while (em.hasNext()) {
-                Edge e = em.next();
+            for (Edge e : g.edges(v)) {
                 Vertex v2 = e.source;
                 if (!v2.getMark()) {
                     nextLevel.add(v2);
@@ -98,13 +94,11 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
         }
     }
 
-    public Vector<Vertex> findNextLevelChildren(Vector<Vertex> currentLevelVertices) {
-        Vector<Vertex> newChildren = new Vector<>();
+    public List<Vertex> findNextLevelChildren(List<Vertex> currentLevelVertices) {
+        List<Vertex> newChildren = new ArrayList<>();
         if (currentLevelVertices.size() != 0) {
             for (Vertex v : currentLevelVertices) {
-                Iterator<Edge> e = g.edgeIterator(v);
-                while (e.hasNext()) {
-                    Edge ed = e.next();
+                for (Edge ed : g.edges(v)) {
                     Vertex dest = ed.source;
                     if (!visitedVertices.contains(dest)) {
                         newChildren.add(dest);
@@ -116,11 +110,11 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
         return newChildren;
     }
 
-    public void locateAll(Vector<Vertex> currentLevelVertices, int width, int currentLevelHeight) {
+    public void locateAll(List<Vertex> currentLevelVertices, int width, int currentLevelHeight) {
         int currentLevelCount = currentLevelVertices.size();
         int horizontalDist = width / currentLevelCount;
         int i = 0;
-        Vector<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
+        List<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
 
         for (Vertex v : currentLevelVertices) {
             GPoint newPoint = new GPoint(horizontalDist * i + width / (currentLevelCount + 1), currentLevelHeight);
@@ -158,9 +152,9 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
     public static Integer eachLevelHeigh = 50;
 
     public HashMap<Vertex, GPoint> getNewVertexPlaces() {
-        visitedVertices = new Vector<>();
+        visitedVertices = new ArrayList<>();
         vertexPlaces = new HashMap<>();
-        children = new Vector<>();
+        children = new ArrayList<>();
         try {
             Vertex root = findAppropriateRoot(g);
             visitedVertices.add(root);
