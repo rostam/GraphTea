@@ -32,8 +32,7 @@ public class ShellServer {
     }
 
     public void performJob(String eventKey, Object val) {
-        thread = new Thread() {
-            public void run() {
+        thread = new Thread(() -> {
                 try {
                     ServerSocket ss = new ServerSocket(1234);
                     final Socket s = ss.accept();
@@ -90,8 +89,7 @@ public class ShellServer {
                 } catch (Exception e) {
                     ExceptionHandler.catchException(e);
                 }
-            }
-        };
+            });
         thread.start();
     }
 }

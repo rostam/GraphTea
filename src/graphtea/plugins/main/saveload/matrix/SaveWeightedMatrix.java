@@ -21,9 +21,9 @@ public class SaveWeightedMatrix implements GraphWriterExtension {
      * saves g as matrix in file
      */
     public static void saveMatrix(GraphModel g, File file) throws IOException {
-        FileWriter output = new FileWriter(file);
-        output.write(Matrix.Matrix2String(Matrix.graph2Matrix(g)));
-        output.close();
+        try (FileWriter output = new FileWriter(file)) {
+            output.write(Matrix.Matrix2String(Matrix.graph2Matrix(g)));
+        }
     }
 
     public String getName() {

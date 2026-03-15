@@ -7,7 +7,8 @@ package graphtea.platform.lang;
 import graphtea.platform.StaticUtils;
 import graphtea.platform.attribute.AtomAttribute;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * an eXtended data type that you can set it and also get it,
@@ -57,7 +58,7 @@ public class ArrayX<T> extends SetValidator<T> implements AtomAttribute<T> {
     public static ArrayX fromString(String s) {
         String[] ss = s.split(" #\\$%# ");
         Object last = null;
-        Vector set = new Vector();
+        List<Object> set = new ArrayList<>();
         int i = 0;
         while (i < ss.length) {
             last = StaticUtils.fromString(ss[i++], ss[i++]);

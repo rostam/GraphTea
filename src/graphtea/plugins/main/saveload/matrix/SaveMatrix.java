@@ -21,9 +21,9 @@ public class SaveMatrix implements GraphWriterExtension {
      * saves g as matrix in file
      */
     public static void saveMatrix(GraphModel g, File file) throws IOException {
-        FileWriter output = new FileWriter(file);
-        output.write(Matrix.Matrix2String(Matrix.graph2Matrix(g)));
-        output.close();
+        try (FileWriter output = new FileWriter(file)) {
+            output.write(Matrix.Matrix2String(Matrix.graph2Matrix(g)));
+        }
     }
 
     public String getName() {
@@ -48,10 +48,10 @@ public class SaveMatrix implements GraphWriterExtension {
     }
 
     public static void saveMatrixes(File file, GraphModel g, boolean isDirected) throws IOException {
-        FileWriter output = new FileWriter(file,true);
-        output.append(System.getProperty("line.separator"));
-        output.append(Matrix.Matrix2String(Matrix.graph2Matrix(g)));
-        output.close();
+        try (FileWriter output = new FileWriter(file, true)) {
+            output.append(System.lineSeparator());
+            output.append(Matrix.Matrix2String(Matrix.graph2Matrix(g)));
+        }
     }
 }
 

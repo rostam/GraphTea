@@ -6,9 +6,10 @@ package graphtea.platform.core;
 
 import graphtea.platform.StaticUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * <b>BlackBoard is just like a blackboard. Anyone can write on anywhere of it, Any one can read anywhere of it,
@@ -52,7 +53,7 @@ import java.util.Vector;
 public class BlackBoard {
     private final HashMap<String, Object> data = new HashMap<>();
     private final HashMap<String, HashSet<Listener>> listeners = new HashMap<>();
-    private final HashMap<String, Vector<Couple<Boolean, Listener>>> addRemoveAfterFiring = new HashMap<>();
+    private final HashMap<String, List<Couple<Boolean, Listener>>> addRemoveAfterFiring = new HashMap<>();
     private final HashMap<String, Integer> firingNames = new HashMap<>();
 
     /**
@@ -97,7 +98,7 @@ public class BlackBoard {
     }
 
     private void putEventAfter(String key, Listener listener, boolean isAdded) {
-        Vector<Couple<Boolean, Listener>> couples = addRemoveAfterFiring.computeIfAbsent(key, k -> new Vector<>());
+        List<Couple<Boolean, Listener>> couples = addRemoveAfterFiring.computeIfAbsent(key, k -> new ArrayList<>());
         couples.add(new Couple<>(isAdded, listener));
     }
 
@@ -138,7 +139,7 @@ public class BlackBoard {
 //                }
         firingNames.put(key, fi);
         if (fi == 0) {
-            Vector<Couple<Boolean, Listener>> couples = addRemoveAfterFiring.get(key);
+            List<Couple<Boolean, Listener>> couples = addRemoveAfterFiring.get(key);
             if (couples != null) {
                 for (Couple<Boolean, Listener> couple : couples) {
                     if (couple.a) {

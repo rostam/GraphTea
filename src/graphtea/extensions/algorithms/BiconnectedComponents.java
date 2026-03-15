@@ -13,10 +13,12 @@ import graphtea.library.algorithms.AutomatedAlgorithm;
 import graphtea.library.algorithms.util.EventUtils;
 import graphtea.library.util.Pair;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Stack;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * This Method find the biconnected components of a
@@ -31,8 +33,8 @@ public class BiconnectedComponents extends Algorithm implements AutomatedAlgorit
     Integer[] DFS_Number;
     Integer[] High;
     int[] parent;
-    Vector<Pair<Vector<Vertex>, Vector<Edge>>> BiC = new Vector<>();
-   Vector<HashSet<Vertex>> ret;
+    List<Pair<List<Vertex>, List<Edge>>> BiC = new ArrayList<>();
+    List<HashSet<Vertex>> ret;
     int DFS_N;
     private Vertex root;
 
@@ -91,7 +93,7 @@ public class BiconnectedComponents extends Algorithm implements AutomatedAlgorit
 
     int rootChilds = 0;
     int foundDecompositions;
-    Stack<VE> S = new Stack<>(); //stack is initially empty
+    Deque<VE> S = new ArrayDeque<>(); //stack is initially empty
 
     /**
      * This method is in fact dfs, with some preworks and postworks
@@ -144,12 +146,12 @@ public class BiconnectedComponents extends Algorithm implements AutomatedAlgorit
     }
 
 
-    public Vector<HashSet<Vertex>> biconnected_components(GraphModel g, Vertex v, int n) {
+    public List<HashSet<Vertex>> biconnected_components(GraphModel g, Vertex v, int n) {
         DFS_Number=new Integer[n];
         High=new Integer[n];
         parent=new int[n];
-        S = new Stack<>();
-        ret= new Vector<>();
+        S = new ArrayDeque<>();
+        ret = new ArrayList<>();
 
         for (Vertex scan : g)
             DFS_Number[scan.getId()] = 0;

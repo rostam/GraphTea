@@ -80,10 +80,11 @@ public class Vertex extends BaseVertex {
      * @param name The name of attribute
      * @return The user defined attribute with the given name
      */
-    public <t> t getUserDefinedAttribute(String name) {
+    @SuppressWarnings("unchecked")
+    public <T> T getUserDefinedAttribute(String name) {
         if (userDefinedAttributes == null)
             return null;
-        return (t) userDefinedAttributes.get(name);
+        return (T) userDefinedAttributes.get(name);
     }
 
     /**

@@ -36,8 +36,7 @@ public class ShellServerCommands {
 
     public void run() {
         final Shell shell = Shell.getCurrentShell(bb);
-            thread = new Thread() {
-            public void run() {
+            thread = new Thread(() -> {
                 try {
                     ServerSocket ss = new ServerSocket(1234);
                     final Socket s = ss.accept();
@@ -94,8 +93,7 @@ public class ShellServerCommands {
                 } catch (Exception e) {
                     ExceptionHandler.catchException(e);
                 }
-            }
-        };
+            });
         thread.start();
     }
 
@@ -103,6 +101,6 @@ public class ShellServerCommands {
                 , description = "")
 
     public void exit() {
-        thread.stop();
+        thread.interrupt();
     }
 }

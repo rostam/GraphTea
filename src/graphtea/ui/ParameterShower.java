@@ -48,7 +48,7 @@ public class ParameterShower implements AttributeListener {
 //                    ExceptionHandler.catchException(e);  //To change body of catch statement use File | Settings | File Templates.
                     }
                     if (getter != null) {
-                        p.put(name, getter.invoke(o, new Class[0]));
+                        p.put(name, getter.invoke(o));
                     }
                 }
 
