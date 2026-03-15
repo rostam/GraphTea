@@ -12,16 +12,17 @@ import graphtea.platform.parameter.Parameter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Vector;
+import java.util.List;
 
 /**
  * @author Mohammad Ali Rostami
  * @email rostamiev@gmail.com
  */
 public class CodeCompletionUtils {
-    public static Vector<String> complete(HashMap<String, String> abbrs, String part) {
-        Vector<String> ret = new Vector<>();
+    public static List<String> complete(HashMap<String, String> abbrs, String part) {
+        List<String> ret = new ArrayList<>();
         if (abbrs.get(part) != null)
             ret.add(abbrs.get(part) + "(");
         else {
@@ -37,9 +38,9 @@ public class CodeCompletionUtils {
     /**
      * point completion
      */
-    public static Vector<String> complete(String part, Interpreter interpreter) {
+    public static List<String> complete(String part, Interpreter interpreter) {
         int pointCount = 0;
-        Vector<String> ret = new Vector<>();
+        List<String> ret = new ArrayList<>();
         for (int i = 0; i < part.length(); i++)
             if (part.charAt(i) == '.') pointCount++;
 
@@ -69,10 +70,10 @@ public class CodeCompletionUtils {
     }
 
     //argumentCompletion
-    public static Vector<String> complete(String part
+    public static List<String> complete(String part
             , Interpreter interpreter, HashMap<String, Method> commands
             , HashMap<String, Class> ext_commands) {
-        Vector<String> ret = new Vector<>();
+        List<String> ret = new ArrayList<>();
         if (part.contains(".")) {
             Method[] ms = new Method[0];
             try {
@@ -123,7 +124,7 @@ public class CodeCompletionUtils {
                 }
 
             } else {
-                Vector<String> ret1 = new Vector<>();
+                List<String> ret1 = new ArrayList<>();
                 for (String t : ext_commands.keySet()) {
                     String result = part;
 

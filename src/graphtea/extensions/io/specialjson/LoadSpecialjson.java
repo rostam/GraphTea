@@ -20,7 +20,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -49,10 +51,10 @@ public class LoadSpecialjson implements GraphReaderExtension {
     public GraphModel read(File file) {
         GraphModel g = new GraphModel(false);
         //2793
-        Vector<String> regions = new Vector<>();
-        Vector<String> sttlWithoutCoordinates = new Vector<>();
+        List<String> regions = new ArrayList<>();
+        List<String> sttlWithoutCoordinates = new ArrayList<>();
         HashMap<String,Integer> labelVertex = new HashMap<>();
-        HashMap<String,Vector<Integer>> regionVertices = new HashMap<>();
+        HashMap<String,List<Integer>> regionVertices = new HashMap<>();
         HashMap<Integer, String> verticesRegion = new HashMap<>();
         try {
             int i = 0;
@@ -95,7 +97,7 @@ public class LoadSpecialjson implements GraphReaderExtension {
                     v.setLocation(convertLatLonToXY(lat, lng));
                     g.addVertex(v);
                     if (!regionVertices.containsKey(region)) {
-                        regionVertices.put(region, new Vector<>());
+                        regionVertices.put(region, new ArrayList<>());
                     }
                     regionVertices.get(region).add(i);
                     verticesRegion.put(i, region);

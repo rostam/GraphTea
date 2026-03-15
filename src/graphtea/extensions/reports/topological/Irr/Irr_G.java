@@ -33,7 +33,7 @@ public class Irr_G implements GraphReportExtension<RenderTable> {
 
     public static int deg_e(GraphModel g, Vertex u) {
         int ret = 0;
-        Vector<Vertex> neighbors = new Vector<>();
+        List<Vertex> neighbors = new ArrayList<>();
         for (Vertex v : g.directNeighbors(u)) {
             ret += g.getDegree(v);
             neighbors.add(v);
@@ -52,8 +52,8 @@ public class Irr_G implements GraphReportExtension<RenderTable> {
         return ret - conn;
     }
 
-    public static Vector<Integer> list_deg_e(GraphModel g) {
-        Vector<Integer> ret = new Vector<>();
+    public static List<Integer> list_deg_e(GraphModel g) {
+        List<Integer> ret = new ArrayList<>();
         for(Vertex v : g) {
             ret.add(deg_e(g, v));
         }

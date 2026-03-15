@@ -21,7 +21,7 @@ import java.util.zip.ZipFile;
 public class ExtensionClassLoader extends ClassLoader {
     public Map<String, byte[]> classesData = new HashMap<>();
     Map<String, Class> classes = new HashMap<>();
-    Vector<File> unknownFiles = new Vector<>();
+    List<File> unknownFiles = new ArrayList<>();
     public static URLClassLoader classLoader;
     public static ClassLoader cl;
 
@@ -33,15 +33,15 @@ public class ExtensionClassLoader extends ClassLoader {
         return classes.values();
     }
 
-    public Vector<File> getUnknownFilesFound() {
+    public List<File> getUnknownFilesFound() {
         return unknownFiles;
     }
 
 
-    Vector<URL> urls;
+    List<URL> urls;
 
     private void loadClassFiles(String dir, String pack) {
-        urls = new Vector<>();
+        urls = new ArrayList<>();
         File file = new File(dir);
         if (!file.exists())
             return;
@@ -100,7 +100,7 @@ public class ExtensionClassLoader extends ClassLoader {
     }
 
     public Collection getClassesImplementing(Class cl) {
-        Collection col = new Vector();
+        Collection col = new ArrayList();
         for (Map.Entry<String, Class> entry1 : classes.entrySet()) {
             Class c = (Class) ((Map.Entry) entry1).getValue();
             if (StaticUtils.isImplementing(c, cl))

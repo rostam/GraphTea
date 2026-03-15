@@ -14,7 +14,8 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Azin Azadi
@@ -25,8 +26,8 @@ public class GraphPower implements GraphActionExtension, Parametrizable {
     @Parameter
     public int k = 2;
 
-    Vector<Edge> toInsert = new Vector<>();
-    Vector<Vertex> subtree = new Vector<>();
+    List<Edge> toInsert = new ArrayList<>();
+    List<Vertex> subtree = new ArrayList<>();
 
     public String getName() {
         return "Create Power Graph";
@@ -66,8 +67,8 @@ public class GraphPower implements GraphActionExtension, Parametrizable {
     }
 
     public String checkParameters() {
-        toInsert = new Vector<>();
-        subtree = new Vector<>();
+        toInsert = new ArrayList<>();
+        subtree = new ArrayList<>();
         return (k < 2 ? "K must be larger than 1" : null);
     }
 

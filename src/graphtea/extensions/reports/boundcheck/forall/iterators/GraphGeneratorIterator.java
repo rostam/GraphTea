@@ -19,10 +19,11 @@ import graphtea.ui.extension.AbstractExtensionAction;
 import javax.swing.*;
 import java.awt.*;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
-import java.util.Vector;
 
 /**
  * Created by rostam on 31.10.15.
@@ -36,18 +37,18 @@ public class GraphGeneratorIterator extends GraphModelIterator {
     int cnt;
     Parametrizable o;
     Extension ext;
-    Vector<String> names;
+    List<String> names;
     IterProgressBar pb;
-    Vector<Object> others = new Vector<>();
+    List<Object> others = new ArrayList<>();
     GraphModel curGraph;
 
     public GraphGeneratorIterator(String name) {
         ext = ((AbstractExtensionAction) hm.get(
                 nameToClass.get(name))).getTarget();
-        Vector<JTextField> v = new Vector<>();
+        List<JTextField> v = new ArrayList<>();
         JPanel myPanel = new JPanel(new BorderLayout());
         o = (Parametrizable) ext;
-        names = new Vector<>();
+        names = new ArrayList<>();
 
         myPanel.add(new JLabel(
                 "<html>Please enter bound values for graph vertices separated by the double point:<br/> " +
@@ -69,7 +70,7 @@ public class GraphGeneratorIterator extends GraphModelIterator {
                 "Parameter Filling"
                 , JOptionPane.OK_CANCEL_OPTION);
         if (output == JOptionPane.OK_OPTION) {
-            Vector<Pair<Integer, Integer>> res = new Vector<>();
+            List<Pair<Integer, Integer>> res = new ArrayList<>();
             Iterator<String> it = names.iterator();
             for (JTextField aV : v) {
                 if (it.next().equals("n")) {
