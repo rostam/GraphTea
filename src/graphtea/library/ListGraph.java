@@ -1039,6 +1039,7 @@ public class ListGraph<VertexType extends BaseVertex, EdgeType extends BaseEdge<
         vertices = new ArrayList<>();
         outDegree = new ArrayList<>();
         inDegree = new ArrayList<>();
+        edgeCount = 0;
         edgeIterationIndex = 0;
         guard = false;
     }

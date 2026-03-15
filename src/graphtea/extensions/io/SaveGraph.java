@@ -26,12 +26,9 @@ public class SaveGraph implements GraphWriterExtension {
 
     @Override
     public void write(File file, GraphModel graph) {
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(
-                    new FileOutputStream(file));
+        try (ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(file))) {
             out.writeObject(new GraphSaveObject(graph));
-            out.close();
-
         } catch (IOException e) {
             ExceptionHandler.catchException(e);
         }

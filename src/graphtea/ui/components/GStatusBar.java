@@ -30,14 +30,6 @@ public class GStatusBar extends JPanel {
 
     }
 
-    /*
-    //todo: man hadafam in bood ke ham tarafe raste statusbar beshe ie chizi gozash ham chapesh, vali ie cheke sar dasi ke ba netbeans kardam, natoonestam ie joori componentaro ham tarafe rast ezafe konam ham tarafe chap (ba flowlayout). bara hamin felan bikhialesh shodam. ie chizi base misazam ina baraie //todo: <-- ;) :D
-    public void addRight(Component c){
-    }
-    public void addLeft(Component c){
-    }
-    */
-
     /**
      * adds a new Component to the status bar
      */

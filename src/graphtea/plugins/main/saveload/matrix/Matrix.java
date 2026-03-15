@@ -104,41 +104,36 @@ public class Matrix {
         if (a == 0)
             return "";
         int b = mat[0].length;
-        String ret = "<table>";
+        StringBuilder ret = new StringBuilder("<table>");
         for (Object[] objects : mat) {
-            ret += "<tr>";
+            ret.append("<tr>");
             for (int j = 0; j < b; j++) {
                 if (objects[j] != null)
-                    ret += "<td>" + ((Number) (objects[j])).intValue() + "</td>";
+                    ret.append("<td>").append(((Number) objects[j]).intValue()).append("</td>");
                 else
-                    ret += "<td>0</td>";
-//                ret += (mat[i][j] ? "1" : "0");
-//                ret += " ";
+                    ret.append("<td>0</td>");
             }
-            ret += "</tr>\n";
-
+            ret.append("</tr>\n");
         }
-        return ret;
-
+        return ret.toString();
     }
+
     public static String Matrix2String(Object[][] mat) {
         int a = mat.length;
         if (a == 0)
             return "";
         int b = mat[0].length;
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
         for (Object[] objects : mat) {
             for (int j = 0; j < b; j++) {
                 if (objects[j] != null)
-                    ret += ((Number) (objects[j])).intValue() + " ";
+                    ret.append(((Number) objects[j]).intValue()).append(' ');
                 else
-                    ret += "0 ";
-//                ret += (mat[i][j] ? "1" : "0");
-//                ret += " ";
+                    ret.append("0 ");
             }
-            ret += "\n";
+            ret.append('\n');
         }
-        return ret;
+        return ret.toString();
     }
 
     public static int[][] String2Matrix(String s) {

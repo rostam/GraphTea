@@ -99,7 +99,7 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
                 }
             }
         } catch (InterruptedException e) {
-            System.err.println("Thread sleep has error.");
+            Thread.currentThread().interrupt();
         }
         GHTMLPageComponent html = alggui.algorithmOutputTextArea;
 
@@ -152,7 +152,7 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
             alggui.pauseButton.setEnabled(true);
             oneStep = true;
             paused = false;
-        } else System.out.println("Sooti !");
+        }
     }
 
     AnimatorGUI alggui;

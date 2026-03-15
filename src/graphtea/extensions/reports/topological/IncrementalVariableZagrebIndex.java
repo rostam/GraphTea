@@ -52,7 +52,6 @@ public class IncrementalVariableZagrebIndex implements GraphReportExtension<Rend
             v.add(zif.getSecondVariableZagrebIndex(alpha));
             ret.add(v);
         }
-        System.out.println("chi " + ret.size());
         return ret;
     }
 

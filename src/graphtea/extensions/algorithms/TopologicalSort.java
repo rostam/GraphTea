@@ -39,16 +39,6 @@ public class TopologicalSort extends Algorithm implements AutomatedAlgorithm {
             iet = graph.edgeIterator(v, true);
             while (iet.hasNext()) {
                 Edge e = iet.next();
-                /*
-                    if(e.getMark())
-                        continue;
-
-                    e.setMark(true);
-
-
-                    if(alv.contains(e.target))
-                        continue;
-                    */
                 if (graph.getInDegree(e.target) == 1)
                     alv.add(e.target);
             }
@@ -61,20 +51,6 @@ public class TopologicalSort extends Algorithm implements AutomatedAlgorithm {
     }
 
     public void doAlgorithm() {
-//        BaseGraphRequest gr = new BaseGraphRequest();
-//        dispatchEvent(gr);
-//        GraphModel graph = gr.getGraph();
-//        AbstractList<Vertex> alv = doSort(graph);
-//        if (alv == null)
-//            dispatchEvent(new MessageEvent("Graph has a cycle"));
-//        else {
-//            StringBuilder s = new StringBuilder("Topological sort sequence:");
-//            for (BaseVertex v : alv)
-//                s.append(v.getId() + ',');
-//
-//            dispatchEvent(new MessageEvent(s.toString()));
-//        }
-
     }
 
 

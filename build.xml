@@ -37,7 +37,69 @@
     <description>
         The ant build file of GraphTea Project.
     </description>
-    <target name="test">
+    <property name="m2.repo" value="${user.home}/.m2/repository"/>
+    <property name="junit5.api"      value="${m2.repo}/org/junit/jupiter/junit-jupiter-api/5.9.3/junit-jupiter-api-5.9.3.jar"/>
+    <property name="junit5.engine"   value="${m2.repo}/org/junit/jupiter/junit-jupiter-engine/5.9.3/junit-jupiter-engine-5.9.3.jar"/>
+    <property name="junit5.platform.engine"   value="${m2.repo}/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar"/>
+    <property name="junit5.platform.commons"  value="${m2.repo}/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar"/>
+    <property name="junit5.platform.launcher" value="${m2.repo}/org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.jar"/>
+    <property name="opentest4j"      value="${m2.repo}/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar"/>
+
+    <target name="test" depends="compile" description="Compile and run JUnit 5 tests">
+        <mkdir dir="${basedir}/build/test-classes"/>
+        <javac srcdir="${basedir}/test" destdir="${basedir}/build/test-classes"
+               source="11" target="11" includeantruntime="false">
+            <classpath>
+                <path refid="project.lib"/>
+                <pathelement location="${basedir}/build"/>
+                <pathelement location="${junit5.api}"/>
+                <pathelement location="${opentest4j}"/>
+                <pathelement location="${junit5.platform.commons}"/>
+            </classpath>
+            <include name="GraphModelTest.java"/>
+            <include name="GraphUtilsTest.java"/>
+            <include name="GraphOperationsTest.java"/>
+            <include name="TraversalTest.java"/>
+            <include name="BasicReportsTest.java"/>
+            <include name="GeneratorsTest.java"/>
+            <include name="ProductsTest.java"/>
+            <include name="ReportsTest.java"/>
+            <include name="TestActions.java"/>
+            <include name="TestChemicalGraphIndices.java"/>
+            <include name="TestHomomorphism.java"/>
+            <include name="TestNewEdge.java"/>
+        </javac>
+        <junitlauncher haltOnFailure="false" printSummary="true">
+            <classpath>
+                <path refid="project.lib"/>
+                <pathelement location="${basedir}/build"/>
+                <pathelement location="${basedir}/build/test-classes"/>
+                <pathelement location="${junit5.api}"/>
+                <pathelement location="${junit5.engine}"/>
+                <pathelement location="${junit5.platform.engine}"/>
+                <pathelement location="${junit5.platform.commons}"/>
+                <pathelement location="${junit5.platform.launcher}"/>
+                <pathelement location="${opentest4j}"/>
+            </classpath>
+            <testclasses outputdir="${basedir}/build/test-classes">
+                <fileset dir="${basedir}/build/test-classes">
+                    <include name="GraphModelTest.class"/>
+                    <include name="GraphUtilsTest.class"/>
+                    <include name="GraphOperationsTest.class"/>
+                    <include name="TraversalTest.class"/>
+                    <include name="BasicReportsTest.class"/>
+                    <include name="GeneratorsTest.class"/>
+                    <include name="ProductsTest.class"/>
+                    <include name="ReportsTest.class"/>
+                    <include name="TestActions.class"/>
+                    <include name="TestChemicalGraphIndices.class"/>
+                    <include name="TestHomomorphism.class"/>
+                    <include name="TestNewEdge.class"/>
+                </fileset>
+                <listener type="legacy-xml" outputdir="${basedir}/build/test-classes" sendSysOut="true" sendSysErr="true"/>
+                <listener type="legacy-plain" sendSysOut="true"/>
+            </testclasses>
+        </junitlauncher>
     </target>
     <!-- - - - - - - - - - - - - - - - - -
           target: depends

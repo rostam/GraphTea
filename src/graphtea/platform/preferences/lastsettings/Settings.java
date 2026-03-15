@@ -38,10 +38,9 @@ public class Settings implements AttributeListener {
             if (!file.exists()) {
                 saveSettings();
             }
-            FileInputStream is = new FileInputStream(file);
-            java.util.prefs.Preferences.importPreferences(is);
-            is.close();
-
+            try (FileInputStream is = new FileInputStream(file)) {
+                java.util.prefs.Preferences.importPreferences(is);
+            }
         } catch (IOException | InvalidPreferencesFormatException e) {
             ExceptionHandler.catchException(e);
         }
@@ -77,11 +76,8 @@ public class Settings implements AttributeListener {
 
     private ByteArrayOutputStream convertObjectToByteArray(Object value) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos;
-        try {
-            oos = new ObjectOutputStream(baos);
+        try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
             oos.writeObject(value);
-            oos.close();
         } catch (IOException e) {
             ExceptionHandler.catchException(e);
         }
@@ -174,8 +170,12 @@ public class Settings implements AttributeListener {
         }
         try {
             java.util.prefs.Preferences.userRoot().flush();
-            graphPrefs.exportSubtree(new FileOutputStream(new File(file, "graph.xml")));
-            graphPrefs.exportNode(new FileOutputStream("sgraph.xml"));
+            try (FileOutputStream fos = new FileOutputStream(new File(file, "graph.xml"))) {
+                graphPrefs.exportSubtree(fos);
+            }
+            try (FileOutputStream fos2 = new FileOutputStream("sgraph.xml")) {
+                graphPrefs.exportNode(fos2);
+            }
         } catch (IOException | BackingStoreException e) {
             ExceptionHandler.catchException(e);
         }

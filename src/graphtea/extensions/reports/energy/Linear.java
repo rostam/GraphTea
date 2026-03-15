@@ -204,7 +204,6 @@ public class Linear implements GraphReportExtension<RenderTable> {
 
             if (sum_i != 0) {
                 //here is completely false
-                System.out.println("imaginary part is available. So this function does not work.");
                 sum_i=0;
                 Complex num = new Complex(0,0);
 //                for(int i=0;i < iv.length;i++) {
@@ -250,7 +249,6 @@ public class Linear implements GraphReportExtension<RenderTable> {
 
             if (sum_i != 0) {
                 //here is completely false
-                System.out.println("imaginary part is available. So this function does not work.");
                 sum_i=0;
                 Complex num = new Complex(0,0);
 //                for(int i=0;i < iv.length;i++) {
@@ -299,7 +297,6 @@ public class Linear implements GraphReportExtension<RenderTable> {
 
             if (sum_i != 0) {
                 //here is completely false
-                System.out.println("imaginary part is available. So this function does not work.");
                 sum_i=0;
                 Complex num = new Complex(0,0);
 //                for(int i=0;i < iv.length;i++) {
@@ -343,7 +340,6 @@ public class Linear implements GraphReportExtension<RenderTable> {
           
             if (sum_i != 0) {
                 //here is completely false
-                System.out.println("imaginary part is available. So this function does not work.");
                 sum_i=0;
                 Complex num = new Complex(0,0);
 //                for(int i=0;i < iv.length;i++) {
@@ -389,7 +385,6 @@ public class Linear implements GraphReportExtension<RenderTable> {
 
             if (sum_i != 0) {
                 //here is completely false
-                System.out.println("imaginary part is available. So this function does not work.");
                 sum_i=0;
                 Complex num = new Complex(0,0);
 //                for(int i=0;i < iv.length;i++) {
@@ -435,7 +430,6 @@ public class Linear implements GraphReportExtension<RenderTable> {
 
              if (sum_i != 0) {
                  //here is completely false
-                 System.out.println("imaginary part is available. So this function does not work.");
                  sum_i=0;
                  Complex num = new Complex(0,0);
 //                 for(int i=0;i < iv.length;i++) {
@@ -491,7 +485,6 @@ public class Linear implements GraphReportExtension<RenderTable> {
 
             if (sum_i != 0) {
                 //here is completely false
-                System.out.println("imaginary part is available. So this function does not work.");
                 sum_i=0;
                 Complex num = new Complex(0,0);
 //                for(int i=0;i < iv.length;i++) {

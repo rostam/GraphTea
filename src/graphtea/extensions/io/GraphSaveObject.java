@@ -52,11 +52,8 @@ public class GraphSaveObject implements Serializable {
 
     public static byte[] getBytesOfGraph(GraphModel g) {
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
-        try {
-            ObjectOutputStream oop = new ObjectOutputStream(bout);
+        try (ObjectOutputStream oop = new ObjectOutputStream(bout)) {
             oop.writeObject(new GraphSaveObject(g));
-            oop.flush();
-            oop.close();
         } catch (IOException e) {
             ExceptionHandler.catchException(e);
         }
@@ -65,11 +62,8 @@ public class GraphSaveObject implements Serializable {
 
     public static byte[] getBytesOfGraphSaveObject(GraphSaveObject gso) {
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
-        try {
-            ObjectOutputStream oop = new ObjectOutputStream(bout);
+        try (ObjectOutputStream oop = new ObjectOutputStream(bout)) {
             oop.writeObject(gso);
-            oop.flush();
-            oop.close();
         } catch (IOException e) {
             ExceptionHandler.catchException(e);
         }
@@ -89,9 +83,8 @@ public class GraphSaveObject implements Serializable {
     }
 
     public static GraphSaveObject getGraphSaveOobjectfromBytes(byte[] b){
-        try {
-            ObjectInputStream ois = new ObjectInputStream(
-                    new ByteArrayInputStream(b));
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new ByteArrayInputStream(b))) {
             return (GraphSaveObject) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             ExceptionHandler.catchException(e);

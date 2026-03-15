@@ -30,27 +30,26 @@ public class SubGraphRenderer implements GBasicCellRenderer<SubGraph> {
         mysd.vertices = new HashSet<>(sd.vertices);
         mysd.edges = new HashSet<>(sd.edges);
         mysd.label = sd.label;
-        String txt;
-        txt = "<HTML><BODY>";
+        StringBuilder sb = new StringBuilder("<HTML><BODY>");
         if (mysd.label != null && !mysd.label.isEmpty()) {
-            txt += "<B>" + mysd.label + ": </B><BR>";
+            sb.append("<B>").append(mysd.label).append(": </B><BR>");
         }
-
         if (mysd.vertices != null && mysd.vertices.size() > 0) {
-            txt = txt + "<B>V: </B> {";
+            sb.append("<B>V: </B> {");
             for (Vertex v : mysd.vertices) {
-                txt = txt + v.getLabel() + ", ";
+                sb.append(v.getLabel()).append(", ");
             }
-            txt = txt.substring(0, txt.length() - 2) + "}";
+            sb.delete(sb.length() - 2, sb.length()).append("}");
         }
         if (mysd.edges != null && mysd.edges.size() > 0) {
-            txt += "<BR><B>E: </B> {";
+            sb.append("<BR><B>E: </B> {");
             for (Edge e : mysd.edges) {
-                txt = txt + e.source.getLabel() + "-"+ e.target.getLabel() + ", ";
+                sb.append(e.source.getLabel()).append("-").append(e.target.getLabel()).append(", ");
             }
-            txt = txt.substring(0, txt.length() - 2) + "}";
+            sb.delete(sb.length() - 2, sb.length()).append("}");
         }
-        txt = txt + "</BODY></HTML>";
+        sb.append("</BODY></HTML>");
+        String txt = sb.toString();
         JLabel l = new JLabel(txt) {
             @Override
             public void setForeground(Color fg) {

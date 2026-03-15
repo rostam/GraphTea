@@ -99,10 +99,10 @@ public class ExtensionClassLoader extends ClassLoader {
             return ret;
     }
 
-    public Collection getClassesImplementing(Class cl) {
-        Collection col = new ArrayList();
+    public Collection<Class> getClassesImplementing(Class cl) {
+        Collection<Class> col = new ArrayList<>();
         for (Map.Entry<String, Class> entry1 : classes.entrySet()) {
-            Class c = (Class) ((Map.Entry) entry1).getValue();
+            Class c = entry1.getValue();
             if (StaticUtils.isImplementing(c, cl))
                 col.add(c);
         }

@@ -86,7 +86,7 @@ public class DefaultParser implements ExtParser {
 
     public Object[] parseSet(String sets) {
         sets = sets.trim();
-        HashSet set = new HashSet();
+        HashSet<Object> set = new HashSet<>();
         boolean aa = false;
 
         if (!sets.contains(",") && !sets.contains("[")) {

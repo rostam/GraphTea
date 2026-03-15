@@ -34,10 +34,9 @@ public class LastSettings implements AttributeListener {
     public LastSettings() {
         try {
             File file = new File(this.file, "graph.xml");
-            FileInputStream is = new FileInputStream(file);
-            Preferences.importPreferences(is);
-            is.close();
-
+            try (FileInputStream is = new FileInputStream(file)) {
+                Preferences.importPreferences(is);
+            }
         } catch (IOException | InvalidPreferencesFormatException e) {
             ExceptionHandler.catchException(e);
         }
@@ -64,11 +63,8 @@ public class LastSettings implements AttributeListener {
 
     private ByteArrayOutputStream convertObjectToByteArray(Object value) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos;
-        try {
-            oos = new ObjectOutputStream(baos);
+        try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
             oos.writeObject(value);
-            oos.close();
         } catch (IOException e) {
             ExceptionHandler.catchException(e);
         }
@@ -152,7 +148,9 @@ public class LastSettings implements AttributeListener {
             }
         }
         try {
-            graphPrefs.exportSubtree(new FileOutputStream(new File(file, "graph.xml")));
+            try (FileOutputStream fos = new FileOutputStream(new File(file, "graph.xml"))) {
+                graphPrefs.exportSubtree(fos);
+            }
 //            graphPrefs.exportNode(new FileOutputStream(new File("/graph.xml")));
         } catch (IOException | BackingStoreException e) {
             ExceptionHandler.catchException(e);

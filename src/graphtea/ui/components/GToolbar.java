@@ -32,7 +32,6 @@ public class GToolbar extends JComponent {
         pair o = new pair(comp, index);
         indices.add(o);
         Object[] a = indices.toArray();
-//        Arrays.sort(a, (Comparator<? super Object>) new pair(null, null));
         for (int _index = 0; _index < a.length; _index++)
             if (a[_index] == o)
                 return super.add(comp, _index);
@@ -46,7 +45,6 @@ public class GToolbar extends JComponent {
         fl.setVgap(0);
         setLayout(fl);
         setBorder(null);
-//        setBorder(new LineBorder(Color.WHITE,1,true));
     }
 
     /**
@@ -54,7 +52,6 @@ public class GToolbar extends JComponent {
      */
     public JToolBar createToolBar() {
         lastToolbar = new JToolBar();
-//        lastToolbar.setBorderPainted(false);
         lastToolbar.setFloatable(false);
         lastToolbar.setMargin(new Insets(0, 0, 0, 0));
         lastToolbar.setRollover(false);

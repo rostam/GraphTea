@@ -185,7 +185,7 @@ public class Planar implements GraphReportExtension<RenderTable> {
 
         List<Integer>[] gg = new List[g.getVerticesCount()];
         for (int i = 0; i < g.getVerticesCount(); i++) {
-            gg[i] = new ArrayList();
+            gg[i] = new ArrayList<>();
         }
 
         for(Edge e : g.getEdges()) {
