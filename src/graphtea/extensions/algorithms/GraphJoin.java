@@ -15,7 +15,6 @@ import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 
 /**
  * @author Mohammad Ali Rostami
@@ -42,15 +41,11 @@ public class GraphJoin extends GraphAlgorithm {
             g.insertVertex(vt);
         }
 
-        Iterator<Edge> iet = g1.lightEdgeIterator();
-        while (iet.hasNext()) {
-            Edge e = iet.next();
+        for (Edge e : g1.getEdges()) {
             E.add(e.getCopy(temp.get(e.source), temp.get(e.target)));
         }
 
-        iet = g2.lightEdgeIterator();
-        while (iet.hasNext()) {
-            Edge e = iet.next();
+        for (Edge e : g2.getEdges()) {
             E.add(e.getCopy(temp.get(e.source), temp.get(e.target)));
         }
 

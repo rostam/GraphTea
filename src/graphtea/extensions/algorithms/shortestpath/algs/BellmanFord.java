@@ -13,7 +13,6 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Vector;
 
 /**
@@ -58,14 +57,10 @@ public class BellmanFord extends GraphAlgorithm implements AutomatedAlgorithm {
 
         dist[Vertex.getId()] = 0;
 
-        Edge edge;
         int i;
-        Iterator<Edge> iet;
 
         for (i = 1; i < graph.getVerticesCount(); i++) {
-            iet = graph.edgeIterator();
-            while (iet.hasNext()) {
-                edge = iet.next();
+            for (Edge edge : graph.getEdges()) {
                 if (dist[edge.source.getId()] > dist[edge.target.getId()] + edge.getWeight()) {
                     dist[edge.source.getId()] = dist[edge.target.getId()] + edge.getWeight();
                     ret.add(edge.source.getId(), edge.target);
@@ -73,9 +68,7 @@ public class BellmanFord extends GraphAlgorithm implements AutomatedAlgorithm {
             }
         }
 
-        iet = graph.edgeIterator();
-        while (iet.hasNext()) {
-            edge = iet.next();
+        for (Edge edge : graph.getEdges()) {
             if (dist[edge.source.getId()] > dist[edge.target.getId()] + edge.getWeight())
                 return null;
         }
