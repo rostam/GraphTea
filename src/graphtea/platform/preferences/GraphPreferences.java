@@ -35,7 +35,7 @@ public class GraphPreferences extends AbstractPreference implements AttributeLis
         defineListeners(this);
     }
 
-    public void defineAttributes(HashMap<Object, ArrayX> objectValues) {
+    public void defineAttributes(HashMap<Object, ArrayX<?>> objectValues) {
 
         for (Object o : objectValues.keySet()) {
             putAttribute(o.toString(), objectValues.get(o));
@@ -50,10 +50,10 @@ public class GraphPreferences extends AbstractPreference implements AttributeLis
         }
     }
 
-    public void defineMultipleAttributes(HashMap<Object, HashMap<Object, ArrayX>> map) {
+    public void defineMultipleAttributes(HashMap<Object, HashMap<Object, ArrayX<?>>> map) {
 
         for (Object o : map.keySet()) {
-            HashMap<Object, ArrayX> hashMap = map.get(o);
+            HashMap<Object, ArrayX<?>> hashMap = map.get(o);
             for (Object fields : hashMap.keySet()) {
                 putAttribute(o.toString() + "*" + fields.toString(), hashMap.get(fields));
 

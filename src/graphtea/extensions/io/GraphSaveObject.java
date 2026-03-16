@@ -5,9 +5,9 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 
-import javax.xml.bind.DatatypeConverter;
 import java.io.*;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Base64;
 
 /**
  * Created by rostam on 18.12.15.
@@ -22,8 +22,8 @@ public class GraphSaveObject implements Serializable {
         } else return false;
     }
 
-    public Vector<VertexSaveObject> vs = new Vector<>();
-    Vector<EdgeSaveObject> es = new Vector<>();
+    public ArrayList<VertexSaveObject> vs = new ArrayList<>();
+    ArrayList<EdgeSaveObject> es = new ArrayList<>();
     boolean directed = false;
     String label = "";
     public GraphSaveObject(GraphModel g) {
@@ -71,15 +71,15 @@ public class GraphSaveObject implements Serializable {
     }
 
     public static String graph2String(GraphModel g){
-        return DatatypeConverter.printBase64Binary(getBytesOfGraph(g));
+        return Base64.getMimeEncoder().encodeToString(getBytesOfGraph(g));
     }
 
     public static GraphModel String2Graph(String s){
-        return getGraphFromBytes(DatatypeConverter.parseBase64Binary(s));
+        return getGraphFromBytes(Base64.getMimeDecoder().decode(s));
     }
 
     public static GraphSaveObject string2GraphSaveObject(String s){
-        return getGraphSaveOobjectfromBytes(DatatypeConverter.parseBase64Binary(s));
+        return getGraphSaveOobjectfromBytes(Base64.getMimeDecoder().decode(s));
     }
 
     public static GraphSaveObject getGraphSaveOobjectfromBytes(byte[] b){

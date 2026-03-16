@@ -14,5 +14,5 @@ import java.util.HashMap;
 public interface UserDefinedEligiblity {
     GraphPreferences GraphPrefFactory();
 
-    HashMap<Object, ArrayX> defineEligibleValuesForSettings(HashMap<Object, ArrayX> objectValues);
+    HashMap<Object, ArrayX<?>> defineEligibleValuesForSettings(HashMap<Object, ArrayX<?>> objectValues);
 }
