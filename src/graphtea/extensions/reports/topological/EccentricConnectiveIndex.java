@@ -18,6 +18,8 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 @CommandAttitude(name = "eccentric_connective_index", abbreviation = "_ECindex")
 public class EccentricConnectiveIndex implements GraphReportExtension<Double> {
 
+    private double a = 1;
+
     public String getName() {
         return "Eccentric Connective Index";
     }
@@ -26,11 +28,15 @@ public class EccentricConnectiveIndex implements GraphReportExtension<Double> {
         return "Eccentric Connective Index";
     }
 
+    public void setA(double value) {
+        a = value;
+    }
+
     public Double calculate(GraphModel g) {
         int[][] dist = AlgorithmUtils.getAllPairsDistances(g);
         double sum = 0;
         for (Vertex v : g) {
-            sum += g.getDegree(v) * Eccentricity.eccentricity(g, v.getId(), dist);
+            sum += Math.pow(g.getDegree(v), a) * Eccentricity.eccentricity(g, v.getId(), dist);
         }
         return sum;
     }
