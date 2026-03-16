@@ -33,13 +33,19 @@ abstract class SubdividedGraphBase implements GraphActionExtension, Parametrizab
     public int k = 2;
 
     /** Whether to tag each subdivision vertex with its originating edge. */
-    protected boolean markSubdivisionVertices() { return false; }
+    protected boolean markSubdivisionVertices() {
+        return false;
+    }
 
     /** Whether to add a curved edge between the original source and target. */
-    protected boolean addCurvedOriginalEdge() { return false; }
+    protected boolean addCurvedOriginalEdge() {
+        return false;
+    }
 
     /** Whether to add edges between subdivision vertices of adjacent edges. */
-    protected boolean addSubdivisionVertexEdges() { return false; }
+    protected boolean addSubdivisionVertexEdges() {
+        return false;
+    }
 
     @Override
     public void action(GraphData graphData) {
@@ -111,12 +117,20 @@ abstract class SubdividedGraphBase implements GraphActionExtension, Parametrizab
     }
 
     private static boolean edgeConnects(Edge e1, Edge e2) {
-        if (e1.source.getId() == e2.source.getId()) { return true; }
-        if (e1.target.getId() == e2.source.getId()) { return true; }
-        if (e1.source.getId() == e2.target.getId()) { return true; }
+        if (e1.source.getId() == e2.source.getId()) {
+            return true;
+        }
+        if (e1.target.getId() == e2.source.getId()) {
+            return true;
+        }
+        if (e1.source.getId() == e2.target.getId()) {
+            return true;
+        }
         return e1.target.getId() == e2.target.getId();
     }
 
     @Override
-    public String getCategory() { return "Transformations"; }
+    public String getCategory() {
+        return "Transformations";
+    }
 }

@@ -2,6 +2,7 @@
 // Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
+
 package graphtea.extensions.reports.others;
 
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
@@ -33,7 +34,9 @@ class EdgePartitionIndexBase {
         for (Edge e : g.getEdges()) {
             int u = e.source.getId();
             int v = e.target.getId();
-            int nu = 0, nv = 0, nequal = 0;
+            int nu = 0;
+            int nv = 0;
+            int nequal = 0;
             for (int i = 0; i < dists[0].length; i++) {
                 if (dists[u][i] > dists[v][i]) {
                     nu++;
