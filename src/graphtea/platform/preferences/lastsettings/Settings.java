@@ -61,6 +61,7 @@ public class Settings implements AttributeListener {
 //            Object value=o.getClass().getDeclaredField(f.getName()).get(o);
         Object value = null;
         try {
+            f.setAccessible(true);
             value = f.get(o);
         } catch (Exception e) {
             System.err.println(f);
@@ -85,6 +86,7 @@ public class Settings implements AttributeListener {
     }
 
     private void loadField(Field f, java.util.prefs.Preferences t, Object o) {
+        f.setAccessible(true);
         String key = f.getName();
         Object value = t.get(key, null);
         String m = f.getType().toString();

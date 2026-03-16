@@ -13,6 +13,7 @@ import graphtea.platform.preferences.lastsettings.StorableOnExit;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -94,7 +95,8 @@ public class ExtensionLoader implements StorableOnExit {
     public static Extension loadExtension(Class<Extension> extensionClass) {
         Extension ret = null;
         try {
-            if (Extension.class.isAssignableFrom(extensionClass)) {
+            if (Extension.class.isAssignableFrom(extensionClass)
+                    && !Modifier.isAbstract(extensionClass.getModifiers())) {
                 Constructor<Extension>[] cs = (Constructor<Extension>[]) extensionClass.getConstructors();
                 for (Constructor<Extension> c : cs) {
                     Class[] p = c.getParameterTypes();
