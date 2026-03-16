@@ -1,9 +1,11 @@
 package graphtea.extensions.reports;
 
+import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 
 /**
@@ -42,14 +44,17 @@ public class DijkstraNonNegative {
             if (v.getUserDefinedAttribute(DijkstraNonNegative.Seen)) continue;
             v.setUserDefinedAttribute(DijkstraNonNegative.Seen, true);
 
-            for (Vertex w : g.neighbors(v)) {
-                double c = 1;           // besorge Kosten c zum Zielknoten w
+            Iterator<Edge> edgeIt = g.edgeIterator(v);
+            while (edgeIt.hasNext()) {
+                Edge e = edgeIt.next();
+                Vertex w = e.source == v ? e.target : e.source;
+                double c = e.getWeight();   // use actual edge weight (was hardcoded to 1)
                 if ((Double) w.getUserDefinedAttribute(DijkstraNonNegative.Dist) >
                         (Double) v.getUserDefinedAttribute(DijkstraNonNegative.Dist) + c) {
                     w.setUserDefinedAttribute(DijkstraNonNegative.Dist,
                             (Double) v.getUserDefinedAttribute(DijkstraNonNegative.Dist) + c);
                     w.setUserDefinedAttribute(DijkstraNonNegative.Prev, v.getId());
-                    p.add(w);                  // neuer Eintrag in PriorityQueue
+                    p.add(w);
                 }
             }
         }

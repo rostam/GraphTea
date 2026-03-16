@@ -31,10 +31,13 @@ public class LatexWriter implements GraphWriterExtension{
 
 
     public void write(File file, GraphModel graph) throws GraphIOException {
-        FileWriter output;
-        try {
-            output = new FileWriter(file);
+        // Use try-with-resources so the FileWriter is always closed
+        try (FileWriter output = new FileWriter(file)) {
             GRect r = graph.getAbsBounds();
+            // Preamble: uses standard LaTeX picture environment.
+            // \qbezier draws edges and works with all modern compilers (pdflatex,
+            // xelatex, lualatex).  The old em:moveto / em:lineto specials only
+            // worked with the emtex DVI driver and are silently ignored by pdflatex.
             output.write(
                     "\\documentclass[12pt,bezier]{article}\n" +
                             "\\textwidth = 15 cm\n" +
@@ -44,46 +47,19 @@ public class LatexWriter implements GraphWriterExtension{
                             "\\topmargin = -1 cm\n" +
                             "\\parskip = 1.5 mm\n" +
                             "\\parindent = 5 mm\n" +
-                            "%\n" +
                             "\\def\\bfG{\\mbox{\\boldmath$G$}}\n" +
                             "\n" +
                             "\\title{" + graph.getLabel() + "}\n" +
-                            "\\input{epsf}\n" +
-                            "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n" +
                             "\\pagestyle{plain}\n" +
-                            "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n" +
-                            "\\def\\emline#1#2#3#4#5#6{\\put(#4,#5){\\special{em:lineto}}}\n" +
-                            "\\def\\newpic#1{}\n" +
-                            "%\n" +
-                            "\n" +
                             "\\author{GraphTea}\n" +
-                            "%\n" +
                             "\\date{}\n" +
                             "\n" +
                             "\\begin{document}\n" +
                             "\n" +
                             "\\begin{figure}[h]\n" +
-                            "%\n" +
-                            "\\def\\emline#1#2#3#4#5#6{%\n" +
-                            "%\n" +
-                            "\\put(#1,#2){\\special{em:moveto}}%\n" +
-                            "%\n" +
-                            "\\put(#4,#5){\\special{em:lineto}}}\n" +
-                            "%\n" +
-                            "\\def\\newpic#1{}\n" +
-                            "%\n" +
-                            "%\\pagestyle{empty}\n" +
-                            "%\n" +
-                            "%\\begin{document}\n" +
-                            "%\n" +
                             "\\unitlength 0.7mm\n" +
-                            "%\n" +
-                            "\\special{em:linewidth 0.4pt}\n" +
-                            "%\n" +
                             "\\linethickness{0.4pt}\n" +
-                            "%\n" +
                             "\\begin{picture}(150,150)(0,0)\n" +
-                            "%\n" +
                             "%Vertices\n");
 
             StringBuilder vertices = new StringBuilder(" ");
@@ -100,46 +76,38 @@ public class LatexWriter implements GraphWriterExtension{
             while (em.hasNext()) {
                 Edge e = em.next();
                 final GPoint sx = e.source.getLocation();
+                double x1 = (sx.getX() / r.getMaxX()) * 100;
+                double y1 = (sx.getY() / r.getMaxY()) * 100;
+                double x2 = (e.target.getLocation().getX() / r.getMaxX()) * 100;
+                double y2 = (e.target.getLocation().getY() / r.getMaxY()) * 100;
+
+                edges.append("%Edge Label:").append(e.getLabel()).append("\n");
                 if (!graph.isEdgesCurved()) {
-                    edges.append("%Edge Label:").append(e.getLabel()).append("\n");
-                    edges.append("\\emline{")
-                            .append((sx.getX() / r.getMaxX()) * 100)
-                            .append("}{")
-                            .append((sx.getY() / r.getMaxY()) * 100)
-                            .append("}{1}{")
-                            .append((e.target.getLocation().getX() / r.getMaxX()) * 100)
-                            .append("}{")
-                            .append((e.target.getLocation().getY() / r.getMaxY()) * 100)
-                            .append("}{2}\n");
+                    // Straight edge: \qbezier with midpoint as control point draws a
+                    // straight line and works with pdflatex / xelatex / lualatex.
+                    // (The old em:moveto / em:lineto specials only work with emtex.)
+                    double mx = (x1 + x2) / 2;
+                    double my = (y1 + y2) / 2;
+                    edges.append("\\qbezier(")
+                            .append(x1).append(",").append(y1).append(")(")
+                            .append(mx).append(",").append(my).append(")(")
+                            .append(x2).append(",").append(y2).append(")\n");
                 } else {
-                    edges.append("%Edge Label:").append(e.getLabel()).append("\n");
                     double centerx = (sx.getX() + e.target.getLocation().getX()) / 2;
                     double centery = (sx.getY() + e.target.getLocation().getY()) / 2;
                     double cx = ((centerx + e.getCurveControlPoint().getX()) / r.getMaxX()) * 100;
-                    double cy = ((e.getCurveControlPoint().getY() + centery) / r.getMaxY()) * 100;
-                    edges.append("\\bezier{500}(")
-                            .append((sx.getX() / r.getMaxX()) * 100)
-                            .append(",")
-                            .append((sx.getY() / r.getMaxY()) * 100)
-                            .append(")(")
-                            .append(cx)
-                            .append(",")
-                            .append(cy)
-                            .append(")(")
-                            .append((e.target.getLocation().getX() / r.getMaxX()) * 100)
-                            .append(",")
-                            .append((e.target.getLocation().getY() / r.getMaxY()) * 100)
-                            .append(")\n");
+                    double cy = ((centery + e.getCurveControlPoint().getY()) / r.getMaxY()) * 100;
+                    edges.append("\\qbezier(")
+                            .append(x1).append(",").append(y1).append(")(")
+                            .append(cx).append(",").append(cy).append(")(")
+                            .append(x2).append(",").append(y2).append(")\n");
                 }
             }
             output.write(edges.toString());
             output.write("\n" +
                     "\\end{picture}\n" +
                     "\\end{figure}\n" +
-                    "\\end{document}\n"
-            );
-
-            output.flush();
+                    "\\end{document}\n");
 
         } catch (IOException e) {
             ExceptionHandler.catchException(e);

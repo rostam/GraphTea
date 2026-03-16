@@ -14,6 +14,7 @@ import graphtea.plugins.algorithmanimator.core.GraphAlgorithm;
 
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -49,31 +50,34 @@ public class BellmanFord extends GraphAlgorithm implements AutomatedAlgorithm {
 
 //        graph.checkVertex(Vertex);
 
-        Integer[] dist;
-        dist = new Integer[graph.getVerticesCount()];
-        List<Vertex> ret = new ArrayList<>();
-
+        int n = graph.getVerticesCount();
+        Integer[] dist = new Integer[n];
+        // predecessors: pred[i] = the vertex that immediately precedes vertex i
+        //               on the shortest path from Vertex to i
+        List<Vertex> pred = new ArrayList<>(Collections.nCopies(n, null));
 
         Arrays.fill(dist, Integer.MAX_VALUE);
-
         dist[Vertex.getId()] = 0;
 
-        int i;
-
-        for (i = 1; i < graph.getVerticesCount(); i++) {
+        for (int i = 1; i < n; i++) {
             for (Edge edge : graph.getEdges()) {
-                if (dist[edge.source.getId()] > dist[edge.target.getId()] + edge.getWeight()) {
-                    dist[edge.source.getId()] = dist[edge.target.getId()] + edge.getWeight();
-                    ret.add(edge.source.getId(), edge.target);
+                // guard against Integer.MAX_VALUE + weight overflow
+                if (dist[edge.source.getId()] == Integer.MAX_VALUE) continue;
+                if (dist[edge.target.getId()] > dist[edge.source.getId()] + edge.getWeight()) {
+                    dist[edge.target.getId()] = dist[edge.source.getId()] + edge.getWeight();
+                    pred.set(edge.target.getId(), edge.source);
                 }
             }
         }
 
+        // negative-cycle detection
         for (Edge edge : graph.getEdges()) {
-            if (dist[edge.source.getId()] > dist[edge.target.getId()] + edge.getWeight())
+            if (dist[edge.source.getId()] != Integer.MAX_VALUE &&
+                    dist[edge.target.getId()] > dist[edge.source.getId()] + edge.getWeight()) {
                 return null;
+            }
         }
-        return ret;
+        return pred;
     }
 
     public void doAlgorithm() {

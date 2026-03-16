@@ -31,13 +31,14 @@ public class ComplementGraph implements GraphActionExtension {
         }
 
 
-       for(Vertex v1 : g1.getVertexArray()) {
-           for(Vertex v2 : g1.getVertexArray()) {
-               if(v1.getId() != v2.getId()) {
-                   if (!g1.isEdge(v1, v2)) {
-                       g2.addEdge(new Edge(g2.getVertex(v1.getId()),
-                               g2.getVertex(v2.getId())));
-                   }
+       Vertex[] verts = g1.getVertexArray();
+       for (int i = 0; i < verts.length; i++) {
+           for (int j = i + 1; j < verts.length; j++) {
+               // Use i < j so each unordered pair is visited exactly once,
+               // avoiding duplicate edges in the (always-undirected) complement.
+               if (!g1.isEdge(verts[i], verts[j])) {
+                   g2.addEdge(new Edge(g2.getVertex(verts[i].getId()),
+                           g2.getVertex(verts[j].getId())));
                }
            }
        }
