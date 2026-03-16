@@ -31,11 +31,6 @@ abstract class GProductAction implements GraphActionExtension, Parametrizable {
     }
 
     @Override
-    public String checkParameters() {
-        return null;
-    }
-
-    @Override
     public String getCategory() {
         return "Products";
     }
