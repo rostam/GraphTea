@@ -69,6 +69,11 @@
             <include name="TestHomomorphism.java"/>
             <include name="TestNewEdge.java"/>
             <include name="AlgorithmsTest.java"/>
+            <include name="BlackBoardTest.java"/>
+            <include name="NotifiableAttributeSetImplTest.java"/>
+            <include name="ShortestPathAndMSTTest.java"/>
+            <include name="SubdividedGraphTest.java"/>
+            <include name="CoronaAndUtilsTest.java"/>
         </javac>
         <junitlauncher haltOnFailure="false" printSummary="true">
             <classpath>
@@ -97,6 +102,11 @@
                     <include name="TestHomomorphism.class"/>
                     <include name="TestNewEdge.class"/>
                     <include name="AlgorithmsTest.class"/>
+                    <include name="BlackBoardTest.class"/>
+                    <include name="NotifiableAttributeSetImplTest.class"/>
+                    <include name="ShortestPathAndMSTTest.class"/>
+                    <include name="SubdividedGraphTest.class"/>
+                    <include name="CoronaAndUtilsTest.class"/>
                 </fileset>
                 <listener type="legacy-xml" outputdir="${basedir}/build/test-classes" sendSysOut="true" sendSysErr="true"/>
                 <listener type="legacy-plain" sendSysOut="true"/>

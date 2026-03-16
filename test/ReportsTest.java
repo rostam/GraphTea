@@ -110,6 +110,13 @@ public class ReportsTest {
     @Test
     public void testEccentricConnectivityIndex() {
         EccentricConnectiveIndex varEccentricConnectivityIndex = new EccentricConnectiveIndex();
+        // ECI = sum of deg(v) * ecc(v)
+        Assertions.assertEquals(6.0,  varEccentricConnectivityIndex.calculate(circle3));
+        Assertions.assertEquals(16.0, varEccentricConnectivityIndex.calculate(circle4));
+        Assertions.assertEquals(20.0, varEccentricConnectivityIndex.calculate(circle5));
+        Assertions.assertEquals(12.0, varEccentricConnectivityIndex.calculate(complete4));
+        Assertions.assertEquals(20.0, varEccentricConnectivityIndex.calculate(complete5));
+        Assertions.assertEquals(60.0, varEccentricConnectivityIndex.calculate(peterson));
     }
 
     @Test
@@ -304,6 +311,13 @@ public class ReportsTest {
     @Test
     public void testTotalEccentricityIndex() {
         TotalEccentricityIndex varTotalEccentricityIndex = new TotalEccentricityIndex();
+        // Total eccentricity index = sum of deg(v) * ecc(v)
+        Assertions.assertEquals(6.0,  varTotalEccentricityIndex.calculate(circle3));
+        Assertions.assertEquals(16.0, varTotalEccentricityIndex.calculate(circle4));
+        Assertions.assertEquals(20.0, varTotalEccentricityIndex.calculate(circle5));
+        Assertions.assertEquals(12.0, varTotalEccentricityIndex.calculate(complete4));
+        Assertions.assertEquals(20.0, varTotalEccentricityIndex.calculate(complete5));
+        Assertions.assertEquals(60.0, varTotalEccentricityIndex.calculate(peterson));
     }
 
     @Test
@@ -349,6 +363,11 @@ public class ReportsTest {
     @Test
     public void testMWienerIndex() {
         MWienerIndex varMWienerIndex = new MWienerIndex();
+        // MWienerIndex = product of all pairwise distances
+        Assertions.assertEquals(1,  varMWienerIndex.calculate(circle3));   // 1*1*1
+        Assertions.assertEquals(4,  varMWienerIndex.calculate(circle4));   // 1*2*1*1*2*1
+        Assertions.assertEquals(1,  varMWienerIndex.calculate(complete4)); // all distances = 1
+        Assertions.assertEquals(1,  varMWienerIndex.calculate(complete5)); // all distances = 1
     }
 
     @Test

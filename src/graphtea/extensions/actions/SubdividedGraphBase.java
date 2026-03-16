@@ -43,7 +43,11 @@ abstract class SubdividedGraphBase implements GraphActionExtension, Parametrizab
 
     @Override
     public void action(GraphData graphData) {
-        GraphModel g1 = graphData.getGraph();
+        graphData.core.showGraph(apply(graphData.getGraph()));
+    }
+
+    /** Computes the subdivided graph and returns it without displaying it. */
+    public GraphModel apply(GraphModel g1) {
         GraphModel g2 = new GraphModel(false);
         g2.setIsEdgesCurved(true);
 
@@ -93,7 +97,7 @@ abstract class SubdividedGraphBase implements GraphActionExtension, Parametrizab
             }
         }
 
-        graphData.core.showGraph(g2);
+        return g2;
     }
 
     private static void addCurvedEdge(GraphModel g, Vertex src, Vertex tgt) {
