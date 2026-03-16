@@ -86,9 +86,6 @@ public class NNGenerator implements GraphGeneratorExtension, Parametrizable, Sim
     }
 
 
-    public String checkParameters() {
-    	return null;
-    }
 
     public GraphModel generateGraph() {
         return GraphGenerator.getGraph(true, this);

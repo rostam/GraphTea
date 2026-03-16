@@ -39,9 +39,6 @@ public class PathZagrebIndex implements GraphReportExtension<ArrayList<String>>,
         return out;
     }
 
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
 	public String getCategory() {

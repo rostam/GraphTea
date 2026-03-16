@@ -60,9 +60,6 @@ public class IncrementalZagrebCoindex implements GraphReportExtension<RenderTabl
         return ret;
     }
 
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
 	public String getCategory() {

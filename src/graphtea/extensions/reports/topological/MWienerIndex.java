@@ -4,17 +4,14 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological;
 
-import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Ali Rostami
  */
-
 @CommandAttitude(name = "mwiener_index", abbreviation = "_windex")
-public class MWienerIndex implements GraphReportExtension<Integer> {
+public class MWienerIndex extends WienerIndexBase {
     public String getName() {
         return "Multiplicative Wiener Index";
     }
@@ -23,26 +20,16 @@ public class MWienerIndex implements GraphReportExtension<Integer> {
         return "Multiplicative Wiener Index";
     }
 
-    public Integer calculate(GraphModel g) {
-        int sum =1;
-        FloydWarshall fw = new FloydWarshall();
-        int[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
-        double max = 0;
+    @Override
+    protected Integer compute(GraphModel g, int[][] dist) {
+        int product = 1;
         for (int v = 0; v < g.numOfVertices(); v++) {
-            for (int u = v+1; u < g.numOfVertices(); u++) {
-                if(spt[v][u] < g.numOfVertices() + 1) {
-                    double dist = spt[u][v];
-                    if(dist > max) {
-                        sum *= dist;
-                    }
+            for (int u = v + 1; u < g.numOfVertices(); u++) {
+                if (dist[v][u] < g.numOfVertices() + 1 && dist[u][v] > 0) {
+                    product *= dist[u][v];
                 }
             }
         }
-        return sum;
+        return product;
     }
-
-	@Override
-	public String getCategory() {
-        return "Topological Indices-Wiener Types";
-	}
 }

@@ -908,4 +908,30 @@ public class AlgorithmUtils {
         }
         return adj;
     }
+
+    /** Concatenates two arrays into a new array of the same component type. */
+    public static <T> T[] concatArrays(T[] array1, T[] array2) {
+        T[] result = Arrays.copyOf(array1, array1.length + array2.length);
+        System.arraycopy(array2, 0, result, array1.length, array2.length);
+        return result;
+    }
+
+    /**
+     * Returns the eccentricity of every vertex: ecc[v] = max distance from v to any reachable vertex.
+     * Unreachable pairs (distance >= n+1 by FloydWarshall convention) are excluded; isolated vertices get 0.
+     */
+    public static int[] getEccentricities(GraphModel g) {
+        FloydWarshall fw = new FloydWarshall();
+        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        int n = g.numOfVertices();
+        int[] ecc = new int[n];
+        for (int v = 0; v < n; v++) {
+            for (int u = 0; u < n; u++) {
+                if (u != v && dist[v][u] < n + 1 && dist[v][u] > ecc[v]) {
+                    ecc[v] = dist[v][u];
+                }
+            }
+        }
+        return ecc;
+    }
 }

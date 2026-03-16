@@ -46,8 +46,4 @@ public class SecondMixZagrebIndex implements GraphReportExtension<ArrayList<Stri
         return "Topological Indices-Zagreb Indices";
 	}
 
-    @Override
-    public String checkParameters() {
-        return null;
-    }
 }

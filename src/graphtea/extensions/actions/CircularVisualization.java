@@ -45,9 +45,6 @@ public class CircularVisualization implements GraphActionExtension {
         }
     }
 
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
     public String getName() {

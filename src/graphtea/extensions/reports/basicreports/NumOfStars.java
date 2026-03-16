@@ -46,8 +46,4 @@ public class NumOfStars implements GraphReportExtension<Integer>, Parametrizable
 	}
 
 
-    @Override
-    public String checkParameters() {
-        return null;
-    }
 }

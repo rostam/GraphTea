@@ -67,10 +67,6 @@ public class LocalityLens implements GraphActionExtension, Parametrizable {
         return "Visualization";
     }
 
-    @Override
-    public String checkParameters() {
-        return null;
-    }
 }
 
 class MouseEventListener implements Listener {

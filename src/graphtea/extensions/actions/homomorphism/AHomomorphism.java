@@ -40,10 +40,6 @@ public class AHomomorphism implements GraphActionExtension, Parametrizable {
         graphData.core.showGraph(g);
     }
 
-    @Override
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
     public String getCategory() {

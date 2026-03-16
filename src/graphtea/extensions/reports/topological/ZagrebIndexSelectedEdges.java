@@ -42,20 +42,7 @@ public class ZagrebIndexSelectedEdges implements GraphReportExtension<ArrayList<
         return out;
     }
 
-    private boolean edge_adj(Edge e1,Edge e2) {
-        if(e1.source.getId()==e2.source.getId()  &&
-                e1.target.getId()==e2.target.getId()) return false;
-        else if(e1.target.getId()==e2.source.getId() &&
-                e1.source.getId()==e2.target.getId()) return false;
-        else if(e1.source.getId() == e2.source.getId()) return true;
-        else if(e1.source.getId() == e2.target.getId()) return true;
-        else if(e1.target.getId() == e2.source.getId()) return true;
-        else return e1.target.getId() == e2.target.getId();
-    }
 
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
 	public String getCategory() {

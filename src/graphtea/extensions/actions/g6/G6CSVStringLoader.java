@@ -75,9 +75,6 @@ public class G6CSVStringLoader implements GraphActionExtension, Parametrizable {
         }
     }
 
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
     public String getCategory() {

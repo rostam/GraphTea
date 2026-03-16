@@ -56,9 +56,6 @@ public class IncrementalVariableZagrebIndex implements GraphReportExtension<Rend
         return ret;
     }
 
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
 	public String getCategory() {

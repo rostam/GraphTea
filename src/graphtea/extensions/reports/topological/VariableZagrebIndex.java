@@ -39,9 +39,6 @@ public class VariableZagrebIndex implements GraphReportExtension<ArrayList<Strin
         return out;
     }
 
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
 	public String getCategory() {
