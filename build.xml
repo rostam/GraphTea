@@ -335,6 +335,55 @@
     </target>
 
     <!-- =================================
+          target: checkstyle
+         ================================= -->
+
+    <!--
+      Checkstyle targets.
+
+      checkstyle        — runs style checks and reports violations but never fails
+                          the build. Use this to inspect the current state.
+      checkstyle-strict — same checks, fails the build on any violation. Use this
+                          in CI or as a pre-commit gate.
+
+      Existing code is grandfathered via config/checkstyle-suppressions.xml.
+      Only files NOT listed there must comply.
+
+      CLI equivalent:
+        java -jar tools/checkstyle.jar -c config/checkstyle.xml \
+             -p config/checkstyle.properties  src/graphtea
+    -->
+    <target name="checkstyle" depends="depends" description="Report Checkstyle violations (never fails build)">
+        <taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
+                 classpath="${basedir}/tools/checkstyle.jar"/>
+        <mkdir dir="${build.dir}/checkstyle"/>
+        <checkstyle config="${basedir}/config/checkstyle.xml"
+                    failOnViolation="false"
+                    maxErrors="0"
+                    maxWarnings="9999999">
+            <property key="config_loc" value="${basedir}/config"/>
+            <formatter type="plain"/>
+            <formatter type="xml" tofile="${build.dir}/checkstyle/report.xml"/>
+            <fileset dir="${src.dir}" includes="graphtea/**/*.java"/>
+        </checkstyle>
+        <echo message="Checkstyle report written to ${build.dir}/checkstyle/report.xml"/>
+    </target>
+
+    <target name="checkstyle-strict" depends="depends" description="Run Checkstyle; fail build on any violation">
+        <taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
+                 classpath="${basedir}/tools/checkstyle.jar"/>
+        <mkdir dir="${build.dir}/checkstyle"/>
+        <checkstyle config="${basedir}/config/checkstyle.xml"
+                    failOnViolation="true"
+                    maxErrors="0">
+            <property key="config_loc" value="${basedir}/config"/>
+            <formatter type="plain"/>
+            <formatter type="xml" tofile="${build.dir}/checkstyle/report.xml"/>
+            <fileset dir="${src.dir}" includes="graphtea/**/*.java"/>
+        </checkstyle>
+    </target>
+
+    <!-- =================================
           target: clean
          ================================= -->
     <target name="clean" description="Clean">

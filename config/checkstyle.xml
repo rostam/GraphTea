@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<!--
+  GraphTea Checkstyle configuration.
+
+  Based on Google Java Style with adjustments for this codebase:
+    - Max line length 150 (Google uses 100; many existing files use up to 150)
+    - Javadoc checks disabled (codebase has sparse documentation)
+    - Wildcard imports allowed (widespread in existing code)
+    - Tab/space mixing reported but not in suppressions-covered legacy code
+
+  Run:   ant checkstyle           (report only, never fails the build)
+  Run:   ant checkstyle-strict    (fails if any violation is found)
+
+  Suppressions for existing legacy violations live in config/checkstyle-suppressions.xml.
+-->
+<module name="Checker">
+    <property name="severity" value="error"/>
+    <property name="fileExtensions" value="java"/>
+
+    <!--
+      ${config_loc} is set automatically by the Ant <checkstyle> task.
+      For CLI use, pass:  java -jar tools/checkstyle.jar -c config/checkstyle.xml
+                               -Dconfig_loc=config  src/graphtea
+    -->
+    <module name="SuppressionFilter">
+        <property name="file" value="${config_loc}/checkstyle-suppressions.xml"/>
+        <property name="optional" value="true"/>
+    </module>
+
+    <!-- ===== File-level checks ===== -->
+
+    <!-- No tab characters anywhere in source files -->
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+
+    <!-- Line length: hard cap at 150 chars -->
+    <module name="LineLength">
+        <property name="max" value="150"/>
+        <!-- Allow long import statements and URLs in comments -->
+        <property name="ignorePattern" value="^import |^ *\* *https?://|^ *// *https?://"/>
+    </module>
+
+    <!-- No trailing whitespace -->
+    <module name="RegexpSingleline">
+        <property name="format" value="\s+$"/>
+        <property name="message" value="Line has trailing whitespace."/>
+    </module>
+
+    <!-- ===== Tree-walker checks (per-token AST analysis) ===== -->
+    <module name="TreeWalker">
+
+        <!-- === Naming Conventions === -->
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+        </module>
+        <module name="TypeName"/>
+        <module name="ConstantName"/>
+        <module name="LocalVariableName"/>
+        <module name="LocalFinalVariableName"/>
+        <module name="MemberName"/>
+        <module name="MethodName"/>
+        <module name="ParameterName"/>
+        <module name="StaticVariableName"/>
+        <!-- Catch parameters: allow single-letter names like 'e' -->
+        <module name="CatchParameterName">
+            <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+        </module>
+
+        <!-- === Imports === -->
+        <!-- No importing from the same package -->
+        <module name="RedundantImport"/>
+        <!-- No unused imports -->
+        <module name="UnusedImports"/>
+        <!-- No importing java.lang (already implicit) -->
+        <module name="IllegalImport"/>
+
+        <!-- === Braces and Block Structure === -->
+        <!-- Every if/else/for/while/do body must have braces -->
+        <module name="NeedBraces"/>
+        <!-- Opening brace on same line as declaration -->
+        <module name="LeftCurly"/>
+        <!-- Closing brace on its own line -->
+        <module name="RightCurly"/>
+        <!-- Empty catch blocks must have a comment explaining why -->
+        <module name="EmptyCatchBlock">
+            <property name="exceptionVariableName" value="expected|ignored|ignore"/>
+            <property name="commentFormat" value=".+"/>
+        </module>
+        <!-- Empty blocks (other than catch) are disallowed -->
+        <module name="EmptyBlock">
+            <property name="option" value="text"/>
+            <!-- Only apply to non-catch blocks -->
+            <property name="tokens" value="LITERAL_WHILE, LITERAL_TRY, LITERAL_FINALLY,
+                LITERAL_DO, LITERAL_IF, LITERAL_ELSE, LITERAL_FOR,
+                INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH, LITERAL_SYNCHRONIZED"/>
+        </module>
+
+        <!-- === Whitespace === -->
+        <module name="WhitespaceAround">
+            <!-- Allow empty constructor/method bodies: {} -->
+            <property name="allowEmptyConstructors" value="true"/>
+            <property name="allowEmptyMethods" value="true"/>
+            <property name="allowEmptyTypes" value="true"/>
+            <property name="allowEmptyLoops" value="true"/>
+            <property name="allowEmptyLambdas" value="true"/>
+        </module>
+        <module name="WhitespaceAfter"/>
+        <module name="NoWhitespaceBefore"/>
+        <module name="GenericWhitespace"/>
+        <!-- No multiple blank lines in a row -->
+        <module name="EmptyLineSeparator">
+            <property name="allowNoEmptyLineBetweenFields" value="true"/>
+            <property name="allowMultipleEmptyLines" value="false"/>
+            <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
+        </module>
+
+        <!-- === Code Correctness === -->
+        <!-- Use .equals() not == for string literals -->
+        <module name="StringLiteralEquality"/>
+        <!-- Avoid unnecessary Boolean constructors -->
+        <module name="IllegalInstantiation">
+            <property name="classes" value="java.lang.Boolean,java.lang.Byte,
+                java.lang.Character,java.lang.Double,java.lang.Float,
+                java.lang.Integer,java.lang.Long,java.lang.Short"/>
+        </module>
+        <!-- Use 'L' not 'l' for long literals (l looks like 1) -->
+        <module name="UpperEll"/>
+        <!-- Simplify: "if (b == true)" → "if (b)" -->
+        <module name="SimplifyBooleanExpression"/>
+        <!-- Simplify: "if (b) return true; else return false;" → "return b;" -->
+        <module name="SimplifyBooleanReturn"/>
+        <!-- No default fallthrough in switch without comment -->
+        <module name="FallThrough"/>
+        <!-- Default clause must be last in switch -->
+        <module name="DefaultComesLast"/>
+        <!-- No assignments inside boolean sub-expressions (= vs ==) -->
+        <module name="InnerAssignment"/>
+        <!-- No multiple variable declarations on one line -->
+        <module name="MultipleVariableDeclarations"/>
+        <!-- Avoid confusing overloaded operators -->
+        <module name="CovariantEquals"/>
+        <!-- equals() must also override hashCode() -->
+        <module name="EqualsHashCode"/>
+        <!-- clone() must call super.clone() -->
+        <module name="SuperClone"/>
+        <!-- finalize() must call super.finalize() -->
+        <module name="SuperFinalize"/>
+
+        <!-- === Coding Style === -->
+        <!-- Modifier order: public protected private abstract default static final ... -->
+        <module name="ModifierOrder"/>
+        <!-- No redundant modifiers (e.g. public on interface methods) -->
+        <module name="RedundantModifier"/>
+        <!-- Array brackets on type, not variable: String[] args not String args[] -->
+        <module name="ArrayTypeStyle"/>
+        <!-- Avoid extra semi-colons -->
+        <module name="EmptyStatement"/>
+        <!-- One statement per line -->
+        <module name="OneStatementPerLine"/>
+        <!-- Each top-level class in its own file -->
+        <module name="OneTopLevelClass"/>
+
+        <!-- === Complexity (warnings, not errors) === -->
+        <module name="CyclomaticComplexity">
+            <property name="max" value="15"/>
+        </module>
+        <module name="BooleanExpressionComplexity">
+            <property name="max" value="5"/>
+        </module>
+        <module name="NestedIfDepth">
+            <property name="max" value="4"/>
+        </module>
+        <module name="NestedForDepth">
+            <property name="max" value="3"/>
+        </module>
+        <module name="NestedTryDepth">
+            <property name="max" value="2"/>
+        </module>
+
+    </module>
+</module>

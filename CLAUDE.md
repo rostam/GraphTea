@@ -29,6 +29,40 @@ Build output goes to `build/` (compiled classes) and `binary/` (JARs, plugins, e
 
 Tests use JUnit 5 and live in `/test/`. There is no dedicated test runner script — run tests through your IDE or a JUnit runner with the classpath from `src/scripts/lib/`.
 
+## Code Style (Checkstyle)
+
+Checkstyle 10 enforces style on all **new** source files. Existing files are grandfathered
+in `config/checkstyle-suppressions.xml` and are exempt until cleaned up.
+
+```bash
+# Report violations (never fails the build — good for local inspection)
+ant checkstyle
+
+# Strict mode — fails the build on any violation (use in CI)
+ant checkstyle-strict
+
+# CLI equivalent (exit code = number of errors; 0 = clean)
+java -jar tools/checkstyle.jar -c config/checkstyle.xml \
+     -p config/checkstyle.properties  src/graphtea
+```
+
+Key rules enforced on new code (`config/checkstyle.xml`):
+- Braces required on all `if`/`for`/`while` bodies (`NeedBraces`)
+- No `==` for string comparison (`StringLiteralEquality`)
+- No unused or redundant imports
+- `L` suffix on long literals, not `l`
+- One statement per line; array brackets on type (`String[]` not `String []`)
+- Whitespace around operators and after keywords
+- Modifier order (`public static final`, not `static public final`)
+- Complexity limits: cyclomatic ≤ 15, nesting depth ≤ 4
+
+To **add a new file** to the suppression baseline (only if truly needed):
+```xml
+<!-- in config/checkstyle-suppressions.xml -->
+<suppress files="MyNewFile.java" checks=".*"/>
+```
+Prefer fixing violations over suppressing them.
+
 ## Architecture
 
 GraphTea is a **Java Swing desktop application** for graph theory, built around a plugin-extension architecture.
