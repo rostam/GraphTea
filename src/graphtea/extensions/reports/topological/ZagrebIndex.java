@@ -51,9 +51,6 @@ public class ZagrebIndex implements GraphReportExtension<RenderTable>, Parametri
         return renderTable;
     }
 
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
 	public String getCategory() {

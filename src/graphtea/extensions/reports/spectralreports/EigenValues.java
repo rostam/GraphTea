@@ -88,8 +88,4 @@ public class EigenValues implements GraphReportExtension<ArrayList<String>>,Para
 		return "Spectral- Energies";
 	}
 
-    @Override
-    public String checkParameters() {
-        return null;
-    }
 }

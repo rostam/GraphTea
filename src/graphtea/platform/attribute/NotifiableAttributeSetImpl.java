@@ -24,6 +24,14 @@ public class NotifiableAttributeSetImpl extends AttributeSetImpl implements Noti
         fireAttributeChange(getAttributeListeners(), name, old, value);
     }
 
+    @Override
+    public void clear() {
+        for (String name : atr.keySet()) {
+            fireAttributeChange(getAttributeListeners(), name, atr.get(name), null);
+        }
+        super.clear();
+    }
+
     public void addAttributeListener(AttributeListener attributeListener) {
         globalListeners.add(attributeListener);
     }

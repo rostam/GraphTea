@@ -80,9 +80,6 @@ public class CocktailPartyGraph implements GraphGeneratorExtension, Parametrizab
         return PositionGenerators.circle(5, 5, 100000, 100000, 2*n);
     }
 
-    public String checkParameters() {
-    	return null;
-    }
 
     public GraphModel generateGraph() {
         return GraphGenerator.getGraph(false, this);

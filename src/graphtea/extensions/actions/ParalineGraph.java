@@ -34,10 +34,6 @@ public class ParalineGraph implements GraphActionExtension , Parametrizable {
         return "Paraline Graph";
     }
 
-    @Override
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
     public String getCategory() {

@@ -61,9 +61,6 @@ public class IncrementalZagrebIndex implements GraphReportExtension<RenderTable>
         return ret;
     }
 
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
 	public String getCategory() {

@@ -75,10 +75,6 @@ public class BarycentricSubdivisionGraph implements GraphActionExtension, Parame
         return "Barycentric Subdivision Graph";
     }
 
-    @Override
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
     public String getCategory() {

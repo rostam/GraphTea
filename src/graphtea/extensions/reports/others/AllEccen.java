@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.others;
 
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.extensions.reports.topological.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
@@ -14,25 +15,14 @@ import java.util.List;
 /**
  * @author Ali Rostami
  */
-
 @CommandAttitude(name = "AllEccen", abbreviation = "_AllEccen")
-public class AllEccen implements GraphReportExtension<RenderTable>{
+public class AllEccen implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "AllEccen";
     }
 
     public String getDescription() {
         return " AllEccen ";
-    }
-
-    public int eccentricity(GraphModel g, int v, int[][] dist) {
-        int max_dist = 0;
-        for(int j=0;j < g.getVerticesCount();j++) {
-            if(max_dist < dist[v][j]) {
-                max_dist = dist[v][j];
-            }
-        }
-        return max_dist;
     }
 
     public RenderTable calculate(GraphModel g) {
@@ -47,7 +37,9 @@ public class AllEccen implements GraphReportExtension<RenderTable>{
         ret.setTitles(titles);
 
         double m = g.getEdgesCount();
-        if(m==10) return null;
+        if (m == 10) {
+            return null;
+        }
         double n = g.getVerticesCount();
 
         List<Object> v = new ArrayList<>();
@@ -57,20 +49,20 @@ public class AllEccen implements GraphReportExtension<RenderTable>{
         FloydWarshall fw = new FloydWarshall();
         int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
         int total_eccentricity = 0;
-        for(Vertex ver : g) {
-            total_eccentricity += eccentricity(g, ver.getId(), dist);
+        for (Vertex ver : g) {
+            total_eccentricity += Eccentricity.eccentricity(g, ver.getId(), dist);
         }
         v.add(total_eccentricity);
 
         int eccentric_connectivity_index = 0;
-        for(Vertex ver : g) {
-            eccentric_connectivity_index += eccentricity(g, ver.getId(), dist)*g.getDegree(ver);
+        for (Vertex ver : g) {
+            eccentric_connectivity_index += Eccentricity.eccentricity(g, ver.getId(), dist) * g.getDegree(ver);
         }
         v.add(eccentric_connectivity_index);
 
         double connective_eccentric_index = 0;
-        for(Vertex ver : g) {
-            connective_eccentric_index += (double)g.getDegree(ver)/eccentricity(g, ver.getId(), dist);
+        for (Vertex ver : g) {
+            connective_eccentric_index += (double) g.getDegree(ver) / Eccentricity.eccentricity(g, ver.getId(), dist);
         }
         v.add(connective_eccentric_index);
         ret.add(v);
@@ -82,9 +74,3 @@ public class AllEccen implements GraphReportExtension<RenderTable>{
         return "Verification-Checking";
     }
 }
-
-
-
-
-
-

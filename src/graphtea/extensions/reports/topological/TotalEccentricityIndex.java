@@ -4,7 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological;
 
-import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -12,7 +12,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 /**
  * @author Ali Rostami
  */
-
 @CommandAttitude(name = "totaleccentricity_index", abbreviation = "_TEindex")
 public class TotalEccentricityIndex implements GraphReportExtension<Double> {
     public String getName() {
@@ -24,36 +23,18 @@ public class TotalEccentricityIndex implements GraphReportExtension<Double> {
     }
 
     public Double calculate(GraphModel g) {
-        FloydWarshall fw = new FloydWarshall();
-        int[][] spt = fw.getAllPairsShortestPathWithoutWeight(g);
-
-        double maxVUDistance;
-    	double sum = 0;
-
+        int[] ecc = AlgorithmUtils.getEccentricities(g);
+        double sum = 0;
         for (int v = 0; v < g.numOfVertices(); v++) {
-        	maxVUDistance = 0;
-            for (int u = 0; u < g.numOfVertices(); u++) {
-            	if (v == u) {
-            		continue;
-            	}
-                if(spt[v][u] < g.numOfVertices() + 1) {
-                	double dist = spt[u][v];
-                    if(dist > maxVUDistance) {
-                    	maxVUDistance = dist;                    	
-                    }
-                }
-            }
-            
-            if (maxVUDistance > 0) {
-            	sum += g.getDegree(g.getVertex(v)) * maxVUDistance;
+            if (ecc[v] > 0) {
+                sum += g.getDegree(g.getVertex(v)) * ecc[v];
             }
         }
-
         return sum;
     }
 
-	@Override
-	public String getCategory() {
-		return "Topological Indices-Distance";
-	}
+    @Override
+    public String getCategory() {
+        return "Topological Indices-Distance";
+    }
 }

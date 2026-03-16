@@ -51,9 +51,6 @@ public class G6StringLoader implements GraphActionExtension, Parametrizable {
         }
     }
 
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
     public String getCategory() {

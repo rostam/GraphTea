@@ -3,6 +3,7 @@
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.generators;
+import graphtea.extensions.AlgorithmUtils;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
@@ -16,7 +17,6 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,16 +65,11 @@ public class ExampleChainGraph2 implements GraphGeneratorExtension, Parametrizab
         return ret.toArray(ee);
     }
 
-    static <T> T[] concatWithArrayCopy(T[] array1, T[] array2) {
-        T[] result = Arrays.copyOf(array1, array1.length + array2.length);
-        System.arraycopy(array2, 0, result, array1.length, array2.length);
-        return result;
-    }
 
     public GPoint[] getVertexPositions() {
         GPoint[] p1 = PositionGenerators.line(5, 5, 10000, 10000, n);
         GPoint[] p2 = PositionGenerators.line(1000, 5, 10000, 10000, n);
-        return concatWithArrayCopy(p1,p2);
+        return AlgorithmUtils.concatArrays(p1,p2);
     }
 
     public String checkParameters() {

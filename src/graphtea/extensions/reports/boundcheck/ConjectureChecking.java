@@ -119,8 +119,4 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
         return null;
     }
 
-    @Override
-    public String checkParameters() {
-        return null;
-    }
 }

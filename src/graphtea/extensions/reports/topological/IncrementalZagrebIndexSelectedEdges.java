@@ -62,9 +62,6 @@ public class IncrementalZagrebIndexSelectedEdges implements GraphReportExtension
         return ret;
     }
 
-    public String checkParameters() {
-        return null;
-    }
 
     @Override
 	public String getCategory() {
