@@ -114,8 +114,5 @@ abstract class SubdividedGraphBase implements GraphActionExtension, Parametrizab
     }
 
     @Override
-    public String checkParameters() { return null; }
-
-    @Override
     public String getCategory() { return "Transformations"; }
 }
