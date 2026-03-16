@@ -2,69 +2,43 @@
 // Copyright (C) 2012 Graph Theory Software Foundation: http://GraphTheorySoftware.com
 // Copyright (C) 2008 Mathematical Science Department of Sharif University of Technology
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
+
 package graphtea.extensions.reports.topological;
 
-import java.util.List;
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.RenderTable;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.platform.parameter.Parameter;
-import graphtea.platform.parameter.Parametrizable;
-import graphtea.plugins.reports.extension.GraphReportExtension;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Ali Rostami
-
  */
-
 @CommandAttitude(name = "inc_zagreb_index_edges", abbreviation = "_izie")
-public class IncrementalZagrebIndexSelectedEdges implements GraphReportExtension<RenderTable>, Parametrizable {
+public class IncrementalZagrebIndexSelectedEdges extends IncrementalZagrebReportBase {
+
     public String getName() {
         return "Incremental Zagreb Indices of Selected Edges";
     }
-
-    @Parameter(name = "Starting Value of Alpha", description = "")
-    public Double start_alpha = -10.0;
-
-    @Parameter(name = "End Value of Alpha", description = "")
-    public Double end_alpha = 10.0;
-
-    @Parameter(name = "Incremental Value", description = "")
-    public Double inc = 0.1;
 
     public String getDescription() {
         return "Incremental Zagreb Indices of Selected Edges";
     }
 
-    public RenderTable calculate(GraphModel g) {
-        ArrayList<String> out = new ArrayList<>();
-        RenderTable ret = new RenderTable();
-        List<String> titles = new ArrayList<>();
-        titles.add("Alpha");
-        titles.add("First General Zagreb Index");
-        titles.add("Second General Zagreb Index");
-        titles.add("First Reformulated Zagreb Index");
-        titles.add("Second Reformulated Zagreb Index");
-        ret.setTitles(titles);
-
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        for(double alpha = start_alpha;alpha <= end_alpha;alpha=alpha+inc) {
-            List<Object> v = new ArrayList<>();
-            v.add(alpha);
-            v.add(zif.getFirstZagrebSelectedEdges(alpha));
-            v.add(zif.getSecondZagrebSelectedEdges(alpha));
-            v.add(zif.getFirstReZagrebSelectedEdges(alpha));
-            v.add(zif.getSecondReZagrebSelectedEdges(alpha));
-            ret.add(v);
-        }
-        return ret;
+    @Override
+    protected List<String> columnTitles() {
+        return Arrays.asList(
+                "First General Zagreb Index",
+                "Second General Zagreb Index",
+                "First Reformulated Zagreb Index",
+                "Second Reformulated Zagreb Index");
     }
 
-
     @Override
-	public String getCategory() {
-        return "Topological Indices-Zagreb Indices";
-	}
+    protected List<Object> rowValues(ZagrebIndexFunctions zif, double alpha) {
+        return Arrays.asList(
+                zif.getFirstZagrebSelectedEdges(alpha),
+                zif.getSecondZagrebSelectedEdges(alpha),
+                zif.getFirstReZagrebSelectedEdges(alpha),
+                zif.getSecondReZagrebSelectedEdges(alpha));
+    }
 }
