@@ -5,8 +5,6 @@
 
 package graphtea.extensions.reports.spectralreports;
 
-import Jama.EigenvalueDecomposition;
-import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.lang.CommandAttitude;
@@ -15,35 +13,13 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 /**
  * @author M. Ali Rostami
  */
-
 @CommandAttitude(name = "transmission_energy", abbreviation = "_transener")
 public class TransmissionEnergy implements GraphReportExtension<Double> {
+    public String getName() { return "Transmission Energy"; }
+    public String getDescription() { return "Transmission Energy"; }
+    public String getCategory() { return "Spectral- Energies"; }
+
     public Double calculate(GraphModel g) {
-        Matrix m = AlgorithmUtils.getDiagonalTransMatrix(g);
-        EigenvalueDecomposition ed = m.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double sum = 0;
-
-        //positiv RV
-        Double[] prv = new Double[rv.length];
-        for (int i = 0; i < rv.length; i++) {
-			  prv[i] = Math.abs(rv[i]);
-          //  prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
-            sum += prv[i];
-        }
-        return sum;
-    }
-
-    public String getName() {
-        return "Transmission Energy";
-    }
-
-    public String getDescription() {
-        return "Transmission Energy";
-    }
-
-    @Override
-    public String getCategory() {
-        return "Spectral- Energies";
+        return AlgorithmUtils.spectralEnergy(AlgorithmUtils.getDiagonalTransMatrix(g), 0);
     }
 }
