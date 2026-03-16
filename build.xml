@@ -48,7 +48,7 @@
     <target name="test" depends="compile" description="Compile and run JUnit 5 tests">
         <mkdir dir="${basedir}/build/test-classes"/>
         <javac srcdir="${basedir}/test" destdir="${basedir}/build/test-classes"
-               source="11" target="11" includeantruntime="false">
+               source="17" target="17" includeantruntime="false">
             <classpath>
                 <path refid="project.lib"/>
                 <pathelement location="${basedir}/build"/>
@@ -129,7 +129,7 @@
           target: compile
          ================================= -->
     <target name="compile" depends="depends" description="--> The ant build file of GraphTea Project.">
-        <javac srcdir="${src.dir}" destdir="${build.dir}" source="11" target="11" includeantruntime="false">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" source="17" target="17" includeantruntime="false">
             <classpath>
                 <path refid="project.lib"/>
             </classpath>
