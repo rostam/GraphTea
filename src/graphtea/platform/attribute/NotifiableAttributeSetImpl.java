@@ -19,17 +19,9 @@ public class NotifiableAttributeSetImpl extends AttributeSetImpl implements Noti
 
 
     public void put(String name, Object value) {
-        if (name == null) {
-            throw new RuntimeException("key=null" + value);
-        }
-        Object old = atr.put(name, value);
-//        Collection<AttributeListener> listeners = notifiableAttributeSet.getAttributeListeners(name);
+        Object old = get(name);
+        super.put(name, value);
         fireAttributeChange(getAttributeListeners(), name, old, value);
-
-    }
-
-    public Object get(String name) {
-        return super.get(name);
     }
 
     public void addAttributeListener(AttributeListener attributeListener) {

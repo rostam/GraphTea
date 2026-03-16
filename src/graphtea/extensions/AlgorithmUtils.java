@@ -490,6 +490,18 @@ public class AlgorithmUtils {
     }
 
     /**
+     * Returns the all-pairs shortest-path distance matrix for {@code g} (unweighted).
+     * Convenience wrapper around {@link FloydWarshall} to avoid the two-liner boilerplate
+     * that appears throughout the codebase.
+     *
+     * @param g the graph
+     * @return distance matrix d where d[i][j] is the shortest path length from vertex i to vertex j
+     */
+    public static int[][] getAllPairsDistances(GraphModel g) {
+        return new FloydWarshall().getAllPairsShortestPathWithoutWeight(g);
+    }
+
+    /**
      * Computes the spectral energy of a matrix: sum of |eigenvalue - shift| over all real eigenvalues.
      * Use shift = 0 for plain energy (e.g. Distance Energy, Transmission Energy).
      *
@@ -705,8 +717,7 @@ public class AlgorithmUtils {
      * @return the maximum degree adjacency matrix
      */
     public static Matrix getDistanceAdjacencyMatrix (GraphModel g) {
-        FloydWarshall fw = new FloydWarshall();
-        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        int[][] dist = getAllPairsDistances(g);
         Matrix adj = g.getAdjacencyMatrix();
         for(int i=0;i < adj.getColumnDimension();i++) {
             for(int j=0;j < adj.getRowDimension();j++) {
@@ -831,9 +842,8 @@ public class AlgorithmUtils {
     }
 
     public static Matrix getDistanceLaplacianMatrix (GraphModel g) {
-        FloydWarshall fw = new FloydWarshall();
         int sum;
-        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        int[][] dist = getAllPairsDistances(g);
         Matrix adj = g.getAdjacencyMatrix();
         for(int i=0;i < adj.getColumnDimension();i++) {
             sum=0;
@@ -848,9 +858,8 @@ public class AlgorithmUtils {
     }
 
     public static Matrix getDistanceSignlessLaplacianMatrix (GraphModel g) {
-        FloydWarshall fw = new FloydWarshall();
         double sum;
-        int [][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        int[][] dist = getAllPairsDistances(g);
         Matrix adj = g.getAdjacencyMatrix();
         for(int i=0;i < adj.getColumnDimension();i++) {
             sum=0;
@@ -867,9 +876,8 @@ public class AlgorithmUtils {
     }
 
     public static Matrix getDiagonalTransMatrix (GraphModel g) {
-        FloydWarshall fw = new FloydWarshall();
         int sum;
-        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        int[][] dist = getAllPairsDistances(g);
         Matrix adj = g.getAdjacencyMatrix();
         for(int i=0;i < adj.getColumnDimension();i++) {
             sum=0;
@@ -884,9 +892,8 @@ public class AlgorithmUtils {
     }
 
     public static Matrix getAverageTransMatrix (GraphModel g) {
-        FloydWarshall fw = new FloydWarshall();
-        int sum; sum=0;
-        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        int sum = 0;
+        int[][] dist = getAllPairsDistances(g);
         Matrix adj = g.getAdjacencyMatrix();
         for(int i=0;i < adj.getColumnDimension();i++) {
             for(int j=0;j < adj.getRowDimension();j++) {
