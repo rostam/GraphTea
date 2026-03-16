@@ -1,8 +1,10 @@
 package graphtea.extensions.actions.product;
 
+import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.util.Pair;
+import graphtea.plugins.graphgenerator.core.PositionGenerators;
 
 public abstract class GProduct {
 
@@ -40,7 +42,20 @@ public abstract class GProduct {
 
     public abstract boolean compare(Vertex v1OfFirstG, Vertex v2OfFirstG, Vertex v1OfSecondG, Vertex v2OfSecondG);
 
-    public abstract void setPositions(GraphModel g);
+    protected void setCircularPositions(GraphModel g, int radius) {
+        int n = g.getVerticesCount();
+        GPoint[] ps = PositionGenerators.circle(radius, 300, 300, n);
+        int count = 0;
+        for (Vertex v : g) {
+            v.setLocation(new GPoint(ps[count].x, ps[count].y));
+            count++;
+        }
+    }
+
+    public void setPositions(GraphModel g) {
+        setProductLabel(g);
+        setCircularPositions(g, 250);
+    }
 
     public void setProductLabel(GraphModel graphModel) {
         //for(Vertex v:graphModel) v.getSize().multiply(1.5);
