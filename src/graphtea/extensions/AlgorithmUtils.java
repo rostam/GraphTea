@@ -53,6 +53,7 @@ public class AlgorithmUtils {
         for (int i = 0; i < g.getVerticesCount(); i++) {
             parent[i] = -1;
         }
+        parent[0] = 0; // mark root as visited so it is not re-entered during recursion
         dfs(g, 0, vs, parent);
         return vs.stream().distinct().count() == g.getVerticesCount();
     }
