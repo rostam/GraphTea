@@ -22,7 +22,7 @@ import java.util.zip.ZipFile;
  */
 public class ExtensionClassLoader extends ClassLoader {
     public Map<String, byte[]> classesData = new HashMap<>();
-    Map<String, Class> classes = new HashMap<>();
+    Map<String, Class<?>> classes = new HashMap<>();
     List<File> unknownFiles = new ArrayList<>();
     public static URLClassLoader classLoader;
     public static ClassLoader cl;
@@ -31,7 +31,7 @@ public class ExtensionClassLoader extends ClassLoader {
         loadClasses(dirPath);
     }
 
-    public Collection<Class> getLoadedClasses() {
+    public Collection<Class<?>> getLoadedClasses() {
         return classes.values();
     }
 
@@ -60,14 +60,16 @@ public class ExtensionClassLoader extends ClassLoader {
             else if (file1.getName().endsWith(".class"))
                 try {
                     String name;
-                    if (pack.length() > 0)
+                    if (pack.length() > 0) {
                         name = pack.substring(1) + ".";
-                    else
+                    } else {
                         name = "";
+                    }
                     name = name + file1.getName().substring(0, file1.getName().length() - 6);
                     byte[] data = new byte[(int) file1.length()];
-                    FileInputStream fis = new FileInputStream(file1);
-                    fis.read(data);
+                    try (FileInputStream fis = new FileInputStream(file1)) {
+                        fis.read(data);
+                    }
                     classesData.put(name, data);
                     urls.add(file1.toURI().toURL());
                 } catch (IOException e) {
@@ -85,26 +87,28 @@ public class ExtensionClassLoader extends ClassLoader {
 //        defineClasses();
     }
 
-    public Class findClass(String name) throws ClassNotFoundException {
-        Class ret = null;
-        if (!classesData.containsKey(name))
+    public Class<?> findClass(String name) throws ClassNotFoundException {
+        Class<?> ret = null;
+        if (!classesData.containsKey(name)) {
             ret = getParent().loadClass(name);
+        }
         if (ret == null && !classes.containsKey(name)) {
             byte[] data = classesData.get(name);
-            Class c = defineClass(name, data, 0, data.length);
+            Class<?> c = defineClass(name, data, 0, data.length);
             classes.put(name, c);
         }
         ret = classes.get(name);
-        if (ret == null)
+        if (ret == null) {
             return classLoader.loadClass(name);
-        else
+        } else {
             return ret;
+        }
     }
 
-    public Collection<Class> getClassesImplementing(Class cl) {
-        Collection<Class> col = new ArrayList<>();
-        for (Map.Entry<String, Class> entry1 : classes.entrySet()) {
-            Class c = entry1.getValue();
+    public Collection<Class<?>> getClassesImplementing(Class<?> cl) {
+        Collection<Class<?>> col = new ArrayList<>();
+        for (Map.Entry<String, Class<?>> entry1 : classes.entrySet()) {
+            Class<?> c = entry1.getValue();
             if (StaticUtils.isImplementing(c, cl))
                 col.add(c);
         }
@@ -131,36 +135,23 @@ public class ExtensionClassLoader extends ClassLoader {
      * @param zipFileName The given zipped file name
      */
     public static void unZip(String zipFileName, String destDir) {
-        System.out.println(zipFileName);
-      Enumeration entries;
-      ZipFile zipFile;
-
-      try {
-        zipFile = new ZipFile(zipFileName);
-
-        entries = zipFile.entries();
-
-        while(entries.hasMoreElements()) {
-          ZipEntry entry = (ZipEntry)entries.nextElement();
-
-          if(entry.isDirectory()) {
-            // Assume directories are stored parents first then children.
-//            System.err.println("Extracting directory: " + entry.getName());
-            // This is not robust, just for demonstration purposes.
-            (new File(destDir+File.separator+entry.getName())).mkdirs();
-            continue;
-          }
-
-          System.out.println("Extracting file: " + destDir+entry.getName());
-          copyInputStream(zipFile.getInputStream(entry),
-             new BufferedOutputStream(new FileOutputStream(destDir+File.separator+entry.getName())));
+        try (ZipFile zipFile = new ZipFile(zipFileName)) {
+            Enumeration<? extends ZipEntry> entries = zipFile.entries();
+            while (entries.hasMoreElements()) {
+                ZipEntry entry = entries.nextElement();
+                if (entry.isDirectory()) {
+                    new File(destDir + File.separator + entry.getName()).mkdirs();
+                    continue;
+                }
+                try (InputStream in = zipFile.getInputStream(entry);
+                     OutputStream out = new BufferedOutputStream(
+                             new FileOutputStream(destDir + File.separator + entry.getName()))) {
+                    copyInputStream(in, out);
+                }
+            }
+        } catch (IOException ioe) {
+            ExceptionHandler.catchException(ioe);
         }
-
-        zipFile.close();
-      } catch (IOException ioe) {
-        System.err.println("Unhandled exception:");
-        ExceptionHandler.catchException(ioe);
-      }
     }
 
 

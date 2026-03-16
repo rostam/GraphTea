@@ -106,8 +106,8 @@ public class ArrowHandler implements StorableOnExit, UserDefinedEligiblity, From
         return new GraphPreferences(this.getClass().getSimpleName(), this, "Graph Drawings");
     }
 
-    public HashMap<Object, ArrayX> defineEligibleValuesForSettings(HashMap<Object, ArrayX> objectValues) {
-        ArrayX t = new ArrayX(3);
+    public HashMap<Object, ArrayX<?>> defineEligibleValuesForSettings(HashMap<Object, ArrayX<?>> objectValues) {
+        ArrayX<Integer> t = new ArrayX<>(3);
         t.addValidValue(10);
         t.addValidValue(20);
         t.addValidValue(30);

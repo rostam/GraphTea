@@ -50,9 +50,11 @@ public class AlgorithmUtils {
     public static boolean isConnected(GraphModel g) {
         ArrayList<Integer> vs = new ArrayList<>();
         int[] parent = new int[g.getVerticesCount()];
-        for(int i=0;i < g.getVerticesCount();i++) parent[i] = -1;
+        for (int i = 0; i < g.getVerticesCount(); i++) {
+            parent[i] = -1;
+        }
         dfs(g, 0, vs, parent);
-        return Arrays.stream(vs.toArray()).distinct().toArray().length == g.getVerticesCount();
+        return vs.stream().distinct().count() == g.getVerticesCount();
     }
 
     /**
@@ -428,17 +430,19 @@ public class AlgorithmUtils {
         EigenvalueDecomposition ed = A.eig();
         double[] rv = ed.getRealEigenvalues();
         double[] iv = ed.getImagEigenvalues();
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < rv.length; i++) {
-            if (iv[i] != 0)
-                res +="" + AlgorithmUtils.round(rv[i],10) + " + " + AlgorithmUtils.round(iv[i],10) + "i";
-            else
-                res += "" + AlgorithmUtils.round(rv[i],10);
-            if(i!=rv.length-1) {
-                res += ",";
+            if (iv[i] != 0) {
+                res.append(AlgorithmUtils.round(rv[i], 10)).append(" + ")
+                   .append(AlgorithmUtils.round(iv[i], 10)).append("i");
+            } else {
+                res.append(AlgorithmUtils.round(rv[i], 10));
+            }
+            if (i != rv.length - 1) {
+                res.append(",");
             }
         }
-        return res;
+        return res.toString();
     }
 
     /**
@@ -495,25 +499,27 @@ public class AlgorithmUtils {
         EigenvalueDecomposition ed = A.eig();
         double[] rv = ed.getRealEigenvalues();
         double[] iv = ed.getImagEigenvalues();
-        String res = "";
-        List<Double> EigenValues = new ArrayList<>();
+        StringBuilder res = new StringBuilder();
+        List<Double> eigenValues = new ArrayList<>();
         for (int i = 0; i < rv.length; i++) {
-            if (iv[i] != 0)
-                res +="" + AlgorithmUtils.round(rv[i],10) + " + " + AlgorithmUtils.round(iv[i],10) + "i";
-            else
-                EigenValues.add(AlgorithmUtils.round(rv[i],10));
+            if (iv[i] != 0) {
+                res.append(AlgorithmUtils.round(rv[i], 10)).append(" + ")
+                   .append(AlgorithmUtils.round(iv[i], 10)).append("i");
+            } else {
+                eigenValues.add(AlgorithmUtils.round(rv[i], 10));
+            }
         }
-        if(EigenValues.size() > 0) {
-            res = "";
-            EigenValues.sort((aDouble, t1) -> -aDouble.compareTo(t1));
-            for (int i = 0; i < EigenValues.size(); i++) {
-                res += EigenValues.get(i);
-                if(i != EigenValues.size() - 1) {
-                    res+=",";
+        if (!eigenValues.isEmpty()) {
+            res = new StringBuilder();
+            eigenValues.sort((a, b) -> -a.compareTo(b));
+            for (int i = 0; i < eigenValues.size(); i++) {
+                res.append(eigenValues.get(i));
+                if (i != eigenValues.size() - 1) {
+                    res.append(",");
                 }
             }
         }
-        return res;
+        return res.toString();
     }
 
     // get kth minimum degree

@@ -30,7 +30,7 @@ public abstract class AbstractPreference {
 
     public NotifiableAttributeSetImpl attributeSet = new NotifiableAttributeSetImpl();
 
-    protected void putAttribute(String name, ArrayX values) {
+    protected void putAttribute(String name, ArrayX<?> values) {
         attributeSet.put(name, values);
     }
 
@@ -45,7 +45,7 @@ public abstract class AbstractPreference {
     }
 
 
-    public abstract void defineAttributes(HashMap<Object, ArrayX> objectValues);
+    public abstract void defineAttributes(HashMap<Object, ArrayX<?>> objectValues);
 
 
     public abstract void defineListeners(AttributeListener al);
