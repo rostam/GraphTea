@@ -490,6 +490,23 @@ public class AlgorithmUtils {
     }
 
     /**
+     * Computes the spectral energy of a matrix: sum of |eigenvalue - shift| over all real eigenvalues.
+     * Use shift = 0 for plain energy (e.g. Distance Energy, Transmission Energy).
+     *
+     * @param A     the matrix whose eigenvalues to sum
+     * @param shift subtracted from each eigenvalue before taking the absolute value
+     * @return spectral energy
+     */
+    public static double spectralEnergy(Matrix A, double shift) {
+        double[] rv = A.eig().getRealEigenvalues();
+        double sum = 0;
+        for (double v : rv) {
+            sum += Math.abs(v - shift);
+        }
+        return sum;
+    }
+
+    /**
      * Computes the eigen values
      *
      * @param A the given matrix
