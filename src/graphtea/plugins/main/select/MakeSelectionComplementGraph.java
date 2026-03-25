@@ -41,14 +41,20 @@ public class MakeSelectionComplementGraph implements GraphActionExtension {
 
     protected void doEdgeOperation(GraphModel g, HashSet<Vertex> v) {
         boolean directed = g.isDirected();
-        
+
         for (Vertex v1 : v) {
             for (Vertex v2 : v) {
-                if (!directed)
-                    if (v1.getId() < v2.getId())
-                        continue;
+                if (v1 == v2) {
+                    continue;
+                }
+                if (!directed && v1.getId() < v2.getId()) {
+                    continue;
+                }
                 if (g.isEdge(v1, v2)) {
                     g.removeAllEdges(v1, v2);
+                    if (!directed) {
+                        g.removeAllEdges(v2, v1);
+                    }
                 } else {
                     g.insertEdge(new Edge(v1, v2));
                 }

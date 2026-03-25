@@ -25,7 +25,7 @@ public class AlgorithmsTest {
     // -------------------------------------------------------------------------
 
     /** Build a simple directed weighted path 0→1(w=1)→2(w=2)→3(w=3) and verify
-     *  that Dijkstra from vertex 0 encodes the correct successor chain. */
+     *  that Dijkstra from vertex 0 encodes the correct predecessor chain. */
     @Test
     public void testDijkstraLinearPath() throws Exception {
         GraphModel g = new GraphModel(true);
@@ -40,10 +40,11 @@ public class AlgorithmsTest {
         List<Vertex> prev = new Dijkstra().getShortestPath(g, v0);
 
         assertNotNull(prev);
-        // prev[i] is the successor of vertex i on the shortest path from v0
-        assertEquals(v1, prev.get(v0.getId()));
-        assertEquals(v2, prev.get(v1.getId()));
-        assertEquals(v3, prev.get(v2.getId()));
+        // prev[i] is the predecessor of vertex i on the shortest path from v0
+        assertNull(prev.get(v0.getId()), "Source vertex has no predecessor");
+        assertEquals(v0, prev.get(v1.getId()), "Predecessor of v1 is v0");
+        assertEquals(v1, prev.get(v2.getId()), "Predecessor of v2 is v1");
+        assertEquals(v2, prev.get(v3.getId()), "Predecessor of v3 is v2");
     }
 
     /** Dijkstra on a complete K4 graph should return a prev-array of size 4
@@ -71,9 +72,12 @@ public class AlgorithmsTest {
 
         List<Vertex> prev = new Dijkstra().getShortestPath(g, v0);
         assertNotNull(prev);
-        // The path to v1 should go via v2, not directly
-        assertEquals(v2, prev.get(v0.getId()),
-                "Dijkstra should prefer short path 0→2 over long path 0→1");
+        // prev[i] is the predecessor of vertex i on the shortest path from v0
+        assertNull(prev.get(v0.getId()), "Source vertex has no predecessor");
+        assertEquals(v0, prev.get(v2.getId()),
+                "Predecessor of v2 is v0 (direct path 0→2)");
+        assertEquals(v2, prev.get(v1.getId()),
+                "Predecessor of v1 is v2 (shortest path 0→2→1)");
     }
 
     // -------------------------------------------------------------------------

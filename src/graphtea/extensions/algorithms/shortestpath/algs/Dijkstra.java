@@ -97,7 +97,7 @@ public class Dijkstra extends Algorithm implements AutomatedAlgorithm {
                         target.setMark(true);
                         target.setColor(5);
                         Q.add(target);
-                        prev.set(edge.source.getId(), edge.target);
+                        prev.set(target.getId(), vMin);
                     }
                 }
             }

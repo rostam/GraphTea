@@ -76,7 +76,7 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
 
             GPoint[] sR = PositionGenerators.circle(1000, center.x, center.y, k);
             for (int j = 0; j < k; j++) {
-                if(j == (i + k/2)%n) continue;
+                if (j == (i * k / n + k / 2) % k) continue;
                 curv = new Vertex();
                 g.insertVertex(curv);
                 setloc(curv, sR[j]);
