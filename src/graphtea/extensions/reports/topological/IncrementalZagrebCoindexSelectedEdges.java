@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "inc_zagreb_index_edges", abbreviation = "_izie")
+@CommandAttitude(name = "inc_zagreb_coindex_edges", abbreviation = "_izcse")
 public class IncrementalZagrebCoindexSelectedEdges extends IncrementalZagrebReportBase {
 
     public String getName() {

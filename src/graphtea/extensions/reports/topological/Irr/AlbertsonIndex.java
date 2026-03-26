@@ -4,7 +4,6 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological.Irr;
 
-import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
@@ -12,9 +11,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Ali Rostami
-
  */
-
 
 @CommandAttitude(name = "AlbertsonIndex", abbreviation = "_albindex")
 public class AlbertsonIndex implements GraphReportExtension<Integer> {
@@ -30,7 +27,7 @@ public class AlbertsonIndex implements GraphReportExtension<Integer> {
         int sum = 0;
         for (Vertex i : graph) {
             for (Vertex j : graph.directNeighbors(i)) {
-                if(i.getId() > j.getId()) {
+                if (i.getId() > j.getId()) {
                     if (graph.isEdge(i, j)) {
                         sum += Math.abs(graph.getDegree(i) - graph.getDegree(j));
                     }
@@ -44,8 +41,8 @@ public class AlbertsonIndex implements GraphReportExtension<Integer> {
         return computeAlbertsonIndex(graph);
     }
 
-	@Override
-	public String getCategory() {
-		return "Topological Indices-Irregularities";
-	}
+    @Override
+    public String getCategory() {
+        return "Topological Indices-Irregularities";
+    }
 }

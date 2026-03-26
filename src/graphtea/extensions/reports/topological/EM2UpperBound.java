@@ -8,7 +8,6 @@ import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -20,7 +19,7 @@ import java.util.Collections;
 
  */
 
-@CommandAttitude(name = "m3finalconj", abbreviation = "_m3conj")
+@CommandAttitude(name = "EM2UpperBound", abbreviation = "_EM2UpperBound")
 public class EM2UpperBound implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "EM2 Upper";
@@ -66,24 +65,12 @@ public class EM2UpperBound implements GraphReportExtension<RenderTable> {
 
         if(maxDeg2 == 0) maxDeg2=maxDeg;
 
-        double a=0;
-        double b=0;
-
-        for(Vertex v : g) {
-            if(g.getDegree(v)==maxDeg) a++;
-            if(g.getDegree(v)==minDeg) b++;
-        }
-        if(maxDeg==minDeg) b=0;
-
         double m = g.getEdgesCount();
         double n = g.getVerticesCount();
 
-        double M12=zif.getSecondZagreb(1);
         double M21=zif.getFirstZagreb(1);
         double M31=zif.getFirstZagreb(2);
         double M41=zif.getFirstZagreb(3);
-        double M22=zif.getSecondZagreb(2);
-        double Mm31=zif.getFirstZagreb(-4);
         double Mm11=zif.getFirstZagreb(-2);
         double EM1=zifL.getFirstZagreb(1);
         double EM2=zifL.getSecondZagreb(1);

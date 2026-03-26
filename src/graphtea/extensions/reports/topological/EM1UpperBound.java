@@ -9,7 +9,6 @@ import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
@@ -57,71 +56,29 @@ public class EM1UpperBound implements GraphReportExtension<RenderTable> {
         //  titles.add("3R.H.S");
         
         ret.setTitles(titles);
-        double maxDeg = 0;
-        double maxDeg2 = 0;
-        double minDeg = Integer.MAX_VALUE;
-        double minDeg2 = AlgorithmUtils.getMinNonPendentDegree(g);
-
-        ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
-        Collections.sort(al);
-        maxDeg = al.get(al.size()-1);
-        if(al.size()-2>=0) maxDeg2 = al.get(al.size()-2);
-        else maxDeg2 = maxDeg;
-        minDeg = al.get(0);
-        if(maxDeg2 == 0) maxDeg2=maxDeg;
-
-        double a=0;
-        double b=0;
-        double c=0;
-        double d=0;
-     //   int p = NumOfVerticesWithDegK.numOfVerticesWithDegK(g, 1);
-
-        for(Vertex v : g) {
-            if(g.getDegree(v)==maxDeg) a++;
-            if(g.getDegree(v)==minDeg) b++;
-            if(g.getDegree(v)==maxDeg2) c++;
-            if(g.getDegree(v)==minDeg2) d++;
-        }
-        if(maxDeg==minDeg) b=0;
-        if(maxDeg==maxDeg2) c=0;
-
         double m = g.getEdgesCount();
-        double n = g.getVerticesCount();
-        
+
         double maxEdge = 0;
         double maxEdge2 = 0;
-        double minEdge = Integer.MAX_VALUE;
-        
+
         ArrayList<Integer> all = new ArrayList<>();
-        for(Edge e : g.getEdges()) {
-                int f = g.getDegree(e.source) +
-                g.getDegree(e.target) - 2;
-                all.add(f);
+        for (Edge e : g.getEdges()) {
+            int f = g.getDegree(e.source) +
+                    g.getDegree(e.target) - 2;
+            all.add(f);
         }
         Collections.sort(all);
         maxEdge = all.get(all.size()-1);
-        if(all.size()-2>=0) maxEdge2 = all.get(all.size()-2);
-        else maxEdge2 = maxEdge;
-        minEdge = all.get(0);
+        if (all.size()-2 >= 0) {
+            maxEdge2 = all.get(all.size()-2);
+        } else {
+            maxEdge2 = maxEdge;
+        }
 
-        double M12=zif.getSecondZagreb(1);
-        double M21=zif.getFirstZagreb(1);
-        double M31=zif.getFirstZagreb(2);
-        double M41=zif.getFirstZagreb(3);
-        double M22=zif.getSecondZagreb(2);
-        double Mm31=zif.getFirstZagreb(-4);
-        double Mm11=zif.getFirstZagreb(-2);
-        double EM1=zifL.getFirstZagreb(1);
-        double EM31=zifL.getFirstZagreb(2);
-        double sum=zif.getGeneralSumConnectivityIndex(-1);
-
-        double Psi1=(Math.pow((2*(m+1) - (n+maxDeg+maxDeg2)
-                + Math.sqrt((2*m-maxDeg-maxDeg2)
-                *(Mm11-((1/maxDeg)+(1/maxDeg2))))),2)/(n-2));
-
-        double Psi2=(Math.pow((2*(m+1) - (n+maxDeg+minDeg)
-                + Math.sqrt((2*m-maxDeg-minDeg)
-                *(Mm11-((1/maxDeg)+(1/minDeg))))),2)/(n-2));
+        double M12 = zif.getSecondZagreb(1);
+        double M21 = zif.getFirstZagreb(1);
+        double M31 = zif.getFirstZagreb(2);
+        double EM31 = zifL.getFirstZagreb(2);
 
         List<Object> v = new ArrayList<>();
         

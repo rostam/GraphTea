@@ -756,34 +756,10 @@ public class ZagrebIndexFunctions {
         return ret;
     }
 
-    public double getInverseEdgeDegree() {
-        double edge_degree = 0;
-        for (Edge e : g.getEdges()) {
-            edge_degree +=
-                    Math.pow( (  ( g.getDegree(e.source) + g.getDegree(e.target) - 2  )  ), -1);
-        }
-
-        return edge_degree;
-    }
-
     public double getRandicEnergy(GraphModel g) {
         Matrix m = new Matrix(g.getVerticesCount(),g.getVerticesCount());
         init(m,0);
         for(Edge e : g.getEdges()) m.set(e.source.getId(), e.target.getId(), getSecondZagreb(-0.5));
-        return sumOfEigValues(m);
-    }
-
-    public double getZagrebEnergyZ1(GraphModel g) {
-        Matrix m = new Matrix(g.getVerticesCount(),g.getVerticesCount());
-        init(m,0);
-        for(Edge e : g.getEdges()) m.set(e.source.getId(), e.target.getId(), getFirstPathZagrebIndex(1));
-        return sumOfEigValues(m);
-    }
-
-    public double getZagrebEnergyZ2(GraphModel g) {
-        Matrix m = new Matrix(g.getVerticesCount(),g.getVerticesCount());
-        init(m,0);
-        for(Edge e : g.getEdges()) m.set(e.source.getId(), e.target.getId(), getSecondZagreb(1));
         return sumOfEigValues(m);
     }
 

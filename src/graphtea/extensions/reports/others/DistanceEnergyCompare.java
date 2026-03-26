@@ -1,7 +1,5 @@
 package graphtea.extensions.reports.others;
 
-import Jama.Matrix;
-import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.spectralreports.DistanceEnergy;
 import graphtea.extensions.reports.spectralreports.DistanceLaplacianEnergy;
 import graphtea.extensions.reports.spectralreports.DistanceSignlessLaplacianEnergy;
@@ -38,11 +36,7 @@ public class DistanceEnergyCompare implements GraphReportExtension<RenderTable> 
      //   titles.add("DLSE");
      // titles.add("Eigen Values");
         ret.setTitles(titles);
-        Matrix de = AlgorithmUtils.getDistanceAdjacencyMatrix(g);
-		Matrix dle = AlgorithmUtils.getDistanceLaplacianMatrix(g);
-		Matrix dlse = AlgorithmUtils.getDistanceSignlessLaplacianMatrix(g);
-		
-		double DE   = new DistanceEnergy().calculate(g);
+        double DE   = new DistanceEnergy().calculate(g);
 		double DLE  = new DistanceLaplacianEnergy().calculate(g);
         double DLSE = new DistanceSignlessLaplacianEnergy().calculate(g);		
         List<Object> v = new ArrayList<>();

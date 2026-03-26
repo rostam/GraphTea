@@ -32,7 +32,6 @@ public class M3CompIndCoindConjecture implements GraphReportExtension<RenderTabl
     }
 
     public RenderTable calculate(GraphModel g) {
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
         ZagrebIndexFunctions zifc
         = new ZagrebIndexFunctions(GraphComplement.complement(g));
 
@@ -68,11 +67,7 @@ public class M3CompIndCoindConjecture implements GraphReportExtension<RenderTabl
         double m = g.getEdgesCount();
         double n = g.getVerticesCount();
 
-        double M21=zif.getFirstZagreb(1);
-        double M12=zif.getSecondZagreb(1);
-        double M31=zif.getFirstZagreb(2);
         double M31gc=zifc.getFirstZagreb(2);
-        double Mc31=zif.getFirstZagrebCoindex(2);
         double Mc31gc=zifc.getFirstZagrebCoindex(2);
 
         List<Object> v = new ArrayList<>();

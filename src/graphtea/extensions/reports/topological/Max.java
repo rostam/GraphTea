@@ -37,12 +37,10 @@ public class Max implements GraphReportExtension<RenderTable> {
         double n = g.getVerticesCount();
 
         double M12 = zif.getSecondZagreb(1);
-        double M21 = zif.getFirstZagreb(1);
 
         List<Object> v = new ArrayList<>();
         v.add(m);
         v.add(n);
-
         v.add(M12);
 
         ret.add(v);
