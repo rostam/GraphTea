@@ -1,85 +1,102 @@
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/graphtheorysoftware/GraphTea?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status]([https://travis-ci.org/rostam/GraphTea.svg?branch=master](https://app.travis-ci.com/rostam/GraphTea.svg?branch=master))](https://travis-ci.org/rostam/GraphTea)![Preview](http://github.com/graphtheorysoftware/GraphTea/raw/master/src/presentation/peterson.png)
+[![Build Status](https://app.travis-ci.com/rostam/GraphTea.svg?branch=master)](https://app.travis-ci.com/rostam/GraphTea)
 
+![Preview](http://github.com/graphtheorysoftware/GraphTea/raw/master/src/presentation/peterson.png)
 
 # GraphTea
-[GraphTea](http://graphtheorysoftware.com) is a software framework to work on graphs and social networks. 
-It helps you to:
-- draw a graph
-- get reports about it
-- run algorithms on it
-- visualize it
+
+[GraphTea](http://graphtheorysoftware.com) is a software framework for working on graphs and social networks. It helps you to:
+
+- Draw a graph
+- Get reports about it
+- Run algorithms on it
+- Visualize it
 
 [DOWNLOAD GraphTea](https://github.com/graphtheorysoftware/GraphTea/zipball/master)
 
-it runs under window/linux/mac osx (based on java).
+Runs on Windows / Linux / macOS (Java-based).
 
+---
 
-# YouTube demo
-see this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
+## GraphTea Ecosystem
 
-# RUN
-execute `run.bat` (windows), or `run.sh` (linux/mac).
+GraphTea has grown into a family of related tools. Here is a map of all variants:
 
-manually:
-> java -jar graphtea-main.jar
+| Repository | Language | Status | Description |
+|-----------|----------|--------|-------------|
+| [GraphTea](https://github.com/rostam/GraphTea) | Java | ✅ Active | Core desktop application |
+| [GTea](https://github.com/rostam/GTea) | Java | ✅ Active | Online/server version |
+| [GTeaShell](https://github.com/rostam/GTeaShell) | Java | ✅ Active | Shell/CLI version |
+| [GSearchTea](https://github.com/rostam/GSearchTea) | Java | ✅ Active | Big-data graph search (Flink/Spark) |
+| [CGTea](https://github.com/rostam/CGTea) | C++ | ✅ Active | Lightweight C++ desktop version |
+| [CGTeaQt](https://github.com/rostam/CGTeaQt) | C++ | 🔧 Experimental | Qt-based desktop version |
+| [CGTeaWeb](https://github.com/rostam/CGTeaWeb) | C++ | 🔧 Experimental | Web version via Emscripten/WASM |
+| [WASMTea](https://github.com/rostam/WASMTea) | WASM | 🔧 Experimental | Pure WebAssembly browser version |
+| [GTeaJS](https://github.com/rostam/GTeaJS) | JavaScript | 🔧 Experimental | JavaScript/web port |
+| [GTeaMinimal](https://github.com/rostam/GTeaMinimal) | Java | 📦 Minimal | Stripped-down Java version |
+| [rust_gtea](https://github.com/rostam/rust_gtea) | Rust | 🚧 In progress | Rust rewrite |
+| [SpringTea](https://github.com/rostam/SpringTea) | Java | 🚧 In progress | Spring Boot-based version |
 
-# DEVELOP
-for working on the source, 
+---
 
-1. make your changes
-2. run make.sh (or type in terminal `./make.sh`)
-3. it will compile your changes and run the application.
+## YouTube Demo
 
+See this [video](http://www.youtube.com/watch?v=0gblxDCNsmY)
 
-manually:
+## Run
 
-1. open terminal
+Execute `run.bat` (Windows), or `run.sh` (Linux/macOS).
+
+Manually:
+```
+java -jar graphtea-main.jar
+```
+
+## Develop
+
+1. Make your changes
+2. Run `make.sh` (or type `./make.sh` in terminal)
+3. It will compile your changes and run the application.
+
+Manually:
+
+1. Open terminal
 2. `cd src/scripts`
-3. `ant`. this will build the application for you in the binary folder.
-4. for seeing your changes do the steps described for "run"
+3. `ant` — this will build the application in the binary folder.
+4. For seeing your changes, follow the Run steps above.
 
-note that you should have [appache ant](http://ant.apache.org/) installed.
+Note: [Apache Ant](http://ant.apache.org/) must be installed.
 
-# Write a graph algorithm,
-go change this file: [SampleAlgorithm.java](https://github.com/graphtheorysoftware/GraphTea/blob/master/src/graphtea/extensions/algorithms/SampleAlgorithm.java).
-you can make also reports, generators, file formats and actions.
+## Write a Graph Algorithm
 
-# What can you do with graphtea?
+Modify [SampleAlgorithm.java](https://github.com/graphtheorysoftware/GraphTea/blob/master/src/graphtea/extensions/algorithms/SampleAlgorithm.java). You can also make reports, generators, file formats, and actions.
 
-* Drawing your graph with a mouse or using predefined graphs (under graph > generate), like trees, complete graphs, stars, generalized peterson, etc.
-* Getting information about your graphs (under graph > reports menu), like num of connected components, chromatic number, independence number, girth size, num of triangles etc.
-* Run algorithms step by step on your graph and see how they work. This is very usefull for teaching graph algorithms. You can pause, and it shows the current state of algorithm by coloring edges and vertices.
-* Visualizing your graphs. You made a social network from your database and want to represent it in a meaningfull way? Use the visualizations.
-* Presenting your graphs in your papers, websites or reports. GraphTea has a wide range of options to draw graphs, having different colors for edges and vertices, different borders, fonts, sizes, etc. When you finish drawing your graph, you can save to an image file or even to a Tex document to put in your report.
+## What Can You Do with GraphTea?
 
-* making new graph generators, graph reports, file types, actions, algorithms by writing extensions. Extensions provide a gateway to add new functionalities as simple as putting a file to extensions directory. You can write them using Java and Matlab. For more samples take a look at extensions directory.
+- **Draw** graphs with a mouse or using predefined generators (trees, complete graphs, stars, generalized Petersen, etc.)
+- **Analyze** graphs with built-in reports (connected components, chromatic number, independence number, girth, triangles, etc.)
+- **Run algorithms** step by step with visual feedback — useful for teaching
+- **Visualize** social networks and large graphs with layout algorithms
+- **Export** to image files or LaTeX for papers and reports
+- **Extend** with custom plugins (Java or MATLAB) by dropping files into the extensions directory
 
-# Need help?
-more docs will come soon. if you have any questions just post it in the issues, and we will write you back as soon as possible.
+## Need Help?
 
-# CONTRIBUTE
-(http://help.github.com/send-pull-requests/)
+Post in [Issues](https://github.com/rostam/GraphTea/issues) and we will get back to you.
+
+## Contribute
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-# Web Frontend
-Look at GTea (https:/github.com/rostam/GTea).
+5. Create a new Pull Request
 
 ---
+
 ### Credits
 
 - Current Developers:
-  - Mohammad Ali Rostami rostamiev [at] gmail [dot] com
-  - Azin Azadi aazadi [at] gmail [dot] com
-  - E. Suresh  sureshkako [at] gmail [dot] com
-
-- GraphTea is base on GraphLab, a software developed in Sharif university of Technology [0].
-  - Supervisor: Dr. Amir Daneshgar [1]
-  - Contributors: Azin Azadi, Ruzbeh Ebrahimi, Omid Aladini, Reza Mohammadi, Mohammad Ali Rostami [2], Mina Naghshnejad, Ali Ershadi, Soroosh Sabet, With Thanks to: Soheil Siadatnejad
-
-
+  - Mohammad Ali Rostami — rostamiev [at] gmail [dot] com
+  - Azin Azadi — aazadi [at] gmail [dot] com
+  - E. Suresh — sureshkako [at] gmail [dot] com
