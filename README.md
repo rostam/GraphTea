@@ -80,6 +80,20 @@ Modify [SampleAlgorithm.java](https://github.com/graphtheorysoftware/GraphTea/bl
 - **Export** to image files or LaTeX for papers and reports
 - **Extend** with custom plugins (Java or MATLAB) by dropping files into the extensions directory
 
+## Benchmark Graphs
+
+GraphTea includes a curated collection of benchmark graphs under **Generate Graph > Benchmark Graphs**, covering classic named graphs and standard random graph models used in research:
+
+| Graph | Vertices | Edges | Description |
+|---|---|---|---|
+| Grotzsch Graph | 11 | 20 | Triangle-free graph with chromatic number 4 (Mycielski of C5) |
+| Heawood Graph | 14 | 21 | 3-regular bipartite graph; smallest 6-cage |
+| Pappus Graph | 18 | 27 | 3-regular bipartite graph of girth 6 |
+| Frucht Graph | 12 | 18 | Smallest 3-regular graph with trivial automorphism group |
+| Zachary Karate Club | 34 | 78 | Classic social network benchmark for community detection (Zachary 1977) |
+| Barabasi-Albert Graph | n | ~n·m | Scale-free graph with power-law degree distribution (params: n, m) |
+| Watts-Strogatz Graph | n | ~n·k/2 | Small-world graph combining high clustering with short paths (params: n, k, betaPercent) |
+
 ## Need Help?
 
 Post in [Issues](https://github.com/rostam/GraphTea/issues) and we will get back to you.
