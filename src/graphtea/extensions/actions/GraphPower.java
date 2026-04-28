@@ -72,6 +72,21 @@ public class GraphPower implements GraphActionExtension, Parametrizable {
         return (k < 2 ? "K must be larger than 1" : null);
     }
 
+    /** Adds edges to g so that every pair of vertices at distance ≤ k becomes adjacent. */
+    public static void applyPower(GraphModel g, int k) {
+        GraphPower gp = new GraphPower();
+        gp.k = k;
+        gp.toInsert = new ArrayList<>();
+        gp.subtree = new ArrayList<>();
+        AlgorithmUtils.clearVertexMarks(g);
+        for (Vertex v : g) {
+            gp.subtree.clear();
+            gp.aStar(v, v, k, g);
+            for (Vertex vv : gp.subtree) vv.setMark(false);
+        }
+        g.insertEdges(gp.toInsert);
+    }
+
     @Override
     public String getCategory() {
         return "Transformations";

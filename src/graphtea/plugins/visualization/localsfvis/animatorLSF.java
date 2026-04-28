@@ -279,7 +279,7 @@ class animatorLSF extends Thread {
     boolean[] stableVertex;
 
 
-    private void getVertices() {
+    void getVertices() {
         int _n = g.getVerticesCount();
         if (_n != n) {
             n = _n;
@@ -322,7 +322,7 @@ class animatorLSF extends Thread {
     double d3;
 
     //ghalbe tapande
-    private void refreshPositioning() {
+    void refreshPositioning() {
         for (int i = 0; i < n; i++) {
 //            if (!stableVertex[i] || Math.random()<0.1) {
             fex = 0;
@@ -337,8 +337,8 @@ class animatorLSF extends Thread {
                     y = Math.random() * 15;
 //                    verPos[i].x+=x;
 //                    verPos[i].y+=y;
-                    verPos[j].y -= x;
-                    verPos[j].x -= y;
+                    verPos[j].x -= x;
+                    verPos[j].y -= y;
                     x = verPos[i].x - verPos[j].x;
                     y = verPos[i].y - verPos[j].y;
                 }
@@ -395,7 +395,7 @@ class animatorLSF extends Thread {
 
     pair[] dists;
 
-    private void refreshNeighbors() {
+    void refreshNeighbors() {
         for (int i = 0; i < n; i++) {
             if (!stableVertex[i]) {
                 neighbors[i].clear();
@@ -414,8 +414,8 @@ class animatorLSF extends Thread {
                     if (dists[t].d < 200)
                         neighbors[i].add(dists[t].node);
                     if (dists[t].d < 2) {
-                        verPos[t].x += 10 * Math.random() - 5;
-                        verPos[t].y += 10 * Math.random() - 5;
+                        verPos[dists[t].node].x += 10 * Math.random() - 5;
+                        verPos[dists[t].node].y += 10 * Math.random() - 5;
                     }
                 }
             }

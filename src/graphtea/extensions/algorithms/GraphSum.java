@@ -51,11 +51,9 @@ public class GraphSum extends GraphAlgorithm {
             E.add(e.getCopy(temp.get(e.source), temp.get(e.target)));
         }
 
-        Edge ee = g1.getEdges().iterator().next();
         for (Vertex v1 : g1) {
             for (Vertex v2 : g2) {
-                E.add(ee.getCopy(temp.get(v1),
-                        temp.get(temp.get(v2))));
+                E.add(new Edge(temp.get(v1), temp.get(v2)));
             }
         }
 
