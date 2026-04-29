@@ -5,16 +5,7 @@
 
 package graphtea.extensions.generators;
 
-import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.GPoint;
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.platform.parameter.Parametrizable;
-import graphtea.plugins.graphgenerator.GraphGenerator;
-import graphtea.plugins.graphgenerator.core.PositionGenerators;
-import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
-import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 /**
  * Generates the Grotzsch graph: 11 vertices, 20 edges.
@@ -29,15 +20,11 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
  */
 @CommandAttitude(name = "generate_grotzsch", abbreviation = "_g_grotzsch",
     description = "Generates the Grotzsch graph (11 vertices, 20 edges)")
-public class GrotzschGraph implements GraphGeneratorExtension, Parametrizable,
-    SimpleGeneratorInterface {
+public class GrotzschGraph extends AbstractFixedGraphGenerator {
 
     private static final int NUM_VERTICES = 11;
 
-    // Edges derived from Mycielski construction on C5
-    // C5: 0-1-2-3-4-0
-    // copy[i] = i+5 mirrors neighbours of vertex i in C5
-    // hub = vertex 10 connects to all copies
+    // copy[i] = i+5 mirrors neighbours of vertex i in C5; hub = vertex 10
     private static final int[][] EDGE_LIST = {
         // C5 outer cycle
         {0, 1}, {1, 2}, {2, 3}, {3, 4}, {4, 0},
@@ -55,39 +42,14 @@ public class GrotzschGraph implements GraphGeneratorExtension, Parametrizable,
         {10, 5}, {10, 6}, {10, 7}, {10, 8}, {10, 9}
     };
 
-    private Vertex[] v;
-
     @Override
-    public Vertex[] getVertices() {
-        v = new Vertex[NUM_VERTICES];
-        for (int i = 0; i < NUM_VERTICES; i++) {
-            v[i] = new Vertex();
-        }
-        return v;
+    protected int numVertices() {
+        return NUM_VERTICES;
     }
 
     @Override
-    public Edge[] getEdges() {
-        Edge[] ret = new Edge[EDGE_LIST.length];
-        for (int i = 0; i < EDGE_LIST.length; i++) {
-            ret[i] = new Edge(v[EDGE_LIST[i][0]], v[EDGE_LIST[i][1]]);
-        }
-        return ret;
-    }
-
-    @Override
-    public GPoint[] getVertexPositions() {
-        return PositionGenerators.circle(5, 5, 100000, 100000, NUM_VERTICES);
-    }
-
-    @Override
-    public String checkParameters() {
-        return null;
-    }
-
-    @Override
-    public GraphModel generateGraph() {
-        return GraphGenerator.getGraph(false, this);
+    protected int[][] edgeList() {
+        return EDGE_LIST;
     }
 
     @Override

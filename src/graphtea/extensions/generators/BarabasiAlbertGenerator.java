@@ -65,7 +65,6 @@ public class BarabasiAlbertGenerator implements GraphGeneratorExtension, Paramet
         // degree[i] tracks current degree of vertex i for preferential attachment
         int[] degree = new int[n];
 
-        // Seed: complete graph on first m vertices
         for (int i = 0; i < m; i++) {
             for (int j = i + 1; j < m; j++) {
                 edges.add(new int[]{i, j});
@@ -76,7 +75,6 @@ public class BarabasiAlbertGenerator implements GraphGeneratorExtension, Paramet
 
         Random rng = new Random();
 
-        // Grow: add vertices m..n-1
         for (int newNode = m; newNode < n; newNode++) {
             int sumDegree = 0;
             for (int k = 0; k < newNode; k++) {

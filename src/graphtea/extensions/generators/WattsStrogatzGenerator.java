@@ -74,7 +74,6 @@ public class WattsStrogatzGenerator implements GraphGeneratorExtension, Parametr
         // Use a set of canonical pairs to prevent duplicate edges
         Set<Long> edgeSet = new HashSet<>();
 
-        // Step 1: regular ring lattice — each vertex connects to k/2 neighbours per side
         int half = k / 2;
         for (int i = 0; i < n; i++) {
             for (int j = 1; j <= half; j++) {
@@ -84,7 +83,6 @@ public class WattsStrogatzGenerator implements GraphGeneratorExtension, Parametr
             }
         }
 
-        // Step 2: rewire with probability beta
         Set<Long> rewired = new HashSet<>();
         for (int i = 0; i < n; i++) {
             for (int j = 1; j <= half; j++) {

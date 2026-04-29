@@ -20,10 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class DAGTest {
 
-    // -----------------------------------------------------------------------
-    // Helpers
-    // -----------------------------------------------------------------------
-
     /** Builds a directed chain v0→v1→v2→…→v(n-1). */
     private GraphModel chain(int n) {
         GraphModel g = new GraphModel(true);
@@ -43,10 +39,6 @@ public class DAGTest {
         g.insertEdge(new Edge(v2, v0));
         return g;
     }
-
-    // -----------------------------------------------------------------------
-    // doSort
-    // -----------------------------------------------------------------------
 
     @Test
     public void testDoSortLinearChain() {
@@ -94,10 +86,6 @@ public class DAGTest {
         assertTrue(order.indexOf(v2) < order.indexOf(v3));
     }
 
-    // -----------------------------------------------------------------------
-    // findLongestPath
-    // -----------------------------------------------------------------------
-
     @Test
     public void testFindLongestPathChain4() {
         // v0→v1→v2→v3: longest path from any vertex has length 3 (v3 has maxPath=3)
@@ -121,10 +109,6 @@ public class DAGTest {
         assertNotNull(result);
         assertEquals(1, result.size());
     }
-
-    // -----------------------------------------------------------------------
-    // getTraversableSubGraph
-    // -----------------------------------------------------------------------
 
     @Test
     public void testGetTraversableSubGraphFromSource() {
@@ -156,10 +140,6 @@ public class DAGTest {
         assertEquals(leaf, reachable.get(0));
     }
 
-    // -----------------------------------------------------------------------
-    // findACycle
-    // -----------------------------------------------------------------------
-
     @Test
     public void testFindACycleOnCyclicGraph() {
         assertNotNull(DAG.findACycle(cycle3()), "Cycle must be detected");
@@ -176,10 +156,6 @@ public class DAGTest {
         g.insertVertex(new Vertex());
         assertNull(DAG.findACycle(g));
     }
-
-    // -----------------------------------------------------------------------
-    // findAllPaths
-    // -----------------------------------------------------------------------
 
     @Test
     public void testFindAllPathsLinearTwoRoutes() {
@@ -211,10 +187,6 @@ public class DAGTest {
         List<?> paths = DAG.findAllPaths(g, v, v);
         assertEquals(1, paths.size(), "Trivial path from v to itself");
     }
-
-    // -----------------------------------------------------------------------
-    // findAllAncestors
-    // -----------------------------------------------------------------------
 
     @Test
     public void testFindAllAncestorsChain() {

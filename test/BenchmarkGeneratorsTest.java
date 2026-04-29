@@ -21,10 +21,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class BenchmarkGeneratorsTest {
 
-    // -----------------------------------------------------------------------
-    // Fixed named graphs
-    // -----------------------------------------------------------------------
-
     @Test
     public void testGrotzschGraphVertexCount() {
         GraphModel g = new GrotzschGraph().generateGraph();
@@ -139,10 +135,6 @@ public class BenchmarkGeneratorsTest {
         assertEquals(78, g.getEdgesCount());
     }
 
-    // -----------------------------------------------------------------------
-    // Parameterizable generators
-    // -----------------------------------------------------------------------
-
     @Test
     public void testBarabasiAlbertVertexCount() {
         BarabasiAlbertGenerator.n = 10;
@@ -218,10 +210,6 @@ public class BenchmarkGeneratorsTest {
         GraphModel g = new NNGenerator().generateGraph();
         assertEquals(6, g.getVerticesCount(), "hidden*hiddenSize + 2 = 2*2+2 = 6");
     }
-
-    // -----------------------------------------------------------------------
-    // ExampleChainGraph generators
-    // -----------------------------------------------------------------------
 
     @Test
     public void testExampleChainGraph1VertexCount() {

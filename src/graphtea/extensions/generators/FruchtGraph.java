@@ -5,16 +5,7 @@
 
 package graphtea.extensions.generators;
 
-import graphtea.graph.graph.Edge;
-import graphtea.graph.graph.GPoint;
-import graphtea.graph.graph.GraphModel;
-import graphtea.graph.graph.Vertex;
 import graphtea.platform.lang.CommandAttitude;
-import graphtea.platform.parameter.Parametrizable;
-import graphtea.plugins.graphgenerator.GraphGenerator;
-import graphtea.plugins.graphgenerator.core.PositionGenerators;
-import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
-import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
 /**
  * Generates the Frucht graph: 12 vertices, 18 edges.
@@ -23,12 +14,10 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
  */
 @CommandAttitude(name = "generate_frucht", abbreviation = "_g_frucht",
     description = "Generates the Frucht graph (12 vertices, 18 edges)")
-public class FruchtGraph implements GraphGeneratorExtension, Parametrizable,
-    SimpleGeneratorInterface {
+public class FruchtGraph extends AbstractFixedGraphGenerator {
 
     private static final int NUM_VERTICES = 12;
 
-    // 3-regular graph with trivial automorphism group
     private static final int[][] EDGE_LIST = {
         {0, 1}, {0, 2}, {0, 3},
         {1, 4}, {1, 5},
@@ -42,39 +31,14 @@ public class FruchtGraph implements GraphGeneratorExtension, Parametrizable,
         {10, 11}
     };
 
-    private Vertex[] v;
-
     @Override
-    public Vertex[] getVertices() {
-        v = new Vertex[NUM_VERTICES];
-        for (int i = 0; i < NUM_VERTICES; i++) {
-            v[i] = new Vertex();
-        }
-        return v;
+    protected int numVertices() {
+        return NUM_VERTICES;
     }
 
     @Override
-    public Edge[] getEdges() {
-        Edge[] ret = new Edge[EDGE_LIST.length];
-        for (int i = 0; i < EDGE_LIST.length; i++) {
-            ret[i] = new Edge(v[EDGE_LIST[i][0]], v[EDGE_LIST[i][1]]);
-        }
-        return ret;
-    }
-
-    @Override
-    public GPoint[] getVertexPositions() {
-        return PositionGenerators.circle(5, 5, 100000, 100000, NUM_VERTICES);
-    }
-
-    @Override
-    public String checkParameters() {
-        return null;
-    }
-
-    @Override
-    public GraphModel generateGraph() {
-        return GraphGenerator.getGraph(false, this);
+    protected int[][] edgeList() {
+        return EDGE_LIST;
     }
 
     @Override
