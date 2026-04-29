@@ -138,6 +138,8 @@
     <suppress files="CoronaProduct.java" checks=".*"/>
     <suppress files="CrossedPrismGraph.java" checks=".*"/>
     <suppress files="CrownGraph.java" checks=".*"/>
+    <suppress files="CrossViz.java" checks=".*"/>
+    <suppress files="CrossViz2.java" checks=".*"/>
     <suppress files="Cut.java" checks=".*"/>
     <suppress files="Cycle.java" checks=".*"/>
     <suppress files="DAG.java" checks=".*"/>

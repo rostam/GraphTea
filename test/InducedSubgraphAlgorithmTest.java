@@ -21,27 +21,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Tests for:
- *   - InducedSubgraphs (vertex-induced and edge-induced)
- *   - GreedyColoring (via BlackBoard)
- *   - KruskalAlgorithm (via BlackBoard)
- *   - AppVertexCover (via BlackBoard)
+ * Tests for InducedSubgraphs (vertex- and edge-induced), GreedyColoring, and KruskalAlgorithm.
+ * All algorithm tests wire the graph via BlackBoard using GraphAttrSet.name.
  */
 public class InducedSubgraphAlgorithmTest {
-
-    // -----------------------------------------------------------------------
-    // Helpers
-    // -----------------------------------------------------------------------
 
     private BlackBoard bbWith(GraphModel g) {
         BlackBoard bb = new BlackBoard();
         bb.setData(GraphAttrSet.name, g);
         return bb;
     }
-
-    // -----------------------------------------------------------------------
-    // InducedSubgraphs — vertex-induced subgraph
-    // -----------------------------------------------------------------------
 
     @Test
     public void testVertexInducedSubgraphFromK4TwoVertices() {
@@ -91,10 +80,6 @@ public class InducedSubgraphAlgorithmTest {
         assertEquals(0, sub.getEdgesCount());
     }
 
-    // -----------------------------------------------------------------------
-    // InducedSubgraphs — edge-induced subgraph
-    // -----------------------------------------------------------------------
-
     @Test
     public void testEdgeInducedSubgraphOnePath() {
         // P_3 (0-1-2): induce on edge {0-1} → 2 vertices, 1 edge
@@ -126,10 +111,6 @@ public class InducedSubgraphAlgorithmTest {
         assertEquals(2, sub.getVerticesCount());
         assertEquals(1, sub.getEdgesCount());
     }
-
-    // -----------------------------------------------------------------------
-    // GreedyColoring
-    // -----------------------------------------------------------------------
 
     @Test
     public void testGreedyColoringK3UsesTHREEColors() {
@@ -163,10 +144,6 @@ public class InducedSubgraphAlgorithmTest {
             assertTrue(v.getColor() > 0, "Every vertex must be assigned a non-zero color");
         }
     }
-
-    // -----------------------------------------------------------------------
-    // KruskalAlgorithm
-    // -----------------------------------------------------------------------
 
     @Test
     public void testKruskalRunsOnK3() {

@@ -39,10 +39,6 @@ public class EnergyAndMatchingReportsTest {
     private final GraphModel k3 = CompleteGraphGenerator.generateCompleteGraph(3);
     private final GraphModel p3 = PathGenerator.generatePath(3);
 
-    // -----------------------------------------------------------------------
-    // energy.AllEnergies / AllEnergies1
-    // -----------------------------------------------------------------------
-
     @Test
     public void testAllEnergiesK3() {
         assertNotNull(new AllEnergies().calculate(k3));
@@ -53,72 +49,40 @@ public class EnergyAndMatchingReportsTest {
         assertNotNull(new AllEnergies1().calculate(k3));
     }
 
-    // -----------------------------------------------------------------------
-    // energy.Cograph
-    // -----------------------------------------------------------------------
-
     @Test
     public void testCographK3() {
         assertNotNull(new Cograph().calculate(k3));
     }
-
-    // -----------------------------------------------------------------------
-    // energy.Complement
-    // -----------------------------------------------------------------------
 
     @Test
     public void testComplementK3() {
         assertNotNull(new Complement().calculate(k3));
     }
 
-    // -----------------------------------------------------------------------
-    // energy.Conjecture
-    // -----------------------------------------------------------------------
-
     @Test
     public void testConjectureK3() {
         assertNotNull(new Conjecture().calculate(k3));
     }
-
-    // -----------------------------------------------------------------------
-    // energy.KF_Wiener
-    // -----------------------------------------------------------------------
 
     @Test
     public void testKFWienerK3() {
         assertNotNull(new KF_Wiener().calculate(k3));
     }
 
-    // -----------------------------------------------------------------------
-    // energy.LaplacianEstrada
-    // -----------------------------------------------------------------------
-
     @Test
     public void testLaplacianEstradaK3() {
         assertNotNull(new LaplacianEstrada().calculate(k3));
     }
-
-    // -----------------------------------------------------------------------
-    // energy.LEL_vs_KF
-    // -----------------------------------------------------------------------
 
     @Test
     public void testLELvsKFK3() {
         assertNotNull(new LEL_vs_KF().calculate(k3));
     }
 
-    // -----------------------------------------------------------------------
-    // energy.Linear
-    // -----------------------------------------------------------------------
-
     @Test
     public void testLinearK3() {
         assertNotNull(new Linear().calculate(k3));
     }
-
-    // -----------------------------------------------------------------------
-    // energy.MixSignlessLaplacianEnergy
-    // -----------------------------------------------------------------------
 
     @Test
     public void testMixSignlessLaplacianEnergyK3() {
@@ -127,18 +91,10 @@ public class EnergyAndMatchingReportsTest {
         assertFalse(result.isEmpty());
     }
 
-    // -----------------------------------------------------------------------
-    // energy.NewLowerBounds
-    // -----------------------------------------------------------------------
-
     @Test
     public void testNewLowerBoundsK3() {
         assertNotNull(new NewLowerBounds().calculate(k3));
     }
-
-    // -----------------------------------------------------------------------
-    // energy.NormalizedLaplacianResolventEnergy
-    // -----------------------------------------------------------------------
 
     @Test
     public void testNormalizedLaplacianResolventEnergyK3() {
@@ -147,18 +103,10 @@ public class EnergyAndMatchingReportsTest {
         assertFalse(result.isBlank());
     }
 
-    // -----------------------------------------------------------------------
-    // energy.ResolventEnergies
-    // -----------------------------------------------------------------------
-
     @Test
     public void testResolventEnergiesK3() {
         assertNotNull(new ResolventEnergies().calculate(k3));
     }
-
-    // -----------------------------------------------------------------------
-    // energy.ResolventEnergy
-    // -----------------------------------------------------------------------
 
     @Test
     public void testResolventEnergyK3() {
@@ -167,20 +115,12 @@ public class EnergyAndMatchingReportsTest {
         assertFalse(result.isBlank());
     }
 
-    // -----------------------------------------------------------------------
-    // energy.ResolventLaplacianEnergy
-    // -----------------------------------------------------------------------
-
     @Test
     public void testResolventLaplacianEnergyK3() {
         String result = new ResolventLaplacianEnergy().calculate(k3);
         assertNotNull(result);
         assertFalse(result.isBlank());
     }
-
-    // -----------------------------------------------------------------------
-    // energy.ResolventSignlessLaplacianEnergy
-    // -----------------------------------------------------------------------
 
     @Test
     public void testResolventSignlessLaplacianEnergyK3() {
@@ -189,27 +129,15 @@ public class EnergyAndMatchingReportsTest {
         assertFalse(result.isBlank());
     }
 
-    // -----------------------------------------------------------------------
-    // energy.SignlessLaplacianEstrada
-    // -----------------------------------------------------------------------
-
     @Test
     public void testSignlessLaplacianEstradaK3() {
         assertNotNull(new SignlessLaplacianEstrada().calculate(k3));
     }
 
-    // -----------------------------------------------------------------------
-    // energy.UpperBounds
-    // -----------------------------------------------------------------------
-
     @Test
     public void testUpperBoundsK3() {
         assertNotNull(new UpperBounds().calculate(k3));
     }
-
-    // -----------------------------------------------------------------------
-    // matching.MaxMatchingExtension
-    // -----------------------------------------------------------------------
 
     @Test
     public void testMaxMatchingK3() {

@@ -58,39 +58,8 @@
                 <pathelement location="${opentest4j}"/>
                 <pathelement location="${junit5.platform.commons}"/>
             </classpath>
-            <include name="GraphModelTest.java"/>
-            <include name="GraphUtilsTest.java"/>
-            <include name="GraphOperationsTest.java"/>
-            <include name="TraversalTest.java"/>
-            <include name="BasicReportsTest.java"/>
-            <include name="GeneratorsTest.java"/>
-            <include name="ProductsTest.java"/>
-            <include name="ReportsTest.java"/>
-            <include name="TestActions.java"/>
-            <include name="TestChemicalGraphIndices.java"/>
-            <include name="TestHomomorphism.java"/>
-            <include name="TestNewEdge.java"/>
-            <include name="AlgorithmsTest.java"/>
-            <include name="BlackBoardTest.java"/>
-            <include name="NotifiableAttributeSetImplTest.java"/>
-            <include name="ShortestPathAndMSTTest.java"/>
-            <include name="SubdividedGraphTest.java"/>
-            <include name="CoronaAndUtilsTest.java"/>
-            <include name="BiconnectedComponentsTest.java"/>
-            <include name="G6FormatTest.java"/>
-            <include name="GraphComplementTest.java"/>
-            <include name="GraphJoinTest.java"/>
-            <include name="RenderTableTest.java"/>
-            <include name="UtilityAndCheckerTest.java"/>
-            <include name="AnimatorLSFTest.java"/>
-            <include name="OperatorsTest.java"/>
-            <include name="BenchmarkGeneratorsTest.java"/>
-            <include name="DAGTest.java"/>
-            <include name="InducedSubgraphAlgorithmTest.java"/>
-            <include name="MissingCoverageTest.java"/>
-            <include name="TopologicalReportsTest.java"/>
-            <include name="TopologicalReportsExtendedTest.java"/>
-            <include name="EnergyAndMatchingReportsTest.java"/>
+            <include name="*Test.java"/>
+            <include name="Test*.java"/>
         </javac>
         <junitlauncher haltOnFailure="false" printSummary="true">
             <classpath>
@@ -106,39 +75,8 @@
             </classpath>
             <testclasses outputdir="${basedir}/build/test-classes">
                 <fileset dir="${basedir}/build/test-classes">
-                    <include name="GraphModelTest.class"/>
-                    <include name="GraphUtilsTest.class"/>
-                    <include name="GraphOperationsTest.class"/>
-                    <include name="TraversalTest.class"/>
-                    <include name="BasicReportsTest.class"/>
-                    <include name="GeneratorsTest.class"/>
-                    <include name="ProductsTest.class"/>
-                    <include name="ReportsTest.class"/>
-                    <include name="TestActions.class"/>
-                    <include name="TestChemicalGraphIndices.class"/>
-                    <include name="TestHomomorphism.class"/>
-                    <include name="TestNewEdge.class"/>
-                    <include name="AlgorithmsTest.class"/>
-                    <include name="BlackBoardTest.class"/>
-                    <include name="NotifiableAttributeSetImplTest.class"/>
-                    <include name="ShortestPathAndMSTTest.class"/>
-                    <include name="SubdividedGraphTest.class"/>
-                    <include name="CoronaAndUtilsTest.class"/>
-                    <include name="BiconnectedComponentsTest.class"/>
-                    <include name="G6FormatTest.class"/>
-                    <include name="GraphComplementTest.class"/>
-                    <include name="GraphJoinTest.class"/>
-                    <include name="RenderTableTest.class"/>
-                    <include name="UtilityAndCheckerTest.class"/>
-                    <include name="graphtea/plugins/visualization/localsfvis/AnimatorLSFTest.class"/>
-                    <include name="OperatorsTest.class"/>
-                    <include name="BenchmarkGeneratorsTest.class"/>
-                    <include name="DAGTest.class"/>
-                    <include name="InducedSubgraphAlgorithmTest.class"/>
-                    <include name="MissingCoverageTest.class"/>
-                    <include name="TopologicalReportsTest.class"/>
-                    <include name="TopologicalReportsExtendedTest.class"/>
-                    <include name="EnergyAndMatchingReportsTest.class"/>
+                    <include name="**/*Test.class"/>
+                    <include name="**/Test*.class"/>
                 </fileset>
                 <listener type="legacy-xml" outputdir="${basedir}/build/test-classes" sendSysOut="true" sendSysErr="true"/>
                 <listener type="legacy-plain" sendSysOut="true"/>
@@ -161,39 +99,8 @@
                 <pathelement location="${opentest4j}"/>
                 <pathelement location="${junit5.platform.commons}"/>
             </classpath>
-            <include name="GraphModelTest.java"/>
-            <include name="GraphUtilsTest.java"/>
-            <include name="GraphOperationsTest.java"/>
-            <include name="TraversalTest.java"/>
-            <include name="BasicReportsTest.java"/>
-            <include name="GeneratorsTest.java"/>
-            <include name="ProductsTest.java"/>
-            <include name="ReportsTest.java"/>
-            <include name="TestActions.java"/>
-            <include name="TestChemicalGraphIndices.java"/>
-            <include name="TestHomomorphism.java"/>
-            <include name="TestNewEdge.java"/>
-            <include name="AlgorithmsTest.java"/>
-            <include name="BlackBoardTest.java"/>
-            <include name="NotifiableAttributeSetImplTest.java"/>
-            <include name="ShortestPathAndMSTTest.java"/>
-            <include name="SubdividedGraphTest.java"/>
-            <include name="CoronaAndUtilsTest.java"/>
-            <include name="BiconnectedComponentsTest.java"/>
-            <include name="G6FormatTest.java"/>
-            <include name="GraphComplementTest.java"/>
-            <include name="GraphJoinTest.java"/>
-            <include name="RenderTableTest.java"/>
-            <include name="UtilityAndCheckerTest.java"/>
-            <include name="AnimatorLSFTest.java"/>
-            <include name="OperatorsTest.java"/>
-            <include name="BenchmarkGeneratorsTest.java"/>
-            <include name="DAGTest.java"/>
-            <include name="InducedSubgraphAlgorithmTest.java"/>
-            <include name="MissingCoverageTest.java"/>
-            <include name="TopologicalReportsTest.java"/>
-            <include name="TopologicalReportsExtendedTest.java"/>
-            <include name="EnergyAndMatchingReportsTest.java"/>
+            <include name="*Test.java"/>
+            <include name="Test*.java"/>
         </javac>
         <mkdir dir="${basedir}/build/coverage-report"/>
         <junitlauncher haltOnFailure="false" printSummary="true">
@@ -213,39 +120,8 @@
                     <jvmarg value="-javaagent:${jacoco.agent}=destfile=${basedir}/build/jacoco.exec"/>
                 </fork>
                 <fileset dir="${basedir}/build/test-classes">
-                    <include name="GraphModelTest.class"/>
-                    <include name="GraphUtilsTest.class"/>
-                    <include name="GraphOperationsTest.class"/>
-                    <include name="TraversalTest.class"/>
-                    <include name="BasicReportsTest.class"/>
-                    <include name="GeneratorsTest.class"/>
-                    <include name="ProductsTest.class"/>
-                    <include name="ReportsTest.class"/>
-                    <include name="TestActions.class"/>
-                    <include name="TestChemicalGraphIndices.class"/>
-                    <include name="TestHomomorphism.class"/>
-                    <include name="TestNewEdge.class"/>
-                    <include name="AlgorithmsTest.class"/>
-                    <include name="BlackBoardTest.class"/>
-                    <include name="NotifiableAttributeSetImplTest.class"/>
-                    <include name="ShortestPathAndMSTTest.class"/>
-                    <include name="SubdividedGraphTest.class"/>
-                    <include name="CoronaAndUtilsTest.class"/>
-                    <include name="BiconnectedComponentsTest.class"/>
-                    <include name="G6FormatTest.class"/>
-                    <include name="GraphComplementTest.class"/>
-                    <include name="GraphJoinTest.class"/>
-                    <include name="RenderTableTest.class"/>
-                    <include name="UtilityAndCheckerTest.class"/>
-                    <include name="graphtea/plugins/visualization/localsfvis/AnimatorLSFTest.class"/>
-                    <include name="OperatorsTest.class"/>
-                    <include name="BenchmarkGeneratorsTest.class"/>
-                    <include name="DAGTest.class"/>
-                    <include name="InducedSubgraphAlgorithmTest.class"/>
-                    <include name="MissingCoverageTest.class"/>
-                    <include name="TopologicalReportsTest.class"/>
-                    <include name="TopologicalReportsExtendedTest.class"/>
-                    <include name="EnergyAndMatchingReportsTest.class"/>
+                    <include name="**/*Test.class"/>
+                    <include name="**/Test*.class"/>
                 </fileset>
                 <listener type="legacy-xml" outputdir="${basedir}/build/test-classes" sendSysOut="true" sendSysErr="true"/>
                 <listener type="legacy-plain" sendSysOut="true"/>

@@ -13,7 +13,6 @@ import graphtea.extensions.reports.spectralreports.LaplacianEnergy;
 import graphtea.extensions.reports.basicreports.SpectrumOfAdjacencyMatrix;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.graph.graph.Vertex;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

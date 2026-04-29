@@ -29,10 +29,6 @@ public class TopologicalReportsExtendedTest {
     private final GraphModel p3 = PathGenerator.generatePath(3);
     private final GraphModel c4 = CircleGenerator.generateCircle(4);
 
-    // -----------------------------------------------------------------------
-    // Pairwise-distance-based (PairwiseDistanceReportBase subclasses)
-    // -----------------------------------------------------------------------
-
     @Test
     public void testAdditiveHararyK3() {
         assertNotNull(new AdditiveHarary().calculate(k3));
@@ -55,10 +51,6 @@ public class TopologicalReportsExtendedTest {
         assertEquals(12.0, new WeightedWienerIndex().calculate(k3), 1e-6);
     }
 
-    // -----------------------------------------------------------------------
-    // WienerIndexBase subclasses
-    // -----------------------------------------------------------------------
-
     @Test
     public void testEccentricWienerIndexK3() {
         assertNotNull(new EccentricWienerIndex().calculate(k3));
@@ -69,10 +61,6 @@ public class TopologicalReportsExtendedTest {
         assertNotNull(new MWienerIndex().calculate(k3));
     }
 
-    // -----------------------------------------------------------------------
-    // EccentricDistanceSumBase subclasses
-    // -----------------------------------------------------------------------
-
     @Test
     public void testEccentricDistanceSumK3() {
         assertNotNull(new EccentricDistanceSum().calculate(k3));
@@ -82,10 +70,6 @@ public class TopologicalReportsExtendedTest {
     public void testAdjacentEccentricDistanceSumK3() {
         assertNotNull(new AdjacentEccentricDistanceSum().calculate(k3));
     }
-
-    // -----------------------------------------------------------------------
-    // Remaining concrete topological reports (alphabetical)
-    // -----------------------------------------------------------------------
 
     @Test
     public void testAGIndexK3() {
@@ -399,10 +383,6 @@ public class TopologicalReportsExtendedTest {
         assertNotNull(new ZagrebEccentricity().calculate(k3));
     }
 
-    // -----------------------------------------------------------------------
-    // Parametrized topological classes (use default values)
-    // -----------------------------------------------------------------------
-
     @Test
     public void testPathZagrebIndexK3() {
         PathZagrebIndex idx = new PathZagrebIndex();
@@ -438,10 +418,6 @@ public class TopologicalReportsExtendedTest {
         idx.alpha = 1.0;
         assertFalse(idx.calculate(k3).isEmpty());
     }
-
-    // -----------------------------------------------------------------------
-    // Irr package (AlbertsonIndex, Irr_G, Irr_t_G)
-    // -----------------------------------------------------------------------
 
     @Test
     public void testAlbertsonIndexK3() {
