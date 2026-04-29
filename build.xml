@@ -89,6 +89,8 @@
             <include name="InducedSubgraphAlgorithmTest.java"/>
             <include name="MissingCoverageTest.java"/>
             <include name="TopologicalReportsTest.java"/>
+            <include name="TopologicalReportsExtendedTest.java"/>
+            <include name="EnergyAndMatchingReportsTest.java"/>
         </javac>
         <junitlauncher haltOnFailure="false" printSummary="true">
             <classpath>
@@ -135,6 +137,8 @@
                     <include name="InducedSubgraphAlgorithmTest.class"/>
                     <include name="MissingCoverageTest.class"/>
                     <include name="TopologicalReportsTest.class"/>
+                    <include name="TopologicalReportsExtendedTest.class"/>
+                    <include name="EnergyAndMatchingReportsTest.class"/>
                 </fileset>
                 <listener type="legacy-xml" outputdir="${basedir}/build/test-classes" sendSysOut="true" sendSysErr="true"/>
                 <listener type="legacy-plain" sendSysOut="true"/>
@@ -188,6 +192,8 @@
             <include name="InducedSubgraphAlgorithmTest.java"/>
             <include name="MissingCoverageTest.java"/>
             <include name="TopologicalReportsTest.java"/>
+            <include name="TopologicalReportsExtendedTest.java"/>
+            <include name="EnergyAndMatchingReportsTest.java"/>
         </javac>
         <mkdir dir="${basedir}/build/coverage-report"/>
         <junitlauncher haltOnFailure="false" printSummary="true">
@@ -238,6 +244,8 @@
                     <include name="InducedSubgraphAlgorithmTest.class"/>
                     <include name="MissingCoverageTest.class"/>
                     <include name="TopologicalReportsTest.class"/>
+                    <include name="TopologicalReportsExtendedTest.class"/>
+                    <include name="EnergyAndMatchingReportsTest.class"/>
                 </fileset>
                 <listener type="legacy-xml" outputdir="${basedir}/build/test-classes" sendSysOut="true" sendSysErr="true"/>
                 <listener type="legacy-plain" sendSysOut="true"/>
