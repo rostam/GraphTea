@@ -130,8 +130,7 @@ public class SignlessLaplacianOfGraph implements GraphReportExtension<ArrayList<
 			calc.addAll(getEigenValuesAndVectors(A));
 			return(calc);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-
+			e.printStackTrace();
 		}
 		return null;
 

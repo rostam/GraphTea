@@ -16,13 +16,10 @@ public class BaseGraphEvent extends GraphEvent<BaseVertex, BaseEdge<BaseVertex>>
 
     public BaseGraphEvent(BaseGraph<BaseVertex, BaseEdge<BaseVertex>> g, EventType et) {
         super(g, et);
-        // TODO Auto-generated constructor stub
     }
-
 
     public BaseGraphEvent(BaseGraph<BaseVertex, BaseEdge<BaseVertex>> g) {
         super(g);
-        // TODO Auto-generated constructor stub
     }
 
     public String getMessage() {

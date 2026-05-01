@@ -45,7 +45,6 @@ public class TotalNumOfStars implements GraphReportExtension<List<String>> {
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "General";
 	}
 

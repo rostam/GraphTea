@@ -86,11 +86,19 @@ public class ExtensionLoader implements StorableOnExit {
     }
 
     /**
-     * returns an instance of extensionClass if the given extensionClass implements Extension (BasicExtension)
-     * or has default constructor, otherwise it returns null
+     * Instantiates an extension from its class.
      *
-     * @param extensionClass the extension class
-     * @return an object of the given extension
+     * <p>Tries constructors in this order:
+     * <ol>
+     *   <li>A single-arg constructor accepting a {@link BlackBoard} — preferred, gives the
+     *       extension access to the application environment immediately.</li>
+     *   <li>The no-arg default constructor.</li>
+     * </ol>
+     * Returns {@code null} if the class is abstract, does not implement {@link Extension},
+     * or if instantiation fails for any reason.
+     *
+     * @param extensionClass the concrete extension class to instantiate
+     * @return a ready-to-use extension instance, or {@code null} on failure
      */
     public static Extension loadExtension(Class<Extension> extensionClass) {
         Extension ret = null;

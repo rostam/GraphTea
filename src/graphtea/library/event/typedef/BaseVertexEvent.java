@@ -16,12 +16,10 @@ public class BaseVertexEvent extends VertexEvent<BaseVertex, BaseEdge<BaseVertex
 
     public BaseVertexEvent(BaseGraph<BaseVertex, BaseEdge<BaseVertex>> graph, BaseVertex vertex, EventType et) {
         super(graph, vertex, et);
-        // TODO Auto-generated constructor stub
     }
 
     public BaseVertexEvent(BaseGraph<BaseVertex, BaseEdge<BaseVertex>> graph, BaseVertex vertex) {
         super(graph, vertex);
-        // TODO Auto-generated constructor stub
     }
 
 }

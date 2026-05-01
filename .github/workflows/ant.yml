@@ -30,3 +30,16 @@ jobs:
 
     - name: Run tests
       run: ant -noinput test
+
+    - name: Checkstyle (strict gate)
+      run: ant -noinput checkstyle-strict
+
+    - name: Generate coverage report
+      run: ant -noinput coverage
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: build/coverage-report/
+        retention-days: 14

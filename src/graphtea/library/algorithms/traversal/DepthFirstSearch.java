@@ -25,6 +25,11 @@ import graphtea.library.event.handlers.PreWorkPostWorkHandler;
 import graphtea.library.exceptions.InvalidGraphException;
 import graphtea.library.exceptions.InvalidVertexException;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
+
 
 /**
  * @author Omid Aladini
@@ -75,37 +80,66 @@ public class DepthFirstSearch<VertexType extends BaseVertex, EdgeType extends Ba
             for (VertexType v : graph)
                 v.setMark(false);
 
-        return depthFirstSearchRecursive(vertex, vertex, handler);
+        return depthFirstSearchIterative(vertex, handler);
     }
 
-    private boolean depthFirstSearchRecursive(VertexType vertex, VertexType fromVertex, PreWorkPostWorkHandler<VertexType> handler)
-            throws InvalidVertexException {
-        //TODO:Implementing non-recursive version
-        //int vertexId = vertex.getId();
-        vertex.setMark(true);
-        if (handler != null)
-            if (handler.doPreWork(fromVertex, vertex))
-                return true;
-        dispatchEvent(new PreWorkEvent<>(fromVertex, vertex, graph));
-        EventUtils.algorithmStep(this, "visit: " + vertex.getId());
-        VertexType lastInDepthVertex = vertex;
+    private static class Frame<V> {
+        final V from;
+        final V vertex;
+        final boolean postWork;
 
-        for (VertexType i : graph) {
-            if (graph.isEdge(vertex, i)) {
-                if (!i.getMark()) {
-                    lastInDepthVertex = i;
-                    if (depthFirstSearchRecursive(i, vertex, handler))
-                        return true;
+        Frame(V from, V vertex, boolean postWork) {
+            this.from = from;
+            this.vertex = vertex;
+            this.postWork = postWork;
+        }
+    }
+
+    /**
+     * Iterative DFS using an explicit stack to avoid call-stack overflow on large graphs.
+     * Each stack frame is either an unvisited vertex to explore (pre-work phase)
+     * or a fully-explored vertex to finalise (post-work phase).
+     */
+    private boolean depthFirstSearchIterative(VertexType start, PreWorkPostWorkHandler<VertexType> handler)
+            throws InvalidVertexException {
+        Deque<Frame<VertexType>> stack = new ArrayDeque<>();
+        stack.push(new Frame<>(start, start, false));
+
+        while (!stack.isEmpty()) {
+            Frame<VertexType> frame = stack.pop();
+
+            if (frame.postWork) {
+                dispatchEvent(new PostWorkEvent<>(frame.vertex, frame.vertex, graph));
+                EventUtils.algorithmStep(this, "leave: " + frame.vertex.getId());
+                if (handler != null && handler.doPostWork(frame.vertex, frame.vertex)) {
+                    return true;
+                }
+            } else {
+                if (frame.vertex.getMark()) {
+                    continue;
+                }
+                frame.vertex.setMark(true);
+
+                if (handler != null && handler.doPreWork(frame.from, frame.vertex)) {
+                    return true;
+                }
+                dispatchEvent(new PreWorkEvent<>(frame.from, frame.vertex, graph));
+                EventUtils.algorithmStep(this, "visit: " + frame.vertex.getId());
+
+                // Push post-work frame first so it executes after all children are done.
+                stack.push(new Frame<>(frame.from, frame.vertex, true));
+
+                List<VertexType> children = new ArrayList<>();
+                for (VertexType i : graph) {
+                    if (graph.isEdge(frame.vertex, i) && !i.getMark()) {
+                        children.add(i);
+                    }
+                }
+                for (int i = children.size() - 1; i >= 0; i--) {
+                    stack.push(new Frame<>(frame.vertex, children.get(i), false));
                 }
             }
         }
-
-        dispatchEvent(new PostWorkEvent<>(lastInDepthVertex, vertex, graph));
-        EventUtils.algorithmStep(this, "leave: " + vertex.getId());
-
-        if (handler != null)
-            return handler.doPostWork(lastInDepthVertex, vertex);
-
         return false;
     }
 

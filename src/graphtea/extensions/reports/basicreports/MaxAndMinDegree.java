@@ -49,7 +49,6 @@ public class MaxAndMinDegree implements GraphReportExtension<ArrayList<Integer>>
 
 	@Override
 	public String getCategory() {
-		// TODO Auto-generated method stub
 		return "General";
 	}
 }

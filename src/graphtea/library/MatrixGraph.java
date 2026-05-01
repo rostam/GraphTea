@@ -844,8 +844,18 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
 
     @Override
     public void setDirected(boolean isDirected) {
-        //TODO: Stub
-        throw new RuntimeException("Not yet implemented.");
+        if (this.directed == isDirected) {
+            return;
+        }
+        if (isDirected) {
+            outDegree = new ArrayList<>(inDegree);
+        } else {
+            for (int i = 0; i < inDegree.size(); i++) {
+                inDegree.set(i, inDegree.get(i) + outDegree.get(i));
+            }
+            outDegree = inDegree;
+        }
+        this.directed = isDirected;
     }
 
     /* (non-Javadoc)
@@ -898,7 +908,6 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
       */
     @Override
     public Iterator<EdgeType> lightEdgeIterator() {
-        //TODO: Stub, not yet light.
         return edgeIterator();
     }
 
@@ -907,13 +916,12 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
       */
     @Override
     public Iterator<EdgeType> lightEdgeIterator(VertexType v) throws InvalidVertexException {
-        //TODO: Stub, not yet light.
         return edgeIterator(v);
     }
 
+    @Override
     public Iterator<EdgeType> lightBackEdgeIterator(VertexType v) throws InvalidVertexException {
-        //TODO: Stub
-        throw new RuntimeException("Not yet implemented.");
+        return edgeIterator(v, false);
     }
 
     /* (non-Javadoc)

@@ -58,23 +58,35 @@ public class BlackBoard {
     private final HashMap<String, Integer> firingNames = new HashMap<>();
 
     /**
-     * @param key The key
-     * @see BlackBoard#getData(String)
+     * Returns the value stored under {@code key}, cast to the inferred type {@code T}.
+     * Returns {@code null} if no value has been published for that key.
+     *
+     * @param <T> expected type of the stored value
+     * @param key the lookup key; use constants from {@link BlackBoardKeys}
+     * @return the stored value, or {@code null}
      */
     public <T> T getData(String key) {
         return (T) data.get(key);
     }
 
-
     /**
-     * @param key The key
-     * @param value The value
+     * Stores {@code value} under {@code key} and immediately notifies all listeners
+     * registered for that key.
+     *
+     * @param key   the storage key; use constants from {@link BlackBoardKeys}
+     * @param value the new value (may be {@code null} — used e.g. for {@link BlackBoardKeys#UNDO_POINT})
      */
     public void setData(String key, Object value) {
         data.put(key, value);
         fireListeners(key, value);
     }
 
+    /**
+     * Returns {@code true} if a value has been stored under {@code key}.
+     *
+     * @param key the lookup key
+     * @return {@code true} if the key exists in the BlackBoard
+     */
     public boolean contains(String key) {
         return data.containsKey(key);
     }
