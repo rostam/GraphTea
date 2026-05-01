@@ -959,17 +959,14 @@ public class MatrixGraph<VertexType extends BaseVertex, EdgeType extends BaseEdg
     public int[] weightOfEdge(VertexType source, VertexType target)
     throws InvalidVertexException
     {
-	   int[] res=null;
-
-	   if(isEdge(source, target))
-	   {
-		   AbstractList<EdgeType> edges = getEdges(source, target);
-		   int i=0;
-		   for(EdgeType et : edges )
-		   {
-			   res[i] = et.getWeight();
-			   i++;
-		   }
+	   if (!isEdge(source, target)) {
+		   return null;
+	   }
+	   AbstractList<EdgeType> edges = getEdges(source, target);
+	   int[] res = new int[edges.size()];
+	   int i = 0;
+	   for (EdgeType et : edges) {
+		   res[i++] = et.getWeight();
 	   }
 	   return res;
     }

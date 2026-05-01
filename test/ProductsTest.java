@@ -1,5 +1,6 @@
 import graphtea.extensions.actions.product.GCartesianProduct;
 import graphtea.extensions.actions.product.GStrongProduct;
+import graphtea.extensions.actions.product.GSymmDiff;
 import graphtea.extensions.actions.product.GTensorProduct;
 import graphtea.extensions.generators.CircleGenerator;
 import graphtea.extensions.generators.CompleteGraphGenerator;
@@ -157,6 +158,48 @@ public class ProductsTest {
                         "Edge count mismatch for P_" + m + " × P_" + n);
             }
         }
+    }
+
+    // ---- Symmetric difference product ----
+    // G ⊕ H: edge (u1,v1)-(u2,v2) iff exactly one of g1.isEdge(u1,u2) or g2.isEdge(v1,v2) holds.
+    // Vertex count is always |V(G)| * |V(H)|.
+
+    @Test
+    public void testSymmDiffVertexCount() {
+        GSymmDiff sd = new GSymmDiff();
+        // Vertex count = |V(G)| * |V(H)| for any inputs
+        GraphModel p2a = PathGenerator.generatePath(2);
+        GraphModel p2b = PathGenerator.generatePath(2);
+        assertEquals(4, sd.multiply(p2a, p2b).getVerticesCount());
+
+        assertEquals(6, sd.multiply(PathGenerator.generatePath(2), PathGenerator.generatePath(3)).getVerticesCount());
+        assertEquals(9, sd.multiply(PathGenerator.generatePath(3), PathGenerator.generatePath(3)).getVerticesCount());
+    }
+
+    @Test
+    public void testSymmDiffP2P2() {
+        // P2 ⊕ P2: each has edge {0,1}.
+        // Edge (0,0)-(1,0): g1.edge=T, g2.edge=F → present
+        // Edge (0,1)-(1,1): g1.edge=T, g2.edge=F → present
+        // Edge (0,0)-(0,1): g1.edge=F, g2.edge=T → present
+        // Edge (1,0)-(1,1): g1.edge=F, g2.edge=T → present
+        // Edge (0,0)-(1,1): g1.edge=T, g2.edge=T → absent
+        // Edge (0,1)-(1,0): g1.edge=T, g2.edge=T → absent
+        GraphModel p2a = PathGenerator.generatePath(2);
+        GraphModel p2b = PathGenerator.generatePath(2);
+        GraphModel g = new GSymmDiff().multiply(p2a, p2b);
+        assertEquals(4, g.getVerticesCount());
+        assertEquals(4, g.getEdgesCount());
+    }
+
+    @Test
+    public void testSymmDiffEdgeCountP3P3() {
+        // P3 ⊕ P3: 9 vertices, verify against known product computation
+        GraphModel p3a = PathGenerator.generatePath(3);
+        GraphModel p3b = PathGenerator.generatePath(3);
+        GraphModel g = new GSymmDiff().multiply(p3a, p3b);
+        assertEquals(9, g.getVerticesCount());
+        assertEquals(20, g.getEdgesCount());
     }
 
 }

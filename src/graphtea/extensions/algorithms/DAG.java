@@ -151,7 +151,6 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
         Vertex cycleStart = null;
         Vertex cycleEnd = null;
 
-//        visitedVertices.add(current);
         int scan = 0;
         int counter = 0;
         Vertex current;
@@ -201,39 +200,6 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
             }
         }
         return null;
-//        A:
-//        while (true) {
-//            if (bfsStack.isEmpty()) {
-//                for (; scan < mark.length; scan++) {
-//                    bfsStack.add((Vertex) V[scan]);
-//                    scan++;
-//                    visitedVertices.clear();
-//                    LibraryUtils.falsifyVertexMarks(graph);
-//                    break;
-//                }
-//            }
-//            if (bfsStack.isEmpty())  //no unmarked vertex
-//                return null;
-//            current = bfsStack.pop();
-//            current.setMark(true);
-//            for (Vertex trg : graph.getNeighbors(current)) {
-//                if (!trg.getMark()) {
-//                    bfsStack.addLast(trg);
-//                    parent[trg.getId()] = current;
-//                } else {
-//                    if (visitedVertices.contains(trg)) {
-//                        cycleStart = trg;
-//                        cycleEnd = current;
-//                        break A;
-//                    }
-//                }
-//            }
-//        }
-
-        //extract from parents, the path between the cycle start and cycle end
-
-//        return ret;
-
     }
 
     /**
@@ -279,20 +245,6 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
     }
 
     public void doAlgorithm() {
-//        BaseGraphRequest gr = new BaseGraphRequest();
-//        dispatchEvent(gr);
-//        GraphModel graph = gr.getGraph();
-//        AbstractList<BaseVertex> alv = doSort(graph);
-//        if (alv == null)
-//            dispatchEvent(new MessageEvent("Graph has a cycle"));
-//        else {
-//            String s = "Topological sort sequence:";
-//            for (BaseVertex v : alv)
-//                s += v + ", ";
-//
-//            dispatchEvent(new MessageEvent(s));
-//        }
-
     }
 
 

@@ -6,6 +6,18 @@ import graphtea.graph.graph.Vertex;
 import graphtea.library.util.Pair;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
 
+/**
+ * Base class for graph product operations.
+ *
+ * <p>A graph product takes two {@link graphtea.graph.graph.GraphModel} instances and produces a
+ * new graph whose vertex set is the Cartesian product V(G1) × V(G2). Subclasses define
+ * which pairs of product-vertices are connected by implementing {@link #compare}.
+ *
+ * <p>Typical use:
+ * <pre>
+ * GraphModel result = new GCartesianProduct().multiply(g1, g2);
+ * </pre>
+ */
 public abstract class GProduct {
 
     protected GraphModel g1;
