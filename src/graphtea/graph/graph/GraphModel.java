@@ -37,7 +37,7 @@ public class GraphModel extends ListGraph<Vertex, Edge> implements StorableOnExi
 
 	private Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 14);
 	@UserModifiableProperty(displayName = "Show Edge Labels")
-	public static boolean showEdgeWeights = false;
+	public static boolean showEdgeWeights = true;
 	@UserModifiableProperty(displayName = "Show Vertex Labels")
 	public static boolean vertexLabelsEnabled = true;
 	private boolean drawVertexLabels = vertexLabelsEnabled;
