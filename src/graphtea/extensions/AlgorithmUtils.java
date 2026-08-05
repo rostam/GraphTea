@@ -26,6 +26,29 @@ public class AlgorithmUtils {
     public final static int Max_Int = 2100000000;
 
     /**
+     * Finds the edge joining two vertices, whichever way round it is stored.
+     *
+     * <p>Several reports run an algorithm over the adjacency matrix and then look the resulting
+     * {@code Edge} objects back up with {@link GraphModel#getEdge}, which is direction
+     * sensitive on a directed graph and returns null when the pair is not adjacent at all.
+     * Those nulls were being collected straight into a {@link SubGraph}, and the renderer that
+     * displays one dereferences every edge, so the report died with a NullPointerException on
+     * the event thread instead of showing an answer.
+     *
+     * @param g the graph
+     * @param a one endpoint
+     * @param b the other endpoint
+     * @return the edge between them in either direction, or null when there is none
+     */
+    public static Edge getEdgeBetween(GraphModel g, Vertex a, Vertex b) {
+        if (g == null || a == null || b == null) {
+            return null;
+        }
+        Edge e = g.getEdge(a, b);
+        return e != null ? e : g.getEdge(b, a);
+    }
+
+    /**
      * sets all vertex colors to 0.
      */
     public static void resetVertexColors(GraphModel g) {

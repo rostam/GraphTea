@@ -5,6 +5,7 @@
 package graphtea.extensions.reports.spanningtree;
 
 import graphtea.extensions.AlgorithmUtils;
+import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -24,10 +25,14 @@ public class MSTPrimExtension implements GraphReportExtension<SubGraph> {
         double[][] adj = g.getAdjacencyMatrix().getArray();
         int[][] adjMatrix = AlgorithmUtils.getBinaryPattern(adj,g.getVerticesCount());
         int[] parent = mp.prim(adjMatrix);
-        for(int i=0;i<g.getVerticesCount();i++) {
-            if(parent[i] != -1) {
-                sg.edges.add(g.getEdge(g.getVertex(i),
-                        g.getVertex(parent[i])));
+        for (int i = 0; i < g.getVerticesCount(); i++) {
+            if (parent[i] != -1) {
+                // On a disconnected graph prim reports a parent for a vertex in another
+                // component, where no edge exists and getEdge returns null.
+                Edge e = AlgorithmUtils.getEdgeBetween(g, g.getVertex(i), g.getVertex(parent[i]));
+                if (e != null) {
+                    sg.edges.add(e);
+                }
             }
         }
         return sg;

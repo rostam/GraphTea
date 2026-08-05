@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.matching;
 
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
@@ -42,10 +43,15 @@ public class MaxMatchingExtension implements GraphReportExtension<List<Object>> 
         }
 
         for(int i=0;i<match.length;i++) {
-            if(match[i] >= 0)
-                sg.edges.add(gg.getEdge(
-                        gg.getVertex(i),
-                        gg.getVertex(match[i])));
+            if (match[i] >= 0) {
+                // The matching is computed on the underlying undirected structure, so on a
+                // directed graph the edge often exists only the other way round and getEdge
+                // returned null straight into the SubGraph.
+                Edge e = AlgorithmUtils.getEdgeBetween(gg, gg.getVertex(i), gg.getVertex(match[i]));
+                if (e != null) {
+                    sg.edges.add(e);
+                }
+            }
         }
 
         List<Object> ret = new ArrayList<>();
@@ -81,10 +87,15 @@ public class MaxMatchingExtension implements GraphReportExtension<List<Object>> 
         }
 
         for(int i=0;i<match.length;i++) {
-            if(match[i] >= 0)
-                sg.edges.add(gg.getEdge(
-                        gg.getVertex(i),
-                        gg.getVertex(match[i])));
+            if (match[i] >= 0) {
+                // The matching is computed on the underlying undirected structure, so on a
+                // directed graph the edge often exists only the other way round and getEdge
+                // returned null straight into the SubGraph.
+                Edge e = AlgorithmUtils.getEdgeBetween(gg, gg.getVertex(i), gg.getVertex(match[i]));
+                if (e != null) {
+                    sg.edges.add(e);
+                }
+            }
         }
 
         return sg.edges.size();

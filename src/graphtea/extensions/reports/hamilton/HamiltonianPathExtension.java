@@ -5,6 +5,7 @@
 package graphtea.extensions.reports.hamilton;
 
 import graphtea.extensions.AlgorithmUtils;
+import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -32,9 +33,9 @@ public class HamiltonianPathExtension implements GraphReportExtension<SubGraph> 
             sg.vertices.add(g.getVertex(aPath));
         }
 
-        for(int i=0 ;i<path.length-1;i++) {
-            sg.edges.add(g.getEdge(g.getVertex(path[i]),
-                    g.getVertex(path[i + 1])));
+        for (int i = 0; i < path.length - 1; i++) {
+            addIfPresent(sg, AlgorithmUtils.getEdgeBetween(g,
+                    g.getVertex(path[i]), g.getVertex(path[i + 1])));
         }
 
         return sg;
@@ -44,4 +45,10 @@ public class HamiltonianPathExtension implements GraphReportExtension<SubGraph> 
 	public String getCategory() {
 		return "Hamilton";
 	}
+
+    private static void addIfPresent(SubGraph sg, Edge e) {
+        if (e != null) {
+            sg.edges.add(e);
+        }
+    }
 }

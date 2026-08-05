@@ -5,6 +5,7 @@
 package graphtea.extensions.reports.hamilton;
 
 import graphtea.extensions.AlgorithmUtils;
+import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -29,13 +30,17 @@ public class HamiltonianCycleExtension implements GraphReportExtension<SubGraph>
             sg.vertices.add(g.getVertex(aPath));
         }
 
-        for(int i=0 ;i<path.length-1;i++) {
-            sg.edges.add(g.getEdge(g.getVertex(path[i]),
-                    g.getVertex(path[i + 1])));
+        // getEdge is direction sensitive and returns null for a non-adjacent pair; a null
+        // collected here reaches SubGraphRenderer, which dereferences every edge.
+        for (int i = 0; i < path.length - 1; i++) {
+            addIfPresent(sg, AlgorithmUtils.getEdgeBetween(g,
+                    g.getVertex(path[i]), g.getVertex(path[i + 1])));
         }
 
-        sg.edges.add(g.getEdge(g.getVertex(path[0]),
-                g.getVertex(path[path.length-1])));
+        // The cycle closes from the last vertex back to the first. This asked for the edge the
+        // other way round, which on a directed graph is a different edge, usually absent.
+        addIfPresent(sg, AlgorithmUtils.getEdgeBetween(g,
+                g.getVertex(path[path.length - 1]), g.getVertex(path[0])));
 
         return sg;
     }
@@ -44,4 +49,10 @@ public class HamiltonianCycleExtension implements GraphReportExtension<SubGraph>
 	public String getCategory() {
 		return "Hamilton";
 	}
+
+    private static void addIfPresent(SubGraph sg, Edge e) {
+        if (e != null) {
+            sg.edges.add(e);
+        }
+    }
 }

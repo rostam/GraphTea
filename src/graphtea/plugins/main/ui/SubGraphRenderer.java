@@ -34,19 +34,40 @@ public class SubGraphRenderer implements GBasicCellRenderer<SubGraph> {
         if (mysd.label != null && !mysd.label.isEmpty()) {
             sb.append("<B>").append(mysd.label).append(": </B><BR>");
         }
-        if (mysd.vertices != null && mysd.vertices.size() > 0) {
+        // Everything below skips nulls. A report that collected an edge which turned out not to
+        // exist used to take the whole result window down with a NullPointerException on the
+        // event thread, so the user saw no answer and no explanation. Displaying a subgraph
+        // should never be able to fail because of what is in it.
+        if (mysd.vertices != null && !mysd.vertices.isEmpty()) {
+            int before = sb.length();
             sb.append("<B>V: </B> {");
+            int start = sb.length();
             for (Vertex v : mysd.vertices) {
-                sb.append(v.getLabel()).append(", ");
+                if (v != null) {
+                    sb.append(v.getLabel()).append(", ");
+                }
             }
-            sb.delete(sb.length() - 2, sb.length()).append("}");
+            if (sb.length() > start) {
+                sb.delete(sb.length() - 2, sb.length()).append("}");
+            } else {
+                sb.setLength(before);
+            }
         }
-        if (mysd.edges != null && mysd.edges.size() > 0) {
+        if (mysd.edges != null && !mysd.edges.isEmpty()) {
+            int before = sb.length();
             sb.append("<BR><B>E: </B> {");
+            int start = sb.length();
             for (Edge e : mysd.edges) {
+                if (e == null || e.source == null || e.target == null) {
+                    continue;
+                }
                 sb.append(e.source.getLabel()).append("-").append(e.target.getLabel()).append(", ");
             }
-            sb.delete(sb.length() - 2, sb.length()).append("}");
+            if (sb.length() > start) {
+                sb.delete(sb.length() - 2, sb.length()).append("}");
+            } else {
+                sb.setLength(before);
+            }
         }
         sb.append("</BODY></HTML>");
         String txt = sb.toString();
