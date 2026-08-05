@@ -24,6 +24,9 @@ import graphtea.ui.components.utils.GFrameLocationProvider;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -109,9 +112,7 @@ public class GPropertyEditor extends JComponent {
             }
         });
 
-////        table.setGridColor(Color.lightGray);
-//        table.setRowHeight(30);
-//        table.getColumnModel().getColumn(1).setWidth(50);
+        styleTable();
         initComponents();
         l.setEditable(false);
         l.setLineWrap(true);
@@ -119,6 +120,66 @@ public class GPropertyEditor extends JComponent {
 
 //        l.setLineWrap(true);
 //        l.setPreferredSize(new Dimension(300,300));
+    }
+
+    /** Row height. The default 16 leaves no air around the text or the in-place editors. */
+    private static final int ROW_HEIGHT = 22;
+
+    private static final Color GRID = new Color(0xE8ECEF);
+    private static final Color HEADER_BG = new Color(0xF5F7F9);
+    private static final Color HEADER_FG = new Color(0x7F8C8D);
+    private static final Color NAME_FG = new Color(0x44515E);
+
+    /**
+     * Makes the property list legible.
+     *
+     * <p>It rendered as a dense spreadsheet: 16-pixel rows with the text jammed against the
+     * cell edge, a full grid of dark lines around every cell, and column headers that the look
+     * and feel drew as if they were editable text fields. The settings that would have fixed
+     * it were present in the source but commented out.
+     */
+    private void styleTable() {
+        table.setRowHeight(ROW_HEIGHT);
+        table.setGridColor(GRID);
+        // Horizontal rules only: a full grid on a two-column list is all boxes and no content.
+        table.setShowVerticalLines(false);
+        table.setShowHorizontalLines(true);
+        table.setIntercellSpacing(new Dimension(0, 1));
+        table.setFillsViewportHeight(true);
+
+        JTableHeader header = table.getTableHeader();
+        if (header != null) {
+            header.setReorderingAllowed(false);
+            header.setPreferredSize(new Dimension(0, 24));
+            TableCellRenderer base = header.getDefaultRenderer();
+            header.setDefaultRenderer((t, value, selected, focused, row, column) -> {
+                Component c = base.getTableCellRendererComponent(t, value, selected, focused, row, column);
+                if (c instanceof JLabel headerLabel) {
+                    headerLabel.setBorder(BorderFactory.createCompoundBorder(
+                            BorderFactory.createMatteBorder(0, 0, 1, 0, GRID),
+                            new EmptyBorder(0, 8, 0, 8)));
+                    headerLabel.setFont(headerLabel.getFont().deriveFont(Font.PLAIN, 11f));
+                    headerLabel.setForeground(HEADER_FG);
+                    headerLabel.setBackground(HEADER_BG);
+                    headerLabel.setOpaque(true);
+                }
+                return c;
+            });
+        }
+
+        // The value column has its own renderer; the name column was using the bare default,
+        // with the text hard against the left edge.
+        TableCellRenderer nameBase = new DefaultTableCellRenderer();
+        table.getColumnModel().getColumn(0).setCellRenderer((t, value, selected, focused, row, column) -> {
+            Component c = nameBase.getTableCellRendererComponent(t, value, selected, focused, row, column);
+            if (c instanceof JLabel nameLabel) {
+                nameLabel.setBorder(new EmptyBorder(0, 8, 0, 8));
+                if (!selected) {
+                    nameLabel.setForeground(NAME_FG);
+                }
+            }
+            return c;
+        });
     }
 
     private final JTextArea l = new JTextArea();

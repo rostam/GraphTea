@@ -39,19 +39,35 @@ public class GBody extends JPanel {
 
     }
 
+    /**
+     * Shows one panel in the sidebar, replacing whatever was there.
+     *
+     * <p>Panels used to accumulate: opening Properties while Reports was open stacked the two
+     * in nested split panes, so each got half of an already narrow column and the reports list
+     * — the longest thing in the application — was squeezed into a strip about four lines
+     * high. The tabs down the left edge look mutually exclusive, so they now behave that way.
+     *
+     * @param leftPanel the panel to show
+     * @param label     its title, shown in the panel header
+     */
     public void showSideBarPane(Component leftPanel, String label) {
-//        int _ = splitPane.getDividerLocation();
         Pair<Component, String> p = new Pair<>(leftPanel, label);
-        if (showingSideBars.contains(p)) {
+        if (showingSideBars.size() == 1 && showingSideBars.get(0).equals(p)) {
             return;
         }
+        showingSideBars.clear();
         showingSideBars.add(p);
-
         updateEveryThingInsidebar();
+    }
 
-//        splitPane.setDividerLocation(_);
-//        splitPane.setDividerLocation(leftPanel.getPreferredSize().width);
-//        spitPane.setDividerSize(2);
+    /**
+     * @param leftPanel a panel
+     * @param label     its title
+     * @return whether that panel is the one currently showing
+     */
+    public boolean isShowingSideBarPane(Component leftPanel, String label) {
+        return !hidden && showingSideBars.size() == 1
+                && showingSideBars.get(0).equals(new Pair<>(leftPanel, label));
     }
 
     private void updateEveryThingInsidebar() {

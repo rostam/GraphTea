@@ -79,10 +79,21 @@ public class GSidebar extends JPanel {
     }
 
     /**
-     * sets the currently viewable panel
+     * Shows a panel, or hides the sidebar if that panel is already the one showing.
+     *
+     * @param sidePanel the panel behind the clicked tab
+     * @param label     its title
      */
     public void setPanel(Component sidePanel, String label) {
-        targetBody.showSideBarPane(sidePanel, label);
+        if (targetBody.isShowingSideBarPane(sidePanel, label)) {
+            // Clicking the open tab again closes the sidebar and hands the width back to the
+            // canvas. ButtonGroup will not let a selected toggle deselect itself, so clear it.
+            targetBody.hideSideBar();
+            group.clearSelection();
+            repaint();
+        } else {
+            targetBody.showSideBarPane(sidePanel, label);
+        }
     }
 
     /**
