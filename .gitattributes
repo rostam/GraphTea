@@ -1,0 +1,59 @@
+# Line-ending policy.
+#
+# The repository held a mix: 658 files stored with LF, 223 with CRLF, and 11 with
+# both inside the same file. Nothing declared which was intended, so whether a
+# commit carried real changes or a whole-file line-ending flip depended on the
+# contributor's core.autocrlf setting. Anyone editing one of the CRLF files with
+# core.autocrlf=input produced an 800-line diff for a one-line change.
+#
+# Everything is now normalised to LF in the repository. Git still checks files
+# out with native endings on Windows where that matters, so this changes nothing
+# about how the code is edited.
+
+# Default: treat as text, store LF, let Git decide what is binary.
+* text=auto eol=lf
+
+# Windows batch files are executed by cmd.exe, which wants CRLF. Keep it, both
+# in the repository and in the working tree.
+*.bat text eol=crlf
+
+# Shell scripts must be LF everywhere or the shebang line breaks.
+*.sh text eol=lf
+
+# Source and config: text, normalised.
+*.java   text eol=lf
+*.xml    text eol=lf
+*.dtd    text eol=lf
+*.html   text eol=lf
+*.jade   text eol=lf
+*.md     text eol=lf
+*.yml    text eol=lf
+*.txt    text eol=lf
+*.py     text eol=lf
+*.properties text eol=lf
+*.form   text eol=lf
+*.g6     text eol=lf
+*.m      text eol=lf
+*.install4j text eol=lf
+
+# Binary: never touch the bytes, never try to diff them as text.
+*.jar    binary
+*.png    binary
+*.PNG    binary
+*.gif    binary
+*.GIF    binary
+*.jpg    binary
+*.jpeg   binary
+*.bmp    binary
+*.ico    binary
+*.icns   binary
+*.psd    binary
+*.pdf    binary
+*.exe    binary
+*.dll    binary
+*.so     binary
+*.dylib  binary
+*.dmg    binary
+*.deb    binary
+*.zip    binary
+*.gz     binary
