@@ -6,39 +6,24 @@
 package graphtea.platform.lang;
 
 /**
- * A pair of two objects
+ * A pair of two objects.
+ *
+ * <p>This was a mutable class with hand-written {@code equals}, {@code hashCode} and
+ * {@code toString}. The {@code equals} threw {@link NullPointerException} whenever either
+ * component was null &mdash; including for two pairs that were plainly equal, and for a pair
+ * compared with itself &mdash; because the null guards fell through to
+ * {@code first.equals(...)}. As a record the three methods are generated correctly and are
+ * null-safe, and the pair becomes immutable, which is what every use of it already assumed:
+ * nothing in the code base ever assigned to the fields.
+ *
+ * <p>{@link graphtea.library.util.Pair} is a separate, serializable type used inside the graph
+ * data structures; it deliberately keeps identity semantics and is not this class.
+ *
+ * @param <First>  type of the first component
+ * @param <Second> type of the second component
+ * @param first    the first component
+ * @param second   the second component
  * @author Omid
  */
-public class Pair<First, Second> {
-    public First first;
-    public Second second;
-
-    public Pair(){
-
-    }
-    public Pair(First f, Second s) {
-        first = f;
-        second = s;
-    }
-
-    public boolean equals(Object obj) {
-        if (obj == null)
-            return false;
-        if (!(obj instanceof Pair))
-            return false;
-        Pair t = (Pair) obj;
-        return !(first == null && t.first != null) && !(second == null && t.second != null) && !(!first.equals(t.first) || !second.equals(t.second));
-    }
-
-    public int hashCode() {
-        int fh = first == null ? 0 : first.hashCode();
-		int lh = second == null ? 0 : second.hashCode();
-		return fh + 100000 * lh;
-    }
-
-    public String toString() {
-        String fs = first == null ? "null" : first.toString();
-		String ss = second == null ? "null" :second.toString();
-		return fs + ", " + ss;
-    }
+public record Pair<First, Second>(First first, Second second) {
 }

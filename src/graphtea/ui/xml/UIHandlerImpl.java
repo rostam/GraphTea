@@ -145,8 +145,8 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         String accel = meta.getValue("accelerator");
         Pair<Integer, String> lInfo = extractLabelInfo(label);
         lastMenuPlace = extractPlace(meta);
-        int index = lInfo.first;
-        label = lInfo.second;
+        int index = lInfo.first();
+        label = lInfo.second();
         currentMenu = menubar.getUniqueMenu(label, lastMenuPlace);
 //        currentMenu = new JMenu(label);
 
@@ -172,8 +172,8 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         }
         
         Pair<Integer, String> lInfo = extractLabelInfo(label);
-        int index = lInfo.first;
-        label = lInfo.second;
+        int index = lInfo.first();
+        label = lInfo.second();
 
         GMenuItem item;
         /*
@@ -184,8 +184,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         
         graphtea.platform.core.AbstractAction targetAction = actions.get(action);
         
-        if (targetAction instanceof AbstractExtensionAction) {
-            AbstractExtensionAction targetExt = (AbstractExtensionAction) targetAction;
+        if (targetAction instanceof AbstractExtensionAction targetExt) {
             item = targetExt.menuItem;
             /*
              * set the label properties according to XML
@@ -296,8 +295,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
                 id = x.getLastListenedEventKey();
                 id = id.replaceFirst(UIEventData.name(""), "");
             }
-            if (x instanceof UIActionExtensionAction) {
-                UIActionExtensionAction action = (UIActionExtensionAction) x;
+            if (x instanceof UIActionExtensionAction action) {
                 action.setUIEvent(id);
             }
             addAction(id, x, group);
@@ -394,9 +392,9 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
             //if it had a constructor(blackboard)
             try {
                 Object o1 = c.newInstance(o);
-                if (o1 instanceof GComponentInterface) {
+                if (o1 instanceof GComponentInterface component) {
                     //load was successfull
-                    return ((GComponentInterface) o1).getComponent(blackboard);
+                    return component.getComponent(blackboard);
                 } else {
                     System.err.println("the class " + GComponentInterfaceClassName + " doesn't implement the interface GComponentInterface, so it can't be put on the UI.");
                 }

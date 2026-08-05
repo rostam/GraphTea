@@ -18,6 +18,7 @@ import graphtea.extensions.reports.energy.ResolventEnergy;
 import graphtea.extensions.reports.spectralreports.LaplacianEnergy;
 import graphtea.extensions.reports.spectralreports.SignlessLaplacianEnergy;
 import graphtea.extensions.reports.spectralreports.maxflowmincut.GomoryHuTree;
+import graphtea.extensions.reports.spectralreports.maxflowmincut.FlowEndpoints;
 import graphtea.extensions.reports.spectralreports.maxflowmincut.MaximumFlow;
 import graphtea.extensions.reports.spectralreports.maxflowmincut.MinimumCut;
 import graphtea.extensions.reports.spectralreports.maxflowmincut.one;
@@ -282,14 +283,19 @@ public class YetMoreCoverageTest {
         assertNull(new GomoryHuTree().calculate(k3));
     }
 
+    // These two used to assert calculate() == null, which was the bug rather than the
+    // contract: the call that ran the algorithm was commented out, so the menu entries did
+    // nothing. With no selection they now explain what to select; FlowReportsTest covers the
+    // computed answers.
+
     @Test
-    public void minimumCutCalculateReturnsNull() {
-        assertNull(new MinimumCut().calculate(k3));
+    public void minimumCutWithoutSelectionAsksForEndpoints() {
+        assertEquals(FlowEndpoints.INSTRUCTION, new MinimumCut().calculate(k3));
     }
 
     @Test
-    public void maximumFlowCalculateReturnsNull() {
-        assertNull(new MaximumFlow().calculate(k3));
+    public void maximumFlowWithoutSelectionAsksForEndpoints() {
+        assertEquals(FlowEndpoints.INSTRUCTION, new MaximumFlow().calculate(k3));
     }
 
     // ── one (JAMA demo) ───────────────────────────────────────────────────────

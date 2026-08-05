@@ -25,12 +25,22 @@ public class MinimumCut extends Algorithm implements GraphReportExtension{
 	}
 	
 
+	/**
+	 * Computes the minimum cut between the two selected vertices.
+	 *
+	 * <p>Like Max Flow, this returned null unconditionally because the call that ran the
+	 * algorithm was commented out. It now reads the source and sink from the selection.
+	 *
+	 * @param g the graph to measure
+	 * @return the minimum cut, or a sentence explaining what the user needs to select
+	 */
 	@Override
 	public Object calculate(GraphModel g) {
-		//AlgorithmAnimator algorithmAnimator = new AlgorithmAnimator( gd.getBlackboard());
-		//acceptEventDispatcher(algorithmAnimator);
-		//JOptionPane.showMessageDialog(null, "Minimum cut between source and sink:" + doAlgorithm());
-		return null;
+		FlowEndpoints ends = FlowEndpoints.fromSelection(g);
+		if (ends == null) {
+			return FlowEndpoints.INSTRUCTION;
+		}
+		return new MinCut(g, ends.source(), ends.sink(), false).perform();
 	}
 
 	public int doAlgorithm() {

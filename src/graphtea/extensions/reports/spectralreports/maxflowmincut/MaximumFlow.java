@@ -26,12 +26,25 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 		return "Max Flow";
 	}
 
+	/**
+	 * Computes the maximum flow between the two selected vertices.
+	 *
+	 * <p>This used to return null unconditionally: the only line that ran the algorithm was
+	 * commented out, so the menu entry had never done anything at all. It now reads the source
+	 * and sink from the selection, the one piece of user intent a report can see.
+	 *
+	 * @param g the graph to measure
+	 * @return the maximum flow, or a sentence explaining what the user needs to select
+	 */
 	@Override
 	public Object calculate(GraphModel g) {
-		//AlgorithmAnimator algorithmAnimator = new AlgorithmAnimator( gd.getBlackboard());
-		//acceptEventDispatcher(algorithmAnimator);
-		//JOptionPane.showMessageDialog(null, "Maximum flow between source and sink:" + doAlgorithm());
-		return null;
+		FlowEndpoints ends = FlowEndpoints.fromSelection(g);
+		if (ends == null) {
+			return FlowEndpoints.INSTRUCTION;
+		}
+		// showResult=false: the report window presents the number, so the algorithm should not
+		// also relabel the graph and pop its own dialog.
+		return new PushRelabel(g, ends.source(), ends.sink(), false).perform();
 	}
 
 	public int doAlgorithm() {

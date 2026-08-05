@@ -46,11 +46,12 @@ public class GTabbedGraphPane extends GTabbedPane {
         super.reTab();
         JComponent sc = (JComponent) jtp.getSelectedComponent();
 
-        if (sc instanceof GSplitedPane)
-            sc = ((GSplitedPane) sc).main;
-        if (sc instanceof JGraph) {
-            GraphModel graph = ((JGraph) sc).getGraph();
-            AbstractGraphRenderer graphV = ((JGraph) sc).getGraphView();
+        if (sc instanceof GSplitedPane split) {
+            sc = split.main;
+        }
+        if (sc instanceof JGraph jGraph) {
+            GraphModel graph = jGraph.getGraph();
+            AbstractGraphRenderer graphV = jGraph.getGraphView();
             //set the graph that all actions are work with to the selected graph
             blackboard.setData(GraphAttrSet.name, graph);
             blackboard.setData(AbstractGraphRenderer.EVENT_KEY, graphV);
@@ -102,8 +103,7 @@ public class GTabbedGraphPane extends GTabbedPane {
         for (int i = 0; i < jtp.getTabCount(); i++) {
             if (jtp.getComponentAt(i) == c) {
                 jtp.setTitleAt(i, newVal + "");
-                if (jtp.getTabComponentAt(i) instanceof ButtonTabComponent) {
-                    ButtonTabComponent buttonTabComponent = (ButtonTabComponent) jtp.getTabComponentAt(i);
+                if (jtp.getTabComponentAt(i) instanceof ButtonTabComponent buttonTabComponent) {
                     JLabel l = buttonTabComponent.label;
                     l.setText(l.getText());
                     l.validate();
@@ -195,8 +195,7 @@ public class GTabbedGraphPane extends GTabbedPane {
      */
     public static GHTMLPageComponent getCurrentGHTMLPageComponent(BlackBoard b) {
         Object o = b.getData(CURRENT_COMPONENT);
-        if (o instanceof GSplitedPane) {
-            GSplitedPane g = (GSplitedPane) o;
+        if (o instanceof GSplitedPane g) {
             return g.helper;
         }
         return null;

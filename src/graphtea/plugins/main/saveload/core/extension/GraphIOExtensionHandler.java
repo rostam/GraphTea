@@ -45,9 +45,8 @@ public class GraphIOExtensionHandler implements ExtensionHandler, StorableOnExit
     public AbstractAction handle(BlackBoard b, Object ext) {
         a = null;
         if (!handlingReaders) {
-            if (ext instanceof GraphWriterExtension) {
+            if (ext instanceof GraphWriterExtension gg) {
                 try {
-                    GraphWriterExtension gg = (GraphWriterExtension) ext;
                     a = new GraphWriterExtensionAction(b, gg);
                 } catch (Exception e) {
                     ExceptionHandler.catchException(e);
@@ -55,9 +54,8 @@ public class GraphIOExtensionHandler implements ExtensionHandler, StorableOnExit
                 }
             }
         } else {
-            if (ext instanceof GraphReaderExtension) {
+            if (ext instanceof GraphReaderExtension gg) {
                 try {
-                    GraphReaderExtension gg = (GraphReaderExtension) ext;
                     a = new GraphReaderExtensionAction(b, gg);
                 } catch (Exception e) {
                     ExceptionHandler.catchException(e);

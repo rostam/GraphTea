@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.1" transformSequenceNumber="8">
   <directoryPresets config=".." />
-  <application name="GraphTea" applicationId="4290-9418-0817-4715" mediaDir="." mediaFilePattern="${compiler:sys.shortName}" lzmaCompression="true" shortName="GraphTea" publisher="Graph Theory Software" publisherWeb="graphtheorysoftware.com" version="1.5.4" autoSave="true" macVolumeId="4d886cd642a2b46d" javaMinVersion="17" />
+  <application name="GraphTea" applicationId="4290-9418-0817-4715" mediaDir="." mediaFilePattern="${compiler:sys.shortName}" lzmaCompression="true" shortName="GraphTea" publisher="Graph Theory Software" publisherWeb="graphtheorysoftware.com" version="1.5.4" autoSave="true" macVolumeId="4d886cd642a2b46d" javaMinVersion="21" />
   <files defaultOverwriteMode="1">
     <mountPoints>
       <mountPoint id="23" />
     </mountPoints>
     <entries>
-      <dirEntry mountPoint="23" file="/home/rostam/kara/GraphTeaMain/binary" subDirectory="binary" />
+      <dirEntry mountPoint="23" file="../binary" subDirectory="binary" />
     </entries>
   </files>
   <launchers>
@@ -126,7 +126,7 @@
                   <property name="name" type="string">${compiler:sys.fullName}</property>
                   <property name="winIconFile">
                     <object class="com.install4j.api.beans.ExternalFile">
-                      <string>/home/rostam/kara/GraphTeaMain/graphtea-icon.png</string>
+                      <string>../src/presentation/graphics/GraphTea.ico</string>
                     </object>
                   </property>
                 </serializedBean>
@@ -426,10 +426,10 @@ return console.askYesNo(message, true);
   <mediaSets>
     <unixInstaller name="Unix Installer" id="72" />
     <windows name="Windows" id="26">
-      <jreBundle jreBundleSource="preCreated" includedJre="windows-amd64-17.0.11" />
+      <jreBundle jreBundleSource="preCreated" includedJre="windows-amd64-21.0.11" />
     </windows>
     <macosArchive name="Mac OS X Single Bundle Archive" id="29" launcherId="22">
-      <jreBundle jreBundleSource="preCreated" includedJre="macosx-amd64-17.0.11" />
+      <jreBundle jreBundleSource="preCreated" includedJre="macosx-amd64-21.0.11" />
       <topLevelFiles>
         <symlink name="Move to Applications" target="/Applications" />
       </topLevelFiles>
