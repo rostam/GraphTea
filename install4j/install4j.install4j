@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="8.0.1" transformSequenceNumber="8">
-  <directoryPresets config="/home/rostam/kara/GraphTeaMain" />
-  <application name="GraphTea" applicationId="4290-9418-0817-4715" mediaDir="/home/rostam/kara/GraphTeaMain/install4j" mediaFilePattern="${compiler:sys.shortName}" lzmaCompression="true" shortName="GraphTea" publisher="Graph Theory Software" publisherWeb="graphtheorysoftware.com" version="1.6.0.newrooz" autoSave="true" macVolumeId="4d886cd642a2b46d" javaMinVersion="1.8" />
+  <directoryPresets config=".." />
+  <application name="GraphTea" applicationId="4290-9418-0817-4715" mediaDir="." mediaFilePattern="${compiler:sys.shortName}" lzmaCompression="true" shortName="GraphTea" publisher="Graph Theory Software" publisherWeb="graphtheorysoftware.com" version="1.5.4" autoSave="true" macVolumeId="4d886cd642a2b46d" javaMinVersion="17" />
   <files defaultOverwriteMode="1">
     <mountPoints>
       <mountPoint id="23" />
@@ -426,10 +426,10 @@ return console.askYesNo(message, true);
   <mediaSets>
     <unixInstaller name="Unix Installer" id="72" />
     <windows name="Windows" id="26">
-      <jreBundle jreBundleSource="preCreated" includedJre="windows-amd64-1.8.0_112" />
+      <jreBundle jreBundleSource="preCreated" includedJre="windows-amd64-17.0.11" />
     </windows>
     <macosArchive name="Mac OS X Single Bundle Archive" id="29" launcherId="22">
-      <jreBundle jreBundleSource="preCreated" includedJre="macosx-amd64-1.8.0_112_unpacked" />
+      <jreBundle jreBundleSource="preCreated" includedJre="macosx-amd64-17.0.11" />
       <topLevelFiles>
         <symlink name="Move to Applications" target="/Applications" />
       </topLevelFiles>

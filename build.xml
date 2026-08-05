@@ -199,6 +199,26 @@
                 <include name="graphtea/extensions/**/*.*"/>
             </fileset>
         </copy>
+        <!--
+            The same extension classes, also as a jar.
+
+            At run time Plugger puts binary/extensions on its own class loader, which is enough
+            when only graphtea-main.jar is on the system class path. Native packagers (jpackage,
+            install4j) instead put every jar they find on the system class path, where plugin
+            classes are then loaded parent-first and cannot see loose .class files in a directory
+            the packager copied but never added to the class path. Shipping the extensions as a
+            jar as well puts them somewhere both layouts can reach; the directory above is still
+            what the extension scanner reads to discover them.
+        -->
+        <jar destfile="${dist.dir}/lib/graphtea-extensions.jar">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Description" value="Extensions of GraphTea"/>
+            </manifest>
+            <fileset dir="${build.dir}">
+                <include name="graphtea/extensions/**/*.*"/>
+            </fileset>
+        </jar>
         <jar destfile="${dist.dir}/graphtea-main.jar">
             <manifest>
                 <attribute name="Built-By" value="${user.name}"/>
