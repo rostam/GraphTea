@@ -25,7 +25,6 @@ import java.util.Scanner;
  * @author Azin Azadi
  */
 
-
 public class G6CSVStringLoader implements GraphActionExtension, Parametrizable {
     @Parameter(name = "Graph indices from CSV")
     public String indices = "";
@@ -75,11 +74,9 @@ public class G6CSVStringLoader implements GraphActionExtension, Parametrizable {
         }
     }
 
-
     @Override
     public String getCategory() {
         return "Other Actions";
     }
 }
-
 

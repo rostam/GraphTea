@@ -7,7 +7,6 @@ package graphtea.extensions.reports.basicreports;
 
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
@@ -16,7 +15,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  *  The graph diameter is the greatest distance between any pair of vertices.
  */
 
-@CommandAttitude(name = "graph_diameter", abbreviation = "_gd")
 public class
 Diameter implements GraphReportExtension<Integer> {
 
@@ -40,11 +38,6 @@ Diameter implements GraphReportExtension<Integer> {
     public String getName() {
         return "Graph Diameter";
     }
-
-    public String getDescription() {
-        return "Graph Diameter";
-    }
-
 
 	@Override
 	public String getCategory() {

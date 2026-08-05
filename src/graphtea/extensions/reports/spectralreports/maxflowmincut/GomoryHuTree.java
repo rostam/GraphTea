@@ -43,7 +43,6 @@ public class GomoryHuTree implements GraphReportExtension  {
 		return "Spectral";
 	}
 
-
 /*
  if not caps:
         caps = {}
@@ -93,7 +92,6 @@ public class GomoryHuTree implements GraphReportExtension  {
     for i in range(1,N):
         b[(n[i],n[p[i]])] = f[i]
     return b
-
 
  */
 }

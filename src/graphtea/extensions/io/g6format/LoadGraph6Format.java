@@ -140,5 +140,4 @@ public class LoadGraph6Format implements GraphReaderExtension {
 
         return g;
     }
-
 }

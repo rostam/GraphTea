@@ -18,5 +18,4 @@ public class SampleColoringExtension extends SampleColoring
     public String getDescription() {
         return "Colors vertices by their in-degrees";
     }
-
 }

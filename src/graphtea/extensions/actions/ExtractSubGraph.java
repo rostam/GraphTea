@@ -15,7 +15,6 @@ import graphtea.plugins.main.ui.SubGraphRenderer;
 
 import java.util.HashMap;
 
-
 /**
  * Creates a line graph from the current graph and shows it in a new tab
  *

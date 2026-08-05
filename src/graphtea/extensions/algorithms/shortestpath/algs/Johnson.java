@@ -92,7 +92,6 @@ public class Johnson extends GraphAlgorithm {
 
         }
 
-
         return new int[0][];
     }
 
@@ -103,5 +102,4 @@ public class Johnson extends GraphAlgorithm {
         h = f.iterator().next();
         return h;
     }
-
 }

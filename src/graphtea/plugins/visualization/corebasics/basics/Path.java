@@ -35,5 +35,4 @@ public class Path {
     public void removeFirstVertex() {
         this.pathVertices.remove(0);
     }
-
 }

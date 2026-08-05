@@ -21,7 +21,6 @@ import java.util.Scanner;
  * @author Azin Azadi
  */
 
-
 public class G6StringLoader implements GraphActionExtension, Parametrizable {
     @Parameter(name = "Graph G6 strings")
     public String graphs = "";
@@ -51,11 +50,9 @@ public class G6StringLoader implements GraphActionExtension, Parametrizable {
         }
     }
 
-
     @Override
     public String getCategory() {
         return "Other Actions";
     }
 }
-
 

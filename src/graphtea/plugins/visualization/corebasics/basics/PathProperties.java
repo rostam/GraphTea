@@ -24,7 +24,6 @@ public class PathProperties {
         this.name = name;
     }
 
-
     public int getFirstColor() {
         return firstColor;
     }

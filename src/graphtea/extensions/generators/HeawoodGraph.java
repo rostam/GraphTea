@@ -5,8 +5,6 @@
 
 package graphtea.extensions.generators;
 
-import graphtea.platform.lang.CommandAttitude;
-
 /**
  * Generates the Heawood graph: 14 vertices, 21 edges.
  * The Heawood graph is 3-regular and bipartite.
@@ -16,8 +14,6 @@ import graphtea.platform.lang.CommandAttitude;
  * Every vertex i in the cycle is also joined to vertex (i+5) mod 14
  * (even positions) or (i-5) mod 14 (odd positions).
  */
-@CommandAttitude(name = "generate_heawood", abbreviation = "_g_heawood",
-    description = "Generates the Heawood graph (14 vertices, 21 edges)")
 public class HeawoodGraph extends AbstractFixedGraphGenerator {
 
     private static final int NUM_VERTICES = 14;

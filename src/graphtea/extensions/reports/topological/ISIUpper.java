@@ -4,7 +4,6 @@ import java.util.List;
 import graphtea.extensions.reports.basicreports.GirthSize;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -13,14 +12,9 @@ import java.util.ArrayList;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "ISIBound", abbreviation = "_ISIBound")
 public class ISIUpper implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "ISIUpper";
-    }
-
-    public String getDescription() {
-        return " ISIUpper ";
     }
 
     public RenderTable calculate(GraphModel g) {
@@ -68,7 +62,6 @@ public class ISIUpper implements GraphReportExtension<RenderTable> {
         
         List<Object> v = new ArrayList<>();
 
-
         v.add(m);
         v.add(n);
        // v.add(zif.getInverseSumIndegIndex());
@@ -109,7 +102,6 @@ public class ISIUpper implements GraphReportExtension<RenderTable> {
         //    }
         //  v.add(val);
 
-
         // ISI THeorem 13 proof point...
         //  v.add(m*minDeg/2);
 
@@ -130,10 +122,4 @@ public class ISIUpper implements GraphReportExtension<RenderTable> {
         return "Verification-Degree";
     }
 }
-
-
-
-
-
-
 

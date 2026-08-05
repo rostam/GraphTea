@@ -17,5 +17,4 @@ import java.io.File;
 public interface UnknownExtensionLoader {
 
     Extension load(File file, BlackBoard blackboard);
-
 }

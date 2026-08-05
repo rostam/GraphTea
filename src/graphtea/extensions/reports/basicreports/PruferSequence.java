@@ -7,9 +7,7 @@ package graphtea.extensions.reports.basicreports;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
 
 /**
  * Computes the Prüfer sequence of a labeled tree.
@@ -20,7 +18,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  *
  * The graph must be an unrooted labeled tree (connected, undirected, n-1 edges).
  */
-@CommandAttitude(name = "prufer_sequence", abbreviation = "_ps")
 public class PruferSequence implements GraphReportExtension<String> {
 
     public String calculate(GraphModel g) {

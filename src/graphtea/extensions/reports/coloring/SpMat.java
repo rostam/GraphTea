@@ -65,7 +65,6 @@ public class SpMat extends ArrayList<HashSet<Integer>> {
         return ret;
     }
 
-
     public void set(int i, int j) {
         this.get(i).add(j);
     }
@@ -122,7 +121,6 @@ public class SpMat extends ArrayList<HashSet<Integer>> {
 
         return newMM;
     }
-
 
     public void writeToFile(String fileName) throws IOException {
         FileWriter fw = new FileWriter(fileName);

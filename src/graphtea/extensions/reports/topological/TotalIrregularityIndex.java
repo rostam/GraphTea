@@ -6,7 +6,6 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
@@ -14,14 +13,8 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
  */
 
-
-@CommandAttitude(name = "TotalIrregularityIndex", abbreviation = "_ttirrindex")
 public class TotalIrregularityIndex implements GraphReportExtension<Integer> {
     public String getName() {
-        return "TotalIrregularityIndex";
-    }
-
-    public String getDescription() {
         return "TotalIrregularityIndex";
     }
 

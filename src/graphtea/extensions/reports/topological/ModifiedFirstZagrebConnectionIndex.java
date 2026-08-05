@@ -6,7 +6,6 @@ package graphtea.extensions.reports.topological;
 
 import java.util.List;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -16,14 +15,9 @@ import java.util.ArrayList;
 
  */
 
-@CommandAttitude(name = "modified_first_zagreb_connection_index", abbreviation = "_mfzci")
 public class ModifiedFirstZagrebConnectionIndex implements GraphReportExtension<ArrayList<String>> {
 
     public String getName() {
-        return "Modified First Zagreb Connection Index";
-    }
-
-    public String getDescription() {
         return "Modified First Zagreb Connection Index";
     }
 

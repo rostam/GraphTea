@@ -8,7 +8,6 @@ import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.extensions.reports.others.Eccentricity;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
@@ -16,13 +15,8 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
  */
 
-@CommandAttitude(name = "connective_eccentric_index", abbreviation = "_connective_eccentric_index")
 public class ConnectiveEccentricIndex implements GraphReportExtension<Double> {
     public String getName() {
-        return "Connective Eccentric Index";
-    }
-
-    public String getDescription() {
         return "Connective Eccentric Index";
     }
 

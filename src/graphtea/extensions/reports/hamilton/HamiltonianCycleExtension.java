@@ -4,24 +4,17 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.hamilton;
 
-
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "hamiltonian_cycle", abbreviation = "_hc")
 public class HamiltonianCycleExtension implements GraphReportExtension<SubGraph> {
     public String getName() {
-        return "Hamiltonian Cycle";
-    }
-
-    public String getDescription() {
         return "Hamiltonian Cycle";
     }
 

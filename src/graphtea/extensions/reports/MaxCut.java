@@ -6,7 +6,6 @@ package graphtea.extensions.reports;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.Random;
@@ -14,7 +13,6 @@ import java.util.Random;
  * @author Mostafa Shaeri (m.shaeri@stu.umz.ac.ir)
  */
 
-@CommandAttitude(name = "maxium_Cut", abbreviation = "max_Cut")
 public class MaxCut implements GraphReportExtension<Integer> {
     public String getName() {
         return "Maximum Cut";
@@ -40,7 +38,6 @@ public class MaxCut implements GraphReportExtension<Integer> {
         }
          return getCutWeight(graph);
     }
-
 
         private int getCutWeight(GraphModel graph){
             Vertex[] v =graph.getVertexArray();
@@ -90,9 +87,6 @@ public class MaxCut implements GraphReportExtension<Integer> {
 
               return (SumWeight/2);
         }
-
-
-
 
 	@Override
 	public String getCategory() {

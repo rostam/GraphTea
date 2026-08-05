@@ -16,7 +16,4 @@ public class TotalGraph extends SubdividedGraphBase {
 
     @Override
     public String getName() { return "Total Graph"; }
-
-    @Override
-    public String getDescription() { return "Total Graph"; }
 }

@@ -74,7 +74,6 @@ public class BoundedInteger implements Validator<Integer>, AtomAttribute<Integer
 
     private int value;
 
-
     /**
      * is xx in bounds?
      */

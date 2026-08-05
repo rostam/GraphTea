@@ -40,17 +40,14 @@ public class Cut extends AbstractAction {
         cut(sd, gg, blackboard);
         Paste.status = "Cut";
 
-
     }
 
     public static void cut(SubGraph sd, GraphModel gg, BlackBoard bb) {
         GraphModel g = new GraphModel(gg.isDirected());
         moveToGraph(g, sd.edges, sd.vertices, gg);
 
-
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
         String data = GraphSaveObject.graph2String(g);
-
 
         StringSelection string = new StringSelection(data);
         cb.setContents(string, string);
@@ -99,6 +96,4 @@ public class Cut extends AbstractAction {
         }
 
     }
-
-
 }

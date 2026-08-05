@@ -6,19 +6,13 @@
 package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "hyper_wiener_index", abbreviation = "_windex")
 public class HyperWienerIndex extends PairwiseDistanceReportBase {
 
     public String getName() {
-        return "Hyper Wiener Index";
-    }
-
-    public String getDescription() {
         return "Hyper Wiener Index";
     }
 

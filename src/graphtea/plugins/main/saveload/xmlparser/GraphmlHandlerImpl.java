@@ -21,7 +21,6 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
 
     public HashMap<String, Vertex> vByID = new HashMap<>();
 
-
     public GraphModel g;
     private Vertex curv = null;
     private Edge cure = null;
@@ -44,7 +43,6 @@ public class GraphmlHandlerImpl implements GraphmlHandler {
     public GraphmlHandlerImpl() {
         g = null;
     }
-
 
     public GraphmlHandlerImpl(BlackBoard blackBoard) {
         bb = blackBoard;

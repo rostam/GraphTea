@@ -6,18 +6,12 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.extensions.reports.others.Eccentricity;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "eccentric_wiener_index", abbreviation = "_ewindex")
 public class EccentricWienerIndex extends WienerIndexBase {
     public String getName() {
-        return "Eccentric Wiener Index";
-    }
-
-    public String getDescription() {
         return "Eccentric Wiener Index";
     }
 

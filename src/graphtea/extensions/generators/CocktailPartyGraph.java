@@ -8,7 +8,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -16,11 +15,9 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-
 /**
  * User: root
  */
-@CommandAttitude(name = "generate_kmn", abbreviation = "_g_kmn", description = "generates a 2partite complete graph")
 public class CocktailPartyGraph implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
 
     @Parameter(name = "N")
@@ -39,10 +36,6 @@ public class CocktailPartyGraph implements GraphGeneratorExtension, Parametrizab
 //    }
 
     public String getName() {
-        return "CockTail Party Graph";
-    }
-
-    public String getDescription() {
         return "CockTail Party Graph";
     }
 
@@ -79,7 +72,6 @@ public class CocktailPartyGraph implements GraphGeneratorExtension, Parametrizab
     public GPoint[] getVertexPositions() {
         return PositionGenerators.circle(5, 5, 100000, 100000, 2*n);
     }
-
 
     public GraphModel generateGraph() {
         return GraphGenerator.getGraph(false, this);

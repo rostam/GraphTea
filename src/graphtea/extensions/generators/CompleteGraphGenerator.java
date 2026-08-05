@@ -8,7 +8,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -19,7 +18,6 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 /**
  * @author  azin azadi
  */
-@CommandAttitude(name = "generate_kn", abbreviation = "_g_kn", description = "Generates a complete graph with n vertices")
 public class CompleteGraphGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "n")
     public static Integer n = 3;
@@ -55,7 +53,6 @@ public class CompleteGraphGenerator implements GraphGeneratorExtension, Parametr
     public String getDescription() {
         return "Generates a Complete Graph";
     }
-
 
     public String checkParameters() {
     	if (n < 0) return "n must be positive";

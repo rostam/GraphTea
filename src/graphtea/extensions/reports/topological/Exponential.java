@@ -2,7 +2,6 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -13,14 +12,9 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "Exponential", abbreviation = "_Exponential")
 public class Exponential implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Exponential";
-    }
-
-    public String getDescription() {
-        return " Exponential ";
     }
 
     public RenderTable calculate(GraphModel g) {

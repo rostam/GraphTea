@@ -99,4 +99,3 @@ public class LoadMatrix implements GraphReaderExtension {
 	}
 }
 
-

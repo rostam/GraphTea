@@ -4,36 +4,21 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.topological;
 
-import java.util.List;
-import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.util.ArrayList;
 
 /**
  * @author Ali Rostami
-
  */
+public class RandicIndex extends AbstractStringReport {
 
-@CommandAttitude(name = "randic_index", abbreviation = "_ri")
-public class RandicIndex implements GraphReportExtension<ArrayList<String>> {
+    @Override
     public String getName() {
         return "Randic Index";
     }
 
-    public String getDescription() {
-        return "Randic Index";
+    @Override
+    protected String[] computeLines(ZagrebIndexFunctions zif) {
+        return new String[]{"Randic Index : " + zif.getSecondZagreb(-0.5)};
     }
-
-
-    public ArrayList<String> calculate(GraphModel g) {
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        ArrayList<String> out = new ArrayList<>();
-        out.add("Randic Index : "+zif.getSecondZagreb(-0.5));
-        return out;
-    }
-
 
     @Override
     public String getCategory() {

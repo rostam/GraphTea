@@ -24,11 +24,6 @@ public class CoronaProduct implements GraphActionExtension, Parametrizable {
     }
 
     @Override
-    public String getDescription() {
-        return "Corona Product";
-    }
-
-    @Override
     public void action(GraphData graphData) {
         GTabbedGraphPane gtp = graphData.getBlackboard().getData(GTabbedGraphPane.NAME);
         VertexCorona prod = new VertexCorona(graphData.getBlackboard());
@@ -38,7 +33,6 @@ public class CoronaProduct implements GraphActionExtension, Parametrizable {
         prod.setPositions(g1, g2, g);
         graphData.core.showGraph(g);
     }
-
 
     @Override
     public String getCategory() {

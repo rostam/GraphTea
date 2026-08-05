@@ -6,19 +6,13 @@
 package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "Multiplicative_harary_index", abbreviation = "_Multiplicativeharary")
 public class MultiplicativeHarary extends PairwiseDistanceReportBase {
 
     public String getName() {
-        return "MultiplicativeHarary Index";
-    }
-
-    public String getDescription() {
         return "MultiplicativeHarary Index";
     }
 

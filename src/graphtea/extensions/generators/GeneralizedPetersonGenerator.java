@@ -9,7 +9,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -22,7 +21,6 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
  * @email rostamiev@gmail.com
  */
 
-@CommandAttitude(name = "generate_generalized_peterson", abbreviation = "_g_p", description = "generalized peterson")
 public class GeneralizedPetersonGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "n")
     public static Integer n = 5;
@@ -32,10 +30,6 @@ public class GeneralizedPetersonGenerator implements GraphGeneratorExtension, Pa
     private Vertex[] v;
 
     public String getName() {
-        return "Generalized Peterson";
-    }
-
-    public String getDescription() {
         return "Generalized Peterson";
     }
 

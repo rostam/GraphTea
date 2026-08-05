@@ -269,17 +269,6 @@
                 <include name="graphtea/plugins/algorithmanimator/**/*.*"/>
             </fileset>
         </jar>
-        <jar destfile="${dist.dir}/plugins/commandline.jar">
-            <manifest>
-                <attribute name="Built-By" value="${user.name}"/>
-                <attribute name="plugin-name" value="commandline"/>
-                <attribute name="plugin-version" value="20060104"/>
-                <attribute name="plugin-depends" value="main 20060104"/>
-            </manifest>
-            <fileset dir="${build.dir}">
-                <include name="graphtea/plugins/commandline/**/*.*"/>
-            </fileset>
-        </jar>
         <!--<jar destfile="${dist.dir}/plugins/developplugin.jar">-->
         <!--<manifest>-->
         <!--<attribute name="Built-By" value="${user.name}"/>-->

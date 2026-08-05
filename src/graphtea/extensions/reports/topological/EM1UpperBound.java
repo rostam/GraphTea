@@ -9,7 +9,6 @@ import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -20,13 +19,8 @@ import java.util.Collections;
 
  */
 
-@CommandAttitude(name = "m3finalconj", abbreviation = "_m3conj")
 public class EM1UpperBound implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "EM1 Upper";
-    }
-
-    public String getDescription() {
         return "EM1 Upper";
     }
 
@@ -100,7 +94,6 @@ public class EM1UpperBound implements GraphReportExtension<RenderTable> {
 
         //new1+-----------
        // v.add(M31-(4*maxDeg*maxDeg)-(4*maxDeg2*maxDeg2)-(4*Psi1)+(2*M12)+(4*m));
-
 
         //new2
       //  v.add(M31-(4*maxDeg*maxDeg)-(4*minDeg*minDeg)-(4*Psi1)+(2*M12)+(4*m));

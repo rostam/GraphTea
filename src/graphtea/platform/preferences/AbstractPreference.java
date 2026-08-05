@@ -18,7 +18,6 @@ public abstract class AbstractPreference {
     public String displayName;
     public String category;
 
-
     public AbstractPreference(String name, Preferences pref, String category) {
         this.preferenceName = name;
         this.category = category;
@@ -44,9 +43,7 @@ public abstract class AbstractPreference {
 
     }
 
-
     public abstract void defineAttributes(HashMap<Object, ArrayX<?>> objectValues);
-
 
     public abstract void defineListeners(AttributeListener al);
 }

@@ -8,7 +8,6 @@ package graphtea.extensions.reports.basicreports;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -17,7 +16,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  * @author Mohammad Ali Rostami
  */
 
-@CommandAttitude(name = "num_of_stars", abbreviation = "_noss")
 public class NumOfStars implements GraphReportExtension<Integer>, Parametrizable {
 
     @Parameter(name = "k", description = "The size of star")
@@ -36,14 +34,8 @@ public class NumOfStars implements GraphReportExtension<Integer>, Parametrizable
         return "Number of Stars";
     }
 
-    public String getDescription() {
-        return "Number of Stars";
-    }
-
 	@Override
 	public String getCategory() {
 		return "General";
 	}
-
-
 }

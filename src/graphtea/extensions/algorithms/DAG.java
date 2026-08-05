@@ -18,7 +18,6 @@ import graphtea.platform.lang.Pair;
 
 import java.util.*;
 
-
 /**
  * this class contains some basic algorithms of Directed Acyclic Graphs
  *
@@ -186,7 +185,6 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
                 cycleStart = e.target;
                 cycleEnd = e.source;
 
-
                 current = cycleEnd;
                 LinkedList<Vertex> ret = new LinkedList<>();
                 ret.addFirst(current);
@@ -246,7 +244,4 @@ public class DAG extends Algorithm implements AutomatedAlgorithm {
 
     public void doAlgorithm() {
     }
-
-
 }
-

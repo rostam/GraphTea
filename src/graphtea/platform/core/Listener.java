@@ -18,6 +18,4 @@ public interface Listener<T> {
      * @param key The key
      */
     void keyChanged(String key, T value);
-
-
 }

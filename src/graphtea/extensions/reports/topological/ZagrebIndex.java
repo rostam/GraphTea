@@ -6,7 +6,6 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.reports.extension.GraphReportExtension;
@@ -19,7 +18,6 @@ import java.util.List;
 
  */
 
-@CommandAttitude(name = "zagreb_index", abbreviation = "_zi")
 public class ZagrebIndex implements GraphReportExtension<RenderTable>, Parametrizable {
     public String getName() {
         return "All Zagreb Indices";
@@ -27,10 +25,6 @@ public class ZagrebIndex implements GraphReportExtension<RenderTable>, Parametri
 
     @Parameter(name = "Alpha", description = "")
     public Double alpha = 1.0;
-
-    public String getDescription() {
-        return "All Zagreb Indices";
-    }
 
     public RenderTable calculate(GraphModel g) {
         RenderTable renderTable = new RenderTable();
@@ -50,7 +44,6 @@ public class ZagrebIndex implements GraphReportExtension<RenderTable>, Parametri
         renderTable.add(values);
         return renderTable;
     }
-
 
     @Override
 	public String getCategory() {

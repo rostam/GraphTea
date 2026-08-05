@@ -8,14 +8,12 @@ package graphtea.extensions.reports.spectralreports;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author M. Ali Rostami
  */
 
-@CommandAttitude(name = "max_deg_energy", abbreviation = "_max_deg_energy")
 public class MaxDegreeEnergy implements GraphReportExtension<Double> {
     public Double calculate(GraphModel g) {
         Matrix m = AlgorithmUtils.getMaxDegreeAdjacencyMatrix(g);
@@ -23,10 +21,6 @@ public class MaxDegreeEnergy implements GraphReportExtension<Double> {
     }
 
     public String getName() {
-        return "Maximum Degree Energy";
-    }
-
-    public String getDescription() {
         return "Maximum Degree Energy";
     }
 

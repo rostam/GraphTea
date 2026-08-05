@@ -7,14 +7,12 @@ package graphtea.extensions.reports.basicreports;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Mohammad Ali Rostami
  */
 
-@CommandAttitude(name = "num_of_triangles", abbreviation = "_notri")
 public class NumOfTriangles implements GraphReportExtension<Integer> {
     public Integer calculate(GraphModel g) {
         return getNumOfTriangles(g);
@@ -37,10 +35,6 @@ public class NumOfTriangles implements GraphReportExtension<Integer> {
     }
 
     public String getName() {
-        return "Number Of Triangles";
-    }
-
-    public String getDescription() {
         return "Number Of Triangles";
     }
 

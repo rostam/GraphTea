@@ -8,8 +8,5 @@ public class TensorProduct extends GProductAction {
     public String getName() { return "Tensor Product"; }
 
     @Override
-    public String getDescription() { return "Tensor Product"; }
-
-    @Override
     protected GProduct createProduct() { return new GTensorProduct(); }
 }

@@ -36,6 +36,7 @@ public class GFrame extends javax.swing.JFrame {
     private GSidebar gSidebar1;
     private GToolbar gToolbar1;
     private GStatusBar gStatusbar1;
+    private CommandPalette commandPalette;
 
 
     /**
@@ -47,7 +48,16 @@ public class GFrame extends javax.swing.JFrame {
 
         initComponents();
         gToolbar1.createToolBar();
+        commandPalette = new CommandPalette(this, gMenuBar2);
+        commandPalette.installShortcut(getRootPane());
         validate();
+    }
+
+    /**
+     * @return the Ctrl+K command search over the menu bar
+     */
+    public CommandPalette getCommandPalette() {
+        return commandPalette;
     }
 
     /**

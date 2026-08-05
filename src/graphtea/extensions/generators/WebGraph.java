@@ -9,7 +9,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -22,7 +21,6 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
  *
  * https://mathworld.wolfram.com/WebGraph.html
  */
-@CommandAttitude(name = "generate_webgraph", abbreviation = "_g_webg", description = "generates a Web graph of order n")
 public class WebGraph implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
 
 	@Parameter(name = "n")

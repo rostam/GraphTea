@@ -122,7 +122,6 @@ public class CorePluginMethods implements PluginMethods {
         DeleteVertex.doJob(g, v);
     }
 
-
 //*********************   TABBED EDITING      *******************************
 
     /**
@@ -213,8 +212,8 @@ public class CorePluginMethods implements PluginMethods {
      * shows the givve page in a new dialog,
      * Note that the used html viewer is GHTMLPageComponent, which is internally
      * uses a JEditorPane, but the blackboard in dialog will be a new blackboard,
-     * (in the case of you want to use "bsh:" feature of GHTMLPageComponent,
-     * for this use showPageInDialog(URL, blackboard).
+     * (in the case that you want the hyperlink handlers of GHTMLPageComponent to act on the
+     * main blackboard, use showPageInDialog(URL, blackboard) instead).
      */
     public static void showPageInDialog(String pageUrl, String title) {
         BlackBoard blackboard = new BlackBoard();
@@ -244,5 +243,4 @@ public class CorePluginMethods implements PluginMethods {
         f.validate();
         f.setResizable(false);
     }
-
 }

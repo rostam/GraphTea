@@ -46,8 +46,4 @@ public class SerializedAttrSet<Binding extends AttributeSet> implements Serializ
     public boolean equals(Object obj) {
         return obj instanceof SerializedAttrSet && attrs.equals(((SerializedAttrSet) obj).attrs);
     }
-
-
-
-
 }

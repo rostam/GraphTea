@@ -56,6 +56,4 @@ public class CopyAsMatrix extends AbstractAction {
         g.insertVertices(sd.vertices);
         g.insertEdges(sd.edges);
     }
-
-
 }

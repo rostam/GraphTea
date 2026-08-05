@@ -26,7 +26,7 @@ import java.util.HashMap;
  * It's main capability is to handle hyperlinks,
  * the default operation when user clicks on a link is to open the link,
  * It is also possible to add other modes, for example when the
- * link address is: "command?handler=BSH" it is possible to run the command,
+ * link address is: "someClassName?handler=PerformExtension" it is possible to run an extension,
  * for this a HyperlinkHandler should be registered.
  * One simple handler is also added, if the link address is "http://www.google.com/search?q=Graph&handler=external", google(your url)
  * will be opened in an external viewer like FireFox
@@ -37,7 +37,6 @@ import java.util.HashMap;
  * to make it compatible with http urls)
  *
  * @author Azin Azadi
- * @see graphtea.plugins.commandline.ShellHyperlinkHandler
  */
 public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener {
     private final BlackBoard blackboard;
@@ -112,9 +111,8 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
     }
 
     /**
-     * @param protocol for example in "BSH:" protocol will be "BSH"
+     * @param protocol for example in "PerformExtension:" protocol will be "PerformExtension"
      * @param h The hyperlink handler
-     * @see graphtea.plugins.commandline.ShellHyperlinkHandler
      */
     public static void registerHyperLinkHandler(String protocol, HyperlinkHandler h) {
         handlers.put(protocol.toUpperCase(), h);

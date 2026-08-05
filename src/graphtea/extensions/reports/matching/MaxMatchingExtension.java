@@ -4,11 +4,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.matching;
 
-
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -18,13 +16,8 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "maxium_matching", abbreviation = "_max_match")
 public class MaxMatchingExtension implements GraphReportExtension<List<Object>> {
     public String getName() {
-        return "Maximum Matching";
-    }
-
-    public String getDescription() {
         return "Maximum Matching";
     }
 

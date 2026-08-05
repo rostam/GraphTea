@@ -87,7 +87,6 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
             ind_sets.add(indset);
         }
 
-
         new IndSetsDialog(ind_sets,"All Independent Sets I","");
         step("<BR>Now, the nth power of I is computed in each step, until " +
                 "all vertices of G are seen.");
@@ -149,7 +148,6 @@ public class IndSetProductColoring extends GraphAlgorithm implements AlgorithmEx
         return ret;
     }
 
-
     @Override
     public String getName() {
         return "Inclusion-Exclusion Coloring";
@@ -190,5 +188,4 @@ class IndSetsDialog extends JDialog {
         this.setVisible(true);
         this.validate();
     }
-
 }

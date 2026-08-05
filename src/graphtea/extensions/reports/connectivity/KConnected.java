@@ -8,7 +8,6 @@ package graphtea.extensions.reports.connectivity;
 import java.util.List;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ import java.util.LinkedList;
  * @author M. Ali Rostami
  */
 
-@CommandAttitude(name = "k_vertex_connectivity", abbreviation = "_kvc")
 public class KConnected implements GraphReportExtension<Integer> {
 
     public Integer calculate(GraphModel g) {
@@ -130,11 +128,6 @@ public class KConnected implements GraphReportExtension<Integer> {
     public String getName() {
         return "Vertex Connectivity";
     }
-
-    public String getDescription() {
-        return "Vertex Connectivity";
-    }
-
 
     @Override
     public String getCategory() {

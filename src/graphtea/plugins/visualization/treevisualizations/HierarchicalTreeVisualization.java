@@ -31,7 +31,6 @@ public class HierarchicalTreeVisualization implements VisualizationExtension {
         }
     }
 
-
     static GraphModel g;
 
     /**

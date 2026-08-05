@@ -5,79 +5,27 @@
 
 package graphtea.extensions.reports.spectralreports;
 
-import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.library.util.Complex;
-import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author M. Ali Rostami
  */
+public class KirchhoffIndex extends AbstractKirchhoffIndex {
 
-@CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class KirchhoffIndex implements GraphReportExtension<String> {
-
-    double round(double value, int decimalPlace) {
-        double power_of_ten = 1;
-        while (decimalPlace-- > 0)
-            power_of_ten *= 10.0;
-        return Math.round(value * power_of_ten)
-                / power_of_ten;
+    @Override
+    protected Matrix getMatrix(GraphModel g) {
+        return AlgorithmUtils.getLaplacian(g.getWeightedAdjacencyMatrix());
     }
 
-    public String calculate(GraphModel g) {
-        try {
-            Matrix B = g.getWeightedAdjacencyMatrix();
-            Matrix A = AlgorithmUtils.getLaplacian(B);
-            EigenvalueDecomposition ed = A.eig();
-            double[] rv = ed.getRealEigenvalues();
-            double[] iv = ed.getImagEigenvalues();
-            double maxrv=0;
-            double minrv=1000000;
-            for(double value : rv) {
-                double tval = Math.abs(value);
-                if(maxrv < tval) maxrv=tval;
-                if(minrv > tval) minrv=tval;
-            }
-            double sum = 0;
-            double sum_i = 0;
-            for (double value : rv)
-                if (Math.abs(round(value, 6)) != 0) {
-                    sum += 1 / Math.abs(value);
-                }
-            sum *= g.numOfVertices();
-            for (double v : iv) sum_i += Math.abs(v);
-
-            if (sum_i != 0) {
-                //here is completely false
-                sum_i=0;
-                Complex num = new Complex(0,0);
-//                for(int i=0;i < iv.length;i++) {
-//                    Complex tmp = new Complex(rv[i], iv[i]);
-//                    System.out.println(tmp);
-//                    tmp.pow(new Complex(power,0));
-//                    System.out.println(power);
-//                    System.out.println(tmp);
-//                    num.plus(tmp);
-//                }
-                return "" + round(num.re(), 5) + " + "
-                        + round(num.im(), 5) + "i";
-            } else {
-                return "" + round(sum, 5);
-            }
-        } catch (Exception ignored) {
-        }
-        return null;
+    @Override
+    protected double getMultiplier(GraphModel g) {
+        return g.numOfVertices();
     }
 
+    @Override
     public String getName() {
-        return "Kirchhoff Index";
-    }
-
-    public String getDescription() {
         return "Kirchhoff Index";
     }
 

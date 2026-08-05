@@ -8,8 +8,5 @@ public class SymDiff extends GProductAction {
     public String getName() { return "Symmetric Difference"; }
 
     @Override
-    public String getDescription() { return "Symmetric Difference"; }
-
-    @Override
     protected GProduct createProduct() { return new GSymmDiff(); }
 }

@@ -22,15 +22,12 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-//@CommandAttitude(name = "generate_tree" , abbreviation = "_g_t"
-//        ,description = "generate a tree with depth and degree")
 public class NNGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "Number of hidden levels")
     public static Integer hidden = 2;
 
     @Parameter(name = "Size of hidden levels")
     public static Integer hiddenSize = 2;
-
 
     public String getName() {
         return "Neural Network";
@@ -84,8 +81,6 @@ public class NNGenerator implements GraphGeneratorExtension, Parametrizable, Sim
         ret[ret.length - 1] = new GPoint(35,h/2);
         return ret;
     }
-
-
 
     public GraphModel generateGraph() {
         return GraphGenerator.getGraph(true, this);

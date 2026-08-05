@@ -6,14 +6,12 @@ package graphtea.extensions.reports.basicreports;
 
 import graphtea.extensions.reports.Partitioner;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author azin azadi
  */
 
-@CommandAttitude(name = "num_of_inds", abbreviation = "_indssize")
 public class NumOfIndSets implements GraphReportExtension<Integer> {
     public String getName() {
         return "Number of independent sets plus empty set";

@@ -7,16 +7,13 @@ package graphtea.extensions.reports.spectralreports;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author M. Ali Rostami
  */
-@CommandAttitude(name = "distance_energy", abbreviation = "_distener")
 public class DistanceEnergy implements GraphReportExtension<Double> {
     public String getName() { return "Distance Energy"; }
-    public String getDescription() { return "Distance Energy"; }
     public String getCategory() { return "Spectral- Energies"; }
 
     public Double calculate(GraphModel g) {

@@ -17,7 +17,6 @@ public class NotifiableAttributeSetImpl extends AttributeSetImpl implements Noti
 
     CopyOnWriteArrayList<AttributeListener> globalListeners = new CopyOnWriteArrayList<>();
 
-
     public void put(String name, Object value) {
         Object old = get(name);
         super.put(name, value);

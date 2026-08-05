@@ -18,5 +18,4 @@ public class TopologicalSortAnim extends DAG
     public String getDescription() {
         return "Calculates the topological sort sequence of vertices.";
     }
-
 }

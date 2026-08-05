@@ -12,6 +12,4 @@ public interface AlgorithmExtension
         extends Extension, AutomatedAlgorithm {
     //Create a class that extends this class and fill these methods:
     //getName, getDescription
-
-
 }

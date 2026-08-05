@@ -4,7 +4,6 @@ import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -14,14 +13,9 @@ import java.util.Collections;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "finalm2conj", abbreviation = "_finalm2conj")
 public class FinalNewM2Lower implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Final New M2 Lower";
-    }
-
-    public String getDescription() {
-        return " Final New M2 Lower ";
     }
 
     public RenderTable calculate(GraphModel g) {
@@ -117,7 +111,6 @@ public class FinalNewM2Lower implements GraphReportExtension<RenderTable> {
                 minDeg*minDeg +
                 (Math.pow(2*m-maxDeg-minDeg,2)/(n-2)));
 
-
         //illc
         v.add(Math.pow(2*m,2)/(n));
         ret.add(v);
@@ -130,11 +123,4 @@ public class FinalNewM2Lower implements GraphReportExtension<RenderTable> {
         return "Verification-Degree";
     }
 }
-
-
-
-
-
-
-
 

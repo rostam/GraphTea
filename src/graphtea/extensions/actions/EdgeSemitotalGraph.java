@@ -15,7 +15,4 @@ public class EdgeSemitotalGraph extends SubdividedGraphBase {
 
     @Override
     public String getName() { return "Edge Semitotal Graph"; }
-
-    @Override
-    public String getDescription() { return "Edge Semitotal Graph"; }
 }

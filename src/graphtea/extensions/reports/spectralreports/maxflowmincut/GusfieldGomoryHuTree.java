@@ -68,7 +68,6 @@ public class GusfieldGomoryHuTree {
 		showResult();
 		return GHTree;
 
-
 	}
 
 	public void showResult()
@@ -96,8 +95,6 @@ public class GusfieldGomoryHuTree {
 		
 	}
 }
-
-
 
 /*
  * 

@@ -10,6 +10,7 @@ import graphtea.graph.atributeset.GraphAttrSet;
 import graphtea.graph.atributeset.GraphNotifiableAttrSet;
 import graphtea.graph.event.GraphSelectData;
 import graphtea.graph.graph.AbstractGraphRenderer;
+import graphtea.graph.graph.EmptyCanvasHint;
 import graphtea.graph.graph.FastRenderer;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.attribute.AttributeListener;
@@ -70,6 +71,9 @@ public class GTabbedGraphPane extends GTabbedPane {
      */
     public void addGraph(GraphModel g) {
         AbstractGraphRenderer v = new FastRenderer(g, blackboard);
+        // An empty canvas gives no clue that clicking it does anything; the hint removes
+        // itself as soon as the graph has a vertex.
+        v.addPostPaintHandler(new EmptyCanvasHint(v));
         final JGraph c = new JGraph(g, v);// JGraph.getNewComponent(blackboard);
 
         if (g.getLabel() == null)
@@ -160,19 +164,20 @@ public class GTabbedGraphPane extends GTabbedPane {
     }
 
     /**
-     * shows a message and hide it after a given time
+     * Shows a message and hides it again after the given time.
+     *
+     * @param message    the message
+     * @param b          the blackboard
+     * @param timeMillis how long to leave the message up
+     * @param formatIt   whether to wrap the message in GraphTea's HTML formatting
      */
     public static void showTimeNotificationMessage(String message, final BlackBoard b, final long timeMillis, boolean formatIt) {
         showNotificationMessage(message, b, formatIt);
-        new Thread(() -> {
-            try {
-                Thread.sleep(timeMillis + 10000);
-                hideNotificationMessage(b);
-            } catch (InterruptedException e) {
-                ExceptionHandler.catchException(e);
-            }
-        }).start();
-
+        // The delay used to be timeMillis + 10000, so a message asked to show for four
+        // seconds sat there for fourteen and outlived whatever it was describing.
+        Timer timer = new Timer((int) Math.max(0, timeMillis), e -> hideNotificationMessage(b));
+        timer.setRepeats(false);
+        timer.start();
     }
 
     static String htmlFormat(String message) {

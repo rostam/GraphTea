@@ -27,11 +27,6 @@ public class GraphGeneratorExtensionAction extends AbstractExtensionAction<Graph
     }
 
     @Override
-    public GraphModel performExtensionInCommandLine() {
-        return GraphGenerator.generateGraphInRect(blackboard,getTarget(), new Rectangle(100, 100, 600,600));
-    }
-
-    @Override
     public void performExtension() {
 //        GraphModel g = blackboard.get(GraphAttrSet.name);
         GraphGenerator.generateInRectangularBounds(getTarget(), blackboard);
@@ -41,5 +36,4 @@ public class GraphGeneratorExtensionAction extends AbstractExtensionAction<Graph
     public GraphModel generateGraph() {
         return GraphGenerator.getGraph(false, (SimpleGeneratorInterface) getTarget());
     }
-
 }

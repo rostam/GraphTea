@@ -49,15 +49,35 @@ public class KeyBoardShortCutProvider {
         return priLabel.charAt(index);
     }
 
-    //todo: provide the way that defining accelerator
-    // for keys like delete, insert, ... be possible, by iterating over integers
-    // and KeyEvent.getKeyText, or probably the reflection
+    /**
+     * Turns the key part of an accelerator string into a {@link KeyEvent} code.
+     *
+     * <p>This only ever read a single character, so an accelerator could not name a key that
+     * has no printable character. Delete, Escape and the function keys were simply unavailable,
+     * which is why the one shortcut users reach for most &mdash; Delete to remove a selection
+     * &mdash; had never been wired up.
+     *
+     * @param accelerator an accelerator such as {@code "control+S"}, {@code "DELETE"} or {@code "F2"}
+     * @return the key code, or 0 when the key cannot be resolved
+     */
     static int extractKeyEvent(String accelerator) {
-        if (!accelerator.equals("+")) {
-            int i = accelerator.lastIndexOf('+') + 1;
-            return accelerator.charAt(i);
-        } else
+        if (accelerator.equals("+")) {
             return KeyEvent.VK_PLUS;
+        }
+        String key = accelerator.substring(accelerator.lastIndexOf('+') + 1).trim();
+        if (key.isEmpty()) {
+            // Trailing '+' means the plus key itself, as in "control++".
+            return KeyEvent.VK_PLUS;
+        }
+        if (key.length() == 1) {
+            return Character.toUpperCase(key.charAt(0));
+        }
+        try {
+            return KeyEvent.class.getField("VK_" + key.toUpperCase()).getInt(null);
+        } catch (ReflectiveOperationException | RuntimeException e) {
+            System.err.println("Unknown accelerator key: " + accelerator);
+            return 0;
+        }
     }
 }
 

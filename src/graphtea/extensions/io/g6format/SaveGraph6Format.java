@@ -45,6 +45,4 @@ public class SaveGraph6Format implements GraphWriterExtension {
     public String getDescription() {
         return "Graph6 File Format";
     }
-
-
 }

@@ -8,18 +8,15 @@ package graphtea.extensions.reports.basicreports;
 import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-
 /**
  * @author Mohammad Ali Rostami
  */
 
-@CommandAttitude(name = "vertices_degree_list", abbreviation = "_vdl")
 public class VerticesDegreesList implements GraphReportExtension<ArrayList<Integer>> {
     public ArrayList<Integer> calculate(GraphModel g) {
         ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);

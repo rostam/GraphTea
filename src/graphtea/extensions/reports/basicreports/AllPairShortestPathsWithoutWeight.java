@@ -41,7 +41,6 @@ public class AllPairShortestPathsWithoutWeight implements GraphReportExtension<R
         return ret;
     }
 
-
     @Override
     public String getCategory() {
         return "General";
@@ -49,11 +48,6 @@ public class AllPairShortestPathsWithoutWeight implements GraphReportExtension<R
 
     @Override
     public String getName() {
-        return "All pair shortest paths without weight";
-    }
-
-    @Override
-    public String getDescription() {
         return "All pair shortest paths without weight";
     }
 }

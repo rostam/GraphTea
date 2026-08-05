@@ -7,16 +7,13 @@ package graphtea.extensions.reports.spectralreports;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author M. Ali Rostami
  */
-@CommandAttitude(name = "transmission_energy", abbreviation = "_transener")
 public class TransmissionEnergy implements GraphReportExtension<Double> {
     public String getName() { return "Transmission Energy"; }
-    public String getDescription() { return "Transmission Energy"; }
     public String getCategory() { return "Spectral- Energies"; }
 
     public Double calculate(GraphModel g) {

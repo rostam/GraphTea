@@ -25,7 +25,6 @@ import java.util.*;
 public class AlgorithmUtils {
     public final static int Max_Int = 2100000000;
 
-
     /**
      * sets all vertex colors to 0.
      */
@@ -296,7 +295,6 @@ public class AlgorithmUtils {
         double qx = v2p.x - rootp.x;
         double qy = v2p.y - rootp.y;
 
-
         double pDOTq = px * qx + py * qy;
         double plength = getLength(px, py);
         double qlength = getLength(qx, qy);
@@ -417,7 +415,6 @@ public class AlgorithmUtils {
                 / power_of_ten;
     }
 
-
     public static double[] round (double[] array, int prec)
     {
         for(int i=0;i<array.length;i++)
@@ -446,48 +443,21 @@ public class AlgorithmUtils {
         return res.toString();
     }
 
-    /**
-     * Computes the sum of the eigenvalues of A
-     *
-     * @param A the given matrix
-     * @return the sum of the eigenvalues of A
-     */
-    public static double sumOfExpOfEigenValues(Matrix A) {
-        EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
+    private static double sumOfTransformedEigenvalues(Matrix A, java.util.function.DoubleUnaryOperator transform) {
+        double[] rv = A.eig().getRealEigenvalues();
         double sum = 0;
-
-        //positiv RV
-        Double[] prv = new Double[rv.length];
-        for (int i = 0; i < rv.length; i++) {
-            prv[i] = Math.exp(rv[i]);
-            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
-            sum += prv[i];
+        for (double v : rv) {
+            sum += round(transform.applyAsDouble(v), 5);
         }
-
         return sum;
     }
 
-    /**
-     * Computes the sum of the eigenvalues of A
-     *
-     * @param A the given matrix
-     * @return the sum of the eigenvalues of A
-     */
+    public static double sumOfExpOfEigenValues(Matrix A) {
+        return sumOfTransformedEigenvalues(A, Math::exp);
+    }
+
     public static double sumOfEigenValues(Matrix A) {
-        EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double sum = 0;
-
-        //positiv RV
-        Double[] prv = new Double[rv.length];
-        for (int i = 0; i < rv.length; i++) {
-            prv[i] = Math.abs(rv[i]);
-            prv[i] = (double)Math.round(prv[i] * 100000d) / 100000d;
-            sum += prv[i];
-        }
-
-        return sum;
+        return sumOfTransformedEigenvalues(A, Math::abs);
     }
 
     /**
@@ -550,6 +520,29 @@ public class AlgorithmUtils {
             }
         }
         return res.toString();
+    }
+
+    /**
+     * Returns eigenvalues (formatted as "re + im·i" or plain real) and eigenvectors
+     * of {@code a}, as a list of display strings, ready to append to a spectrum report.
+     */
+    public static ArrayList<String> formatEigenDecomposition(Matrix a) {
+        ArrayList<String> result = new ArrayList<>();
+        EigenvalueDecomposition ed = a.eig();
+        double[] rv = ed.getRealEigenvalues();
+        double[] iv = ed.getImagEigenvalues();
+        for (int i = 0; i < rv.length; i++) {
+            if (iv[i] != 0) {
+                result.add(round(rv[i], 5) + " + " + round(iv[i], 5) + "i");
+            } else {
+                result.add(String.valueOf(round(rv[i], 5)));
+            }
+        }
+        result.add("Eigen Vectors:\n");
+        for (double[] vec : ed.getV().getArray()) {
+            result.add(Arrays.toString(round(vec, 5)));
+        }
+        return result;
     }
 
     // get kth minimum degree
@@ -646,7 +639,6 @@ public class AlgorithmUtils {
             g2.addVertex(tmp);
         }
 
-
        for(Vertex v1 : g1.getVertexArray()) {
            for(Vertex v2 : g1.getVertexArray()) {
                if(v1.getId() != v2.getId()) {
@@ -728,7 +720,6 @@ public class AlgorithmUtils {
         return adj;
     }
 
-
     /**
      * Undirected Laplacian.
      *
@@ -800,7 +791,6 @@ public class AlgorithmUtils {
 
         return D;
     }
-
 
     public static Matrix getSignlessLaplacian(Matrix A) {
         //double[][] res=new double[g.numOfVertices()][g.numOfVertices()];
@@ -934,5 +924,30 @@ public class AlgorithmUtils {
             }
         }
         return ecc;
+    }
+
+    public static int eccentricityOf(GraphModel g, int v, int[][] dist) {
+        int max = 0;
+        for (int j = 0; j < g.getVerticesCount(); j++) {
+            if (max < dist[v][j]) {
+                max = dist[v][j];
+            }
+        }
+        return max;
+    }
+
+    public static Matrix eccentricityMatrix(GraphModel g, int[][] dist) {
+        int n = g.getVerticesCount();
+        Matrix m = new Matrix(n, n);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                int ei = eccentricityOf(g, i, dist);
+                int ej = eccentricityOf(g, j, dist);
+                if (dist[i][j] == Math.min(ei, ej)) {
+                    m.set(i, j, dist[i][j]);
+                }
+            }
+        }
+        return m;
     }
 }

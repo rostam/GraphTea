@@ -10,14 +10,9 @@ import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
 import javax.swing.*;
 
-
 public class More implements AlgorithmExtension {
 
     public String getName() {
-        return "more";
-    }
-
-    public String getDescription() {
         return "more";
     }
 
@@ -27,5 +22,4 @@ public class More implements AlgorithmExtension {
 
     public void acceptEventDispatcher(EventDispatcher e) {
     }
-
 }

@@ -25,9 +25,20 @@ public class ChromaticNumber implements GraphReportExtension<Integer>, ColoringL
     int ct;
     boolean found;
 
+    /**
+     * @param g the graph to colour
+     * @return the least number of colours needed to properly colour {@code g}
+     */
     public Integer calculate(GraphModel g) {
+        if (g == null || g.getVerticesCount() == 0) {
+            return 0;
+        }
         p = new Partitioner(g);
-        ct = 1;
+        // Partitioner.findAllPartitionings(t) hands out colours t, t-1, … 1 and 0, so it
+        // answers "can this be coloured with t + 1 colours?". Starting the search at 1 meant
+        // the smallest answer it could ever give was 2, and every edgeless graph — which needs
+        // exactly one colour — was reported as needing two.
+        ct = 0;
         found = false;
         while (!found) {
             found = isColorable(ct++);

@@ -107,4 +107,3 @@ public class LocalSF extends AbstractAction {
     private GraphModel g;
 }
 
-

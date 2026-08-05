@@ -14,7 +14,6 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
-
 /**
  * Creates a line graph from the current graph and shows it in a new tab
  *
@@ -70,11 +69,6 @@ public class BarycentricSubdivisionGraph implements GraphActionExtension, Parame
     public String getName() {
         return "Barycentric Subdivision Graph";
     }
-
-    public String getDescription() {
-        return "Barycentric Subdivision Graph";
-    }
-
 
     @Override
     public String getCategory() {

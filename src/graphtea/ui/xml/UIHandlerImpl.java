@@ -194,8 +194,14 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
             //todo: BUG the mnemotic doesn't set
             KeyBoardShortCut shortcut = null;
             String desc =targetExt.getTarget().getDescription();
-            if(desc != null && desc.contains("HotKey:(")) {
-                String tmp = desc.substring(desc.indexOf("HotKey:(") + 1);
+            if (accel != null) {
+                // The accelerator attribute in the XML was read for ordinary menu items but
+                // silently dropped for extension-backed ones, so a shortcut could only be
+                // given to an extension by embedding "HotKey:(...)" in its user-visible
+                // description. Delete Selection is the obvious casualty.
+                shortcut = KeyBoardShortCutProvider.registerKeyBoardShortcut(accel, label, index);
+            } else if(desc != null && desc.contains("HotKey:(")) {
+                String tmp = desc.substring(desc.indexOf("HotKey:(") + "HotKey:(".length());
                 tmp = tmp.substring(0,tmp.indexOf(")"));
                 shortcut = KeyBoardShortCutProvider.registerKeyBoardShortcut(tmp, label, index);
             }

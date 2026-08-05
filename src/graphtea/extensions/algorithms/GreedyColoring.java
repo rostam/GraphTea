@@ -56,9 +56,4 @@ public class GreedyColoring extends GraphAlgorithm implements AlgorithmExtension
     public String getName() {
         return "Greedy Coloring";
     }
-
-    @Override
-    public String getDescription() {
-        return "Greedy Coloring";
-    }
 }

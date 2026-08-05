@@ -5,7 +5,6 @@
 
 package graphtea.extensions.algorithms.shortestpath.algs;
 
-
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 

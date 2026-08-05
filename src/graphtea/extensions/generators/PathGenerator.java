@@ -8,7 +8,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -20,7 +19,6 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
  * @author azin azadi
 
  */
-@CommandAttitude(name = "generate_pn", abbreviation = "_g_pn")
 public class PathGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "N")
     public static Integer n = 10;
@@ -64,7 +62,6 @@ public class PathGenerator implements GraphGeneratorExtension, Parametrizable, S
     public GraphModel generateGraph() {
         return GraphGenerator.getGraph(false, this);
     }
-
 
     /**
      * generates a Path Graph with given parameters

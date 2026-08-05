@@ -8,7 +8,6 @@ import graphtea.extensions.reports.Partitioner;
 import graphtea.extensions.reports.SubSetListener;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayDeque;
@@ -17,14 +16,16 @@ import java.util.ArrayDeque;
  * @author azin azadi
  */
 
-@CommandAttitude(name = "num_of_inds", abbreviation = "_indssize")
 public class MaxOfIndSets implements GraphReportExtension<Integer> {
+    // Both the name and the description were copied from NumOfIndSets and describe a count of
+    // independent sets. findMaxIndSet returns the size of the largest one, so the report was
+    // answering a different question from the one its menu entry asked.
     public String getName() {
-        return "Number of independent sets plus empty set";
+        return "Maximum Independent Set Size";
     }
 
     public String getDescription() {
-        return "Number of independent sets in the Graph";
+        return "Number of vertices in the largest independent set of the graph";
     }
 
     public Integer calculate(GraphModel g) {

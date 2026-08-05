@@ -14,13 +14,10 @@ public class EdgeSaveObject implements Serializable {
     int source, target;
     SerializedAttrSet<EdgeAttrSet> attrs;
 
-
     @Override
     public boolean equals(Object obj) {
         return obj instanceof EdgeSaveObject && attrs.equals(((EdgeSaveObject) obj).attrs);
     }
-
-
 
     public EdgeSaveObject(Edge e) {
         source = e.source.getId();

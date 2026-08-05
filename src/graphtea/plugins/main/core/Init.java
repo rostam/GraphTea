@@ -67,7 +67,8 @@ public class Init implements graphtea.platform.plugin.PluginInterface, StorableO
 
             StaticUtils.setFromStringProvider(PolygonArrow.class.getName(), new ArrowHandler());
             graphtea.ui.components.GFrame gFrame = UIUtils.getGFrame(blackboard);
-            gFrame.setTitle("GraphTea "+Application.VERSION_NAME+" "+Application.VERSION);
+            // "GraphTea newrooz 1.5.4" put an internal release codename in front of every user.
+            gFrame.setTitle("GraphTea " + Application.VERSION);
             gFrame.addWindowListener(new WindowAdapter() {
                 public void windowClosing(WindowEvent e) {
                     if (JOptionPane.showConfirmDialog(null, "Do you want to exit?",
@@ -82,7 +83,6 @@ public class Init implements graphtea.platform.plugin.PluginInterface, StorableO
                     }
                 }
             });
-
 
         } catch (Exception e) {
             ExceptionHandler.catchException(e);

@@ -8,7 +8,6 @@ import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -19,13 +18,8 @@ import java.util.Collections;
 
  */
 
-@CommandAttitude(name = "EM1LowerBound", abbreviation = "_EM1LowerBound")
 public class EM1LowerBound implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "EM1 Lower";
-    }
-
-    public String getDescription() {
         return "EM1 Lower";
     }
 
@@ -85,7 +79,6 @@ public class EM1LowerBound implements GraphReportExtension<RenderTable> {
                 *(M21-maxDeg*maxDeg-maxDeg2*maxDeg2-n+2)
                 /(2*m-maxDeg-maxDeg2-Mm11+ (1/maxDeg) + (1/maxDeg2));
 
-
         double Zeta2=2*m-(maxDeg)-(minDeg)
                 + Math.pow((M21-(maxDeg*maxDeg)-(minDeg*minDeg)-(n-2)),2)
                 /(2*m-maxDeg-minDeg-Mm11+(1/maxDeg)+(1/minDeg));
@@ -106,7 +99,6 @@ public class EM1LowerBound implements GraphReportExtension<RenderTable> {
                 +Math.sqrt((n-2)*(M21-(maxDeg*maxDeg)-(minDeg*minDeg)))
                 -(2*m-maxDeg-minDeg),2)/(2*m-maxDeg-minDeg));
 
-
         List<Object> v = new ArrayList<>();
         v.add(zifL.getFirstZagreb(1));
 
@@ -121,7 +113,6 @@ public class EM1LowerBound implements GraphReportExtension<RenderTable> {
 
         //new2
         v.add((maxDeg * maxDeg * maxDeg) + (minDeg * minDeg * minDeg) + (Zeta2) - (4 * M21) + (2 * M12) + (4 * m));
-
 
          //Eps3
         v.add((maxDeg * maxDeg * maxDeg) + (maxDeg2 * maxDeg2 * maxDeg2) + (Eps3) - (4 * M21) + (2 * M12) + (4 * m));

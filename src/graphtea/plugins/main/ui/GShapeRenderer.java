@@ -72,9 +72,6 @@ public class GShapeRenderer implements ValueSet, GBasicCellRenderer<GShape> {
                 GShape.NICENINEPOINTSTAR,
                 GShape.NICETENPOINTSTAR,
 
-
         };
     }
-
-
 }

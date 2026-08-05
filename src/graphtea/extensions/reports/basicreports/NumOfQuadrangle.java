@@ -7,20 +7,14 @@ package graphtea.extensions.reports.basicreports;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Mohammad Ali Rostami
  */
 
-@CommandAttitude(name = "num_of_quadrangle", abbreviation = "_noqa")
 public class NumOfQuadrangle implements GraphReportExtension<Integer> {
     public String getName() {
-        return "number of quadrangle";
-    }
-
-    public String getDescription() {
         return "number of quadrangle";
     }
 

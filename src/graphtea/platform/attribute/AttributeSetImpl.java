@@ -4,7 +4,6 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform.attribute;
 
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +18,6 @@ public class AttributeSetImpl implements AttributeSet {
         //Nothing to do!
     }
 
-
     public Map<String, Object> getAttrs() {
         return Collections.unmodifiableMap(atr);
     }
@@ -31,7 +29,6 @@ public class AttributeSetImpl implements AttributeSet {
         atr.put(name, value);
     }
 
-
     public Object get(String name) {
         return atr.get(name);
     }
@@ -39,7 +36,6 @@ public class AttributeSetImpl implements AttributeSet {
     public boolean contains(String name) {
         return atr.containsKey(name);
     }
-
 
     /**
      * clears all attributes in this set, this means that after calling this method the set of attributes will be empty

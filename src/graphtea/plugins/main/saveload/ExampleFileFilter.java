@@ -8,7 +8,6 @@
  */
 package graphtea.plugins.main.saveload;
 
-
 import javax.swing.filechooser.FileFilter;
 import java.io.File;
 import java.util.HashMap;
@@ -146,7 +145,6 @@ public class ExampleFileFilter extends FileFilter {
         filters.put(extension.toLowerCase(), this);
         fullDescription = null;
     }
-
 
     /**
      * Returns the human readable defaultValue of this filter. For

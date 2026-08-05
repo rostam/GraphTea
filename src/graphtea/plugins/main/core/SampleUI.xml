@@ -52,9 +52,15 @@
         <action class="graphtea.plugins.main.core.actions.AddTab" id="add tab"/>
         <action class="graphtea.plugins.main.core.actions.CloseTab" id="close tab"/>
 
+        <!-- BlackBoardWatcher is an internal inspector. It stays registered so developers can
+             reach it, but it is no longer listed in the Help menu next to "About". -->
         <action class="graphtea.plugins.main.core.actions.BlackBoardWatcher" id="debug blackboard"/>
 
         <action class="graphtea.plugins.main.core.actions.ShowAboutDialog" id="show about"/>
+        <action class="graphtea.plugins.main.core.actions.ShowWelcomeDialog" id="show welcome"/>
+        <action class="graphtea.plugins.main.core.actions.ShowCommandPalette" id="command palette"/>
+        <action class="graphtea.plugins.main.core.actions.QuickFileAction$Open" id="open graph"/>
+        <action class="graphtea.plugins.main.core.actions.QuickFileAction$Save" id="save graph"/>
         <!--<action class="graphtea.gui.graphh.graph.vertex.GResizer"/>-->
 
 
@@ -81,6 +87,8 @@
             <!--id="last selected"/>-->
             <!--<bar class="graphtea.ui.actions.MemoryUsageStatusAction"-->
             <!--id="memory usage"/>-->
+            <bar class="graphtea.plugins.main.core.actions.GraphStatsStatusBar"
+                 id="graph stats"/>
             <bar class="graphtea.plugins.main.core.actions.StatusBarMessage"
                  id="user message"/>
         </statusbars>
@@ -91,6 +99,11 @@
             <submenu label="_File" place="10">
                 <menu label="New Tab" action="add tab" place="10" accelerator="Control+T"/>
                 <menu label="Close Tab" action="close tab" place="20" accelerator="control+W"/>
+                <menu label="seperator_menu" place="25"/>
+                <!-- Opening and saving used to exist only as one entry per format inside the
+                     two submenus below, none of them with a shortcut. -->
+                <menu label="_Open..." action="open graph" place="26" accelerator="control+O"/>
+                <menu label="_Save" action="save graph" place="27" accelerator="control+S"/>
                 <menu label="seperator_menu" place="30"/>
                 <menu label="seperator_menu" place="8000"/>
                 <menu label="Settings..." action="Prefs" place="8500"/>
@@ -103,50 +116,38 @@
             <submenu label="_Edit" place="20">
                 <menu label="_Undo" action="Undo Action" accelerator="control+Z" place="10"/>
                 <menu label="_Redo" action="Redo Action" accelerator="alt+control+Z" place="20"/>
-                <!--<menu label="seperator_menu" place="40"/>-->
-                <!--<menu label="_Cut" action="Cut" accelerator="control+X" place="500"/>-->
-                <!--<menu label="_Copy" action="Copy" accelerator="control+C" place="510"/>-->
-                <!--<menu label="_Paste" action="Paste" accelerator="control+V" place="520"/>-->
-            </submenu>
-            <!--<submenu label="Graph">-->
-            <!--<menu label="C_lear Graph" action="Clear" place="9000"/>-->
-            <!--</submenu>-->
-
-            <!--<submenu label="_View" place="40">-->
-            <!--<menu label="Zoom _In" action="Zoom In" accelerator="+" place="10"/>-->
-            <!--<menu label="Zoom _Out" action="Zoom Out" accelerator="-" place="20"/>-->
-            <!--</submenu>-->
-            <submenu label="_Help" place="1000000">
-                <menu label="_About GraphTea" action="show about" place="0"/>
                 <menu label="seperator_menu" place="40"/>
-                <menu label="Watch BlackBoard" action="debug blackboard" place="130"/>
-                <!--<menu label="_Welcome Screen" action="show welcome" place="1"/>-->
-                <!--<menu label="_Full Documentation" action="show doc" place="2"/>-->
-
+                <!-- Cut/Copy/Paste were implemented but commented out of the menu, so the
+                     standard clipboard keys did nothing at all. -->
+                <menu label="Cu_t" action="Cut" accelerator="control+X" place="500"/>
+                <menu label="_Copy" action="Copy" accelerator="control+C" place="510"/>
+                <menu label="_Paste" action="Paste" accelerator="control+V" place="520"/>
+                <menu label="seperator_menu" place="600"/>
+                <menu label="_Find Command..." action="command palette" accelerator="control+K" place="700"/>
+            </submenu>
+            <submenu label="_Help" place="1000000">
+                <menu label="_Getting Started" action="show welcome" place="0"/>
+                <menu label="seperator_menu" place="20"/>
+                <menu label="_About GraphTea" action="show about" place="30"/>
             </submenu>
         </menues>
 
         <toolbars>
             <toolbar place="10">
-                <tool label="New Graph" action="add tab"/>
-                <tool label="Reset Graph" action="reset"/>
+                <tool label="New Tab" action="add tab"/>
+                <tool label="Clear Graph" action="reset"/>
 
             </toolbar>
 
             <toolbar place="20">
-                <tool label="Undo Action" action="Undo Action"/>
-                <tool label="Redo Action" action="Redo Action"/>
+                <!-- Labelled after the action ids ("Undo Action"), which is not what a
+                     toolbar button should say. -->
+                <tool label="Undo" action="Undo Action"/>
+                <tool label="Redo" action="Redo Action"/>
             </toolbar>
-            <!--<toolbar place="30">-->
-            <!--<tool label="Cut" action="Cut" image="/graphtea/plugins/main/resources/_cut24.gif"/>-->
-            <!--<tool label="Copy" action="Copy" image="/graphtea/plugins/main/resources/_copy24.gif"/>-->
-            <!--<tool label="Paste" action="Paste" image="/graphtea/plugins/main/resources/paste24_.gif"/>-->
-            <!--</toolbar>-->
-            <!--<toolbar place="40">-->
-            <!--<tool label="Zoom In" action="Zoom In" image="/graphtea/plugins/main/resources/zoomIn24_.gif"/>-->
-            <!--<tool label="Zoom Out" action="Zoom Out" image="/graphtea/plugins/main/resources/zoomout24_.gif"/>-->
-            <!--<tool label="Scroll" action="Scroll" image=""/>-->
-            <!--</toolbar>-->
+            <toolbar place="30">
+                <tool label="Find Command" action="command palette"/>
+            </toolbar>
         </toolbars>
     </ui>
 </root>

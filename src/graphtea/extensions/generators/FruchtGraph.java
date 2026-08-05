@@ -5,15 +5,11 @@
 
 package graphtea.extensions.generators;
 
-import graphtea.platform.lang.CommandAttitude;
-
 /**
  * Generates the Frucht graph: 12 vertices, 18 edges.
  * The Frucht graph is 3-regular and is the smallest graph
  * that has a trivial automorphism group (no symmetry).
  */
-@CommandAttitude(name = "generate_frucht", abbreviation = "_g_frucht",
-    description = "Generates the Frucht graph (12 vertices, 18 edges)")
 public class FruchtGraph extends AbstractFixedGraphGenerator {
 
     private static final int NUM_VERTICES = 12;

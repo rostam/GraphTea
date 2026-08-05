@@ -8,7 +8,6 @@ import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.extensions.reports.others.Eccentricity;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.HashSet;
@@ -19,15 +18,9 @@ import java.util.Set;
 
  */
 
-
-@CommandAttitude(name = "eccentric_connective_complexity", abbreviation = "_ECComplexity")
 public class EccentricConnectiveComplexity implements GraphReportExtension<Integer> {
     public String getName() {
-        return "Eccentirc Connective Complexity";
-    }
-
-    public String getDescription() {
-        return "Eccentirc Connective Complexity";
+        return "Eccentric Connective Complexity";
     }
 
     public Integer calculate(GraphModel g) {

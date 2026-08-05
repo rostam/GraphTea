@@ -25,7 +25,6 @@ public class Partitioner {
     public int[] color;
     private final GraphModel g;
 
-
     public Partitioner(final GraphModel g) {
         this.g = g;
         edgeArray = g.getEdgeArray();
@@ -132,7 +131,6 @@ public class Partitioner {
         curSet--;
         set[vid] = false;
 
-
         for (i = 0; i < ss; i++) {
             mark[nv[i]] = markbck[i];
         }
@@ -145,7 +143,6 @@ public class Partitioner {
         findMaxIndSetsRecursively(iiv);
         //////////////////////////////////
     }
-
 
     public boolean findAllPartitionings(final int t, final ColoringListener listener) {
         color = new int[vertices.length];
@@ -218,5 +215,4 @@ public class Partitioner {
         }
         return true;
     }
-
 }

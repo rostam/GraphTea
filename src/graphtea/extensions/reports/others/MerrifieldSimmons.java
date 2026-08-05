@@ -3,18 +3,15 @@ package graphtea.extensions.reports.others;
 import graphtea.extensions.reports.basicreports.NumOfIndSets;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@CommandAttitude(name = "Merrifield_Simmons", abbreviation = "_merrifield")
 public class MerrifieldSimmons implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Merrifield-Simmons";
     }
-
 
     public String getDescription() {
         return " Lanzhou";

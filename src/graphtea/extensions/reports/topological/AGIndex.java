@@ -3,7 +3,6 @@ package graphtea.extensions.reports.topological;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -15,13 +14,8 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "AG", abbreviation = "_AGIndex")
 public class AGIndex implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "AG";
-    }
-
-    public String getDescription() {
         return "AG";
     }
 

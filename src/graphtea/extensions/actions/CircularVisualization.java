@@ -45,14 +45,8 @@ public class CircularVisualization implements GraphActionExtension {
         }
     }
 
-
     @Override
     public String getName() {
-        return "Circular Visualize";
-    }
-
-    @Override
-    public String getDescription() {
         return "Circular Visualize";
     }
 

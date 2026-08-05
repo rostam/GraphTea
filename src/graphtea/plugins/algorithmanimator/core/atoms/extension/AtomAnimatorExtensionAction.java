@@ -8,7 +8,6 @@ package graphtea.plugins.algorithmanimator.core.atoms.extension;
 import graphtea.platform.core.BlackBoard;
 import graphtea.ui.extension.AbstractExtensionAction;
 
-
 public class AtomAnimatorExtensionAction extends AbstractExtensionAction {
     private final AtomAnimatorExtension em;
 
@@ -25,7 +24,5 @@ public class AtomAnimatorExtensionAction extends AbstractExtensionAction {
     @Override
     public final void performExtension() {
 
-
     }
-
 }

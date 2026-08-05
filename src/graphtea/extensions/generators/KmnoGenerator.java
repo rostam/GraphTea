@@ -9,7 +9,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -20,7 +19,6 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
  * Author: Saman Feghhi
  * 
  */
-@CommandAttitude(name = "generate_kmno", abbreviation = "_g_kmno", description = "generates a Tripartite complete graph")
 public class KmnoGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface
 {
 

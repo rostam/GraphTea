@@ -106,8 +106,6 @@ public class Dijkstra extends Algorithm implements AutomatedAlgorithm {
         return prev;
     }
 
-
-
     public void doAlgorithm() {
 //        GraphRequest<Vertex, Edge> gr = new GraphRequest<>();
 //        dispatchEvent(gr);

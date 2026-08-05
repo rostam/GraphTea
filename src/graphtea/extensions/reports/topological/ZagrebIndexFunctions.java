@@ -1,16 +1,11 @@
  package graphtea.extensions.reports.topological;
 
- import Jama.EigenvalueDecomposition;
  import Jama.Matrix;
  import graphtea.extensions.AlgorithmUtils;
- import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
- import graphtea.extensions.reports.others.Eccentricity;
  import graphtea.graph.graph.Edge;
  import graphtea.graph.graph.GraphModel;
  import graphtea.graph.graph.Vertex;
  import graphtea.library.algorithms.LibraryUtils;
-
- import java.util.ArrayList;
 
 /**
  * Created by rostam on 27.01.15.
@@ -24,21 +19,14 @@ public class ZagrebIndexFunctions {
     }
     
     public double getEnegry() {
-        Matrix A = g.getWeightedAdjacencyMatrix();
-        EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double sum=0;
-    	
-    	
-    Double[] prv = new Double[rv.length];
-    for(int i=0;i<rv.length;i++) {
-        prv[i] = Math.abs(rv[i]);
-        sum += prv[i];
-             }
-    return sum;
+        double[] rv = g.getWeightedAdjacencyMatrix().eig().getRealEigenvalues();
+        double sum = 0;
+        for (double v : rv) {
+            sum += Math.abs(v);
+        }
+        return sum;
     }   
   
-
 
     public double getInverseSumIndegIndex() {
         double ret = 0;
@@ -173,7 +161,6 @@ public class ZagrebIndexFunctions {
         return c;
     }
 
-
     public double getVariationRandicIndex() {
         double V = 0;
         for(Edge e : g.getEdges()) {
@@ -193,7 +180,6 @@ public class ZagrebIndexFunctions {
 
         return edge_degree;
     }
-
 
     public double getHyperZagrebIndex() {
         double hz = 0;
@@ -378,7 +364,6 @@ public class ZagrebIndexFunctions {
         return ret;
     }
 
-
     public double getSecondReZagrebCoindex(double alpha) {
         double ret = 0;
         if(g.getEdgesCount()==1) return ret;
@@ -395,51 +380,31 @@ public class ZagrebIndexFunctions {
     }
 
     double getSecondReZagreb(double alpha) {
-        double second_re_zagreb = 0;
-        ArrayList<Edge> eds = new ArrayList<>();
-        for (Edge ee : g.getEdges()) {
-            eds.add(ee);
-        }
-        for (Edge e1 : eds) {
-            for (Edge e2 : eds) {
+        double sum = 0;
+        for (Edge e1 : g.getEdges()) {
+            for (Edge e2 : g.getEdges()) {
                 if (edge_adj(e1, e2)) {
-                    int d1 = g.getDegree(e1.source) +
-                            g.getDegree(e1.target) - 2;
-
-                    int d2 = g.getDegree(e2.source) +
-                            g.getDegree(e2.target) - 2;
-
-                    second_re_zagreb += Math.pow(d1 * d2, alpha);
+                    int d1 = g.getDegree(e1.source) + g.getDegree(e1.target) - 2;
+                    int d2 = g.getDegree(e2.source) + g.getDegree(e2.target) - 2;
+                    sum += Math.pow(d1 * d2, alpha);
                 }
             }
         }
-
-        second_re_zagreb /= 2;
-        return second_re_zagreb;
+        return sum / 2;
     }
-    
+
     double getSecondHyperZagreb(double alpha) {
-        double second_hyper_zagreb = 0;
-        ArrayList<Edge> eds = new ArrayList<>();
-        for (Edge ee : g.getEdges()) {
-            eds.add(ee);
-        }
-        for (Edge e1 : eds) {
-            for (Edge e2 : eds) {
+        double sum = 0;
+        for (Edge e1 : g.getEdges()) {
+            for (Edge e2 : g.getEdges()) {
                 if (edge_adj(e1, e2)) {
-                    int d1 = g.getDegree(e1.source) +
-                            g.getDegree(e1.target);
-
-                    int d2 = g.getDegree(e2.source) +
-                            g.getDegree(e2.target);
-
-                    second_hyper_zagreb += Math.pow(d1 * d2, alpha);
+                    int d1 = g.getDegree(e1.source) + g.getDegree(e1.target);
+                    int d2 = g.getDegree(e2.source) + g.getDegree(e2.target);
+                    sum += Math.pow(d1 * d2, alpha);
                 }
             }
         }
-
-        second_hyper_zagreb /= 2;
-        return second_hyper_zagreb;
+        return sum / 2;
     }
     
 
@@ -534,29 +499,17 @@ public class ZagrebIndexFunctions {
     }
 
     double getSecondReZagrebSelectedEdges(double alpha) {
-        double second_re_zagreb = 0;
-        ArrayList<Edge> eds = new ArrayList<>();
-        for (Edge ee : g.getEdges()) {
-            eds.add(ee);
-        }
-        for (Edge e1 : eds) {
-            for (Edge e2 : eds) {
-                if (e1.isSelected() && e2.isSelected()) {
-                    if (edge_adj(e1, e2)) {
-                        int d1 = g.getDegree(e1.source) +
-                                g.getDegree(e1.target) - 2;
-
-                        int d2 = g.getDegree(e2.source) +
-                                g.getDegree(e2.target) - 2;
-
-                        second_re_zagreb += Math.pow(d1 * d2, alpha);
-                    }
+        double sum = 0;
+        for (Edge e1 : g.getEdges()) {
+            for (Edge e2 : g.getEdges()) {
+                if (e1.isSelected() && e2.isSelected() && edge_adj(e1, e2)) {
+                    int d1 = g.getDegree(e1.source) + g.getDegree(e1.target) - 2;
+                    int d2 = g.getDegree(e2.source) + g.getDegree(e2.target) - 2;
+                    sum += Math.pow(d1 * d2, alpha);
                 }
             }
         }
-
-        second_re_zagreb /= 2;
-        return second_re_zagreb;
+        return sum / 2;
     }
 
     double getFirstZagrebCoindexSelectedEdges(double alpha) {
@@ -659,7 +612,6 @@ public class ZagrebIndexFunctions {
         return ret;
     }
 
-
     public double getGeneralSumConnectivityIndex(double alpha) {
         double ret = 0;
         for (Edge e : g.getEdges()) {
@@ -675,7 +627,6 @@ public class ZagrebIndexFunctions {
         }
         return ret;
     }
-
 
     public double getFirstPathZagrebIndex(double alpha) {
         double ret = 0;
@@ -777,24 +728,21 @@ public class ZagrebIndexFunctions {
     }
 
     public double getFirstZagrebEccentricity(GraphModel g) {
-        double first_zagreb_eccentricity = 0;
-        FloydWarshall fw = new FloydWarshall();
-        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
+        int[][] dist = AlgorithmUtils.getAllPairsDistances(g);
+        double sum = 0;
         for (Vertex v : g.vertices()) {
-            first_zagreb_eccentricity += Math.pow(Eccentricity.eccentricity(g, v.getId(), dist), 2);
+            sum += Math.pow(AlgorithmUtils.eccentricityOf(g, v.getId(), dist), 2);
         }
-        return first_zagreb_eccentricity;
+        return sum;
     }
 
     public double getSecondZagrebEccentricity(GraphModel g) {
-        double second_zagreb_eccentricity = 0;
-        FloydWarshall fw = new FloydWarshall();
-        int[][] dist = fw.getAllPairsShortestPathWithoutWeight(g);
-        for(Edge e : g.getEdges()) {
-                second_zagreb_eccentricity +=
-                        Eccentricity.eccentricity(g, e.source.getId(), dist)*
-                                Eccentricity.eccentricity(g, e.target.getId(), dist);
+        int[][] dist = AlgorithmUtils.getAllPairsDistances(g);
+        double sum = 0;
+        for (Edge e : g.getEdges()) {
+            sum += AlgorithmUtils.eccentricityOf(g, e.source.getId(), dist)
+                    * AlgorithmUtils.eccentricityOf(g, e.target.getId(), dist);
         }
-        return second_zagreb_eccentricity;
+        return sum;
     }
 }

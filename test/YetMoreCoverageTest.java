@@ -11,8 +11,12 @@ import graphtea.extensions.generators.PathGenerator;
 import graphtea.extensions.generators.TreeGenerator;
 import graphtea.extensions.reports.coloring.SpMat;
 import graphtea.extensions.reports.energy.AllEnergies1;
+import graphtea.extensions.reports.energy.Energy;
 import graphtea.extensions.reports.energy.Linear;
 import graphtea.extensions.reports.energy.ResolventEnergies;
+import graphtea.extensions.reports.energy.ResolventEnergy;
+import graphtea.extensions.reports.spectralreports.LaplacianEnergy;
+import graphtea.extensions.reports.spectralreports.SignlessLaplacianEnergy;
 import graphtea.extensions.reports.spectralreports.maxflowmincut.GomoryHuTree;
 import graphtea.extensions.reports.spectralreports.maxflowmincut.MaximumFlow;
 import graphtea.extensions.reports.spectralreports.maxflowmincut.MinimumCut;
@@ -49,22 +53,22 @@ public class YetMoreCoverageTest {
 
     @Test
     public void allEnergies1EnergyHelper() {
-        assertNotNull(new AllEnergies1().Energy(k3));
+        assertNotNull(new Energy().calculate(k3));
     }
 
     @Test
     public void allEnergies1LaplacianEnergyHelper() {
-        assertNotNull(new AllEnergies1().LaplacianEnergy(k3));
+        assertNotNull(new LaplacianEnergy().calculate(k3));
     }
 
     @Test
     public void allEnergies1SignlessLaplacianEnergyHelper() {
-        assertNotNull(new AllEnergies1().SignlessLaplacianEnergy(k3));
+        assertNotNull(new SignlessLaplacianEnergy().calculate(k3));
     }
 
     @Test
     public void allEnergies1ResolventEnergyHelper() {
-        assertNotNull(new AllEnergies1().ResolventEnergy(k3));
+        assertNotNull(new ResolventEnergy().calculate(k3));
     }
 
     // ── ResolventEnergies ─────────────────────────────────────────────────────
@@ -78,22 +82,22 @@ public class YetMoreCoverageTest {
 
     @Test
     public void resolventEnergiesEnergyHelper() {
-        assertNotNull(new ResolventEnergies().Energy(k3));
+        assertNotNull(new Energy().calculate(k3));
     }
 
     @Test
     public void resolventEnergiesLaplacianEnergyHelper() {
-        assertNotNull(new ResolventEnergies().LaplacianEnergy(k3));
+        assertNotNull(new LaplacianEnergy().calculate(k3));
     }
 
     @Test
     public void resolventEnergiesSignlessLaplacianHelper() {
-        assertNotNull(new ResolventEnergies().SignlessLaplacianEnergy(k3));
+        assertNotNull(new SignlessLaplacianEnergy().calculate(k3));
     }
 
     @Test
     public void resolventEnergiesResolventEnergyHelper() {
-        assertNotNull(new ResolventEnergies().ResolventEnergy(k3));
+        assertNotNull(new ResolventEnergy().calculate(k3));
     }
 
     // ── Linear ────────────────────────────────────────────────────────────────

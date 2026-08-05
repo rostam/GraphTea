@@ -23,5 +23,4 @@ public interface Action extends Listener {
      * @param t The blackboard
      */
     void setBlackBoard(BlackBoard t);
-
 }

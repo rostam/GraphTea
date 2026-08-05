@@ -8,7 +8,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -24,7 +23,6 @@ import java.util.List;
  *
  */
 
-@CommandAttitude(name = "generate_knd", abbreviation = "_g_knd")
 public class KndKneserGraphGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "D")
     public static Integer d = 3;
@@ -87,7 +85,6 @@ public class KndKneserGraphGenerator implements GraphGeneratorExtension, Paramet
         KndKneserGraphGenerator.d = d;
         return GraphGenerator.getGraph(false, new KndKneserGraphGenerator());
     }
-
 
     @Override
     public String getCategory() {

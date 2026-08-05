@@ -5,7 +5,6 @@ import graphtea.extensions.reports.basicreports.NumOfTriangles;
 import graphtea.extensions.reports.topological.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -16,14 +15,9 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "VeIndex", abbreviation = "_VeIndex")
 public class AlbertsonIdnexReport implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "VeIndex";
-    }
-
-    public String getDescription() {
-        return "VeIndex";
+        return "Albertson Index Comparison";
     }
 
     public RenderTable calculate(GraphModel g) {

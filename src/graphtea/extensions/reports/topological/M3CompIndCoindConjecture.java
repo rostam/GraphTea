@@ -10,7 +10,6 @@ import graphtea.extensions.algorithms.GraphComplement;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -21,20 +20,14 @@ import java.util.Collections;
 
  */
 
-@CommandAttitude(name = "m3norconj", abbreviation = "_m3norconj")
 public class M3CompIndCoindConjecture implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "M3 Comp Index + Coindex Conj";
-    }
-
-    public String getDescription() {
         return "M3 Comp Index + Coindex Conj";
     }
 
     public RenderTable calculate(GraphModel g) {
         ZagrebIndexFunctions zifc
         = new ZagrebIndexFunctions(GraphComplement.complement(g));
-
 
         RenderTable ret = new RenderTable();
         List<String> titles = new ArrayList<>();

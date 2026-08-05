@@ -19,8 +19,6 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 /**
  * @author azin azadi, Hoshmand Hasannia, Ali Rostami
  */
-//@CommandAttitude(name = "generate_tree" , abbreviation = "_g_t"
-//        ,description = "generate a tree with depth and degree")
 public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "Height")
     public static Integer depth = 3;
@@ -104,7 +102,6 @@ public class TreeGenerator implements GraphGeneratorExtension, Parametrizable, S
         }
         return getVertexPositionsCircular();
     }
-
 
     private GPoint[] getVertexPositionUpdown() {
         GPoint[] ret = new GPoint[n];

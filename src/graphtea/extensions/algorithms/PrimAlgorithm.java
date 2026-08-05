@@ -27,7 +27,6 @@ public class PrimAlgorithm extends GraphAlgorithm implements AlgorithmExtension 
     private PriorityQueue<Edge> pq;
     private final GraphModel graph;
 
-
     @Override
     public void doAlgorithm() {
         step("Start of the algorithm.");

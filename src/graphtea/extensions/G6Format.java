@@ -21,7 +21,6 @@ public class G6Format {
     private static final int  WORDSIZE = 32;
     private static String g6_graph;
 
-
     static int[] bit_ = {020000000000, 010000000000, 04000000000, 02000000000,
             01000000000, 0400000000, 0200000000, 0100000000, 040000000,
             020000000, 010000000, 04000000, 02000000, 01000000, 0400000,
@@ -39,7 +38,6 @@ public class G6Format {
     int SETBT(int pos) {
         return ((pos) & 037);
     }
-
 
     public static HashMap<Integer, List<Integer>> stringToGraph(String g6) {
         int n = graphsize(g6);
@@ -136,7 +134,6 @@ public class G6Format {
         }
         return result.toString();
     }
-
 
     public static String encodeGraph(int NoNodes, String adjmatrix) {
         int[] nn = encodeN(NoNodes);

@@ -5,73 +5,26 @@
 
 package graphtea.extensions.reports.energy;
 
-import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
-import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.library.util.Complex;
-import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author M. Ali Rostami
  */
+public class Energy extends AbstractEnergyReport {
 
-@CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class Energy implements GraphReportExtension<String> {
-
-    public String calculate(GraphModel g) {
-        double power = 1;
-        try {
-			double m = g.getEdgesCount();
-            double n = g.getVerticesCount();
-            Matrix A = g.getWeightedAdjacencyMatrix();
-            EigenvalueDecomposition ed = A.eig();
-            double[] rv = ed.getRealEigenvalues();
-            double[] iv = ed.getImagEigenvalues();
-            double maxrv=0;
-            double minrv=1000000;
-            for(double value : rv) {
-                double tval = Math.abs(value);
-                if(maxrv < tval) maxrv=tval;
-                if(minrv > tval) minrv=tval;
-            }
-            double sum = 0;
-            double sum_i = 0;
-            for (double v : rv) sum += Math.pow(Math.abs(v), power);
-            for (double v : iv) sum_i += Math.abs(v);
-
-            if (sum_i != 0) {
-                return "N/A (imaginary eigenvalues)";
-            } else {
-                return "" + AlgorithmUtils.round(sum, 5);
-            }
-        } catch (Exception ignored) {
-        }
-        return null;
-    }
-
-    public String getName() {
-        return "Energy";
-    }
-
-    /**
-     * Ivan Gutman, Luis Medina C, Pamela Pizarro, María Robbiano,
-     * Graphs with maximum Laplacian and signless Laplacian Estrada index,
-     * Discrete Mathematics,
-     * Volume 339, Issue 11,
-     * 2016,
-     * Pages 2664-2671,
-     * ISSN 0012-365X,
-     * https://doi.org/10.1016/j.disc.2016.04.022.
-     * @return
-     */
-    public String getDescription() {
-        return "Energy";
+    @Override
+    protected Matrix getMatrix(GraphModel g) {
+        return g.getWeightedAdjacencyMatrix();
     }
 
     @Override
-    public String getCategory() {
-        return "Spectral- Energies";
+    protected double transform(double eigenvalue, double n, double m) {
+        return Math.abs(eigenvalue);
+    }
+
+    @Override
+    public String getName() {
+        return "Energy";
     }
 }

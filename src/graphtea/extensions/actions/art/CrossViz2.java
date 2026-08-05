@@ -27,11 +27,6 @@ public class CrossViz2 implements GraphActionExtension {
     }
 
     @Override
-    public String getDescription() {
-        return "Cross Viz 2";
-    }
-
-    @Override
     public void action(GraphData graphData) {
         Vertex.addGlobalUserDefinedAttribute(CURVE_WIDTH,1);
 
@@ -51,7 +46,6 @@ public class CrossViz2 implements GraphActionExtension {
         return "Graph-based Visualization";
     }
 }
-
 
 class CrossVizPainter2 implements PaintHandler {
     GraphData gd;

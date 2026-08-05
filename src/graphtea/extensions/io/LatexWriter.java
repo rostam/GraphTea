@@ -29,7 +29,6 @@ public class LatexWriter implements GraphWriterExtension{
         return "tex";
     }
 
-
     public void write(File file, GraphModel graph) throws GraphIOException {
         // Use try-with-resources so the FileWriter is always closed
         try (FileWriter output = new FileWriter(file)) {

@@ -8,7 +8,6 @@ import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -19,13 +18,8 @@ import java.util.Collections;
 
  */
 
-@CommandAttitude(name = "EM2UpperBound", abbreviation = "_EM2UpperBound")
 public class EM2UpperBound implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "EM2 Upper";
-    }
-
-    public String getDescription() {
         return "EM2 Upper";
     }
 
@@ -93,7 +87,6 @@ public class EM2UpperBound implements GraphReportExtension<RenderTable> {
                 + (M21-maxDeg*maxDeg-maxDeg2*maxDeg2-n+2)
                 *(M21-maxDeg*maxDeg-maxDeg2*maxDeg2-n+2)
                 /(2*m-maxDeg-maxDeg2-Mm11+ (1/maxDeg) + (1/maxDeg2));
-
 
         double Zeta2=2*m-(maxDeg)-(minDeg)
                 + Math.pow((M21-(maxDeg*maxDeg)-(minDeg*minDeg)-(n-2)),2)

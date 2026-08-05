@@ -17,5 +17,4 @@ public class ExceptionOccuredData {
         super();
         this.e = e;
     }
-
 }

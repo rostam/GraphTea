@@ -8,8 +8,5 @@ public class StrongProduct extends GProductAction {
     public String getName() { return "Strong Product"; }
 
     @Override
-    public String getDescription() { return "Strong Product"; }
-
-    @Override
     protected GProduct createProduct() { return new GStrongProduct(); }
 }

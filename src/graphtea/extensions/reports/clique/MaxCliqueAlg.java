@@ -99,7 +99,4 @@ class MaxCliqueAlg
 
     private final GraphModel g;
     private List<List<Vertex>> maxCliques;
-
 }
-
-

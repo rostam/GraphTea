@@ -66,7 +66,6 @@ public class AddEdge extends AbstractAction implements PaintHandler {
         g = blackboard.getData(GraphAttrSet.name);
         gv = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
 
-
         if (eventName.equals(VertexEvent.EVENT_KEY)) {
             if (ve.eventType == VertexEvent.DRAGGING_STARTED) {
                 if (!sd.vertices.contains(ve.v)) {   //start if the vertex is not selected

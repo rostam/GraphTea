@@ -5,71 +5,28 @@
 
 package graphtea.extensions.reports.spectralreports;
 
-import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
+import graphtea.extensions.reports.energy.AbstractEnergyReport;
 import graphtea.graph.graph.GraphModel;
-import graphtea.library.util.Complex;
-import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author M. Ali Rostami
  */
+public class LaplacianEnergyLike extends AbstractEnergyReport {
 
-@CommandAttitude(name = "eig_values", abbreviation = "_evs")
-public class LaplacianEnergyLike implements GraphReportExtension<String> {
-    public String calculate(GraphModel g) {
-        try {
-            Matrix B = g.getWeightedAdjacencyMatrix();
-            Matrix A = AlgorithmUtils.getLaplacian(B);
-            EigenvalueDecomposition ed = A.eig();
-            double[] rv = ed.getRealEigenvalues();
-            double[] iv = ed.getImagEigenvalues();
-            double maxrv=0;
-            double minrv=1000000;
-            for(double value : rv) {
-                double tval = Math.abs(value);
-                if(maxrv < tval) maxrv=tval;
-                if(minrv > tval) minrv=tval;
-            }
-            double sum = 0;
-            double sum_i = 0;
-            for (double value : rv) sum += Math.sqrt(Math.abs(value));
-            for (double v : iv) sum_i += Math.abs(v);
-
-            if (sum_i != 0) {
-                //here is completely false
-                sum_i=0;
-                Complex num = new Complex(0,0);
-//                for(int i=0;i < iv.length;i++) {
-//                    Complex tmp = new Complex(rv[i], iv[i]);
-//                    System.out.println(tmp);
-//                    tmp.pow(new Complex(power,0));
-//                    System.out.println(power);
-//                    System.out.println(tmp);
-//                    num.plus(tmp);
-//                }
-                return "" + AlgorithmUtils.round(num.re(), 5) + " + "
-                        + AlgorithmUtils.round(num.im(), 5) + "i";
-            } else {
-                return "" + AlgorithmUtils.round(sum, 5);
-            }
-        } catch (Exception ignored) {
-        }
-        return null;
-    }
-
-    public String getName() {
-        return "Laplacian-Energy-Like";
-    }
-
-    public String getDescription() {
-        return "Laplacian-Energy-Like";
+    @Override
+    protected Matrix getMatrix(GraphModel g) {
+        return AlgorithmUtils.getLaplacian(g.getWeightedAdjacencyMatrix());
     }
 
     @Override
-    public String getCategory() {
-        return "Spectral- Energies";
+    protected double transform(double eigenvalue, double n, double m) {
+        return Math.sqrt(Math.abs(eigenvalue));
+    }
+
+    @Override
+    public String getName() {
+        return "Laplacian-Energy-Like";
     }
 }

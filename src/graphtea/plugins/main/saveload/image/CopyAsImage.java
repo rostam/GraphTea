@@ -49,5 +49,4 @@ public class CopyAsImage extends AbstractAction {
         gg.insertEdges(sd.edges);
         return g;
     }
-
 }

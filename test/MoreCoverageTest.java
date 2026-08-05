@@ -17,6 +17,7 @@ import graphtea.extensions.reports.basicreports.SpectraofTransmissionMatrix;
 import graphtea.extensions.reports.coloring.ColumnIntersectionGraph;
 import graphtea.extensions.reports.hamilton.HamiltonianCycle;
 import graphtea.extensions.reports.spanningtree.MSTPrim;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.spectralreports.EccentricityMatrixOfGraph;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -158,13 +159,12 @@ public class MoreCoverageTest {
 
     @Test
     public void eccentricityMatrixHelperMethods() {
-        EccentricityMatrixOfGraph em = new EccentricityMatrixOfGraph();
         graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall fw =
                 new graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall();
         int[][] dist = fw.getAllPairsShortestPathWithoutWeight(k3);
         // K3: all eccentricities = 1
-        assertEquals(1, em.eccentricity(k3, 0, dist));
-        Jama.Matrix m = em.eccentricityMatrix(k3, dist);
+        assertEquals(1, AlgorithmUtils.eccentricityOf(k3, 0, dist));
+        Jama.Matrix m = AlgorithmUtils.eccentricityMatrix(k3, dist);
         assertNotNull(m);
         assertEquals(3, m.getRowDimension());
     }

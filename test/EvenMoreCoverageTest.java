@@ -105,7 +105,9 @@ public class EvenMoreCoverageTest {
         ArrayList<String> res = new SpectraofAvgTransmissionMatrix().calculate(k3);
         assertNotNull(res);
         assertFalse(res.isEmpty());
-        assertEquals("Spectra", res.get(0));
+        // AbstractSpectrumReport labels the first row with the matrix the spectrum is of,
+        // rather than the generic "Spectra" every one of these reports used to emit.
+        assertEquals("Average Transmission Matrix", res.get(0));
     }
 
     private GraphModel flowChain() {

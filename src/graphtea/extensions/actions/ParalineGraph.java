@@ -11,7 +11,6 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
 import graphtea.plugins.main.extension.GraphActionExtension;
 
-
 /**
  * Creates a line graph from the current graph and shows it in a new tab
  *
@@ -29,11 +28,6 @@ public class ParalineGraph implements GraphActionExtension , Parametrizable {
     public String getName() {
         return "Paraline Graph";
     }
-
-    public String getDescription() {
-        return "Paraline Graph";
-    }
-
 
     @Override
     public String getCategory() {

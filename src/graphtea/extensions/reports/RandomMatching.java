@@ -4,11 +4,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports;
 
-
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.HashMap;
@@ -21,13 +19,8 @@ import java.util.stream.Collectors;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "maxium_matching", abbreviation = "_max_match")
 public class RandomMatching implements GraphReportExtension<List<Object>> {
     public String getName() {
-        return "Random Matching";
-    }
-
-    public String getDescription() {
         return "Random Matching";
     }
 
@@ -45,7 +38,6 @@ public class RandomMatching implements GraphReportExtension<List<Object>> {
 
         Vertex[] varr = g.getVertexArray();
         Vertex[] rvarr = rotate(varr,r.nextInt(g.getVerticesCount()-2));
-
 
         for(Vertex v1 : rvarr) {
             if(vv.size() > limit) break;

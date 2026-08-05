@@ -7,11 +7,8 @@ package graphtea.plugins.algorithmanimator;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.Vertex;
 import graphtea.library.algorithms.traversal.BreadthFirstSearch;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.algorithmanimator.extension.AlgorithmExtension;
 
-
-@CommandAttitude(name = "breadth_first_search", abbreviation = "_bfs")
 public class BFSAnim
         extends BreadthFirstSearch<Vertex, Edge>
         implements AlgorithmExtension {

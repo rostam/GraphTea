@@ -5,8 +5,6 @@
 
 package graphtea.extensions.generators;
 
-import graphtea.platform.lang.CommandAttitude;
-
 /**
  * Generates the Pappus graph: 18 vertices, 27 edges.
  * The Pappus graph is 3-regular and bipartite.
@@ -14,8 +12,6 @@ import graphtea.platform.lang.CommandAttitude;
  *
  * Construction: LCF notation [5,7,-7,7,-7,-5]^3 on an 18-cycle.
  */
-@CommandAttitude(name = "generate_pappus", abbreviation = "_g_pappus",
-    description = "Generates the Pappus graph (18 vertices, 27 edges)")
 public class PappusGraph extends AbstractFixedGraphGenerator {
 
     private static final int NUM_VERTICES = 18;

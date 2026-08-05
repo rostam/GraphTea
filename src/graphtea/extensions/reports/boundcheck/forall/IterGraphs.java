@@ -1,6 +1,5 @@
 package graphtea.extensions.reports.boundcheck.forall;
 
-
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.boundcheck.ConjectureChecking;
 import graphtea.extensions.reports.boundcheck.forall.filters.Bounds;

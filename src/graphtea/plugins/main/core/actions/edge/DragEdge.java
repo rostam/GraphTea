@@ -71,7 +71,6 @@ public class DragEdge extends AbstractAction implements PaintHandler {
 ////                    gv.repaint();
 //                }
 
-
             } else if (ee.eventType == EdgeEvent.DRAGGING) {
                 GPoint ctrlPnt = edge.getCurveControlPoint();
                 if (!edge.isLoop()) {
@@ -117,7 +116,6 @@ public class DragEdge extends AbstractAction implements PaintHandler {
 ////        listen4Event(VertexMouseDraggingData.event);
 //        gv.addPostPaintHandler(this);
     }
-
 
     public void paint(Graphics g, Object destinationComponent, Boolean drawExtras) {
 //        if (g != null) {
@@ -167,5 +165,4 @@ public class DragEdge extends AbstractAction implements PaintHandler {
 //        }
 //
     }
-
 }

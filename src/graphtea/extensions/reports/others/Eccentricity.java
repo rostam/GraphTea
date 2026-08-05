@@ -4,19 +4,13 @@ import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@CommandAttitude(name = "Eccentricity", abbreviation = "_eccentricity")
 public class Eccentricity implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Eccentricity";
-    }
-
-    public String getDescription() {
         return "Eccentricity";
     }
 
@@ -60,7 +54,6 @@ public class Eccentricity implements GraphReportExtension<RenderTable> {
         }
         return max_dist;
     }
-
 
     @Override
     public RenderTable calculate(GraphModel g) {

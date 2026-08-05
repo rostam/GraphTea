@@ -13,7 +13,6 @@ import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.ui.UIUtils;
 
-
 /**
  * @author Ruzbeh Ebrahimi
  */

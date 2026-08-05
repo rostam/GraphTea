@@ -8,7 +8,6 @@ package graphtea.extensions.reports.basicreports;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ import java.util.List;
  * @author Mohammad Ali Rostami
  */
 
-@CommandAttitude(name = "total_num_of_stars", abbreviation = "_tnoss")
 public class TotalNumOfStars implements GraphReportExtension<List<String>> {
     public List<String> calculate(GraphModel g) {
         List<String> ret = new ArrayList<>();
@@ -39,13 +37,8 @@ public class TotalNumOfStars implements GraphReportExtension<List<String>> {
         return "Total Number of Stars";
     }
 
-    public String getDescription() {
-        return "Total Number of Stars";
-    }
-
 	@Override
 	public String getCategory() {
 		return "General";
 	}
-
 }

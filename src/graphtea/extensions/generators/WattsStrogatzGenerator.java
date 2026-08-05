@@ -9,7 +9,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -38,8 +37,6 @@ import java.util.Set;
  *
  * Reference: Watts and Strogatz, Nature 393:440-442, 1998.
  */
-@CommandAttitude(name = "generate_ws", abbreviation = "_g_ws",
-    description = "Generates a Watts-Strogatz small-world graph")
 public class WattsStrogatzGenerator implements GraphGeneratorExtension, Parametrizable,
     SimpleGeneratorInterface {
 

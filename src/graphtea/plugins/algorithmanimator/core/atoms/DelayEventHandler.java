@@ -10,7 +10,6 @@ import graphtea.library.event.Event;
 import graphtea.platform.core.BlackBoard;
 import graphtea.plugins.algorithmanimator.core.AtomAnimator;
 
-
 /**
  * @author Omid Aladini
  */

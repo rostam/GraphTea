@@ -152,7 +152,6 @@ public class BackwardTrees implements VisualizationExtension {
         }
     }
 
-
     public void locateAllSubTrees(Vertex v, double radius, double offSet) {
         if (placedVertices.contains(root)) {
             double angularSpan = (Double) v.getProp().obj;

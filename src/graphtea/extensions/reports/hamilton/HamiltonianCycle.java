@@ -58,5 +58,4 @@ public class HamiltonianCycle
     private int cycleSize;
     private int[] cycle;
     private int[][] adjMat;
-
 }

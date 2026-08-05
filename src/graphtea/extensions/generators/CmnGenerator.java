@@ -8,7 +8,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -19,7 +18,6 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 /**
  * User: Houshmand
  */
-@CommandAttitude(name = "generate_cmn", abbreviation = "_g_cmn", description = "generates Cm * Cn")
 public class CmnGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "M")
     public static Integer m = 3;
@@ -58,7 +56,6 @@ public class CmnGenerator implements GraphGeneratorExtension, Parametrizable, Si
                 counter++;
             }
         }
-
 
         return ret;
     }

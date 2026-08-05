@@ -118,5 +118,4 @@ public class ConjectureChecking implements GraphReportExtension, Parametrizable 
     public String getCategory() {
         return null;
     }
-
 }

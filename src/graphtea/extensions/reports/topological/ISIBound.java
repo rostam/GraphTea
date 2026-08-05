@@ -2,7 +2,6 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -13,14 +12,9 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "ISIBound", abbreviation = "_ISIBound")
 public class ISIBound implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "ISIBound";
-    }
-
-    public String getDescription() {
-        return " ISIBound ";
     }
 
     public RenderTable calculate(GraphModel g) {

@@ -7,14 +7,12 @@ package graphtea.extensions.reports.basicreports;
 
 import graphtea.extensions.reports.MaxIndependentSetReport;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Mohammad Ali Rostami
  */
 
-@CommandAttitude(name = "domination_number", abbreviation = "_dn")
 public class DominationNumber implements GraphReportExtension<Integer> {
 
     public Integer calculate(GraphModel g) {
@@ -22,10 +20,6 @@ public class DominationNumber implements GraphReportExtension<Integer> {
     }
 
     public String getName() {
-        return "Graph Domination Number";
-    }
-
-    public String getDescription() {
         return "Graph Domination Number";
     }
 

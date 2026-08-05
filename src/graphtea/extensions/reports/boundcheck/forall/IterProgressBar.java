@@ -22,6 +22,4 @@ public class IterProgressBar extends JFrame {
     public void setValue(int val) {
         pb.setValue(val);
     }
-
-
 }

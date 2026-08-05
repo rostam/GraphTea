@@ -137,7 +137,6 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
 
     }
 
-
     private Vertex lastVertex() {
         VertexEvent x = blackboard.getData(VertexEvent.EVENT_KEY);
         return (x == null ? null : x.v);
@@ -380,7 +379,6 @@ public class GraphPropertyEditor extends AbstractAction implements AttributeList
     private String edgeAtrName(String name) {
         return "e" + name;
     }
-
 
     private TimeLimitedNotifiableAttrSet getTarget() {
         return target;

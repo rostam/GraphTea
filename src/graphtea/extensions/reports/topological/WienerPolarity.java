@@ -6,21 +6,14 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Ali Rostami
  */
 
-
-@CommandAttitude(name = "wiener_Polarity", abbreviation = "_windex")
 public class WienerPolarity implements GraphReportExtension<Integer> {
     public String getName() {
-        return "Wiener Polarity";
-    }
-
-    public String getDescription() {
         return "Wiener Polarity";
     }
 

@@ -97,5 +97,4 @@ public class LloydKMeans {
 											// clusters since some clusters may
 											// have been superfluous
 	}
-
 }

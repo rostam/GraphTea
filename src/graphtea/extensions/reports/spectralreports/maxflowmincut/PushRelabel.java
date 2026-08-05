@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 
-
 /***
  * 
  * @author Hooman Mohajeri Moghaddam
@@ -21,8 +20,6 @@ import java.util.LinkedList;
 
 public class PushRelabel extends MaxFlow{
 
-
-
 	private int[] height;
 	private int[] excess;
 	private Integer[] current;
@@ -30,20 +27,14 @@ public class PushRelabel extends MaxFlow{
 	private final HashMap <Integer, Iterator<Integer>> iterMap ;
 	private final boolean isDirecte;
 
-
-
-
 	public PushRelabel(GraphModel g, Vertex source, Vertex sink, boolean showResult)
 	{
 		super(g,source,sink,showResult);
 		isDirecte = g.isDirected();
 		C = g.getWeightedAdjacencyMatrix().getArrayCopy();
 
-
-
 		n = C.length;
 		current = new Integer[n];
-
 
 		// a map between the vertex id and a linked-list of simple(undirected) neighbors".
 		neighborMap = new HashMap<>();
@@ -70,7 +61,6 @@ public class PushRelabel extends MaxFlow{
 		}
 
 	}
-
 
 	public void doAlgorithm()
 	{
@@ -132,7 +122,6 @@ public class PushRelabel extends MaxFlow{
 		excess[v] += deltaF;
 		//makeLabels();
 	}
-
 
 	private int Cf(int u, int v)
 	{
@@ -213,5 +202,4 @@ public class PushRelabel extends MaxFlow{
 			//v.setLabel(""+height[v.getId()]);
 		g.setDrawEdgeLabels(true);
 	}
-
 }

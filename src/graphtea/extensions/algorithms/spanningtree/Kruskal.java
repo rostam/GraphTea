@@ -83,7 +83,4 @@ public class Kruskal extends Algorithm implements AutomatedAlgorithm {
 //
 //        Kruskal.findMinimumSpanningTree(graph);
     }
-
-
 }
-

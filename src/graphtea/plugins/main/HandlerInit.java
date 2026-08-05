@@ -15,7 +15,6 @@ import java.io.IOException;
 
 public class HandlerInit implements PluginHandlerInterface {
 
-
     /**
      * Load config xml in UI.
      *
@@ -31,5 +30,4 @@ public class HandlerInit implements PluginHandlerInterface {
             ExceptionHandler.catchException(e);
         }
     }
-
 }

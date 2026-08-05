@@ -101,5 +101,4 @@ public class IndSetColoringRenderer implements GBasicCellRenderer<IndSubGraphs> 
         }
 
     }
-
 }

@@ -25,8 +25,6 @@ public class LaplacianIntegralFilter implements GraphFilter {
         return true;
     }
 
-
-
     @Override
     public boolean filter(GraphModel g) {
         return isLaplacianIntegral(g);

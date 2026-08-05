@@ -5,7 +5,6 @@
 
 package graphtea.extensions.algorithms.shortestpath.algs;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import graphtea.graph.graph.Edge;
@@ -25,7 +24,6 @@ import java.util.*;
  * @author M. Ali Rostami
  */
 public class AcyclicSP extends GraphAlgorithm implements AutomatedAlgorithm {
-
 
     private EdgeVertexCopier<Vertex, Edge> gc;
 

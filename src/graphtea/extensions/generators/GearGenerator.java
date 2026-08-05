@@ -9,7 +9,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -21,8 +20,6 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
  * @author Mohammad Ali Rostami
  * @email rostamiev@gmail.com
  */
-@CommandAttitude(name = "generate_gear", abbreviation = "_g_g"
-        , description = "generate a n vertices gear graph")
 public class GearGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "n")
     public static Integer n = 5;
@@ -30,10 +27,6 @@ public class GearGenerator implements GraphGeneratorExtension, Parametrizable, S
     private Vertex[] v;
 
     public String getName() {
-        return "Gear Graph";
-    }
-
-    public String getDescription() {
         return "Gear Graph";
     }
 

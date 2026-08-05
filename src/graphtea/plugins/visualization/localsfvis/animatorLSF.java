@@ -278,7 +278,6 @@ class animatorLSF extends Thread {
 
     boolean[] stableVertex;
 
-
     void getVertices() {
         int _n = g.getVerticesCount();
         if (_n != n) {

@@ -5,16 +5,13 @@
 package graphtea.extensions.reports.others;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "PI_Index", abbreviation = "_SzegedIndex")
 public class PiIndex implements GraphReportExtension<Integer> {
     public String getName() { return "PI Index"; }
-    public String getDescription() { return "PI Index"; }
     public String getCategory() { return "Topological Indices-Distance"; }
 
     public Integer calculate(GraphModel g) {

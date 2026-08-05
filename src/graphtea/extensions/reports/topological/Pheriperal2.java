@@ -4,7 +4,6 @@ import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.others.PeripheralWienerIndex;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -14,14 +13,9 @@ import java.util.List;
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "Pheriperal2", abbreviation = "_Pheriperal2")
 public class Pheriperal2 implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Pheriperal2";
-    }
-
-    public String getDescription() {
-        return " Pheriperal2 ";
+        return "Peripheral Wiener vs 3 Line Graphs";
     }
 
     public RenderTable calculate(GraphModel g) {

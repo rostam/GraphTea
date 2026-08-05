@@ -5,18 +5,12 @@ import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.extensions.reports.basicreports.Diameter;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 
-@CommandAttitude(name = "PeripheralVertices", abbreviation = "_peripheral_veritces")
 public class PeripheralVertices implements GraphReportExtension<ArrayList<Vertex>> {
     public String getName() {
-        return "Peripheral vertices";
-    }
-
-    public String getDescription() {
         return "Peripheral vertices";
     }
 
@@ -44,5 +38,4 @@ public class PeripheralVertices implements GraphReportExtension<ArrayList<Vertex
     public String getCategory() {
 		return "Topological Indices-Wiener Types";
     }
-
 }

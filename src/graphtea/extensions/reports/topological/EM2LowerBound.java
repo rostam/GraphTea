@@ -8,7 +8,6 @@ import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -19,13 +18,8 @@ import java.util.Collections;
 
  */
 
-@CommandAttitude(name = "EM2LowerBound", abbreviation = "_EM2LowerBound")
 public class EM2LowerBound implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "EM2 Lower";
-    }
-
-    public String getDescription() {
         return "EM2 Lower";
     }
 
@@ -100,7 +94,6 @@ public class EM2LowerBound implements GraphReportExtension<RenderTable> {
 
         //My new1
         v.add((2 * D12) + ((M21 * M21) / (2 * m)) - (3 * M31 / 2) + M21);
-
 
         //nilanjan de 2
         v.add(Math.pow(M21 - (2 * m), 2) / (2 * m * m));

@@ -5,8 +5,6 @@
 
 package graphtea.extensions.generators;
 
-import graphtea.platform.lang.CommandAttitude;
-
 /**
  * Generates Zachary's Karate Club network: 34 vertices, 78 edges.
  *
@@ -18,8 +16,6 @@ import graphtea.platform.lang.CommandAttitude;
  * Reference: W. W. Zachary, "An information flow model for conflict and fission
  * in small groups," Journal of Anthropological Research, 33(4):452-473, 1977.
  */
-@CommandAttitude(name = "generate_karate", abbreviation = "_g_karate",
-    description = "Generates Zachary's Karate Club network (34 vertices, 78 edges)")
 public class ZacharyKarateClub extends AbstractFixedGraphGenerator {
 
     private static final int NUM_VERTICES = 34;

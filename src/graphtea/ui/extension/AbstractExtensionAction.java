@@ -10,7 +10,6 @@ import graphtea.platform.core.AEvent;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.extension.Extension;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
@@ -149,8 +148,6 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
                 GMenuBar.insert(parentMenu, menuItem, getMenuPlace());
         }
 
-
-        createExtensionCommandsForCommandLine();
     }
 
     /**
@@ -221,65 +218,6 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
      */
     protected boolean isInsertExtraButtonToMenuItem() {
         return false; //target instanceof Parameterizable; we don't want this button for now. just go with the simple interface
-    }
-
-    /**
-     * inorder if you created a new type of extension and for that extension you want to do some thing different
-     * when it is called on commandline (i.e. in normal state it uses some GUI functionalities and you want to avoid them)
-     * you can override this method and do what you want, which will
-     * be called whenever your extension called from commandline
-     * for an example see GraphGeneratorExtensionAction
-     *
-     * @see graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtensionAction
-     */
-    public Object performExtensionInCommandLine() {
-        performExtension();
-        return null;
-    }
-
-    protected void createExtensionCommandsForCommandLine() {
-        final AbstractExtensionAction<t> ths = this;
-        final t trgClass = target;
-        final CommandAttitude comati = trgClass.getClass().getAnnotation(CommandAttitude.class);
-
-        String command = "";
-        String cname;
-        String abrv;
-        String desc;
-        if (comati != null) {
-            //            Shell.set_variable("_" + target.getClass().getSimpleName(), target);
-            cname = comati.name();
-            abrv = comati.abbreviation();
-            desc = comati.description();
-            if (desc == null || desc.isEmpty())
-                desc = target.getDescription();
-        } else {
-            cname = target.getClass().getSimpleName();
-            abrv = "";
-            desc = target.getDescription();
-        }
-        command += cname + "(";
-        String help = "";
-
-        for (Field f : target.getClass().getFields()) {
-            if (f.getAnnotation(Parameter.class) != null) {
-                command += f.getType().getName()
-                        + " "
-                        + f.getName() + ",";
-                help += "_" + target.getClass().getSimpleName()
-                        + "."
-                        + f.getName()
-                        + " = "
-                        + f.getName()
-                        + ";\n";
-            }
-        }
-        if (command.endsWith(","))
-            command = command.substring(0, command.length() - 1);
-        command += ")\n{";
-        //        System.out.println(command);
-        ExtensionShellCommandProvider.addCommand(ths, trgClass, cname, abrv, command, desc, help);
-
     }
 
     /**

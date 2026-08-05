@@ -28,5 +28,4 @@ public class VertexSaveObject implements Serializable {
 
         return v;
     }
-
 }

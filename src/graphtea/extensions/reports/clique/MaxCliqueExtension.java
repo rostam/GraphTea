@@ -4,11 +4,9 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.extensions.reports.clique;
 
-
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -18,13 +16,8 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "mst_prim", abbreviation = "_max_c")
 public class MaxCliqueExtension implements GraphReportExtension<List<SubGraph>> {
     public String getName() {
-        return "Maximal Cliques";
-    }
-
-    public String getDescription() {
         return "Maximal Cliques";
     }
 
@@ -44,5 +37,4 @@ public class MaxCliqueExtension implements GraphReportExtension<List<SubGraph>> 
 	public String getCategory() {
 		return "General";
 	}
-
 }

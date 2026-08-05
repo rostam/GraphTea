@@ -128,7 +128,6 @@ public class LastSettings implements AttributeListener {
         }
     }
 
-
     public void saveSettings() {
         for (Object o : registeredObjects) {
             String objectName = o.getClass().getName();
@@ -157,5 +156,4 @@ public class LastSettings implements AttributeListener {
         }
 
     }
-
 }

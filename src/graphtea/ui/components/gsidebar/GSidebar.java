@@ -8,15 +8,31 @@ package graphtea.ui.components.gsidebar;
 import graphtea.platform.core.BlackBoard;
 import graphtea.ui.components.gbody.GBody;
 
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-import java.awt.*;
+import javax.swing.ButtonGroup;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JToggleButton;
+import javax.swing.BoxLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 
 /**
- * this class is the sidebar part of GFrame
+ * The strip of vertical tabs down the left edge of the main window.
+ *
+ * <p>Each tab used to be a small GIF with its label baked into the image, rotated and rendered
+ * at around eight pixels; "Properties", "Shell" and "Reports" were all but unreadable, and
+ * adding a tab meant drawing a new picture. The labels are now drawn with Java2D at a legible
+ * size, which is what the long comment at the bottom of this file was waiting for.
+ *
  * Author: Azin Azadi
  */
 public class GSidebar extends JPanel {
@@ -25,6 +41,9 @@ public class GSidebar extends JPanel {
      */
     private static final long serialVersionUID = -599129598320886343L;
     private final GBody targetBody;
+
+    /** Keeps exactly one tab looking selected. */
+    private final ButtonGroup group = new ButtonGroup();
 
     /**
      * constructor
@@ -52,7 +71,8 @@ public class GSidebar extends JPanel {
 
     public void addButton(Icon icon, Component c, String label) {
         GSidebarButton b = new GSidebarButton(icon, c, this, label);
-        if (label.equals("shell"))
+        group.add(b);
+        if (label.equalsIgnoreCase("shell"))
             add(b,1);
         else add(b);
         validate();
@@ -74,77 +94,91 @@ public class GSidebar extends JPanel {
 }
 
 /**
- * java currently (now we have jdk 1.5) does not supports "Vertical Text"
- * yes, yes, i know that it's a shame for java.
- * i searched the internet for some hours to find that how can i write a String vertically in any way on the screen
- * you know that the side bar buttons are vertically, and the texts in JButtons is aligned vertically
- * I suggested some ways for doing this.
- * 1- the texts in the swing can be HTML, i mean that you can write for ex. b.setText("<html><font color="red">asda</font></html>");
- * we used this method in hour vertices to color out texts.
- * so if we have the ability of writing text vertically in HTML, then we can use this to have the vertical buttons,
- * i had sawn vertical texts, in some pages using Internet Explorer. but when i search for such a future , it seems
- * that this feature is not a standard HTML feature, and just supported by IE.
- * 2- we can build a system from base, like the current system. current system write horizontally, and we can build our
- * system writing vertically, independent of the old system.
- * this way is hard to implement. it needs a great amount of work to support all the features of such a system.
- * when i was searching the internet for finding a solution, i find a project for writing the texts vertically , and
- * it used the way i said above, and also it was free!
- * but i didn't like to use the system in GraphTea project. because i think that it adds too complexity to GraphTea
- * and also i think that the one that should do the jub is SUN. so i think that it is better that wait until the sun
- * implement this feature, and i preferred a third solution.
- * 3- our slide bar button will not more than 10. so simply we can just take a picture from input and display it
- * , so the user can put every thing on the picture including vertical texts.
- * 4- and there is another way , that i think it is a hack!
- * we can write the texts horizontally , then take a picture of it, and then simply rotate the text. :D
- * but in graphtea i prefer to use the 3rd way because of its simplicity.
- * --------------
- * 5- roozbeh suggests a solution for the problem. he shows the Sun Java 2D demos, that are in the JDK Demos. there
- * was a demo of fonts in java2d. it seems that it can be very simple to rotate the texts in java2d.
+ * A vertical tab: its label drawn rotated a quarter turn anticlockwise, so it reads bottom-to-top
+ * down the side of the window.
  */
-class GVerticalButton extends JToggleButton {
+class GSidebarButton extends JToggleButton implements ActionListener {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 4372060475633555488L;
-    //todo: inja hast ta badan por beshe :D. (to be filled later)
-
-
-}
-
-//fek mikonam age az jense togle button bashan behtar bashe
-
-class GSidebarButton extends GVerticalButton implements ActionListener {
-    /**
-     *
-     */
     private static final long serialVersionUID = -3299575618889083096L;
+
+    /** Width of the strip. Wide enough for a 12pt label plus breathing room. */
+    private static final int WIDTH = 26;
+
+    /** Padding above and below the text within the tab. */
+    private static final int PADDING = 14;
+
+    private static final Color SELECTED_BG = new Color(0xE3E9EF);
+    private static final Color HOVER_BG = new Color(0xF1F4F7);
+    private static final Color EDGE = new Color(0xCCD3DA);
+    private static final Color TEXT = new Color(0x33404D);
+
     private final Component sidePanel;
     private final GSidebar sidebar;
     private final String label;
 
-    public GSidebarButton(Icon icon, Component sidepanel, GSidebar sidebar, String label) {
-        //todo: in sidePanel shaiad lazem she jaie JPanel ie chizi too maiehaie sidebarpanel bashe. felan ke lozoomi nemibinam
+    GSidebarButton(Icon icon, Component sidepanel, GSidebar sidebar, String label) {
         this.sidePanel = sidepanel;
         this.sidebar = sidebar;
         this.label = label;
-        setIcon(icon);
-
-        if (icon.getIconHeight() == -1) //if the icon was not loaded succesfully
-            setText("|");
-        setBorder(new LineBorder(Color.gray, 1, true));
-        //setPreferredSize(new Dimension(icon.getIconWidth() + 2, 2 + icon.getIconHeight()));
+        setToolTipText(label);
+        setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
+        setFocusPainted(false);
+        setContentAreaFilled(false);
+        setBorderPainted(false);
+        setOpaque(false);
+        setRolloverEnabled(true);
         addActionListener(this);
+
+        int height = PADDING * 2 + textLength();
+        Dimension size = new Dimension(WIDTH, height);
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
+        setAlignmentX(CENTER_ALIGNMENT);
+    }
+
+    private int textLength() {
+        return getFontMetrics(getFont()).stringWidth(label);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g.create();
+        try {
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+                    RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
+            int w = getWidth();
+            int h = getHeight();
+            if (isSelected()) {
+                g2.setColor(SELECTED_BG);
+                g2.fillRect(0, 0, w, h);
+            } else if (getModel().isRollover()) {
+                g2.setColor(HOVER_BG);
+                g2.fillRect(0, 0, w, h);
+            }
+            g2.setColor(EDGE);
+            g2.drawLine(w - 1, 0, w - 1, h - 1);
+
+            // Rotate a quarter turn anticlockwise about the centre, then draw the label
+            // horizontally: it comes out reading bottom-to-top.
+            g2.translate(w / 2.0, h / 2.0);
+            g2.rotate(-Math.PI / 2);
+            g2.setColor(TEXT);
+            g2.setFont(getFont());
+            int textWidth = g2.getFontMetrics().stringWidth(label);
+            int baseline = g2.getFontMetrics().getAscent() / 2 - 1;
+            g2.drawString(label, -textWidth / 2f, baseline);
+        } finally {
+            g2.dispose();
+        }
     }
 
     /**
      * Invoked when an action occurs.
      */
     public void actionPerformed(ActionEvent e) {
-//        if (super.isSelected())
         sidebar.setPanel(sidePanel, label);
-//        else
-//            sidebar.hidePanel();
     }
-
 }

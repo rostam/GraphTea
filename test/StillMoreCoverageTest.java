@@ -9,7 +9,11 @@ import graphtea.extensions.algorithms.BiconnectedComponents;
 import graphtea.extensions.generators.CompleteGraphGenerator;
 import graphtea.extensions.generators.PathGenerator;
 import graphtea.extensions.reports.energy.AllEnergies;
+import graphtea.extensions.reports.energy.Energy;
 import graphtea.extensions.reports.energy.NewLowerBounds;
+import graphtea.extensions.reports.energy.ResolventEnergy;
+import graphtea.extensions.reports.spectralreports.LaplacianEnergy;
+import graphtea.extensions.reports.spectralreports.SignlessLaplacianEnergy;
 import graphtea.extensions.reports.topological.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
@@ -42,22 +46,22 @@ public class StillMoreCoverageTest {
 
     @Test
     public void allEnergiesEnergyHelper() {
-        assertNotNull(new AllEnergies().Energy(k3));
+        assertNotNull(new Energy().calculate(k3));
     }
 
     @Test
     public void allEnergiesLaplacianEnergyHelper() {
-        assertNotNull(new AllEnergies().LaplacianEnergy(k3));
+        assertNotNull(new LaplacianEnergy().calculate(k3));
     }
 
     @Test
     public void allEnergiesSignlessLaplacianEnergyHelper() {
-        assertNotNull(new AllEnergies().SignlessLaplacianEnergy(k3));
+        assertNotNull(new SignlessLaplacianEnergy().calculate(k3));
     }
 
     @Test
     public void allEnergiesResolventEnergyHelper() {
-        assertNotNull(new AllEnergies().ResolventEnergy(k3));
+        assertNotNull(new ResolventEnergy().calculate(k3));
     }
 
     // ── NewLowerBounds ────────────────────────────────────────────────────────

@@ -29,13 +29,11 @@ public class PreferencesAction extends AbstractAction implements StorableOnExit 
 
     }
 
-
     public void performAction(String eventName, Object value) {
         pref.retrieveEveryItem();
 //        HashMap<String, HashSet<AbstractPreference>> complicatedTabs = new HashMap<String, HashSet<AbstractPreference>>();
         managePrefUI();
     }
-
 
     private void managePrefUI() {
         HashMap<String, AbstractPreference> tabs = new HashMap<>();
@@ -48,6 +46,4 @@ public class PreferencesAction extends AbstractAction implements StorableOnExit 
         GPrefPane gpp = new GPrefPane(blackboard, tabs);
         gpp.setVisible(true);
     }
-
-
 }

@@ -17,16 +17,11 @@ import javax.swing.*;
  * @author Azin Azadi
  */
 
-
 public class G6Checker implements GraphActionExtension, Parametrizable {
     @Parameter(name = "G6 Checker")
     public String graphs = "";
 
     public String getName() {
-        return "G6 Checker";
-    }
-
-    public String getDescription() {
         return "G6 Checker";
     }
 
@@ -42,11 +37,9 @@ public class G6Checker implements GraphActionExtension, Parametrizable {
         }
     }
 
-
     @Override
     public String getCategory() {
         return "Other Actions";
     }
 }
-
 

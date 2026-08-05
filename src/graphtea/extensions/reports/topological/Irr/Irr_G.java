@@ -7,7 +7,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -18,13 +17,8 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "Irr_G", abbreviation = "_Irr_G")
 public class Irr_G implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Irr_G";
-    }
-
-    public String getDescription() {
         return "Irr_G";
     }
 

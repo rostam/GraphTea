@@ -74,7 +74,6 @@ public class SaveLoadPluginMethods implements PluginMethods {
         graphtea.plugins.main.saveload.image.SaveImage.saveImage(g, file, extension);
     }
 
-
 //************************     L O A D       ***********************************
 
     /**

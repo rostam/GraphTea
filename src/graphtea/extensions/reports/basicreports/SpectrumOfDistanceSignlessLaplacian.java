@@ -5,55 +5,27 @@
 
 package graphtea.extensions.reports.basicreports;
 
-import java.util.List;
-import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @author Mohammad Ali Rostami
  */
+public class SpectrumOfDistanceSignlessLaplacian extends AbstractSpectrumReport {
 
-@CommandAttitude(name = "spectrum_dist_degree", abbreviation = "_spectrum_dist_degree")
-public class SpectrumOfDistanceSignlessLaplacian implements GraphReportExtension<ArrayList<String>> {
-    public ArrayList<String> calculate(GraphModel g) {
-        ArrayList<String> res = new ArrayList<>();
-        res.add("Spectra");
-        // Matrix A = AlgorithmUtils.getDistanceAdjacencyMatrix(g);
-        Matrix A = AlgorithmUtils.getDistanceSignlessLaplacianMatrix(g);
-		for(double[] a: A.getArray())
-            res.add(Arrays.toString(a));
-        res.add("Eigen Values");
-        EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double[] iv = ed.getImagEigenvalues();
-        for (int i = 0; i < rv.length; i++)
-            if (iv[i] != 0)
-                res.add("" + AlgorithmUtils.round(rv[i], 5) + " + " + AlgorithmUtils.round(iv[i], 5) + "i");
-            else
-                res.add("" + AlgorithmUtils.round(rv[i], 5));
-        res.add("Eigen Vectors:\n");
-        double[][] eigenVectors = ed.getV().getArray();
-        for (double[] eigenVector : eigenVectors) res.add(Arrays.toString(AlgorithmUtils.round(eigenVector, 5)));
-        return res;
+    @Override
+    protected Matrix getMatrix(GraphModel g) {
+        return AlgorithmUtils.getDistanceSignlessLaplacianMatrix(g);
     }
 
+    @Override
+    protected String getMatrixLabel() {
+        return "Distance Signless Laplacian Matrix";
+    }
+
+    @Override
     public String getName() {
-        return "Spectrum of Distance Signless Laplacian Matrix ";
+        return "Spectrum of Distance Signless Laplacian Matrix";
     }
-
-    public String getDescription() {
-        return "Spectrum of Distance Signless Laplacian Matrix ";
-    }
-
-	@Override
-	public String getCategory() {
-		return "Spectral";
-	}
 }

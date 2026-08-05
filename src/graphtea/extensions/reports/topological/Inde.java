@@ -3,7 +3,6 @@ package graphtea.extensions.reports.topological;
 import graphtea.extensions.reports.basicreports.NumOfIndSets;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -14,14 +13,9 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "iG", abbreviation = "_iG")
 public class Inde implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Inde-Wiener";
-    }
-
-    public String getDescription() {
-        return " Inde-Wiener ";
+        return "Independent Sets vs Wiener Index";
     }
 
     public RenderTable calculate(GraphModel g) {

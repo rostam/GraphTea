@@ -26,5 +26,4 @@ public class DeleteEdge extends AbstractAction {
         Edge e = esd.edge;
         g.removeEdge(e);
     }
-
 }

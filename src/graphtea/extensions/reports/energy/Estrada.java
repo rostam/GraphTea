@@ -6,9 +6,9 @@ package graphtea.extensions.reports.energy;
 
 import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
+import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -17,13 +17,8 @@ import java.util.List;
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "newInvs", abbreviation = "_newInv")
 public class Estrada implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Estrada";
-    }
-
-    public String getDescription() {
         return "Estrada";
     }
 
@@ -32,7 +27,7 @@ public class Estrada implements GraphReportExtension<RenderTable> {
         List<String> titles = new ArrayList<>();
         titles.add(" m ");
         titles.add(" n ");
-        titles.add(" Estarda ");
+        titles.add(" Estrada ");
         titles.add(" check1 ");
         titles.add(" check2 ");
         ret.setTitles(titles);
@@ -44,7 +39,7 @@ public class Estrada implements GraphReportExtension<RenderTable> {
         double es = 0;
 
         for (int i = 0; i < rv.length; i++) {
-            rv[i] = (double) Math.round(rv[i] * 10000000000d) / 10000000000d;
+            rv[i] = AlgorithmUtils.round(rv[i], 10);
             estra += Math.exp(rv[i]);
             es += Math.exp(2 * rv[i]);
         }

@@ -8,12 +8,10 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-@CommandAttitude(name = "generate_helmn", abbreviation = "_g_prism", description = "generates a Prism graph of order n")
 public class CrossedPrismGraph implements GraphGeneratorExtension, Parametrizable {
 
     //the depth should be positive, and also if it is very large the
@@ -22,7 +20,6 @@ public class CrossedPrismGraph implements GraphGeneratorExtension, Parametrizabl
     //public BoundedInteger depth = new BoundedInteger(3, 15, 1);
     @Parameter(description = "Num of vertices")
     public static int n = 4;      //num of vertices
-
 
     public String checkParameters() {
         //d = depth.getValue();
@@ -40,10 +37,6 @@ public class CrossedPrismGraph implements GraphGeneratorExtension, Parametrizabl
     }
 
     public String getName() {
-        return "Crossed Prism Graph";
-    }
-
-    public String getDescription() {
         return "Crossed Prism Graph";
     }
 

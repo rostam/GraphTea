@@ -6,7 +6,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.PositionGenerators;
@@ -18,7 +17,6 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
  * https://mathworld.wolfram.com/BananaTree.html
  */
 
-@CommandAttitude(name = "generate_banana_tree", abbreviation = "_g_banana", description = "generates a Banana graph")
 public class BananaTreeGenerator implements GraphGeneratorExtension, Parametrizable {
 
     //the depth should be positive, and also if it is very large the
@@ -27,7 +25,6 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
     public static int n = 4;
     @Parameter(description = "K")
     public static int k = 4;      //num of each star vertices
-
 
     public String checkParameters() {
         if( n<0 || k<0 )

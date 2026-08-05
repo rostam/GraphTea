@@ -6,19 +6,13 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "totaleccentricity_index", abbreviation = "_TEindex")
 public class TotalEccentricityIndex implements GraphReportExtension<Double> {
     public String getName() {
-        return "Total eccentrity Index";
-    }
-
-    public String getDescription() {
         return "Total eccentrity Index";
     }
 

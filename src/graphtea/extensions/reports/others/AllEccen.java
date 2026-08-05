@@ -6,7 +6,6 @@ import graphtea.extensions.reports.topological.ZagrebIndexFunctions;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -15,14 +14,9 @@ import java.util.List;
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "AllEccen", abbreviation = "_AllEccen")
 public class AllEccen implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "AllEccen";
-    }
-
-    public String getDescription() {
-        return " AllEccen ";
     }
 
     public RenderTable calculate(GraphModel g) {

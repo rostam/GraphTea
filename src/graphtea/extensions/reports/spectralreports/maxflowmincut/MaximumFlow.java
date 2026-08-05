@@ -1,6 +1,5 @@
 package graphtea.extensions.reports.spectralreports.maxflowmincut;
 
-
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -23,15 +22,9 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 	}
 
 	@Override
-	public String getDescription() {
-		return "Max Flow";
-	}
-
-	@Override
 	public String getName() {
 		return "Max Flow";
 	}
-
 
 	@Override
 	public Object calculate(GraphModel g) {
@@ -89,5 +82,4 @@ public class MaximumFlow extends Algorithm implements GraphReportExtension{
 			e.setLabel(e.source.getId() + "" + e.target.getId());
 		}
 	}
-
 }

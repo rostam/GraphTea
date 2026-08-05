@@ -81,5 +81,4 @@ public class PrePostWork implements AtomAnimator<Event> {
             ExceptionHandler.catchException(e);
         }
     }
-
 }

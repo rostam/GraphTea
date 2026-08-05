@@ -9,22 +9,16 @@ import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.others.Eccentricity;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author azin azadi
  */
-@CommandAttitude(name = "eccentric_connective_index", abbreviation = "_ECindex")
 public class EccentricConnectiveIndex implements GraphReportExtension<Double> {
 
     private double a = 1;
 
     public String getName() {
-        return "Eccentric Connective Index";
-    }
-
-    public String getDescription() {
         return "Eccentric Connective Index";
     }
 

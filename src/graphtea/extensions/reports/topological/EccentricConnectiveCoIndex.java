@@ -9,20 +9,14 @@ import graphtea.extensions.AlgorithmUtils;
 import graphtea.extensions.reports.others.Eccentricity;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author azin azadi
  */
-@CommandAttitude(name = "eccentric_connective_co_index", abbreviation = "_ECcoindex")
 public class EccentricConnectiveCoIndex implements GraphReportExtension<Double> {
 
     public String getName() {
-        return "Eccentric Connective Co-Index";
-    }
-
-    public String getDescription() {
         return "Eccentric Connective Co-Index";
     }
 

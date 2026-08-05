@@ -8,7 +8,6 @@ package graphtea.extensions.reports;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.SubGraph;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayDeque;
@@ -21,7 +20,6 @@ import java.util.stream.Collectors;
  * @author Azin Azadi
  */
 
-@CommandAttitude(name = "maximum_independent_set", abbreviation = "_mis")
 public class MaxIndependentSetReport implements GraphReportExtension<List<SubGraph>> {
 //    @Parameter(name = "Lower Bound", description = "Lower Bound for the number of independent set members, This will make the search Interval smaller")
 //    public Integer lowerBound = 1;
@@ -37,7 +35,6 @@ public class MaxIndependentSetReport implements GraphReportExtension<List<SubGra
     public String getDescription() {
         return "Maximum independent set of graph vertices";
     }
-
 
     public List<SubGraph> calculate(GraphModel g) {
         List<ArrayDeque<Vertex>> maxsets = getMaxIndependentSet(g);

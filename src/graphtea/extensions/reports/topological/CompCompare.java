@@ -2,7 +2,6 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -13,13 +12,8 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "Complexity_Compare", abbreviation = "_Complexity_Compare")
 public class CompCompare implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Complexity-Compare";
-    }
-
-    public String getDescription() {
         return "Complexity-Compare";
     }
 

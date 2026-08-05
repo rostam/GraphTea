@@ -4,7 +4,6 @@ import graphtea.extensions.reports.basicreports.NumOfIndSets;
 import graphtea.extensions.reports.others.PeripheralWienerIndex;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -15,14 +14,9 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "Mere", abbreviation = "_Mere")
 public class Mere implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Mere";
-    }
-
-    public String getDescription() {
-        return " Mere ";
     }
 
     public RenderTable calculate(GraphModel g) {

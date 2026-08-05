@@ -5,7 +5,6 @@
 package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 
 /**
  * In chemical graph theory, the Wiener index (also Wiener number) introduced by Harry Wiener,
@@ -14,13 +13,8 @@ import graphtea.platform.lang.CommandAttitude;
  *
  * @author Ali Rostami
  */
-@CommandAttitude(name = "wiener_index", abbreviation = "_windex")
 public class WienerIndex extends WienerIndexBase {
     public String getName() {
-        return "Wiener Index";
-    }
-
-    public String getDescription() {
         return "Wiener Index";
     }
 

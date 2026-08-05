@@ -54,9 +54,4 @@ public class ILU extends GraphAlgorithm implements AlgorithmExtension {
     public String getName() {
         return "ILU";
     }
-
-    @Override
-    public String getDescription() {
-        return "ILU";
-    }
 }

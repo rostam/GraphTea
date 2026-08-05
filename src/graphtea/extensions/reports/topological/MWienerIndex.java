@@ -5,18 +5,12 @@
 package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "mwiener_index", abbreviation = "_windex")
 public class MWienerIndex extends WienerIndexBase {
     public String getName() {
-        return "Multiplicative Wiener Index";
-    }
-
-    public String getDescription() {
         return "Multiplicative Wiener Index";
     }
 

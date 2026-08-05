@@ -174,5 +174,4 @@ public class AlgorithmAnimator implements EventDispatcher, ActionListener {
         f.pack();
         f.setVisible(true);
     }
-
 }

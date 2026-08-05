@@ -4,18 +4,12 @@ import java.util.List;
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 
-@CommandAttitude(name = "PeripheralWienerIndex", abbreviation = "_peripheral_wiener_index")
 public class PeripheralWienerIndex implements GraphReportExtension<Integer> {
     public String getName() {
-        return "Peripheral wiener index";
-    }
-
-    public String getDescription() {
         return "Peripheral wiener index";
     }
 
@@ -50,5 +44,4 @@ public class PeripheralWienerIndex implements GraphReportExtension<Integer> {
     public String getCategory() {
 		return "Topological Indices-Wiener Types";
     }
-
 }

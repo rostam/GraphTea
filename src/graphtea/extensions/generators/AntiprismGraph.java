@@ -8,12 +8,10 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-@CommandAttitude(name = "generate_antiprism", abbreviation = "_g_aprism", description = "generates a Prism graph of order n")
 public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
     //the depth should be positive, and also if it is very large the
     //generated graph is too large to generate.
@@ -38,14 +36,9 @@ public class AntiprismGraph implements GraphGeneratorExtension, Parametrizable {
         return "Antiprism Graph";
     }
 
-    public String getDescription() {
-        return "Antiprism Graph";
-    }
-
     public GPoint[] getVertexPositions() {
        return PrismGraph.computePrismCoords(n);
     }
-
 
     public GraphModel generateGraph() {
         GraphModel g = new GraphModel(false);

@@ -4,7 +4,6 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.platform;
 
-
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.Extension;
@@ -13,10 +12,10 @@ import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.plugin.Plugger;
 import graphtea.platform.preferences.Preferences;
 import graphtea.platform.preferences.lastsettings.StorableOnExit;
+import graphtea.platform.ui.UserNotifier;
 
 import java.io.File;
 import java.net.URLClassLoader;
-
 
 /**
  * The Main runner of program
@@ -26,7 +25,11 @@ public class Application implements StorableOnExit {
 
     public static final String VERSION = "1.5.4";
     public static final String VERSION_NAME = "newrooz";
-    public static final String WELCOME_URL = "http://graphtheorysoftware.com/v/"+VERSION_NAME;
+    /**
+     * Release notes for this version, on the web. Not used for the getting-started page:
+     * that ships inside the jar so it works offline and cannot rot.
+     */
+    public static final String RELEASE_NOTES_URL = "https://graphtheorysoftware.com/v/" + VERSION_NAME;
 
     //public static String USER_ID;
 
@@ -39,17 +42,25 @@ public class Application implements StorableOnExit {
      * @see graphtea.platform.Application#main(String[])
      */
     public void run(BlackBoard blackboard) {
+        GSplash gs = null;
         try {
             new Preferences(blackboard);
-            GSplash gs = new GSplash();
+            gs = new GSplash();
             gs.showMessages();
+            gs.setStatus("Loading plugins…");
             loadPlugins();
+            gs.setStatus("Loading extensions…");
             loadExtensions(blackboard);
-            gs.setVisible(false);
-            gs.stopShowing();
+            gs.setStatus("Preparing the workspace…");
             blackboard.setData(POST_INIT_EVENT, "Pi");
         } catch (Exception e) {
             ExceptionHandler.catchException(e);
+        } finally {
+            if (gs != null) {
+                gs.stopShowing();
+            }
+            // Only now is there a main window for a problem report to belong to.
+            UserNotifier.arm();
         }
 //        UI.getGFrame(blackboard).setTitle("GraphTea Graph Editor-1");
     }
@@ -137,5 +148,4 @@ public class Application implements StorableOnExit {
     public static void main(String[] args) {
         new Application().init();
     }
-
 }

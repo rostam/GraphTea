@@ -51,7 +51,6 @@ public class MoveSelected extends AbstractAction {
 
             VertexEvent vdd = blackboard.getData(VertexEvent.EVENT_KEY);
 
-
             SubGraph sd = Select.getSelection(blackboard);
             if (sd.vertices.contains(vdd.v))   //start if the vertex selected
             {
@@ -148,7 +147,6 @@ public class MoveSelected extends AbstractAction {
             }
 
         });
-
 
     }
 

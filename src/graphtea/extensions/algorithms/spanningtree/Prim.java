@@ -20,7 +20,6 @@ import graphtea.library.util.Pair;
 
 import java.util.*;
 
-
 /**
  * Implementation of Prim algorithm to find minimum spanning tree.
  * The output of this method is a new independent graph representing
@@ -156,7 +155,6 @@ public class Prim extends Algorithm implements AutomatedAlgorithm {
 
         return new Pair<>(oVertices, oEdges);
     }
-
 
     private Pair<Edge, Vertex>
     getNewEdgeForSpanningTree(List<Vertex> vertices, List<Edge> edges) {

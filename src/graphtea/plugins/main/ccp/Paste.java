@@ -17,6 +17,7 @@ import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.plugins.main.saveload.xmlparser.GraphmlHandlerImpl;
 import graphtea.plugins.main.saveload.xmlparser.GraphmlParser;
+import graphtea.graph.graph.AbstractGraphRenderer;
 import graphtea.plugins.main.select.Select;
 import graphtea.ui.UIUtils;
 import org.xml.sax.InputSource;
@@ -52,12 +53,39 @@ public class Paste extends AbstractAction {
         this.listen4Event(event);
     }
 
+    /**
+     * Pastes the clipboard into the middle of the visible canvas.
+     *
+     * <p>Ctrl+V used to put the canvas into a silent region-select mode, announced only by a
+     * line of status-bar text, so pasting appeared to do nothing until the user happened to
+     * drag out a rectangle. Paste now behaves like paste.
+     */
     public void performAction(String eventName, Object value) {
-        GTabbedGraphPane.showNotificationMessage("Select The Paste Region", blackboard, true);
-        graphRectRegionSelector.startSelectingRegion();
+        pasteInto(visibleCanvasRegion());
+    }
+
+    /**
+     * @return the middle of the part of the canvas the user can currently see
+     */
+    private Rectangle visibleCanvasRegion() {
+        AbstractGraphRenderer renderer = blackboard.getData(AbstractGraphRenderer.EVENT_KEY);
+        if (renderer == null || renderer.getWidth() <= 0 || renderer.getHeight() <= 0) {
+            return new Rectangle(60, 60, 550, 550);
+        }
+        Rectangle visible = renderer.getVisibleRect();
+        if (visible.width <= 0 || visible.height <= 0) {
+            visible = new Rectangle(0, 0, renderer.getWidth(), renderer.getHeight());
+        }
+        int extent = Math.max(120, Math.min(visible.width, visible.height) - 120);
+        return new Rectangle(visible.x + (visible.width - extent) / 2,
+                visible.y + (visible.height - extent) / 2, extent, extent);
     }
 
     void _onDrop(GraphEvent data) {
+        pasteInto(graphRectRegionSelector.getCurrentRect().getBounds());
+    }
+
+    private void pasteInto(Rectangle target) {
         GTabbedGraphPane.showNotificationMessage("", blackboard, true);
         GraphModel gg = new GraphModel();
         GraphModel g = blackboard.getData(GraphAttrSet.name);
@@ -93,7 +121,6 @@ public class Paste extends AbstractAction {
                 }
             }
 
-
             if (strData != null) {
                 //              data was a string, create a byte array and a
                 //              byte array input stream and read it
@@ -122,7 +149,6 @@ public class Paste extends AbstractAction {
                 }
             }
 
-
         } else {
             tk.beep();
         }
@@ -145,7 +171,13 @@ public class Paste extends AbstractAction {
         for (Iterator<Edge> em = gg.edgeIterator(); em.hasNext();) {
             toBeSelectedEdges.add(em.next());
         }
-        g.addSubGraph(gg, graphRectRegionSelector.getCurrentRect().getBounds());
+        if (gg.getVerticesCount() == 0) {
+            // Nothing on the clipboard that we could read as a graph.
+            GTabbedGraphPane.showTimeNotificationMessage(
+                    "There is no graph on the clipboard to paste.", blackboard, 3000, true);
+            return;
+        }
+        g.addSubGraph(gg, target);
 //        ClearSelection.clearSelected(gg.blackboard);
         //        ClearSelection.clearSelected(g.blackboard);
         //selects the inserted edges & vertices

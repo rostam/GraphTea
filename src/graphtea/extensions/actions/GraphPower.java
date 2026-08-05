@@ -21,7 +21,6 @@ import java.util.List;
  * @author Azin Azadi
  */
 
-
 public class GraphPower implements GraphActionExtension, Parametrizable {
     @Parameter
     public int k = 2;
@@ -92,5 +91,4 @@ public class GraphPower implements GraphActionExtension, Parametrizable {
         return "Transformations";
     }
 }
-
 

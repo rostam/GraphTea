@@ -5,7 +5,6 @@
 
 package graphtea.extensions.reports.topological;
 
-import graphtea.platform.lang.CommandAttitude;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,14 +12,9 @@ import java.util.List;
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "inc_zagreb_coindex", abbreviation = "_izci")
 public class IncrementalZagrebCoindex extends IncrementalZagrebReportBase {
 
     public String getName() {
-        return "Incremental Zagreb Coindices";
-    }
-
-    public String getDescription() {
         return "Incremental Zagreb Coindices";
     }
 

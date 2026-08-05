@@ -8,7 +8,6 @@ import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -19,13 +18,8 @@ import java.util.Collections;
 
  */
 
-@CommandAttitude(name = "m3boundconj", abbreviation = "_m3boundconj")
 public class M3BoundConjecture implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "M3 Bound Conjecture";
-    }
-
-    public String getDescription() {
         return "M3 Bound Conjecture";
     }
 

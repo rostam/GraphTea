@@ -32,10 +32,17 @@ public class GStatusBar extends JPanel {
 
     /**
      * adds a new Component to the status bar
+     *
+     * <p>The separator goes <em>before</em> each component after the first. Appending one
+     * after every component left a stray divider dangling off the end of the bar.
+     *
+     * @param c the component to add
      */
     public void addComponent(Component c) {
+        if (getComponentCount() > 0) {
+            add(newSeparator());
+        }
         add(c);
-        add(newSeparator());
         validate();
     }
 

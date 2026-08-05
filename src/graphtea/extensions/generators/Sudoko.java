@@ -8,7 +8,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -21,7 +20,6 @@ import java.util.List;
 /**
  * @author  M. Ali Rostami
  */
-@CommandAttitude(name = "generate_sudoko", abbreviation = "_g_kn", description = "Generates a Sudoko with n vertices")
 public class Sudoko implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     GraphModel g;
     @Parameter(name = "n")
@@ -51,7 +49,6 @@ public class Sudoko implements GraphGeneratorExtension, Parametrizable, SimpleGe
                 for (int j = k * n; j < i; j++)
                     vs.add(new Edge(v[i], v[j]));
         }
-
 
         for (int k = 0; k < Math.sqrt(n)-1; k++) {
             for (int i = 0; i < Math.sqrt(n); i++) {
@@ -97,7 +94,6 @@ public class Sudoko implements GraphGeneratorExtension, Parametrizable, SimpleGe
     public String getDescription() {
         return "Generates a Sudoku Graph";
     }
-
 
     public String checkParameters() {
         if (n < 0) return "n must be positive";

@@ -9,7 +9,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -21,8 +20,6 @@ import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
  *
  * https://mathworld.wolfram.com/SunletGraph.html
  */
-@CommandAttitude(name = "generate_sunlet_crown", abbreviation = "_g_sunlet_crown",
-        description = "generates a Crown graph of order n")
 public class SunletCrownGraph implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
 
 	@Parameter(name = "n")

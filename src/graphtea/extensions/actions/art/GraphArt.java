@@ -21,11 +21,6 @@ public class GraphArt implements GraphActionExtension {
     }
 
     @Override
-    public String getDescription() {
-        return "GraphTea Art";
-    }
-
-    @Override
     public void action(GraphData graphData) {
         Vertex.addGlobalUserDefinedAttribute(CURVE_WIDTH,1);
 
@@ -52,7 +47,6 @@ public class GraphArt implements GraphActionExtension {
         return "Graph-based Visualization";
     }
 }
-
 
 class Painter implements PaintHandler {
     GraphData gd;
@@ -87,7 +81,6 @@ class Painter implements PaintHandler {
                             += numN  + G.getDegree(par);
                 } while(true);
             }
-
 
             for (Vertex v : G) {
                 if (v.getId() == 0) continue;
@@ -141,8 +134,6 @@ class Painter implements PaintHandler {
                     //fill the curve
                     gr.fill(gp);
 
-
-
 //                        double c11 =  m1.x - startWidth * Math.sin(teta1);
 //                        double c22 =  m1.y + startWidth * Math.cos(teta1);
 
@@ -150,7 +141,6 @@ class Painter implements PaintHandler {
 //                         gr.setColor(Color.gray);
 //                         gr.fillOval((int)c11-15,(int)c22-15,30,30);
 //                        }
-
 
                 }
             }

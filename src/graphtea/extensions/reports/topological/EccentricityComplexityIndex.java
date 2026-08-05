@@ -6,7 +6,6 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.HashSet;
@@ -15,13 +14,8 @@ import java.util.Set;
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "eccentricitycomplexity_index", abbreviation = "_Ecomplexindex")
 public class EccentricityComplexityIndex implements GraphReportExtension<Integer> {
     public String getName() {
-        return "E-complex Index";
-    }
-
-    public String getDescription() {
         return "E-complex Index";
     }
 

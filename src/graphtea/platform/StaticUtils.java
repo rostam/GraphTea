@@ -217,7 +217,6 @@ public class StaticUtils {
         return new Font(name, style, size);
     }
 
-
     /**
      * loads(includes its automatically generated menues, ...) a single extension into application
      *
@@ -270,5 +269,4 @@ public class StaticUtils {
         }
     }
 }
-
 

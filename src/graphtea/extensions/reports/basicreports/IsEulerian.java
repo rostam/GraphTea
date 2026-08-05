@@ -8,7 +8,6 @@ package graphtea.extensions.reports.basicreports;
 import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
  * @author Mohammad Ali Rostami
  */
 
-@CommandAttitude(name = "is_eulerian", abbreviation = "_ie")
 public class IsEulerian implements GraphReportExtension<Boolean> {
     public Boolean calculate(GraphModel g) {
         return isEulerian(g);
@@ -41,10 +39,6 @@ public class IsEulerian implements GraphReportExtension<Boolean> {
     }
 
     public String getName() {
-        return "Is Eulerian";
-    }
-
-    public String getDescription() {
         return "Is Eulerian";
     }
 

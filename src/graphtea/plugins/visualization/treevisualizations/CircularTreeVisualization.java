@@ -130,7 +130,6 @@ public class CircularTreeVisualization implements VisualizationExtension {
         }
     }
 
-
     public List<Vertex> findNextLevelChildren(List<Vertex> currentLevelVertices) {
         List<Vertex> newChildren = new ArrayList<>();
         for (Vertex v : currentLevelVertices) {
@@ -143,7 +142,6 @@ public class CircularTreeVisualization implements VisualizationExtension {
         }
         return newChildren;
     }
-
 
     public void locateAll(List<Vertex> currentLevelVertices, int width, int radius) {
         int currentLevelCount = currentLevelVertices.size();

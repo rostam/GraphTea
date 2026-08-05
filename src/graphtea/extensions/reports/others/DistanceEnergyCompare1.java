@@ -5,13 +5,11 @@ import graphtea.extensions.reports.spectralreports.DistanceLaplacianEnergy;
 import graphtea.extensions.reports.spectralreports.DistanceSignlessLaplacianEnergy;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@CommandAttitude(name = "DistanceEnergyCompare1", abbreviation = "_distance_energy_compare")
 public class DistanceEnergyCompare1 implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Dist  Energy Compare";
@@ -65,6 +63,4 @@ public class DistanceEnergyCompare1 implements GraphReportExtension<RenderTable>
 }
 
  
-
-
 

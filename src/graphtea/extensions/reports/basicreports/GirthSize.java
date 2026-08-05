@@ -7,7 +7,6 @@ package graphtea.extensions.reports.basicreports;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ import java.util.List;
  * In graph theory, the girth of an undirected graph is the length of a shortest cycle contained in the graph.
  */
 
-@CommandAttitude(name = "girth_size", abbreviation = "_gs")
 public class GirthSize implements GraphReportExtension<Integer> {
 
     private static int bfs(int start, double[][] mat, int cc, int girth) {
@@ -50,7 +48,6 @@ public class GirthSize implements GraphReportExtension<Integer> {
         return girth;
     }
 
-
     public Integer calculate(GraphModel g) {
         return getGirthSize(g);
     }
@@ -72,10 +69,6 @@ public class GirthSize implements GraphReportExtension<Integer> {
     }
 
     public String getName() {
-        return "Graph Girth Size";
-    }
-
-    public String getDescription() {
         return "Graph Girth Size";
     }
 

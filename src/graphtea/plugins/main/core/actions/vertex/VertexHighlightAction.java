@@ -46,5 +46,4 @@ public class VertexHighlightAction extends AbstractAction {
 //            vnd.v.view.repaint();
 //        }
     }
-
 }

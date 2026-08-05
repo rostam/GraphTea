@@ -20,11 +20,6 @@ public class Random implements GraphActionExtension {
     }
 
     @Override
-    public String getDescription() {
-        return "Random Layout";
-    }
-
-    @Override
     public String getCategory() {
         return "Visualization";
     }

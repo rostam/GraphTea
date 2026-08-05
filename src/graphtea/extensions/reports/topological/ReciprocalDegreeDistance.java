@@ -6,19 +6,13 @@
 package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "reciprocaldegreedistance_index", abbreviation = "_reciprocaldegreedistance")
 public class ReciprocalDegreeDistance extends PairwiseDistanceReportBase {
 
     public String getName() {
-        return "Reciprocal Degree Distance";
-    }
-
-    public String getDescription() {
         return "Reciprocal Degree Distance";
     }
 

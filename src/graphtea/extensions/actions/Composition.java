@@ -23,11 +23,6 @@ public class Composition implements GraphActionExtension, Parametrizable {
     }
 
     @Override
-    public String getDescription() {
-        return "Composition";
-    }
-
-    @Override
     public void action(GraphData graphData) {
         GTabbedGraphPane gtp = graphData.getBlackboard().getData(GTabbedGraphPane.NAME);
         GComposition prod = new GComposition();
@@ -36,7 +31,6 @@ public class Composition implements GraphActionExtension, Parametrizable {
         prod.setPositions(g);
         graphData.core.showGraph(g);
     }
-
 
     @Override
     public String getCategory() {

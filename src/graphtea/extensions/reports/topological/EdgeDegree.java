@@ -6,7 +6,6 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
@@ -14,8 +13,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
  */
 
-
-@CommandAttitude(name = "edge_degree", abbreviation = "_edegree")
 public class EdgeDegree implements GraphReportExtension<Integer> {
     public String getName() {
         return "Edge Degree";

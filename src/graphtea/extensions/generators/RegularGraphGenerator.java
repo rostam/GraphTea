@@ -8,7 +8,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -22,7 +21,6 @@ import java.util.List;
 /**
  * User: root
  */
-@CommandAttitude(name = "generate_reg", abbreviation = "_g_reg", description = "generates a regular graph")
 public class RegularGraphGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
 
     @Parameter(name = "n")
@@ -90,11 +88,9 @@ public class RegularGraphGenerator implements GraphGeneratorExtension, Parametri
         return ret;
     }
 
-
     public GPoint[] getVertexPositions() {
         return PositionGenerators.circle(5, 5, 100000, 100000, n);
     }
-
 
     public String checkParameters() {
     	if ( n<=0 || deg<=0)return " Values of both M & N must be positive!";

@@ -8,18 +8,15 @@ package graphtea.extensions.reports.topological;
 import java.util.List;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-
 /**
  * @author Mohammad Ali Rostami
  */
 
-@CommandAttitude(name = "edges_degree_list", abbreviation = "_edl")
 public class EdgesDegreesList implements GraphReportExtension<ArrayList<Integer>> {
     public ArrayList<Integer> calculate(GraphModel g) {
         ArrayList<Integer> al = new ArrayList<>();

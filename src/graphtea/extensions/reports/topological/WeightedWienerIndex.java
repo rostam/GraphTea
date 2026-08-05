@@ -6,19 +6,13 @@
 package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "weighted_wiener_index", abbreviation = "_weightedwindex")
 public class WeightedWienerIndex extends PairwiseDistanceReportBase {
 
     public String getName() {
-        return "Weighted Wiener Index";
-    }
-
-    public String getDescription() {
         return "Weighted Wiener Index";
     }
 

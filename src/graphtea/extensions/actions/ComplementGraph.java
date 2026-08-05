@@ -30,7 +30,6 @@ public class ComplementGraph implements GraphActionExtension {
             g2.addVertex(tmp);
         }
 
-
        Vertex[] verts = g1.getVertexArray();
        for (int i = 0; i < verts.length; i++) {
            for (int j = i + 1; j < verts.length; j++) {

@@ -30,5 +30,4 @@ public class GraphAlgorithm extends Algorithm {
     public String getMatrixHTML(GraphModel g){
         return graphData.saveLoad.Graph2MatrixHTML(g);
     }
-
 }

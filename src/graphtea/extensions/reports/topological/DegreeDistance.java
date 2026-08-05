@@ -6,19 +6,13 @@
 package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 
 /**
  * @author azin azadi
  */
-@CommandAttitude(name = "degree_distance", abbreviation = "_ddistance")
 public class DegreeDistance extends PairwiseDistanceReportBase {
 
     public String getName() {
-        return "Degree Distance";
-    }
-
-    public String getDescription() {
         return "Degree Distance";
     }
 

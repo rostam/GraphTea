@@ -18,9 +18,7 @@ public interface AttributeSet<T> {
      */
     Map<String, T> getAttrs();
 
-
     void put(String name, T value);
 
     Object get(String name);
-
 }

@@ -4,14 +4,14 @@ import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-@CommandAttitude(name = "DistanceEnergyCompare", abbreviation = "_distance_energy_compare")
 public class DistLaplacian implements GraphReportExtension<RenderTable> {
+
     public String getName() {
         return "Distance Signless laplacian";
     }
@@ -23,31 +23,14 @@ public class DistLaplacian implements GraphReportExtension<RenderTable> {
     @Override
     public RenderTable calculate(GraphModel g) {
         RenderTable ret = new RenderTable();
-        List<String> titles = new ArrayList<>();
-        titles.add("m ");
-        titles.add("n ");
-        //titles.add("Distance Laplacian");
-        titles.add("Eigen Values");
-	//	titles.add("Eigen Values");
-		
-        ret.setTitles(titles);
+        ret.setTitles(Arrays.asList("m ", "n ", "Eigen Values"));
+
         Matrix DLS = AlgorithmUtils.getDistanceSignlessLaplacianMatrix(g);
-		Matrix DL= AlgorithmUtils.getDistanceLaplacianMatrix(g);
-		List<Object> v = new ArrayList<>();
-		
-        v.add(g.getVerticesCount());
+
+        List<Object> v = new ArrayList<>();
         v.add(g.getEdgesCount());
-		
-		// v.add(new DistanceEnergy().calculate(g));
-		
-		// Eigen values distance signless laplacian
-	    v.add(AlgorithmUtils.getEigenValues(DLS));
-		
-		// Eigen values distance laplacian
-       // v.add(AlgorithmUtils.getEigenValues(DL));
-		
-		
-		
+        v.add(g.getVerticesCount());
+        v.add(AlgorithmUtils.getEigenValues(DLS));
         ret.add(v);
         return ret;
     }

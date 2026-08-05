@@ -6,7 +6,6 @@ package graphtea.extensions.reports.topological;
 
 import java.util.List;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -16,13 +15,8 @@ import java.util.ArrayList;
 
  */
 
-@CommandAttitude(name = "hyper_zagreb_index", abbreviation = "_zi")
 public class HyperZagrebIndex implements GraphReportExtension<ArrayList<String>> {
     public String getName() {
-        return "Hyper Zagreb Index";
-    }
-
-    public String getDescription() {
         return "Hyper Zagreb Index";
     }
 
@@ -32,7 +26,6 @@ public class HyperZagrebIndex implements GraphReportExtension<ArrayList<String>>
         out.add("Hyper Zagreb Index : " + zif.getGeneralSumConnectivityIndex(2));
         return out;
     }
-
 
     @Override
     public String getCategory() {

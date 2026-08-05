@@ -82,7 +82,6 @@ public class RectangularSelect extends AbstractAction {
         graphRectRegionSelector.startSelectingRegion();
     }
 
-
     boolean invertOlderSelections = false;
 
 //    public void paint(Graphics p, Component unused) {

@@ -12,7 +12,6 @@ import graphtea.ui.UIUtils;
 
 import javax.swing.*;
 
-
 public class ClearGraph extends graphtea.platform.core.AbstractAction {
 
     public static final String event = UIUtils.getUIEventKey("Clear");

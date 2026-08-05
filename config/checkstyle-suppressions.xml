@@ -14,7 +14,6 @@
 
     <suppress files="AEvent.java" checks=".*"/>
     <suppress files="AGIndex.java" checks=".*"/>
-    <suppress files="AHomomorphism.java" checks=".*"/>
     <suppress files="AbstractAction.java" checks=".*"/>
     <suppress files="AbstractExtensionAction.java" checks=".*"/>
     <suppress files="AbstractGraphRenderer.java" checks=".*"/>
@@ -68,7 +67,6 @@
     <suppress files="AvgTransmission.java" checks=".*"/>
     <suppress files="BFS.java" checks=".*"/>
     <suppress files="BFSAnim.java" checks=".*"/>
-    <suppress files="BSHExtensionLoader.java" checks=".*"/>
     <suppress files="BackwardTrees.java" checks=".*"/>
     <suppress files="BalabanIndex.java" checks=".*"/>
     <suppress files="BananaTreeGenerator.java" checks=".*"/>
@@ -110,12 +108,10 @@
     <suppress files="Cluster.java" checks=".*"/>
     <suppress files="CmnGenerator.java" checks=".*"/>
     <suppress files="CocktailPartyGraph.java" checks=".*"/>
-    <suppress files="CodeCompletionUtils.java" checks=".*"/>
     <suppress files="Cograph.java" checks=".*"/>
     <suppress files="ColoringListener.java" checks=".*"/>
     <suppress files="ColoringReport.java" checks=".*"/>
     <suppress files="ColumnIntersectionGraph.java" checks=".*"/>
-    <suppress files="CommandAttitude.java" checks=".*"/>
     <suppress files="CompCompare.java" checks=".*"/>
     <suppress files="ComparingE1E2.java" checks=".*"/>
     <suppress files="Complement.java" checks=".*"/>
@@ -129,8 +125,6 @@
     <suppress files="ConnectiveEccentricIndex.java" checks=".*"/>
     <suppress files="ConnectivityChecker.java" checks=".*"/>
     <suppress files="ConnectivityEccentricityIndex.java" checks=".*"/>
-    <suppress files="Converter.java" checks=".*"/>
-    <suppress files="Copier.java" checks=".*"/>
     <suppress files="Copy.java" checks=".*"/>
     <suppress files="CopyAsImage.java" checks=".*"/>
     <suppress files="CopyAsMatrix.java" checks=".*"/>
@@ -144,7 +138,6 @@
     <suppress files="Cycle.java" checks=".*"/>
     <suppress files="DAG.java" checks=".*"/>
     <suppress files="DeSelect.java" checks=".*"/>
-    <suppress files="DefaultParser.java" checks=".*"/>
     <suppress files="DegreeDistance.java" checks=".*"/>
     <suppress files="DegreeKirchhoffIndex.java" checks=".*"/>
     <suppress files="DelayEvent.java" checks=".*"/>
@@ -184,7 +177,6 @@
     <suppress files="EccentricityMatrixOfGraph.java" checks=".*"/>
     <suppress files="Edge.java" checks=".*"/>
     <suppress files="EdgeAttrSet.java" checks=".*"/>
-    <suppress files="EdgeCommands.java" checks=".*"/>
     <suppress files="EdgeDegree.java" checks=".*"/>
     <suppress files="EdgeEvent.java" checks=".*"/>
     <suppress files="EdgeHighlightAction.java" checks=".*"/>
@@ -221,7 +213,6 @@
     <suppress files="ExtensionConfigFrame.java" checks=".*"/>
     <suppress files="ExtensionHandler.java" checks=".*"/>
     <suppress files="ExtensionLoader.java" checks=".*"/>
-    <suppress files="ExtensionShellCommandProvider.java" checks=".*"/>
     <suppress files="ExtractSubGraph.java" checks=".*"/>
     <suppress files="FastRenderer.java" checks=".*"/>
     <suppress files="Filters.java" checks=".*"/>
@@ -301,7 +292,6 @@
     <suppress files="GraphArtActionExtendTree.java" checks=".*"/>
     <suppress files="GraphAttrSet.java" checks=".*"/>
     <suppress files="GraphColoringRenderer.java" checks=".*"/>
-    <suppress files="GraphCommands.java" checks=".*"/>
     <suppress files="GraphComplement.java" checks=".*"/>
     <suppress files="GraphComponentInitializer.java" checks=".*"/>
     <suppress files="GraphControl.java" checks=".*"/>
@@ -379,7 +369,6 @@
     <suppress files="InverseDegree.java" checks=".*"/>
     <suppress files="InverseSum.java" checks=".*"/>
     <suppress files="InvertSelection.java" checks=".*"/>
-    <suppress files="InwardCommandParser.java" checks=".*"/>
     <suppress files="Irr_G.java" checks=".*"/>
     <suppress files="Irr_t_G.java" checks=".*"/>
     <suppress files="IsBipartite.java" checks=".*"/>
@@ -479,7 +468,6 @@
     <suppress files="MultiplicativeHarary.java" checks=".*"/>
     <suppress files="NDMetis.java" checks=".*"/>
     <suppress files="NNGenerator.java" checks=".*"/>
-    <suppress files="NativeCommands.java" checks=".*"/>
     <suppress files="NetworkGenerateorAlgrithm.java" checks=".*"/>
     <suppress files="NewGraph.java" checks=".*"/>
     <suppress files="NewLowerBounds.java" checks=".*"/>
@@ -581,11 +569,6 @@
     <suppress files="SerializedAttrSet.java" checks=".*"/>
     <suppress files="SetValidator.java" checks=".*"/>
     <suppress files="Settings.java" checks=".*"/>
-    <suppress files="Shell.java" checks=".*"/>
-    <suppress files="ShellCodeCompletion.java" checks=".*"/>
-    <suppress files="ShellConsole.java" checks=".*"/>
-    <suppress files="ShellServer.java" checks=".*"/>
-    <suppress files="ShellServerCommands.java" checks=".*"/>
     <suppress files="ShowAboutDialog.java" checks=".*"/>
     <suppress files="ShowG.java" checks=".*"/>
     <suppress files="ShowMessage.java" checks=".*"/>
@@ -652,7 +635,6 @@
     <suppress files="VeIndex.java" checks=".*"/>
     <suppress files="Vertex.java" checks=".*"/>
     <suppress files="VertexAttrSet.java" checks=".*"/>
-    <suppress files="VertexCommands.java" checks=".*"/>
     <suppress files="VertexCorona.java" checks=".*"/>
     <suppress files="VertexCycleLengthComparator.java" checks=".*"/>
     <suppress files="VertexEdgeLabelAnimator.java" checks=".*"/>

@@ -145,7 +145,6 @@ public class BiconnectedComponents extends Algorithm implements AutomatedAlgorit
         }
     }
 
-
     public List<HashSet<Vertex>> biconnected_components(GraphModel g, Vertex v, int n) {
         DFS_Number=new Integer[n];
         High=new Integer[n];

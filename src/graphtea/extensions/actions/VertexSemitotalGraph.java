@@ -14,7 +14,4 @@ public class VertexSemitotalGraph extends SubdividedGraphBase {
 
     @Override
     public String getName() { return "Vertex Semitotal Graph"; }
-
-    @Override
-    public String getDescription() { return "Vertex Semitotal Graph"; }
 }

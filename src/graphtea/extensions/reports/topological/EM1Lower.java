@@ -8,7 +8,6 @@ import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -20,13 +19,8 @@ import java.util.Collections;
 
  */
 
-@CommandAttitude(name = "EM1Lower", abbreviation = "_EM1Lower")
 public class EM1Lower implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "EM1 Low";
-    }
-
-    public String getDescription() {
         return "EM1 Low";
     }
 
@@ -52,12 +46,9 @@ public class EM1Lower implements GraphReportExtension<RenderTable> {
         double M21=zif.getFirstZagreb(1);
         double EM1=zifL.getFirstZagreb(1);
 
-
         List<Object> v = new ArrayList<>();
         v.add(EM1);
         v.add((M21*M21/(2*m))+(4*m)+(2*M12)-(4*M21)+((m*(maxDeg-minDeg)*(maxDeg-minDeg))/2));
-
-
 
         ret.add(v);
         return ret;

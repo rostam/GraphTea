@@ -24,11 +24,6 @@ public class Sum implements GraphActionExtension, Parametrizable {
     }
 
     @Override
-    public String getDescription() {
-        return "Sum";
-    }
-
-    @Override
     public void action(GraphData graphData) {
         GTabbedGraphPane gtp = graphData.getBlackboard().getData(GTabbedGraphPane.NAME);
         GraphModel g1 = gtp.getGraphs().get(fG);
@@ -37,7 +32,6 @@ public class Sum implements GraphActionExtension, Parametrizable {
         GraphSum.setUnionLabel(g1,g2,g);
         graphData.core.showGraph(g);
     }
-
 
     @Override
     public String getCategory() {

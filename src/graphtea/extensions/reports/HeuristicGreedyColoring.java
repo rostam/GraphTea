@@ -19,11 +19,7 @@ import java.util.List;
 public class HeuristicGreedyColoring implements GraphReportExtension<List<Integer>> {
 
     public String getName() {
-        return "Heuristic Greedy Coloring";
-    }
-
-    public String getDescription() {
-        return "Heuristic Greedy Coloring";
+        return "Heuristic Greedy Coloring (color of each vertex)";
     }
 
     public static void heuristicColoring(GraphModel g) {
@@ -62,5 +58,4 @@ public class HeuristicGreedyColoring implements GraphReportExtension<List<Intege
     public String getCategory() {
         return "Coloring";
     }
-
 }

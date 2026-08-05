@@ -3,7 +3,6 @@ package graphtea.extensions.reports.topological;
 import graphtea.extensions.reports.others.MostarIndex;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -14,14 +13,9 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "Mostar", abbreviation = "_Mostar")
 public class Mostar implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Mostar";
-    }
-
-    public String getDescription() {
-        return " Mostar ";
     }
 
     public RenderTable calculate(GraphModel g) {

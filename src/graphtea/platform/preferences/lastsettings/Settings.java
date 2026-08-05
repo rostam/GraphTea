@@ -46,7 +46,6 @@ public class Settings implements AttributeListener {
         }
     }
 
-
     public void registerSetting(Object o, String category) {
         if (!getRegisteredClasses().contains(o.getClass())) {
             getRegisteredClasses().add(o.getClass());
@@ -154,7 +153,6 @@ public class Settings implements AttributeListener {
 //            ExceptionHandler.catchException(e);
         }
     }
-
 
     public void saveSettings() {
         for (Object o : getRegisteredObjects()) {

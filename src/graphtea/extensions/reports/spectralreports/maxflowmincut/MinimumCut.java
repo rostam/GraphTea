@@ -1,6 +1,5 @@
 package graphtea.extensions.reports.spectralreports.maxflowmincut;
 
-
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
@@ -18,11 +17,6 @@ public class MinimumCut extends Algorithm implements GraphReportExtension{
 	@Override
 	public String getCategory() {
 		return "Connectivity";
-	}
-
-	@Override
-	public String getDescription() {
-		return "Min Cut";
 	}
 
 	@Override
@@ -89,6 +83,4 @@ public class MinimumCut extends Algorithm implements GraphReportExtension{
 	}
 	
 	
-
-
 }

@@ -27,5 +27,4 @@ public class IsBipartite implements GraphReportExtension<Boolean>  {
 	public String getCategory() {
 		return "General";
 	}
-
 }

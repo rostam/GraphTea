@@ -25,17 +25,12 @@ import java.awt.image.BufferedImage;
  * @author Ricado Nussbaum
  */
 
-
 public class LocalityLens implements GraphActionExtension, Parametrizable {
 
     @Parameter(name = "Locality Lenses", description = "locality lenses")
     public boolean active = false;
 
     public String getName() {
-        return "Locality Lens";
-    }
-
-    public String getDescription() {
         return "Locality Lens";
     }
 
@@ -98,8 +93,4 @@ class MouseEventListener implements Listener {
             }
         }
     }
-
-
-
 }
-

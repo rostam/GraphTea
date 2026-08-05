@@ -1,6 +1,5 @@
 package graphtea.extensions.reports.boundcheck.forall.filters;
 
-
 import graphtea.extensions.reports.boundcheck.forall.GraphFilter;
 import graphtea.platform.lang.ArrayX;
 

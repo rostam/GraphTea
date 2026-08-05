@@ -8,7 +8,6 @@ import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -19,13 +18,8 @@ import java.util.Collections;
 
  */
 
-@CommandAttitude(name = "m3final", abbreviation = "_m3final")
 public class M3Final implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "M3 Final";
-    }
-
-    public String getDescription() {
         return "M3 Final";
     }
 
@@ -93,17 +87,14 @@ public class M3Final implements GraphReportExtension<RenderTable> {
                 * (M21 - maxDeg * maxDeg - maxDeg2 * maxDeg2 - n + 2)
                 / (2 * m - maxDeg - maxDeg2 - Mm11 + (1 / maxDeg) + (1 / maxDeg2)));
 
-
         //new2
         v.add((maxDeg * maxDeg * maxDeg) + (minDeg * minDeg * minDeg) + 2 * m - (maxDeg) - (minDeg) + Math.pow((M21 - (maxDeg * maxDeg) - (minDeg * minDeg) - (n - 2)), 2) / (2 * m - maxDeg - minDeg - Mm11 + (1 / maxDeg) + (1 / minDeg)));
 
         //new3
         v.add(maxDeg * maxDeg * maxDeg + maxDeg2 * maxDeg2 * maxDeg2 + M21 - maxDeg * maxDeg - maxDeg2 * maxDeg2 + (Math.pow((M21 - maxDeg * maxDeg - maxDeg2 * maxDeg2 - 2 * m + maxDeg + maxDeg2), 2) / (2 * m - maxDeg - maxDeg2 - n + 2)));
 
-
         //new4
         v.add(maxDeg * maxDeg * maxDeg + minDeg * minDeg * minDeg + M21 - maxDeg * maxDeg - minDeg * minDeg + (Math.pow((M21 - maxDeg * maxDeg - minDeg * minDeg - 2 * m + maxDeg + minDeg), 2) / (2 * m - maxDeg - minDeg - n + 2)));
-
 
 //M1new1
         v.add((M31 - (3 * M21) + 4 * m) - (4 * m) + 3 * maxDeg * maxDeg +
@@ -152,7 +143,6 @@ public class M3Final implements GraphReportExtension<RenderTable> {
         //4max
         v.add(((maxDeg * maxDeg * maxDeg) + (maxDeg2 * maxDeg2 * maxDeg2)) + ((((M21 - (maxDeg * maxDeg) - (maxDeg2 * maxDeg2)) * (M21 - (maxDeg * maxDeg) - (maxDeg2 * maxDeg2))) + ((2 * m - maxDeg - maxDeg2) * (Mm11 - (1 / maxDeg) - (1 / maxDeg2))) - ((n - 2) * (n - 2))) / (2 * m - maxDeg - maxDeg2)));
 
-
         //4min
         v.add(((maxDeg * maxDeg * maxDeg) + (minDeg * minDeg * minDeg))
                 + ((((M21 - (maxDeg * maxDeg) - (minDeg * minDeg))
@@ -160,19 +150,14 @@ public class M3Final implements GraphReportExtension<RenderTable> {
                 + ((2 * m - maxDeg - minDeg) * (Mm11 - (1 / maxDeg)
                 - (1 / minDeg))) - ((n - 2) * (n - 2))) / (2 * m - maxDeg - minDeg)));
 
-
         //BF
         v.add((M21 * M21) / (2 * m));
-
 
         //BF-
         v.add(((M21 * M21) / (m)) - (2 * M12));
 
-
-
         //Ilic
         v.add((2 * m * M21) / n);
-
 
         //Zhou
         v.add(16 * ((m * m * m) / (n * n)) - (2 * M12));

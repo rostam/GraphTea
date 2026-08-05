@@ -31,7 +31,6 @@ public class SparseTreeVisualization implements VisualizationExtension {
         }
     }
 
-
     private Vertex findAppropriateRoot(GraphModel g) {
         Vertex root = g.getAVertex();
         for (Vertex e : g) {
@@ -89,7 +88,6 @@ public class SparseTreeVisualization implements VisualizationExtension {
         }
 
     }
-
 
     public List<Vertex> findNextLevelChildren(List<Vertex> currentLevelVertices) {
         List<Vertex> newChildren = new ArrayList<>();

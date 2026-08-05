@@ -28,7 +28,6 @@ public class DijkstraNonNegative {
         PriorityQueue<Vertex> p =        // Priority-Queue zum Verwalten der Laenge
                 new PriorityQueue<>(10, new DijkstraNonNegative.VertexComparator()); // des kuerzesten Weges bis zum Knoten
 
-
         for (Vertex v : g.vertices()) {   // fuer jeden Knoten
             v.setUserDefinedAttribute(DijkstraNonNegative.Dist, Double.MAX_VALUE);
             v.setUserDefinedAttribute(DijkstraNonNegative.Seen, false);

@@ -7,19 +7,13 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "eccentric_distance_sum", abbreviation = "_eccentric_distance_sum")
 public class EccentricDistanceSum extends EccentricDistanceSumBase {
 
     public String getName() {
-        return "Eccentric Distance Sum";
-    }
-
-    public String getDescription() {
         return "Eccentric Distance Sum";
     }
 

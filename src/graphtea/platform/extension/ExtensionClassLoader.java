@@ -39,7 +39,6 @@ public class ExtensionClassLoader extends ClassLoader {
         return unknownFiles;
     }
 
-
     List<URL> urls;
 
     private void loadClassFiles(String dir, String pack) {
@@ -129,7 +128,6 @@ public class ExtensionClassLoader extends ClassLoader {
       out.close();
     }
 
-
     /**
      * this part of code has get from: http://www.devx.com/getHelpOn/10MinuteSolution/20447
      * @param zipFileName The given zipped file name
@@ -153,6 +151,4 @@ public class ExtensionClassLoader extends ClassLoader {
             ExceptionHandler.catchException(ioe);
         }
     }
-
-
 }

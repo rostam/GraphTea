@@ -5,8 +5,6 @@
 
 package graphtea.extensions.generators;
 
-import graphtea.platform.lang.CommandAttitude;
-
 /**
  * Generates the Grotzsch graph: 11 vertices, 20 edges.
  * The Grotzsch graph is the Mycielski graph of the 5-cycle (C5).
@@ -18,8 +16,6 @@ import graphtea.platform.lang.CommandAttitude;
  *   - Hub vertex: 10
  *   - Edges: C5 edges, copy-edges mirroring C5 neighbourhood, hub-to-copies
  */
-@CommandAttitude(name = "generate_grotzsch", abbreviation = "_g_grotzsch",
-    description = "Generates the Grotzsch graph (11 vertices, 20 edges)")
 public class GrotzschGraph extends AbstractFixedGraphGenerator {
 
     private static final int NUM_VERTICES = 11;

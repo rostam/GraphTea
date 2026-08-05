@@ -39,7 +39,6 @@ public class EndomorphismAnimator extends GraphAlgorithm implements AlgorithmExt
             directions[i/2] = GPoint.div(directionVector, directionVector.norm());
         }
 
-
         boolean[] isThere = new boolean[mapSize];
         int numOfThere = 0;
         for(int i=0;i < mapSize;i++) isThere[i]=false;

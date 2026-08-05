@@ -9,7 +9,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -36,8 +35,6 @@ import java.util.Random;
  *
  * Reference: Barabasi and Albert, Science 286:509-512, 1999.
  */
-@CommandAttitude(name = "generate_ba", abbreviation = "_g_ba",
-    description = "Generates a Barabasi-Albert scale-free graph")
 public class BarabasiAlbertGenerator implements GraphGeneratorExtension, Parametrizable,
     SimpleGeneratorInterface {
 

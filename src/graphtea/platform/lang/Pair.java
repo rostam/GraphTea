@@ -41,5 +41,4 @@ public class Pair<First, Second> {
 		String ss = second == null ? "null" :second.toString();
 		return fs + ", " + ss;
     }
-
 }

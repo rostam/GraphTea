@@ -8,7 +8,6 @@ package graphtea.extensions.reports.basicreports;
 import java.util.List;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
  * @author Mohammad Ali Rostami
  */
 
-@CommandAttitude(name = "max_and_min_degree", abbreviation = "_mmd")
 public class MaxAndMinDegree implements GraphReportExtension<ArrayList<Integer>> {
     public ArrayList<Integer> calculate(GraphModel g) {
         return maxAndMinDegree(g);

@@ -50,7 +50,6 @@ public class Copy extends AbstractAction {
         Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
         String data = GraphSaveObject.graph2String(g);
 
-
         StringSelection string = new StringSelection(data);
         cb.setContents(string, string);
     }
@@ -74,5 +73,4 @@ public class Copy extends AbstractAction {
         }
 
     }
-
 }

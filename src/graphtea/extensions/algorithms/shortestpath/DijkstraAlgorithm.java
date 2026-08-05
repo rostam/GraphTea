@@ -124,7 +124,6 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
                             graphData.getBlackboard(),true);
                     step("The minimum path is found: " + dist[targetVertex.getId()]);
 
-
                     Q.clear();
                     break;
                 }
@@ -139,11 +138,6 @@ public class DijkstraAlgorithm extends GraphAlgorithm implements AlgorithmExtens
 
     @Override
     public String getName() {
-        return "Dijkstra Algorithm";
-    }
-
-    @Override
-    public String getDescription() {
         return "Dijkstra Algorithm";
     }
 }

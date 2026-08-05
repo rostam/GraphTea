@@ -2,7 +2,6 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -13,14 +12,9 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "ZagrebEccentricity", abbreviation = "_ComparingE1E2")
 public class ComparingE1E2 implements GraphReportExtension<RenderTable> {
     public String getName() {
         return "Comparing E1 E2";
-    }
-
-    public String getDescription() {
-        return " Comparing E1 E2 ";
     }
 
     public RenderTable calculate(GraphModel g) {

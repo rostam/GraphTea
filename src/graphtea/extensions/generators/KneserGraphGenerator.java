@@ -10,7 +10,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -31,7 +30,6 @@ import java.util.stream.Stream;
  *
  */
 
-@CommandAttitude(name = "generate_kneser", abbreviation = "_g_kneser")
 public class KneserGraphGenerator implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "k")
     public static Integer k = 2;

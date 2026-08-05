@@ -16,5 +16,4 @@ public class VertexMoveData {
     //    public double newX;
     //    public double newY;
     public GPoint newPosition;
-
 }

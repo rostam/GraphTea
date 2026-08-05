@@ -12,5 +12,4 @@ import graphtea.graph.graph.Edge;
 public class EdgeSelectData {
     public static final String EVENT_KEY = "Edge.Select";
     public Edge edge;
-
 }

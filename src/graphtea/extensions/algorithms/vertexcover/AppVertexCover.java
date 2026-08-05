@@ -78,9 +78,4 @@ public class AppVertexCover extends GraphAlgorithm implements AlgorithmExtension
     public String getName() {
         return "Vertex Cover";
     }
-
-    @Override
-    public String getDescription() {
-        return "Vertex Cover";
-    }
 }

@@ -5,7 +5,6 @@
 package graphtea.extensions.reports.basicreports;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
@@ -13,8 +12,6 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
  */
 
-
-@CommandAttitude(name = "num_of_edges", abbreviation = "_esize")
 public class NumOfEdges implements GraphReportExtension<Integer> {
     public String getName() {
         return "Number of Edges";

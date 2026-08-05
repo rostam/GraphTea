@@ -6,7 +6,6 @@ package graphtea.extensions.reports.topological;
 
 import graphtea.extensions.algorithms.shortestpath.algs.FloydWarshall;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
@@ -14,14 +13,8 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
  */
 
-
-@CommandAttitude(name = "connectivityeccentricity_index", abbreviation = "_CEindex")
 public class ConnectivityEccentricityIndex implements GraphReportExtension<Double> {
     public String getName() {
-        return "CE Index";
-    }
-
-    public String getDescription() {
         return "CE Index";
     }
 

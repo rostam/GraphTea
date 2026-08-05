@@ -33,9 +33,4 @@ public class MaxCliqueSize implements GraphReportExtension<Integer> {
     public String getName() {
         return "Max Clique Size";
     }
-
-    @Override
-    public String getDescription() {
-        return "Max Clique Size";
-    }
 }

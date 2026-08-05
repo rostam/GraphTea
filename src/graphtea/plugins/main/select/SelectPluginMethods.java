@@ -112,5 +112,4 @@ public class SelectPluginMethods implements PluginMethods {
         toSelect.addAll(sV);
         setSelectedVertices(toSelect);
     }
-
 }

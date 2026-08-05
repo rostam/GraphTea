@@ -7,7 +7,6 @@ package graphtea.extensions.reports.topological;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 import java.util.ArrayList;
@@ -19,13 +18,8 @@ import java.util.List;
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "HyperCheck", abbreviation = "_HyperCheck")
 public class HyperCheck implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Hyper Check";
-    }
-
-    public String getDescription() {
         return "Hyper Check";
     }
 

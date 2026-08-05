@@ -38,11 +38,6 @@ public class WienerDiameterReport implements GraphReportExtension<RenderTable> {
 
     @Override
     public String getName() {
-        return "Wiener  Diagonal";
-    }
-
-    @Override
-    public String getDescription() {
-        return "Wiener  Diagonal";
+        return "Wiener Diagonal";
     }
 }

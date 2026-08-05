@@ -6,20 +6,14 @@ package graphtea.extensions.reports.topological.Irr;
 
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Ali Rostami
  */
 
-@CommandAttitude(name = "AlbertsonIndex", abbreviation = "_albindex")
 public class AlbertsonIndex implements GraphReportExtension<Integer> {
     public String getName() {
-        return "AlbertsonIndex";
-    }
-
-    public String getDescription() {
         return "AlbertsonIndex";
     }
 

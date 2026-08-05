@@ -73,7 +73,6 @@ public class UndoAction extends AbstractAction {
         return temp;
     }
 
-
     public UndoAction(BlackBoard bb) {
         super(bb);
         listen4Event(UNDO_EVENT);

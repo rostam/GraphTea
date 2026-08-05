@@ -8,8 +8,5 @@ public class CartesianProduct extends GProductAction {
     public String getName() { return "Cartesian Product"; }
 
     @Override
-    public String getDescription() { return "Cartesian Product"; }
-
-    @Override
     protected GProduct createProduct() { return new GCartesianProduct(); }
 }

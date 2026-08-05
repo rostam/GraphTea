@@ -5,16 +5,13 @@
 package graphtea.extensions.reports.others;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "Weighted_Szeged_Index", abbreviation = "_Weighted Szeged Index")
 public class WeightedSzegedIndex implements GraphReportExtension<Integer> {
     public String getName() { return "Weighted Szeged Index"; }
-    public String getDescription() { return "Weighted Szeged Index"; }
     public String getCategory() { return "Topological Indices-Distance"; }
 
     public Integer calculate(GraphModel g) {

@@ -62,5 +62,4 @@ public class GraphData {
     public BlackBoard getBlackboard() {
         return blackboard;
     }
-
 }

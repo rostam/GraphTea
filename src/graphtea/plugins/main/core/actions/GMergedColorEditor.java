@@ -16,7 +16,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-
 /**
  * author: Azin Azadi
  * Email:
@@ -62,7 +61,6 @@ public class GMergedColorEditor implements GBasicCellEditor<Integer>, ActionList
         return c;
     }
 
-
     public void cancelEditing() {
 
     }
@@ -85,7 +83,6 @@ public class GMergedColorEditor implements GBasicCellEditor<Integer>, ActionList
         }
         return c.getSelectedItem();
     }
-
 
     GColorEditor gc;
     JTextField comp;

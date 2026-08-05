@@ -11,7 +11,6 @@ import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
 import graphtea.graph.ui.GHTMLPageComponent;
 import graphtea.graph.ui.GTabbedGraphPane;
-import graphtea.platform.Application;
 import graphtea.platform.core.AEvent;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.Listener;
@@ -19,6 +18,7 @@ import graphtea.platform.core.exception.ExceptionOccuredData;
 import graphtea.platform.extension.ExtensionLoader;
 import graphtea.platform.plugin.PluginInterface;
 import graphtea.platform.preferences.lastsettings.StorableOnExit;
+import graphtea.plugins.main.core.actions.ShowWelcomeDialog;
 import graphtea.plugins.main.extension.GraphActionExtensionHandler;
 
 import java.io.BufferedReader;
@@ -26,14 +26,12 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 
 import static graphtea.platform.StaticUtils.addExceptionLog;
-
 
 /**
  * @author azin azadi
@@ -56,33 +54,80 @@ public class Init implements PluginInterface, StorableOnExit {
 
         gtgp.addGraph(new GraphModel(false));
         gtgp.jtp.setSelectedIndex(0);
-        try {
-            GTabbedGraphPane.getCurrentGHTMLPageComponent(blackboard).setPage(new URL(Application.WELCOME_URL));
-        } catch (MalformedURLException e) {
-            ExceptionHandler.catchException(e);
+        showWelcomePage(blackboard);
+
+        startTelemetry(blackboard);
+    }
+
+    /**
+     * Greets a new user.
+     *
+     * <p>The getting-started page ships inside the jar and opens in its own window. It was
+     * previously fetched from {@code http://graphtheorysoftware.com/v/<codename>} into the tab's
+     * helper strip &mdash; a URL that redirects to HTTPS, which {@link javax.swing.JEditorPane}
+     * will not follow, pointing at a page that no longer exists, rendered into a pane the layout
+     * fixes at 75 pixels high. Between the three, new users saw nothing whatsoever.
+     *
+     * @param blackboard the main blackboard
+     */
+    private void showWelcomePage(BlackBoard blackboard) {
+        GHTMLPageComponent strip = GTabbedGraphPane.getCurrentGHTMLPageComponent(blackboard);
+        if (strip != null) {
+            // The strip is a status bar. Give it something useful to say at rest.
+            GTabbedGraphPane.setMessage(
+                    "Click the canvas to add a vertex &nbsp;·&nbsp; drag between vertices to connect them"
+                            + " &nbsp;·&nbsp; press <b>Ctrl+K</b> to search every command",
+                    blackboard, true);
         }
+        if (ShowWelcomeDialog.showOnStartup()) {
+            new ShowWelcomeDialog(blackboard).show();
+        }
+    }
 
-
+    /**
+     * Starts usage reporting, but only with the user's agreement.
+     *
+     * <p>GraphTea transmits usage events and exception stack traces to its authors. That was
+     * previously switched on silently, and the startup path also blocked on a network call to
+     * look up the machine's public IP address. Both now happen only after an explicit yes, and
+     * off the startup path.
+     *
+     * @param blackboard the main blackboard
+     */
+    private void startTelemetry(BlackBoard blackboard) {
+        if (!Telemetry.isEnabled()) {
+            return;
+        }
         track("App", "Started");
-        blackboard.addListener(ExceptionOccuredData.EVENT_KEY, (key, value) -> trackError(getLatestExceptionStackStrace(blackboard)));
+        blackboard.addListener(ExceptionOccuredData.EVENT_KEY,
+                (key, value) -> trackError(getLatestExceptionStackStrace(blackboard)));
 
-        //tracks
-        new Thread(() -> {
-            while (true) { try {
-                Thread.sleep(100);
-                if (tracks.isEmpty()) continue;
+        Thread sender = new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(100);
+                    if (tracks.isEmpty()) {
+                        continue;
+                    }
+                    sendEvent(tracks.removeFirst());
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    return;
+                } catch (Exception e) {
+                    addExceptionLog(e);
+                }
+            }
+        }, "graphtea-telemetry");
+        sender.setDaemon(true);
+        sender.start();
 
-                sendEvent(tracks.removeFirst());
+        // Off the startup path: this is a blocking network call and used to delay the
+        // main window by however long the lookup took.
+        Thread ip = new Thread(() -> uid = getExternalIP(), "graphtea-telemetry-id");
+        ip.setDaemon(true);
+        ip.start();
 
-            } catch (Exception e) { addExceptionLog(e); } }
-        }).start();
-        try { uid = getExternalIP(); } catch (Exception e) { ExceptionHandler.catchException(e);}
-
-        blackboard.addListener("ATrack", (Listener<AEvent>) (key, event) -> {
-//            System.out.println(event);
-            tracks.add(event);
-        });
-
+        blackboard.addListener("ATrack", (Listener<AEvent>) (key, event) -> tracks.add(event));
     }
 
     public static String getLatestExceptionStackStrace(BlackBoard blackboard) {
@@ -120,7 +165,6 @@ public class Init implements PluginInterface, StorableOnExit {
         e.label = stacktrace;
         tracks.addLast(e);
     }
-
 
     static LinkedList<AEvent> tracks = new LinkedList<>();
     public static String encode(String in) {

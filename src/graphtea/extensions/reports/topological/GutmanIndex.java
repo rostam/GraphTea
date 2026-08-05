@@ -6,19 +6,13 @@
 package graphtea.extensions.reports.topological;
 
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 
 /**
  * @author Ali Rostami
  */
-@CommandAttitude(name = "gutman_index", abbreviation = "_gutmanindex")
 public class GutmanIndex extends PairwiseDistanceReportBase {
 
     public String getName() {
-        return "Gutman Index";
-    }
-
-    public String getDescription() {
         return "Gutman Index";
     }
 

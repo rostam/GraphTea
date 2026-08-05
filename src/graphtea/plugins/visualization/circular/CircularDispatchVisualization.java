@@ -34,7 +34,6 @@ public class CircularDispatchVisualization implements VisualizationExtension {
 
     public HashMap<Vertex, Integer> vertexCycleLength = new HashMap<>();
 
-
     private Cycle FindMainCycle(GraphModel g) {
         Vertex root = g.getAVertex();
         for (Vertex e : g) {
@@ -156,7 +155,6 @@ public class CircularDispatchVisualization implements VisualizationExtension {
         }
 
     }*/
-
 
     public List<Vertex> findNextLevelChildren(List<Vertex> currentLevelVertices) {
         List<Vertex> newChildren = new ArrayList<>();

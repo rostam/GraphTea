@@ -53,7 +53,4 @@ public class TopologicalSort extends Algorithm implements AutomatedAlgorithm {
 
     public void doAlgorithm() {
     }
-
-
 }
-

@@ -23,11 +23,6 @@ public class Disjunction implements GraphActionExtension, Parametrizable {
     }
 
     @Override
-    public String getDescription() {
-        return "Graph Disjunction";
-    }
-
-    @Override
     public void action(GraphData graphData) {
         GTabbedGraphPane gtp = graphData.getBlackboard().getData(GTabbedGraphPane.NAME);
         GDisjunction prod = new GDisjunction();
@@ -35,7 +30,6 @@ public class Disjunction implements GraphActionExtension, Parametrizable {
         prod.setPositions(g);
         graphData.core.showGraph(g);
     }
-
 
     @Override
     public String getCategory() {

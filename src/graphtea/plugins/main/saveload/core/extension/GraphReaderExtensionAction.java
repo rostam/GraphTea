@@ -73,5 +73,4 @@ public class GraphReaderExtensionAction extends AbstractExtensionAction {
         }
 
     }
-
 }

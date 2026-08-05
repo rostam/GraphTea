@@ -5,54 +5,27 @@
 
 package graphtea.extensions.reports.basicreports;
 
-import java.util.List;
-import Jama.EigenvalueDecomposition;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
-import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * @author Mohammad Ali Rostami
  */
+public class SpectrumOfMaxDegreeAdjMatrix extends AbstractSpectrumReport {
 
-@CommandAttitude(name = "spectrum_max_degree", abbreviation = "_spectrum_max_degree")
-public class SpectrumOfMaxDegreeAdjMatrix implements GraphReportExtension<ArrayList<String>> {
-    public ArrayList<String> calculate(GraphModel g) {
-        ArrayList<String> res = new ArrayList<>();
-        res.add("Max Degree Adjacency Matrix");
-        Matrix A = AlgorithmUtils.getMaxDegreeAdjacencyMatrix(g);
-        for(double[] a: A.getArray())
-            res.add(Arrays.toString(a));
-        res.add("Eigen Values");
-        EigenvalueDecomposition ed = A.eig();
-        double[] rv = ed.getRealEigenvalues();
-        double[] iv = ed.getImagEigenvalues();
-        for (int i = 0; i < rv.length; i++)
-            if (iv[i] != 0)
-                res.add("" + AlgorithmUtils.round(rv[i], 5) + " + " + AlgorithmUtils.round(iv[i], 5) + "i");
-            else
-                res.add("" + AlgorithmUtils.round(rv[i], 5));
-        res.add("Eigen Vectors:\n");
-        double[][] eigenVectors = ed.getV().getArray();
-        for (double[] eigenVector : eigenVectors) res.add(Arrays.toString(AlgorithmUtils.round(eigenVector, 5)));
-        return res;
+    @Override
+    protected Matrix getMatrix(GraphModel g) {
+        return AlgorithmUtils.getMaxDegreeAdjacencyMatrix(g);
     }
 
+    @Override
+    protected String getMatrixLabel() {
+        return "Max Degree Adjacency Matrix";
+    }
+
+    @Override
     public String getName() {
         return "Spectrum of Max Degree Adjacency Matrix";
     }
-
-    public String getDescription() {
-        return "Spectrum of Max Degree Adjacency Matrix";
-    }
-
-	@Override
-	public String getCategory() {
-		return "Spectral";
-	}
 }

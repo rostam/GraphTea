@@ -30,5 +30,4 @@ public class GraphReportExtensionHandler implements ExtensionHandler {
         }
         return a;
     }
-
 }

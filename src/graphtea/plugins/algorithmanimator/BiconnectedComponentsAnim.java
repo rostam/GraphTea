@@ -14,8 +14,4 @@ public class BiconnectedComponentsAnim
     public String getName() {
         return "Biconnected Components";
     }
-
-    public String getDescription() {
-        return "Biconnected Components";
-    }
 }

@@ -9,7 +9,6 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.GraphGenerator;
@@ -24,17 +23,12 @@ import java.util.List;
  * @author Ali Rostami
 
  */
-@CommandAttitude(name = "generate_pn", abbreviation = "_g_pn")
 public class ExampleChainGraph4 implements GraphGeneratorExtension, Parametrizable, SimpleGeneratorInterface {
     @Parameter(name = "N")
     public static Integer n = 5;
     Vertex[] v;
 
     public String getName() {
-        return "Chain Graph 4";
-    }
-
-    public String getDescription() {
         return "Chain Graph 4";
     }
 
@@ -73,7 +67,6 @@ public class ExampleChainGraph4 implements GraphGeneratorExtension, Parametrizab
         return ret.toArray(ee);
     }
 
-
     public GPoint[] getVertexPositions() {
         GPoint[] p1 = PositionGenerators.line(5, 5, 10000, 10000, n);
         GPoint[] p2 = PositionGenerators.line(4000, 5, 10000, 10000, n);
@@ -90,7 +83,6 @@ public class ExampleChainGraph4 implements GraphGeneratorExtension, Parametrizab
     public GraphModel generateGraph() {
         return GraphGenerator.getGraph(false, this);
     }
-
 
     /**
      * generates a Path Graph with given parameters

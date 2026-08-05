@@ -25,11 +25,6 @@ public class Join implements GraphActionExtension, Parametrizable {
     }
 
     @Override
-    public String getDescription() {
-        return "Join";
-    }
-
-    @Override
     public void action(GraphData graphData) {
         GTabbedGraphPane gtp = graphData.getBlackboard().getData(GTabbedGraphPane.NAME);
         GraphSum prod = new GraphSum(graphData.getBlackboard());
@@ -39,7 +34,6 @@ public class Join implements GraphActionExtension, Parametrizable {
         GraphSum.setUnionLabel(g1,g2,g);
         graphData.core.showGraph(g);
     }
-
 
     @Override
     public String getCategory() {

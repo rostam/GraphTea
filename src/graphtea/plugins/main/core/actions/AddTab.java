@@ -17,7 +17,6 @@ import javax.swing.*;
  */
 public class AddTab extends AbstractAction {
 
-
     /**
      * constructor
      *
@@ -53,7 +52,6 @@ public class AddTab extends AbstractAction {
         gtgp.addGraph(g);
     }
 
-
     /**
      * displays the givven graph in GraphTea
      */
@@ -61,5 +59,4 @@ public class AddTab extends AbstractAction {
         GTabbedGraphPane gtgp = blackBoard.getData(GTabbedGraphPane.NAME);
         gtgp.addGraph(g);
     }
-
 }

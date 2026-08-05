@@ -48,4 +48,3 @@ public class SaveWeightedMatrix implements GraphWriterExtension {
     }
 }
 
-

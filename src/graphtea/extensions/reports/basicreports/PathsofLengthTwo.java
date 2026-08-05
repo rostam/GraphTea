@@ -6,21 +6,14 @@ package graphtea.extensions.reports.basicreports;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
-import graphtea.platform.lang.CommandAttitude;
 import graphtea.plugins.reports.extension.GraphReportExtension;
 
 /**
  * @author Ali Rostami
  */
 
-
-@CommandAttitude(name = "paths_length2", abbreviation = "_ps2")
 public class PathsofLengthTwo implements GraphReportExtension<Integer> {
     public String getName() {
-        return "Number of Paths of Length 2";
-    }
-
-    public String getDescription() {
         return "Number of Paths of Length 2";
     }
 
