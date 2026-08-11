@@ -345,12 +345,11 @@ public class Edge extends BaseEdge<Vertex> {
 
     private void updateText() {
         String _label;
-        if (!isShowWeight())
+        if (!isShowWeight()) {
             _label = label;
-        else if (isShowWeight())
+        } else {
             _label = String.valueOf(super.getWeight());
-        else
-            _label = label + "," + super.getWeight();
+        }
         this.text = _label;
         repaintView();
     }
