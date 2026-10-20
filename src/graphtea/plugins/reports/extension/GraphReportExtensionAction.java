@@ -4,7 +4,6 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.reports.extension;
 
-import graphtea.extensions.reports.boundcheck.forall.IterGraphs;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.core.exception.ExceptionHandler;
@@ -74,7 +73,6 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
     private static int openResultWindows;
 
     protected GraphReportExtension mr;
-    public static IterGraphs ig = null;
 
     public GraphReportExtensionAction(BlackBoard bb, GraphReportExtension gg) {
         super(bb, gg);
@@ -171,9 +169,6 @@ public class GraphReportExtensionAction extends AbstractExtensionAction {
     }
 
     private Object calculate(GraphModel graph) {
-        if (ig != null && ig.activeConjCheck && !"Bound Check".equals(mr.getName())) {
-            return ig.wrapper(mr);
-        }
         return mr.calculate(graph);
     }
 

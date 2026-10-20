@@ -12,7 +12,6 @@ import java.util.PriorityQueue;
 public class RenderTable extends PriorityQueue<List<Object>> {
     int which = 1;
     int maxSize = 100000;
-    public static boolean noFilter = false;
 
     private List<String> titles = new ArrayList<>();
 
@@ -47,7 +46,6 @@ public class RenderTable extends PriorityQueue<List<Object>> {
 
     public boolean add(List<Object> v) {
         boolean ret = super.add(v);
-        if (noFilter) return ret;
         if (super.size() > maxSize) super.poll();
         return ret;
     }

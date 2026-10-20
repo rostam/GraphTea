@@ -79,6 +79,27 @@ Modify [SampleAlgorithm.java](https://github.com/graphtheorysoftware/GraphTea/bl
 - **Visualize** social networks and large graphs with layout algorithms
 - **Export** to image files or LaTeX for papers and reports
 - **Extend** with custom plugins (Java or MATLAB) by dropping files into the extensions directory
+- **Check conjectures** on thousands of graphs at once and open the counterexamples
+
+## Check a Conjecture
+
+**Reports > Conjecture Checker...** tests a claim about graph invariants on many graphs and shows the graphs where it fails or is tight. Write the claim as a formula, choose the graphs, and press **Check**. The **Examples** button fills in and runs the cases below.
+
+| Conjecture | Graphs | What you see |
+|---|---|---|
+| `energy <= 2*m` | all graphs, n = 1–7 | Holds; equality exactly for matchings |
+| `energy >= 2*sqrt(m)` | connected graphs, n = 2–7 | Holds; equality for complete bipartite graphs |
+| `chromatic_number = max_clique_size` | connected graphs, stop at first counterexample | False; the smallest counterexample is C5 |
+| `wiener_index <= (n^3 - n)/6` | trees, n = 2–14 | Holds; equality for paths |
+| `chromatic_number <= 2`, only where `is_bipartite = 1` | connected graphs, n = 2–7 | A condition restricts the graphs tested |
+| `energy = 2*(n - 1)` | the Complete Graph family, n = 2–30 | Holds for every K<sub>n</sub> |
+| `wiener_index >= n*(n - 1) - m` | 20 random connected graphs per n, n = 10–30 | Holds; tight when the diameter is 2 |
+
+- **Invariants.** `n`, `m`, `maxdeg`, `mindeg` and `avgdeg` are built in, and every report that returns a number can be used under a name made from its title (Wiener Index becomes `wiener_index`). The **Invariants...** button lists them all.
+- **Formulas.** `+ - * / ^`, `sqrt`, `ln`, `log`, `exp`, `abs`, `floor`, `ceil`, `min`, `max`, `choose`, the constants `pi` and `e`, and in conditions `and`, `or`, `not`. Dividing by zero makes a value undefined rather than infinite.
+- **Graphs.** Every graph, connected graph or tree on n vertices (all graphs up to 8 vertices are built in; with [nauty](https://pallini.di.uniroma1.it/)'s `geng` installed, up to 11), a generator family, random graphs, a graph6 file, or the graphs open in tabs.
+- **Reports with several bounds.** For reports such as *M3 Bound Conjecture*, which compute a quantity and many candidate bounds in one table, choose **Columns of a report** to see which bounds hold.
+- **Results.** Double-click a graph to open it in a new tab, or export the graphs shown as CSV or graph6. Values within 0.00001 count as equal, since reports round their answers.
 
 ## Benchmark Graphs
 

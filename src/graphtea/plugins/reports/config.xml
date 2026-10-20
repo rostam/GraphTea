@@ -7,9 +7,14 @@
 	-->
 
 <root>
+	<actions>
+		<action class="graphtea.plugins.reports.ui.ConjectureCheckerAction" id="conjecture checker"/>
+	</actions>
 	<ui>
 		<menues>
 			<submenu label="Reports" place="300">
+				<menu label="Conjecture Checker..." action="conjecture checker" place="0"/>
+				<menu label="seperator_menu" place="1"/>
 			</submenu>
 		</menues>
 	</ui>
