@@ -77,6 +77,10 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         String icon = meta.getValue("image");
         String action = meta.getValue("action");
         String tooltip = meta.getValue("tooltip");
+        Icon lineIcon = ToolbarIcons.forSpec(icon);
+        if (lineIcon != null) {
+            icon = null;
+        }
         GButton b;
 
         if (icon == null || icon.isEmpty() || resourceClass == null ||
@@ -84,6 +88,11 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
             b = new GButton(label, icon, blackboard, action);
         else
             b = new GButton(label, resourceClass.getResource(icon), blackboard, action);
+        if (lineIcon != null) {
+            // Unlike a bitmap image, which replaces the label, a line icon sits beside it.
+            b.setIcon(lineIcon);
+            b.setIconTextGap(5);
+        }
         if (tooltip != null) {
             b.setToolTipText(tooltip);
         }
