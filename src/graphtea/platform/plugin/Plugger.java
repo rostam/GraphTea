@@ -22,7 +22,7 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map.Entry;
+import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 
 /**
@@ -71,7 +71,6 @@ public class Plugger {
         File directory = null;
         try {
             directory = new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile();
-            System.out.println(directory);
         } catch (Exception e1) {
             ExceptionHandler.catchException(e1);
         }
@@ -83,55 +82,31 @@ public class Plugger {
                     init(ff);
                 }
             }
-            System.out.println("------------------------------------------------------------");
             verify();
-            System.out.println("------------------------------------------------------------");
             if (first != null) {
-                int libCount = 0;
+                // The array this replaced was sized for active plugins but advanced its index
+                // for every plugin, so one plugin dropped for a missing dependency overflowed it.
+                List<URL> urls = new ArrayList<>();
                 File libf = new File(directory, "lib");
-                ArrayList<URL> libURLs = new ArrayList<>();
                 if (libf.isDirectory() && libf.canRead()) {
                     for (File ff : libf.listFiles()) {
                         if (ff.isFile() && "jar".equalsIgnoreCase(getExtension(ff))) {
-                            try {
-                                libURLs.add(ff.toURI().toURL());
-                                System.out.println("Library file " + ff + " added.");
-                            } catch (MalformedURLException e) {
-                                ExceptionHandler.catchException(e);
-                            }
-                            libCount++;
+                            addURL(urls, ff);
                         }
                     }
                 }
-                URL[] urls = new URL[activePlugins + libCount + 1];
-                int i = 0;
-                for (URL libURL : libURLs)
-                    urls[i++] = libURL;
                 for (String name : files.keySet()) {
-                    if (mark.get(name) == 0)
-                        try {
-                            urls[i] = files.get(name).toURI().toURL();
-                        } catch (MalformedURLException e) {
-                            System.out.println(name + " [" + files.get(name).getPath() + "]");
-                            ExceptionHandler.catchException(e);
-                        }
-                    i++;
+                    if (mark.get(name) == 0) {
+                        addURL(urls, files.get(name));
+                    }
                 }
-                try {
-                    urls[i] = new File(directory, "extensions").toURI().toURL();
-                } catch (MalformedURLException e) {
-                    ExceptionHandler.catchException(e);
-                }
-                classLoader = new URLClassLoader(urls);
-                System.out.println("" + i + " jar file(s) loaded.");
-                System.out.println("------------------------------------------------------------");
+                addURL(urls, new File(directory, "extensions"));
+                classLoader = new URLClassLoader(urls.toArray(new URL[0]));
                 dfs(first);
             } else
-                System.out.println("Can't Load Any Plugin!");
-            System.out.println("------------------------------------------------------------");
+                System.err.println("No plugin could be loaded.");
         } else {
-            System.out.println("There is no directory named \"plugins\" in " +
-                    directory.getAbsolutePath());
+            System.err.println("There is no directory named \"plugins\" in " + directory);
         }
     }
 
@@ -142,22 +117,16 @@ public class Plugger {
      * @param ff file object
      */
     public void init(File ff) {
-        try {
-            JarFile jf = new JarFile(ff);
-            System.out.println("------------------------------------------------------------");
-            String name = jf.getManifest().getMainAttributes().getValue("plugin-name");
-            String verStr = jf.getManifest().getMainAttributes().getValue("plugin-version");
-            String dependsStr = jf.getManifest().getMainAttributes().getValue("plugin-depends");
+        try (JarFile jf = new JarFile(ff)) {
+            Attributes manifest = jf.getManifest().getMainAttributes();
+            String name = manifest.getValue("plugin-name");
+            String verStr = manifest.getValue("plugin-version");
+            String dependsStr = manifest.getValue("plugin-depends");
             if (name == null || verStr == null) {
-                System.out.println("Skipping " + name + "(" + verStr + ")");
+                System.err.println("Skipping " + ff.getName() + ": no plugin-name/plugin-version in its manifest");
                 return;
             }
             Long ver = Long.parseLong(verStr);
-            System.out.println("Detected " + name + "(" + ver + ") ...");
-            for (Entry<Object, Object> s : jf.getManifest().getMainAttributes().entrySet()) {
-                if (!"plugin-name".equals(s.getKey()) && !"plugin-version".equals(s.getKey()))
-                    System.out.println(s.getKey() + " : " + s.getValue());
-            }
             ArrayList<Object[]> dependsArray = new ArrayList<>();
             if (dependsStr != null) {
                 String[] depTokens = dependsStr.trim().split("\\s+");
@@ -172,12 +141,20 @@ public class Plugger {
             files.put(name, ff);
             childs.put(name, new ArrayList<>());
             depends.put(name, dependsArray);
-            initializer.put(name, jf.getManifest().getMainAttributes().getValue("plugin-initializer"));
-            configxml.put(name, jf.getManifest().getMainAttributes().getValue("plugin-configxml"));
+            initializer.put(name, manifest.getValue("plugin-initializer"));
+            configxml.put(name, manifest.getValue("plugin-configxml"));
         } catch (Exception ex) {
             ExceptionHandler.catchException(ex);
         }
 
+    }
+
+    private static void addURL(List<URL> urls, File f) {
+        try {
+            urls.add(f.toURI().toURL());
+        } catch (MalformedURLException e) {
+            ExceptionHandler.catchException(e);
+        }
     }
 
     /**
@@ -187,7 +164,7 @@ public class Plugger {
      */
     public void remove(String name) {
         if (mark.get(name) != -2) {
-            System.out.println("Removing " + name + " because of lack of dependencies...");
+            System.err.println("Removing " + name + " because of lack of dependencies...");
             mark.put(name, -2);
             for (String ch : childs.get(name))
                 remove(ch);
@@ -218,7 +195,6 @@ public class Plugger {
         }
         activePlugins = 0;
         for (String name : versions.keySet()) {
-            System.out.println("Plugin " + name + "(" + mark.get(name) + ") has " + childs.get(name).size() + " child(ren)!");
             if (mark.get(name) == 0) {
                 activePlugins++;
                 if (first == null && childs.get(name).isEmpty())
@@ -234,7 +210,6 @@ public class Plugger {
      */
     public void dfs(String name) {
         mark.put(name, 1);
-        System.out.println("DFS on " + name + " ...");
         for (Object[] dep : depends.get(name)) {
             if (mark.get(dep[0]) == 0)
                 dfs((String) dep[0]);
@@ -290,7 +265,6 @@ public class Plugger {
                     }
                 }
             }
-            System.out.println("Loaded : " + name + ".");
         } catch (Exception ex) {
             ExceptionHandler.catchException(ex);
         }
