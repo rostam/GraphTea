@@ -69,8 +69,7 @@ public class UIUtils {
     }
 
     public static void exit() {
-        if (JOptionPane.showConfirmDialog(null, "Are you sure to exit?",
-                "Exiting From the Application...", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        if (confirmExit(null)) {
             try {
                 StorableOnExit.SETTINGS.saveSettings();
             } catch (Exception e) {
@@ -78,6 +77,18 @@ public class UIUtils {
             }
             System.exit(0);
         }
+    }
+
+    /**
+     * Asks whether to quit. Both File &rsaquo; Exit and closing the window go through here,
+     * so the question reads the same either way.
+     *
+     * @param parent the window to centre the question over, or null
+     * @return whether the user agreed to quit
+     */
+    public static boolean confirmExit(Component parent) {
+        return JOptionPane.showConfirmDialog(parent, "Unsaved graphs will be lost.", "Quit GraphTea?",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION;
     }
 
     //______________________________       gpropertyeditor       ____________________________________

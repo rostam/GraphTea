@@ -94,8 +94,7 @@ public class Init implements graphtea.platform.plugin.PluginInterface, StorableO
             gFrame.setTitle("GraphTea " + Application.VERSION);
             gFrame.addWindowListener(new WindowAdapter() {
                 public void windowClosing(WindowEvent e) {
-                    if (JOptionPane.showConfirmDialog(null, "Do you want to exit?",
-                            "Application Exiting...", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    if (UIUtils.confirmExit(gFrame)) {
                         try {
                             graphtea.plugins.main.Init.track("App", "Closed");
                             SETTINGS.saveSettings();
