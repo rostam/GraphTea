@@ -1,7 +1,6 @@
 package graphtea.extensions;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class AllSetPartitions {
@@ -40,11 +39,5 @@ public class AllSetPartitions {
             }
         }
         return res;
-    }
-
-    public static void main(String[] args) {
-        for (List<List<String>> partitions : partitions(Arrays.asList("a", "b", "c", "d"))) {
-            System.out.println(partitions);
-        }
     }
 }

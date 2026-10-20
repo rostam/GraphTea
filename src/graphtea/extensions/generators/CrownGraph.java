@@ -92,11 +92,6 @@ public class CrownGraph implements GraphGeneratorExtension, Parametrizable, Simp
 		return GraphGenerator.getGraph(false, new CrownGraph());
     }
 
-public static void main(String[] args) {
-        graphtea.platform.Application.main(args);
-//        StaticUtils.loadSingleExtension(graphtea.samples.extensions.HelmGraph.class);
-    }
-
     @Override
     public String getCategory() {
         return "Web Class Graphs";

@@ -1,5 +1,6 @@
 package graphtea.extensions.reports.spectralreports;
 
+import graphtea.platform.core.exception.ExceptionHandler;
 import Jama.Matrix;
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.GraphModel;
@@ -77,7 +78,7 @@ abstract class AbstractLaplacianOfGraph implements GraphReportExtension<ArrayLis
             result.addAll(eigenDecomposition(a));
             return result;
         } catch (Exception e) {
-            e.printStackTrace();
+            ExceptionHandler.catchException(e);
         }
         return null;
     }

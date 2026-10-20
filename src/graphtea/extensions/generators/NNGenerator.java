@@ -90,8 +90,4 @@ public class NNGenerator implements GraphGeneratorExtension, Parametrizable, Sim
     public String getCategory() {
         return "Neural Network";
     }
-
-    public static void main(String[] args) {
-        new NNGenerator().generateGraph();
-    }
 }

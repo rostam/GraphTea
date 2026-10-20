@@ -100,11 +100,6 @@ public class SunletCrownGraph implements GraphGeneratorExtension, Parametrizable
 		return GraphGenerator.getGraph(false, new SunletCrownGraph());
     }
 
-public static void main(String[] args) {
-        graphtea.platform.Application.main(args);
-//        StaticUtils.loadSingleExtension(graphtea.samples.extensions.HelmGraph.class);
-    }
-
     @Override
     public String getCategory() {
         return "Web Class Graphs";

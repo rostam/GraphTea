@@ -105,11 +105,6 @@ public class HelmGraph implements GraphGeneratorExtension, Parametrizable, Simpl
 		return GraphGenerator.getGraph(false, new HelmGraph());
 	}
 
-	public static void main(String[] args) {
-		graphtea.platform.Application.main(args);
-//        StaticUtils.loadSingleExtension(graphtea.samples.extensions.HelmGraph.class);
-	}
-
 	@Override
 	public String getCategory() {
 		return "Web Class Graphs";

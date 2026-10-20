@@ -96,8 +96,4 @@ public class ExampleChainGraph5 implements GraphGeneratorExtension, Parametrizab
     public String getCategory() {
         return "Maxwell Examples";
     }
-
-    public static void main(String[] args) {
-        new ExampleChainGraph5().generateGraph();
-    }
 }

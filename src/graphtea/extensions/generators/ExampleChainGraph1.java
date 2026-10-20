@@ -16,8 +16,6 @@ import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.graphgenerator.core.SimpleGeneratorInterface;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
 
-import java.util.Collection;
-import java.util.Collections;
 
 /**
  * @author azin azadi
@@ -80,9 +78,5 @@ public class ExampleChainGraph1 implements GraphGeneratorExtension, Parametrizab
     @Override
     public String getCategory() {
         return "Maxwell Examples";
-    }
-
-    public static void main(String[] args) {
-        new ExampleChainGraph1().generateGraph();
     }
 }

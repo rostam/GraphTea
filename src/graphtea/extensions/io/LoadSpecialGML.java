@@ -85,13 +85,4 @@ public class LoadSpecialGML implements GraphReaderExtension {
     public String getDescription() {
         return "GraphTea File Format";
     }
-
-    public static void main(String[] args) {
-        try {
-            new LoadSpecialGML()
-                    .read(new File("/home/rostam/kara/GD2018/got-graph.graphml"));
-        } catch (GraphIOException e) {
-            ExceptionHandler.catchException(e);
-        }
-    }
 }

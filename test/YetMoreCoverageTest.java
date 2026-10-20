@@ -21,7 +21,6 @@ import graphtea.extensions.reports.spectralreports.maxflowmincut.GomoryHuTree;
 import graphtea.extensions.reports.spectralreports.maxflowmincut.FlowEndpoints;
 import graphtea.extensions.reports.spectralreports.maxflowmincut.MaximumFlow;
 import graphtea.extensions.reports.spectralreports.maxflowmincut.MinimumCut;
-import graphtea.extensions.reports.spectralreports.maxflowmincut.one;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
@@ -296,45 +295,5 @@ public class YetMoreCoverageTest {
     @Test
     public void maximumFlowWithoutSelectionAsksForEndpoints() {
         assertEquals(FlowEndpoints.INSTRUCTION, new MaximumFlow().calculate(k3));
-    }
-
-    // ── one (JAMA demo) ───────────────────────────────────────────────────────
-
-    @Test
-    public void oneMagicOddOrder() {
-        Matrix m = one.magic(3);
-        assertNotNull(m);
-        assertEquals(3, m.getRowDimension());
-        assertEquals(15.0, m.trace(), 1e-9);
-    }
-
-    @Test
-    public void oneMagicDoublyEvenOrder() {
-        Matrix m = one.magic(4);
-        assertNotNull(m);
-        assertEquals(4, m.getRowDimension());
-    }
-
-    @Test
-    public void oneMagicSinglyEvenOrder() {
-        Matrix m = one.magic(6);
-        assertNotNull(m);
-        assertEquals(6, m.getRowDimension());
-    }
-
-    @Test
-    public void oneFixedWidthDouble() {
-        String s = one.fixedWidthDoubletoString(3.14, 8, 2);
-        assertNotNull(s);
-        assertTrue(s.length() >= 8);
-        assertTrue(s.contains("3.14") || s.contains("3,14"));
-    }
-
-    @Test
-    public void oneFixedWidthInteger() {
-        String s = one.fixedWidthIntegertoString(42, 6);
-        assertNotNull(s);
-        assertTrue(s.length() >= 6);
-        assertTrue(s.contains("42"));
     }
 }

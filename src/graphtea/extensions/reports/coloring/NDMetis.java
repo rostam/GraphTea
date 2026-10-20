@@ -7,9 +7,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.StringJoiner;
 
 /**
  * Created by rostam on 15.02.16.
@@ -32,22 +33,17 @@ public class NDMetis {
     }
 
     public void writeGraphForMetis(GraphModel g) {
-        try {
-            FileWriter fw = new FileWriter("mats/"+name);
-            fw.write(g.numOfVertices()+ " " + g.getEdgesCount() + "\n");
-            for(int i=0;i<g.numOfVertices();i++) {
-                String tmp = "";
-                for(int j=0;j<g.numOfVertices();j++) {
-                    if(g.isEdge(g.getVertex(i),g.getVertex(j))) {
-                        tmp += (j+1) + " ";
+        try (FileWriter fw = new FileWriter("mats/" + name)) {
+            fw.write(g.numOfVertices() + " " + g.getEdgesCount() + "\n");
+            for (int i = 0; i < g.numOfVertices(); i++) {
+                StringJoiner neighbours = new StringJoiner(" ");
+                for (int j = 0; j < g.numOfVertices(); j++) {
+                    if (g.isEdge(g.getVertex(i), g.getVertex(j))) {
+                        neighbours.add(String.valueOf(j + 1));
                     }
                 }
-                if(!tmp.isEmpty()) {
-                    fw.write(tmp.substring(0,tmp.length()-1));
-                }
-                fw.write("\n");
+                fw.write(neighbours + "\n");
             }
-            fw.close();
         } catch (IOException e) {
             ExceptionHandler.catchException(e);
         }
@@ -55,8 +51,7 @@ public class NDMetis {
 
     public List<Integer> readOrder(String name) {
         List<Integer> ret = new ArrayList<>();
-        try {
-            Scanner sc = new Scanner(new File("mats/"+name + ".iperm"));
+        try (Scanner sc = new Scanner(new File("mats/" + name + ".iperm"))) {
             while (sc.hasNext()) {
                 ret.add(sc.nextInt());
             }
@@ -75,8 +70,10 @@ public class NDMetis {
         }
 
         ProcessBuilder process=null;
-        if(System.getProperty("os.name").contains("Win")) {
-            System.out.println("This option works only in linux.");
+        if (System.getProperty("os.name").contains("Win")) {
+            // Printed to stdout this went unseen; the report action shows exceptions to the user.
+            throw new UnsupportedOperationException(
+                    "Nested dissection ordering runs the external ndmetis tool, which is only supported on Linux and macOS.");
         } else {
             cur = cur + "/mats/";
             process = new ProcessBuilder("ndmetis", cur + file);

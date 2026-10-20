@@ -1,17 +1,9 @@
 package graphtea.extensions.reports.topological.Irr;
 
-import graphtea.extensions.AlgorithmUtils;
-import graphtea.extensions.reports.basicreports.NumOfTriangles;
-import graphtea.extensions.reports.topological.ZagrebIndexFunctions;
-import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.RenderTable;
 import graphtea.graph.graph.Vertex;
 import graphtea.plugins.reports.extension.GraphReportExtension;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author Ali Rostami
@@ -22,32 +14,12 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
         return "Irr_t_G";
     }
 
-    public static int deg_e(GraphModel g, Vertex u) {
-        int ret = 0;
-        List<Vertex> neighbors = new ArrayList<>();
-        for (Vertex v : g.directNeighbors(u)) {
-            ret += g.getDegree(v);
-            neighbors.add(v);
-        }
-
-        int conn = 0;
-        for (int i = 0; i < neighbors.size(); i++) {
-            for (int j = i + 1; j < neighbors.size(); j++) {
-                if (g.isEdge(neighbors.get(i), neighbors.get(j))) {
-                    conn++;
-                }
-            }
-        }
-
-        return ret - conn;
-    }
-
     public static int irr_t_ev_G(GraphModel graph) {
         int sum = 0;
         for (Vertex i : graph) {
             for (Vertex j : graph) {
                 if (i.getId() > j.getId()) {
-                    sum += Math.abs(deg_e(graph, i) - deg_e(graph, j));
+                    sum += Math.abs(Irr_G.deg_e(graph, i) - Irr_G.deg_e(graph, j));
                 }
             }
         }
@@ -55,57 +27,11 @@ public class Irr_t_G implements GraphReportExtension<RenderTable> {
     }
 
     public RenderTable calculate(GraphModel g) {
-        ZagrebIndexFunctions zif = new ZagrebIndexFunctions(g);
-        RenderTable ret = new RenderTable();
-        ret.setTitles(Arrays.asList(" m ", " n ", " Zagreb ", " Ve ", " t ", " Total-ev-Irr(G) ", " V. Degrees ", "ve Degrees"));
-
-        ArrayList<Integer> al = AlgorithmUtils.getDegreesList(g);
-        int t = NumOfTriangles.getNumOfTriangles(g);
-        int irr_t_ev_g = irr_t_ev_G(g);
-
-        double m = g.getEdgesCount();
-        double n = g.getVerticesCount();
-        double M21 = zif.getFirstZagreb(1);
-
-        List<Object> v = new ArrayList<>();
-        v.add(m);
-        v.add(n);
-        v.add(M21);
-        v.add(M21 - (3 * t));
-        v.add(t);
-        v.add(irr_t_ev_g);
-        v.add(al.toString());
-        v.add(Irr_G.list_deg_e(g));
-
-        ret.add(v);
-        return ret;
+        return Irr_G.irregularityTable(g, " Total-ev-Irr(G) ", irr_t_ev_G(g));
     }
 
     @Override
     public String getCategory() {
         return "Verification-Degree";
-    }
-
-    public static void main(String[] args) {
-        GraphModel g = new GraphModel();
-        for (int i = 0; i < 8; i++) {
-            g.addVertex(new Vertex());
-        }
-
-        g.addEdge(new Edge(g.getVertex(0), g.getVertex(1)));
-        g.addEdge(new Edge(g.getVertex(0), g.getVertex(2)));
-        g.addEdge(new Edge(g.getVertex(0), g.getVertex(3)));
-        g.addEdge(new Edge(g.getVertex(0), g.getVertex(7)));
-
-        g.addEdge(new Edge(g.getVertex(1), g.getVertex(2)));
-        g.addEdge(new Edge(g.getVertex(1), g.getVertex(3)));
-        g.addEdge(new Edge(g.getVertex(1), g.getVertex(6)));
-
-        g.addEdge(new Edge(g.getVertex(2), g.getVertex(4)));
-        g.addEdge(new Edge(g.getVertex(2), g.getVertex(6)));
-
-        g.addEdge(new Edge(g.getVertex(3), g.getVertex(5)));
-
-        System.out.println(deg_e(g, g.getVertex(0)));
     }
 }
