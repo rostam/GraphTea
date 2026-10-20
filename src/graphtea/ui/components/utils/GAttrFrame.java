@@ -10,84 +10,103 @@ import graphtea.ui.components.gpropertyeditor.GPropertyEditor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-public class GAttrFrame extends javax.swing.JDialog {
-    /**
-     *
-     */
+/**
+ * A dialog that edits a set of attributes in a property table: the parameters of a generator,
+ * report or operator before it runs, or the properties of a vertex or edge.
+ */
+public class GAttrFrame extends JDialog {
     private static final long serialVersionUID = 722213016758300314L;
+
+    /** Width the explanatory text wraps at. */
+    private static final int INTRO_WIDTH = 340;
+
     private final NotifiableAttributeSet atr;
+    private GPropertyEditor table;
+    private boolean status = false;
 
     /**
-     * Creates new form GAttrFrame
+     * @param parent the window the dialog belongs to
+     * @param atr    the attributes to edit
+     * @param modal  whether the dialog blocks until it is closed
      */
-    public GAttrFrame(java.awt.Frame parent, NotifiableAttributeSet atr, boolean modal) {
-        super(parent, modal);
-        this.atr = atr;
-        initComponents();
+    public GAttrFrame(Frame parent, NotifiableAttributeSet atr, boolean modal) {
+        this(parent, atr, modal, null);
     }
 
     /**
-     * @return the return status of this dialog - true-> the ok presses, false-> cancelled by user
+     * @param owner the window the dialog belongs to, or null
+     * @param atr   the attributes to edit
+     * @param modal whether the dialog blocks until it is closed
+     * @param intro a sentence or two shown above the table, or null
+     */
+    public GAttrFrame(Window owner, NotifiableAttributeSet atr, boolean modal, String intro) {
+        super(owner, modal ? ModalityType.APPLICATION_MODAL : ModalityType.MODELESS);
+        this.atr = atr;
+        initComponents(intro);
+    }
+
+    /**
+     * @return true if the dialog was closed with OK, false if it was cancelled
      */
     public boolean getReturnStatus() {
         return status;
     }
 
-    GPropertyEditor table;
-
-    private void initComponents() {
-        setAlwaysOnTop(true);
-        JPanel buttonPanel = new JPanel();
-        JButton cancelButton = new JButton("cancel");
+    private void initComponents(String intro) {
         table = new GPropertyEditor();
         table.connect(atr);
-        JButton okButton = new JButton("ok");
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
 
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                closeDialog();
-            }
-        });
+        JButton okButton = new JButton("OK");
+        JButton cancelButton = new JButton("Cancel");
         okButton.addActionListener(evt -> finished(true));
         cancelButton.addActionListener(evt -> finished(false));
 
-        okButton.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    finished(true);
-                }
-            }
-        });
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
         buttonPanel.add(okButton);
         buttonPanel.add(cancelButton);
-        add(buttonPanel, java.awt.BorderLayout.SOUTH);
-        add(table, java.awt.BorderLayout.CENTER);
-        okButton.setSelected(true);
-        validate();
-        okButton.setSelected(true);
+
+        JPanel content = new JPanel(new BorderLayout(0, 10));
+        content.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
+        if (intro != null && !intro.isBlank()) {
+            JLabel introLabel = new JLabel("<html><div style='width:" + INTRO_WIDTH + "px'>"
+                    + escape(intro.strip()) + "</div></html>");
+            introLabel.setForeground(UIManager.getColor("Label.disabledForeground"));
+            content.add(introLabel, BorderLayout.NORTH);
+        }
+        content.add(table, BorderLayout.CENTER);
+        content.add(buttonPanel, BorderLayout.SOUTH);
+        setContentPane(content);
+
+        // Enter confirms and Escape cancels, as in every other dialog. The old key listener
+        // only fired while OK itself had focus, and tested a key code inside keyTyped, where
+        // it is always VK_UNDEFINED, so Enter never worked at all.
+        getRootPane().setDefaultButton(okButton);
+        getRootPane().registerKeyboardAction(e -> finished(false),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
+                finished(false);
+            }
+        });
         pack();
-        okButton.grabFocus();
+        setLocationRelativeTo(getOwner());
     }
 
-    private boolean status = false;
-    private boolean finished = false;
-
-    private void closeDialog() {
-        finished = true;
+    private static String escape(String text) {
+        return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
     }
 
     private void finished(boolean status) {
         this.status = status;
-        if (status)
-            if (table.getTable().isEditing()) {
-                table.getTable().getCellEditor().stopCellEditing();
-            }
-        closeDialog();
+        if (status && table.getTable().isEditing()) {
+            table.getTable().getCellEditor().stopCellEditing();
+        }
         dispose();
     }
 
@@ -100,11 +119,24 @@ public class GAttrFrame extends javax.swing.JDialog {
      * the modal is like the modal in JDialog
      */
     public static GAttrFrame showEditDialog(NotifiableAttributeSet input, boolean modal) {
-        String title = "Edit Attributes";
-        if (input instanceof Extension) {
-            title = ((Extension) input).getName();
-        }
-        GAttrFrame gAttrFrame = new GAttrFrame(new JFrame(), input, modal);
+        String title = input instanceof Extension extension ? extension.getName() : "Properties";
+        return showEditDialog(input, modal, title, null);
+    }
+
+    /**
+     * Shows a property editor over the active window.
+     *
+     * @param input the attributes to edit
+     * @param modal whether to block until the dialog is closed
+     * @param title the dialog title: what is being edited, not "Edit Attributes"
+     * @param intro a sentence or two shown above the table, or null
+     * @return the dialog, closed already if it was modal
+     */
+    public static GAttrFrame showEditDialog(NotifiableAttributeSet input, boolean modal, String title, String intro) {
+        // Previously parented to a new, never-shown JFrame on every call: the dialog opened at
+        // the screen's corner instead of over GraphTea, and each call leaked a frame.
+        Window owner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getActiveWindow();
+        GAttrFrame gAttrFrame = new GAttrFrame(owner, input, modal, intro);
         gAttrFrame.setTitle(title);
         gAttrFrame.setVisible(true);
         return gAttrFrame;

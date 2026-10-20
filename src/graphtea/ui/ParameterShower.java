@@ -7,6 +7,7 @@ package graphtea.ui;
 import graphtea.platform.attribute.AttributeListener;
 import graphtea.platform.attribute.AttributeSet;
 import graphtea.platform.core.exception.ExceptionHandler;
+import graphtea.platform.extension.Extension;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.ui.components.utils.GAttrFrame;
@@ -14,7 +15,6 @@ import graphtea.ui.components.utils.GAttrFrame;
 import javax.swing.*;
 import java.awt.KeyboardFocusManager;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Set;
 
@@ -27,54 +27,6 @@ import java.util.Set;
 public class ParameterShower implements AttributeListener {
     private Object o;
 
-    /**
-     * show all the fields of the object which have setter and getter in a property editor in runtime
-     * so you can change them easily
-     *
-     * @param o The object to be shown
-     */
-    public void show(Object o) {
-        try {
-            this.o = o;
-            PortableNotifiableAttributeSetImpl p = new PortableNotifiableAttributeSetImpl();
-            p.addAttributeListener(this);
-            for (Method m : o.getClass().getMethods()) {
-                String name = m.getName();
-                if (name.startsWith("set")) {
-                    name = name.substring(3);
-                    Method getter = null;
-                    try {
-                        getter = o.getClass().getMethod("get" + name);
-                    } catch (Exception e) {
-//                    ExceptionHandler.catchException(e);  //To change body of catch statement use File | Settings | File Templates.
-                    }
-                    if (getter != null) {
-                        p.put(name, getter.invoke(o));
-                    }
-                }
-
-            }
-            GAttrFrame.showEditDialog(p, false);
-        } catch (Exception e) {
-            ExceptionHandler.catchException(e);  //To change body of catch statement use File | Settings | File Templates.
-        }
-
-    }
-
-//    public void attributeUpdated(String name, Object oldVal, Object newVal) {
-//        if (o == null)
-//            return;
-//        try {
-//            Method m = o.getClass().getMethod("set" + name, newVal.getClass());
-//            m.invoke(o, newVal);
-////            Field f = o.getClass().getField(name);
-////            f.set(o, newVal);
-//        } catch (Exception e) {
-//            System.err.println("err on " + name);
-////            ExceptionHandler.catchException(e);  //To change body of catch statement use File | Settings | File Templates.
-//        }
-//    }
-
     public boolean xshow(Object o) {
         try {
             this.o = o;
@@ -82,13 +34,17 @@ public class ParameterShower implements AttributeListener {
             p.addAttributeListener(this);
             for (Field f : o.getClass().getFields()) {
                 Parameter anot = f.getAnnotation(Parameter.class);
-//                System.out.println(anot);
-//                System.out.println(f.getName());
                 if (anot != null) {
                     addField(p, f, o, anot.name(), anot.description());
                 }
             }
-            return GAttrFrame.showEditDialog(p, true).getReturnStatus();
+            String title = o instanceof Extension extension ? extension.getName() : "Parameters";
+            String intro = o instanceof Extension extension ? extension.getDescription() : null;
+            if (intro != null && intro.strip().equalsIgnoreCase(title.strip())) {
+                // Many extensions describe themselves with their own name; the title says it already.
+                intro = null;
+            }
+            return GAttrFrame.showEditDialog(p, true, title, intro).getReturnStatus();
         }
         catch (Exception e) {
             ExceptionHandler.catchException(e);

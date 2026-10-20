@@ -20,7 +20,6 @@ import graphtea.ui.components.gpropertyeditor.editors.inplace.BoundedIntegerEdit
 import graphtea.ui.components.gpropertyeditor.editors.inplace.GBooleanEditor;
 import graphtea.ui.components.gpropertyeditor.editors.inplace.GDimensionEditor;
 import graphtea.ui.components.gpropertyeditor.renderers.*;
-import graphtea.ui.components.utils.GFrameLocationProvider;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -42,25 +41,32 @@ import java.io.File;
 public class GPropertyEditor extends JComponent {
     GCellEditor editor = new GCellEditor();
     GCellRenderer renderer = new GCellRenderer();
+    /** Fewest and most rows the table asks room for before it scrolls. */
+    private static final int MIN_VISIBLE_ROWS = 3;
+    private static final int MAX_VISIBLE_ROWS = 14;
+
+    /** Renders the name column; reinstalled whenever the table rebuilds its columns. */
+    private TableCellRenderer nameRenderer;
+
     JTable table = new JTable() {
 
-        public void paint(Graphics g) {
-            super.paint(g);
-        }
-
+        // GPropertyTableModel fires a structure change on every connect, which makes the table
+        // throw its columns away and create new ones with default renderers.
         @Override
-        public Dimension getMinimumSize() {
-            return new Dimension(150, 1100);
+        public void createDefaultColumnsFromModel() {
+            super.createDefaultColumnsFromModel();
+            if (nameRenderer != null && getColumnCount() > 0) {
+                getColumnModel().getColumn(0).setCellRenderer(nameRenderer);
+            }
         }
 
-        @Override
-        public Dimension getPreferredSize() {
-            return getMinimumSize();
-        }
-
+        // The table used to report a fixed 150 x 1100 as both its minimum and preferred size,
+        // whatever it held: a dialog with two parameters opened mostly empty, and a property
+        // list longer than 1100 pixels could not be scrolled to its end.
         @Override
         public Dimension getPreferredScrollableViewportSize() {
-            return getPreferredSize();
+            int rows = Math.max(MIN_VISIBLE_ROWS, Math.min(MAX_VISIBLE_ROWS, getRowCount()));
+            return new Dimension(300, rows * getRowHeight());
         }
 
         @Override
@@ -88,8 +94,7 @@ public class GPropertyEditor extends JComponent {
 
     public GPropertyEditor() {
         super();
-        setMinimumSize(new Dimension(300, 200));
-        setPreferredSize(new Dimension(300, 300));
+        setMinimumSize(new Dimension(200, 120));
         table.setModel(model);
         table.setDefaultRenderer(table.getColumnClass(1), renderer);
         table.setDefaultEditor(table.getColumnClass(1), editor);
@@ -117,10 +122,38 @@ public class GPropertyEditor extends JComponent {
         l.setEditable(false);
         l.setLineWrap(true);
         l.setWrapStyleWord(true);
-
-//        l.setLineWrap(true);
-//        l.setPreferredSize(new Dimension(300,300));
+        l.setRows(3);
+        l.setMargin(new Insets(6, 8, 6, 8));
+        l.setForeground(UIManager.getColor("Label.disabledForeground"));
+        table.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                updateDescription();
+            }
+        });
+        setDescription(NO_SELECTION_HINT);
     }
+
+    /**
+     * Capitalises a property name such as "directed" so it reads like its neighbours ("Vertex
+     * Labels"). One- and two-letter names are left alone: those are parameters like n and k,
+     * where case carries meaning.
+     */
+    static String sentenceCase(String name) {
+        if (name == null || name.length() < 3 || !Character.isLowerCase(name.charAt(0))) {
+            return name;
+        }
+        return Character.toUpperCase(name.charAt(0)) + name.substring(1);
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        // Wide enough for a name and a value side by side, however few rows there are.
+        Dimension d = super.getPreferredSize();
+        d.width = Math.max(d.width, 300);
+        return d;
+    }
+
+    private static final String NO_SELECTION_HINT = "Select a row to see what it means.";
 
     /** Row height. The default 16 leaves no air around the text or the in-place editors. */
     private static final int ROW_HEIGHT = 22;
@@ -170,16 +203,20 @@ public class GPropertyEditor extends JComponent {
         // The value column has its own renderer; the name column was using the bare default,
         // with the text hard against the left edge.
         TableCellRenderer nameBase = new DefaultTableCellRenderer();
-        table.getColumnModel().getColumn(0).setCellRenderer((t, value, selected, focused, row, column) -> {
+        nameRenderer = (t, value, selected, focused, row, column) -> {
             Component c = nameBase.getTableCellRendererComponent(t, value, selected, focused, row, column);
             if (c instanceof JLabel nameLabel) {
+                nameLabel.setText(sentenceCase(nameLabel.getText()));
                 nameLabel.setBorder(new EmptyBorder(0, 8, 0, 8));
                 if (!selected) {
                     nameLabel.setForeground(NAME_FG);
                 }
             }
             return c;
-        });
+        };
+        if (table.getColumnCount() > 0) {
+            table.getColumnModel().getColumn(0).setCellRenderer(nameRenderer);
+        }
     }
 
     private final JTextArea l = new JTextArea();
@@ -214,25 +251,22 @@ public class GPropertyEditor extends JComponent {
         add(jSplitPane1, java.awt.BorderLayout.CENTER);
 
         validate();
-        table.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
-                updateDescription();
-            }
-        });
     }
 
     private void updateDescription() {
         if (target != null) {
             int scc = table.getSelectedRow();
-            if (scc != -1) {
-                String name = target.getView().getNameAt(scc);
-                String desc = target.getView().getDescription(name);
-                if (desc == null || desc.equals("")) {
-                    desc = name;
-                }
-                desc += ": " + target.getView().getAttribute().get(name);
-                setDescription(desc);
+            if (scc == -1) {
+                setDescription(NO_SELECTION_HINT);
+                return;
             }
+            String name = target.getView().getNameAt(scc);
+            String desc = target.getView().getDescription(name);
+            if (desc == null || desc.isBlank() || desc.equals(name)) {
+                String shown = target.getView().getDisplayName(name);
+                desc = shown != null ? shown : name;
+            }
+            setDescription(desc);
         } else {
             setDescription("");
         }
@@ -267,13 +301,7 @@ public class GPropertyEditor extends JComponent {
     public void connect(NotifiableAttributeSet x) {
         conector.connect(x);
 
-        int h = 0;
-        for (int i = 0; i < table.getRowCount(); i++) {
-            h += table.getRowHeight(i);
-        }
-        h += table.getRowCount() * table.getRowMargin();
-        table.setPreferredSize(GFrameLocationProvider.getPopUpSize());
-        table.validate();
+        table.revalidate();
     }
 
     NotifiableAttributeSetView target;

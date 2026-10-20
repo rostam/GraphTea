@@ -22,6 +22,7 @@ import graphtea.plugins.main.ccp.Copy;
 import graphtea.plugins.main.core.actions.vertex.AddVertex;
 import graphtea.plugins.main.select.Select;
 import graphtea.ui.UIUtils;
+import graphtea.ui.components.utils.GAttrFrame;
 
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -128,7 +129,8 @@ public class PopupMenuHandler extends AbstractAction {
         });
         VERTEX_MENU.addSeparator();
         add(VERTEX_MENU, "Properties...",
-                () -> UIUtils.showEditDialog(new VertexNotifiableAttrSet(v), false));
+                () -> GAttrFrame.showEditDialog(new VertexNotifiableAttrSet(v), false,
+                        "Vertex " + v.getLabel(), null));
         appendRegistered(VERTEX_MENU, registeredVertexItems);
         VERTEX_MENU.show(view, (int) x, (int) y);
     }
@@ -146,7 +148,8 @@ public class PopupMenuHandler extends AbstractAction {
         add(EDGE_MENU, "Select this edge", () -> selectOnly(null, e));
         EDGE_MENU.addSeparator();
         add(EDGE_MENU, "Properties...",
-                () -> UIUtils.showEditDialog(new EdgeNotifiableAttrSet(e), false));
+                () -> GAttrFrame.showEditDialog(new EdgeNotifiableAttrSet(e), false,
+                        "Edge " + e.source.getLabel() + " \u2013 " + e.target.getLabel(), null));
         appendRegistered(EDGE_MENU, registeredEdgeItems);
         EDGE_MENU.show(view, (int) x, (int) y);
     }
