@@ -144,21 +144,35 @@ public class ParameterShower implements AttributeListener {
     }
 
     public void attributeUpdated(String name, Object oldVal, Object newVal) {
+        applyParameter(o, name, newVal);
+    }
+
+    /**
+     * Writes an edited value back to the parameter field it came from.
+     *
+     * @param target the object whose parameters are being edited
+     * @param name   the attribute name: a field name, or "atrset.field.key" for an entry of an
+     *               {@link AttributeSet} field
+     * @param value  the new value
+     */
+    static void applyParameter(Object target, String name, Object value) {
         try {
             if (name.startsWith("atrset")) {
-                name = name.substring(7);
-                String atn = name.substring(0, name.indexOf("."));
-                String fn = name.substring(name.indexOf(".") + 1);
-                Object field = o.getClass().getDeclaredField(atn).get(o);
-                if (field instanceof AttributeSet) {
-                    AttributeSet attributeSet = (AttributeSet) field;
-                    attributeSet.put(fn, newVal);
+                String rest = name.substring(7);
+                String atn = rest.substring(0, rest.indexOf("."));
+                String fn = rest.substring(rest.indexOf(".") + 1);
+                if (target.getClass().getField(atn).get(target) instanceof AttributeSet attributeSet) {
+                    attributeSet.put(fn, value);
                 }
             } else {
-                o.getClass().getDeclaredField(name).set(o, newVal);
+                // getField, not getDeclaredField: the dialog lists public fields including
+                // inherited ones (xshow uses getFields), and getDeclaredField cannot see those.
+                // Every parameter declared in a base class, such as the graph names of the
+                // product operators, was silently left at its default however it was edited.
+                target.getClass().getField(name).set(target, value);
             }
         } catch (IllegalAccessException | NoSuchFieldException e) {
-//            ExceptionHandler.catchException(e);
+            ExceptionHandler.catchExceptionQuietly(e);
         }
     }
 }
