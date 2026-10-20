@@ -39,6 +39,9 @@ import java.util.HashMap;
  * @author Azin Azadi
  */
 public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener {
+    /** Property fired whenever the page's content is replaced or appended to. */
+    public static final String CONTENT_PROPERTY = "content";
+
     private final BlackBoard blackboard;
     private static final HashMap<String, HyperlinkHandler> handlers = new HashMap<>();
     JEditorPane jta;
@@ -61,6 +64,7 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
         jta.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
         jta.setBackground(Color.white);
         jta.setForeground(new Color(0x2B2B2B));
+        jta.setMargin(new Insets(6, 10, 6, 10));
         setViewportView(jta);
         setBorder(BorderFactory.createEmptyBorder());
     }
@@ -68,6 +72,7 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
     public void setPage(URL page) {
         try {
             jta.setPage(page);
+            firePropertyChange(CONTENT_PROPERTY, null, page);
         } catch (IOException e) {
             ExceptionHandler.catchException(e);
         }
@@ -75,6 +80,7 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
 
     public void setHTML(String html) {
         jta.setText(html);
+        firePropertyChange(CONTENT_PROPERTY, null, html);
     }
 
     public JEditorPane getEditorPane() {
@@ -99,6 +105,7 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
             ExceptionHandler.catchException(e);
         }
         jta.validate();
+        firePropertyChange(CONTENT_PROPERTY, null, html);
     }
 
     /**
