@@ -7,6 +7,7 @@ package graphtea.plugins.algorithmanimator.extension;
 
 import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.platform.core.BlackBoard;
+import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.plugins.algorithmanimator.core.AlgorithmAnimator;
 import graphtea.ui.extension.AbstractExtensionAction;
 
@@ -25,13 +26,27 @@ public class AlgorithmExtensionAction
     @Override
     public void performExtension() {
 
-        new Thread(() -> {
+        Thread runner = new Thread(() -> {
             AlgorithmAnimator algorithmAnimator = new AlgorithmAnimator(blackboard);
             target.acceptEventDispatcher(algorithmAnimator);
-            GTabbedGraphPane.showTimeNotificationMessage(target.getName() + " Algorithm started", blackboard, 2000, true);
             algorithmAnimator.createControlDialog(target.getName());
-            target.doAlgorithm();
-            GTabbedGraphPane.showTimeNotificationMessage(target.getName() + " Algorithm finished", blackboard, 3000, true);
-        }).start();
+            boolean completed = false;
+            try {
+                target.doAlgorithm();
+                completed = true;
+            } catch (AlgorithmAnimator.AlgorithmCancelled stopped) {
+                // The user closed the runner window; nothing to report.
+            } catch (RuntimeException e) {
+                ExceptionHandler.catchException(target.getName(), e);
+            } finally {
+                algorithmAnimator.algorithmEnded(completed);
+            }
+            if (completed) {
+                GTabbedGraphPane.showTimeNotificationMessage(target.getName() + " finished", blackboard, 3000, true);
+            }
+        }, "graphtea-algorithm-" + target.getName());
+        // A paused algorithm must not keep the application alive after its window is gone.
+        runner.setDaemon(true);
+        runner.start();
     }
 }

@@ -49,6 +49,9 @@ public final class ToolbarIcons {
             case "undo" -> new LineIcon(g -> undo(g, false));
             case "redo" -> new LineIcon(g -> undo(g, true));
             case "search" -> new LineIcon(ToolbarIcons::search);
+            case "play" -> new LineIcon(ToolbarIcons::play);
+            case "pause" -> new LineIcon(ToolbarIcons::pause);
+            case "step" -> new LineIcon(ToolbarIcons::step);
             default -> null;
         };
     }
@@ -92,6 +95,30 @@ public final class ToolbarIcons {
     private static void search(Graphics2D g) {
         g.draw(new Ellipse2D.Double(2, 2, 8.5, 8.5));
         g.draw(new Line2D.Double(9.5, 9.5, 14, 14));
+    }
+
+    private static void play(Graphics2D g) {
+        g.fill(triangle(4, 3, 13, 8));
+    }
+
+    private static void pause(Graphics2D g) {
+        g.fill(new RoundRectangle2D.Double(4, 3, 3, 10, 1, 1));
+        g.fill(new RoundRectangle2D.Double(9, 3, 3, 10, 1, 1));
+    }
+
+    private static void step(Graphics2D g) {
+        g.fill(triangle(3, 3, 10, 8));
+        g.fill(new RoundRectangle2D.Double(11, 3, 2.5, 10, 1, 1));
+    }
+
+    /** A right-pointing triangle from x = left to x = tip, centred on y = mid. */
+    private static Path2D triangle(double left, double top, double tip, double mid) {
+        Path2D p = new Path2D.Double();
+        p.moveTo(left, top);
+        p.lineTo(tip, mid);
+        p.lineTo(left, 2 * mid - top);
+        p.closePath();
+        return p;
     }
 
     /** Strokes a drawing in the owning component's foreground colour. */

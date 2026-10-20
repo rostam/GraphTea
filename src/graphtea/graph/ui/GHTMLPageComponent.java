@@ -87,12 +87,16 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
         return jta;
     }
 
-    public void autoScroll(){
+    /**
+     * Keeps the view scrolled to the end as content is appended.
+     *
+     * <p>This also used to make the caret visible, so a read-only log showed a blinking text
+     * cursor as if it could be typed into.
+     */
+    public void autoScroll() {
         DefaultCaret caret = (DefaultCaret) jta.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-        jta.getCaret().setVisible(true);
-        jta.getCaret().setSelectionVisible(true);
-        caret.setDot(jta.getText().length());
+        caret.setDot(jta.getDocument().getLength());
     }
 
     public void appendHTML(String html) {
