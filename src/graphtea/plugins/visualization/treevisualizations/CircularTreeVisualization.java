@@ -30,7 +30,7 @@ public class CircularTreeVisualization implements VisualizationExtension {
     Vertex root;
     public List<Vertex> children = new ArrayList<>();
     public HashMap<Vertex, Integer> vertexHeights = new HashMap<>();
-    @UserModifiableProperty(displayName = "Circular Tree Visualization Radius", obeysAncestorCategory = false
+    @UserModifiableProperty(displayName = "Circular Tree Radius", obeysAncestorCategory = false
             , category = "Visualization Options")
     public static Integer radius = 80;
 

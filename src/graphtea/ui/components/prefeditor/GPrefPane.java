@@ -5,202 +5,96 @@
 
 package graphtea.ui.components.prefeditor;
 
-import java.util.List;
 import graphtea.platform.core.BlackBoard;
+import graphtea.platform.lang.NaturalOrder;
 import graphtea.platform.preferences.AbstractPreference;
-import graphtea.ui.components.GFrame;
+import graphtea.ui.UIUtils;
 import graphtea.ui.components.gpropertyeditor.GPropertyEditor;
-import graphtea.ui.components.utils.GFrameLocationProvider;
 
-import javax.swing.*;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import java.util.Map;
 
 /**
+ * The Settings window: a list of categories beside the settings in the selected one.
+ *
+ * <p>This used to extend GFrame, the main window class, so opening Settings built a second,
+ * untitled copy of the application frame. Its category list was cut to a fixed width, and its
+ * "Ok" and "Cancel" buttons sat at opposite edges and did the same thing: every edit is applied
+ * the moment it is made, so there was never anything to cancel. It is now a dialog over the main
+ * window with a single Close button, and says that changes apply immediately.
+ *
  * @author Rouzbeh Ebrahimi
- * Email: ruzbehus@gmail.com
  */
+public class GPrefPane extends JDialog {
+    /** Category holding values that are stored but not meant to be edited. */
+    private static final String HIDDEN_CATEGORY = "Only Storable";
 
-public class GPrefPane extends GFrame {
-    // Variables declaration - do not modify
-    public HashMap<String, AbstractPreference> tabs;
-    private final javax.swing.JList list;
-    private final javax.swing.JScrollPane scrollPane;
-    private final GPropertyEditor tabPane;
-    private final JButton ok;
-    private final JButton cancel;
-    private final JButton apply;
-    private final JLabel label;
-// End of variables declaration
+    private static final Dimension SIZE = new Dimension(760, 460);
+
+    public final Map<String, AbstractPreference> tabs;
+    private final GPropertyEditor editor = new GPropertyEditor();
 
     /**
-     * Creates new form prefForm
+     * @param bb    the main blackboard
+     * @param items the settings, by category name
      */
-    public GPrefPane(BlackBoard bb, HashMap<String, AbstractPreference> items) {
-        super(bb);
-        java.awt.GridBagConstraints gridBagConstraints;
-        tabs = items;
-        tabPane = new GPropertyEditor();
-        scrollPane = new javax.swing.JScrollPane();
-        list = new JList();
-        ok = new JButton("Ok");
-        ok.addActionListener(e -> finished(true));
+    public GPrefPane(BlackBoard bb, Map<String, AbstractPreference> items) {
+        super(UIUtils.getGFrame(bb), "Settings", ModalityType.MODELESS);
+        this.tabs = items;
 
-        cancel = new JButton("Cancel");
-        cancel.addActionListener(e -> closeDialog());
-        apply = new JButton("Apply");
-        label = new JLabel("Preferences:");
-
-        setLayout(new java.awt.GridBagLayout());
-
-//        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTab();
-        List<String> refined = items.keySet().stream().filter(s -> !Objects.equals(s, "Only Storable")).collect(Collectors.toCollection(ArrayList::new));
-        final String[] strs = refined.toArray(new String[refined.size()]);
-
-        list.setModel(new javax.swing.AbstractListModel() {
-            final String[] strings = strs;
-
-            public int getSize() {
-                return strings.length;
-            }
-
-            public Object getElementAt(int i) {
-                return strings[i];
+        List<String> categories = items.keySet().stream()
+                .filter(s -> !HIDDEN_CATEGORY.equals(s))
+                .sorted(NaturalOrder.INSTANCE)
+                .toList();
+        JList<String> list = new JList<>(categories.toArray(new String[0]));
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting() && list.getSelectedValue() != null) {
+                editor.connect(items.get(list.getSelectedValue()).attributeSet);
             }
         });
-        list.addListSelectionListener(this::jList1ValueChanged);
+        JScrollPane listScroll = new JScrollPane(list);
+        listScroll.setPreferredSize(new Dimension(Math.max(170, list.getPreferredSize().width + 24), 0));
 
-        scrollPane.setViewportView(list);
+        JLabel note = new JLabel("Changes take effect immediately.");
+        note.setForeground(UIManager.getColor("Label.disabledForeground"));
+        JButton close = new JButton("Close");
+        close.addActionListener(e -> dispose());
 
-        setList();
-        setCancel();
-//        setApply();
-        setOk();
-//        setLabel();
+        JPanel buttons = new JPanel(new BorderLayout());
+        buttons.add(note, BorderLayout.CENTER);
+        buttons.add(close, BorderLayout.EAST);
 
-        String s = (String) list.getModel().getElementAt(0);
-        AbstractPreference ap = items.get(s);
-//        GPropertyEditor gp = new GPropertyEditor();
-//        gp.connect(ap.attributeSet);
-//        gp.setVisible(true);
-        tabPane.connect(ap.attributeSet);
+        JPanel content = new JPanel(new BorderLayout(10, 10));
+        content.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
+        content.add(listScroll, BorderLayout.WEST);
+        content.add(editor, BorderLayout.CENTER);
+        content.add(buttons, BorderLayout.SOUTH);
+        setContentPane(content);
 
-        tabPane.setVisible(true);
-        setSize(GFrameLocationProvider.getPrefSize());
-        setLocation(GFrameLocationProvider.getLocation());
+        getRootPane().setDefaultButton(close);
+        getRootPane().registerKeyboardAction(e -> dispose(),
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        if (!categories.isEmpty()) {
+            list.setSelectedIndex(0);
+        }
+        setSize(SIZE);
+        setLocationRelativeTo(getOwner());
     }
-
-    private void setList() {
-        java.awt.GridBagConstraints gridBagConstraints;
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 100;
-        gridBagConstraints.ipady = 250;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(scrollPane, gridBagConstraints);
-    }
-
-    private void setLabel() {
-        java.awt.GridBagConstraints gridBagConstraints;
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-//           gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        add(label, gridBagConstraints);
-    }
-
-    private void setTab() {
-        java.awt.GridBagConstraints gridBagConstraints;
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 250;
-        gridBagConstraints.ipady = 250;
-        gridBagConstraints.weightx = 6;
-        gridBagConstraints.weighty = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(tabPane, gridBagConstraints);
-    }
-
-    private void setCancel() {
-        java.awt.GridBagConstraints gridBagConstraints;
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
-
-        add(cancel, gridBagConstraints);
-    }
-
-    /*private void setApply(){
-        java.awt.GridBagConstraints gridBagConstraints;
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.ipady = 8;
-         gridBagConstraints.fill = java.awt.GridBagConstraints.CENTER;        
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.CENTER;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
-        add(apply, gridBagConstraints);
-    }*/
-    private void setOk() {
-        java.awt.GridBagConstraints gridBagConstraints;
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
-        add(ok, gridBagConstraints);
-    }
-
-    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
-//          tabPane=new gpropertyeditor();
-        String s = (String) list.getSelectedValue();
-        AbstractPreference ap = tabs.get(s);
-//        GPropertyEditor gp = new GPropertyEditor();
-//        gp.connect(ap.attributeSet);
-//        gp.setVisible(true);
-        tabPane.connect(ap.attributeSet);
-        tabPane.setVisible(true);
-
-        setTab();
-    }
-
-    private boolean status = false;
-    private boolean finished = false;
-
-    private void closeDialog() {
-        finished = true;
-        dispose();
-    }
-
-    private void finished(boolean status) {
-        this.status = status;
-        closeDialog();
-        dispose();
-    }
-
-
 }
-

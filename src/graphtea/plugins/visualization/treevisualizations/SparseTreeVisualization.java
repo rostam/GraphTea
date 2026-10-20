@@ -147,10 +147,10 @@ public class SparseTreeVisualization implements VisualizationExtension {
         graph = g;
     }
 
-    @UserModifiableProperty(displayName = "Sparse Tree Visualization Width", obeysAncestorCategory = false
+    @UserModifiableProperty(displayName = "Sparse Tree Width", obeysAncestorCategory = false
             , category = "Visualization Options")
     public static Integer width = 800;
-    @UserModifiableProperty(displayName = "Sparse Tree Visualization : Each Level's height", obeysAncestorCategory = false
+    @UserModifiableProperty(displayName = "Sparse Tree Level Height", obeysAncestorCategory = false
             , category = "Visualization Options")
     public static Integer eachLevelHeigh = 50;
 

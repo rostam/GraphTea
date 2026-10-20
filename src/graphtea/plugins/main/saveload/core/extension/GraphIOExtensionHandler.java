@@ -34,7 +34,7 @@ public class GraphIOExtensionHandler implements ExtensionHandler, StorableOnExit
         handlingReaders = isHandlingReaders;
     }
 
-    @UserModifiableProperty(displayName = "default Directory Path")
+    @UserModifiableProperty(displayName = "Default Directory")
     public static String defaultFile = ".";
 
     /**

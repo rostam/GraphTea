@@ -11,7 +11,6 @@ import java.awt.*;
  */
 public class GFrameLocationProvider {
     private static final int coefficent = 16;
-    private static final int prefCoef = 18;
 
     public static Point getLocation() {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -22,21 +21,6 @@ public class GFrameLocationProvider {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int determinator = 14;
         return new Dimension((int) d.getWidth() * determinator / coefficent, (int) d.getHeight() * determinator / coefficent);
-    }
-
-    public static Dimension getPopUpSize() {
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        return new Dimension((int) d.getWidth() * 8 / coefficent, (int) d.getHeight() * 8 / coefficent);
-    }
-
-    public static Dimension getPrefSize() {
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        return new Dimension((int) d.getWidth() * 8 / prefCoef, (int) d.getHeight() * 8 / prefCoef);
-    }
-
-    public static Point getPrefLocation() {
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        return new Point((int) d.getWidth() * 3 / prefCoef, (int) d.getHeight() * 3 / prefCoef);
     }
 
     public static Point getPopUpLocation() {
