@@ -70,13 +70,23 @@ public class GBody extends JPanel {
                 && showingSideBars.get(0).equals(new Pair<>(leftPanel, label));
     }
 
+    /** Narrowest a sidebar may be left at before it is reopened at its preferred width. */
+    private static final int MIN_SIDEBAR_WIDTH = 200;
+
     private void updateEveryThingInsidebar() {
         JPanel sp = createTotalSideBarPanel();
+        boolean wasHidden = hidden;
         hidden = false;
         splitPane.setRightComponent(bodyPane);
         splitPane.setLeftComponent(sp);
         add(splitPane);
         validate();
+        // A split pane keeps its divider where it last was and only consults preferred sizes on
+        // its first layout, so a panel opened after a narrower one inherited that width. Keep a
+        // width the user dragged to, but never reopen into a sliver.
+        if (wasHidden || splitPane.getDividerLocation() < MIN_SIDEBAR_WIDTH) {
+            splitPane.setDividerLocation(sp.getPreferredSize().width);
+        }
     }
 
     private JPanel createTotalSideBarPanel() {

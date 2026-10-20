@@ -111,6 +111,9 @@ public class ReportsUI {
     private void initComponents() {
         filter = new JTextField();
         filter.setToolTipText("Type part of a report name");
+        // FlatLaf client properties: hint text while empty, and a button to clear the filter.
+        filter.putClientProperty("JTextField.placeholderText", "Search reports");
+        filter.putClientProperty("JTextField.showClearButton", Boolean.TRUE);
         filter.getDocument().addDocumentListener(new DocumentListener() {
             public void insertUpdate(DocumentEvent e) {
                 rebuild();

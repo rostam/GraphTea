@@ -124,6 +124,7 @@ public final class CommandPalette {
 
     private void build() {
         query = new JTextField();
+        query.putClientProperty("JTextField.placeholderText", "Type a command, report or algorithm name");
         query.setFont(query.getFont().deriveFont(Font.PLAIN, 16f));
         query.setBorder(BorderFactory.createEmptyBorder(10, 12, 10, 12));
 
