@@ -134,19 +134,22 @@
 
         <toolbars>
             <toolbar place="10">
-                <tool label="New Tab" action="add tab"/>
-                <tool label="Clear Graph" action="reset"/>
-
+                <tool label="New Tab" action="add tab" tooltip="Open an empty graph in a new tab (Ctrl+T)"/>
+                <!-- This was labelled "Clear Graph", but the action only resets marks and
+                     colours; nothing is deleted. -->
+                <tool label="Reset Colors" action="reset"
+                      tooltip="Clear the marks and colours left by algorithms and selections"/>
             </toolbar>
 
             <toolbar place="20">
                 <!-- Labelled after the action ids ("Undo Action"), which is not what a
                      toolbar button should say. -->
-                <tool label="Undo" action="Undo Action"/>
-                <tool label="Redo" action="Redo Action"/>
+                <tool label="Undo" action="Undo Action" tooltip="Undo (Ctrl+Z)"/>
+                <tool label="Redo" action="Redo Action" tooltip="Redo (Ctrl+Alt+Z)"/>
             </toolbar>
             <toolbar place="30">
-                <tool label="Find Command" action="command palette"/>
+                <tool label="Find Command" action="command palette"
+                      tooltip="Search every report, algorithm and operator by name (Ctrl+K)"/>
             </toolbar>
         </toolbars>
     </ui>

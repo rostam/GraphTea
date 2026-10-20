@@ -76,31 +76,25 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         String label = meta.getValue("label");
         String icon = meta.getValue("image");
         String action = meta.getValue("action");
-        String _place = meta.getValue("place");
-        int place = -1;
-        if (_place != null)
-            place = Integer.parseInt(_place);
+        String tooltip = meta.getValue("tooltip");
         GButton b;
-
-        if (resourceClass != null && icon != null)
-            System.out.println("[handle_tool]" + icon + " : " + resourceClass.getResource(icon));
 
         if (icon == null || icon.isEmpty() || resourceClass == null ||
                 resourceClass.getResource(icon) == null)
             b = new GButton(label, icon, blackboard, action);
         else
             b = new GButton(label, resourceClass.getResource(icon), blackboard, action);
-        b.setBorderPainted(false);
-//        b.setBorder(new EmptyBorder(0, 1, 0, 2));
+        if (tooltip != null) {
+            b.setToolTipText(tooltip);
+        }
+        b.setFocusable(false);
 
         lastToolbar.add(b);
         if (DEBUG) System.err.println("handle_tool: " + meta);
     }
 
     public void end_toolbar()  {
-        lastToolbar.add(new JSeparator(JSeparator.VERTICAL));
         toolbar.addIndexed(lastToolbar, lastToolbarPlace);
-//        toolbar.add(lastToolbar);
         if (DEBUG) System.err.println("end_toolbar()");
     }
 
@@ -117,7 +111,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
     public void handle_bar(Attributes meta) {
         String clazz = meta.getValue("class");
         String id = meta.getValue("id");
-        System.out.println("Adding the Bar with id:" + id + " ,class:" + clazz);
+        if (DEBUG) System.err.println("handle_bar: " + id + ", " + clazz);
         Component component = getComponent(clazz);
         //we put the component in the blackboad and later (in Actions) we can fetch it if we like, i guess that it is the only way to do the loading of side bar and actions dynamically
         UIUtils.setComponent(blackboard, id, component);
@@ -260,7 +254,7 @@ public class UIHandlerImpl implements UIHandler, StorableOnExit {
         String id = meta.getValue("id");
         String group = meta.getValue("group");
 //todo: is it good to remove the action wich loaded twice, (2 of same action are working together)
-        System.err.println("  Adding action " + clazz + " (" + id + "," + group + ") ...");
+        if (DEBUG) System.err.println("  Adding action " + clazz + " (" + id + "," + group + ") ...");
 
         Class<Extension> clazzz;
         try {

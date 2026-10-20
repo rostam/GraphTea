@@ -10,6 +10,8 @@ import graphtea.platform.core.BlackBoard;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  * @author azin azadi
@@ -24,10 +26,10 @@ public class GStatusBar extends JPanel {
     public GStatusBar(BlackBoard blackboard) {
         super();
         this.blackboard = blackboard;
-        FlowLayout l = new FlowLayout(FlowLayout.LEFT, 1, 1);
-        setLayout(l);
-        setBorder(new EmptyBorder(1, 1, 0, 1));
-
+        setLayout(new FlowLayout(FlowLayout.LEFT, 6, 2));
+        setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createMatteBorder(1, 0, 0, 0, UIManager.getColor("Separator.foreground")),
+                new EmptyBorder(1, 4, 1, 4)));
     }
 
     /**
@@ -40,7 +42,20 @@ public class GStatusBar extends JPanel {
      */
     public void addComponent(Component c) {
         if (getComponentCount() > 0) {
-            add(newSeparator());
+            JSeparator separator = newSeparator();
+            // A component that hides itself when it has nothing to say (an empty message
+            // label) takes its divider with it, rather than leaving one dangling at the end.
+            separator.setVisible(c.isVisible());
+            c.addComponentListener(new ComponentAdapter() {
+                public void componentShown(ComponentEvent e) {
+                    separator.setVisible(true);
+                }
+
+                public void componentHidden(ComponentEvent e) {
+                    separator.setVisible(false);
+                }
+            });
+            add(separator);
         }
         add(c);
         validate();
@@ -52,7 +67,6 @@ public class GStatusBar extends JPanel {
     private JSeparator newSeparator() {
         JSeparator s = new JSeparator(JSeparator.VERTICAL);
         s.setPreferredSize(new Dimension(3, 15));
-        //sp.setForeground(Color.orange);
         return s;
     }
 }

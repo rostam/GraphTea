@@ -12,40 +12,76 @@ package graphtea.ui.components;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 /**
+ * The strip of toolbars under the menu bar. Each {@code <toolbar>} in the UI XML becomes one
+ * {@link JToolBar}, ordered by its {@code place} and divided from its neighbours by a rule.
+ *
  * @author azin azadi
  */
 public class GToolbar extends JComponent {
-    /**
-     *
-     */
     private static final long serialVersionUID = -7694324289573873831L;
+
+    /** Key under which each toolbar remembers its {@code place}. */
+    private static final String PLACE = "graphtea.toolbar.place";
 
     private JToolBar lastToolbar;
 
-    List<pair> indices = new ArrayList<>();
-
-    public Component addIndexed(JToolBar comp, int index) {
-        pair o = new pair(comp, index);
-        indices.add(o);
-        Object[] a = indices.toArray();
-        for (int _index = 0; _index < a.length; _index++)
-            if (a[_index] == o)
-                return super.add(comp, _index);
-        return super.add(comp, -1);
+    public GToolbar() {
+        setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        setBorder(BorderFactory.createEmptyBorder(2, 4, 2, 4));
     }
 
-    public GToolbar() {
-        FlowLayout fl = new FlowLayout();
-        fl.setAlignment(FlowLayout.LEFT);
-        fl.setHgap(0);
-        fl.setVgap(0);
-        setLayout(fl);
-        setBorder(null);
+    /**
+     * Places {@code comp} among the toolbars by {@code index}.
+     *
+     * <p>This used to record the index and then insert at the end regardless, so toolbars
+     * appeared in plugin load order whatever their {@code place} said.
+     *
+     * @param comp  the toolbar
+     * @param index its place; lower comes first
+     * @return the toolbar
+     */
+    public Component addIndexed(JToolBar comp, int index) {
+        remove(comp);
+        comp.putClientProperty(PLACE, index);
+        int at = 0;
+        while (at < getComponentCount() && placeOf(getComponent(at)) <= index) {
+            at++;
+        }
+        add(comp, at);
+        updateDividers();
+        revalidate();
+        return comp;
+    }
+
+    private static int placeOf(Component c) {
+        Object place = c instanceof JComponent jc ? jc.getClientProperty(PLACE) : null;
+        return place instanceof Integer i ? i : Integer.MAX_VALUE;
+    }
+
+    /**
+     * Draws a rule before every non-empty toolbar but the first, so none trails off the end
+     * (the frame keeps an empty toolbar of its own at the back).
+     */
+    private void updateDividers() {
+        Color rule = UIManager.getColor("Separator.foreground");
+        boolean first = true;
+        for (Component c : getComponents()) {
+            if (!(c instanceof JToolBar tb)) {
+                continue;
+            }
+            if (tb.getComponentCount() == 0) {
+                tb.setBorder(BorderFactory.createEmptyBorder());
+            } else if (first) {
+                tb.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 4));
+                first = false;
+            } else {
+                tb.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createMatteBorder(0, 1, 0, 0, rule),
+                        BorderFactory.createEmptyBorder(0, 4, 0, 4)));
+            }
+        }
     }
 
     /**
@@ -54,11 +90,12 @@ public class GToolbar extends JComponent {
     public JToolBar createToolBar() {
         lastToolbar = new JToolBar();
         lastToolbar.setFloatable(false);
-        lastToolbar.setMargin(new Insets(0, 0, 0, 0));
-        lastToolbar.setRollover(false);
-        lastToolbar.setBorder(null);
-        lastToolbar.setOpaque(true);
+        // Rollover gives the flat buttons a hover state; without it nothing tells the user
+        // that the labels are clickable.
+        lastToolbar.setRollover(true);
+        lastToolbar.setOpaque(false);
         add(lastToolbar);
+        updateDividers();
         return lastToolbar;
     }
 
@@ -67,23 +104,5 @@ public class GToolbar extends JComponent {
      */
     public JToolBar getLastToolBar() {
         return lastToolbar;
-    }
-}
-
-class pair implements Comparator<pair> {
-    private final JToolBar b;
-    private final Integer index;
-
-    public pair(JToolBar j, Integer index) {
-        this.b = j;
-        this.index = index;
-    }
-
-    public int compareTo(pair o) {
-        return index.compareTo(o.index);
-    }
-
-    public int compare(pair o1, pair o2) {
-        return o1.compareTo(o2);
     }
 }

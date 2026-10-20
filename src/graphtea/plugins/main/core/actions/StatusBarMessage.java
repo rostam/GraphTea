@@ -82,6 +82,7 @@ public class StatusBarMessage extends AbstractAction implements GComponentInterf
             // would otherwise get a NullPointerException here.
             if (c instanceof JLabel label) {
                 label.setText(msg);
+                label.setVisible(msg != null && !msg.isEmpty());
             }
         };
         if (SwingUtilities.isEventDispatchThread()) {
@@ -99,6 +100,8 @@ public class StatusBarMessage extends AbstractAction implements GComponentInterf
 
     public Component getComponent(BlackBoard b) {
         label.setOpaque(false);
+        // Hidden until there is a message, so the status bar does not end in an empty slot.
+        label.setVisible(false);
         return label;
     }
 }

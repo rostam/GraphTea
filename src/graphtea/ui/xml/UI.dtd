@@ -34,6 +34,7 @@
     image CDATA #IMPLIED
     action CDATA #IMPLIED
     label CDATA #IMPLIED
+    tooltip CDATA #IMPLIED
   >
 
 <!--- Put your DTDDoc comment here. -->
