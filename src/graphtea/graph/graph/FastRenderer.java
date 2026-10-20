@@ -129,13 +129,12 @@ public class FastRenderer extends AbstractGraphRenderer implements VertexListene
             gg.setRenderingHint(RenderingHints.KEY_DITHERING,
                     RenderingHints.VALUE_DITHER_ENABLE);
         }
-        try {
-            // Read from a file
-        	 GraphModel gr = getGraph();
-
-            gg.drawImage(gr.getBackgroundImage(),0,0,(int)(gr.getBackgroundImage().getWidth()*zoomFactor),(int)(gr.getBackgroundImage().getHeight()*zoomFactor),null);
-
-        } catch(Exception ignored) {
+        // This was a try/catch-all around an unconditional dereference, so with no background
+        // image (the usual case) every repaint threw and discarded a NullPointerException.
+        java.awt.image.BufferedImage background = getGraph().getBackgroundImage();
+        if (background != null) {
+            gg.drawImage(background, 0, 0, (int) (background.getWidth() * zoomFactor),
+                    (int) (background.getHeight() * zoomFactor), null);
         }
        
        

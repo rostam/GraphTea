@@ -145,7 +145,10 @@ public class Paste extends AbstractAction {
                     GraphmlHandlerImpl phi = new GraphmlHandlerImpl(gg);
                     GraphmlParser.parse(new InputSource(stream), phi);
                     stream.close();
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+                    // Treated like the string branch above, instead of failing without a word.
+                    tk.beep();
+                    ExceptionHandler.catchException("Paste", e);
                 }
             }
 

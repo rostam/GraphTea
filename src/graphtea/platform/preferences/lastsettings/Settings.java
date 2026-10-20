@@ -5,7 +5,6 @@
 package graphtea.platform.preferences.lastsettings;
 
 import graphtea.platform.StaticUtils;
-import graphtea.platform.attribute.AttributeListener;
 import graphtea.platform.attribute.NotifiableAttributeSetImpl;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.parameter.Parameter;
@@ -21,7 +20,7 @@ import java.util.prefs.InvalidPreferencesFormatException;
 /**
  * @author Rouzbeh Ebrahimi
  */
-public class Settings implements AttributeListener {
+public class Settings {
     private HashSet<Object> registeredObjects = new HashSet<>();
     private final java.util.prefs.Preferences builtInPrefs = java.util.prefs.Preferences.userRoot();
     private final java.util.prefs.Preferences graphPrefs = builtInPrefs.node("graph");
@@ -146,13 +145,6 @@ public class Settings implements AttributeListener {
         return y;
     }
 
-    public void attributeUpdated(String name, Object oldVal, Object newVal) {
-        try {
-            oldVal.getClass().getDeclaredField(name).set(oldVal, newVal);
-        } catch (IllegalAccessException | NoSuchFieldException e) {
-//            ExceptionHandler.catchException(e);
-        }
-    }
 
     public void saveSettings() {
         for (Object o : getRegisteredObjects()) {
