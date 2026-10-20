@@ -2,6 +2,7 @@ import graphtea.extensions.actions.TwoGraphAction;
 import graphtea.extensions.actions.product.CartesianProduct;
 import graphtea.extensions.actions.product.Union;
 import graphtea.extensions.generators.CompleteGraphGenerator;
+import graphtea.graph.graph.GraphModel;
 import graphtea.graph.ui.GTabbedGraphPane;
 import graphtea.platform.Application;
 import graphtea.platform.core.BlackBoard;
@@ -12,7 +13,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Tests the graph-name check that two-graph operations run before the parameter dialog closes.
+ * Tests the graph-name check that two-graph operations run before the parameter dialog closes,
+ * and the open graphs they offer in the dialog.
  */
 public class TwoGraphActionTest {
 
@@ -24,8 +26,13 @@ public class TwoGraphActionTest {
         BlackBoard bb = new BlackBoard();
         Application.blackboard = bb;
         GTabbedGraphPane tabs = new GTabbedGraphPane(bb);
-        tabs.getGraphs().put("G0", CompleteGraphGenerator.generateCompleteGraph(3));
-        tabs.getGraphs().put("G2", CompleteGraphGenerator.generateCompleteGraph(4));
+        open(tabs, "G0", CompleteGraphGenerator.generateCompleteGraph(3));
+        open(tabs, "G2", CompleteGraphGenerator.generateCompleteGraph(4));
+    }
+
+    private static void open(GTabbedGraphPane tabs, String label, GraphModel g) {
+        g.setLabel(label);
+        tabs.addGraph(g);
     }
 
     @AfterEach
@@ -62,5 +69,29 @@ public class TwoGraphActionTest {
     public void noBlackboardSkipsTheCheck() {
         Application.blackboard = null;
         assertNull(new Union().checkParameters());
+    }
+
+    @Test
+    public void offersTheOpenGraphs() {
+        TwoGraphAction union = new Union();
+        assertArrayEquals(new String[]{"G0", "G2"}, union.parameterChoices("g0"));
+        assertArrayEquals(new String[]{"G0", "G2"}, union.parameterChoices("g1"));
+    }
+
+    @Test
+    public void secondGraphDefaultsToADifferentOpenGraph() {
+        TwoGraphAction union = new Union();
+        union.parameterChoices("g1");
+        assertEquals("G2", union.g1, "the default G1 is not open");
+        union.g1 = "G0";
+        union.parameterChoices("g1");
+        assertEquals("G2", union.g1, "the same graph as the first was offered by default");
+    }
+
+    @Test
+    public void closedTabsAreNotOffered() {
+        GTabbedGraphPane tabs = Application.blackboard.getData(GTabbedGraphPane.NAME);
+        tabs.getTabedPane().remove(0);
+        assertArrayEquals(new String[]{"G2"}, new Union().parameterChoices("g0"));
     }
 }

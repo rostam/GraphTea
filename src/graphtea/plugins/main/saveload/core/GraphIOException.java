@@ -22,4 +22,12 @@ public class GraphIOException extends IOException {
     public GraphIOException(String message) {
         super(message);
     }
+
+    /**
+     * @param message what went wrong, for the user
+     * @param cause   the underlying error
+     */
+    public GraphIOException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

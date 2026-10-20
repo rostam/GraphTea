@@ -13,7 +13,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
  */
 public class TotalEccentricityIndex implements GraphReportExtension<Double> {
     public String getName() {
-        return "Total eccentrity Index";
+        return "Total Eccentricity Index";
     }
 
     public Double calculate(GraphModel g) {

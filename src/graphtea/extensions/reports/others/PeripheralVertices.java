@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class PeripheralVertices implements GraphReportExtension<ArrayList<Vertex>> {
     public String getName() {
-        return "Peripheral vertices";
+        return "Peripheral Vertices";
     }
 
     /**

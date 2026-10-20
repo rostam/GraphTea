@@ -5,7 +5,7 @@
 package graphtea.platform.lang;
 
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 /**
  * This is a validator that it's valid values are a set of values
@@ -13,7 +13,8 @@ import java.util.HashSet;
  * @author Azin Azadi
  */
 public class SetValidator<t> implements Validator<t> {
-    HashSet<t> vals = new HashSet<>();
+    // Ordered, so that a drop-down built from the valid values lists them as they were given.
+    LinkedHashSet<t> vals = new LinkedHashSet<>();
 
     public void addValidValues(t[] o) {
         Collections.addAll(vals, o);

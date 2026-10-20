@@ -5,117 +5,101 @@
 
 package graphtea.graph.ui;
 
-import javax.swing.*;
-import javax.swing.plaf.basic.BasicButtonUI;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.util.function.IntConsumer;
 
 /**
- * Component to be used as tabComponent;
- * Contains a JLabel to show the text and
- * a JButton to close the tab it belongs to
+ * A tab's title with a button that closes the tab.
+ *
+ * <p>There used to be two copies of this class. The one in use, in {@code graphtea.graph.old},
+ * asked "Do you want to exit this tab?" before every close, even of an empty graph, while
+ * <b>File &rsaquo; Close Tab</b> closed without asking; the other copy, here, was never used,
+ * yet it was the one {@link GTabbedGraphPane} checked for when a graph was renamed. Closing is
+ * now left to the owner of the tabs, so both ways of closing a tab behave the same.
  */
 public class ButtonTabComponent extends JPanel {
-    private final JTabbedPane pane;
-    public JLabel label;
+    private static final long serialVersionUID = 1L;
+    private static final int BUTTON_SIZE = 16;
 
-    public ButtonTabComponent(final JTabbedPane pane) {
-        //unset default FlowLayout' gaps
+    private final JTabbedPane pane;
+    private final JLabel label;
+
+    /**
+     * @param pane    the tabbed pane the component sits in
+     * @param onClose called with the tab's index when its close button is pressed
+     */
+    public ButtonTabComponent(JTabbedPane pane, IntConsumer onClose) {
         super(new FlowLayout(FlowLayout.LEFT, 0, 0));
-        if (pane == null) {
-            throw new NullPointerException("TabbedPane is null");
-        }
         this.pane = pane;
         setOpaque(false);
 
-        //make JLabel read titles from JTabbedPane
         label = new JLabel() {
+            private static final long serialVersionUID = 1L;
+
+            @Override
             public String getText() {
                 int i = pane.indexOfTabComponent(ButtonTabComponent.this);
-                if (i != -1) {
-                    return pane.getTitleAt(i);
-                }
-                return null;
+                return i == -1 ? null : pane.getTitleAt(i);
             }
         };
-
+        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 6));
         add(label);
-        //add more space between the label and the button
-        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
-        //tab button
-        JButton button = new TabButton();
-        add(button);
-        //add more space to the top of the component
-        setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0));
+
+        JButton close = new CloseButton();
+        close.addActionListener(e -> {
+            int i = pane.indexOfTabComponent(this);
+            if (i != -1) {
+                onClose.accept(i);
+            }
+        });
+        add(close);
     }
 
-    private class TabButton extends JButton implements ActionListener {
-        public TabButton() {
-            int size = 17;
-            setPreferredSize(new Dimension(size, size));
-            setToolTipText("close this tab");
-            //Make the button looks the same for all Laf's
-            setUI(new BasicButtonUI());
-            //Make it transparent
+    /** Lays the title out again after the tab's title has changed. */
+    public void titleChanged() {
+        label.revalidate();
+        label.repaint();
+    }
+
+    /** A small borderless button painted as a cross, darker while the pointer is over it. */
+    private final class CloseButton extends JButton {
+        private static final long serialVersionUID = 1L;
+
+        CloseButton() {
+            setPreferredSize(new Dimension(BUTTON_SIZE, BUTTON_SIZE));
+            setToolTipText("Close this tab");
             setContentAreaFilled(false);
-            //No need to be focusable
-            setFocusable(false);
-            setBorder(BorderFactory.createEtchedBorder());
             setBorderPainted(false);
-            //Making nice rollover effect
-            //we use the same listener for all buttons
-            addMouseListener(buttonMouseListener);
+            setFocusable(false);
             setRolloverEnabled(true);
-            //Close the proper tab by clicking the button
-            addActionListener(this);
         }
 
-        public void actionPerformed(ActionEvent e) {
-            int i = pane.indexOfTabComponent(ButtonTabComponent.this);
-            if (i != -1) {
-                pane.remove(i);
-            }
-        }
-
-        //we don't want to update UI for this button
-        public void updateUI() {
-        }
-
-        //paint the cross
+        @Override
         protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g.create();
-            //shift the image for pressed buttons
-            if (getModel().isPressed()) {
-                g2.translate(1, 1);
-            }
-            g2.setStroke(new BasicStroke(2));
-            g2.setColor(Color.BLACK);
-            if (getModel().isRollover()) {
-                g2.setColor(Color.MAGENTA);
-            }
-            int delta = 6;
-            g2.drawLine(delta, delta, getWidth() - delta - 1, getHeight() - delta - 1);
-            g2.drawLine(getWidth() - delta - 1, delta, delta, getHeight() - delta - 1);
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            Color idle = UIManager.getColor("Label.disabledForeground");
+            Color hover = UIManager.getColor("Label.foreground");
+            g2.setColor(getModel().isRollover() || idle == null ? hover : idle);
+            g2.setStroke(new BasicStroke(1.5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+            int d = 5;
+            int w = getWidth();
+            int h = getHeight();
+            g2.drawLine(d, d, w - d - 1, h - d - 1);
+            g2.drawLine(w - d - 1, d, d, h - d - 1);
             g2.dispose();
         }
     }
-
-    private final static MouseListener buttonMouseListener = new MouseAdapter() {
-        public void mouseEntered(MouseEvent e) {
-            Component component = e.getComponent();
-            if (component instanceof AbstractButton) {
-                AbstractButton button = (AbstractButton) component;
-                button.setBorderPainted(true);
-            }
-        }
-
-        public void mouseExited(MouseEvent e) {
-            Component component = e.getComponent();
-            if (component instanceof AbstractButton) {
-                AbstractButton button = (AbstractButton) component;
-                button.setBorderPainted(false);
-            }
-        }
-    };
 }

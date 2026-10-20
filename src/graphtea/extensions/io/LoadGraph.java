@@ -4,8 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.io;
-import graphtea.platform.core.exception.ExceptionHandler;
 
+import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.main.saveload.SaveLoadPluginMethods;
 import graphtea.plugins.main.saveload.core.extension.GraphReaderExtension;
@@ -32,15 +32,14 @@ public class LoadGraph implements GraphReaderExtension {
         return "tea";
     }
 
-    public GraphModel read(File file) {
+    public GraphModel read(File file) throws GraphIOException {
         try (ObjectInputStream in = new ObjectInputStream(
                 new FileInputStream(file))) {
             GraphSaveObject gso = (GraphSaveObject) in.readObject();
             return gso.getG();
-        } catch (IOException | ClassNotFoundException e) {
-            ExceptionHandler.catchException(e);
+        } catch (IOException | ClassNotFoundException | ClassCastException e) {
+            throw new GraphIOException(file.getName() + " could not be read as a GraphTea file.", e);
         }
-        return null;
     }
 
     public String getDescription() {

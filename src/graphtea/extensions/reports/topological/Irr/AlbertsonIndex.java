@@ -14,7 +14,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 public class AlbertsonIndex implements GraphReportExtension<Integer> {
     public String getName() {
-        return "AlbertsonIndex";
+        return "Albertson Index";
     }
 
     public static int computeAlbertsonIndex(GraphModel graph) {

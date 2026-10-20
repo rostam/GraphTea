@@ -4,7 +4,6 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.io;
-import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GraphModel;
@@ -27,7 +26,7 @@ public class LoadSpecialGML implements GraphReaderExtension {
     }
 
     public String getName() {
-        return "GraphML format";
+        return "GraphML Format";
     }
 
     public String getExtension() {
@@ -77,7 +76,7 @@ public class LoadSpecialGML implements GraphReaderExtension {
                 }
             }
         } catch (FileNotFoundException e) {
-            ExceptionHandler.catchException(e);
+            throw new GraphIOException(e.getMessage(), e);
         }
         return g;
     }

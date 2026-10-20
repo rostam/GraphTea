@@ -2,6 +2,7 @@ package graphtea.ui;
 
 import graphtea.extensions.actions.product.CartesianProduct;
 import graphtea.extensions.generators.CompleteGraphGenerator;
+import graphtea.platform.lang.ArrayX;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,5 +40,14 @@ public class ParameterShowerTest {
         CartesianProduct product = new CartesianProduct();
         ParameterShower.applyParameter(product, "noSuchField", "x");
         assertEquals("G0", product.g0);
+    }
+
+    @Test
+    public void choiceIsWrittenAsItsValue() {
+        // A text parameter with choices is edited as an ArrayX drop-down; the field gets the
+        // chosen text, not the ArrayX.
+        CartesianProduct product = new CartesianProduct();
+        ParameterShower.applyParameter(product, "g1", new ArrayX<>("G5", "G0", "G5"));
+        assertEquals("G5", product.g1);
     }
 }

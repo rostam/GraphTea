@@ -22,4 +22,16 @@ public interface Parametrizable {
     default String checkParameters() {
         return null;
     }
+
+    /**
+     * The values a text parameter may take, for parameters that must name one of a known set,
+     * such as an open graph. The parameter dialog then offers them in a drop-down list instead
+     * of a text box.
+     *
+     * @param fieldName the name of a {@link Parameter} field of type String
+     * @return the allowed values in display order, or null to accept any text
+     */
+    default String[] parameterChoices(String fieldName) {
+        return null;
+    }
 }

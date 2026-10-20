@@ -61,6 +61,7 @@
         <action class="graphtea.plugins.main.core.actions.ShowCommandPalette" id="command palette"/>
         <action class="graphtea.plugins.main.core.actions.QuickFileAction$Open" id="open graph"/>
         <action class="graphtea.plugins.main.core.actions.QuickFileAction$Save" id="save graph"/>
+        <action class="graphtea.plugins.main.core.actions.QuickFileAction$SaveAs" id="save graph as"/>
         <!--<action class="graphtea.gui.graphh.graph.vertex.GResizer"/>-->
 
 
@@ -104,6 +105,7 @@
                      two submenus below, none of them with a shortcut. -->
                 <menu label="_Open..." action="open graph" place="26" accelerator="control+O"/>
                 <menu label="_Save" action="save graph" place="27" accelerator="control+S"/>
+                <menu label="Save _As..." action="save graph as" place="28" accelerator="shift+control+S"/>
                 <menu label="seperator_menu" place="30"/>
                 <menu label="seperator_menu" place="8000"/>
                 <menu label="Settings..." action="Prefs" place="8500"/>
@@ -115,7 +117,7 @@
             <!--</submenu>-->
             <submenu label="_Edit" place="20">
                 <menu label="_Undo" action="Undo Action" accelerator="control+Z" place="10"/>
-                <menu label="_Redo" action="Redo Action" accelerator="alt+control+Z" place="20"/>
+                <menu label="_Redo" action="Redo Action" accelerator="control+Y" place="20"/>
                 <menu label="seperator_menu" place="40"/>
                 <!-- Cut/Copy/Paste were implemented but commented out of the menu, so the
                      standard clipboard keys did nothing at all. -->
@@ -145,7 +147,7 @@
                 <!-- Labelled after the action ids ("Undo Action"), which is not what a
                      toolbar button should say. -->
                 <tool label="Undo" image="icon:undo" action="Undo Action" tooltip="Undo (Ctrl+Z)"/>
-                <tool label="Redo" image="icon:redo" action="Redo Action" tooltip="Redo (Ctrl+Alt+Z)"/>
+                <tool label="Redo" image="icon:redo" action="Redo Action" tooltip="Redo (Ctrl+Y)"/>
             </toolbar>
             <toolbar place="30">
                 <tool label="Find Command" image="icon:search" action="command palette"

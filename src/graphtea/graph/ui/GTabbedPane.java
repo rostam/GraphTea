@@ -57,8 +57,17 @@ public class GTabbedPane {
             component = new GSplitedPane(new GHTMLPageComponent(blackboard), component);
         jtp.addTab(title, component);
         jtp.setSelectedComponent(component);
-        jtp.setTabComponentAt(jtp.getTabCount() - 1, new graphtea.graph.old.ButtonTabComponent(jtp));
+        jtp.setTabComponentAt(jtp.getTabCount() - 1, new ButtonTabComponent(jtp, this::closeTab));
         return component;
+    }
+
+    /**
+     * Closes a tab. Called by the tab's close button; subclasses may ask first.
+     *
+     * @param index the index of the tab
+     */
+    public void closeTab(int index) {
+        jtp.remove(index);
     }
 
     public HashMap<Class, Class<? extends JComponent>> supportedType = new HashMap<>();

@@ -32,7 +32,9 @@ public class CloseTab extends AbstractAction {
      */
     public static void dojob(BlackBoard blackboard) {
         GTabbedGraphPane gtgp = blackboard.getData(GTabbedGraphPane.NAME);
-        gtgp.getTabedPane().remove(gtgp.getTabedPane().getSelectedIndex());
-        //todo: ask for save before close
+        int selected = gtgp.getTabedPane().getSelectedIndex();
+        if (selected != -1) {
+            gtgp.closeTab(selected);
+        }
     }
 }

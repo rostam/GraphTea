@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class PeripheralWienerIndex implements GraphReportExtension<Integer> {
     public String getName() {
-        return "Peripheral wiener index";
+        return "Peripheral Wiener Index";
     }
 
     /**

@@ -36,7 +36,7 @@ public class CocktailPartyGraph implements GraphGeneratorExtension, Parametrizab
 //    }
 
     public String getName() {
-        return "CockTail Party Graph";
+        return "Cocktail Party Graph";
     }
 
     Vertex[] v;

@@ -48,6 +48,6 @@ public class AllPairShortestPathsWithoutWeight implements GraphReportExtension<R
 
     @Override
     public String getName() {
-        return "All pair shortest paths without weight";
+        return "All-Pairs Shortest Paths (Unweighted)";
     }
 }

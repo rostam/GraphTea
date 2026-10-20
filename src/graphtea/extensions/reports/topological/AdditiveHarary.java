@@ -13,7 +13,7 @@ import graphtea.graph.graph.GraphModel;
 public class AdditiveHarary extends PairwiseDistanceReportBase {
 
     public String getName() {
-        return "AdditiveHarary Index";
+        return "Additive Harary Index";
     }
 
     @Override

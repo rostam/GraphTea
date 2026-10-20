@@ -8,7 +8,6 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.io.g6format;
-import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.extensions.G6Format;
 import graphtea.graph.graph.GraphModel;
@@ -38,7 +37,7 @@ public class SaveGraph6Format implements GraphWriterExtension {
             fw.write(s);
             fw.write(System.lineSeparator());
         } catch (IOException e) {
-            ExceptionHandler.catchException(e);
+            throw new GraphIOException(e.getMessage(), e);
         }
     }
 

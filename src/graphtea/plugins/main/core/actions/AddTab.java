@@ -36,10 +36,12 @@ public class AddTab extends AbstractAction {
      */
     public static void addTab(BlackBoard blackboard) {
         GTabbedGraphPane gtgp = blackboard.getData(GTabbedGraphPane.NAME);
-        int a = JOptionPane.showOptionDialog(null, "Graph Direction :", "New Graph", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Directed", "Undirected","Cancel"}, "Undirected");
-        if(a!=-1 && a!=JOptionPane.CANCEL_OPTION){
-        GraphModel g = new GraphModel(a == 0);
-        gtgp.addGraph(g);
+        String[] kinds = {"Undirected", "Directed", "Cancel"};
+        int a = JOptionPane.showOptionDialog(UIUtils.getGFrame(blackboard),
+                "Should the edges of the new graph have a direction?", "New Graph",
+                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, kinds, kinds[0]);
+        if (a == 0 || a == 1) {
+            gtgp.addGraph(new GraphModel(a == 1));
         }
     }
 

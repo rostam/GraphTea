@@ -4,8 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.io;
-import graphtea.platform.core.exception.ExceptionHandler;
 
+import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;
 
@@ -25,12 +25,12 @@ public class SaveGraph implements GraphWriterExtension {
     }
 
     @Override
-    public void write(File file, GraphModel graph) {
+    public void write(File file, GraphModel graph) throws GraphIOException {
         try (ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(file))) {
             out.writeObject(new GraphSaveObject(graph));
         } catch (IOException e) {
-            ExceptionHandler.catchException(e);
+            throw new GraphIOException(e.getMessage(), e);
         }
     }
 

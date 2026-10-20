@@ -13,7 +13,7 @@ import java.util.List;
 public class DistLaplacian implements GraphReportExtension<RenderTable> {
 
     public String getName() {
-        return "Distance Signless laplacian";
+        return "Distance Signless Laplacian";
     }
 
     public String getDescription() {

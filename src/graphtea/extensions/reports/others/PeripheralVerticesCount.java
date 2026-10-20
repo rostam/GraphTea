@@ -5,7 +5,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 public class PeripheralVerticesCount implements GraphReportExtension<Integer> {
     public String getName() {
-        return "Peripheral vertices count";
+        return "Number of Peripheral Vertices";
     }
 
     /**

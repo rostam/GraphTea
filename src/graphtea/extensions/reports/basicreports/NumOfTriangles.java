@@ -35,7 +35,7 @@ public class NumOfTriangles implements GraphReportExtension<Integer> {
     }
 
     public String getName() {
-        return "Number Of Triangles";
+        return "Number of Triangles";
     }
 
 	@Override

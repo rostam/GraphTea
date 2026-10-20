@@ -15,7 +15,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 public class NumOfQuadrangle implements GraphReportExtension<Integer> {
     public String getName() {
-        return "number of quadrangle";
+        return "Number of Quadrangles";
     }
 
     public Integer calculate(GraphModel g) {

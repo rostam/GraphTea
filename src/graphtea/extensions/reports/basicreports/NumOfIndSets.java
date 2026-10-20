@@ -14,7 +14,7 @@ import graphtea.plugins.reports.extension.GraphReportExtension;
 
 public class NumOfIndSets implements GraphReportExtension<Integer> {
     public String getName() {
-        return "Number of independent sets plus empty set";
+        return "Number of Independent Sets (with the Empty Set)";
     }
 
     public String getDescription() {

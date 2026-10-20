@@ -19,7 +19,7 @@ import java.util.List;
 public class HeuristicGreedyColoringNumber implements GraphReportExtension<Integer> {
 
     public String getName() {
-        return "Heuristic Greedy Coloring (number of colors)";
+        return "Greedy Coloring: Number of Colors";
     }
 
     @Override

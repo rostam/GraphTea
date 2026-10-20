@@ -4,8 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.io;
-import graphtea.platform.core.exception.ExceptionHandler;
 
+import graphtea.plugins.main.saveload.core.GraphIOException;
 import Jama.Matrix;
 import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
@@ -28,14 +28,14 @@ public class LoadMtx implements GraphReaderExtension {
     }
 
     public String getName() {
-        return "Mtx format";
+        return "Mtx Format";
     }
 
     public String getExtension() {
         return "mtx";
     }
 
-    public GraphModel read(File file) {
+    public GraphModel read(File file) throws GraphIOException {
         try {
             Matrix mm = MM.loadMatrixFromSPARSE(file);
             int rows = mm.getRowDimension();
@@ -63,9 +63,8 @@ public class LoadMtx implements GraphReaderExtension {
             }
             return g;
         } catch (IOException e) {
-            ExceptionHandler.catchException(e);
+            throw new GraphIOException(e.getMessage(), e);
         }
-        return null;
     }
 
     public String getDescription() {

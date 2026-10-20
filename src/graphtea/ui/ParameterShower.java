@@ -8,6 +8,7 @@ import graphtea.platform.attribute.AttributeListener;
 import graphtea.platform.attribute.AttributeSet;
 import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.extension.Extension;
+import graphtea.platform.lang.ArrayX;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.ui.components.utils.GAttrFrame;
@@ -15,6 +16,7 @@ import graphtea.ui.components.utils.GAttrFrame;
 import javax.swing.*;
 import java.awt.KeyboardFocusManager;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
 
@@ -92,11 +94,30 @@ public class ParameterShower implements AttributeListener {
                 }
             }
         } else {
-            p.put(f.getName(), f.get(o));
+            p.put(f.getName(), choiceOrValue(f, o));
             if (!name.isEmpty())
                 p.getView().setDisplayName(f.getName(), name);
             p.getView().setDescription(f.getName(), desc);
         }
+    }
+
+    /**
+     * A String parameter with {@link Parametrizable#parameterChoices choices} is edited as an
+     * {@link ArrayX}, which the property editor shows as a drop-down list; if its current value
+     * is not among the choices, the first choice is selected.
+     */
+    private static Object choiceOrValue(Field f, Object o) throws IllegalAccessException {
+        Object value = f.get(o);
+        if (f.getType() != String.class || !(o instanceof Parametrizable parametrizable)) {
+            return value;
+        }
+        String[] choices = parametrizable.parameterChoices(f.getName());
+        if (choices == null || choices.length == 0) {
+            return value;
+        }
+        String selected = Arrays.asList(choices).contains(value) ? (String) value : choices[0];
+        f.set(o, selected);
+        return new ArrayX<>(selected, choices);
     }
 
     public void attributeUpdated(String name, Object oldVal, Object newVal) {
@@ -125,7 +146,11 @@ public class ParameterShower implements AttributeListener {
                 // inherited ones (xshow uses getFields), and getDeclaredField cannot see those.
                 // Every parameter declared in a base class, such as the graph names of the
                 // product operators, was silently left at its default however it was edited.
-                target.getClass().getField(name).set(target, value);
+                Field f = target.getClass().getField(name);
+                if (value instanceof ArrayX<?> choice && !ArrayX.class.isAssignableFrom(f.getType())) {
+                    value = choice.getValue();
+                }
+                f.set(target, value);
             }
         } catch (IllegalAccessException | NoSuchFieldException e) {
             ExceptionHandler.catchExceptionQuietly(e);

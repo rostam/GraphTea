@@ -15,10 +15,12 @@ import graphtea.graph.graph.FastRenderer;
 import graphtea.graph.graph.GraphModel;
 import graphtea.platform.attribute.AttributeListener;
 import graphtea.platform.core.BlackBoard;
+import graphtea.platform.ui.UserNotifier;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * provides a tabbed UI Interface for editing multiple graphs in multiple tabs
@@ -33,8 +35,6 @@ public class GTabbedGraphPane extends GTabbedPane {
     public static GTabbedGraphPane getCurrentGTabbedGraphPane(BlackBoard b) {
         return b.getData(GTabbedGraphPane.NAME);
     }
-
-    private final HashMap<String, GraphModel> graphs = new HashMap<>();
 
     public GTabbedGraphPane(BlackBoard b) {
         super(b);
@@ -61,7 +61,23 @@ public class GTabbedGraphPane extends GTabbedPane {
         }
     }
 
-    public HashMap<String,GraphModel> getGraphs() {
+    /**
+     * The graphs in the open tabs, by label, in tab order.
+     *
+     * <p>This used to be a map filled in as tabs were added and never updated: a closed tab's
+     * graph stayed in it, and a graph renamed in its properties stayed under its old name, so
+     * the two-graph operators offered and accepted graphs that were no longer there.
+     *
+     * @return a new map from each open graph's label to the graph
+     */
+    public HashMap<String, GraphModel> getGraphs() {
+        LinkedHashMap<String, GraphModel> graphs = new LinkedHashMap<>();
+        for (int i = 0; i < jtp.getTabCount(); i++) {
+            GraphModel g = graphAt(i);
+            if (g != null) {
+                graphs.putIfAbsent(g.getLabel(), g);
+            }
+        }
         return graphs;
     }
 
@@ -82,8 +98,6 @@ public class GTabbedGraphPane extends GTabbedPane {
 
         final JComponent gsp = addComponent(g.getLabel(), c, true);
 
-        graphs.put(g.getLabel(),g);
-
         new GraphNotifiableAttrSet(g).addAttributeListener(new AttributeListener() {
             final JComponent cc = gsp;
 
@@ -100,20 +114,41 @@ public class GTabbedGraphPane extends GTabbedPane {
     //    }
 
     private void updateTitle(String newVal, JComponent c) {
-        for (int i = 0; i < jtp.getTabCount(); i++) {
-            if (jtp.getComponentAt(i) == c) {
-                jtp.setTitleAt(i, newVal + "");
-                if (jtp.getTabComponentAt(i) instanceof ButtonTabComponent buttonTabComponent) {
-                    JLabel l = buttonTabComponent.label;
-                    l.setText(l.getText());
-                    l.validate();
-                    c.validate();
-                    c.doLayout();
-                    jtp.doLayout();
-                    jtp.validate();
-                }
+        int i = jtp.indexOfComponent(c);
+        if (i != -1) {
+            jtp.setTitleAt(i, newVal + "");
+            if (jtp.getTabComponentAt(i) instanceof ButtonTabComponent tab) {
+                tab.titleChanged();
             }
         }
+    }
+
+    /**
+     * Closes a graph's tab, asking first unless the graph is empty. Closing the last tab opens
+     * an empty graph in its place: with no tab open, the actions went on working on the closed
+     * graph, which was no longer shown, and generating a graph added it there out of sight.
+     *
+     * @param index the index of the tab
+     */
+    @Override
+    public void closeTab(int index) {
+        GraphModel g = graphAt(index);
+        if (g != null && g.getVerticesCount() > 0 && !UserNotifier.ask("Close " + g.getLabel(),
+                "Close " + g.getLabel() + "? Changes that are not saved will be lost.", "Close", "Cancel", true)) {
+            return;
+        }
+        jtp.remove(index);
+        if (jtp.getTabCount() == 0) {
+            addGraph(new GraphModel(g != null && g.isDirected()));
+        }
+    }
+
+    private GraphModel graphAt(int index) {
+        Component c = jtp.getComponentAt(index);
+        if (c instanceof GSplitedPane split) {
+            c = split.main;
+        }
+        return c instanceof JGraph jGraph ? jGraph.getGraph() : null;
     }
 
     public Component getComponent(BlackBoard b) {

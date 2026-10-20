@@ -4,8 +4,8 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 
 package graphtea.extensions.io;
-import graphtea.platform.core.exception.ExceptionHandler;
 
+import graphtea.plugins.main.saveload.core.GraphIOException;
 import graphtea.graph.graph.GraphModel;
 import graphtea.plugins.main.saveload.core.extension.GraphWriterExtension;
 
@@ -23,11 +23,11 @@ public class SaveMtx implements GraphWriterExtension {
     }
 
     @Override
-    public void write(File file, GraphModel graph) {
+    public void write(File file, GraphModel graph) throws GraphIOException {
         try {
             MM.saveMtxFormat(file,graph.getAdjacencyMatrix());
         } catch (IOException e) {
-            ExceptionHandler.catchException(e);
+            throw new GraphIOException(e.getMessage(), e);
         }
     }
 
