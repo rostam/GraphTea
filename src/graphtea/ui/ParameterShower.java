@@ -12,6 +12,7 @@ import graphtea.platform.parameter.Parametrizable;
 import graphtea.ui.components.utils.GAttrFrame;
 
 import javax.swing.*;
+import java.awt.KeyboardFocusManager;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -106,9 +107,11 @@ public class ParameterShower implements AttributeListener {
             if (s == null)
                 finished = true;
             else
-                JOptionPane.showMessageDialog(null, s);
+                JOptionPane.showMessageDialog(KeyboardFocusManager.getCurrentKeyboardFocusManager().getActiveWindow(),
+                        s, "Check the parameters", JOptionPane.WARNING_MESSAGE);
         }
-        while (p.checkParameters() != null) ;
+        // A busy-wait on checkParameters() used to follow here; it could only ever spin
+        // forever, and never did anything useful when it did not.
         return true;
     }
 

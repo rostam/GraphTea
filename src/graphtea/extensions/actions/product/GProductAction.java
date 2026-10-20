@@ -1,11 +1,8 @@
 package graphtea.extensions.actions.product;
 
+import graphtea.extensions.actions.TwoGraphAction;
 import graphtea.graph.graph.GraphModel;
-import graphtea.graph.ui.GTabbedGraphPane;
-import graphtea.platform.parameter.Parameter;
-import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.main.GraphData;
-import graphtea.plugins.main.extension.GraphActionExtension;
 
 /**
  * Abstract base for graph product action extensions.
@@ -13,21 +10,16 @@ import graphtea.plugins.main.extension.GraphActionExtension;
  *
  * @author M. Ali Rostami
  */
-abstract class GProductAction implements GraphActionExtension, Parametrizable {
-    @Parameter(name = "First Graph", description = "First Graph")
-    public String g0 = "G0";
-    @Parameter(name = "Second Graph", description = "Second Graph")
-    public String g1 = "G1";
+public abstract class GProductAction extends TwoGraphAction {
 
     protected abstract GProduct createProduct();
 
     @Override
-    public void action(GraphData graphData) {
-        GTabbedGraphPane gtp = graphData.getBlackboard().getData(GTabbedGraphPane.NAME);
+    protected GraphModel combine(GraphModel first, GraphModel second, GraphData graphData) {
         GProduct prod = createProduct();
-        GraphModel g = prod.multiply(gtp.getGraphs().get(g0), gtp.getGraphs().get(g1));
+        GraphModel g = prod.multiply(first, second);
         prod.setPositions(g);
-        graphData.core.showGraph(g);
+        return g;
     }
 
     @Override
