@@ -1,89 +1,79 @@
 <html>
 <head>
     <title>Welcome to GraphTea</title>
+    <!-- Swing's HTML renderer understands only a subset of CSS 1: no flexbox, no border-radius,
+         and borders only as a whole. Layout therefore stays in tables. -->
+    <style type="text/css">
+        body { font-family: SansSerif; font-size: 12pt; color: #2B2B2B; margin: 18px 22px; }
+        h1 { font-size: 22pt; color: #1F3A5F; margin: 0 0 2px 0; }
+        h2 { font-size: 13pt; color: #1F3A5F; margin: 0 0 6px 0; }
+        p { margin: 0 0 4px 0; }
+        ul { margin-top: 0; margin-left: 18px; }
+        li { margin-bottom: 3px; }
+        a { color: #2364AA; }
+        .lead { color: #6B7280; font-size: 12pt; }
+        .muted { color: #6B7280; font-size: 10pt; }
+        .key { font-weight: bold; color: #2B2B2B; }
+        td.rule { border-top: 1px solid #E3E5E8; font-size: 2pt; }
+    </style>
 </head>
 <body>
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-    <tr>
-        <td>
-            <font face="SansSerif" size="6" color="#2C3E50"><b>Welcome to GraphTea</b></font><br>
-            <font face="SansSerif" size="3" color="#7F8C8D">Draw a graph, generate one, then measure it.</font>
-        </td>
-    </tr>
-</table>
 
-<br>
-<hr>
-<br>
+<h1>Welcome to GraphTea</h1>
+<p class="lead">Draw a graph, generate one, then measure it.</p>
 
 <table border="0" cellpadding="8" cellspacing="0" width="100%">
+    <tr><td class="rule" colspan="2">&nbsp;</td></tr>
     <tr valign="top">
         <td width="50%">
-            <font face="SansSerif" size="4" color="#2C3E50"><b>Draw a graph</b></font>
+            <h2>Draw a graph</h2>
             <ul>
-                <li><font face="SansSerif" size="3"><b>Click</b> empty space to add a vertex</font></li>
-                <li><font face="SansSerif" size="3"><b>Drag</b> from one vertex to another to add an edge</font></li>
-                <li><font face="SansSerif" size="3"><b>Drag</b> a vertex to move it</font></li>
-                <li><font face="SansSerif" size="3"><b>Right-click</b> a vertex or edge for its options</font></li>
-                <li><font face="SansSerif" size="3">Select, then press <b>Delete</b> to remove</font></li>
+                <li><b>Click</b> empty space to add a vertex</li>
+                <li><b>Drag</b> from one vertex to another to add an edge</li>
+                <li><b>Drag</b> a vertex to move it</li>
+                <li><b>Right-click</b> a vertex or edge for its options</li>
+                <li>Select, then press <b>Delete</b> to remove</li>
             </ul>
         </td>
         <td width="50%">
-            <font face="SansSerif" size="4" color="#2C3E50"><b>Start from an example</b></font>
+            <h2>Start from an example</h2>
             <ul>
-                <li><font face="SansSerif" size="3"><a
-                        href="graphtea.extensions.generators.CompleteGraphGenerator&handler=PerformExtension">Complete
-                    graph</a> &nbsp;&mdash;&nbsp; every vertex joined to every other</font></li>
-                <li><font face="SansSerif" size="3"><a
-                        href="graphtea.extensions.generators.WheelGenerator&handler=PerformExtension">Wheel
-                    graph</a></font></li>
-                <li><font face="SansSerif" size="3"><a
-                        href="graphtea.extensions.generators.PathGenerator&handler=PerformExtension">Path</a></font></li>
-                <li><font face="SansSerif" size="3"><a
-                        href="graphtea.extensions.generators.TreeGenerator&handler=PerformExtension">Complete
-                    tree</a></font></li>
-                <li><font face="SansSerif" size="3"><a
-                        href="graphtea.extensions.generators.RandomGenerator&handler=PerformExtension">Random
-                    graph</a></font></li>
+                <li><a href="graphtea.extensions.generators.CompleteGraphGenerator&handler=PerformExtension">Complete graph</a>
+                    <span class="muted">&mdash; every vertex joined to every other</span></li>
+                <li><a href="graphtea.extensions.generators.WheelGenerator&handler=PerformExtension">Wheel graph</a></li>
+                <li><a href="graphtea.extensions.generators.PathGenerator&handler=PerformExtension">Path</a></li>
+                <li><a href="graphtea.extensions.generators.TreeGenerator&handler=PerformExtension">Complete tree</a></li>
+                <li><a href="graphtea.extensions.generators.RandomGenerator&handler=PerformExtension">Random graph</a></li>
             </ul>
-            <font face="SansSerif" size="2" color="#7F8C8D">More under the <b>Generate Graph</b> menu.</font>
+            <p class="muted">More under the <b>Generate Graph</b> menu.</p>
         </td>
     </tr>
-</table>
-
-<br>
-<hr>
-<br>
-
-<table border="0" cellpadding="8" cellspacing="0" width="100%">
+    <tr><td class="rule" colspan="2">&nbsp;</td></tr>
     <tr valign="top">
         <td width="50%">
-            <font face="SansSerif" size="4" color="#2C3E50"><b>Find anything</b></font>
-            <p><font face="SansSerif" size="3">GraphTea ships hundreds of reports, algorithms and operators.
-                Press <b>Ctrl+K</b> to search them all by name instead of hunting through menus.</font></p>
+            <h2>Find anything</h2>
+            <p>GraphTea ships hundreds of reports, algorithms and operators.
+                Press <b>Ctrl+K</b> to search them all by name instead of hunting through menus.</p>
         </td>
         <td width="50%">
-            <font face="SansSerif" size="4" color="#2C3E50"><b>Measure it</b></font>
-            <p><font face="SansSerif" size="3">With a graph on the canvas, open <b>Reports</b> for properties
-                &mdash; chromatic number, diameter, spectra, topological indices &mdash; or <b>Algorithms</b>
-                to watch one run step by step.</font></p>
+            <h2>Measure it</h2>
+            <p>With a graph on the canvas, open <b>Reports</b> for properties &mdash; chromatic
+                number, diameter, spectra, topological indices &mdash; or <b>Algorithms</b> to watch
+                one run step by step.</p>
         </td>
     </tr>
+    <tr><td class="rule" colspan="2">&nbsp;</td></tr>
 </table>
 
-<br>
-<hr>
-<br>
-
-<font face="SansSerif" size="2" color="#7F8C8D">
+<p class="muted">
     Handy keys: &nbsp;
-    <b>Ctrl+K</b> search &nbsp;&middot;&nbsp;
-    <b>Ctrl+O</b> open &nbsp;&middot;&nbsp;
-    <b>Ctrl+S</b> save &nbsp;&middot;&nbsp;
-    <b>Ctrl+Z</b> undo &nbsp;&middot;&nbsp;
-    <b>Ctrl+A</b> select all &nbsp;&middot;&nbsp;
-    <b>Delete</b> remove selection
-</font>
+    <span class="key">Ctrl+K</span> search &nbsp;&middot;&nbsp;
+    <span class="key">Ctrl+O</span> open &nbsp;&middot;&nbsp;
+    <span class="key">Ctrl+S</span> save &nbsp;&middot;&nbsp;
+    <span class="key">Ctrl+Z</span> undo &nbsp;&middot;&nbsp;
+    <span class="key">Ctrl+A</span> select all &nbsp;&middot;&nbsp;
+    <span class="key">Delete</span> remove selection
+</p>
 
 </body>
 </html>

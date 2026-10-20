@@ -120,7 +120,7 @@ public class ShowWelcomeDialog extends AbstractAction {
 
         JDialog d = new JDialog(UIUtils.getGFrame(bb), "Getting started with GraphTea", false);
         d.setContentPane(content);
-        d.setPreferredSize(new Dimension(780, 640));
+        d.setPreferredSize(new Dimension(800, 580));
         d.pack();
         d.setLocationRelativeTo(UIUtils.getGFrame(bb));
         d.getRootPane().setDefaultButton(close);

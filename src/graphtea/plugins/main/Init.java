@@ -73,10 +73,12 @@ public class Init implements PluginInterface, StorableOnExit {
     private void showWelcomePage(BlackBoard blackboard) {
         GHTMLPageComponent strip = GTabbedGraphPane.getCurrentGHTMLPageComponent(blackboard);
         if (strip != null) {
-            // The strip is a status bar. Give it something useful to say at rest.
+            // The strip is a status bar. Give it something useful to say at rest that the
+            // empty-canvas hint above it does not already say.
             GTabbedGraphPane.setMessage(
-                    "Click the canvas to add a vertex &nbsp;·&nbsp; drag between vertices to connect them"
-                            + " &nbsp;·&nbsp; press <b>Ctrl+K</b> to search every command",
+                    "<b>Right-click</b> a vertex or edge for its options &nbsp;·&nbsp; "
+                            + "select, then press <b>Delete</b> to remove &nbsp;·&nbsp; "
+                            + "<b>Ctrl+K</b> searches every command",
                     blackboard, true);
         }
         if (ShowWelcomeDialog.showOnStartup()) {

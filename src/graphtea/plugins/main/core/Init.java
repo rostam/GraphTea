@@ -4,6 +4,7 @@
 // Distributed under the terms of the GNU General Public License (GPL): http://www.gnu.org/licenses/
 package graphtea.plugins.main.core;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import graphtea.graph.graph.GraphColoring;
 import graphtea.graph.graph.IndSubGraphs;
 import graphtea.graph.graph.RenderTable;
@@ -35,13 +36,35 @@ public class Init implements graphtea.platform.plugin.PluginInterface, StorableO
 
     public static Class uiClass = null;
 
+    /**
+     * Installs FlatLaf, falling back to the platform look and feel if it is unavailable.
+     *
+     * <p>The platform look and feel follows the desktop theme for window chrome only: on a
+     * dark GTK desktop it gave dark menus around a white canvas, and every piece of HTML
+     * without an explicit colour (the welcome page, report tooltips) was drawn light grey
+     * on white. FlatLaf looks the same on every platform and keeps chrome and canvas in step.
+     */
+    private static void installLookAndFeel() {
+        try {
+            // FlatLaf is loaded by the plugin class loader, which Swing does not search
+            // when it resolves the UI delegate classes a look and feel names.
+            UIManager.put("ClassLoader", FlatLightLaf.class.getClassLoader());
+            if (FlatLightLaf.setup()) {
+                return;
+            }
+        } catch (LinkageError | RuntimeException e) {
+            ExceptionHandler.catchExceptionQuietly(e);
+        }
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            ExceptionHandler.catchException(e);
+        }
+    }
+
     public void init(final BlackBoard blackboard) {
         try {
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (Exception e) {
-                ExceptionHandler.catchException(e);
-            }
+            installLookAndFeel();
             UI ui = new UI(blackboard);
             blackboard.addListener(Application.POST_INIT_EVENT, (key, value) -> {
                 GFrame frame = UIUtils.getGFrame(blackboard);

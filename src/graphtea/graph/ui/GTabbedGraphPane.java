@@ -181,7 +181,8 @@ public class GTabbedGraphPane extends GTabbedPane {
     }
 
     static String htmlFormat(String message) {
-        return "<HTML><BODY><CENTER><p style='font-face: sans-serif'>" + message + "</p></CENTER></BODY></HTML>";
+        // The pane honours the look and feel's font, so no font needs naming here.
+        return "<html><body><center><p>" + message + "</p></center></body></html>";
     }
 
     //------------------------------------------------

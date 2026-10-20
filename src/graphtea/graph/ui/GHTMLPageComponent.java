@@ -7,17 +7,17 @@ package graphtea.graph.ui;
 import graphtea.platform.core.exception.ExceptionHandler;
 
 import graphtea.platform.core.BlackBoard;
-import graphtea.plugins.main.GraphData;
 
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.text.DefaultCaret;
-import javax.swing.text.Document;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLFrameHyperlinkEvent;
 import java.awt.*;
 import java.io.IOException;
+import java.io.StringReader;
 import java.net.URL;
 import java.util.HashMap;
 
@@ -51,17 +51,18 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
     public GHTMLPageComponent(BlackBoard b) {
         blackboard = b;
 
-        GraphData gd = new GraphData(b);
         jta = new JEditorPane();
         jta.setEditable(false);
         jta.addHyperlinkListener(this);
-        JViewport jvp = new JViewport();
-
-        jta.setBackground(Color.white);
-        jvp.add(jta);
         jta.setContentType("text/html");
-
-        this.setViewport(jvp);
+        // Without this, HTML that names no colour or font is drawn in Times and in the look
+        // and feel's foreground, which on a dark desktop theme is light grey on this white
+        // background: the text simply vanished.
+        jta.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
+        jta.setBackground(Color.white);
+        jta.setForeground(new Color(0x2B2B2B));
+        setViewportView(jta);
+        setBorder(BorderFactory.createEmptyBorder());
     }
 
     public void setPage(URL page) {
@@ -73,7 +74,6 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
     }
 
     public void setHTML(String html) {
-
         jta.setText(html);
     }
 
@@ -90,24 +90,15 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
     }
 
     public void appendHTML(String html) {
-        StringBuilder sb9 = new StringBuilder();
-        String pointtext = jta.getText();
-        sb9.append("<html><body>");
-        sb9.append(html);
-        sb9.append("</body></html>");
-
-
         try {
-            Document doc = jta.getDocument();
             jta.getEditorKit().read(
-                    new java.io.StringReader(sb9.toString())
-                    , jta.getDocument()
-                    , jta.getDocument().getLength());
-        } catch (Throwable bl) {
-            System.out.println("-- " + bl.getMessage());
+                    new StringReader("<html><body>" + html + "</body></html>"),
+                    jta.getDocument(),
+                    jta.getDocument().getLength());
+        } catch (IOException | BadLocationException e) {
+            ExceptionHandler.catchException(e);
         }
         jta.validate();
-
     }
 
     /**
@@ -149,8 +140,8 @@ public class GHTMLPageComponent extends JScrollPane implements HyperlinkListener
         } else {
             try {
                 pane.setPage(e.getURL());
-            } catch (Throwable t) {
-                t.printStackTrace();
+            } catch (IOException ex) {
+                ExceptionHandler.catchException(ex);
             }
         }
     }
