@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class AutographixConj implements GraphReportExtension<ArrayList<String>> {
     public String getName() {
-        return "AutographiX  Conjecture";
+        return "AutographiX Conjecture";
     }
 
     public Double alpha = 1.0;

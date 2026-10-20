@@ -1,4 +1,4 @@
-package graphtea.extensions.algorithms;
+package graphtea.samples.extensions;
 
 import graphtea.extensions.AlgorithmUtils;
 import graphtea.graph.graph.Edge;
@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * A walk-through of the algorithm animator API for developers: requesting vertices, colouring,
+ * marking, stepping. It used to ship in the Algorithms menu as "Just a sample", where it also
+ * added edges to the user's graph. Copy it into graphtea.extensions.algorithms to try it.
+ *
  * @author M. Ali Rostami, A. Azadi
  */
 public class SampleAlgorithm extends GraphAlgorithm implements AlgorithmExtension {
@@ -22,7 +26,7 @@ public class SampleAlgorithm extends GraphAlgorithm implements AlgorithmExtensio
 
     @Override
     public void doAlgorithm() {
-        step("<h3>Source at:<a href='http://github.com/azinazadi/GraphTea/blob/master/src/graphtea/extensions/algorithms/SampleAlgorithm.java&handler=external'>SampleAlgorithm.java</a></h3>");
+        step("<h3>Source at:<a href='http://github.com/azinazadi/GraphTea/blob/master/src/graphtea/samples/extensions/SampleAlgorithm.java&handler=external'>SampleAlgorithm.java</a></h3>");
         step("<h3>Some helper methods at:<a href='http://github.com/azinazadi/GraphTea/blob/master/src/graphtea/plugins/main/core/AlgorithmUtils.java&handler=external'>AlgorithmUtils.java</a></h3>");
 
         GraphModel g = graphData.getGraph();
@@ -66,7 +70,7 @@ public class SampleAlgorithm extends GraphAlgorithm implements AlgorithmExtensio
 
     @Override
     public String getName() {
-        return "Just a sample ";
+        return "Just a sample";
     }
 
     @Override

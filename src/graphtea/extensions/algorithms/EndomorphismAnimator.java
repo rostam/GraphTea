@@ -63,7 +63,7 @@ public class EndomorphismAnimator extends GraphAlgorithm implements AlgorithmExt
 
     @Override
     public String getName() {
-        return "Endomorphism Animator ";
+        return "Endomorphism Animator";
     }
 
     @Override

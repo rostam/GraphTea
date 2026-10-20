@@ -30,7 +30,7 @@ public class G6CSVStringLoader implements GraphActionExtension, Parametrizable {
     public String indices = "";
 
     public String getName() {
-        return "G6 CSV Loader ";
+        return "G6 CSV Loader";
     }
 
     public String getDescription() {

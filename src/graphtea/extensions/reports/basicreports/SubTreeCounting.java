@@ -73,6 +73,6 @@ public class SubTreeCounting implements GraphReportExtension<RenderTable> {
 
 	@Override
 	public String getCategory() {
-		return "Subtree Counting ";
+		return "Subtree Counting";
 	}
 }

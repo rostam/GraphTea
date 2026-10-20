@@ -121,7 +121,7 @@ public class NetworkGenerateorAlgrithm extends GraphAlgorithm implements Algorit
 
     @Override
     public String getName() {
-        return "Network Generator ";
+        return "Network Generator";
     }
 
     @Override

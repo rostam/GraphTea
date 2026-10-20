@@ -7,6 +7,7 @@ package graphtea.ui.components.gmenu;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 
 /**
@@ -76,12 +77,10 @@ public class GMenuBar extends javax.swing.JMenuBar {
     }
 
     private static void sortPlacedComponents(Component[] items) {
-        Arrays.sort(items, (o1, o2) -> {
-            if (componentPlaces.containsKey(o1) && componentPlaces.containsKey(o2)) {
-                return componentPlaces.get(o1) - componentPlaces.get(o2);
-            }
-            return 1;
-        });
+        // The comparator this replaced answered 1 whenever either side had no place, which
+        // breaks the Comparator contract (a > b and b > a at once). Unplaced entries now keep
+        // their relative order after the placed ones; Arrays.sort on objects is stable.
+        Arrays.sort(items, Comparator.comparingInt(c -> componentPlaces.getOrDefault(c, Integer.MAX_VALUE)));
     }
 
     /**

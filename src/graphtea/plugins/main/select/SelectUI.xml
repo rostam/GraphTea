@@ -30,7 +30,7 @@
                 <!--<menu label="Select" action="select"/>-->
                 <!--<menu label="_Clear Selection" action="clear selection" accelerator="ESCAPE"/>-->
                 <!--<menu label="_Rectangular Select" action="rectangular select"/>-->
-                <menu label="Select_All" action="SelectAll" accelerator="control+A" place="10"/>
+                <menu label="Select _All" action="SelectAll" accelerator="control+A" place="10"/>
                 <menu label="_Invert Selection" action="InvertSelection" place="20"/>
                 <menu label="seperator_menu" place="50"/>
                 <menu label="_Scale In Selection" action="scale in selection" place="100"/>

@@ -34,7 +34,7 @@ public class BananaTreeGenerator implements GraphGeneratorExtension, Parametriza
     }
 
     public String getName() {
-        return "Banana  tree";
+        return "Banana Tree";
     }
 
     public String getDescription() {

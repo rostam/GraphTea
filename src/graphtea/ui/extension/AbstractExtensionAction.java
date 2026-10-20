@@ -10,6 +10,7 @@ import graphtea.platform.core.AEvent;
 import graphtea.platform.core.AbstractAction;
 import graphtea.platform.core.BlackBoard;
 import graphtea.platform.extension.Extension;
+import graphtea.platform.lang.NaturalOrder;
 import graphtea.platform.parameter.Parameter;
 import graphtea.platform.parameter.Parametrizable;
 import graphtea.plugins.graphgenerator.core.extension.GraphGeneratorExtension;
@@ -19,7 +20,6 @@ import graphtea.ui.ParameterShower;
 import graphtea.ui.UIUtils;
 import graphtea.ui.components.ExtensionConfigFrame;
 import graphtea.ui.components.GFrame;
-import graphtea.ui.components.gmenu.GMenuBar;
 import graphtea.ui.components.gmenu.GMenuItem;
 import graphtea.ui.xml.UIHandlerImpl;
 
@@ -31,9 +31,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.Field;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * the base class for creating extension handlers
@@ -60,12 +61,16 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
     public t target;
 
 
-    static HashMap<String, JMenu> reportSubMenus = new HashMap<>();
-    static HashMap<String, JMenu> reportSubSubMenus = new HashMap<>();
-    static HashMap<String, JMenu> generateSubMenus = new HashMap<>();
-    static HashMap<String, JMenu> operatorsSubmenus = new HashMap<>();
+    /** Category submenus, keyed by their path from the top-level menu. */
+    private static final Map<String, JMenu> categoryMenus = new HashMap<>();
 
-    public static List<JMenu> ourW = new ArrayList<>();
+    /** Marks menu entries placed by {@link #insertSorted}, as opposed to ones from the UI XML. */
+    private static final String SORTED_ENTRY = "graphtea.menu.sortedEntry";
+
+    /** Submenus before commands, each group in natural order of its label. */
+    private static final Comparator<JMenuItem> MENU_ORDER = Comparator
+            .comparing((JMenuItem m) -> !(m instanceof JMenu))
+            .thenComparing(JMenuItem::getText, NaturalOrder.INSTANCE);
 
     public AbstractExtensionAction(BlackBoard bb, t sp) {
         super(bb);
@@ -76,88 +81,92 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
         if (!name.isEmpty()) {
             menuItem = createMenuItem(name, actionId, bb);
             parentMenu = getParentMenu();
-            if (parentMenu.getText().equalsIgnoreCase("reports")) {
-                GraphReportExtension temp = (GraphReportExtension) sp;
-                if (temp.getCategory() != null) {
-                    if(!temp.getCategory().contains("-")) {
-                        JMenu categoryMenu;
-                        if (!reportSubMenus.containsKey(temp.getCategory())) {
-                            categoryMenu = new JMenu(temp.getCategory());
-                            reportSubMenus.put(temp.getCategory(), categoryMenu);
-                        } else
-                            categoryMenu = reportSubMenus.get(temp.getCategory());
-                        GMenuBar.insert(parentMenu, categoryMenu, getMenuPlace());
-                        GMenuBar.insert(categoryMenu, menuItem, getMenuPlace());
-                    } else {
-                        JMenu categoryMenu;
-                        JMenu subsub;
-
-                        String cat = temp.getCategory();
-                        String sub = cat.substring(0, cat.indexOf("-"));
-                        String subsubStr = cat.substring(cat.indexOf("-")+1);
-                        if (!reportSubMenus.containsKey(sub)) {
-                            categoryMenu = new JMenu(sub);
-                            reportSubMenus.put(sub, categoryMenu);
-                        } else
-                            categoryMenu = reportSubMenus.get(sub);
-
-                        if(!reportSubSubMenus.containsKey(subsubStr)) {
-                            subsub = new JMenu(subsubStr);
-                            reportSubSubMenus.put(subsubStr,subsub);
-                        } else {
-                            subsub=reportSubSubMenus.get(subsubStr);
-                        }
-
-                        GMenuBar.insert(parentMenu, categoryMenu, getMenuPlace());
-                        GMenuBar.insert(categoryMenu, subsub, getMenuPlace());
-                        GMenuBar.insert(subsub, menuItem, getMenuPlace());
-//                        if(temp.getCategory().contains("OurWork")) {
-//                            ourW.add(categoryMenu);
-//                            categoryMenu.setVisible(false);
-//                        }
-                    }
-                } else
-                    GMenuBar.insert(parentMenu, menuItem, getMenuPlace());
-            } else if (parentMenu.getText().equalsIgnoreCase("generate graph")) {
-                GraphGeneratorExtension temp = (GraphGeneratorExtension) sp;
-                if (temp.getCategory() != null) {
-                    JMenu categoryMenu;
-                    if (!generateSubMenus.containsKey(temp.getCategory())) {
-                        categoryMenu = new JMenu(temp.getCategory());
-                        generateSubMenus.put(temp.getCategory(), categoryMenu);
-                    } else
-                        categoryMenu = generateSubMenus.get(temp.getCategory());
-                    GMenuBar.insert(parentMenu, categoryMenu, getMenuPlace());
-                    GMenuBar.insert(categoryMenu, menuItem, getMenuPlace());
-                } else
-                    GMenuBar.insert(parentMenu, menuItem, getMenuPlace());
-            } else if (parentMenu.getText().equalsIgnoreCase("operators")) {
-                GraphActionExtension temp = (GraphActionExtension) sp;
-                if (temp.getCategory() != null) {
-                    JMenu categoryMenu;
-                    if (!operatorsSubmenus.containsKey(temp.getCategory())) {
-                        categoryMenu = new JMenu(temp.getCategory());
-                        operatorsSubmenus.put(temp.getCategory(), categoryMenu);
-                    } else
-                        categoryMenu = operatorsSubmenus.get(temp.getCategory());
-                    GMenuBar.insert(parentMenu, categoryMenu, getMenuPlace());
-                    GMenuBar.insert(categoryMenu, menuItem, getMenuPlace());
-                } else
-                    GMenuBar.insert(parentMenu, menuItem, getMenuPlace());
-            } else if (parentMenu != null)
-                GMenuBar.insert(parentMenu, menuItem, getMenuPlace());
+            if (parentMenu != null) {
+                JMenu menu = parentMenu;
+                String path = parentMenu.getText();
+                for (String level : categoryPath(sp)) {
+                    path += "/" + level;
+                    menu = categoryMenu(menu, path, level);
+                }
+                insertSorted(menu, menuItem);
+            }
         }
-
     }
 
     /**
-     * It is a XML-Based UI concept
-     *
-     * @return the place which the extension menu will be inserted in its parents menu, the place is
-     *         only a comparative value, it means that Menu Items with bigger place will be inserted after smaller place Menue Items
+     * The submenus an extension's entry is filed under. A report category of the form
+     * "Verification-Degree" is two levels deep.
      */
-    protected int getMenuPlace() {
-        return target.getName().charAt(0) * 1000 + target.getName().charAt(1);
+    private static List<String> categoryPath(Extension sp) {
+        String category = null;
+        boolean nested = false;
+        if (sp instanceof GraphReportExtension<?> report) {
+            category = report.getCategory();
+            nested = true;
+        } else if (sp instanceof GraphGeneratorExtension generator) {
+            category = generator.getCategory();
+        } else if (sp instanceof GraphActionExtension action) {
+            category = action.getCategory();
+        }
+        if (category == null || normalizeLabel(category).isEmpty()) {
+            return List.of();
+        }
+        int dash = category.indexOf('-');
+        if (!nested || dash < 0) {
+            return List.of(normalizeLabel(category));
+        }
+        return List.of(normalizeLabel(category.substring(0, dash)), normalizeLabel(category.substring(dash + 1)));
+    }
+
+    /**
+     * The submenu at {@code path}, created under {@code parent} the first time it is asked for.
+     *
+     * <p>Submenus were previously cached by their own label alone, so two categories with the
+     * same second level under different first levels would have shared, and fought over, a
+     * single menu.
+     */
+    private static JMenu categoryMenu(JMenu parent, String path, String label) {
+        JMenu menu = categoryMenus.computeIfAbsent(path, k -> new JMenu(label));
+        insertSorted(parent, menu);
+        return menu;
+    }
+
+    /**
+     * Inserts an entry among the other extension entries of {@code parent} in natural order of
+     * its label, after any entries the UI XML placed there.
+     *
+     * <p>The order used to come from {@link #getMenuPlace()}, which looked at only the first two
+     * characters of a name: "Chain Graph 1" to "Chain Graph 7" all tied and kept whatever order
+     * the extensions happened to load in, and each category submenu took its position from
+     * whichever entry created it.
+     */
+    static void insertSorted(JMenu parent, JMenuItem child) {
+        Component[] entries = parent.getMenuComponents();
+        for (Component c : entries) {
+            if (c == child) {
+                return;
+            }
+        }
+        child.putClientProperty(SORTED_ENTRY, Boolean.TRUE);
+        int at = -1;
+        int lastSorted = -1;
+        for (int i = 0; i < entries.length; i++) {
+            if (entries[i] instanceof JMenuItem sibling && Boolean.TRUE.equals(sibling.getClientProperty(SORTED_ENTRY))) {
+                lastSorted = i;
+                if (at < 0 && MENU_ORDER.compare(child, sibling) < 0) {
+                    at = i;
+                }
+            }
+        }
+        if (at < 0) {
+            at = lastSorted >= 0 ? lastSorted + 1 : entries.length;
+        }
+        parent.insert(child, at);
+    }
+
+    /** Trims a label and collapses runs of whitespace; several extension names had stray spaces. */
+    static String normalizeLabel(String label) {
+        return label.strip().replaceAll("\\s+", " ");
     }
 
     /**
@@ -171,6 +180,7 @@ public abstract class AbstractExtensionAction<t extends Extension> extends Abstr
      * @see graphtea.plugins.algorithmanimator.extension.AlgorithmExtensionAction
      */
     protected final GMenuItem createMenuItem(String name, String actionId, BlackBoard bb) {
+        name = normalizeLabel(name);
         int index = Math.max(name.indexOf(UIHandlerImpl.menueIndexChar), 0);
         String labelString = name.replace(UIHandlerImpl.menueIndexChar + "", "");
         if (isInsertExtraButtonToMenuItem()) {

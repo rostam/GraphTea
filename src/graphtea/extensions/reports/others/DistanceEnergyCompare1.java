@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DistanceEnergyCompare1 implements GraphReportExtension<RenderTable> {
     public String getName() {
-        return "Dist  Energy Compare";
+        return "Dist Energy Compare";
     }
 
     public String getDescription() {
