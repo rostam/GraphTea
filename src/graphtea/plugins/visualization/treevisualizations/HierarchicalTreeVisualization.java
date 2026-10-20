@@ -12,162 +12,65 @@ import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
 import graphtea.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphtea.ui.UIUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
 /**
+ * Draws a graph as a layered tree: the root at the top, each level below the one before.
+ *
+ * <p>The previous implementation walked each edge only from its source end, so on an undirected
+ * tree most of the tree was never reached and every unreached vertex was stacked on its
+ * parent's level; it rooted the tree at a vertex on the rim rather than in the middle; and it
+ * divided a fixed 600 pixels evenly per level, so wide levels overlapped. It also swallowed the
+ * NullPointerException an empty graph caused. The layout now comes from {@link TreeLayout}.
+ *
  * @author Rouzbeh Ebrahimi
  */
 public class HierarchicalTreeVisualization implements VisualizationExtension {
     public static final String event = UIUtils.getUIEventKey("HierarchicalTreeVisualization");
-    public List<Vertex> visitedVertices = new ArrayList<>();
-    public HashMap<Vertex, GPoint> vertexPlaces = new HashMap<>();
-    public List<Vertex> children = new ArrayList<>();
 
-    private void unMarkVertices() {
-        for (Vertex v : g) {
-            v.setMark(false);
-        }
-    }
+    /** Least horizontal distance between neighbouring leaves. */
+    private static final double MIN_LEAF_GAP = 40;
+    private static final double MARGIN = 60;
 
-    static GraphModel g;
+    private static GraphModel g;
 
-    /**
-     * @param eventName The event name
-     * @param value The value
-     */
-    public void performJob(String eventName, Object value) {
-        visitedVertices = new ArrayList<>();
-        vertexPlaces = new HashMap<>();
-        children = new ArrayList<>();
-        try {
-            Vertex root = findAppropriateRoot(g);
-            visitedVertices.add(root);
-            unMarkVertices();
-            locateAll(visitedVertices, 600, 50);
-        } catch (NullPointerException e) {
-
-//            ExceptionHandler.catchException(e);
-        }
-
-    }
-
-    private Vertex findHigherVertex(Vertex v1, Vertex v2) {
-        List<Vertex> t1 = new ArrayList<>();
-        List<Vertex> t2 = new ArrayList<>();
-        t1.add(v1);
-        t2.add(v2);
-        if (BFS(t1, 0) > BFS(t2, 0)) {
-            return v1;
-        } else {
-            return v2;
-        }
-    }
-
-    private Vertex findAppropriateRoot(GraphModel g) {
-        Vertex root = g.getAVertex();
-        for (Vertex e : g) {
-            root = findHigherVertex(e, root);
-        }
-        return root;
-    }
-
-    private int BFS(List<Vertex> currentLevel, int maxLevel) {
-        List<Vertex> nextLevel = new ArrayList<>();
-        for (Vertex v : currentLevel) {
-            v.setMark(true);
-            for (Edge e : g.edges(v)) {
-                Vertex v2 = e.source;
-                if (!v2.getMark()) {
-                    nextLevel.add(v2);
-                    v2.setMark(true);
-                }
-            }
-        }
-        maxLevel++;
-        if (nextLevel.size() != 0) {
-            return BFS(nextLevel, maxLevel);
-        } else {
-            return maxLevel;
-        }
-    }
-
-    public List<Vertex> findNextLevelChildren(List<Vertex> currentLevelVertices) {
-        List<Vertex> newChildren = new ArrayList<>();
-        if (currentLevelVertices.size() != 0) {
-            for (Vertex v : currentLevelVertices) {
-                for (Edge ed : g.edges(v)) {
-                    Vertex dest = ed.source;
-                    if (!visitedVertices.contains(dest)) {
-                        newChildren.add(dest);
-                    }
-                }
-            }
-        } else {
-        }
-        return newChildren;
-    }
-
-    public void locateAll(List<Vertex> currentLevelVertices, int width, int currentLevelHeight) {
-        int currentLevelCount = currentLevelVertices.size();
-        int horizontalDist = width / currentLevelCount;
-        int i = 0;
-        List<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
-
-        for (Vertex v : currentLevelVertices) {
-            GPoint newPoint = new GPoint(horizontalDist * i + width / (currentLevelCount + 1), currentLevelHeight);
-            vertexPlaces.put(v, newPoint);
-            i++;
-        }
-
-        if (!nextLevel.isEmpty()) {
-            visitedVertices.addAll(nextLevel);
-            locateAll(nextLevel, width, currentLevelHeight + eachLevelHeigh);
-        } else {
-            return;
-        }
-    }
+    @UserModifiableProperty(displayName = "Hierarchical Tree Width", obeysAncestorCategory = false
+            , category = "Visualization Options")
+    public static Integer width = 600;
+    @UserModifiableProperty(displayName = "Hierarchical Tree Level Height", obeysAncestorCategory = false
+            , category = "Visualization Options")
+    public static Integer eachLevelHeigh = 80;
 
     public String getName() {
         return "Hierarchical Tree Visualization";
     }
 
     public String getDescription() {
-        return "Hierarchical Tree Visualization";
-    }/*
-     @param g
-    */
+        return "Draws the graph as a tree in levels, rooted at its centre";
+    }
 
     public void setWorkingGraph(GraphModel g) {
         HierarchicalTreeVisualization.g = g;
     }
 
-    @UserModifiableProperty(displayName = "Hierarchical Tree Visualization Width", obeysAncestorCategory = false
-            , category = "Visualization Options")
-    public static Integer width = 600;
-    @UserModifiableProperty(displayName = "Hierarchical Tree Visualization : Each Level's height", obeysAncestorCategory = false
-            , category = "Visualization Options")
-    public static Integer eachLevelHeigh = 50;
-
     public HashMap<Vertex, GPoint> getNewVertexPlaces() {
-        visitedVertices = new ArrayList<>();
-        vertexPlaces = new HashMap<>();
-        children = new ArrayList<>();
-        try {
-            Vertex root = findAppropriateRoot(g);
-            visitedVertices.add(root);
-            unMarkVertices();
-            locateAll(visitedVertices, width, eachLevelHeigh);
-        } catch (NullPointerException e) {
-
-//            ExceptionHandler.catchException(e);
+        HashMap<Vertex, GPoint> places = new HashMap<>();
+        if (g == null) {
+            return places;
         }
-        return vertexPlaces;
+        Map<Vertex, GPoint> slots = TreeLayout.layered(g);
+        double maxSlot = slots.values().stream().mapToDouble(p -> p.x).max().orElse(0);
+        // Spread the leaves over the configured width, but never closer than MIN_LEAF_GAP.
+        double gap = Math.max(MIN_LEAF_GAP, maxSlot > 0 ? width / maxSlot : 0);
+        for (Map.Entry<Vertex, GPoint> e : slots.entrySet()) {
+            GPoint s = e.getValue();
+            places.put(e.getKey(), new GPoint(MARGIN + s.x * gap, MARGIN + s.y * eachLevelHeigh));
+        }
+        return places;
     }
 
     public HashMap<Edge, GPoint> getNewEdgeCurveControlPoints() {
         return null;
     }
 }
-

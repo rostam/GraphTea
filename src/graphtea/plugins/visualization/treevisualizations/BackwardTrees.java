@@ -8,232 +8,76 @@ import graphtea.graph.graph.Edge;
 import graphtea.graph.graph.GPoint;
 import graphtea.graph.graph.GraphModel;
 import graphtea.graph.graph.Vertex;
-import graphtea.library.BaseVertexProperties;
-import graphtea.platform.core.exception.ExceptionHandler;
 import graphtea.platform.preferences.lastsettings.UserModifiableProperty;
-import graphtea.plugins.graphgenerator.core.PositionGenerators;
 import graphtea.plugins.visualization.corebasics.extension.VisualizationExtension;
 import graphtea.ui.UIUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.Map;
 
 /**
+ * Draws a graph as a radial tree: the root in the middle and each level on a ring around it,
+ * every subtree in its own wedge.
+ *
+ * <p>The previous implementation shared the hierarchical layout's faults (edges followed from one
+ * end only, the root picked on the rim), placed children on fixed circles around their parent so
+ * that deeper levels overlapped, and overwrote each vertex's properties to carry its angular
+ * span. The layout now comes from {@link TreeLayout}: a vertex's slot becomes its angle and its
+ * depth its ring.
+ *
  * @author Rouzbeh Ebrahimi
  */
 public class BackwardTrees implements VisualizationExtension {
     String event = UIUtils.getUIEventKey("BackwardTrees");
-    public List<Vertex> visitedVertices = new ArrayList<>();
-    public List<Vertex> upperLevelVertices = new ArrayList<>();
 
-    public HashMap<Vertex, GPoint> vertexPlaces = new HashMap<>();
-    public List<Vertex> children = new ArrayList<>();
-    public HashMap<Vertex, Double> comingFrom = new HashMap<>();
-    Vertex root;
+    /** Least distance between neighbouring leaves on the outer ring. */
+    private static final double MIN_LEAF_GAP = 40;
+    private static final double MARGIN = 60;
 
     static GraphModel g;
-    public HashSet<Vertex> placedVertices = new HashSet<>();
-    @UserModifiableProperty(displayName = "BackWard Tree Visualization Radius", obeysAncestorCategory = false
+
+    @UserModifiableProperty(displayName = "Backward Tree Radius", obeysAncestorCategory = false
             , category = "Visualization Options")
-    public static Integer radius = 60;
-
-    private Vertex findHigherVertex(Vertex v1, Vertex v2) {
-        List<Vertex> t1 = new ArrayList<>();
-        List<Vertex> t2 = new ArrayList<>();
-        t1.add(v1);
-        t2.add(v2);
-        if (BFS(t1, 0) > BFS(t2, 0)) {
-            return v1;
-        } else {
-            return v2;
-        }
-    }
-
-    private Vertex findAppropriateRoot(GraphModel g) {
-        Vertex root = g.getAVertex();
-        for (Vertex e : g) {
-            root = findHigherVertex(e, root);
-        }
-        return root;
-    }
-
-    private int BFS(List<Vertex> currentLevel, int maxLevel) {
-        List<Vertex> nextLevel = new ArrayList<>();
-        for (Vertex v : currentLevel) {
-            v.setMark(true);
-            for (Edge e : g.edges(v)) {
-                Vertex v2 = e.source;
-                if (!v2.getMark()) {
-                    nextLevel.add(v2);
-                    v2.setMark(true);
-                }
-            }
-        }
-        maxLevel++;
-        if (nextLevel.size() != 0) {
-            return BFS(nextLevel, maxLevel);
-        } else {
-            return maxLevel;
-        }
-    }
-
-    public List<Vertex> findNextLevelChildren(List<Vertex> currentLevelVertices) {
-        List<Vertex> newChildren = new ArrayList<>();
-        if (currentLevelVertices.size() != 0) {
-            for (Vertex v : currentLevelVertices) {
-                for (Edge ed : g.edges(v)) {
-                    Vertex dest = ed.source;
-                    if (!visitedVertices.contains(dest)) {
-                        newChildren.add(dest);
-                    }
-                }
-            }
-        } else {
-        }
-        return newChildren;
-    }
-
-    public void locateAll(List<Vertex> currentLevelVertices, int width, int currentLevelHeight, int level, int radius) {
-
-        int currentLevelCount = currentLevelVertices.size();
-        int horizontalDist = width / currentLevelCount;
-        int i = 0;
-        List<Vertex> nextLevel = findNextLevelChildren(currentLevelVertices);
-        if (currentLevelCount == 1 && currentLevelVertices.get(0).equals(root)) {
-            GPoint newPoint = new GPoint(200, 200);
-            vertexPlaces.put(root, newPoint);
-            comingFrom.put(root, 0.0);
-        } else {
-            for (Vertex v : upperLevelVertices) {
-                int degree = g.getInDegree(v);
-                double p = comingFrom.get(v);
-                int j = 0;
-
-                double phase;
-                phase = 360 / (degree);
-                GPoint[] circle = PositionGenerators.convert(PositionGenerators.circle((int) v.getLocation().getX(), (int) v.getLocation().getY(), radius, radius, degree));
-
-                int t = 0;
-                for (Edge ei : g.edges(v)) {
-                    Vertex ver = ei.source;
-//                    double x;
-//                    double y;
-//                    double xPhase = Math.cos(((j * phase)+p) * Math.PI / 180);
-//                    x = vertexPlaces.get(v).getX() + radius * xPhase;
-//                    double yPhase = Math.sin(((j * phase)+p ) * Math.PI / 180);
-//                    y = vertexPlaces.get(v).getY() + radius * yPhase;
-                    comingFrom.put(ver, (j * phase) + p);
-//                     GPoint newPoint = new GPoint(x, y);
-                    vertexPlaces.put(ver, circle[t]);
-                    j++;
-                    t++;
-
-                }
-            }
-
-//        for (Vertex v : currentLevelVertices) {
-//            GPoint newPoint = new GPoint(horizontalDist * i + width / (currentLevelCount + 1), currentLevelHeight);
-//            vertexPlaces.put(v,newPoint);
-//            i++;
-//        }
-        }
-        upperLevelVertices = currentLevelVertices;
-        if (!nextLevel.isEmpty()) {
-            visitedVertices.addAll(nextLevel);
-            locateAll(nextLevel, width, currentLevelHeight + 30, level + 1, radius * 9 / 16);
-        }
-    }
-
-    private void unMarkVertices() {
-        for (Vertex v : g) {
-            v.setMark(false);
-        }
-    }
-
-    public void locateAllSubTrees(Vertex v, double radius, double offSet) {
-        if (placedVertices.contains(root)) {
-            double angularSpan = (Double) v.getProp().obj;
-            int numberOfDivides = 1;
-            numberOfDivides = g.getInDegree(v);
-            if (numberOfDivides == 0) {
-                return;
-            }
-            int sum = 0;
-            for (Edge e : g.edges(v)) {
-                Vertex v1 = e.source.equals(v) ? e.target : e.source;
-                if (!placedVertices.contains(v1)) {
-                    sum += g.getInDegree(v1);
-                }
-            }
-            int j = 1;
-            for (Edge e : g.edges(v)) {
-                Vertex v1 = e.source.equals(v) ? e.target : e.source;
-                if (!placedVertices.contains(v1)) {
-                    double x = 350 + radius * Math.cos((angularSpan * j / (numberOfDivides) + offSet));
-                    double y = 350 + radius * Math.sin((angularSpan * j / (numberOfDivides) + offSet));
-                    double newOffset = (angularSpan * j / numberOfDivides + offSet);
-                    GPoint newPoint = new GPoint(x, y);
-                    vertexPlaces.put(v1, newPoint);
-                    placedVertices.add(v1);
-                    BaseVertexProperties properties = new BaseVertexProperties(v1.getColor(), v1.getMark());
-                    properties.obj = (angularSpan / (Math.abs(sum))) * (g.getInDegree(v1));
-                    v1.setProp(properties);
-                    locateAllSubTrees(v1, BackwardTrees.radius + radius, newOffset);
-                    j++;
-
-                }
-            }
-        } else {
-            double x = 350;
-            double y = 350;
-            GPoint newPoint = new GPoint(x, y);
-            placedVertices.add(v);
-            vertexPlaces.put(v, newPoint);
-            locateAllSubTrees(v, radius, offSet);
-        }
-    }
+    public static Integer radius = 80;
 
     public String getName() {
-        return "BackWard Tree Visualization";
+        return "Backward Tree Visualization";
     }
 
     public String getDescription() {
-        return "BackWard Tree Visualization";
-    }/*
-     @param g
-    */
+        return "Draws the graph as a radial tree around its centre";
+    }
 
     public void setWorkingGraph(GraphModel g) {
         BackwardTrees.g = g;
     }
 
     public HashMap<Vertex, GPoint> getNewVertexPlaces() {
-        visitedVertices = new ArrayList<>();
-        vertexPlaces = new HashMap<>();
-        children = new ArrayList<>();
-        placedVertices = new HashSet<>();
-        try {
-            root = findAppropriateRoot(g);
-            visitedVertices.add(root);
-            unMarkVertices();
-//            locateAll(visitedVertices, 600, 50, 1,200);
-            BaseVertexProperties properties = new BaseVertexProperties(root.getColor(), root.getMark());
-            properties.obj = 2 * Math.PI;
-            root.setProp(properties);
-
-            locateAllSubTrees(root, radius, 0);
-//            GeneralAnimator t = new GeneralAnimator(vertexPlaces, g, blackboard);
-//            t.start();
-        } catch (NullPointerException e) {
-            ExceptionHandler.catchException(e);
+        HashMap<Vertex, GPoint> places = new HashMap<>();
+        if (g == null) {
+            return places;
         }
-        return vertexPlaces;
+        double left = MARGIN;
+        for (Map<Vertex, GPoint> component : TreeLayout.components(g)) {
+            double slots = 1 + component.values().stream().mapToDouble(p -> p.x).max().orElse(0);
+            double depth = component.values().stream().mapToDouble(p -> p.y).max().orElse(0);
+            // Rings far enough apart that the outer one has room for every leaf.
+            double ring = depth == 0 ? 0 : Math.max(radius, slots * MIN_LEAF_GAP / (2 * Math.PI * depth));
+            double discRadius = depth * ring;
+            double cx = left + discRadius;
+            double cy = MARGIN + discRadius;
+            for (Map.Entry<Vertex, GPoint> e : component.entrySet()) {
+                GPoint s = e.getValue();
+                double angle = 2 * Math.PI * s.x / slots;
+                double r = s.y * ring;
+                places.put(e.getKey(), new GPoint(cx + r * Math.cos(angle), cy + r * Math.sin(angle)));
+            }
+            left += 2 * discRadius + Math.max(radius, MIN_LEAF_GAP);
+        }
+        return places;
     }
 
     public HashMap<Edge, GPoint> getNewEdgeCurveControlPoints() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 }
-
